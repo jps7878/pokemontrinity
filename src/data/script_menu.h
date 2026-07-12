@@ -977,6 +977,7 @@ static const u8 *const sLilycoveSSTidalDestinations[SSTIDAL_SELECTION_COUNT] =
     [SSTIDAL_SELECTION_BIRTH_ISLAND]    = gText_BirthIsland,
     [SSTIDAL_SELECTION_FARAWAY_ISLAND]  = gText_FarawayIsland,
     [SSTIDAL_SELECTION_EXIT]            = gText_Exit,
+    [SSTIDAL_SELECTION_JOHTO]           = gText_Johto,
 };
 
 static const u8 *const sCableClubOptions_WithRecordMix[] =
