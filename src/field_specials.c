@@ -1590,6 +1590,10 @@ static u16 TradeHouse_RollReceivedSpecies(void)
 void TradeHouse_DoTrade(void)
 {
     u8 slot = gSpecialVar_0x8004;
+
+    if (slot >= PARTY_SIZE)
+        return;
+
     struct Pokemon *orig = &gPlayerParty[slot];
     u8 level = GetMonData(orig, MON_DATA_LEVEL, NULL);
     bool32 canStopEvo = FALSE;
