@@ -571,3 +571,4 @@ gSpecials::
 	def_special TradeHouse_IsChosenMonEgg
 	def_special TradeHouse_CheckHeldMon
 	def_special TradeHouse_DoTrade
+	def_special TradeHouse_BuyBack

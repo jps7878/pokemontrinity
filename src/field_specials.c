@@ -1646,6 +1646,30 @@ void TradeHouse_DoTrade(void)
     gSpecialVar_0x8007 = jackpot;
 }
 
+// Returns Margins' held original to the player for the in-script price.
+// VAR_RESULT = GiveMonToPlayer result; VAR_0x8006 = restored species. Clears the slot on success.
+void TradeHouse_BuyBack(void)
+{
+    struct Pokemon mon;
+    u8 result;
+
+    if (!gSaveBlock1Ptr->tradeHouseHeldMonActive)
+    {
+        gSpecialVar_0x8006 = SPECIES_NONE;
+        gSpecialVar_Result = MON_CANT_GIVE;   // nothing held; script treats as "no sale"
+        return;
+    }
+
+    BoxMonToMon(&gSaveBlock1Ptr->tradeHouseHeldMon, &mon);
+    gSpecialVar_0x8006 = GetMonData(&mon, MON_DATA_SPECIES, NULL);
+
+    result = GiveMonToPlayer(&mon);
+    gSpecialVar_Result = result;
+
+    if (result != MON_CANT_GIVE)
+        gSaveBlock1Ptr->tradeHouseHeldMonActive = FALSE;
+}
+
 bool8 ScriptCheckFreePokemonStorageSpace(void)
 {
     return CheckFreePokemonStorageSpace();
