@@ -53,3 +53,68 @@ FortreeCity_PokemonCenter_1F_Text_DoYouKnowAboutPokenav:
 	.string "It's really nifty! Those DEVON guys\n"
 	.string "sure know what they're doing!$"
 
+FortreeCity_PokemonCenter_1F_EventScript_BirchAide::
+	lock
+	faceplayer
+	goto_if_set FLAG_TRINITY_STARTER_GIFT_B, FortreeCity_PokemonCenter_1F_EventScript_BirchAideDone
+	goto_if_unset FLAG_BADGE06_GET, FortreeCity_PokemonCenter_1F_EventScript_BirchAideNotYet
+	msgbox FortreeCity_PokemonCenter_1F_Text_BirchAideIntro, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 1
+	setvar VAR_0x8005, 32
+	special GiveChosenTrioLineMate
+	copyvar VAR_0x8007, VAR_RESULT
+	bufferspeciesname STR_VAR_1, VAR_0x8006
+	goto_if_eq VAR_0x8007, MON_CANT_GIVE, FortreeCity_PokemonCenter_1F_EventScript_BirchAideNoRoom
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox FortreeCity_PokemonCenter_1F_Text_BirchAideReceived, MSGBOX_DEFAULT
+	waitfanfare
+	setflag FLAG_TRINITY_STARTER_GIFT_B
+	goto_if_eq VAR_0x8007, MON_GIVEN_TO_PC, FortreeCity_PokemonCenter_1F_EventScript_BirchAideToPC
+	release
+	end
+
+FortreeCity_PokemonCenter_1F_EventScript_BirchAideDone::
+	msgbox FortreeCity_PokemonCenter_1F_Text_BirchAideDone, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_PokemonCenter_1F_EventScript_BirchAideToPC::
+	msgbox FortreeCity_PokemonCenter_1F_Text_BirchAideToPC, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_PokemonCenter_1F_EventScript_BirchAideNoRoom::
+	msgbox FortreeCity_PokemonCenter_1F_Text_BirchAideNoRoom, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_PokemonCenter_1F_EventScript_BirchAideNotYet::
+	msgbox FortreeCity_PokemonCenter_1F_Text_BirchAideNotYet, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_PokemonCenter_1F_Text_BirchAideIntro:
+	.string "There you are! Prof. Birch sent\n"
+	.string "me with the last member of your\l"
+	.string "starter trio. Take good care of\l"
+	.string "it!$"
+
+FortreeCity_PokemonCenter_1F_Text_BirchAideReceived:
+	.string "You received {STR_VAR_1}!$"
+
+FortreeCity_PokemonCenter_1F_Text_BirchAideToPC:
+	.string "Your party was full, so it was\n"
+	.string "sent to your PC.$"
+
+FortreeCity_PokemonCenter_1F_Text_BirchAideNoRoom:
+	.string "You've no room for it right now.\n"
+	.string "Come find me when you do!$"
+
+FortreeCity_PokemonCenter_1F_Text_BirchAideNotYet:
+	.string "Prof. Birch asked me to wait for\n"
+	.string "a trainer with six Gym Badges.$"
+
+FortreeCity_PokemonCenter_1F_Text_BirchAideDone:
+	.string "That's your whole starter trio\n"
+	.string "together now. Prof. Birch will be\l"
+	.string "thrilled!$"
