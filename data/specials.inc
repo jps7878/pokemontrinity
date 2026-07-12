@@ -568,3 +568,6 @@ gSpecials::
 	def_special ObjectEventInteractionGetApricornTreeData
 	def_special ObjectEventInteractionPickApricornTree
 	def_special GiveChosenTrioLineMate
+	def_special TradeHouse_IsChosenMonEgg
+	def_special TradeHouse_CheckHeldMon
+	def_special TradeHouse_DoTrade

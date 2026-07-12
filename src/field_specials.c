@@ -1517,6 +1517,131 @@ void GiveChosenTrioLineMate(void)
     gSpecialVar_Result = ScriptGiveMon(species, level, ITEM_NONE);
 }
 
+// --- Trinity M1: Slateport Trade House (Mr. Margins) ---------------------------
+#define TRADE_HOUSE_JACKPOT_PCT 20   // % chance the received mon comes from the premium pool
+
+// Premium "jackpot" pool: high-power, all <= dex 386, all non-legendary/non-mythical.
+static const u16 sTradeHousePremiumPool[] = {
+    SPECIES_DRAGONITE,
+    SPECIES_TYRANITAR,
+    SPECIES_METAGROSS,
+    SPECIES_SALAMENCE,
+    SPECIES_SNORLAX,
+    SPECIES_SLAKING,
+    SPECIES_MILOTIC,
+};
+
+// Returns TRUE (in VAR_RESULT) if the mon the player picked in ChoosePartyMon is an Egg.
+void TradeHouse_IsChosenMonEgg(void)
+{
+    u8 slot = gSpecialVar_0x8004;
+
+    if (slot < PARTY_SIZE && GetMonData(&gPlayerParty[slot], MON_DATA_IS_EGG, NULL))
+        gSpecialVar_Result = TRUE;
+    else
+        gSpecialVar_Result = FALSE;
+}
+
+// Reports whether Margins is currently holding a bought-back-able original.
+// VAR_RESULT = TRUE/FALSE; VAR_0x8006 = held species (SPECIES_NONE when empty).
+void TradeHouse_CheckHeldMon(void)
+{
+    if (gSaveBlock1Ptr->tradeHouseHeldMonActive)
+    {
+        gSpecialVar_0x8006 = GetBoxMonData(&gSaveBlock1Ptr->tradeHouseHeldMon, MON_DATA_SPECIES);
+        gSpecialVar_Result = TRUE;
+    }
+    else
+    {
+        gSpecialVar_0x8006 = SPECIES_NONE;
+        gSpecialVar_Result = FALSE;
+    }
+}
+
+// Rolls one valid received species: National-Dex 1..386 minus legendaries, mythicals,
+// and the four trainer-only species. Bounded loop with a guaranteed-valid fallback.
+static u16 TradeHouse_RollReceivedSpecies(void)
+{
+    u32 tries;
+
+    for (tries = 0; tries < 512; tries++)
+    {
+        u16 dexNum = 1 + (Random() % NATIONAL_DEX_DEOXYS);   // 1..386
+        u16 species = NationalPokedexNumToSpecies(dexNum);
+
+        if (species == SPECIES_NONE)
+            continue;
+        if (gSpeciesInfo[species].isLegendary || gSpeciesInfo[species].isMythical)
+            continue;
+        if (species == SPECIES_GRENINJA || species == SPECIES_LUCARIO
+         || species == SPECIES_INFERNAPE || species == SPECIES_GARCHOMP)
+            continue;
+
+        return species;
+    }
+
+    return SPECIES_ZIGZAGOON;   // unreachable in practice; never returns an invalid species
+}
+
+// The trade. Uses VAR_0x8004 (chosen slot). Trade-evolves the offered mon into Margins'
+// single buy-back slot (overwriting any previous held original = permanent "SOLD"), then
+// swaps a random same-level mon into the same party slot.
+// Produces: VAR_0x8006 = received species, VAR_0x8007 = jackpot flag (1/0).
+void TradeHouse_DoTrade(void)
+{
+    u8 slot = gSpecialVar_0x8004;
+    struct Pokemon *orig = &gPlayerParty[slot];
+    u8 level = GetMonData(orig, MON_DATA_LEVEL, NULL);
+    bool32 canStopEvo = FALSE;
+    struct Pokemon newMon;
+    u32 evoTarget;
+    u16 species;
+    bool8 jackpot;
+
+    // 1) Trade-evolve the offered mon "in his care" (held evo items consumed by DO_EVO).
+    evoTarget = GetEvolutionTargetSpecies(orig, EVO_MODE_TRADE, ITEM_NONE, NULL, &canStopEvo, CHECK_EVO);
+    if (evoTarget != SPECIES_NONE)
+    {
+        u32 zero = 0;
+        GetEvolutionTargetSpecies(orig, EVO_MODE_TRADE, ITEM_NONE, NULL, &canStopEvo, DO_EVO);
+        SetMonData(orig, MON_DATA_SPECIES, &evoTarget);
+        SetMonData(orig, MON_DATA_EVOLUTION_TRACKER, &zero);
+        CalculateMonStats(orig);
+        GetSetPokedexFlag(SpeciesToNationalPokedexNum(evoTarget), FLAG_SET_SEEN);
+        GetSetPokedexFlag(SpeciesToNationalPokedexNum(evoTarget), FLAG_SET_CAUGHT);
+    }
+
+    // 2) Store the (possibly evolved) original in the single buy-back slot.
+    //    Any previous held original is overwritten here -> permanent "SOLD!" (warned in-script).
+    gSaveBlock1Ptr->tradeHouseHeldMon = orig->box;
+    gSaveBlock1Ptr->tradeHouseHeldMonActive = TRUE;
+
+    // 3) Roll the received species (20% premium jackpot).
+    jackpot = ((Random() % 100) < TRADE_HOUSE_JACKPOT_PCT);
+    if (jackpot)
+        species = sTradeHousePremiumPool[Random() % ARRAY_COUNT(sTradeHousePremiumPool)];
+    else
+        species = TradeHouse_RollReceivedSpecies();
+
+    // 4) Build the received mon (player-OT so it obeys) and swap it into the same slot.
+    CreateMon(&newMon, species, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
+    if (jackpot)
+    {
+        u8 iv = MAX_PER_STAT_IVS;
+        u8 i;
+        for (i = 0; i < NUM_STATS; i++)
+            SetMonData(&newMon, MON_DATA_HP_IV + i, &iv);
+        CalculateMonStats(&newMon);
+    }
+    GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_SET_SEEN);
+    GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_SET_CAUGHT);
+    CopyMon(orig, &newMon, sizeof(struct Pokemon));
+
+    // 5) Report to the script.
+    gSpecialVar_0x8006 = species;
+    gSpecialVar_0x8007 = jackpot;
+}
+
 bool8 ScriptCheckFreePokemonStorageSpace(void)
 {
     return CheckFreePokemonStorageSpace();
