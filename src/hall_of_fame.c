@@ -777,7 +777,16 @@ static void Task_Hof_HandleExit(u8 taskId)
 
 static void StartCredits(void)
 {
-    SetMainCallback2(CB2_StartCreditsSequence);
+    // Trinity: the Hoenn League is League 1 of 3 -- beating the Hoenn Champion ends
+    // Act I, not the game. Do NOT roll the full staff "THE END" credits here. The
+    // true ending credits belong to the final Kanto/Mt. Silver victory (a future
+    // milestone) and reuse CB2_StartCreditsSequence unchanged. The game has already
+    // been saved (TrySavingData(SAVE_HALL_OF_FAME)) and FLAG_SYS_GAME_CLEAR was set
+    // in GameClear(), and the screen is already faded to black at this point, so a
+    // soft-reset returns to the title; choosing Continue drops the player back into
+    // the post-game overworld (the continue-game warp set to their bedroom) -- exactly
+    // what vanilla does after the credits, minus the credits.
+    SoftReset(RESET_ALL);
 }
 
 #undef tDontSaveData
