@@ -1172,6 +1172,9 @@ struct SaveBlock1
     /*0x3???*/ struct TrainerHillSave trainerHill;
 #endif //FREE_TRAINER_HILL
     /*0x3???*/ struct WaldaPhrase waldaPhrase;
+    // Trinity M1 — Slateport Trade House (Mr. Margins) single buy-back slot.
+    /*NEW*/ struct BoxPokemon tradeHouseHeldMon;    // the last original offered to Margins (trade-evolved)
+    /*NEW*/ bool8 tradeHouseHeldMonActive;          // TRUE while a repurchasable original is held
     // sizeof: 0x3???
 };
 
