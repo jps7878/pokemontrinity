@@ -874,6 +874,16 @@ static void CreateLilycoveSSTidalMultichoice(void)
         }
     }
 
+    // Trinity: always offer JOHTO post-League (the ferry attendant is already gated on
+    // FLAG_SYS_GAME_CLEAR). The route stays locked until FLAG_ENABLE_SHIP_JOHTO is set
+    // (M3/M4); the harbor handler shows the placeholder when it is unset. Only in the
+    // regular path (0x8004 == 0), and just before EXIT to match the scrollable list.
+    if (gSpecialVar_0x8004 == 0)
+    {
+        sLilycoveSSTidalSelections[selectionCount] = SSTIDAL_SELECTION_JOHTO;
+        selectionCount++;
+    }
+
     sLilycoveSSTidalSelections[selectionCount] = SSTIDAL_SELECTION_EXIT;
     selectionCount++;
 

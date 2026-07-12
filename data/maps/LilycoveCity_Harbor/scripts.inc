@@ -47,6 +47,7 @@ LilycoveCity_Harbor_EventScript_FerryRegularLocationSelect::
 	case 4, LilycoveCity_Harbor_EventScript_GoToBirthIsland
 	case 5, LilycoveCity_Harbor_EventScript_GoToFarawayIsland
 	case 6, LilycoveCity_Harbor_EventScript_ExitSailSelect
+	case 7, LilycoveCity_Harbor_EventScript_GoToJohto
 	case MULTI_B_PRESSED, LilycoveCity_Harbor_EventScript_ExitSailSelect
 	end
 
@@ -76,6 +77,21 @@ LilycoveCity_Harbor_EventScript_GoToFarawayIsland::
 	warp MAP_FARAWAY_ISLAND_ENTRANCE, 13, 38
 	waitstate
 	release
+	end
+
+LilycoveCity_Harbor_EventScript_GoToJohto::
+	goto_if_set FLAG_ENABLE_SHIP_JOHTO, LilycoveCity_Harbor_EventScript_GoToJohtoOpen
+	msgbox LilycoveCity_Harbor_Text_JohtoRouteNotOpen, MSGBOX_DEFAULT
+	goto LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
+	end
+
+@ Trinity M3/M4 wiring point: FLAG_ENABLE_SHIP_JOHTO is never set in M1 (Johto does
+@ not exist yet), so this branch is unreachable for now and shows the same placeholder.
+@ When the Johto sea route is built, replace the placeholder below with the board-ferry
+@ + warp to the Johto arrival map.
+LilycoveCity_Harbor_EventScript_GoToJohtoOpen::
+	msgbox LilycoveCity_Harbor_Text_JohtoRouteNotOpen, MSGBOX_DEFAULT
+	goto LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
 	end
 
 LilycoveCity_Harbor_EventScript_GoToSlateport::
@@ -585,3 +601,10 @@ LilycoveCity_Harbor_Text_SailorFerryAvailable:
 	.string "The folks at the SHIPYARD in SLATEPORT\n"
 	.string "must've worked extra hard.\p"
 	.string "Well, it's my turn to get busy now!$"
+
+LilycoveCity_Harbor_Text_JohtoRouteNotOpen:
+	.string "SAILOR: JOHTO? Heh, I wish!\p"
+	.string "The sea route to JOHTO isn't open\n"
+	.string "yet. The S.S. TIDAL can't chart that\l"
+	.string "course -- not until the way is clear.\p"
+	.string "Pick another destination for now.$"
