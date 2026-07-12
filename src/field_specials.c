@@ -41,6 +41,7 @@
 #include "rtc.h"
 #include "script.h"
 #include "script_menu.h"
+#include "script_pokemon_util.h"
 #include "sound.h"
 #include "starter_choose.h"
 #include "string_util.h"
@@ -1482,6 +1483,38 @@ bool8 IsStarterInParty(void)
             return TRUE;
     }
     return FALSE;
+}
+
+// Trinity: gives one of the player's chosen-trio line-mates (the two starters
+// of their trio they did NOT pick from Birch).
+// In:  gSpecialVar_0x8004 = which line-mate (0 = first by ascending trio index, 1 = second)
+//      gSpecialVar_0x8005 = level
+// Out: gSpecialVar_Result = ScriptGiveMon status (MON_GIVEN_TO_PARTY/PC/CANT_GIVE)
+//      gSpecialVar_0x8006 = species given
+void GiveChosenTrioLineMate(void)
+{
+    u16 chosen = VarGet(VAR_STARTER_MON);   // 0/1/2 index within the chosen trio
+    u16 which  = gSpecialVar_0x8004;         // 0 or 1
+    u8  level  = gSpecialVar_0x8005;
+    u16 species;
+    u16 lineMateIndex = 0;
+    u8 i, n = 0;
+
+    for (i = 0; i < 3; i++)
+    {
+        if (i == chosen)
+            continue;
+        if (n == which)
+        {
+            lineMateIndex = i;
+            break;
+        }
+        n++;
+    }
+
+    species = GetStarterPokemon(lineMateIndex);
+    gSpecialVar_0x8006 = species;
+    gSpecialVar_Result = ScriptGiveMon(species, level, ITEM_NONE);
 }
 
 bool8 ScriptCheckFreePokemonStorageSpace(void)
