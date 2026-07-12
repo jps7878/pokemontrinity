@@ -45,3 +45,29 @@ RustboroCity_PokemonCenter_1F_Text_HMCutNextDoor:
 	.string "I used it to teach my POKéMON how to\n"
 	.string "CUT down skinny trees.$"
 
+RustboroCity_PokemonCenter_1F_EventScript_StarterRumor::
+	lock
+	faceplayer
+	goto_if_eq VAR_STARTER_TRIO, 0, RustboroCity_PokemonCenter_1F_EventScript_StarterRumorHoenn
+	msgbox RustboroCity_PokemonCenter_1F_Text_StarterRumor, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_PokemonCenter_1F_EventScript_StarterRumorHoenn::
+	msgbox RustboroCity_PokemonCenter_1F_Text_StarterRumorHoenn, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_PokemonCenter_1F_Text_StarterRumor:
+	.string "Rumor is the little Pokémon that\n"
+	.string "trainers start with turn up wild\l"
+	.string "in Hoenn--but they're shy!\p"
+	.string "I've heard of TREECKO on Route\n"
+	.string "102, MUDKIP down on Route 104,\l"
+	.string "and TORCHIC up on Route 112.$"
+
+RustboroCity_PokemonCenter_1F_Text_StarterRumorHoenn:
+	.string "You started with a Hoenn Pokémon,\n"
+	.string "so you know how rare they can be\l"
+	.string "in the tall grass!$"
+
