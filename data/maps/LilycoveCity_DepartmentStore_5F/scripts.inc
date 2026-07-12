@@ -159,3 +159,34 @@ LilycoveCity_DepartmentStore_5F_Text_SellManyCuteMatsHere:
 LilycoveCity_DepartmentStore_5F_Text_ClosedRooftopForWeather:
 	.string "I think they closed the rooftop\n"
 	.string "because the weather is wild today.$"
+
+LilycoveCity_DepartmentStore_5F_EventScript_MarginsClerk::
+	lock
+	faceplayer
+	msgbox LilycoveCity_DepartmentStore_5F_Text_MarginsWelcome, MSGBOX_DEFAULT
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemart LilycoveCity_DepartmentStore_5F_Pokemart_MarginsPremium
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+LilycoveCity_DepartmentStore_5F_Pokemart_MarginsPremium:
+	.2byte ITEM_RARE_CANDY
+	.2byte ITEM_MASTER_BALL
+	.2byte ITEM_PP_MAX
+	.2byte ITEM_HP_UP
+	.2byte ITEM_PROTEIN
+	.2byte ITEM_IRON
+	.2byte ITEM_CALCIUM
+	.2byte ITEM_ZINC
+	.2byte ITEM_CARBOS
+	.2byte ITEM_HEART_SCALE
+	.2byte ITEM_ABILITY_CAPSULE
+	pokemartlistend
+
+LilycoveCity_DepartmentStore_5F_Text_MarginsWelcome:
+	.string "OH ho ho! Welcome to MARGINS and\n"
+	.string "CO. PREMIUM! Anything a champion\l"
+	.string "could want -- for the right price!$"
