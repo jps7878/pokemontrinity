@@ -50,6 +50,7 @@ EverGrandeCity_HallOfFame_EventScript_EnterHallOfFame::
 
 EverGrandeCity_HallOfFame_EventScript_GameClearMale::
 	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F
+	call EverGrandeCity_HallOfFame_EventScript_ActICompleteToBeContinued
 	fadescreenspeed FADE_TO_BLACK, 24
 	special GameClear
 	waitstate
@@ -58,11 +59,20 @@ EverGrandeCity_HallOfFame_EventScript_GameClearMale::
 
 EverGrandeCity_HallOfFame_EventScript_GameClearFemale::
 	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F
+	call EverGrandeCity_HallOfFame_EventScript_ActICompleteToBeContinued
 	fadescreenspeed FADE_TO_BLACK, 24
 	special GameClear
 	waitstate
 	releaseall
 	end
+
+@ Trinity: League 1 of 3 reframe. The player is still locked (lockall in EnterHallOfFame),
+@ so a msgbox here is safe. This runs after Wallace's ceremony and before the fade into
+@ the record screen; Task 1's soft-reset then returns the player to the post-game overworld.
+EverGrandeCity_HallOfFame_EventScript_ActICompleteToBeContinued::
+	msgbox EverGrandeCity_HallOfFame_Text_ActIComplete, MSGBOX_DEFAULT
+	closemessage
+	return
 
 EverGrandeCity_HallOfFame_Movement_WalkIntoHallOfFame1:
 	walk_up
@@ -94,4 +104,17 @@ EverGrandeCity_HallOfFame_Text_LetsRecordYouAndYourPartnersNames:
 	.string "name as a TRAINER who triumphed over\l"
 	.string "the POKéMON LEAGUE, and the names of\l"
 	.string "the partners who battled with you.$"
+
+EverGrandeCity_HallOfFame_Text_ActIComplete:
+	.string "You stand as CHAMPION of the HOENN\n"
+	.string "LEAGUE -- the first of three great\l"
+	.string "leagues that await you.\p"
+	.string "Word is already spreading. The\n"
+	.string "S.S. TIDAL will soon chart a course\l"
+	.string "for the JOHTO region and its LEAGUE.\p"
+	.string "But that voyage is a tale for\n"
+	.string "another day.\p"
+	.string "For now, rest. Act I of your journey\n"
+	.string "is complete…\p"
+	.string "To be continued in Act II -- JOHTO.$"
 
