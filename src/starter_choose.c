@@ -112,6 +112,7 @@ static const u8 sStarterLabelCoords[STARTER_MON_COUNT][2] =
 
 #define STARTER_TRIO_COUNT 3
 
+// Rows must keep Grass/Fire/Water column order - rival counter-pick logic depends on the column index.
 static const u16 sStarterTrios[STARTER_TRIO_COUNT][STARTER_MON_COUNT] =
 {
     { SPECIES_TREECKO,   SPECIES_TORCHIC,    SPECIES_MUDKIP   }, // 0: Hoenn

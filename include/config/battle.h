@@ -230,7 +230,7 @@
 
 // Var Settings
 // To use the following features, change the 0 for a var present in include/constants/vars.h, preferably an unused one.
-// Eg: You may rename VAR_UNUSED_0x404E to a descriptive name and use it below.
+// Eg: You may rename one of the remaining VAR_UNUSED_* entries in include/constants/vars.h to a descriptive name and use it below.
 #define B_VAR_STARTING_STATUS       0     // If this var has a value, assigning a STATUS_FIELD_xx_TERRAIN to it before battle causes the battle to start with that terrain active.
                                           // This var should never remain non-zero long enough for the player to save.
 #define B_VAR_STARTING_STATUS_TIMER 0     // If this var has a value greater or equal than 1 field terrains will last that number of turns, otherwise they will last until they're overwritten.
