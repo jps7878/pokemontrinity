@@ -150,9 +150,9 @@ bool8 TryAddRoamer(u16 species, u8 level)
 void InitRoamer(void)
 {
     if (gSpecialVar_0x8004 == 0) // Red
-        TryAddRoamer(SPECIES_LATIAS, 40);
+        TryAddRoamer(SPECIES_LATIAS, 60); // Trinity: act-appropriate post-League roamer level
     else
-        TryAddRoamer(SPECIES_LATIOS, 40);
+        TryAddRoamer(SPECIES_LATIOS, 60); // Trinity: act-appropriate post-League roamer level
 }
 
 void UpdateLocationHistoryForRoamer(void)
@@ -257,6 +257,11 @@ void CreateRoamerMonInstance(u32 roamerIndex)
 bool8 TryStartRoamerEncounter(void)
 {
     u32 i;
+
+    // Trinity: roaming legendaries (Latias/Latios) are a post-Hoenn-League activity.
+    // In Johto/Kanto FLAG_SYS_GAME_CLEAR is already set, so this gate is a no-op there.
+    if (!FlagGet(FLAG_SYS_GAME_CLEAR))
+        return FALSE;
 
     for (i = 0; i < ROAMER_COUNT; i++)
     {
