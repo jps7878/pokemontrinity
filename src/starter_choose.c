@@ -110,11 +110,13 @@ static const u8 sStarterLabelCoords[STARTER_MON_COUNT][2] =
     {8, 4},
 };
 
-static const u16 sStarterMon[STARTER_MON_COUNT] =
+#define STARTER_TRIO_COUNT 3
+
+static const u16 sStarterTrios[STARTER_TRIO_COUNT][STARTER_MON_COUNT] =
 {
-    SPECIES_TREECKO,
-    SPECIES_TORCHIC,
-    SPECIES_MUDKIP,
+    { SPECIES_TREECKO,   SPECIES_TORCHIC,    SPECIES_MUDKIP   }, // 0: Hoenn
+    { SPECIES_CHIKORITA, SPECIES_CYNDAQUIL,  SPECIES_TOTODILE }, // 1: Johto
+    { SPECIES_BULBASAUR, SPECIES_CHARMANDER, SPECIES_SQUIRTLE }, // 2: Kanto
 };
 
 static const struct BgTemplate sBgTemplates[3] =
@@ -350,9 +352,13 @@ static const struct SpriteTemplate sSpriteTemplate_StarterCircle =
 // .text
 u16 GetStarterPokemon(u16 chosenStarterId)
 {
-    if (chosenStarterId > STARTER_MON_COUNT)
+    u16 trio = VarGet(VAR_STARTER_TRIO);
+
+    if (chosenStarterId >= STARTER_MON_COUNT)
         chosenStarterId = 0;
-    return sStarterMon[chosenStarterId];
+    if (trio >= STARTER_TRIO_COUNT)
+        trio = 0;
+    return sStarterTrios[trio][chosenStarterId];
 }
 
 static void VblankCB_StarterChoose(void)

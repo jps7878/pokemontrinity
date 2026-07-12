@@ -225,6 +225,9 @@ Route101_EventScript_BirchsBag::
 	setobjectxy LOCALID_PLAYER, 6, 13
 	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
 	waitmovement 0
+	msgbox Route101_Text_WhichRegionStarter, MSGBOX_DEFAULT
+	multichoice 17, 6, MULTI_STARTER_TRIO, TRUE
+	copyvar VAR_STARTER_TRIO, VAR_RESULT
 	special ChooseStarter
 	waitstate
 	applymovement LOCALID_ROUTE101_BIRCH, Route101_Movement_BirchApproachPlayer
@@ -296,4 +299,10 @@ Route101_Text_WildPokemonInTallGrass:
 Route101_Text_RouteSign:
 	.string "ROUTE 101\n"
 	.string "{UP_ARROW} OLDALE TOWN$"
+
+Route101_Text_WhichRegionStarter:
+	.string "BIRCH: I brought POKéMON from three\n"
+	.string "regions with me!\p"
+	.string "Which region's POKéMON will you\n"
+	.string "choose?$"
 
