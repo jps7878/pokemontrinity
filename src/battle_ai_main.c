@@ -199,7 +199,7 @@ static u64 GetAiFlags(u16 trainerId, u32 battler)
         else if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
             flags = AI_FLAG_SAFARI;
         else if (gBattleTypeFlags & BATTLE_TYPE_ROAMER)
-            flags = AI_FLAG_ROAMING;
+            flags = GetWildAiFlags(); // Trinity: roamers battle like normal wild legendaries — no turn-1 flee (spec: HGSS-style, no instant flee)
         else if (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)
             flags = AI_FLAG_FIRST_BATTLE;
         else if (gBattleTypeFlags & BATTLE_TYPE_FACTORY)
