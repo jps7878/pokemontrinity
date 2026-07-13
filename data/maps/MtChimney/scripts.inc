@@ -601,7 +601,11 @@ MtChimney_Text_TabithaIntro:
 MtChimney_Text_TabithaDefeat:
 	.string "Hehehe…\p"
 	.string "Even though I've lost, if our leader\n"
-	.string "awakens that thing…$"
+	.string "awakens that thing…\p"
+	.string "…And do you imagine MAGMA pays for it\n"
+	.string "all ourselves? Hardly.\p"
+	.string "Our backer settles every debt. He signs\n"
+	.string "one letter -- 'G.' Remember it.$"
 
 MtChimney_Text_TabithaPostBattle:
 	.string "BOSS, hurry!\n"

@@ -241,7 +241,11 @@ SeafloorCavern_Room9_Text_ArchieYouMustDisappear:
 
 SeafloorCavern_Room9_Text_ArchieDefeat:
 	.string "What?!\n"
-	.string "I lost to a mere child like you?!$"
+	.string "I lost to a mere child like you?!\p"
+	.string "…Heh. It changes nothing. AQUA's war\n"
+	.string "chest never rose from the sea.\p"
+	.string "Ask who armed us both -- MAGMA and\n"
+	.string "AQUA alike. Ask for 'G.'$"
 
 SeafloorCavern_Room9_Text_ArchieWithThisRedOrb:
 	.string "ARCHIE: Fufufu…\p"
