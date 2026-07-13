@@ -16873,3 +16873,43 @@ Double Battle: No
 Kyogre
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_HARJOT ===
+Name: HARJOT
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Elite Four
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Mankey
+Level: 22
+
+Makuhita
+Level: 23
+
+Meditite
+Level: 24
+
+Machop
+Level: 26
+
+=== TRAINER_PRABHJIT ===
+Name: PRABHJIT
+Class: Guitarist
+Pic: Guitarist
+Gender: Male
+Music: Intense
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Voltorb
+Level: 22
+
+Magnemite
+Level: 23
+
+Mareep
+Level: 24
+
+Flaaffy
+Level: 26

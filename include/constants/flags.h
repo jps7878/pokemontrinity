@@ -46,8 +46,8 @@
 #define FLAG_TRINITY_STARTER_GIFT_A    0x20 // Trinity: chosen-trio line-mate A gifted (Mauville, Badge 3)
 #define FLAG_TRINITY_STARTER_GIFT_B    0x21 // Trinity: chosen-trio line-mate B gifted (Fortree, Badge 6)
 #define FLAG_ENABLE_SHIP_JOHTO    0x22 // Trinity: gates the S.S. TIDAL Johto sea route. Stays UNSET in M1 (Johto is built in M3/M4). Was FLAG_UNUSED_0x022 (genuinely free).
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
+#define FLAG_RECEIVED_REWARD_HARJOT    0x23 // Trinity: HARJOT (Granite Cave) friend-reward claimed. Was FLAG_UNUSED_0x023 (genuinely free).
+#define FLAG_RECEIVED_REWARD_PRABHJIT  0x24 // Trinity: PRABHJIT (New Mauville) friend-reward claimed. Was FLAG_UNUSED_0x024 (genuinely free).
 #define FLAG_UNUSED_0x025    0x25 // Unused Flag
 #define FLAG_UNUSED_0x026    0x26 // Unused Flag
 #define FLAG_UNUSED_0x027    0x27 // Unused Flag
