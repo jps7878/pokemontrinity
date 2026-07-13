@@ -893,7 +893,12 @@ static void CreateLilycoveSSTidalMultichoice(void)
     }
 
     count = selectionCount;
-    if (count == SSTIDAL_SELECTION_COUNT)
+    // Trinity: the fixed-position window below is bottom-anchored and its (6 - count) y-anchor
+    // only fits up to 6 rows (a 7th row starts off the top of the screen). Route any longer
+    // list to the scrollable window. This must key off the fixed window's capacity (6), NOT
+    // SSTIDAL_SELECTION_COUNT -- adding the JOHTO destination raised that count, which would
+    // otherwise let a 7-row menu fall into the fixed path and underflow the y-anchor.
+    if (count > 6)
     {
         gSpecialVar_0x8004 = SCROLL_MULTI_SS_TIDAL_DESTINATION;
         ShowScrollableMultichoice();
