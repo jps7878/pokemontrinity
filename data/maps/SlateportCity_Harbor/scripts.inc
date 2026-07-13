@@ -538,3 +538,29 @@ SlateportCity_Harbor_Text_HandedScannerToStern:
 SlateportCity_Harbor_Text_ThisWillHelpResearch:
 	.string "CAPT. STERN: Thanks, {PLAYER}{KUN}!\n"
 	.string "This will help our research a lot!$"
+
+SlateportCity_Harbor_EventScript_GRumor::
+	lock
+	faceplayer
+	goto_if_set FLAG_SYS_GAME_CLEAR, SlateportCity_Harbor_EventScript_GRumorPostLeague
+	msgbox SlateportCity_Harbor_Text_GRumorEarly, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_Harbor_EventScript_GRumorPostLeague::
+	msgbox SlateportCity_Harbor_Text_GRumorJohto, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_Harbor_Text_GRumorEarly:
+	.string "AQUA and MAGMA at each other's\n"
+	.string "throats… and somebody funding both.\p"
+	.string "Makes a sailor wonder who really wins.$"
+
+SlateportCity_Harbor_Text_GRumorJohto:
+	.string "So it's true -- AQUA and MAGMA were\n"
+	.string "somebody else's money all along.\p"
+	.string "A financier. 'G,' the papers said.\p"
+	.string "A private ship slipped out for JOHTO\n"
+	.string "the night the LEAGUE fell. Whoever 'G'\l"
+	.string "is, friend… they've already sailed on.$"
