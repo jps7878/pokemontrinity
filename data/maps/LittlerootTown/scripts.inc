@@ -388,7 +388,9 @@ LittlerootTown_EventScript_GoSaveBirchTrigger::
 	end
 
 LittlerootTown_EventScript_TownSign::
-	msgbox LittlerootTown_Text_TownSign, MSGBOX_SIGN
+	@ TEMP M2 debug warp: reading the Littleroot town sign warps to the ported Pallet Town (Kanto pilot). Remove for release.
+	warp MAP_PALLET_TOWN, 12, 10
+	waitstate
 	end
 
 LittlerootTown_EventScript_BirchsLabSign::
