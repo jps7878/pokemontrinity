@@ -14,6 +14,29 @@ const struct Tileset gTileset_General =
     .callback = InitTilesetAnim_General,
 };
 
+// M2 Kanto port (from pokefirered). callback = NULL: tile animation not ported.
+const struct Tileset gTileset_GeneralKanto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_GeneralKanto,
+    .palettes = gTilesetPalettes_GeneralKanto,
+    .metatiles = gMetatiles_GeneralKanto,
+    .metatileAttributes = gMetatileAttributes_GeneralKanto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_PalletTownKanto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_PalletTownKanto,
+    .palettes = gTilesetPalettes_PalletTownKanto,
+    .metatiles = gMetatiles_PalletTownKanto,
+    .metatileAttributes = gMetatileAttributes_PalletTownKanto,
+    .callback = NULL,
+};
+
 const struct Tileset gTileset_Petalburg =
 {
     .isCompressed = TRUE,

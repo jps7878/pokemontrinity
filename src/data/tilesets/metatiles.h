@@ -1,3 +1,10 @@
+// M2 Kanto port (from pokefirered) --------------------------------------
+const u16 gMetatiles_GeneralKanto[] = INCBIN_U16("data/tilesets/primary/general_kanto/metatiles.bin");
+const u16 gMetatileAttributes_GeneralKanto[] = INCBIN_U16("data/tilesets/primary/general_kanto/metatile_attributes.bin");
+const u16 gMetatiles_PalletTownKanto[] = INCBIN_U16("data/tilesets/secondary/pallet_town_kanto/metatiles.bin");
+const u16 gMetatileAttributes_PalletTownKanto[] = INCBIN_U16("data/tilesets/secondary/pallet_town_kanto/metatile_attributes.bin");
+// ------------------------------------------------------------------------
+
 const u16 gMetatiles_General[] = INCBIN_U16("data/tilesets/primary/general/metatiles.bin");
 const u16 gMetatileAttributes_General[] = INCBIN_U16("data/tilesets/primary/general/metatile_attributes.bin");
 
