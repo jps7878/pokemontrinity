@@ -13,7 +13,60 @@
   "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": null,
-  "object_events": [],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 4,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_MAX_ELIXER",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_TRINITY_JOHTO_PICKUPS_START + 150"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 15,
+      "y": 29,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_PROTEIN",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_TRINITY_JOHTO_PICKUPS_START + 151"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 5,
+      "y": 30,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_ESCAPE_ROPE",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_TRINITY_JOHTO_PICKUPS_START + 152"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 7,
+      "y": 18,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_ULTRA_BALL",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_TRINITY_JOHTO_PICKUPS_START + 153"
+    }
+  ],
   "warp_events": [
     {
       "x": 9,
@@ -31,5 +84,22 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 16,
+      "y": 23,
+      "elevation": 3,
+      "item": "ITEM_DIRE_HIT",
+      "flag": "FLAG_TRINITY_JOHTO_PICKUPS_START + 154"
+    },
+    {
+      "type": "hidden_item",
+      "x": 17,
+      "y": 12,
+      "elevation": 3,
+      "item": "ITEM_ULTRA_BALL",
+      "flag": "FLAG_TRINITY_JOHTO_PICKUPS_START + 155"
+    }
+  ]
 }

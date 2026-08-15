@@ -37,5 +37,22 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 31,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route28_EventScript_Sign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 25,
+      "y": 2,
+      "elevation": 3,
+      "item": "ITEM_RARE_CANDY",
+      "flag": "FLAG_TRINITY_JOHTO_PICKUPS_START + 99"
+    }
+  ]
 }

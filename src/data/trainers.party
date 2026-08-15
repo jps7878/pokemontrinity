@@ -16913,3 +16913,2597 @@ Level: 24
 
 Flaaffy
 Level: 26
+
+/* === Trinity M4a Johto route trainers === */
+
+=== TRAINER_JOHTO_BUG_CATCHER_BUG_CATCHER_BENNY ===
+Name: BENNY
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+BEEDRILL
+Level: 60
+
+BEEDRILL
+Level: 61
+
+BEEDRILL
+Level: 62
+
+
+=== TRAINER_JOHTO_BUG_CATCHER_AL ===
+Name: AL
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+BUTTERFREE
+Level: 62
+
+BEEDRILL
+Level: 62
+
+
+=== TRAINER_JOHTO_BUG_CATCHER_JOSH ===
+Name: JOSH
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+PARASECT
+Level: 62
+
+
+=== TRAINER_JOHTO_TWINS_AMYANDMAY1 ===
+Name: AMY & MAY
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+ARIADOS
+Level: 61
+
+LEDIAN
+Level: 61
+
+
+=== TRAINER_JOHTO_TWINS_AMYANDMAY2 ===
+Name: AMY & MAY
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+LEDIAN
+Level: 61
+
+ARIADOS
+Level: 61
+
+
+=== TRAINER_JOHTO_COOLTRAINERM_MIKE ===
+Name: MIKE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+DRAGONITE
+Level: 72
+
+
+=== TRAINER_JOHTO_COOLTRAINERM_PAUL ===
+Name: PAUL
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+DRAGONITE
+Level: 71
+
+DRAGONITE
+Level: 72
+
+DRAGONITE
+Level: 73
+
+
+=== TRAINER_JOHTO_COOLTRAINERF_LOLA ===
+Name: LOLA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+DRAGONITE
+Level: 71
+
+DRAGONITE
+Level: 72
+
+
+=== TRAINER_JOHTO_COOLTRAINERM_CODY ===
+Name: CODY
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+KINGDRA
+Level: 71
+
+KINGDRA
+Level: 72
+
+
+=== TRAINER_JOHTO_COOLTRAINERF_FRAN ===
+Name: FRAN
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+KINGDRA
+Level: 72
+
+
+=== TRAINER_JOHTO_BLACKBELT_T_YOSHI ===
+Name: YOSHI
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+HITMONLEE
+Level: 68
+
+
+=== TRAINER_JOHTO_BLACKBELT_T_LAO ===
+Name: LAO
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+HITMONCHAN
+Level: 68
+
+
+=== TRAINER_JOHTO_BLACKBELT_T_NOB ===
+Name: NOB
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+MACHAMP
+Level: 67
+
+MACHAMP
+Level: 68
+
+
+=== TRAINER_JOHTO_BLACKBELT_T_LUNG ===
+Name: LUNG
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+PRIMEAPE
+Level: 66
+
+PRIMEAPE
+Level: 67
+
+PRIMEAPE
+Level: 68
+
+
+=== TRAINER_JOHTO_KIMONO_GIRL_NAOKO ===
+Name: NAOKO
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+FLAREON
+Level: 64
+
+
+=== TRAINER_JOHTO_KIMONO_GIRL_SAYO ===
+Name: SAYO
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+ESPEON
+Level: 64
+
+
+=== TRAINER_JOHTO_KIMONO_GIRL_ZUKI ===
+Name: ZUKI
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+UMBREON
+Level: 64
+
+
+=== TRAINER_JOHTO_KIMONO_GIRL_KUNI ===
+Name: KUNI
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+VAPOREON
+Level: 64
+
+
+=== TRAINER_JOHTO_KIMONO_GIRL_MIKI ===
+Name: MIKI
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+JOLTEON
+Level: 64
+
+
+=== TRAINER_JOHTO_COOLTRAINERM_DARIN ===
+Name: DARIN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+DRAGONITE
+Level: 72
+
+
+=== TRAINER_JOHTO_COOLTRAINERF_CARA ===
+Name: CARA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+KINGDRA
+Level: 70
+
+KINGDRA
+Level: 71
+
+KINGDRA
+Level: 72
+
+
+=== TRAINER_JOHTO_TWINS_LEAANDPIA1 ===
+Name: LEA & PIA
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+DRAGONITE
+Level: 71
+
+DRAGONITE
+Level: 72
+
+
+=== TRAINER_JOHTO_TWINS_LEAANDPIA1_2 ===
+Name: LEA & PIA
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+DRAGONITE
+Level: 71
+
+DRAGONITE
+Level: 72
+
+
+=== TRAINER_JOHTO_SAGE_JEFFREY ===
+Name: JEFFREY
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+GENGAR
+Level: 66
+
+
+=== TRAINER_JOHTO_SAGE_PING ===
+Name: PING
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+GENGAR
+Level: 64
+
+GENGAR
+Level: 65
+
+GENGAR
+Level: 66
+
+GENGAR
+Level: 67
+
+GENGAR
+Level: 68
+
+
+=== TRAINER_JOHTO_MEDIUM_MARTHA ===
+Name: MARTHA
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+GENGAR
+Level: 64
+
+GENGAR
+Level: 65
+
+GENGAR
+Level: 66
+
+
+=== TRAINER_JOHTO_MEDIUM_GRACE ===
+Name: GRACE
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+GENGAR
+Level: 65
+
+GENGAR
+Level: 66
+
+
+=== TRAINER_JOHTO_LASS_CARRIE ===
+Name: CARRIE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+GRANBULL
+Level: 64
+
+
+=== TRAINER_JOHTO_LASS_BRIDGET ===
+Name: BRIDGET
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+JIGGLYPUFF
+Level: 63
+
+JIGGLYPUFF
+Level: 64
+
+JIGGLYPUFF
+Level: 65
+
+
+=== TRAINER_JOHTO_BEAUTY_VICTORIA ===
+Name: VICTORIA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+FURRET
+Level: 61
+
+FURRET
+Level: 62
+
+FURRET
+Level: 64
+
+
+=== TRAINER_JOHTO_BEAUTY_SAMANTHA ===
+Name: SAMANTHA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+PERSIAN
+Level: 64
+
+PERSIAN
+Level: 65
+
+
+=== TRAINER_JOHTO_SUPER_NERD_ERIC ===
+Name: ERIC
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+MUK
+Level: 62
+
+MUK
+Level: 63
+
+
+=== TRAINER_JOHTO_SUPER_NERD_TERU ===
+Name: TERU
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+MAGNETON
+Level: 60
+
+ELECTRODE
+Level: 62
+
+MAGNETON
+Level: 61
+
+MAGNETON
+Level: 62
+
+
+=== TRAINER_JOHTO_POKEMANIAC_ISSAC ===
+Name: ISSAC
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+LICKITUNG
+Level: 62
+
+
+=== TRAINER_JOHTO_POKEMANIAC_DONALD ===
+Name: DONALD
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SLOWBRO
+Level: 61
+
+SLOWBRO
+Level: 62
+
+
+=== TRAINER_JOHTO_BUG_CATCHER_WAYNE ===
+Name: WAYNE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+LEDIAN
+Level: 60
+
+PARASECT
+Level: 61
+
+
+=== TRAINER_JOHTO_SKIER_ROXANNE ===
+Name: ROXANNE
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+JYNX
+Level: 68
+
+
+=== TRAINER_JOHTO_BOARDER_RONALD ===
+Name: RONALD
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+DEWGONG
+Level: 67
+
+DEWGONG
+Level: 68
+
+DEWGONG
+Level: 69
+
+
+=== TRAINER_JOHTO_SKIER_CLARISSA ===
+Name: CLARISSA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+DEWGONG
+Level: 68
+
+
+=== TRAINER_JOHTO_BOARDER_BRAD ===
+Name: BRAD
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+PILOSWINE
+Level: 68
+
+PILOSWINE
+Level: 69
+
+
+=== TRAINER_JOHTO_BOARDER_DOUGLAS ===
+Name: DOUGLAS
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SHELLDER
+Level: 67
+
+CLOYSTER
+Level: 67
+
+SHELLDER
+Level: 68
+
+
+=== TRAINER_JOHTO_POKEMANIAC_MILLER ===
+Name: MILLER
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+NIDOKING
+Level: 64
+
+NIDOQUEEN
+Level: 64
+
+
+=== TRAINER_JOHTO_SUPER_NERD_MARKUS ===
+Name: MARKUS
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SLOWBRO
+Level: 65
+
+
+=== TRAINER_JOHTO_SUPER_NERD_HUGH ===
+Name: HUGH
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+KINGDRA
+Level: 73
+
+
+=== TRAINER_JOHTO_SCHOOLBOY_JACK1 ===
+Name: JACK
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+GLOOM
+Level: 62
+
+ELECTRODE
+Level: 63
+
+
+=== TRAINER_JOHTO_POKEFANF_BEVERLY1 ===
+Name: BEVERLY
+Class: Pokefan
+Pic: Pokefan F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+GRANBULL
+Level: 63
+
+
+=== TRAINER_JOHTO_POKEFANM_WILLIAM ===
+Name: WILLIAM
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+RAICHU
+Level: 63
+
+
+=== TRAINER_JOHTO_LASS_KRISE ===
+Name: KRISE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+GLOOM
+Level: 62
+
+MAROWAK
+Level: 63
+
+
+=== TRAINER_JOHTO_SAILOR_HUEY1 ===
+Name: HUEY
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+POLITOED
+Level: 64
+
+POLITOED
+Level: 65
+
+
+=== TRAINER_JOHTO_GENTLEMAN_ALFRED ===
+Name: ALFRED
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+NOCTOWL
+Level: 65
+
+
+=== TRAINER_JOHTO_SAILOR_TERRELL ===
+Name: TERRELL
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+POLITOED
+Level: 65
+
+
+=== TRAINER_JOHTO_GENTLEMAN_PRESTON ===
+Name: PRESTON
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+GROWLITHE
+Level: 64
+
+GROWLITHE
+Level: 65
+
+
+=== TRAINER_JOHTO_BIRD_KEEPER_THEO ===
+Name: THEO
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+PIDGEOT
+Level: 64
+
+PIDGEOT
+Level: 63
+
+PIDGEOT
+Level: 65
+
+PIDGEOT
+Level: 66
+
+PIDGEOT
+Level: 67
+
+
+=== TRAINER_JOHTO_SAILOR_KENT ===
+Name: KENT
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+KINGLER
+Level: 64
+
+KINGLER
+Level: 65
+
+
+=== TRAINER_JOHTO_LASS_CONNIE1 ===
+Name: CONNIE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+AZUMARILL
+Level: 66
+
+
+=== TRAINER_JOHTO_SAILOR_ERNEST ===
+Name: ERNEST
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+MACHAMP
+Level: 64
+
+MACHAMP
+Level: 65
+
+POLITOED
+Level: 64
+
+
+=== TRAINER_JOHTO_BIRD_KEEPER_DENIS ===
+Name: DENIS
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+FEAROW
+Level: 64
+
+FEAROW
+Level: 65
+
+FEAROW
+Level: 66
+
+
+=== TRAINER_JOHTO_COOLTRAINERM_JAKE ===
+Name: JAKE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+PARASECT
+Level: 70
+
+GOLDUCK
+Level: 71
+
+
+=== TRAINER_JOHTO_COOLTRAINERM_GAVEN3 ===
+Name: GAVEN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+VICTREEBEL
+Level: 70
+
+KINGLER
+Level: 70
+
+FLAREON
+Level: 70
+
+
+=== TRAINER_JOHTO_COOLTRAINERF_JOYCE ===
+Name: JOYCE
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+PIKACHU
+Level: 72
+
+BLASTOISE
+Level: 70
+
+
+=== TRAINER_JOHTO_COOLTRAINERF_BETH1 ===
+Name: BETH
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+RAPIDASH
+Level: 72
+
+
+=== TRAINER_JOHTO_PSYCHIC_T_RICHARD ===
+Name: RICHARD
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+ESPEON
+Level: 72
+
+
+=== TRAINER_JOHTO_FISHER_SCOTT ===
+Name: SCOTT
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+QWILFISH
+Level: 69
+
+QWILFISH
+Level: 70
+
+SEAKING
+Level: 71
+
+
+=== TRAINER_JOHTO_COOLTRAINERM_BLAKE ===
+Name: BLAKE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+MAGNETON
+Level: 70
+
+QUAGSIRE
+Level: 70
+
+EXEGGCUTE
+Level: 70
+
+
+=== TRAINER_JOHTO_COOLTRAINERM_BRIAN ===
+Name: BRIAN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SANDSLASH
+Level: 71
+
+
+=== TRAINER_JOHTO_COOLTRAINERF_REENA1 ===
+Name: REENA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+STARMIE
+Level: 70
+
+NIDOQUEEN
+Level: 70
+
+STARMIE
+Level: 71
+
+
+=== TRAINER_JOHTO_COOLTRAINERF_MEGAN ===
+Name: MEGAN
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+VENUSAUR
+Level: 70
+
+VENUSAUR
+Level: 71
+
+VENUSAUR
+Level: 72
+
+
+=== TRAINER_JOHTO_PSYCHIC_T_GILBERT ===
+Name: GILBERT
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+STARMIE
+Level: 69
+
+EXEGGCUTE
+Level: 69
+
+GIRAFARIG
+Level: 71
+
+
+=== TRAINER_JOHTO_BIRD_KEEPER_JOSE2 ===
+Name: JOSE
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+FARFETCHD
+Level: 71
+
+
+=== TRAINER_JOHTO_YOUNGSTER_MIKEY ===
+Name: MIKEY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+PIDGEOT
+Level: 58
+
+RATICATE
+Level: 59
+
+
+=== TRAINER_JOHTO_BUG_CATCHER_DON ===
+Name: DON
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+BUTTERFREE
+Level: 58
+
+BUTTERFREE
+Level: 59
+
+
+=== TRAINER_JOHTO_BUG_CATCHER_WADE1 ===
+Name: WADE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+BUTTERFREE
+Level: 58
+
+BUTTERFREE
+Level: 59
+
+BEEDRILL
+Level: 58
+
+BUTTERFREE
+Level: 60
+
+
+=== TRAINER_JOHTO_FISHER_JUSTIN ===
+Name: JUSTIN
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+GYARADOS
+Level: 59
+
+GYARADOS
+Level: 60
+
+GYARADOS
+Level: 63
+
+GYARADOS
+Level: 61
+
+
+=== TRAINER_JOHTO_FISHER_RALPH1 ===
+Name: RALPH
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SEAKING
+Level: 61
+
+
+=== TRAINER_JOHTO_FISHER_HENRY ===
+Name: HENRY
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+POLITOED
+Level: 60
+
+POLITOED
+Level: 61
+
+
+=== TRAINER_JOHTO_YOUNGSTER_ALBERT ===
+Name: ALBERT
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+RATICATE
+Level: 60
+
+CROBAT
+Level: 60
+
+
+=== TRAINER_JOHTO_YOUNGSTER_GORDON ===
+Name: GORDON
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+QUAGSIRE
+Level: 61
+
+
+=== TRAINER_JOHTO_CAMPER_ROLAND ===
+Name: ROLAND
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+NIDORINO
+Level: 61
+
+
+=== TRAINER_JOHTO_PICNICKER_LIZ1 ===
+Name: LIZ
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+NIDORINA
+Level: 61
+
+
+=== TRAINER_JOHTO_BIRD_KEEPER_PETER ===
+Name: PETER
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+PIDGEOT
+Level: 60
+
+PIDGEOT
+Level: 61
+
+FEAROW
+Level: 60
+
+
+=== TRAINER_JOHTO_HIKER_ANTHONY2 ===
+Name: ANTHONY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+GOLEM
+Level: 62
+
+MACHAMP
+Level: 62
+
+
+=== TRAINER_JOHTO_CAMPER_TODD1 ===
+Name: TODD
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+GOLDUCK
+Level: 63
+
+
+=== TRAINER_JOHTO_YOUNGSTER_SAMUEL ===
+Name: SAMUEL
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+RATICATE
+Level: 60
+
+SANDSLASH
+Level: 61
+
+FEAROW
+Level: 60
+
+FEAROW
+Level: 61
+
+
+=== TRAINER_JOHTO_YOUNGSTER_IAN ===
+Name: IAN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+PRIMEAPE
+Level: 61
+
+DUGTRIO
+Level: 62
+
+
+=== TRAINER_JOHTO_PICNICKER_GINA1 ===
+Name: GINA
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+JUMPLUFF
+Level: 61
+
+JUMPLUFF
+Level: 62
+
+VENUSAUR
+Level: 62
+
+
+=== TRAINER_JOHTO_POKEFANM_BRANDON ===
+Name: BRANDON
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+GRANBULL
+Level: 62
+
+
+=== TRAINER_JOHTO_COOLTRAINERF_IRENE ===
+Name: IRENE
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SEAKING
+Level: 66
+
+SEAKING
+Level: 67
+
+
+=== TRAINER_JOHTO_COOLTRAINERF_JENN ===
+Name: JENN
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+STARYU
+Level: 67
+
+STARMIE
+Level: 68
+
+
+=== TRAINER_JOHTO_COOLTRAINERF_KATE ===
+Name: KATE
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SHELLDER
+Level: 68
+
+CLOYSTER
+Level: 68
+
+
+=== TRAINER_JOHTO_CAMPER_IVAN ===
+Name: IVAN
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+DUGTRIO
+Level: 61
+
+CROBAT
+Level: 61
+
+DUGTRIO
+Level: 63
+
+
+=== TRAINER_JOHTO_CAMPER_ELLIOT ===
+Name: ELLIOT
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SANDSLASH
+Level: 62
+
+AZUMARILL
+Level: 63
+
+
+=== TRAINER_JOHTO_PICNICKER_BROOKE ===
+Name: BROOKE
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+PIKACHU
+Level: 64
+
+
+=== TRAINER_JOHTO_PICNICKER_KIM ===
+Name: KIM
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+VULPIX
+Level: 63
+
+
+=== TRAINER_JOHTO_BIRD_KEEPER_BRYAN ===
+Name: BRYAN
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+PIDGEOT
+Level: 62
+
+PIDGEOT
+Level: 63
+
+
+=== TRAINER_JOHTO_FIREBREATHER_WALT ===
+Name: WALT
+Class: Kindler
+Pic: Kindler
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+MAGMAR
+Level: 62
+
+MAGMAR
+Level: 63
+
+
+=== TRAINER_JOHTO_BUG_CATCHER_ARNIE1 ===
+Name: ARNIE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+VENOMOTH
+Level: 63
+
+
+=== TRAINER_JOHTO_JUGGLER_IRWIN1 ===
+Name: IRWIN
+Class: Ninja Boy
+Pic: Ninja Boy
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+ELECTRODE
+Level: 58
+
+ELECTRODE
+Level: 60
+
+ELECTRODE
+Level: 61
+
+ELECTRODE
+Level: 63
+
+
+=== TRAINER_JOHTO_PSYCHIC_T_MARK ===
+Name: MARK
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+ALAKAZAM
+Level: 62
+
+ALAKAZAM
+Level: 63
+
+ALAKAZAM
+Level: 64
+
+
+=== TRAINER_JOHTO_SCHOOLBOY_ALAN1 ===
+Name: ALAN
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+TANGELA
+Level: 64
+
+
+=== TRAINER_JOHTO_TWINS_ANNANDANNE1 ===
+Name: ANN & ANNE
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+CLEFAIRY
+Level: 64
+
+JIGGLYPUFF
+Level: 64
+
+
+=== TRAINER_JOHTO_TWINS_ANNANDANNE2 ===
+Name: ANN & ANNE
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+JIGGLYPUFF
+Level: 64
+
+CLEFAIRY
+Level: 64
+
+
+=== TRAINER_JOHTO_PSYCHIC_T_GREG ===
+Name: GREG
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+HYPNO
+Level: 64
+
+
+=== TRAINER_JOHTO_SCHOOLBOY_CHAD1 ===
+Name: CHAD
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+MR_MIME
+Level: 65
+
+
+=== TRAINER_JOHTO_LASS_DANA1 ===
+Name: DANA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+AMPHAROS
+Level: 64
+
+GOLDUCK
+Level: 64
+
+
+=== TRAINER_JOHTO_BIRD_KEEPER_TOBY ===
+Name: TOBY
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+DODRIO
+Level: 63
+
+DODRIO
+Level: 64
+
+DODRIO
+Level: 65
+
+
+=== TRAINER_JOHTO_BEAUTY_VALERIE ===
+Name: VALERIE
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+JUMPLUFF
+Level: 64
+
+JUMPLUFF
+Level: 65
+
+
+=== TRAINER_JOHTO_SAILOR_HARRY ===
+Name: HARRY
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+QUAGSIRE
+Level: 65
+
+
+=== TRAINER_JOHTO_BEAUTY_OLIVIA ===
+Name: OLIVIA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+CORSOLA
+Level: 65
+
+
+=== TRAINER_JOHTO_SAILOR_EUGENE ===
+Name: EUGENE
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+POLITOED
+Level: 64
+
+RATICATE
+Level: 64
+
+KINGLER
+Level: 65
+
+
+=== TRAINER_JOHTO_POKEFANM_DEREK1 ===
+Name: DEREK
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+PIKACHU
+Level: 64
+
+
+=== TRAINER_JOHTO_POKEFANF_RUTH ===
+Name: RUTH
+Class: Pokefan
+Pic: Pokefan F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+PIKACHU
+Level: 64
+
+
+=== TRAINER_JOHTO_PSYCHIC_T_NORMAN ===
+Name: NORMAN
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SLOWBRO
+Level: 64
+
+SLOWBRO
+Level: 65
+
+
+=== TRAINER_JOHTO_SWIMMERM_SIMON ===
+Name: SIMON
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+TENTACRUEL
+Level: 65
+
+TENTACRUEL
+Level: 66
+
+
+=== TRAINER_JOHTO_SWIMMERM_RANDALL ===
+Name: RANDALL
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SHELLDER
+Level: 64
+
+BLASTOISE
+Level: 65
+
+SHELLDER
+Level: 65
+
+
+=== TRAINER_JOHTO_SWIMMERF_ELAINE ===
+Name: ELAINE
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+STARYU
+Level: 66
+
+
+=== TRAINER_JOHTO_SWIMMERF_PAULA ===
+Name: PAULA
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+STARYU
+Level: 65
+
+SHELLDER
+Level: 65
+
+
+=== TRAINER_JOHTO_SWIMMERM_CHARLIE ===
+Name: CHARLIE
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SHELLDER
+Level: 66
+
+TENTACRUEL
+Level: 65
+
+TENTACRUEL
+Level: 66
+
+
+=== TRAINER_JOHTO_SWIMMERM_GEORGE ===
+Name: GEORGE
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+TENTACRUEL
+Level: 64
+
+TENTACRUEL
+Level: 65
+
+TENTACRUEL
+Level: 66
+
+STARYU
+Level: 65
+
+TENTACRUEL
+Level: 67
+
+OCTILLERY
+Level: 65
+
+
+=== TRAINER_JOHTO_SWIMMERM_BERKE ===
+Name: BERKE
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+QWILFISH
+Level: 66
+
+
+=== TRAINER_JOHTO_SWIMMERM_KIRK ===
+Name: KIRK
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+GYARADOS
+Level: 65
+
+GYARADOS
+Level: 66
+
+
+=== TRAINER_JOHTO_SWIMMERM_MATHEW ===
+Name: MATHEW
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+KINGLER
+Level: 66
+
+
+=== TRAINER_JOHTO_SWIMMERF_KAYLEE ===
+Name: KAYLEE
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SEAKING
+Level: 64
+
+SEAKING
+Level: 65
+
+SEAKING
+Level: 66
+
+
+=== TRAINER_JOHTO_SWIMMERF_SUSIE ===
+Name: SUSIE
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+GOLDUCK
+Level: 65
+
+SEAKING
+Level: 66
+
+
+=== TRAINER_JOHTO_SWIMMERF_DENISE ===
+Name: DENISE
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+DEWGONG
+Level: 66
+
+
+=== TRAINER_JOHTO_SWIMMERF_KARA ===
+Name: KARA
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+STARYU
+Level: 65
+
+STARMIE
+Level: 65
+
+
+=== TRAINER_JOHTO_SWIMMERF_WENDY ===
+Name: WENDY
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+KINGDRA
+Level: 66
+
+KINGDRA
+Level: 67
+
+
+=== TRAINER_JOHTO_FISHER_TULLY1 ===
+Name: TULLY
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+QWILFISH
+Level: 64
+
+
+=== TRAINER_JOHTO_HIKER_BENJAMIN ===
+Name: BENJAMIN
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+DUGTRIO
+Level: 63
+
+GOLEM
+Level: 63
+
+DUGTRIO
+Level: 64
+
+
+=== TRAINER_JOHTO_POKEMANIAC_SHANE ===
+Name: SHANE
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+NIDORINA
+Level: 64
+
+NIDORINO
+Level: 64
+
+
+=== TRAINER_JOHTO_POKEMANIAC_BEN ===
+Name: BEN
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SLOWBRO
+Level: 65
+
+
+=== TRAINER_JOHTO_POKEMANIAC_BRENT1 ===
+Name: BRENT
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+LICKITUNG
+Level: 65
+
+
+=== TRAINER_JOHTO_POKEMANIAC_RON ===
+Name: RON
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+NIDOKING
+Level: 65
+
+
+=== TRAINER_JOHTO_FISHER_MARVIN ===
+Name: MARVIN
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+GYARADOS
+Level: 61
+
+GYARADOS
+Level: 62
+
+GYARADOS
+Level: 63
+
+GYARADOS
+Level: 64
+
+
+=== TRAINER_JOHTO_PICNICKER_TIFFANY3 ===
+Name: TIFFANY
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+CLEFAIRY
+Level: 65
+
+
+=== TRAINER_JOHTO_CAMPER_SPENCER ===
+Name: SPENCER
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SANDSLASH
+Level: 64
+
+SANDSLASH
+Level: 65
+
+CROBAT
+Level: 65
+
+
+=== TRAINER_JOHTO_FISHER_WILTON1 ===
+Name: WILTON
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SEAKING
+Level: 66
+
+SEAKING
+Level: 67
+
+SEAKING
+Level: 68
+
+
+=== TRAINER_JOHTO_FISHER_EDGAR ===
+Name: EDGAR
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+OCTILLERY
+Level: 67
+
+OCTILLERY
+Level: 68
+
+
+=== TRAINER_JOHTO_PSYCHIC_T_PHIL ===
+Name: PHIL
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+XATU
+Level: 67
+
+ALAKAZAM
+Level: 68
+
+
+=== TRAINER_JOHTO_POKEMANIAC_ZACH ===
+Name: ZACH
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+RHYDON
+Level: 68
+
+
+=== TRAINER_JOHTO_BIRD_KEEPER_VANCE1 ===
+Name: VANCE
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+PIDGEOT
+Level: 67
+
+PIDGEOT
+Level: 68
+
+
+=== TRAINER_JOHTO_COOLTRAINERM_ALLEN ===
+Name: ALLEN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+CHARIZARD
+Level: 68
+
+
+=== TRAINER_JOHTO_COOLTRAINERF_CYBIL ===
+Name: CYBIL
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+BUTTERFREE
+Level: 67
+
+BELLOSSOM
+Level: 67
+
+
+=== TRAINER_JOHTO_HIKER_ERIK ===
+Name: ERIK
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+MACHAMP
+Level: 67
+
+GOLEM
+Level: 68
+
+MACHAMP
+Level: 68
+
+
+=== TRAINER_JOHTO_HIKER_MICHAEL ===
+Name: MICHAEL
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+GOLEM
+Level: 67
+
+GOLEM
+Level: 68
+
+GOLEM
+Level: 69
+
+
+=== TRAINER_JOHTO_HIKER_PARRY3 ===
+Name: PARRY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+STEELIX
+Level: 69
+
+
+=== TRAINER_JOHTO_HIKER_TIMOTHY ===
+Name: TIMOTHY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+DUGTRIO
+Level: 68
+
+DUGTRIO
+Level: 69
+
+
+=== TRAINER_JOHTO_BLACKBELT_T_KENJI3 ===
+Name: KENJI
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+MACHAMP
+Level: 68
+
+
+=== TRAINER_JOHTO_COOLTRAINERM_RYAN ===
+Name: RYAN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+PIDGEOT
+Level: 67
+
+ELECTABUZZ
+Level: 68
+
+
+=== TRAINER_JOHTO_COOLTRAINERF_KELLY ===
+Name: KELLY
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+AZUMARILL
+Level: 68
+
+BLASTOISE
+Level: 67
+
+BLASTOISE
+Level: 68
+
+
+=== TRAINER_JOHTO_HIKER_BAILEY ===
+Name: BAILEY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+GOLEM
+Level: 62
+
+GOLEM
+Level: 63
+
+GOLEM
+Level: 64
+
+GOLEM
+Level: 65
+
+GOLEM
+Level: 66
+
+
+=== TRAINER_JOHTO_CAMPER_TED ===
+Name: TED
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+PRIMEAPE
+Level: 64
+
+
+=== TRAINER_JOHTO_PICNICKER_ERIN1 ===
+Name: ERIN
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+RAPIDASH
+Level: 64
+
+RAPIDASH
+Level: 65
+
+
+=== TRAINER_JOHTO_PSYCHIC_T_NATHAN ===
+Name: NATHAN
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+GIRAFARIG
+Level: 68
+
+
+=== TRAINER_JOHTO_SAGE_CHOW ===
+Name: CHOW
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+WEEPINBELL
+Level: 58
+
+WEEPINBELL
+Level: 59
+
+WEEPINBELL
+Level: 60
+
+
+=== TRAINER_JOHTO_SAGE_NICO ===
+Name: NICO
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+WEEPINBELL
+Level: 58
+
+WEEPINBELL
+Level: 59
+
+WEEPINBELL
+Level: 60
+
+
+=== TRAINER_JOHTO_SAGE_EDMOND ===
+Name: EDMOND
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+WEEPINBELL
+Level: 58
+
+WEEPINBELL
+Level: 59
+
+WEEPINBELL
+Level: 60
+
+
+=== TRAINER_JOHTO_SAGE_JIN ===
+Name: JIN
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+WEEPINBELL
+Level: 60
+
+
+=== TRAINER_JOHTO_SAGE_TROY ===
+Name: TROY
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+WEEPINBELL
+Level: 60
+
+NOCTOWL
+Level: 60
+
+
+=== TRAINER_JOHTO_SAGE_NEAL ===
+Name: NEAL
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+WEEPINBELL
+Level: 60
+
+
+=== TRAINER_JOHTO_HIKER_DANIEL ===
+Name: DANIEL
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+STEELIX
+Level: 62
+
+
+=== TRAINER_JOHTO_POKEMANIAC_LARRY ===
+Name: LARRY
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SLOWBRO
+Level: 61
+
+
+=== TRAINER_JOHTO_HIKER_RUSSELL ===
+Name: RUSSELL
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+GOLEM
+Level: 59
+
+GOLEM
+Level: 60
+
+GOLEM
+Level: 61
+
+
+=== TRAINER_JOHTO_FIREBREATHER_RAY ===
+Name: RAY
+Class: Kindler
+Pic: Kindler
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+VULPIX
+Level: 61
+
+
+=== TRAINER_JOHTO_FIREBREATHER_BILL ===
+Name: BILL
+Class: Kindler
+Pic: Kindler
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+WEEZING
+Level: 60
+
+WEEZING
+Level: 61
+
+
+=== TRAINER_JOHTO_HIKER_PHILLIP ===
+Name: PHILLIP
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+GOLEM
+Level: 66
+
+GOLEM
+Level: 67
+
+GOLEM
+Level: 68
+
+
+=== TRAINER_JOHTO_HIKER_LEONARD ===
+Name: LEONARD
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+GOLEM
+Level: 66
+
+MACHAMP
+Level: 67
+
+
+=== TRAINER_JOHTO_POKEMANIAC_ANDREW ===
+Name: ANDREW
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+MAROWAK
+Level: 67
+
+MAROWAK
+Level: 68
+
+
+=== TRAINER_JOHTO_POKEMANIAC_CALVIN ===
+Name: CALVIN
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+KANGASKHAN
+Level: 68
+
+
+=== TRAINER_JOHTO_COOLTRAINERM_NICK ===
+Name: NICK
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+CHARIZARD
+Level: 68
+
+BLASTOISE
+Level: 68
+
+VENUSAUR
+Level: 68
+
+
+=== TRAINER_JOHTO_COOLTRAINERF_GWEN ===
+Name: GWEN
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+ESPEON
+Level: 68
+
+FLAREON
+Level: 66
+
+VAPOREON
+Level: 66
+
+JOLTEON
+Level: 66
+
+
+=== TRAINER_JOHTO_COOLTRAINERF_EMMA ===
+Name: EMMA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+POLITOED
+Level: 68
+
+
+=== TRAINER_JOHTO_BIRD_KEEPER_ROD ===
+Name: ROD
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+PIDGEOT
+Level: 60
+
+PIDGEOT
+Level: 61
+
+
+=== TRAINER_JOHTO_BIRD_KEEPER_ABE ===
+Name: ABE
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+FEAROW
+Level: 61
+

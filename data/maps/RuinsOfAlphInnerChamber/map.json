@@ -80,5 +80,214 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue"
+    },
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_2"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_3"
+    },
+    {
+      "type": "sign",
+      "x": 11,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_4"
+    },
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_5"
+    },
+    {
+      "type": "sign",
+      "x": 17,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_6"
+    },
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_7"
+    },
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_8"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_9"
+    },
+    {
+      "type": "sign",
+      "x": 11,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_10"
+    },
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_11"
+    },
+    {
+      "type": "sign",
+      "x": 17,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_12"
+    },
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_13"
+    },
+    {
+      "type": "sign",
+      "x": 17,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_14"
+    },
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 18,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_15"
+    },
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 18,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_16"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 18,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_17"
+    },
+    {
+      "type": "sign",
+      "x": 11,
+      "y": 18,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_18"
+    },
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 18,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_19"
+    },
+    {
+      "type": "sign",
+      "x": 17,
+      "y": 18,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_20"
+    },
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 24,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_21"
+    },
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 24,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_22"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 24,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_23"
+    },
+    {
+      "type": "sign",
+      "x": 11,
+      "y": 24,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_24"
+    },
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 24,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_25"
+    },
+    {
+      "type": "sign",
+      "x": 17,
+      "y": 24,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphInnerChamber_EventScript_Statue_26"
+    }
+  ]
 }

@@ -24,7 +24,73 @@
       "direction": "right"
     }
   ],
-  "object_events": [],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+      "x": 40,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "Route42_EventScript_TULLY1",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
+      "x": 51,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "Route42_EventScript_BENJAMIN",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
+      "x": 47,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "Route42_EventScript_SHANE",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 6,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_ULTRA_BALL",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_TRINITY_JOHTO_PICKUPS_START + 117"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 33,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_SUPER_POTION",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_TRINITY_JOHTO_PICKUPS_START + 118"
+    }
+  ],
   "warp_events": [
     {
       "x": 0,
@@ -63,5 +129,46 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 4,
+      "y": 10,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route42_EventScript_Sign1"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route42_EventScript_MtMortarSign1"
+    },
+    {
+      "type": "sign",
+      "x": 45,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route42_EventScript_MtMortarSign2"
+    },
+    {
+      "type": "sign",
+      "x": 54,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route42_EventScript_Sign2"
+    },
+    {
+      "type": "hidden_item",
+      "x": 16,
+      "y": 11,
+      "elevation": 3,
+      "item": "ITEM_MAX_POTION",
+      "flag": "FLAG_TRINITY_JOHTO_PICKUPS_START + 119"
+    }
+  ]
 }
