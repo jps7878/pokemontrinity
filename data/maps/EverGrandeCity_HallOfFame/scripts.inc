@@ -72,6 +72,7 @@ EverGrandeCity_HallOfFame_EventScript_GameClearFemale::
 EverGrandeCity_HallOfFame_EventScript_ActICompleteToBeContinued::
 	msgbox EverGrandeCity_HallOfFame_Text_ActIComplete, MSGBOX_DEFAULT
 	closemessage
+	setflag FLAG_ENABLE_SHIP_JOHTO  @ Trinity M4a: S.S. TIDAL Johto route opens now that Act I is done
 	return
 
 EverGrandeCity_HallOfFame_Movement_WalkIntoHallOfFame1:

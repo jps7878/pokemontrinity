@@ -85,13 +85,15 @@ LilycoveCity_Harbor_EventScript_GoToJohto::
 	goto LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
 	end
 
-@ Trinity M3/M4 wiring point: FLAG_ENABLE_SHIP_JOHTO is never set in M1 (Johto does
-@ not exist yet), so this branch is unreachable for now and shows the same placeholder.
-@ When the Johto sea route is built, replace the placeholder below with the board-ferry
-@ + warp to the Johto arrival map.
+@ Trinity M4a: FLAG_ENABLE_SHIP_JOHTO is set beside M1's Act II msgbox in
+@ EverGrandeCity_HallOfFame, so this branch is live once Act I is complete.
 LilycoveCity_Harbor_EventScript_GoToJohtoOpen::
-	msgbox LilycoveCity_Harbor_Text_JohtoRouteNotOpen, MSGBOX_DEFAULT
-	goto LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
+	msgbox LilycoveCity_Harbor_Text_JohtoItIs, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
+	call LilycoveCity_Harbor_EventScript_BoardFerry
+	warp MAP_OLIVINE_PORT, 7, 23
+	waitstate
+	release
 	end
 
 LilycoveCity_Harbor_EventScript_GoToSlateport::
@@ -581,6 +583,10 @@ LilycoveCity_Harbor_Text_SlateportItIs:
 
 LilycoveCity_Harbor_Text_BattleFrontierItIs:
 	.string "BATTLE FRONTIER it is, then!$"
+
+LilycoveCity_Harbor_Text_JohtoItIs:
+	.string "OLIVINE CITY in JOHTO -- shall we\n"
+	.string "set sail?$"
 
 LilycoveCity_Harbor_Text_PleaseBoard:
 	.string "Please board the ferry and wait for\n"

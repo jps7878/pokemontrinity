@@ -56,7 +56,7 @@
 #define FLAG_TRINITY_BADGE14    0x2A // Trinity: was FLAG_UNUSED_0x02A — Jasmine
 #define FLAG_TRINITY_BADGE15    0x2B // Trinity: was FLAG_UNUSED_0x02B — Pryce
 #define FLAG_TRINITY_BADGE16    0x2C // Trinity: was FLAG_UNUSED_0x02C — Clair
-#define FLAG_UNUSED_0x02D    0x2D // Unused Flag
+#define FLAG_TRINITY_ARRIVED_JOHTO    0x2D // Trinity: was FLAG_UNUSED_0x02D — S.S. TIDAL Johto arrival scene (Olivine Port aide) has run
 #define FLAG_UNUSED_0x02E    0x2E // Unused Flag
 #define FLAG_UNUSED_0x02F    0x2F // Unused Flag
 #define FLAG_UNUSED_0x030    0x30 // Unused Flag
