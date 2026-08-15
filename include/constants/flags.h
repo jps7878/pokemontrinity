@@ -116,9 +116,13 @@
 // 0x4D/0x4E/0x4F are genuinely free as well -- verified, the only reference to each in the
 // whole tree is its own #define below -- and the contract was amended after S5's review to
 // make them claimable. S6+ take those three first, then 0x264+.
-#define FLAG_UNUSED_0x04D    0x4D // Unused Flag
-#define FLAG_UNUSED_0x04E    0x4E // Unused Flag
-#define FLAG_UNUSED_0x04F    0x4F // Unused Flag
+// Trinity M4b S6 (the WEST COAST chapter) takes the last three of the low block.
+// THE CHAPTER HAS ONE DURABLE PREDICATE, FLAG_TRINITY_J_AMPHY_CURED, and everything
+// about JASMINE hangs off it: she is on the LIGHTHOUSE roof while it is clear and in
+// her GYM once it is set. The other two are the errand's two halves.
+#define FLAG_TRINITY_J_JASMINE_ASKED    0x4D // Trinity: was FLAG_UNUSED_0x04D — JASMINE has explained AMPHY's sickness at OLIVINE LIGHTHOUSE 6F and asked for medicine. Arms the CIANWOOD PHARMACIST; nothing else reads it.
+#define FLAG_TRINITY_J_SECRET_POTION    0x4E // Trinity: was FLAG_UNUSED_0x04E — the SECRETPOTION is in hand. ITEM_SECRET_POTION does not exist in this build (verified: no reference anywhere in include/src/data), so the key item is carried as a flag, exactly as S1 carried MR. POKéMON's request. SET by the PHARMACIST, CLEARED by JASMINE on delivery (the takeitem analogue) — so this flag is NOT the durable record of the errand, FLAG_TRINITY_J_AMPHY_CURED is.
+#define FLAG_TRINITY_J_AMPHY_CURED    0x4F // Trinity: was FLAG_UNUSED_0x04F — the SECRETPOTION reached AMPHY and the LIGHTHOUSE is lit again. Story state, monotonic, never cleared. ONE writer (the 6F delivery beat) and it drives BOTH halves of JASMINE plus the OLIVINE GYM greeter's redirect.
 
 // Scripts
 #define FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL  0x50
@@ -688,12 +692,17 @@
 // exhausted; the M4b contract directs later claims here. This one is a Trinity
 // friend-reward guard, sibling of FLAG_RECEIVED_REWARD_HARJOT (0x23) / _PRABHJIT (0x24).
 #define FLAG_RECEIVED_REWARD_SUMEET  0x264 // Trinity: was FLAG_UNUSED_0x264 — SUMEET (BURNED TOWER approach, ECRUTEAK CITY) friend-reward claimed. One-time; the giveitem branches only set it once the item actually lands, so a full bag retries on the next talk.
-#define FLAG_UNUSED_0x265  0x265 // Unused Flag
-#define FLAG_UNUSED_0x266  0x266 // Unused Flag
-#define FLAG_UNUSED_0x267  0x267 // Unused Flag
-#define FLAG_UNUSED_0x268  0x268 // Unused Flag
-#define FLAG_UNUSED_0x269  0x269 // Unused Flag
-#define FLAG_UNUSED_0x26A  0x26A // Unused Flag
+// M4b S6 (the WEST COAST chapter). The low block ran out mid-slice, so the remaining six
+// claims come from here. The two JASMINE flags are EXACT COMPLEMENTS of one boolean
+// (FLAG_TRINITY_J_AMPHY_CURED) and are authored ONLY by their own map's ON_TRANSITION --
+// an object flag can only hide-when-set, so the two halves of one character need two
+// flags (the same shape S5 used for MORTY's tower/gym split).
+#define FLAG_TRINITY_J_JASMINE_LIGHTHOUSE_HIDE  0x265 // Trinity: was FLAG_UNUSED_0x265 — JASMINE hidden on OLIVINE LIGHTHOUSE 6F. Visible iff NOT FLAG_TRINITY_J_AMPHY_CURED. Also co-signed by the delivery beat's removeobject (R1), which is what makes her exit stick for the rest of the session.
+#define FLAG_TRINITY_J_JASMINE_GYM_HIDE  0x266 // Trinity: was FLAG_UNUSED_0x266 — JASMINE hidden in OLIVINE GYM. The exact complement: visible iff FLAG_TRINITY_J_AMPHY_CURED.
+#define FLAG_TRINITY_J_CHUCK_TM01  0x267 // Trinity: was FLAG_UNUSED_0x267 — TM01 FOCUS PUNCH handed over by CHUCK. Bag-full retry guard (GYM PATTERN G2): FLAG_TRINITY_BADGE13 is set first and unconditionally.
+#define FLAG_TRINITY_J_JASMINE_TM23  0x268 // Trinity: was FLAG_UNUSED_0x268 — TM23 IRON TAIL handed over by JASMINE. Same G2 guard; FLAG_TRINITY_BADGE14 is set first.
+#define FLAG_TRINITY_J_SUICUNE_CIANWOOD_HIDE  0x269 // Trinity: was FLAG_UNUSED_0x269 — the CIANWOOD CITY SUICUNE object hidden. Visible iff VAR_TRINITY_JOHTO_SCENE_WESTCOAST == 1 (armed once the beasts are awake, gone once the glimpse has played). Authored only by CianwoodCity's ON_TRANSITION.
+#define FLAG_TRINITY_J_SUICUNE_CIANWOOD  0x26A // Trinity: was FLAG_UNUSED_0x26A — SUICUNE glimpse 2 (the CIANWOOD shore) has played. Story state, monotonic, never cleared. S10 reads it alongside FLAG_TRINITY_J_BEASTS_AWAKENED.
 #define FLAG_UNUSED_0x26B  0x26B // Unused Flag
 #define FLAG_UNUSED_0x26C  0x26C // Unused Flag
 #define FLAG_UNUSED_0x26D  0x26D // Unused Flag

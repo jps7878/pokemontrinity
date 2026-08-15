@@ -81,6 +81,35 @@ OlivinePort_EventScript_SailorDecline::
 	release
 	end
 
+@ ============================================================================
+@ Trinity M4b S6 -- two of GSC's port bystanders, on GSC's own tiles (4,14) and
+@ (13,14). The plaza is rows 14-15, x=2..15, all MB_NORMAL collision 0 elevation
+@ 3; the ONLY cut vertex on this map is (7,15), the mouth of the single-tile
+@ pier column, and that is M4a's aide, a one-shot removeobject actor. Neither
+@ new tile is adjacent to the pier.
+@ GSC's post-Hall-of-Fame set (YOUNGSTER (4,15), COOLTRAINER F (11,15)) is
+@ deliberately left for a later slice -- the plaza is only two rows deep and the
+@ pier approach should stay clear.
+@ ============================================================================
+OlivinePort_EventScript_FishingGuru1::
+	msgbox OlivinePort_Text_FishingGuru1, MSGBOX_NPC
+	end
+
+OlivinePort_EventScript_FishingGuru2::
+	msgbox OlivinePort_Text_FishingGuru2, MSGBOX_NPC
+	end
+
+@ GSC OlivinePortFishingGuru1Text.
+OlivinePort_Text_FishingGuru1:
+	.string "SHELLDER are easy to catch off this\n"
+	.string "pier. Kind of rare everywhere else.$"
+
+@ GSC OlivinePortFishingGuru2Text.
+OlivinePort_Text_FishingGuru2:
+	.string "How many RODS are you carrying?\p"
+	.string "Different RODS bring up different\n"
+	.string "POKéMON. That's the whole trick.$"
+
 OlivinePort_Text_WelcomeToOlivineCity:
 	.string "Welcome to OLIVINE CITY!\p"
 	.string "You're the HOENN Champion, aren't you?\n"

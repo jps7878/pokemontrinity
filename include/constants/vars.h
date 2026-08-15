@@ -292,7 +292,15 @@
 // structurally once-only per the S1 arc-write rule; the talk path to SILVER carries an
 // explicit goto_if_ne guard on top of that.
 #define VAR_TRINITY_JOHTO_SCENE_ECRUTEAK                 0x40FA
-#define VAR_UNUSED_0x40FB                                0x40FB // Unused Var
+// Trinity M4b S6 scene scratch (West Coast chapter -- the CIANWOOD SUICUNE glimpse only;
+// the SECRET POTION errand is a flag chain, not a cutscene sequence). Was VAR_UNUSED_0x40FB.
+//   0 unarmed -- the beasts have not woken yet, SUICUNE is not on stage
+//   1 armed   -- SUICUNE stands on the north-shore ledge and the coord_events are live
+//   2 glimpse 2 has played
+// Monotonic. 0 -> 1 happens in CianwoodCity's ON_TRANSITION under a goto_if_ge guard AND
+// FLAG_TRINITY_J_BEASTS_AWAKENED (glimpse 2 can never precede glimpse 1); 1 -> 2 happens
+// inside the scene, which is itself gated on == 1, so both writes are once-only.
+#define VAR_TRINITY_JOHTO_SCENE_WESTCOAST                0x40FB
 #define VAR_UNUSED_0x40FC                                0x40FC // Unused Var
 #define VAR_UNUSED_0x40FD                                0x40FD // Unused Var
 #define VAR_UNUSED_0x40FE                                0x40FE // Unused Var
