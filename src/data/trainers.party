@@ -20337,3 +20337,21 @@ Level: 73
 
 Gyarados
 Level: 74
+
+
+=== TRAINER_JOHTO_SAGE_LI ===
+Name: LI
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Victreebel
+Level: 59
+
+Victreebel
+Level: 59
+
+Noctowl
+Level: 60

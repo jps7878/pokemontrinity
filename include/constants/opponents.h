@@ -865,7 +865,13 @@
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT                      1072
+// Trinity: TRAINERS_COUNT must always be (highest allocated TRAINER_* id + 1) --
+// it sizes the ROM tables gTrainers[][] and sTrainerSlides[][][] and bounds
+// GetTrainerFromId (include/data.h:210). It is NOT a saveblock quantity, so a
+// slice that allocates a new id simply bumps it (fresh save not required);
+// MAX_TRAINERS_COUNT 1100 is the real cap. M4b S2 raised it 1072 -> 1073 for
+// TRAINER_JOHTO_SAGE_LI. Every later slice that claims an id must do the same.
+#define TRAINERS_COUNT                      1073
 #define MAX_TRAINERS_COUNT                  1100
 #define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)
 
@@ -1087,5 +1093,8 @@
 #define TRAINER_VR_COOLTRAINER_F_1            1069
 #define TRAINER_VR_COOLTRAINER_F_2            1070
 #define TRAINER_VR_COOLTRAINER_F_3            1071
+
+/* === Trinity M4b story trainers (allocated per slice from the 1072-1099 block) === */
+#define TRAINER_JOHTO_SAGE_LI                 1072  // S2: the SPROUT TOWER ELDER
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

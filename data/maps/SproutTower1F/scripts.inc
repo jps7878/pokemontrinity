@@ -19,7 +19,7 @@ SproutTower1F_EventScript_Teacher::
 
 SproutTower1F_EventScript_CHOW::
 	trainerbattle_single TRAINER_JOHTO_SAGE_CHOW, SproutTower1F_Text_CHOWSeen, SproutTower1F_Text_CHOWBeaten
-	msgbox SproutTower1F_Text_CHOWBeaten, MSGBOX_AUTOCLOSE
+	msgbox SproutTower1F_Text_CHOWAfterBattle, MSGBOX_AUTOCLOSE
 	end
 
 SproutTower1F_EventScript_Statue::
@@ -30,8 +30,14 @@ SproutTower1F_EventScript_Statue_2::
 	msgbox SproutTower1F_Text_Statue_2, MSGBOX_SIGN
 	end
 
+@ HM-era line repaired (slice plan section 6): M4a shipped GSC's "Only if you
+@ reach the top will you obtain an HM", which is a false pointer in Trinity --
+@ field HMs are automatic and FLASH arrived in Act I. Re-pointed at the ELDER,
+@ who is now a real trainer (TRAINER_JOHTO_SAGE_LI, SproutTower3F).
 SproutTower1F_Text_Sage1:
-	.string "Only if you reach\nthe top will you\lobtain an HM.$"
+	.string "Reach the top floor and the\n"
+	.string "ELDER will test you himself.\p"
+	.string "Few do. Fewer pass.$"
 
 SproutTower1F_Text_Sage2:
 	.string "SPROUT TOWER was\nbuilt long ago\pas a place for\nPOKéMON training.$"
@@ -47,6 +53,13 @@ SproutTower1F_Text_CHOWSeen:
 
 SproutTower1F_Text_CHOWBeaten:
 	.string "Th-Thank you!$"
+
+@ GSC SageChowAfterBattleText.
+SproutTower1F_Text_CHOWAfterBattle:
+	.string "All living beings coexist\n"
+	.string "through cooperation.\p"
+	.string "We must always be thankful for\n"
+	.string "this.$"
 
 SproutTower1F_Text_Statue:
 	.string "A POKéMON statue…\pIt looks very\ndistinguished.$"

@@ -69,8 +69,8 @@
 #define FLAG_TRINITY_J_SILVER1_BEATEN    0x33 // Trinity: was FLAG_UNUSED_0x033 — TRAINER_SILVER_1 (Route 29) defeated
 #define FLAG_TRINITY_J_MRPOKEMON_HOOK    0x34 // Trinity: was FLAG_UNUSED_0x034 — ELM named MR.POKéMON; his Red Scale request is live (S7 pays it off)
 #define FLAG_TRINITY_J_ELM_AFTERMATH    0x35 // Trinity: was FLAG_UNUSED_0x035 — New Bark chapter complete (ELM's aftermath ran, VIOLET pointer given). Terminal beat made observable to later slices; progression still gates on VAR_TRINITY_JOHTO_ARC >= 2, this is flavor-gating only.
-#define FLAG_UNUSED_0x036    0x36 // Unused Flag
-#define FLAG_UNUSED_0x037    0x37 // Unused Flag
+#define FLAG_TRINITY_J_FALKNER_TM40    0x36 // Trinity: was FLAG_UNUSED_0x036 — TM40 AERIAL ACE handed over by FALKNER. Bag-full retry guard (GYM PATTERN G2): the badge flag is set first and unconditionally, this one only after the item actually lands.
+#define FLAG_TRINITY_J_SPROUT_ELDER_GIFT    0x37 // Trinity: was FLAG_UNUSED_0x037 — SPROUT TOWER ELDER's reward (PP UP) handed over. Same bag-full retry guard, non-gym form.
 #define FLAG_UNUSED_0x038    0x38 // Unused Flag
 #define FLAG_UNUSED_0x039    0x39 // Unused Flag
 #define FLAG_UNUSED_0x03A    0x3A // Unused Flag
