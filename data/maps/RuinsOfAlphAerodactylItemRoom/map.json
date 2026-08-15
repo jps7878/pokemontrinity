@@ -105,7 +105,7 @@
       "elevation": 3,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "RuinsOfAlphAerodactylItemRoom_EventScript_Fall"
+      "script": "RuinsOfAlphAerodactylItemRoom_EventScript_FallToA"
     },
     {
       "type": "trigger",
@@ -114,7 +114,7 @@
       "elevation": 3,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "RuinsOfAlphAerodactylItemRoom_EventScript_Fall"
+      "script": "RuinsOfAlphAerodactylItemRoom_EventScript_FallToB"
     }
   ],
   "bg_events": [
