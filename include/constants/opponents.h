@@ -870,8 +870,9 @@
 // GetTrainerFromId (include/data.h:210). It is NOT a saveblock quantity, so a
 // slice that allocates a new id simply bumps it (fresh save not required);
 // MAX_TRAINERS_COUNT 1100 is the real cap. M4b S2 raised it 1072 -> 1073 for
-// TRAINER_JOHTO_SAGE_LI. Every later slice that claims an id must do the same.
-#define TRAINERS_COUNT                      1073
+// TRAINER_JOHTO_SAGE_LI; M4b S5 raised it 1073 -> 1074 for
+// TRAINER_JOHTO_COOLTRAINER_KENJI. Every later slice that claims an id must do the same.
+#define TRAINERS_COUNT                      1074
 #define MAX_TRAINERS_COUNT                  1100
 #define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)
 
@@ -1096,5 +1097,6 @@
 
 /* === Trinity M4b story trainers (allocated per slice from the 1072-1099 block) === */
 #define TRAINER_JOHTO_SAGE_LI                 1072  // S2: the SPROUT TOWER ELDER
+#define TRAINER_JOHTO_COOLTRAINER_KENJI       1073  // S5: the DANCE THEATER challenger
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

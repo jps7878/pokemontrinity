@@ -20355,3 +20355,20 @@ Level: 59
 
 NOCTOWL
 Level: 60
+
+=== TRAINER_JOHTO_COOLTRAINER_KENJI ===
+Name: KENJI
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint / Check Viability
+
+VAPOREON
+Level: 63
+
+LUDICOLO
+Level: 62
+
+BELLOSSOM
+Level: 62

@@ -97,14 +97,25 @@
 #define FLAG_TRINITY_J_GOLDENROD_PRE_HIDE    0x43 // Trinity: was FLAG_UNUSED_0x043 — GOLDENROD CITY's pre-takeover cast (7 civilians + the ROCKET scout) hidden. Visible iff ARC != 6.
 #define FLAG_TRINITY_J_RADIO_TOWER_PRE_HIDE    0x44 // Trinity: was FLAG_UNUSED_0x044 — the RADIO TOWER's pre-takeover cast (17 objects across 1F-5F) hidden. Visible iff ARC != 6. One flag, five maps, one predicate.
 #define FLAG_TRINITY_J_GOLDENROD_SCOUT_HIDE    0x45 // Trinity: was FLAG_UNUSED_0x045 — the GOLDENROD ROCKET SCOUT hidden. Visible iff ARC < 6: he is the ONE member of the city cast who RETIRES PERMANENTLY (GSC never resets EVENT_GOLDENROD_CITY_ROCKET_SCOUT once the takeover clears it), so he cannot ride the shared ARC != 6 flag. This is R1's "if a beat needs one member to outlive the others, give that member its own flag" — and the worked example of the escape hatch the S8 flip contract advertises.
-#define FLAG_UNUSED_0x045    0x45 // Unused Flag
-#define FLAG_UNUSED_0x046    0x46 // Unused Flag
-#define FLAG_UNUSED_0x047    0x47 // Unused Flag
-#define FLAG_UNUSED_0x048    0x48 // Unused Flag
-#define FLAG_UNUSED_0x049    0x49 // Unused Flag
-#define FLAG_UNUSED_0x04A    0x4A // Unused Flag
-#define FLAG_UNUSED_0x04B    0x4B // Unused Flag
-#define FLAG_UNUSED_0x04C    0x4C // Unused Flag
+// (FLAG_UNUSED_0x045 deleted by M4b S5: 0x45 was claimed above as
+// FLAG_TRINITY_J_GOLDENROD_SCOUT_HIDE in S4's fix round, but the old alias was left
+// behind. Two names for one bit is a landmine for the next slice hunting a free flag.)
+// Trinity M4b S5 (the ECRUTEAK chapter -- the legendary arc ignites). The four _HIDE
+// flags are pure object visibility, authored ONLY by each map's ON_TRANSITION off
+// VAR_TRINITY_JOHTO_SCENE_ECRUTEAK / FLAG_TRINITY_J_BEASTS_AWAKENED (single-authority
+// rule). FLAG_TRINITY_J_BEASTS_AWAKENED is the chapter's durable cross-map fact and is
+// written in exactly one place: BurnedTowerB1F's awakening cutscene.
+#define FLAG_TRINITY_J_BEASTS_AWAKENED    0x46 // Trinity: was FLAG_UNUSED_0x046 — RAIKOU, ENTEI and SUICUNE have woken in the BURNED TOWER's basement and scattered. Story state, monotonic, never cleared. Read by ECRUTEAK GYM (MORTY comes home), the WISE TRIOS ROOM, ECRUTEAK CITY, and S10 (beast lairs / TIN TOWER).
+#define FLAG_TRINITY_J_BEASTS_HIDE    0x47 // Trinity: was FLAG_UNUSED_0x047 — the three BURNED TOWER B1F beast objects hidden. Visible iff VAR_TRINITY_JOHTO_SCENE_ECRUTEAK == 1 (armed after SILVER 3, gone after the awakening). One flag for the whole cast is correct here because all three retire together and permanently (R1).
+#define FLAG_TRINITY_J_SILVER_BURNED_HIDE    0x48 // Trinity: was FLAG_UNUSED_0x048 — BURNED TOWER 1F SILVER (TRAINER_SILVER_3) hidden. Visible iff SCENE == 0.
+#define FLAG_TRINITY_J_SILVER3_BEATEN    0x49 // Trinity: was FLAG_UNUSED_0x049 — TRAINER_SILVER_3 (BURNED TOWER 1F) defeated.
+#define FLAG_TRINITY_J_MORTY_TOWER_HIDE    0x4A // Trinity: was FLAG_UNUSED_0x04A — MORTY hidden in the BURNED TOWER. Visible iff SCENE < 2: he is investigating the tower until the beasts wake, then goes back to his GYM.
+#define FLAG_TRINITY_J_MORTY_GYM_HIDE    0x4B // Trinity: was FLAG_UNUSED_0x04B — MORTY hidden in ECRUTEAK GYM. The exact complement: visible iff FLAG_TRINITY_J_BEASTS_AWAKENED. An object flag can only hide-when-set, so the two halves of one character need two flags.
+#define FLAG_TRINITY_J_MORTY_TM30    0x4C // Trinity: was FLAG_UNUSED_0x04C — TM30 SHADOW BALL handed over by MORTY. Bag-full retry guard (GYM PATTERN G2): FLAG_TRINITY_BADGE12 is set first and unconditionally.
+// THE LOW STORY-FLAG BLOCK (0x2E-0x4C) IS NOW EXHAUSTED. S6+ allocate from 0x264+.
+// Note for the controller: 0x4D/0x4E/0x4F are genuinely free too (verified -- their only
+// reference in the tree is their own #define). The M4b contract's block simply stops at
+// 0x4C; amending it would buy three more contiguous low flags at zero cost.
 #define FLAG_UNUSED_0x04D    0x4D // Unused Flag
 #define FLAG_UNUSED_0x04E    0x4E // Unused Flag
 #define FLAG_UNUSED_0x04F    0x4F // Unused Flag
@@ -673,7 +684,10 @@
 #define FLAG_HIDDEN_ITEM_ROUTE_123_RARE_CANDY                (FLAG_HIDDEN_ITEMS_START + 0x6E)
 #define FLAG_HIDDEN_ITEM_ROUTE_105_BIG_PEARL                 (FLAG_HIDDEN_ITEMS_START + 0x6F)
 
-#define FLAG_UNUSED_0x264  0x264 // Unused Flag
+// M4b S5: the FIRST claim from the high block. The low story-flag block (0x2E-0x4C) is
+// exhausted; the M4b contract directs later claims here. This one is a Trinity
+// friend-reward guard, sibling of FLAG_RECEIVED_REWARD_HARJOT (0x23) / _PRABHJIT (0x24).
+#define FLAG_RECEIVED_REWARD_SUMEET  0x264 // Trinity: was FLAG_UNUSED_0x264 — SUMEET (BURNED TOWER approach, ECRUTEAK CITY) friend-reward claimed. One-time; the giveitem branches only set it once the item actually lands, so a full bag retries on the next talk.
 #define FLAG_UNUSED_0x265  0x265 // Unused Flag
 #define FLAG_UNUSED_0x266  0x266 // Unused Flag
 #define FLAG_UNUSED_0x267  0x267 // Unused Flag

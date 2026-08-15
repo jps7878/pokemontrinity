@@ -283,7 +283,15 @@
 //   2 SILVER 2 resolved (chapter complete)
 // Only the well-raid aftermath writes 1, and only the SILVER 2 aftermath writes 2.
 #define VAR_TRINITY_JOHTO_SCENE_AZALEA                   0x40F9
-#define VAR_UNUSED_0x40FA                                0x40FA // Unused Var
+// Trinity M4b S5 scene scratch (Ecruteak chapter). Was VAR_UNUSED_0x40FA.
+//   0 the BURNED TOWER is untouched -- SILVER 3 and MORTY are on 1F, B1F is empty
+//   1 SILVER 3 beaten -- the three beasts are on stage in B1F and the awakening is armed
+//   2 the beasts have woken and scattered (chapter's tower phase complete)
+// Monotonic. Only the SILVER 3 aftermath writes 1 (from a coord_event gated on 0), and
+// only the awakening writes 2 (from a coord_event gated on 1), so both writes are
+// structurally once-only per the S1 arc-write rule; the talk path to SILVER carries an
+// explicit goto_if_ne guard on top of that.
+#define VAR_TRINITY_JOHTO_SCENE_ECRUTEAK                 0x40FA
 #define VAR_UNUSED_0x40FB                                0x40FB // Unused Var
 #define VAR_UNUSED_0x40FC                                0x40FC // Unused Var
 #define VAR_UNUSED_0x40FD                                0x40FD // Unused Var
