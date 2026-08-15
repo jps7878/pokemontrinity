@@ -19927,7 +19927,7 @@ Class: Psychic
 Pic: Psychic M
 Gender: Male
 Music: Intense
-AI: Check Bad Move / Try To Faint
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
 
 Alakazam
 Level: 65
@@ -19947,7 +19947,7 @@ Class: Kindler
 Pic: Kindler
 Gender: Male
 Music: Hiker
-AI: Check Bad Move / Try To Faint
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
 
 Typhlosion
 Level: 65
@@ -19966,6 +19966,7 @@ Name: PROTON
 Class: Team Rocket
 Pic: Magma Admin
 Gender: Male
+Music: Magma
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
 
 Golbat
@@ -19982,6 +19983,7 @@ Name: PETREL
 Class: Team Rocket
 Pic: Magma Admin
 Gender: Male
+Music: Magma
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
 
 Raticate
@@ -20001,6 +20003,7 @@ Name: ARIANA
 Class: Team Rocket
 Pic: Aqua Admin F
 Gender: Female
+Music: Aqua
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
 
 Arbok
@@ -20020,6 +20023,7 @@ Name: ARCHER
 Class: Team Rocket
 Pic: Aqua Admin M
 Gender: Male
+Music: Aqua
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
 
 Houndoom
@@ -20039,6 +20043,7 @@ Name: GRUNT
 Class: Team Rocket
 Pic: Aqua Grunt M
 Gender: Male
+Music: Aqua
 AI: Basic Trainer
 
 Raticate
@@ -20055,6 +20060,7 @@ Name: GRUNT
 Class: Team Rocket
 Pic: Aqua Grunt M
 Gender: Male
+Music: Aqua
 AI: Basic Trainer
 
 Muk
@@ -20071,6 +20077,7 @@ Name: GRUNT
 Class: Team Rocket
 Pic: Aqua Grunt M
 Gender: Male
+Music: Aqua
 AI: Basic Trainer
 
 Golbat
@@ -20087,6 +20094,7 @@ Name: GRUNT
 Class: Team Rocket
 Pic: Aqua Grunt M
 Gender: Male
+Music: Aqua
 AI: Basic Trainer
 
 Raticate
@@ -20103,6 +20111,7 @@ Name: GRUNT
 Class: Team Rocket
 Pic: Aqua Grunt M
 Gender: Male
+Music: Aqua
 AI: Basic Trainer
 
 Weezing
@@ -20119,6 +20128,7 @@ Name: GRUNT
 Class: Team Rocket
 Pic: Aqua Grunt M
 Gender: Male
+Music: Aqua
 AI: Basic Trainer
 
 Golbat
@@ -20135,6 +20145,7 @@ Name: GRUNT
 Class: Team Rocket
 Pic: Aqua Grunt M
 Gender: Male
+Music: Aqua
 AI: Basic Trainer
 
 Muk
@@ -20151,6 +20162,7 @@ Name: GRUNT
 Class: Team Rocket
 Pic: Aqua Grunt M
 Gender: Male
+Music: Aqua
 AI: Basic Trainer
 
 Houndoom
@@ -20167,6 +20179,7 @@ Name: GRUNT
 Class: Team Rocket
 Pic: Aqua Grunt F
 Gender: Female
+Music: Aqua
 AI: Basic Trainer
 
 Golbat
@@ -20180,6 +20193,7 @@ Name: GRUNT
 Class: Team Rocket
 Pic: Aqua Grunt F
 Gender: Female
+Music: Aqua
 AI: Basic Trainer
 
 Muk
@@ -20196,6 +20210,7 @@ Name: GRUNT
 Class: Team Rocket
 Pic: Aqua Grunt F
 Gender: Female
+Music: Aqua
 AI: Basic Trainer
 
 Houndoom
@@ -20209,6 +20224,7 @@ Name: GRUNT
 Class: Team Rocket
 Pic: Aqua Grunt F
 Gender: Female
+Music: Aqua
 AI: Basic Trainer
 
 Crobat
