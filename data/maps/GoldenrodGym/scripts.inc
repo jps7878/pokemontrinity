@@ -228,11 +228,19 @@ GoldenrodGym_Text_ExplainAttract:
 	.string "It won't wear out.$"
 
 @ Chapter pointer: S5 is ECRUTEAK CITY / MORTY. Adapts WhitneyGoodCryText.
+@ ROUTE CHAIN VERIFIED from map.json connections: GOLDENROD --up--> ROUTE 35
+@ --up--> ROUTE 36 --up--> ROUTE 37 --up--> ECRUTEAK CITY. The NATIONAL PARK
+@ hangs off gates on 35 and 36; in GSC you must cross it, but THIS build gives
+@ ROUTE 35 a direct `up` connection to ROUTE 36, so the park is a detour here.
+@ The line is written to be true either way.
 GoldenrodGym_Text_WhitneyPostBattle:
 	.string "WHITNEY: Ah, that was a good\n"
 	.string "cry.\p"
-	.string "Try MORTY next. ECRUTEAK CITY,\n"
-	.string "north up ROUTE 35 and 36.\p"
+	.string "Try MORTY next. ECRUTEAK CITY.\p"
+	.string "Straight north -- ROUTE 35, then\n"
+	.string "36, then 37. The NATIONAL PARK\l"
+	.string "gate is on the way if you want\l"
+	.string "to stop.\p"
 	.string "He does GHOSTS, and he'll be\n"
 	.string "very calm about beating you.\p"
 	.string "I hope he isn't.\p"
@@ -283,20 +291,33 @@ GoldenrodGym_Text_SAMANTHAAfterBattle:
 	.string "taking on any type…\p"
 	.string "Any type but yours, apparently.$"
 
-@ Adapts GoldenrodGymGuideText. The level warning and the GHOST note are
-@ Trinity additions -- WHITNEY's roster runs L60-63 and MILTANK is the wall.
+@ Adapts GoldenrodGymGuideText. The level warning and the type detail are
+@ Trinity additions.
+@ VERIFIED against src/data/trainers.party (TRAINER_WHITNEY: Girafarig 60,
+@ Tauros 61, Blissey 61, Ursaring 62, Miltank 63), the species typings
+@ (GIRAFARIG = MON_TYPES(TYPE_NORMAL, TYPE_PSYCHIC); the other four are pure
+@ TYPE_NORMAL) and gTypeEffectivenessTable (src/data/types_info.h:14):
+@   FIGHTING -> NORMAL  2.0, FIGHTING -> PSYCHIC 0.5  => GIRAFARIG is NEUTRAL
+@   DARK/BUG -> NORMAL  1.0, DARK/BUG -> PSYCHIC 2.0  => GIRAFARIG takes 2x
+@   GHOST    -> NORMAL  0.0                           => all five are IMMUNE
+@ An earlier draft claimed FIGHTING beat the whole roster. It does not.
 GoldenrodGym_Text_GuideAdvice:
 	.string "Yo! CHAMP in the making--\p"
 	.string "…That line isn't going to work\n"
 	.string "on you, is it.\p"
-	.string "WHITNEY runs NORMAL types.\p"
-	.string "There is exactly one type that\n"
-	.string "beats them straight, and it's\l"
-	.string "FIGHTING. Nothing else gets a\l"
-	.string "bonus at all.\p"
-	.string "And don't reach for GHOST. Your\n"
-	.string "GHOST moves won't even touch\l"
-	.string "them.\p"
+	.string "WHITNEY runs NORMAL types, so\n"
+	.string "FIGHTING is your lever. It beats\l"
+	.string "four of the five.\p"
+	.string "Four. Not five.\p"
+	.string "That GIRAFARIG is NORMAL and\n"
+	.string "PSYCHIC, and the PSYCHIC half\l"
+	.string "eats FIGHTING right back down to\l"
+	.string "nothing special.\p"
+	.string "For that one you want DARK or\n"
+	.string "BUG.\p"
+	.string "And don't reach for GHOST at\n"
+	.string "all. Not one of the five can be\l"
+	.string "touched by it.\p"
 	.string "Her team is LEVEL 60 and up.\n"
 	.string "The MILTANK she finishes with\l"
 	.string "is LEVEL 63, and it is the one\l"

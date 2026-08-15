@@ -96,6 +96,7 @@
 #define FLAG_TRINITY_J_WHITNEY_TM45    0x42 // Trinity: was FLAG_UNUSED_0x042 — TM45 ATTRACT handed over by WHITNEY. Bag-full retry guard (GYM PATTERN G2): FLAG_TRINITY_BADGE11 is set first and unconditionally.
 #define FLAG_TRINITY_J_GOLDENROD_PRE_HIDE    0x43 // Trinity: was FLAG_UNUSED_0x043 — GOLDENROD CITY's pre-takeover cast (7 civilians + the ROCKET scout) hidden. Visible iff ARC != 6.
 #define FLAG_TRINITY_J_RADIO_TOWER_PRE_HIDE    0x44 // Trinity: was FLAG_UNUSED_0x044 — the RADIO TOWER's pre-takeover cast (17 objects across 1F-5F) hidden. Visible iff ARC != 6. One flag, five maps, one predicate.
+#define FLAG_TRINITY_J_GOLDENROD_SCOUT_HIDE    0x45 // Trinity: was FLAG_UNUSED_0x045 — the GOLDENROD ROCKET SCOUT hidden. Visible iff ARC < 6: he is the ONE member of the city cast who RETIRES PERMANENTLY (GSC never resets EVENT_GOLDENROD_CITY_ROCKET_SCOUT once the takeover clears it), so he cannot ride the shared ARC != 6 flag. This is R1's "if a beat needs one member to outlive the others, give that member its own flag" — and the worked example of the escape hatch the S8 flip contract advertises.
 #define FLAG_UNUSED_0x045    0x45 // Unused Flag
 #define FLAG_UNUSED_0x046    0x46 // Unused Flag
 #define FLAG_UNUSED_0x047    0x47 // Unused Flag

@@ -20,6 +20,45 @@ RadioTower1F_MapScripts::
 @ NOT in the cast: items are not staff, and GSC leaves that ball on the floor
 @ during the occupation too.
 @
+@ ---- CORRECTIONS S8 MUST READ BEFORE IT ADDS ANYTHING ----------------------
+@
+@ (1) FOUR OF S4's TOWER STAFF ARE GSC'S *POST-CLEAR* CAST. In the story
+@     inventory they carry EVENT_RADIO_TOWER_CIVILIANS_AFTER, not
+@     EVENT_GOLDENROD_CITY_CIVILIANS -- S4 brought them forward on purpose, so
+@     the tower is not half-empty before the raid. They are:
+@         2F BLACK BELT   (1,1)
+@         3F SUPER NERD   (7,4)
+@         4F FISHER       (6,4)
+@         5F DJ BEN      (13,5)
+@     If S8 appends GSC's CIVILIANS_AFTER set wholesale it will DOUBLE-PLACE
+@     all four. Either skip them or drop S4's copies -- do not do both halves.
+@
+@ (2) DJ BEN'S (13,5) IS GSC'S 5F TAKEOVER-ROCKET TILE. GSC parks
+@     SPRITE_ROCKET on exactly (13,5) under EVENT_RADIO_TOWER_ROCKET_TAKEOVER.
+@     The predicates are opposites (BEN visible iff ARC != 6, a takeover Rocket
+@     visible iff ARC == 6), so a stack is SAFE and never renders two sprites at
+@     once -- but it is a stack, and stacked objects are a debugging trap. S8
+@     should offset its Rocket by a tile or accept the overlap knowingly.
+@
+@ (3) THE ON_TRANSITION SLOT IS SINGLE-OCCUPANCY. MapHeaderGetScriptTable walks
+@     the map-script table and RETURNS ON THE FIRST entry matching the tag
+@     (src/script.c:302-321), so adding a second
+@     `map_script MAP_SCRIPT_ON_TRANSITION` to any of these five floors is
+@     silently dead code. S8's arc-6 write must live in a coord_event, an
+@     ON_FRAME table, another map -- or S8 edits these scripts.
+@
+@ (4) ORDERING HAZARD. These calls READ VAR_TRINITY_JOHTO_ARC when they run. If
+@     an arc write ever lands in the same transition AFTER them, the flags
+@     describe the PREVIOUS state and the flip lags by one map load. Put any
+@     arc write before the visibility calls.
+@
+@ (5) THE DIRECTOR ESCAPE HATCH EDITS S4 FILES. Giving RadioTower5F's DIRECTOR
+@     his own predicate (see that file's header) means claiming a flag and
+@     adding a call to RadioTower5F's ON_TRANSITION. That is the contract
+@     working as designed, not a violation -- but it is a second pass over an
+@     S4 file, so no promise is made here that S4's files are frozen.
+@     GoldenrodCity's ROCKET SCOUT is the worked example of the same hatch.
+@
 @ DECODE NOTE. 1F has a 16-tile region (x5..x12, y6..y7) that is unreachable on
 @ foot with ZERO objects placed -- it is the inside of the reception desk. The
 @ LUCKY NUMBER MAN (8,6) and the RADIO CARD WOMAN (12,6) sit in it, exactly as
@@ -27,7 +66,11 @@ RadioTower1F_MapScripts::
 @ MB_COUNTER row at y=5 (GetInteractedObjectEventScript ->
 @ MetatileBehavior_IsCounter -> look one tile further,
 @ src/field_control_avatar.c:387-396). Objects on already-unreachable tiles
-@ cost zero walkability.
+@ cost zero walkability. ELEVATION NUANCE (full statement in
+@ GoldenrodDeptStore5F/scripts.inc): the lookup compares the NPC's elevation
+@ against the PLAYER'S, not the counter's -- service tiles (8,4)/(12,4)/(5,4)
+@ and all three desk slots decode elevation 3, so they match; the counters at
+@ y=5 decode elevation 0 and are never compared.
 @ ============================================================================
 RadioTower1F_OnTransition:
 	call RadioTower_EventScript_SetPreTakeoverVisibility

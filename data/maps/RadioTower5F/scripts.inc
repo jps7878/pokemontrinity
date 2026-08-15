@@ -13,10 +13,20 @@ RadioTower5F_MapScripts::
 @ scripts swapping the script rather than the sprite. Trinity's is simply
 @ hidden while ARC == 6 and returns at ARC 7. S8 may either follow GSC (drop
 @ the shared hide on this one object and give it a branching script, which
-@ means claiming a flag for it) or append a separate imposter object. Both work
-@ against the contract and neither requires editing this file.
+@ means claiming a flag for it and adding a call to the ON_TRANSITION below --
+@ i.e. EDITING THIS FILE; the contract's escape hatch is a second pass over an
+@ S4 file, and no promise to the contrary is made) or append a separate
+@ imposter object, which touches nothing here. GoldenrodCity's ROCKET SCOUT is
+@ the worked example of the hatch.
 @ His post-rescue speech -- the CLEAR BELL, the old tower, the TIN TOWER tip --
 @ is S8's payload and is deliberately NOT written here.
+@
+@ TWO MORE THINGS S8 NEEDS ON THIS FLOOR (full list in RadioTower1F's header):
+@   - DJ BEN at (13,5) is GSC's POST-CLEAR cast (EVENT_RADIO_TOWER_CIVILIANS_
+@     AFTER), brought forward by S4. Appending GSC's after-set wholesale would
+@     double-place him.
+@   - (13,5) is ALSO GSC's 5F takeover-Rocket tile. Opposite predicates make a
+@     stack safe, but offset it or accept it knowingly.
 @ DECODE NOTE: two components, PRE-EXISTING and object-independent (the office
 @ half and the studio half join through 4F). See RadioTower3F's header.
 RadioTower5F_OnTransition:

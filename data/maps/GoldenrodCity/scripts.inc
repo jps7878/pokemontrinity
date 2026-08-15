@@ -7,32 +7,48 @@ GoldenrodCity_MapScripts::
 @
 @ THE S8 FLIP CONTRACT (also in include/constants/flags.h and in each RADIO
 @ TOWER floor's header). S8 writes ONE thing -- setvar VAR_TRINITY_JOHTO_ARC, 6
-@ -- and never touches FLAG_TRINITY_J_GOLDENROD_PRE_HIDE. This ON_TRANSITION is
-@ the flag's SINGLE AUTHORING SITE (S1 rule); it runs before InitMap and object
-@ spawning, so no new-game flag defaults are needed.
+@ -- and never touches either _HIDE flag. This ON_TRANSITION is both flags'
+@ SINGLE AUTHORING SITE (S1 rule); it runs before InitMap and object spawning,
+@ so no new-game flag defaults are needed.
 @
-@   visible iff VAR_TRINITY_JOHTO_ARC != 6
+@   civilians (7 objects)  visible iff VAR_TRINITY_JOHTO_ARC != 6
+@   ROCKET SCOUT (1)       visible iff VAR_TRINITY_JOHTO_ARC <  6
 @
 @ DELIBERATE AMENDMENT, LEDGERED: the S4 brief proposed "hidden at ARC >= 6".
-@ S4 ships "!= 6" instead, because the occupation is a WINDOW, not a terminal
-@ state -- ARC 7 is "Tower cleared", and a liberated city whose entire civilian
-@ population stayed deleted forever is worse than the bug that would avoid. It
-@ is still exactly one arc write for S8, one flag for the cast and one
-@ authoring site for the map. If S8 wants a different post-clear cast it
-@ narrows the predicate on the objects it cares about and claims its own flag;
-@ it never has to rewrite this file.
+@ S4 ships "!= 6" for the CIVILIANS, because the occupation is a WINDOW, not a
+@ terminal state -- ARC 7 is "Tower cleared", and a liberated city whose entire
+@ civilian population stayed deleted forever is worse than the bug that would
+@ avoid.
+@
+@ THE SCOUT IS THE EXCEPTION, AND IT IS THE WORKED EXAMPLE OF THE ESCAPE HATCH
+@ THIS CONTRACT ADVERTISES TO S8. He RETIRES PERMANENTLY: GSC clears
+@ EVENT_GOLDENROD_CITY_ROCKET_SCOUT at the takeover and never sets it again, so
+@ riding the shared "!= 6" flag would resurrect him at ARC >= 7 -- a Rocket
+@ still casing a tower his own organisation already stormed and lost. R1 names
+@ the fix ("if a beat needs one member to outlive the others, give that member
+@ its own flag"), so he has FLAG_TRINITY_J_GOLDENROD_SCOUT_HIDE and his own
+@ predicate, authored in this same ON_TRANSITION. S8 does EXACTLY THIS whenever
+@ it wants a member of an S4 cast on a different schedule: claim a flag, add a
+@ call here, leave everything else alone.
 @
 @ S8's own Rocket cast gets its OWN flag and APPENDED objects, so (a) S4's
 @ local ids never shift and (b) a removeobject in S8's liberation scene cannot
 @ co-sign one of these civilians into permanent non-existence (R1's trap).
 @
-@ The ROCKET SCOUT at (4,16) is a PRE-takeover object in GSC too --
-@ EVENT_GOLDENROD_CITY_ROCKET_SCOUT is CLEARED by the takeover, not set by it
-@ -- and he is the referent of the COOLTRAINER F's "man in black" line at
-@ (12,16), so the two only make sense placed together.
+@ HAZARD FOR S8 (a): the ON_TRANSITION slot is SINGLE-OCCUPANCY.
+@ MapHeaderGetScriptTable walks the map-script table and RETURNS ON THE FIRST
+@ entry matching the tag (src/script.c:302-321), so a second
+@ `map_script MAP_SCRIPT_ON_TRANSITION` on this map is silently dead code. S8's
+@ arc-6 setvar must live in a coord_event, an ON_FRAME table, another map --
+@ or S8 edits THIS script.
+@ HAZARD FOR S8 (b): if the arc write ever lands in the same transition, put it
+@ BEFORE the visibility calls. These calls read VAR_TRINITY_JOHTO_ARC at the
+@ moment they run; an arc write after them leaves the flags describing the
+@ PREVIOUS state until the next map load, i.e. the flip lags by one entry.
 @ ============================================================================
 GoldenrodCity_OnTransition:
 	call GoldenrodCity_EventScript_SetPreTakeoverVisibility
+	call GoldenrodCity_EventScript_SetScoutVisibility
 	end
 
 GoldenrodCity_EventScript_SetPreTakeoverVisibility::
@@ -44,6 +60,16 @@ GoldenrodCity_EventScript_HidePreTakeover::
 	setflag FLAG_TRINITY_J_GOLDENROD_PRE_HIDE
 	return
 
+@ The scout's own predicate -- ARC < 6, i.e. he never comes back.
+GoldenrodCity_EventScript_SetScoutVisibility::
+	goto_if_ge VAR_TRINITY_JOHTO_ARC, 6, GoldenrodCity_EventScript_HideScout
+	clearflag FLAG_TRINITY_J_GOLDENROD_SCOUT_HIDE
+	return
+
+GoldenrodCity_EventScript_HideScout::
+	setflag FLAG_TRINITY_J_GOLDENROD_SCOUT_HIDE
+	return
+
 GoldenrodCity_EventScript_PokefanM::
 	msgbox GoldenrodCity_Text_PokefanM, MSGBOX_NPC
 	end
@@ -52,12 +78,35 @@ GoldenrodCity_EventScript_Youngster1::
 	msgbox GoldenrodCity_Text_Youngster1, MSGBOX_NPC
 	end
 
+@ Her line points AT the ROCKET SCOUT, so it has to follow his retirement or it
+@ becomes a woman describing an empty pavement. Same predicate as his object
+@ (ARC >= 6 == retired), so the two can never disagree. GSC has both halves:
+@ GoldenrodCityCooltrainerF1Text and …Text_ClearedRadioTower.
+@ NOTE on the ARC == 6 case: she is herself hidden then (she is on the
+@ civilians' "!= 6" flag), so the retired branch is only ever SEEN at ARC >= 7.
+@ The guard is still written on ARC >= 6 so it matches the scout's predicate
+@ exactly rather than relying on her visibility to cover the gap.
 GoldenrodCity_EventScript_CooltrainerF1::
-	msgbox GoldenrodCity_Text_CooltrainerF1, MSGBOX_NPC
+	lock
+	faceplayer
+	goto_if_ge VAR_TRINITY_JOHTO_ARC, 6, GoldenrodCity_EventScript_CooltrainerF1ScoutGone
+	msgbox GoldenrodCity_Text_CooltrainerF1, MSGBOX_DEFAULT
+	release
+	end
+
+GoldenrodCity_EventScript_CooltrainerF1ScoutGone::
+	msgbox GoldenrodCity_Text_CooltrainerF1ScoutGone, MSGBOX_DEFAULT
+	release
 	end
 
 @ Branches on S1's RADIO CARD flag: ELM already fitted the POKéNAV as a radio,
 @ so the campaign line has to acknowledge it.
+@ INTENTIONALLY UNREACHABLE / DEFENSIVE -- the unset branch below
+@ (…_Text_CooltrainerF2) cannot be reached in a normal save. ELM sets
+@ FLAG_TRINITY_J_RADIO_CARD in the New Bark chapter (data/maps/ElmsLab/
+@ scripts.inc:53), and that chapter is what drives VAR_TRINITY_JOHTO_ARC to 2;
+@ nothing lets a player stand in GOLDENROD at ARC < 2. It is written as real
+@ dialogue rather than an assert because a flavour NPC must never dead-end.
 GoldenrodCity_EventScript_CooltrainerF2::
 	lock
 	faceplayer
@@ -150,6 +199,7 @@ GoldenrodCity_Text_Youngster1:
 	.string "It's a big city! Everything is\n"
 	.string "behind something else!$"
 
+@ GSC GoldenrodCityCooltrainerF1Text.
 GoldenrodCity_Text_CooltrainerF1:
 	.string "Is that man in black dressed up\n"
 	.string "like a TEAM ROCKET member?\p"
@@ -157,6 +207,17 @@ GoldenrodCity_Text_CooltrainerF1:
 	.string "for years.\p"
 	.string "…He's been looking at the RADIO\n"
 	.string "TOWER for about an hour, mind.$"
+
+@ GSC GoldenrodCityCooltrainerF1Text_ClearedRadioTower. Past tense, and no
+@ pointing: there is nobody on that pavement any more.
+GoldenrodCity_Text_CooltrainerF1ScoutGone:
+	.string "There was a man in black who\n"
+	.string "used to stand out here, dressed\l"
+	.string "up like a TEAM ROCKET member.\p"
+	.string "I laughed about it.\p"
+	.string "Was he really one of them? I\n"
+	.string "can't believe it.\p"
+	.string "He hasn't been back.$"
 
 GoldenrodCity_Text_CooltrainerF2:
 	.string "The RADIO TOWER in GOLDENROD\n"

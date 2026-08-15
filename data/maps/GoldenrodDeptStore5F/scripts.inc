@@ -15,9 +15,21 @@ GoldenrodDeptStore5F_MapScripts::
 @ (7,4), (8,4) and (9,5) (behaviour 128, decoded). Counters are talk-through:
 @ GetInteractedObjectEventScript finds nothing on the faced tile, sees
 @ MetatileBehavior_IsCounter and looks one tile further in the same direction
-@ (src/field_control_avatar.c:387-396). So MARGINS is served facing SOUTH from
-@ (7,3) or EAST from (5,5). Placing an object on an already-unreachable tile
+@ (src/field_control_avatar.c:387-396). So MARGINS is served facing EAST from
+@ (5,5), or SOUTH from (7,3). Placing an object on an already-unreachable tile
 @ changes walkability by exactly nothing.
+@
+@ ELEVATION NUANCE -- the part that silently breaks a counter NPC.
+@ The lookup is GetObjectEventIdByPosition(x, y, position->elevation), and it
+@ requires ObjectEventDoesElevationMatch (src/event_object_movement.c:3352-3374).
+@ `position->elevation` is the PLAYER'S OWN elevation, NOT the faced tile's --
+@ GetInFrontOfPlayerPosition sets it from PlayerGetElevation()
+@ (src/field_control_avatar.c:264-274). So the NPC behind the counter must
+@ share the elevation of the FLOOR THE PLAYER STANDS ON, and the counter tile's
+@ own elevation is never compared at all. Here: service tile (5,5) elev 3,
+@ MARGINS (7,5) elev 3 -- match. The counter at (6,5) decodes elev 0, which is
+@ irrelevant. Copying that 0 onto the NPC would make him unreachable AND
+@ untalkable, with nothing in any tool output to show for it.
 @ ============================================================================
 GoldenrodDeptStore5F_EventScript_MarginsClerk::
 	lock

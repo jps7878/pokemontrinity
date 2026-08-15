@@ -11,6 +11,11 @@ GoldenrodUnderground_MapScripts::
 @ (GetInteractedObjectEventScript -> MetatileBehavior_IsCounter -> look one
 @ tile further, src/field_control_avatar.c:387-396). Objects on
 @ already-unreachable tiles cost exactly zero walkability.
+@ ELEVATION NUANCE (full statement in GoldenrodDeptStore5F/scripts.inc): the
+@ lookup compares the NPC's elevation against the PLAYER'S, not the counter's
+@ (GetInFrontOfPlayerPosition, src/field_control_avatar.c:264-274). Service
+@ tiles (5,11)/(5,14)/(5,15)/(5,21) and all four booths decode elevation 3 --
+@ match. The counters at (6,y) decode elevation 0 and are never compared.
 @
 @ GSC gates all four behind VAR_WEEKDAY and the clock
 @ (GoldenrodUnderground.asm:56-...). Trinity ports no day-of-week system, so
