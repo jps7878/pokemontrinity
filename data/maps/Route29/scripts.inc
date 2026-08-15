@@ -62,13 +62,24 @@ Route29_EventScript_SilverScene::
 @ uses lock/faceplayer (works from any approach direction) and does NOT run any
 @ movement script -- walking SILVER into or out of an unknown tile could deadlock
 @ waitmovement.
+@ The scene-var guard is deliberate belt-and-braces: SILVER's visibility flag
+@ already means he can only be standing here at scene 2, but a talk script that
+@ starts a battle and advances story state must not depend on the visibility
+@ invariant alone -- later Silver encounters are multi-state and will copy this
+@ shape.
 Route29_EventScript_Silver::
 	lock
 	faceplayer
+	goto_if_ne VAR_TRINITY_JOHTO_SCENE_NEWBARK, 2, Route29_EventScript_SilverIdle
 	playbgm MUS_RG_ENCOUNTER_RIVAL, FALSE
 	call Route29_EventScript_SilverConfront
 	removeobject LOCALID_JOHTO_R29_SILVER
 	call Route29_EventScript_SilverAftermath
+	release
+	end
+
+Route29_EventScript_SilverIdle::
+	msgbox Route29_Text_SilverIdle, MSGBOX_DEFAULT
 	release
 	end
 
@@ -157,6 +168,9 @@ Route29_Text_SilverIntro:
 
 Route29_Text_SilverDefeat:
 	.string "…Humph.$"
+
+Route29_Text_SilverIdle:
+	.string "SILVER: Don't follow me.$"
 
 Route29_Text_SilverNameReveal:
 	.string "SILVER: ………\p"

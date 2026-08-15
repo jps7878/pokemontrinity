@@ -52,5 +52,11 @@ PlayersHouse1F_Text_Sink:
 PlayersHouse1F_Text_Fridge:
 	.string "Let's see what's\nin the fridge…\pFRESH WATER and\ntasty LEMONADE!$"
 
+@ Trinity M4b S1: the ported GSC line ended "I'd better get rolling too!" --
+@ first-person resolve in a house that, in Trinity, belongs to somebody else.
+@ Reworded to a neutral observation.
 PlayersHouse1F_Text_TV:
-	.string "There's a movie on\nTV: Stars dot the\psky as two boys\nride on a train…\pI'd better get\nrolling too!$"
+	.string "There's a movie on TV.\p"
+	.string "Stars dot the sky as two boys\n"
+	.string "ride on a train…\p"
+	.string "Someone left it running.$"

@@ -69,18 +69,25 @@ ElmsLab_EventScript_MeetElm::
 @ founder decision (B) and TRAINER_SILVER_1's L60 ace.
 @ The lab's only exit corridor is exactly two tiles wide ((4,6)/(5,6) with
 @ walls either side), so this pair of triggers cannot be walked around. Both
-@ converge on (5,6) so that column x=4 stays clear for the shove and column
-@ x=5 stays clear for SILVER's run to the door.
+@ converge on (5,5): the camera shows 10 metatile rows with the player on the
+@ 5th, so a player standing at y=5 keeps rows 1..10 on screen -- SILVER's
+@ window drop-in at (5,1) is visible. (Normalising to (5,6) instead would put
+@ the top visible row at y=2 and the entry would happen off-camera.)
+@ Converging on x=5 also keeps column x=4 clear for the shove and column x=5
+@ clear for SILVER's run to the door. (4,5)/(5,5)/(5,4) all decode
+@ collision-0 elevation-3 MB_NORMAL.
 @ ============================================================================
 ElmsLab_EventScript_TheftWest::
 	lockall
-	applymovement LOCALID_PLAYER, ElmsLab_Movement_PlayerStepEast
+	applymovement LOCALID_PLAYER, ElmsLab_Movement_PlayerToTheftMarkWest
 	waitmovement 0
 	goto ElmsLab_EventScript_Theft
 	end
 
 ElmsLab_EventScript_TheftEast::
 	lockall
+	applymovement LOCALID_PLAYER, ElmsLab_Movement_PlayerToTheftMarkEast
+	waitmovement 0
 	goto ElmsLab_EventScript_Theft
 	end
 
@@ -157,12 +164,19 @@ ElmsLab_EventScript_Aftermath::
 	msgbox ElmsLab_Text_ElmAftermath, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_TRINITY_JOHTO_SCENE_NEWBARK, 4
+	setflag FLAG_TRINITY_J_ELM_AFTERMATH
 	releaseall
 	end
 
 @ ============================================================================
 @ Talk scripts
 @ ============================================================================
+@ Scene-var branches. The fall-through covers scene 3 and 4 and, DEFENSIVELY,
+@ scene 0 -- ELM is unreachable at scene 0 in practice (every path from the
+@ entrance room to his tile crosses the (4,8)/(5,8) meet-Elm trigger, which
+@ advances the var to 1 before he can be talked to), so scene 0 can only reach
+@ this line if a future slice changes the trigger topology. A generic
+@ post-chapter line is a safe thing to say in that case.
 ElmsLab_EventScript_Elm::
 	lock
 	faceplayer
@@ -204,7 +218,13 @@ ElmsLab_EventScript_AideAfter::
 	release
 	end
 
-@ Talking to the OFFICER before stepping onto the aftermath trigger.
+@ INTENTIONALLY UNREACHABLE / DEFENSIVE. The OFFICER only exists at scene 3,
+@ and his tile (5,3) is adjacent only to (4,3), (5,2), (5,4) -- (6,3) is a
+@ wall. Every route from the exit corridor to any of those three tiles crosses
+@ (4,4) or (5,4), which are the aftermath coord triggers, so the aftermath
+@ scene always runs (and removes him) before he can be talked to. This line
+@ exists so that a topology change in a later slice degrades to a sensible
+@ message rather than a NULL script.
 ElmsLab_EventScript_Officer::
 	msgbox ElmsLab_Text_OfficerWaiting, MSGBOX_NPC
 	end
@@ -267,9 +287,16 @@ ElmsLab_Movement_ElmNotices:
 	face_right
 	step_end
 
-@ (4,6) -> (5,6): normalise into SILVER's shove lane.
-ElmsLab_Movement_PlayerStepEast:
+@ (4,6) -> (5,6) -> (5,5): normalise into SILVER's shove lane, one row further
+@ up the lab so the window alcove stays inside the camera's 10-row window.
+ElmsLab_Movement_PlayerToTheftMarkWest:
 	walk_right
+	walk_up
+	step_end
+
+@ (5,6) -> (5,5): same mark, one step.
+ElmsLab_Movement_PlayerToTheftMarkEast:
+	walk_up
 	step_end
 
 @ (5,4) -> (4,4): normalise between ELM and the arriving OFFICER.
@@ -295,26 +322,27 @@ ElmsLab_Movement_ElmAlarmed:
 	face_up
 	step_end
 
-@ (5,1) -> (5,5): down the window alcove and the open lab floor, stopping one
-@ tile north of the player at (5,6). ELM rests at (3,4), so this column is
+@ (5,1) -> (5,4): down the window alcove and the open lab floor, stopping one
+@ tile north of the player at (5,5). ELM rests at (3,4), so this column is
 @ clear end to end.
 ElmsLab_Movement_SilverDropsIn:
-	walk_down
 	walk_down
 	walk_down
 	walk_down
 	step_end
 
 @ GSC's shove (fix_facing + jump_step): the player is knocked sideways out of
-@ the corridor lane, still facing SILVER. (5,6) -> (4,6), both decoded walkable.
+@ the corridor lane, still facing SILVER. (5,5) -> (4,5), both decoded walkable.
 ElmsLab_Movement_PlayerShovedAside:
 	lock_facing_direction
 	jump_left
 	unlock_facing_direction
 	step_end
 
-@ (5,5) -> (5,11): straight down the now-clear column and out the lab door.
+@ (5,4) -> (5,11): straight down the now-clear column and out the lab door.
+@ The player is parked at (4,5) by the shove, so nothing is in the way.
 ElmsLab_Movement_SilverBoltsForTheDoor:
+	walk_fast_down
 	walk_fast_down
 	walk_fast_down
 	walk_fast_down

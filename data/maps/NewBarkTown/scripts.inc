@@ -72,8 +72,15 @@ NewBarkTown_EventScript_ElmsHouseSign::
 NewBarkTown_Text_Teacher:
 	.string "Did you hear? A HOENN trainer\nbecame Champion, and now folks\lhere want to challenge them.$"
 
+@ Trinity M4b S1: the ported GSC line opened "Yo, <PLAYER>!" -- but this is a
+@ stranger in a town the player has never visited, greeting a Champion who
+@ arrived by ship yesterday. Reworded so he doesn't know the player's name.
 NewBarkTown_Text_Fisher:
-	.string "Yo, {PLAYER}!\pI hear PROF.ELM\ndiscovered some\lnew POKéMON.$"
+	.string "Yo. Passing through?\p"
+	.string "Word is PROF.ELM turned up some\n"
+	.string "new POKéMON out here.\p"
+	.string "Nothing else worth stopping for,\n"
+	.string "I'll be honest with you.$"
 
 NewBarkTown_Text_Sign:
 	.string "NEW BARK TOWN\pThe Town Where the\nWinds of a New\lBeginning Blow$"

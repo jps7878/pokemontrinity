@@ -68,7 +68,7 @@
 #define FLAG_TRINITY_J_RADIO_CARD    0x32 // Trinity: was FLAG_UNUSED_0x032 — ELM granted the RADIO CARD PokeNav upgrade (flavor only; read by S4/S8 radio beats)
 #define FLAG_TRINITY_J_SILVER1_BEATEN    0x33 // Trinity: was FLAG_UNUSED_0x033 — TRAINER_SILVER_1 (Route 29) defeated
 #define FLAG_TRINITY_J_MRPOKEMON_HOOK    0x34 // Trinity: was FLAG_UNUSED_0x034 — ELM named MR.POKéMON; his Red Scale request is live (S7 pays it off)
-#define FLAG_UNUSED_0x035    0x35 // Unused Flag
+#define FLAG_TRINITY_J_ELM_AFTERMATH    0x35 // Trinity: was FLAG_UNUSED_0x035 — New Bark chapter complete (ELM's aftermath ran, VIOLET pointer given). Terminal beat made observable to later slices; progression still gates on VAR_TRINITY_JOHTO_ARC >= 2, this is flavor-gating only.
 #define FLAG_UNUSED_0x036    0x36 // Unused Flag
 #define FLAG_UNUSED_0x037    0x37 // Unused Flag
 #define FLAG_UNUSED_0x038    0x38 // Unused Flag
