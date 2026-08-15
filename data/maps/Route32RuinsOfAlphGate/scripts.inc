@@ -39,12 +39,13 @@ Route32RuinsOfAlphGate_Text_OfficerPostBadge:
 	.string "A Look-and-Touch Tourist Site\p"
 	.string "…You're the one who beat FALKNER,\n"
 	.string "aren't you.\p"
-	.string "Then you'll be wanting BUGSY.\n"
-	.string "Keep south down ROUTE 32 and\l"
-	.string "through UNION CAVE, and you come\l"
-	.string "out at AZALEA TOWN.\p"
+	.string "Then you'll be wanting BUGSY.\p"
+	.string "ROUTE 32 stretches south -- take\n"
+	.string "the east door.\p"
+	.string "Follow it down to UNION CAVE and\n"
+	.string "you come out at AZALEA TOWN.\p"
 	.string "Long walk. Take the panels in on\n"
-	.string "the way past.$"
+	.string "your way past.$"
 
 Route32RuinsOfAlphGate_Text_PokefanM:
 	.string "You're studying\nthe RUINS?\pI see a scientist\nin the making.$"

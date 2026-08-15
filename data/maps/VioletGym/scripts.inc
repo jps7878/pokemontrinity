@@ -17,10 +17,16 @@ VioletGym_MapScripts::
 @ G2  Leader script = exactly three labels (below). Award idempotence, which
 @     S8's seven-badge Radio Tower trigger depends on:
 @       - trainerbattle_single's continuation runs ONLY on the battle actually
-@         fought; later talks fall through to the next command
-@         (TRAINER_BATTLE_CONTINUE_SCRIPT*, src/battle_setup.c:1046). So the
-@         badge setflag runs at most once -- and setflag is idempotent anyway,
-@         so the badge count can never be inflated.
+@         fought. On a later talk the engine takes the already-defeated branch:
+@         EventScript_TryDoNormalTrainerBattle checks GetTrainerFlag and jumps
+@         to EventScript_NoNormalTrainerBattle -> gotopostbattlescript
+@         (data/scripts/trainer_battle.inc:10-24), which resolves to
+@         sTrainerBattleEndScript (BattleSetup_GetScriptAddrAfterBattle,
+@         src/battle_setup.c:1405) -- and that pointer is set by
+@         TrainerBattleLoadArgs to the bytes immediately AFTER the trainerbattle
+@         arguments (src/battle_setup.c:972), i.e. the next command in this
+@         script. So the badge setflag runs at most once -- and setflag is
+@         idempotent anyway, so the badge count can never be inflated.
 @       - The TM is the ONLY failable gift (full bag), so it gets its own flag
 @         and its own label, reached from both the award path (goto) and the
 @         re-talk path (goto_if_unset). A full bag goes to
@@ -31,19 +37,21 @@ VioletGym_MapScripts::
 @         inventory state.
 @       - `release` (not releaseall): the trainerbattle command owns the lock.
 @
-@ G3  NO_MUSIC suppresses PlayTrainerEncounterMusic -- the "!" approach jingle
-@     played before a continue-script battle (src/battle_setup.c:1451-1453). It
-@     does NOT touch the battle BGM. General rule: ANY talk-triggered
-@     trainerbattle passes NO_MUSIC, because that jingle belongs to a sight
+@ G3  NO_MUSIC suppresses PlayTrainerEncounterMusic. That special is not a
+@     jingle -- it calls PlayNewMapMusic() and SWAPS the whole map BGM to an
+@     encounter track for the rest of the approach and intro text
+@     (src/battle_setup.c:1451-1499). NO_MUSIC is the only way to stop it
+@     (src/battle_setup.c:1451-1452). General rule: ANY talk-triggered
+@     trainerbattle passes NO_MUSIC, because that swap belongs to a sight
 @     line, not to a conversation. Leaders are always talked to, so MUS_GYM
-@     runs straight into the battle theme.
-@     Battle BGM needs no scripting at all: GetBattleBGM() switches on
-@     the trainer class and TRAINER_CLASS_LEADER returns MUS_VS_GYM_LEADER
-@     (src/pokemon.c:6125). All eight Johto leaders are Class: Leader.
-@     NOTE: the M4b contract pins MUS_RG_VS_GYM_LEADER; the class table
-@     hard-codes MUS_VS_GYM_LEADER and this build has no per-trainer or
-@     per-battle music override, so honouring the pin would need an engine
-@     change to GetBattleBGM(). Reported to the founder, not done here.
+@     holds until the battle theme takes over.
+@     Battle BGM still needs no scripting: GetBattleBGM()'s
+@     TRAINER_CLASS_LEADER case carries a Trinity id-range guard -- trainer
+@     ids TRAINER_FALKNER..TRAINER_CLAIR (1030-1037, the eight Johto leaders,
+@     contiguous) return MUS_RG_VS_GYM_LEADER, everything else keeps Hoenn's
+@     MUS_VS_GYM_LEADER (src/pokemon.c, GetBattleBGM). This satisfies the M4b
+@     contract's gym-music pin for all eight gyms with zero per-map scripting,
+@     and cannot touch Act I.
 @
 @ G4  Gym guide: OBJ_EVENT_GFX_EXPERT_M, two states on the badge flag, and the
 @     advice text states the leader's type, its weaknesses AND the roster's
@@ -186,12 +194,22 @@ VioletGym_Text_ZephyrBadgeInfo:
 
 @ I_REUSABLE_TMS is TRUE in this build (include/config/item.h:25), so the
 @ "won't wear out" line is accurate rather than GSC's "used only once".
+@ S3-S9 RULE: gym TM awards duplicate Act I sources, so award dialogue must
+@ never presume the player has never seen the move. Frame the leader as a
+@ master handing on their own technique, which reads correctly whether this
+@ is the player's first copy or their fourth.
 VioletGym_Text_ExplainAerialAce:
-	.string "FALKNER: TM40 is AERIAL ACE.\p"
-	.string "It does not miss. Not through\n"
-	.string "sand, not through smoke, not\l"
-	.string "against anything that thinks\l"
-	.string "dodging is a strategy.\p"
+	.string "FALKNER: TM40. AERIAL ACE.\p"
+	.string "You may well have one already.\n"
+	.string "Carry mine anyway.\p"
+	.string "My father taught it as a matter\n"
+	.string "of patience. You don't chase the\l"
+	.string "opening -- you wait, and the sky\l"
+	.string "gives you one.\p"
+	.string "Struck that way it does not miss.\n"
+	.string "Not through sand, not through\l"
+	.string "smoke, not against anything that\l"
+	.string "thinks dodging is a strategy.\p"
 	.string "Teach it to whatever you like.\n"
 	.string "It won't wear out.$"
 

@@ -25,8 +25,9 @@ SproutTower3F_EventScript_TROY::
 @ resolves the ordinary trainer battle theme with no scripting. He DOES take
 @ NO_MUSIC, for the same reason the leaders do: the general rule is that any
 @ TALK-triggered trainerbattle passes NO_MUSIC, because
-@ PlayTrainerEncounterMusic's "!" jingle belongs to a sight line, not to a
-@ conversation (src/battle_setup.c:1451). The six sages below are
+@ PlayTrainerEncounterMusic swaps the whole map BGM (PlayNewMapMusic) for the
+@ approach and intro text -- that belongs to a sight line, not to a
+@ conversation (src/battle_setup.c:1451-1499). The six sages below are
 @ TRAINER_TYPE_NORMAL and keep it.
 @
 @ GSC hands out HM05 FLASH here. Trinity cannot: field HMs are automatic and
