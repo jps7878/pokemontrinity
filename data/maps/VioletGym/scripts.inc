@@ -56,6 +56,12 @@ VioletGym_MapScripts::
 @ G4  Gym guide: OBJ_EVENT_GFX_EXPERT_M, two states on the badge flag, and the
 @     advice text states the leader's type, its weaknesses AND the roster's
 @     level band (Act II opens at L58+).
+@     Tile: (7,12). M4a's port put him on (7,13), which is the mouth of the
+@     (7,12)/(8,13)/(9,13) nook -- standing there sealed all three tiles off.
+@     Found by the S3 backfill with tools/johto_port/reach_check.py and nudged
+@     one tile north, which seals nothing (86 reachable tiles vs 83). The nook
+@     is empty decorative floor, so nothing was lost while he stood there, but
+@     G4 does not pin the tile and a guide should not be a wall.
 @
 @ G5  Gym statues: sign bg_events on the collision-1 statue tiles, read facing
 @     north from the walkable row below, two states on the badge flag. Badges

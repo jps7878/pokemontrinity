@@ -81,21 +81,34 @@ SlowpokeWellB1F_EventScript_GruntC::
 @ The scene body can therefore assume the player is standing at (5,3) facing
 @ north, with the viewport covering rows -1..8 / columns -2..12.
 @
-@ REACHABILITY. This arrangement blocks three tiles in a row across the top of
-@ the boss chamber, so it needs a real proof, not a neighbour argument -- an
-@ earlier revision of this comment "proved" it safe by naming adjacent tiles
-@ and was simply wrong about which side of the cut they were on. Verified with
-@ tools/johto_port/reach_check.py (flood fill from each door, objects placed):
-@   from (17,15)->AZALEA TOWN: 230 of 241 reachable tiles, and (7,11)->B2F IS
-@   reachable. Largest single-object cut-vertex loss on this map: 3 tiles.
-@ The only region any of this cast closes is the 2-tile dead-end alcove
-@ (9,3)/(9,4), jointly blocked by GRUNT_B at (10,4) and M4a's item ball at
-@ (10,3) -- both GSC tiles, and the alcove is empty.
-@ NOTE for anyone re-running that tool: this floor is a WATER cave (32
-@ MB_POND_WATER tiles) and the B2F ladder is across the water in the SHIPPED
-@ map, with or without this cast -- pass --no-surf and the ladder is
-@ unreachable even with zero objects placed. That gate is M4a's port geometry,
-@ not this beat's staging.
+@ REACHABILITY -- THIS RAID SEALS B2F WHILE IT IS ACTIVE. Disclosed here per
+@ the ledger's ROCKET-POST rule R5, which permits a boss post to seal OPTIONAL
+@ content during its active window only with a flood-fill-verified statement of
+@ exactly what is sealed.
+@
+@ Measured with tools/johto_port/reach_check.py, seeded from the AZALEA TOWN
+@ door (17,15), SURF allowed:
+@     arc == 2 (this cast on stage):  78 of 141 reachable tiles.
+@                                     (7,11) -> SLOWPOKE WELL B2F is SEALED.
+@     arc >= 3 (cast retired):       140 tiles. Every door reaches every door.
+@ The cast closes 62 tiles containing exactly one warp -- the B2F ladder -- and
+@ behind it B2F's TM RAIN DANCE ball at (15,5) and one flavour NPC at (5,4).
+@ All of that is optional content, none of it gates progression, and it all
+@ reopens the moment the raid is cleared. That is the sanctioned case.
+@
+@ What is NOT sealed, and had to stay that way: PROTON's talk tile (5,3) and
+@ hurt KURT at (16,14) are both reachable throughout, and all three grunt sight
+@ cones remain mandatory -- block any one of them and (5,3) goes unreachable.
+@ The rescued-KURT walk (6,6)->(5,6)->(5,5)->(5,4) and his exit back to (6,6)
+@ were each stepped through the same model with the cast removed.
+@
+@ History, because it matters for anyone re-deriving this: an earlier revision
+@ of this comment "proved" the staging safe by naming neighbouring tiles, and
+@ was wrong about which side of the cut they were on. The replacement flood
+@ fill then reported "seals nothing" -- also wrong, because reach_check.py's
+@ dir_ok had the source/dest roles of IsMetatileDirectionallyImpassable
+@ swapped. Fixed and pinned by tools/johto_port/tests/test_reach_check.py; the
+@ numbers above are from the corrected tool.
 @
 @ NO_MUSIC, not trainerbattle_no_intro. The contract pins MUS_RG_ENCOUNTER_
 @ ROCKET for Rockets, and NO_MUSIC selects TRAINER_BATTLE_CONTINUE_SCRIPT_
