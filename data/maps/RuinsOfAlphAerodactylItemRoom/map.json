@@ -97,7 +97,26 @@
       "dest_warp_id": "1"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 1,
+      "elevation": 3,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "RuinsOfAlphAerodactylItemRoom_EventScript_Fall"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 1,
+      "elevation": 3,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "RuinsOfAlphAerodactylItemRoom_EventScript_Fall"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",

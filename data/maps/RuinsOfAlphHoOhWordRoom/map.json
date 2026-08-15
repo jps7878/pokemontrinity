@@ -37,6 +37,16 @@
       "dest_warp_id": "1"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 21,
+      "elevation": 3,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "RuinsOfAlphHoOhWordRoom_EventScript_Fall"
+    }
+  ],
   "bg_events": []
 }

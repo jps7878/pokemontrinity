@@ -1,5 +1,16 @@
 OlivineLighthouse3F_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, CaveHole_CheckFallDownHole
+	map_script MAP_SCRIPT_ON_TRANSITION, CaveHole_FixCrackedGround
+	map_script MAP_SCRIPT_ON_RESUME, OlivineLighthouse3F_SetHoleWarp
 	.byte 0
+
+@ Trinity M4a Task 7 fix: GSC pit-fall (ruling R3). Same PIT-as-staircase
+@ situation as 2F (see that file's comment). Same-xy verified exact: 3F's
+@ (16,11)/(17,11) match 2F's own warp_events #5/#6 coordinates precisely.
+OlivineLighthouse3F_SetHoleWarp:
+	setstepcallback STEP_CB_CRACKED_FLOOR
+	setholewarp MAP_OLIVINE_LIGHTHOUSE_2F
+	end
 
 OlivineLighthouse3F_EventScript_TERRELL::
 	trainerbattle_single TRAINER_JOHTO_SAILOR_TERRELL, OlivineLighthouse3F_Text_TERRELLSeen, OlivineLighthouse3F_Text_TERRELLBeaten
