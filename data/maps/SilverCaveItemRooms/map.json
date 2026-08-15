@@ -2,7 +2,7 @@
   "id": "MAP_SILVER_CAVE_ITEM_ROOMS",
   "name": "SilverCaveItemRooms",
   "layout": "LAYOUT_SILVER_CAVE_ITEM_ROOMS_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_MT_CHIMNEY",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

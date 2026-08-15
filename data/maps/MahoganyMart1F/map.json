@@ -2,7 +2,7 @@
   "id": "MAP_MAHOGANY_MART_1F",
   "name": "MahoganyMart1F",
   "layout": "LAYOUT_MAHOGANY_MART_1F_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_POKE_MART",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

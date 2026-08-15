@@ -2,7 +2,7 @@
   "id": "MAP_AZALEA_TOWN",
   "name": "AzaleaTown",
   "layout": "LAYOUT_AZALEA_TOWN_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_OLDALE",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",

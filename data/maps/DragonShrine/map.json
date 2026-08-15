@@ -2,7 +2,7 @@
   "id": "MAP_DRAGON_SHRINE",
   "name": "DragonShrine",
   "layout": "LAYOUT_DRAGON_SHRINE_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_SOOTOPOLIS",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

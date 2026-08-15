@@ -2,7 +2,7 @@
   "id": "MAP_CIANWOOD_PHOTO_STUDIO",
   "name": "CianwoodPhotoStudio",
   "layout": "LAYOUT_BILLS_FAMILYS_HOUSE_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_FORTREE",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

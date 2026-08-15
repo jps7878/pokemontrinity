@@ -2,7 +2,7 @@
   "id": "MAP_DARK_CAVE_BLACKTHORN_ENTRANCE",
   "name": "DarkCaveBlackthornEntrance",
   "layout": "LAYOUT_DARK_CAVE_BLACKTHORN_ENTRANCE_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_MT_MOON",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": true,
   "weather": "WEATHER_NONE",

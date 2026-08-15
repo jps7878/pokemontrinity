@@ -2,7 +2,7 @@
   "id": "MAP_RUINS_OF_ALPH_HO_OH_ITEM_ROOM",
   "name": "RuinsOfAlphHoOhItemRoom",
   "layout": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_SEALED_CHAMBER",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

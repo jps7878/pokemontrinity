@@ -2,7 +2,7 @@
   "id": "MAP_TIN_TOWER_5F",
   "name": "TinTower5F",
   "layout": "LAYOUT_TIN_TOWER_5F_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_MT_PYRE_EXTERIOR",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

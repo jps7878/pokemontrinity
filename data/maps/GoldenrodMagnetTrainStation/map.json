@@ -2,7 +2,7 @@
   "id": "MAP_GOLDENROD_MAGNET_TRAIN_STATION",
   "name": "GoldenrodMagnetTrainStation",
   "layout": "LAYOUT_GOLDENROD_MAGNET_TRAIN_STATION_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_LILYCOVE",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

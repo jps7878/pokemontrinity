@@ -2,7 +2,7 @@
   "id": "MAP_WHIRL_ISLAND_B2F",
   "name": "WhirlIslandB2F",
   "layout": "LAYOUT_WHIRL_ISLAND_B2F_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_SEALED_CHAMBER",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": true,
   "weather": "WEATHER_NONE",

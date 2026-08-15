@@ -2,7 +2,7 @@
   "id": "MAP_GOLDENROD_UNDERGROUND_WAREHOUSE",
   "name": "GoldenrodUndergroundWarehouse",
   "layout": "LAYOUT_GOLDENROD_UNDERGROUND_WAREHOUSE_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_ROCKET_HIDEOUT",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

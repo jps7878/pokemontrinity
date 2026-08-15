@@ -2,7 +2,7 @@
   "id": "MAP_DARK_CAVE_VIOLET_ENTRANCE",
   "name": "DarkCaveVioletEntrance",
   "layout": "LAYOUT_DARK_CAVE_VIOLET_ENTRANCE_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_MT_MOON",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": true,
   "weather": "WEATHER_NONE",

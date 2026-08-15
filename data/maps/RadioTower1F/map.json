@@ -2,7 +2,7 @@
   "id": "MAP_RADIO_TOWER_1F",
   "name": "RadioTower1F",
   "layout": "LAYOUT_RADIO_TOWER_1F_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_SILPH",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

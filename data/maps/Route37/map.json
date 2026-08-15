@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE_37",
   "name": "Route37",
   "layout": "LAYOUT_ROUTE_37_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_ROUTE104",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",

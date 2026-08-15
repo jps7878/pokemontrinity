@@ -2,7 +2,7 @@
   "id": "MAP_BURNED_TOWER_1F",
   "name": "BurnedTower1F",
   "layout": "LAYOUT_BURNED_TOWER_1F_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_MT_PYRE_EXTERIOR",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

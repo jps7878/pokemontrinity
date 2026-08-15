@@ -2,7 +2,7 @@
   "id": "MAP_DAY_CARE",
   "name": "DayCare",
   "layout": "LAYOUT_DAY_CARE_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_ROUTE104",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

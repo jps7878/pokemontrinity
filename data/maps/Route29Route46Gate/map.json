@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE_29_ROUTE_46_GATE",
   "name": "Route29Route46Gate",
   "layout": "LAYOUT_ROUTE_29_ROUTE_46_GATE_JOHTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_ROUTE104",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
