@@ -865,7 +865,7 @@
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT                      1030
+#define TRAINERS_COUNT                      1072
 #define MAX_TRAINERS_COUNT                  1100
 #define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)
 
@@ -1043,5 +1043,49 @@
 #define TRAINER_JOHTO_COOLTRAINERF_EMMA      1027
 #define TRAINER_JOHTO_BIRD_KEEPER_ROD        1028
 #define TRAINER_JOHTO_BIRD_KEEPER_ABE        1029
+
+/* === Trinity M4a Johto bosses === */
+#define TRAINER_FALKNER                       1030
+#define TRAINER_BUGSY                         1031
+#define TRAINER_WHITNEY                       1032
+#define TRAINER_MORTY                         1033
+#define TRAINER_CHUCK                         1034
+#define TRAINER_JASMINE_LEADER                1035
+#define TRAINER_PRYCE                         1036
+#define TRAINER_CLAIR                         1037
+#define TRAINER_WILL                          1038
+#define TRAINER_KOGA_E4                       1039
+#define TRAINER_BRUNO_E4                      1040
+#define TRAINER_KAREN                         1041
+#define TRAINER_LANCE                         1042
+#define TRAINER_SILVER_1                      1043
+#define TRAINER_SILVER_2                      1044
+#define TRAINER_SILVER_3                      1045
+#define TRAINER_SILVER_4                      1046
+#define TRAINER_SILVER_5                      1047
+#define TRAINER_IVRAJ                          1048
+#define TRAINER_SUMEET                         1049
+#define TRAINER_EXEC_PROTON                   1050
+#define TRAINER_EXEC_PETREL                   1051
+#define TRAINER_EXEC_ARIANA                   1052
+#define TRAINER_EXEC_ARCHER                   1053
+#define TRAINER_ROCKET_GRUNT_M_1              1054
+#define TRAINER_ROCKET_GRUNT_M_2              1055
+#define TRAINER_ROCKET_GRUNT_M_3              1056
+#define TRAINER_ROCKET_GRUNT_M_4              1057
+#define TRAINER_ROCKET_GRUNT_M_5              1058
+#define TRAINER_ROCKET_GRUNT_M_6              1059
+#define TRAINER_ROCKET_GRUNT_M_7              1060
+#define TRAINER_ROCKET_GRUNT_M_8              1061
+#define TRAINER_ROCKET_GRUNT_F_1              1062
+#define TRAINER_ROCKET_GRUNT_F_2              1063
+#define TRAINER_ROCKET_GRUNT_F_3              1064
+#define TRAINER_ROCKET_GRUNT_F_4              1065
+#define TRAINER_VR_COOLTRAINER_M_1            1066
+#define TRAINER_VR_COOLTRAINER_M_2            1067
+#define TRAINER_VR_COOLTRAINER_M_3            1068
+#define TRAINER_VR_COOLTRAINER_F_1            1069
+#define TRAINER_VR_COOLTRAINER_F_2            1070
+#define TRAINER_VR_COOLTRAINER_F_3            1071
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

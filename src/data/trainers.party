@@ -19507,3 +19507,817 @@ AI: Basic Trainer
 FEAROW
 Level: 61
 
+
+/* === Trinity M4a Johto bosses === */
+
+=== TRAINER_FALKNER ===
+Name: FALKNER
+Class: Leader
+Pic: Leader Winona
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Skarmory
+Level: 58
+
+Dodrio
+Level: 59
+
+Noctowl
+Level: 58
+
+Fearow
+Level: 59
+
+Pidgeot
+Level: 60
+
+=== TRAINER_BUGSY ===
+Name: BUGSY
+Class: Leader
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Beedrill
+Level: 58
+
+Shuckle
+Level: 59
+
+Forretress
+Level: 59
+
+Heracross
+Level: 60
+
+Scizor
+Level: 61
+
+=== TRAINER_WHITNEY ===
+Name: WHITNEY
+Class: Leader
+Pic: Leader Flannery
+Gender: Female
+Music: Female
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Girafarig
+Level: 60
+
+Tauros
+Level: 61
+
+Blissey
+Level: 61
+
+Ursaring
+Level: 62
+
+Miltank
+Level: 63
+
+=== TRAINER_MORTY ===
+Name: MORTY
+Class: Leader
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Sableye
+Level: 61
+
+Banette
+Level: 62
+
+Misdreavus
+Level: 62
+
+Dusclops
+Level: 63
+
+Gengar
+Level: 65
+
+=== TRAINER_CHUCK ===
+Name: CHUCK
+Class: Leader
+Pic: Leader Brawly
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Hitmonchan
+Level: 63
+
+Hitmonlee
+Level: 63
+
+Hariyama
+Level: 64
+
+Machamp
+Level: 65
+
+Poliwrath
+Level: 66
+
+=== TRAINER_JASMINE_LEADER ===
+Name: JASMINE
+Class: Leader
+Pic: Leader Roxanne
+Gender: Female
+Music: Female
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Forretress
+Level: 65
+
+Magneton
+Level: 66
+
+Skarmory
+Level: 66
+
+Aggron
+Level: 67
+
+Steelix
+Level: 68
+
+=== TRAINER_PRYCE ===
+Name: PRYCE
+Class: Leader
+Pic: Elite Four Glacia
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Glalie
+Level: 67
+
+Dewgong
+Level: 68
+
+Cloyster
+Level: 68
+
+Lapras
+Level: 69
+
+Piloswine
+Level: 70
+
+=== TRAINER_CLAIR ===
+Name: CLAIR
+Class: Leader
+Pic: Leader Juan
+Gender: Female
+Music: Female
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Altaria
+Level: 69
+
+Flygon
+Level: 70
+
+Gyarados
+Level: 71
+
+Dragonite
+Level: 70
+
+Kingdra
+Level: 72
+
+=== TRAINER_WILL ===
+Name: WILL
+Class: Elite Four
+Pic: Gentleman
+Gender: Male
+Music: Elite Four
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Slowbro
+Level: 72
+
+Jynx
+Level: 72
+
+Exeggutor
+Level: 72
+
+Gardevoir
+Level: 73
+
+Xatu
+Level: 73
+
+=== TRAINER_KOGA_E4 ===
+Name: KOGA
+Class: Elite Four
+Pic: Elite Four Sidney
+Gender: Male
+Music: Elite Four
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Venomoth
+Level: 72
+
+Weezing
+Level: 72
+
+Muk
+Level: 73
+
+Tentacruel
+Level: 73
+
+Crobat
+Level: 74
+
+=== TRAINER_BRUNO_E4 ===
+Name: BRUNO
+Class: Elite Four
+Pic: Black Belt
+Gender: Male
+Music: Elite Four
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Hitmontop
+Level: 73
+
+Hariyama
+Level: 73
+
+Medicham
+Level: 73
+
+Steelix
+Level: 74
+
+Machamp
+Level: 75
+
+=== TRAINER_KAREN ===
+Name: KAREN
+Class: Elite Four
+Pic: Elite Four Phoebe
+Gender: Female
+Music: Elite Four
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Murkrow
+Level: 73
+
+Gengar
+Level: 73
+
+Absol
+Level: 74
+
+Houndoom
+Level: 74
+
+Umbreon
+Level: 75
+
+=== TRAINER_LANCE ===
+Name: LANCE
+Class: Champion
+Pic: Elite Four Drake
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Gyarados
+Level: 75
+
+Aerodactyl
+Level: 75
+
+Charizard
+Level: 76
+
+Kingdra
+Level: 76
+
+Salamence
+Level: 76
+
+Dragonite
+Level: 77
+
+=== TRAINER_SILVER_1 ===
+Name: SILVER
+Class: Rival
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Feraligatr
+Level: 60
+
+Sneasel
+Level: 58
+
+Magneton
+Level: 57
+
+=== TRAINER_SILVER_2 ===
+Name: SILVER
+Class: Rival
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Feraligatr
+Level: 62
+
+Sneasel
+Level: 60
+
+Magneton
+Level: 60
+
+Haunter
+Level: 59
+
+=== TRAINER_SILVER_3 ===
+Name: SILVER
+Class: Rival
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Feraligatr
+Level: 63
+
+Sneasel
+Level: 61
+
+Magneton
+Level: 61
+
+Haunter
+Level: 60
+
+Golbat
+Level: 60
+
+=== TRAINER_SILVER_4 ===
+Name: SILVER
+Class: Rival
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Feraligatr
+Level: 66
+
+Sneasel
+Level: 64
+
+Magneton
+Level: 63
+
+Gengar
+Level: 63
+
+Crobat
+Level: 63
+
+=== TRAINER_SILVER_5 ===
+Name: SILVER
+Class: Rival
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Feraligatr
+Level: 70
+
+Sneasel
+Level: 68
+
+Magneton
+Level: 67
+
+Gengar
+Level: 67
+
+Crobat
+Level: 67
+
+Alakazam
+Level: 66
+
+=== TRAINER_IVRAJ ===
+Name: IVRAJ
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Intense
+AI: Check Bad Move / Try To Faint
+
+Alakazam
+Level: 65
+
+Espeon
+Level: 63
+
+Slowking
+Level: 62
+
+Xatu
+Level: 62
+
+=== TRAINER_SUMEET ===
+Name: SUMEET
+Class: Kindler
+Pic: Kindler
+Gender: Male
+Music: Hiker
+AI: Check Bad Move / Try To Faint
+
+Typhlosion
+Level: 65
+
+Arcanine
+Level: 63
+
+Ninetales
+Level: 62
+
+Magcargo
+Level: 61
+
+=== TRAINER_EXEC_PROTON ===
+Name: PROTON
+Class: Team Rocket
+Pic: Magma Admin
+Gender: Male
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Golbat
+Level: 60
+
+Weezing
+Level: 59
+
+Muk
+Level: 58
+
+=== TRAINER_EXEC_PETREL ===
+Name: PETREL
+Class: Team Rocket
+Pic: Magma Admin
+Gender: Male
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Raticate
+Level: 62
+
+Koffing
+Level: 62
+
+Koffing
+Level: 62
+
+Weezing
+Level: 64
+
+=== TRAINER_EXEC_ARIANA ===
+Name: ARIANA
+Class: Team Rocket
+Pic: Aqua Admin F
+Gender: Female
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Arbok
+Level: 68
+
+Vileplume
+Level: 66
+
+Murkrow
+Level: 66
+
+Weezing
+Level: 65
+
+=== TRAINER_EXEC_ARCHER ===
+Name: ARCHER
+Class: Team Rocket
+Pic: Aqua Admin M
+Gender: Male
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Houndoom
+Level: 70
+
+Weezing
+Level: 68
+
+Muk
+Level: 68
+
+Crobat
+Level: 69
+
+=== TRAINER_ROCKET_GRUNT_M_1 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+AI: Basic Trainer
+
+Raticate
+Level: 58
+
+Golbat
+Level: 58
+
+Weezing
+Level: 59
+
+=== TRAINER_ROCKET_GRUNT_M_2 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+AI: Basic Trainer
+
+Muk
+Level: 58
+
+Crobat
+Level: 58
+
+Houndoom
+Level: 59
+
+=== TRAINER_ROCKET_GRUNT_M_3 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+AI: Basic Trainer
+
+Golbat
+Level: 60
+
+Weezing
+Level: 61
+
+Houndoom
+Level: 62
+
+=== TRAINER_ROCKET_GRUNT_M_4 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+AI: Basic Trainer
+
+Raticate
+Level: 60
+
+Muk
+Level: 61
+
+Crobat
+Level: 62
+
+=== TRAINER_ROCKET_GRUNT_M_5 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+AI: Basic Trainer
+
+Weezing
+Level: 63
+
+Houndoom
+Level: 64
+
+Muk
+Level: 65
+
+=== TRAINER_ROCKET_GRUNT_M_6 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+AI: Basic Trainer
+
+Golbat
+Level: 63
+
+Raticate
+Level: 64
+
+Crobat
+Level: 65
+
+=== TRAINER_ROCKET_GRUNT_M_7 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+AI: Basic Trainer
+
+Muk
+Level: 66
+
+Weezing
+Level: 67
+
+Crobat
+Level: 68
+
+=== TRAINER_ROCKET_GRUNT_M_8 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+AI: Basic Trainer
+
+Houndoom
+Level: 66
+
+Golbat
+Level: 67
+
+Raticate
+Level: 68
+
+=== TRAINER_ROCKET_GRUNT_F_1 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt F
+Gender: Female
+AI: Basic Trainer
+
+Golbat
+Level: 59
+
+Weezing
+Level: 59
+
+=== TRAINER_ROCKET_GRUNT_F_2 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt F
+Gender: Female
+AI: Basic Trainer
+
+Muk
+Level: 62
+
+Crobat
+Level: 62
+
+Raticate
+Level: 62
+
+=== TRAINER_ROCKET_GRUNT_F_3 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt F
+Gender: Female
+AI: Basic Trainer
+
+Houndoom
+Level: 65
+
+Weezing
+Level: 65
+
+=== TRAINER_ROCKET_GRUNT_F_4 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt F
+Gender: Female
+AI: Basic Trainer
+
+Crobat
+Level: 67
+
+Muk
+Level: 67
+
+Golbat
+Level: 67
+
+=== TRAINER_VR_COOLTRAINER_M_1 ===
+Name: DARNELL
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Cool
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Rhydon
+Level: 72
+
+Nidoking
+Level: 72
+
+Gyarados
+Level: 73
+
+=== TRAINER_VR_COOLTRAINER_M_2 ===
+Name: TERRELL
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Cool
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Exeggutor
+Level: 72
+
+Arcanine
+Level: 72
+
+Dragonite
+Level: 73
+
+=== TRAINER_VR_COOLTRAINER_M_3 ===
+Name: BRODY
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Cool
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Tyranitar
+Level: 72
+
+Aerodactyl
+Level: 72
+
+Kingdra
+Level: 73
+
+=== TRAINER_VR_COOLTRAINER_F_1 ===
+Name: SIENNA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Cool
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Milotic
+Level: 72
+
+Gardevoir
+Level: 73
+
+Salamence
+Level: 74
+
+=== TRAINER_VR_COOLTRAINER_F_2 ===
+Name: KYRA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Cool
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Ninetales
+Level: 72
+
+Jolteon
+Level: 73
+
+Dragonite
+Level: 74
+
+=== TRAINER_VR_COOLTRAINER_F_3 ===
+Name: PHILANA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Cool
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Vaporeon
+Level: 72
+
+Exeggutor
+Level: 73
+
+Gyarados
+Level: 74
