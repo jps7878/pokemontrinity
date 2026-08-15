@@ -4,59 +4,109 @@ DanceTheater_MapScripts::
 @ ============================================================================
 @ Trinity M4b S5 -- THE ECRUTEAK DANCE THEATER.
 @
-@ FOUND M4a DEFECT, WORKED AROUND HERE AND ESCALATED FOR M6.
+@ FOUND M4a DEFECT, WORKED AROUND HERE AND ESCALATED FOR M6. THIS BLOCK IS THE
+@ DOCUMENTATION OF RECORD FOR THAT LAYOUT FIX -- keep it true.
 @ Tile row y=3 of this map is MB_JUMP_SOUTH across its ENTIRE width (metatiles
 @ 690/691, all twelve columns). Ledges are one-way: a ledge may be hopped DOWN,
 @ never walked up. The only landings are (1,4) and (10,4), because row 4 decodes
-@ collision 1 everywhere else. Rows 1-3 -- the whole stage -- are therefore a
-@ sealed island that the player can never set foot on:
-@     walkable 137, reachable from the two door tiles 101,
-@     grid rows 1..3 entirely unreachable.
+@ collision 1 everywhere else. Rows 1-3 -- the whole stage, 36 tiles -- are
+@ therefore a sealed island the player can never set foot on. reach_check.py:
+@     walkable 144, reachable with NO objects 108, with all 9 objects 99
+@     (grid rows 1..3 entirely X; every object costs exactly its own tile)
 @ All five KIMONO GIRLS are real wired trainers with sight radius 0, i.e.
 @ talk-only, and they were standing on that island. Five trainer ids of dead
 @ content. GSC's sight radius is 0 as well (DanceTheater.asm:284-288), so GSC
 @ reaches them on foot; the two 2x2 stair blocks at (0..1,4..5) and (10..11,4..5)
 @ are where GSC's stairs are, and the port mapped the stage-front block to a
 @ ledge metatile instead of a walkable riser.
-@ S5 fixes the SYMPTOM in map.json only -- the five girls now rehearse on the
-@ theatre floor at (2,5)/(4,5)/(7,5)/(9,5)/(11,5), with (1,5) and (10,5) left
-@ clear so the two stair stubs stay reachable. The LAYOUT bug
-@ (data/layouts/DanceTheater_Johto/map.bin row 3) is an M6 port item: M4b has
-@ never edited blockdata and a blind metatile substitution is a rendering gamble
-@ with no play-test gate.
+@
+@ SYMPTOM FIX (map.json only): the five girls rehearse on the theatre floor at
+@ (1,7) (3,7) (4,7) (8,7) (10,7).
+@   Row 7 was chosen over the front row after reach_check REJECTED row 5: row 5's
+@   only vertical links run through row 6, which is collision 1 at x=5,6 (the
+@   decorated panels), so (5,5)/(6,5) hang off row 5 alone and any bracketing
+@   pair traps them -- that attempt lost 4, 3, 2 and 2 tiles. Row 7 is fully open
+@   x=0..11 and row 8 parallels it completely, so each girl costs one tile.
+@   (1,5) and (10,5) are also left clear so the two stair stubs (1,4)/(10,4) stay
+@   reachable.
+@   ZUKI sits on (4,7), NOT (5,7): (5,7) is the ONLY tile from which the (5,6)
+@   fancy panel can be read (BG_EVENT_PLAYER_FACING_NORTH onto a collision-1
+@   tile), and a girl standing there made that bg_event dead. (6,7), the twin's
+@   reading tile, is likewise kept clear. (4,7) decodes MB_NORMAL collision 0
+@   elevation 3 and still costs one tile.
+@ LAYOUT FIX (M6, NOT done here): restore GSC's two stair risers at (1,3)/(10,3)
+@ in data/layouts/DanceTheater_Johto/map.bin, then restage the girls on the
+@ stage. M4b has never edited blockdata and a blind metatile substitution is a
+@ rendering gamble under a gate with no play-tests.
+@
+@ G3 applies to all six battles in this room: every one of them is TALK-
+@ triggered (the girls' sight radius is 0, KENJI is TRAINER_TYPE_NONE), so each
+@ passes NO_MUSIC -- PlayTrainerEncounterMusic is a full map-BGM swap, not a
+@ jingle, and that swap belongs to a sight line, not a conversation.
 @ ============================================================================
 
 DanceTheater_EventScript_NAOKO::
-	trainerbattle_single TRAINER_JOHTO_KIMONO_GIRL_NAOKO, DanceTheater_Text_NAOKOSeen, DanceTheater_Text_NAOKOBeaten
-	msgbox DanceTheater_Text_NAOKOAfterBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_JOHTO_KIMONO_GIRL_NAOKO, DanceTheater_Text_NAOKOSeen, DanceTheater_Text_NAOKOBeaten, DanceTheater_EventScript_NAOKOAfterBattle, NO_MUSIC
+	goto DanceTheater_EventScript_NAOKOAfterBattle
+	end
+
+DanceTheater_EventScript_NAOKOAfterBattle::
+	msgbox DanceTheater_Text_NAOKOAfterBattle, MSGBOX_DEFAULT
+	release
 	end
 
 DanceTheater_EventScript_SAYO::
-	trainerbattle_single TRAINER_JOHTO_KIMONO_GIRL_SAYO, DanceTheater_Text_SAYOSeen, DanceTheater_Text_SAYOBeaten
-	msgbox DanceTheater_Text_SAYOAfterBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_JOHTO_KIMONO_GIRL_SAYO, DanceTheater_Text_SAYOSeen, DanceTheater_Text_SAYOBeaten, DanceTheater_EventScript_SAYOAfterBattle, NO_MUSIC
+	goto DanceTheater_EventScript_SAYOAfterBattle
+	end
+
+DanceTheater_EventScript_SAYOAfterBattle::
+	msgbox DanceTheater_Text_SAYOAfterBattle, MSGBOX_DEFAULT
+	release
 	end
 
 DanceTheater_EventScript_ZUKI::
-	trainerbattle_single TRAINER_JOHTO_KIMONO_GIRL_ZUKI, DanceTheater_Text_ZUKISeen, DanceTheater_Text_ZUKIBeaten
-	msgbox DanceTheater_Text_ZUKIAfterBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_JOHTO_KIMONO_GIRL_ZUKI, DanceTheater_Text_ZUKISeen, DanceTheater_Text_ZUKIBeaten, DanceTheater_EventScript_ZUKIAfterBattle, NO_MUSIC
+	goto DanceTheater_EventScript_ZUKIAfterBattle
+	end
+
+DanceTheater_EventScript_ZUKIAfterBattle::
+	msgbox DanceTheater_Text_ZUKIAfterBattle, MSGBOX_DEFAULT
+	release
 	end
 
 DanceTheater_EventScript_KUNI::
-	trainerbattle_single TRAINER_JOHTO_KIMONO_GIRL_KUNI, DanceTheater_Text_KUNISeen, DanceTheater_Text_KUNIBeaten
-	msgbox DanceTheater_Text_KUNIAfterBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_JOHTO_KIMONO_GIRL_KUNI, DanceTheater_Text_KUNISeen, DanceTheater_Text_KUNIBeaten, DanceTheater_EventScript_KUNIAfterBattle, NO_MUSIC
+	goto DanceTheater_EventScript_KUNIAfterBattle
+	end
+
+DanceTheater_EventScript_KUNIAfterBattle::
+	msgbox DanceTheater_Text_KUNIAfterBattle, MSGBOX_DEFAULT
+	release
 	end
 
 DanceTheater_EventScript_MIKI::
-	trainerbattle_single TRAINER_JOHTO_KIMONO_GIRL_MIKI, DanceTheater_Text_MIKISeen, DanceTheater_Text_MIKIBeaten
-	msgbox DanceTheater_Text_MIKIAfterBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_JOHTO_KIMONO_GIRL_MIKI, DanceTheater_Text_MIKISeen, DanceTheater_Text_MIKIBeaten, DanceTheater_EventScript_MIKIAfterBattle, NO_MUSIC
+	goto DanceTheater_EventScript_MIKIAfterBattle
+	end
+
+DanceTheater_EventScript_MIKIAfterBattle::
+	msgbox DanceTheater_Text_MIKIAfterBattle, MSGBOX_DEFAULT
+	release
 	end
 
 @ ============================================================================
 @ GSC's DANCETHEATER_COOLTRAINER_M, promoted to a real fight
-@ (TRAINER_JOHTO_COOLTRAINER_KENJI, id 1073). His roster is his own dialogue
-@ made literal: GSC's line about the man who wants "a POKéMON that can SURF and
-@ dance" becomes the team he built trying to keep up with the KIMONO GIRLS --
-@ VAPOREON L63, LUDICOLO L62, BELLOSSOM L62.
+@ (TRAINER_JOHTO_COOLTRAINER_KENJI, id 1073).
+@ CHARACTER SEPARATION, per GSC. GSC gives this room TWO men, and they are not
+@ the same man: the GENTLEMAN is the one who challenges the KIMONO GIRLS daily
+@ and has "never even left a scratch" (SurfGuyNeverLeftAScratchText), and the
+@ COOLTRAINER M is the bystander who WATCHES him and comments -- "That man's
+@ always with his RHYDON… says he wants a POKéMON that can SURF and dance"
+@ (DanceTheaterCooltrainerMText). KENJI keeps that observer role: the daily
+@ losing challenge belongs to the GENTLEMAN alone, and KENJI's angle is that he
+@ went and actually BUILT the team the other man only talks about --
+@ VAPOREON L63 (surfs), LUDICOLO L62 (dances), BELLOSSOM L62 (dances).
 @ G3: NO_MUSIC, because this is a talk-triggered battle and
 @ PlayTrainerEncounterMusic is a full map-BGM swap, not a jingle.
 @ (10,10) decodes collision 0 elevation 3 in the open lower hall; it is GSC's
@@ -156,25 +206,32 @@ DanceTheater_Text_MIKIAfterBattle:
 	.string "people who enjoy what I do.\p"
 	.string "My POKéMON keep my spirits up too.$"
 
+@ Adapts GSC DanceTheaterCooltrainerMText -- the observer's line about the
+@ GENTLEMAN and his RHYDON, now with a challenge attached to it.
 DanceTheater_Text_KENJIIntro:
-	.string "KENJI: I come here every single day\n"
-	.string "and I challenge all five of them,\l"
-	.string "and I have never taken a round.\p"
-	.string "Water that moves like water. A\n"
-	.string "dancer. A flower that keeps time.\p"
-	.string "That is what I have been building.\n"
-	.string "Judge it for me, CHAMPION.$"
+	.string "KENJI: See that fellow with the\n"
+	.string "RHYDON? He asks the KIMONO GIRLS\l"
+	.string "for a bout every single day.\p"
+	.string "Says he wants a POKéMON that can\n"
+	.string "SURF and dance. Been saying it for\l"
+	.string "years without raising one.\p"
+	.string "So I raised them. Water that moves\n"
+	.string "like water. A dancer. A flower that\l"
+	.string "keeps time.\p"
+	.string "He can keep asking them. I would\n"
+	.string "rather be judged by a CHAMPION.$"
 
 DanceTheater_Text_KENJIDefeat:
 	.string "Ah. Beaten by someone who does not\n"
 	.string "even live here.$"
 
 DanceTheater_Text_KENJIAfterBattle:
-	.string "KENJI: No, do not apologise. That is\n"
-	.string "the closest I have come to the way\l"
-	.string "the KIMONO GIRLS battle.\p"
-	.string "Same time tomorrow. They will say no\n"
-	.string "again, and I will ask again.$"
+	.string "KENJI: No, do not apologise. Nobody\n"
+	.string "in this building has made me work\l"
+	.string "that hard.\p"
+	.string "I will tell him you said the RHYDON\n"
+	.string "has no feet for it. He will disagree\l"
+	.string "with you as well.$"
 
 @ GSC RhydonText.
 DanceTheater_Text_Rhydon:

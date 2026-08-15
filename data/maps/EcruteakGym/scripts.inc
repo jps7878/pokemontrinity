@@ -78,13 +78,21 @@ EcruteakGym_EventScript_GiveShadowBall::
 	end
 
 @ ============================================================================
-@ The greeter. GSC's GRAMPS tile (4,14): MB_NORMAL, collision 0, elevation 3,
-@ and NOT one of the 30 pit cells. The stale warp_event that also sits on (4,14)
-@ is one of M4a's dead G/S leftovers -- the metatile carries no warp behaviour,
-@ so nothing warps him off it.
+@ The greeter, at (5,14): MB_NORMAL, collision 0, elevation 3, NOT one of the 30
+@ pit cells, and talkable from (5,15) facing north.
+@
+@ MOVED ONE TILE EAST OF GSC'S GRAMPS TILE (4,14), AND THIS IS THE WORKED
+@ EXAMPLE OF A RULE WORTH KEEPING: an NPC does not rest on a warp tile.
+@ (4,14) carries one of this map's stale warp_events -- M4a's dead G/S
+@ leftovers. It is inert (the metatile decodes MB_NORMAL, which carries no warp
+@ behaviour, so nothing would ever have fired) but reach_check reported "warps
+@ inside the sealed region" for his resting tile, and the M4b contract's
+@ coordinate rule does not carve out an exception for warps that happen to be
+@ dead. The move costs nothing, so there is no reason to argue the exception.
+@ S5 did the same for MORTY on BURNED TOWER 1F ((14,14) -> (13,14)).
 @ NO-SEAL DECODE: the lobby (rows 14-17) reaches row 13 through THREE
 @ independent columns -- x=2 ((2,14)->(2,13)), x=4/5, and x=7 ((7,14)->(7,13)).
-@ Standing on (4,14) closes one of three and seals nothing; reach_check confirms
+@ Standing on (5,14) closes one of three and seals nothing; reach_check confirms
 @ a one-tile loss (his own).
 @ ============================================================================
 EcruteakGym_EventScript_Greeter::
@@ -146,13 +154,10 @@ EcruteakGym_EventScript_GuidePostVictory::
 @ G5 -- (3,15) and (6,15) decode collision 1: they are the statue wall tiles,
 @ read facing north from (3,16)/(6,16), both collision 0 elevation 3.
 @ ============================================================================
-EcruteakGym_EventScript_LeftGymStatue::
-	lockall
-	goto_if_set FLAG_TRINITY_BADGE12, EcruteakGym_EventScript_GymStatueCertified
-	goto EcruteakGym_EventScript_GymStatue
-	end
-
-EcruteakGym_EventScript_RightGymStatue::
+@ ONE entry script for BOTH bg_events. VioletGym has a Left/Right pair because
+@ S2 copied vanilla's shape, but neither branch ever differed -- the statues are
+@ identical and read identically. Two bg_events, one script.
+EcruteakGym_EventScript_GymStatues::
 	lockall
 	goto_if_set FLAG_TRINITY_BADGE12, EcruteakGym_EventScript_GymStatueCertified
 	goto EcruteakGym_EventScript_GymStatue

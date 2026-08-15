@@ -63,10 +63,17 @@ BurnedTowerB1F_EventScript_ShowBeasts::
 @ B3  Wake beat = emote -> playmoncry -> delay, one beast at a time.
 @     Flee beat = applymovement on REAL FLOOR -> playse SE_WARP_OUT ->
 @     removeobject. GSC slides its beasts through walls with set_sliding;
-@     Trinity does not need to, and keeping every step on decoded collision-0
-@     floor means nothing here depends on how scripted movement treats
-@     collision. (7,4)/(7,5)/(12,4)/(12,5)/(10,5)/(10,3)/(10,2) are all inside
-@     the 6x5 chamber.
+@     Trinity does not need to, and keeping every step on decoded floor means
+@     nothing here depends on how scripted movement treats collision.
+@     DECODE THE BEHAVIOUR, NOT JUST THE COLLISION BIT, for every tile a
+@     choreography touches: (7,4) (7,5) (12,4) (12,5) (10,5) (10,3) are all
+@     MB_NORMAL collision 0 elevation 3, but SUICUNE's last step (10,2) is
+@     MB_IMPASSABLE_NORTH. That is harmless twice over -- scripted applymovement
+@     ignores directional blockers entirely, and even a walking object may ENTER
+@     (10,2) from the south, which is the direction SUICUNE arrives from; the
+@     blocker only forbids leaving northward, and it is removeobject'd on
+@     arrival. Harmless is not the same as unchecked, which is why it is written
+@     down.
 @     The removals deliberately do NOT use R4's fadescreen sandwich. R4 exists
 @     so an appearance or disappearance never POPS; here the disappearance is
 @     diegetic -- the beasts blur away -- and GSC covers it with exactly this
@@ -151,8 +158,16 @@ BurnedTowerB1F_EventScript_ReleaseTheBeasts::
 	releaseall
 	end
 
-@ Talk script for the sleeping cast. GSC attaches `ObjectEvent` (nothing at all);
-@ a line costs no state and stops a legendary from reading as scenery.
+@ INTENTIONALLY UNREACHABLE / DEFENSIVE. The three beasts are only ever on stage
+@ while VAR_TRINITY_JOHTO_SCENE_ECRUTEAK == 1, and they stand at (7,3), (12,3)
+@ and (10,4) -- inside the chamber x=7..12, y=2..6 whose ONLY exit is (10,7)
+@ (row 7 decodes collision 1 at x=7..9 and x=11..13). Entering that chamber
+@ therefore means stepping onto (10,6), which carries the coord_event above, and
+@ that scene removeobject's all three before it releases. So no walk exists that
+@ reaches a beast with the scene still armed, and once it has run they are gone.
+@ Written anyway, per S1: GSC attaches `ObjectEvent` (nothing at all) here, and a
+@ line costs no state, stops a legendary from reading as scenery, and is the
+@ correct behaviour if S10 ever re-opens this window.
 @ No faceplayer: they are asleep.
 BurnedTowerB1F_EventScript_SleepingBeast::
 	lock

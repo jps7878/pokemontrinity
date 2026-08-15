@@ -112,10 +112,10 @@
 #define FLAG_TRINITY_J_MORTY_TOWER_HIDE    0x4A // Trinity: was FLAG_UNUSED_0x04A — MORTY hidden in the BURNED TOWER. Visible iff SCENE < 2: he is investigating the tower until the beasts wake, then goes back to his GYM.
 #define FLAG_TRINITY_J_MORTY_GYM_HIDE    0x4B // Trinity: was FLAG_UNUSED_0x04B — MORTY hidden in ECRUTEAK GYM. The exact complement: visible iff FLAG_TRINITY_J_BEASTS_AWAKENED. An object flag can only hide-when-set, so the two halves of one character need two flags.
 #define FLAG_TRINITY_J_MORTY_TM30    0x4C // Trinity: was FLAG_UNUSED_0x04C — TM30 SHADOW BALL handed over by MORTY. Bag-full retry guard (GYM PATTERN G2): FLAG_TRINITY_BADGE12 is set first and unconditionally.
-// THE LOW STORY-FLAG BLOCK (0x2E-0x4C) IS NOW EXHAUSTED. S6+ allocate from 0x264+.
-// Note for the controller: 0x4D/0x4E/0x4F are genuinely free too (verified -- their only
-// reference in the tree is their own #define). The M4b contract's block simply stops at
-// 0x4C; amending it would buy three more contiguous low flags at zero cost.
+// THE M4b CONTRACT'S LOW STORY-FLAG BLOCK (0x2E-0x4C) IS NOW EXHAUSTED.
+// 0x4D/0x4E/0x4F are genuinely free as well -- verified, the only reference to each in the
+// whole tree is its own #define below -- and the contract was amended after S5's review to
+// make them claimable. S6+ take those three first, then 0x264+.
 #define FLAG_UNUSED_0x04D    0x4D // Unused Flag
 #define FLAG_UNUSED_0x04E    0x4E // Unused Flag
 #define FLAG_UNUSED_0x04F    0x4F // Unused Flag
