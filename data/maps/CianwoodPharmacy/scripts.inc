@@ -20,8 +20,19 @@ CianwoodPharmacy_MapScripts::
 @ If a later balance pass ever adds a JOHTO key-item block, this converts to
 @ giveitem / checkitem / removeitem with no structural change.
 @
-@ GUARDS, most-advanced-first: already carrying it -> shop; not yet asked ->
-@ shop. So the map is never a dead end and the give beat runs exactly once.
+@ GUARDS, MOST-ADVANCED-FIRST -- and the FIRST one is load-bearing.
+@   AMPHY already cured  -> shop
+@   already carrying it  -> shop
+@   not yet asked        -> shop
+@ The cured guard is not decoration. JASMINE CLEARS _SECRET_POTION when she
+@ takes it, and _JASMINE_ASKED stays set forever, so after the cure the middle
+@ two guards are both false again and without the first one this script would
+@ hand out a SECOND SECRETPOTION for a POKéMON that is already well -- and set a
+@ flag JASMINE is no longer on the map to clear, stranding it set for the rest
+@ of the save. That is the cost of a possession flag that gets cleared: the
+@ chain's terminal state has to be tested explicitly, because the intermediate
+@ flags return to their starting values. So the map is never a dead end AND the
+@ give beat runs exactly once per save.
 @
 @ DECODE: the PHARMACIST stays on GSC's (2,3) -- MB_NORMAL, collision 0,
 @ elevation 3 -- served from (2,2) facing down, (1,3) facing right or (2,4)
@@ -30,6 +41,7 @@ CianwoodPharmacy_MapScripts::
 CianwoodPharmacy_EventScript_CianwoodPharmacist::
 	lock
 	faceplayer
+	goto_if_set FLAG_TRINITY_J_AMPHY_CURED, CianwoodPharmacy_EventScript_Shop
 	goto_if_set FLAG_TRINITY_J_SECRET_POTION, CianwoodPharmacy_EventScript_Shop
 	goto_if_unset FLAG_TRINITY_J_JASMINE_ASKED, CianwoodPharmacy_EventScript_Shop
 	msgbox CianwoodPharmacy_Text_GiveSecretPotion, MSGBOX_DEFAULT

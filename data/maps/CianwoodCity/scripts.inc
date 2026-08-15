@@ -52,12 +52,21 @@ CianwoodCity_MapScripts::
 @ B5  The scene's only durable outputs are one story flag and one monotonic
 @     scene-var advance. No roamer, no encounter, no lair -- S10 owns those.
 @
-@ WHY (10,14) IS SAFE TO STAND A LEGENDARY ON. It decodes MB_JUMP_SOUTH, and a
-@ jump tile can only be ENTERED by a hop in its own direction; (10,13) above it
-@ decodes collision 1, so no hop exists. reach_check reports (10,14)
-@ UNREACHABLE with ZERO objects placed -- the beast stands where the player
-@ provably cannot follow, and putting an object on an already-unreachable tile
-@ changes walkability by exactly nothing.
+@ WHY (10,14) IS SAFE TO STAND A LEGENDARY ON. It is CIANWOOD's single ledge
+@ cell (MB_JUMP_SOUTH), and after the S6 fix round every Johto ledge carries
+@ COLLISION 1, as vanilla HOENN's 1973 ledge cells always have. So the tile is
+@ impassable outright: the only thing that can ever put the player on a ledge is
+@ ShouldJumpLedge, which fires only for a hop in the tile's own direction, and
+@ the tile the southward hop would come FROM -- (10,13) -- is itself collision 1.
+@ No approach exists, walking or hopping. reach_check agrees and reports (10,14)
+@ UNREACHABLE with ZERO objects placed, so the beast costs 0 tiles of
+@ walkability.
+@ (Historical note, because the first version of this comment leaned on the
+@ weaker fact: before that fix Johto's ledges shipped at collision 0, so the
+@ player COULD have walked onto (10,14) laterally, and the invariant that
+@ actually protected the beat was the coord-neck removal -- the scene fires and
+@ removeobject's SUICUNE before the player can round the cliff. That invariant
+@ still stands; it is simply no longer the load-bearing one.)
 @
 @ THREE ENGINE FACTS THIS SCENE DEPENDS ON, source-verified rather than assumed:
 @  1. Scripted movement ignores collision, water and elevation ENTIRELY.
@@ -65,9 +74,10 @@ CianwoodCity_MapScripts::
 @     SetObjectEventDirection -> MoveCoords -> ShiftObjectEventCoords ->
 @     SetSpriteDataForNormalStep: no collision test, no AreElevationsCompatible,
 @     no surf check. InitJump (:7232-7250) is the same shape with a displacement
-@     table. That is what lets SUICUNE run out onto MB_POND_WATER at elevation 1
-@     from land at elevation 3, and it is the general form of the narrower fact
-@     S5 recorded when its own SUICUNE stepped onto MB_IMPASSABLE_NORTH.
+@     table. That is what lets SUICUNE start on a COLLISION-1 ledge tile, leave
+@     it, and run out onto MB_POND_WATER at elevation 1 from land at elevation 3
+@     -- and it is the general form of the narrower fact S5 recorded when its own
+@     SUICUNE stepped onto MB_IMPASSABLE_NORTH.
 @  2. jump_2_down moves TWO tiles in an arc, as two separate one-tile shifts:
 @     MovementAction_Jump2Down_Step0 calls InitJumpRegular(..., DIR_SOUTH,
 @     JUMP_DISTANCE_FAR, JUMP_TYPE_HIGH) (src/event_object_movement.c:7343-7346),
@@ -76,8 +86,9 @@ CianwoodCity_MapScripts::
 @     at JUMP_HALFWAY (:7269-7285; tables at
 @     src/data/object_events/movement_action_func_tables.h:786-795). Net (10,14)
 @     -> (10,16), so the ledge face (10,15) is passed over and never occupied.
-@     It is also the literal translation of GSC's `fast_jump_step DOWN`, which
-@     its own CianwoodCitySuicuneApproachMovement uses off this very ledge.
+@     GSC does the same descent as TWO `fast_jump_step DOWN` commands in
+@     CianwoodCitySuicuneApproachMovement off this very ledge; the net
+@     displacement is identical.
 @  3. The player is never on the flee path. Trigger tiles {(11,15),(11,16)};
 @     path {(10,16),(10,17),(11,17),(12,17),(13,17),(14,17),(15,17)}. Disjoint
 @     by construction -- the route was taken through row 17 for that reason.
@@ -240,9 +251,12 @@ CianwoodCity_Text_PokefanMBeasts:
 	.string "Something came off the north rocks\n"
 	.string "at dawn and went across the water.\p"
 	.string "Not swimming. Across it.\p"
-	.string "Go up past the SEER's place and\n"
-	.string "stand where the path runs out. See\l"
-	.string "if I'm a liar.$"
+	.string "Go north up the beach. Northeast of\n"
+	.string "the SEER's door there's a notch cut\l"
+	.string "into the cliff, right at the top of\l"
+	.string "the sand.\p"
+	.string "Stand in it a while. See if I'm a\n"
+	.string "liar.$"
 
 CianwoodCity_Text_Lass:
 	.string "Did you hear? A HOENN trainer\nbecame Champion, and now folks\lhere want to challenge them.$"
