@@ -323,3 +323,7 @@ const u16 gMetatileAttributes_ViridianForestKanto[] = INCBIN_U16("data/tilesets/
 
 const u16 gMetatiles_SilphCoKanto[] = INCBIN_U16("data/tilesets/secondary/silph_co_kanto/metatiles.bin");
 const u16 gMetatileAttributes_SilphCoKanto[] = INCBIN_U16("data/tilesets/secondary/silph_co_kanto/metatile_attributes.bin");
+
+// M3 Johto tileset library
+const u16 gMetatiles_JohtoNewbark[] = INCBIN_U16("data/tilesets/secondary/johto_newbark/metatiles.bin");
+const u16 gMetatileAttributes_JohtoNewbark[] = INCBIN_U16("data/tilesets/secondary/johto_newbark/metatile_attributes.bin");

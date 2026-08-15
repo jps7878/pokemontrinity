@@ -854,6 +854,8 @@ gStdScripts_End::
 	.include "data/maps/ViridianCity_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/ViridianCity_School/scripts.inc"
 	.include "data/maps/ViridianForest/scripts.inc"
+	// --- Johto map scripts (M3 auto) ---
+	.include "data/maps/NewBarkTown/scripts.inc"
 
 	.include "data/scripts/std_msgbox.inc"
 	.include "data/scripts/trainer_battle.inc"

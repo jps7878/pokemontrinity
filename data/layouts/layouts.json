@@ -8180,6 +8180,16 @@
       "secondary_tileset": "gTileset_SeaCottageKanto",
       "border_filepath": "data/layouts/Route25_SeaCottage_Kanto/border.bin",
       "blockdata_filepath": "data/layouts/Route25_SeaCottage_Kanto/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEW_BARK_TOWN_JOHTO",
+      "name": "NewBarkTown_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoNewbark",
+      "border_filepath": "data/layouts/NewBarkTown_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/NewBarkTown_Johto/map.bin"
     }
   ]
 }

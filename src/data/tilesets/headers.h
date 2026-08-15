@@ -1427,3 +1427,15 @@ const struct Tileset gTileset_SilphCoKanto =
     .metatileAttributes = gMetatileAttributes_SilphCoKanto,
     .callback = NULL,
 };
+
+// M3 Johto tileset library
+const struct Tileset gTileset_JohtoNewbark =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_JohtoNewbark,
+    .palettes = gTilesetPalettes_JohtoNewbark,
+    .metatiles = gMetatiles_JohtoNewbark,
+    .metatileAttributes = gMetatileAttributes_JohtoNewbark,
+    .callback = NULL,
+};

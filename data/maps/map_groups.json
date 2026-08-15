@@ -36,7 +36,8 @@
     "gMapGroup_IndoorRoute124",
     "gMapGroup_Kanto1",
     "gMapGroup_Kanto2",
-    "gMapGroup_Kanto3"
+    "gMapGroup_Kanto3",
+    "gMapGroup_Johto1"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -898,5 +899,8 @@
     "ViridianCity_PokemonCenter_2F",
     "ViridianCity_School",
     "ViridianForest"
+  ],
+  "gMapGroup_Johto1": [
+    "NewBarkTown"
   ]
 }
