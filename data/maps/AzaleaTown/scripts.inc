@@ -105,7 +105,12 @@ AzaleaTown_EventScript_Silver::
 	goto_if_ne VAR_TRINITY_JOHTO_SCENE_AZALEA, 1, AzaleaTown_EventScript_SilverIdle
 	playbgm MUS_RG_ENCOUNTER_RIVAL, FALSE
 	call AzaleaTown_EventScript_SilverConfront
+	@ Talk path: the player's tile is unknown, so SILVER cannot be walked off
+	@ screen the way the coord path walks him west. Cover the removal with the
+	@ same fade the well aftermath uses, so he leaves rather than blinking out.
+	fadescreen FADE_TO_BLACK
 	removeobject LOCALID_JOHTO_AZALEA_SILVER
+	fadescreen FADE_FROM_BLACK
 	call AzaleaTown_EventScript_SilverAftermath
 	release
 	end

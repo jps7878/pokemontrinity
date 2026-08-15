@@ -37,12 +37,24 @@ SlowpokeWellB1F_EventScript_KurtHurt::
 	end
 
 @ ============================================================================
-@ The three optional grunt posts. Sight-triggered ordinary trainers, exactly
-@ the M4a gym-trainer shape, so PlayTrainerEncounterMusic doing its map-BGM
-@ swap is correct here -- that swap belongs to a sight line (GYM PATTERN G3).
-@ Pool ids: S3 owns TRAINER_ROCKET_GRUNT_M_1 / M_2 / F_1 exclusively, because
-@ the raid can be ended (see EventScript_RaidCleared) with these three still
-@ unbeaten and their beaten-flags are per-id.
+@ The three grunt posts. Sight-triggered ordinary trainers, exactly the M4a
+@ gym-trainer shape, so PlayTrainerEncounterMusic doing its map-BGM swap is
+@ correct here -- that swap belongs to a sight line (GYM PATTERN G3).
+@
+@ All three cones are MANDATORY, verified by flood fill (reach_check.py): block
+@ any one of them and PROTON's talk tile (5,3) becomes unreachable from the
+@ entrance. GRUNT_A's (15,8)/(15,9)/(15,10) is the only way up the entrance
+@ shaft; GRUNT_B's covers (11,4), the only access to (11,5)->(11,6); GRUNT_C's
+@ covers the only westward run of the row-6 corridor. The player fights all
+@ three on the way in.
+@
+@ Trainer ids: a trainer id carries ONE permanent per-id defeated flag
+@ (HasTrainerBeenFought src/battle_setup.c:1184, SetTrainerFlag :1189 -- both
+@ FlagGet/FlagSet(TRAINER_FLAGS_START + trainerId)), so an id can be fought
+@ at most once per save, ever --
+@ a second post wearing an already-beaten id is not battleable at all. Every
+@ Rocket post in the game therefore needs its own id. S3 consumes M_1, M_2 and
+@ F_1; 9 pool ids and 27 free ids (1073-1099) remain for S7/S8.
 @ ============================================================================
 SlowpokeWellB1F_EventScript_GruntA::
 	trainerbattle_single TRAINER_ROCKET_GRUNT_M_1, SlowpokeWellB1F_Text_GruntASeen, SlowpokeWellB1F_Text_GruntABeaten
@@ -68,8 +80,22 @@ SlowpokeWellB1F_EventScript_GruntC::
 @ ranking Rocket -- so (5,3) is the ONLY tile PROTON can be talked to from.
 @ The scene body can therefore assume the player is standing at (5,3) facing
 @ north, with the viewport covering rows -1..8 / columns -2..12.
-@ (No-sealing check: with (4,2)/(5,2)/(6,2) occupied, (3,2) is still reached
-@ via (2,2)<-(2,3) and (7,2) via (7,3); the chamber is open on rows 3-6.)
+@
+@ REACHABILITY. This arrangement blocks three tiles in a row across the top of
+@ the boss chamber, so it needs a real proof, not a neighbour argument -- an
+@ earlier revision of this comment "proved" it safe by naming adjacent tiles
+@ and was simply wrong about which side of the cut they were on. Verified with
+@ tools/johto_port/reach_check.py (flood fill from each door, objects placed):
+@   from (17,15)->AZALEA TOWN: 230 of 241 reachable tiles, and (7,11)->B2F IS
+@   reachable. Largest single-object cut-vertex loss on this map: 3 tiles.
+@ The only region any of this cast closes is the 2-tile dead-end alcove
+@ (9,3)/(9,4), jointly blocked by GRUNT_B at (10,4) and M4a's item ball at
+@ (10,3) -- both GSC tiles, and the alcove is empty.
+@ NOTE for anyone re-running that tool: this floor is a WATER cave (32
+@ MB_POND_WATER tiles) and the B2F ladder is across the water in the SHIPPED
+@ map, with or without this cast -- pass --no-surf and the ladder is
+@ unreachable even with zero objects placed. That gate is M4a's port geometry,
+@ not this beat's staging.
 @
 @ NO_MUSIC, not trainerbattle_no_intro. The contract pins MUS_RG_ENCOUNTER_
 @ ROCKET for Rockets, and NO_MUSIC selects TRAINER_BATTLE_CONTINUE_SCRIPT_
@@ -111,8 +137,9 @@ SlowpokeWellB1F_EventScript_ProtonIdle::
 @ ============================================================================
 @ Raid aftermath. Adapts SlowpokeWellB1F.asm:34-72 -- GSC fades to black,
 @ disappears all four Rockets at once, then walks KURT in. Removing the three
-@ grunts whether or not they were beaten is GSC's own behaviour (:41-44): the
-@ raid ends when its leader breaks, and the side fights stay optional.
+@ grunts is GSC's own behaviour (:41-44): the raid ends when its leader breaks
+@ and the rest pull out with him. In practice they have all been fought already
+@ (their sight cones are mandatory, see above), so this is a tidy-up.
 @ The two tail-cut SLOWPOKE are deliberately left standing for the rest of the
 @ visit; ON_TRANSITION retires them on the next entry and KURT's line covers it.
 @ ============================================================================
@@ -246,7 +273,7 @@ SlowpokeWellB1F_Text_GruntBSeen:
 	.string "and one of you. Try it.$"
 
 SlowpokeWellB1F_Text_GruntBBeaten:
-	.string "You rotten -- \n"
+	.string "You rotten --\n"
 	.string "…you're the CHAMPION.$"
 
 SlowpokeWellB1F_Text_GruntBAfterBattle:

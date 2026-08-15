@@ -6128,6 +6128,19 @@ u16 GetBattleBGM(void)
              && TRAINER_BATTLE_PARAM.opponentA <= TRAINER_CLAIR)
                 return MUS_RG_VS_GYM_LEADER;
             return MUS_VS_GYM_LEADER;
+        case TRAINER_CLASS_TEAM_ROCKET:
+            // Trinity: before this case TEAM ROCKET fell through to the default
+            // below and fought to MUS_VS_TRAINER -- an ordinary route trainer's
+            // theme for the game's antagonists. Same id-range idiom as the
+            // Johto-leader guard above: the four execs are contiguous
+            // (TRAINER_EXEC_PROTON 1050 .. TRAINER_EXEC_ARCHER 1053) and take
+            // the boss theme; the twelve grunts (1054-1065) take RG's trainer
+            // theme. No Act I trainer uses this class, so nothing in HOENN can
+            // reach either branch.
+            if (TRAINER_BATTLE_PARAM.opponentA >= TRAINER_EXEC_PROTON
+             && TRAINER_BATTLE_PARAM.opponentA <= TRAINER_EXEC_ARCHER)
+                return MUS_VS_AQUA_MAGMA;
+            return MUS_RG_VS_TRAINER;
         case TRAINER_CLASS_CHAMPION:
             return MUS_VS_CHAMPION;
         case TRAINER_CLASS_RIVAL:

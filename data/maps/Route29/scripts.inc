@@ -73,7 +73,13 @@ Route29_EventScript_Silver::
 	goto_if_ne VAR_TRINITY_JOHTO_SCENE_NEWBARK, 2, Route29_EventScript_SilverIdle
 	playbgm MUS_RG_ENCOUNTER_RIVAL, FALSE
 	call Route29_EventScript_SilverConfront
+	@ Trinity M4b S3 review fix (applied to S1's map): the talk path cannot walk
+	@ SILVER off screen the way the coord path does, because the player's tile
+	@ is unknown -- so cover the removal with a fade instead of blinking him out
+	@ of existence. Same idiom as S3's raid aftermath.
+	fadescreen FADE_TO_BLACK
 	removeobject LOCALID_JOHTO_R29_SILVER
+	fadescreen FADE_FROM_BLACK
 	call Route29_EventScript_SilverAftermath
 	release
 	end
