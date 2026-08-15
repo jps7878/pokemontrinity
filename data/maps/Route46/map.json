@@ -1,0 +1,53 @@
+{
+  "id": "MAP_ROUTE_46",
+  "name": "Route46",
+  "layout": "LAYOUT_ROUTE_46_JOHTO",
+  "music": "MUS_LITTLEROOT",
+  "region_map_section": "MAPSEC_SPECIAL_AREA",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ROUTE_29",
+      "offset": -20,
+      "direction": "down"
+    },
+    {
+      "map": "MAP_ROUTE_45",
+      "offset": -72,
+      "direction": "right"
+    }
+  ],
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 7,
+      "y": 33,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_29_ROUTE_46_GATE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 8,
+      "y": 33,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_29_ROUTE_46_GATE",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 14,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_DARK_CAVE_VIOLET_ENTRANCE",
+      "dest_warp_id": "2"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

@@ -8182,6 +8182,636 @@
       "blockdata_filepath": "data/layouts/Route25_SeaCottage_Kanto/map.bin"
     },
     {
+      "id": "LAYOUT_AZALEA_GYM_JOHTO",
+      "name": "AzaleaGym_Johto_Layout",
+      "width": 10,
+      "height": 16,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EliteFourRoomIndoorJohto",
+      "border_filepath": "data/layouts/AzaleaGym_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/AzaleaGym_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_AZALEA_MART_JOHTO",
+      "name": "AzaleaMart_Johto_Layout",
+      "width": 12,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_MartJohto",
+      "border_filepath": "data/layouts/AzaleaMart_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/AzaleaMart_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_AZALEA_POKECENTER_1F_JOHTO",
+      "name": "AzaleaPokecenter1F_Johto_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_PokecenterJohto",
+      "border_filepath": "data/layouts/AzaleaPokecenter1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/AzaleaPokecenter1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_AZALEA_TOWN_JOHTO",
+      "name": "AzaleaTown_Johto_Layout",
+      "width": 40,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoModernAzalea",
+      "border_filepath": "data/layouts/AzaleaTown_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/AzaleaTown_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_BILLS_FAMILYS_HOUSE_JOHTO",
+      "name": "BillsFamilysHouse_Johto_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_HouseJohto",
+      "border_filepath": "data/layouts/BillsFamilysHouse_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/BillsFamilysHouse_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_BLACKTHORN_CITY_JOHTO",
+      "name": "BlackthornCity_Johto_Layout",
+      "width": 40,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoBlackthorn",
+      "border_filepath": "data/layouts/BlackthornCity_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/BlackthornCity_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_BLACKTHORN_GYM_1F_JOHTO",
+      "name": "BlackthornGym1F_Johto_Layout",
+      "width": 10,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EliteFourRoomIndoorJohto",
+      "border_filepath": "data/layouts/BlackthornGym1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/BlackthornGym1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_BLACKTHORN_GYM_2F_JOHTO",
+      "name": "BlackthornGym2F_Johto_Layout",
+      "width": 10,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EliteFourRoomIndoorJohto",
+      "border_filepath": "data/layouts/BlackthornGym2F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/BlackthornGym2F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_BURNED_TOWER_1F_JOHTO",
+      "name": "BurnedTower1F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerDungeonJohto",
+      "border_filepath": "data/layouts/BurnedTower1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/BurnedTower1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_BURNED_TOWER_B1F_JOHTO",
+      "name": "BurnedTowerB1F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CaveJohto",
+      "border_filepath": "data/layouts/BurnedTowerB1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/BurnedTowerB1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHERRYGROVE_CITY_JOHTO",
+      "name": "CherrygroveCity_Johto_Layout",
+      "width": 40,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoCherrygrove",
+      "border_filepath": "data/layouts/CherrygroveCity_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/CherrygroveCity_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_CIANWOOD_CITY_JOHTO",
+      "name": "CianwoodCity_Johto_Layout",
+      "width": 30,
+      "height": 54,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoCianwood",
+      "border_filepath": "data/layouts/CianwoodCity_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/CianwoodCity_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_CIANWOOD_GYM_JOHTO",
+      "name": "CianwoodGym_Johto_Layout",
+      "width": 10,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerIndoorJohto",
+      "border_filepath": "data/layouts/CianwoodGym_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/CianwoodGym_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_DANCE_THEATER_JOHTO",
+      "name": "DanceTheater_Johto_Layout",
+      "width": 12,
+      "height": 14,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TraditionalHouseJohto",
+      "border_filepath": "data/layouts/DanceTheater_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/DanceTheater_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_DARK_CAVE_BLACKTHORN_ENTRANCE_JOHTO",
+      "name": "DarkCaveBlackthornEntrance_Johto_Layout",
+      "width": 30,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_DarkCaveJohto",
+      "border_filepath": "data/layouts/DarkCaveBlackthornEntrance_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/DarkCaveBlackthornEntrance_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_DARK_CAVE_VIOLET_ENTRANCE_JOHTO",
+      "name": "DarkCaveVioletEntrance_Johto_Layout",
+      "width": 40,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_DarkCaveJohto",
+      "border_filepath": "data/layouts/DarkCaveVioletEntrance_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/DarkCaveVioletEntrance_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_DAY_CARE_JOHTO",
+      "name": "DayCare_Johto_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_HouseJohto",
+      "border_filepath": "data/layouts/DayCare_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/DayCare_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRAGON_SHRINE_JOHTO",
+      "name": "DragonShrine_Johto_Layout",
+      "width": 10,
+      "height": 10,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_LabJohto",
+      "border_filepath": "data/layouts/DragonShrine_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/DragonShrine_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRAGONS_DEN_1F_JOHTO",
+      "name": "DragonsDen1F_Johto_Layout",
+      "width": 10,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CaveJohto",
+      "border_filepath": "data/layouts/DragonsDen1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/DragonsDen1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRAGONS_DEN_B1F_JOHTO",
+      "name": "DragonsDenB1F_Johto_Layout",
+      "width": 40,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoDungeon",
+      "border_filepath": "data/layouts/DragonsDenB1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/DragonsDenB1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_EARLS_POKEMON_ACADEMY_JOHTO",
+      "name": "EarlsPokemonAcademy_Johto_Layout",
+      "width": 8,
+      "height": 16,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_LabJohto",
+      "border_filepath": "data/layouts/EarlsPokemonAcademy_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/EarlsPokemonAcademy_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ECRUTEAK_CITY_JOHTO",
+      "name": "EcruteakCity_Johto_Layout",
+      "width": 40,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoEcruteak",
+      "border_filepath": "data/layouts/EcruteakCity_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/EcruteakCity_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ECRUTEAK_GYM_JOHTO",
+      "name": "EcruteakGym_Johto_Layout",
+      "width": 10,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerIndoorJohto",
+      "border_filepath": "data/layouts/EcruteakGym_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/EcruteakGym_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ECRUTEAK_ITEMFINDER_HOUSE_JOHTO",
+      "name": "EcruteakItemfinderHouse_Johto_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TraditionalHouseJohto",
+      "border_filepath": "data/layouts/EcruteakItemfinderHouse_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/EcruteakItemfinderHouse_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ECRUTEAK_TIN_TOWER_ENTRANCE_JOHTO",
+      "name": "EcruteakTinTowerEntrance_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerIndoorJohto",
+      "border_filepath": "data/layouts/EcruteakTinTowerEntrance_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/EcruteakTinTowerEntrance_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ELMS_HOUSE_JOHTO",
+      "name": "ElmsHouse_Johto_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_PlayersHouseJohto",
+      "border_filepath": "data/layouts/ElmsHouse_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/ElmsHouse_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ELMS_LAB_JOHTO",
+      "name": "ElmsLab_Johto_Layout",
+      "width": 10,
+      "height": 12,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_LabJohto",
+      "border_filepath": "data/layouts/ElmsLab_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/ElmsLab_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_BIKE_SHOP_JOHTO",
+      "name": "GoldenrodBikeShop_Johto_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_ChampionsRoomJohto",
+      "border_filepath": "data/layouts/GoldenrodBikeShop_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodBikeShop_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_JOHTO",
+      "name": "GoldenrodCity_Johto_Layout",
+      "width": 40,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoModernGoldenrod",
+      "border_filepath": "data/layouts/GoldenrodCity_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPT_STORE_1F_JOHTO",
+      "name": "GoldenrodDeptStore1F_Johto_Layout",
+      "width": 16,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_MartJohto",
+      "border_filepath": "data/layouts/GoldenrodDeptStore1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodDeptStore1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPT_STORE_2F_JOHTO",
+      "name": "GoldenrodDeptStore2F_Johto_Layout",
+      "width": 16,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_MartJohto",
+      "border_filepath": "data/layouts/GoldenrodDeptStore2F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodDeptStore2F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPT_STORE_3F_JOHTO",
+      "name": "GoldenrodDeptStore3F_Johto_Layout",
+      "width": 16,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_MartJohto",
+      "border_filepath": "data/layouts/GoldenrodDeptStore3F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodDeptStore3F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPT_STORE_4F_JOHTO",
+      "name": "GoldenrodDeptStore4F_Johto_Layout",
+      "width": 16,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_MartJohto",
+      "border_filepath": "data/layouts/GoldenrodDeptStore4F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodDeptStore4F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPT_STORE_5F_JOHTO",
+      "name": "GoldenrodDeptStore5F_Johto_Layout",
+      "width": 16,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_MartJohto",
+      "border_filepath": "data/layouts/GoldenrodDeptStore5F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodDeptStore5F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPT_STORE_6F_JOHTO",
+      "name": "GoldenrodDeptStore6F_Johto_Layout",
+      "width": 16,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_MartJohto",
+      "border_filepath": "data/layouts/GoldenrodDeptStore6F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodDeptStore6F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPT_STORE_B1F_JOHTO",
+      "name": "GoldenrodDeptStoreB1F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_UndergroundDungeonJohto",
+      "border_filepath": "data/layouts/GoldenrodDeptStoreB1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodDeptStoreB1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPT_STORE_ELEVATOR_JOHTO",
+      "name": "GoldenrodDeptStoreElevator_Johto_Layout",
+      "width": 4,
+      "height": 4,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_MartJohto",
+      "border_filepath": "data/layouts/GoldenrodDeptStoreElevator_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodDeptStoreElevator_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_DEPT_STORE_ROOF_JOHTO",
+      "name": "GoldenrodDeptStoreRoof_Johto_Layout",
+      "width": 16,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_MartJohto",
+      "border_filepath": "data/layouts/GoldenrodDeptStoreRoof_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodDeptStoreRoof_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_FLOWER_SHOP_JOHTO",
+      "name": "GoldenrodFlowerShop_Johto_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_HouseJohto",
+      "border_filepath": "data/layouts/GoldenrodFlowerShop_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodFlowerShop_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_GAME_CORNER_JOHTO",
+      "name": "GoldenrodGameCorner_Johto_Layout",
+      "width": 20,
+      "height": 14,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_GameCornerJohto",
+      "border_filepath": "data/layouts/GoldenrodGameCorner_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodGameCorner_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_GYM_JOHTO",
+      "name": "GoldenrodGym_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EliteFourRoomIndoorJohto",
+      "border_filepath": "data/layouts/GoldenrodGym_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodGym_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_MAGNET_TRAIN_STATION_JOHTO",
+      "name": "GoldenrodMagnetTrainStation_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TrainStationJohto",
+      "border_filepath": "data/layouts/GoldenrodMagnetTrainStation_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodMagnetTrainStation_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_UNDERGROUND_JOHTO",
+      "name": "GoldenrodUnderground_Johto_Layout",
+      "width": 30,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_GateDungeonJohto",
+      "border_filepath": "data/layouts/GoldenrodUnderground_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodUnderground_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_JOHTO",
+      "name": "GoldenrodUndergroundSwitchRoomEntrances_Johto_Layout",
+      "width": 30,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EliteFourRoomDungeonJohto",
+      "border_filepath": "data/layouts/GoldenrodUndergroundSwitchRoomEntrances_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodUndergroundSwitchRoomEntrances_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_UNDERGROUND_WAREHOUSE_JOHTO",
+      "name": "GoldenrodUndergroundWarehouse_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_UndergroundDungeonJohto",
+      "border_filepath": "data/layouts/GoldenrodUndergroundWarehouse_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodUndergroundWarehouse_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ICE_PATH_1F_JOHTO",
+      "name": "IcePath1F_Johto_Layout",
+      "width": 40,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_IcePathJohto",
+      "border_filepath": "data/layouts/IcePath1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/IcePath1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ICE_PATH_B1F_JOHTO",
+      "name": "IcePathB1F_Johto_Layout",
+      "width": 20,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_IcePathJohto",
+      "border_filepath": "data/layouts/IcePathB1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/IcePathB1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ICE_PATH_B2F_BLACKTHORN_SIDE_JOHTO",
+      "name": "IcePathB2FBlackthornSide_Johto_Layout",
+      "width": 10,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_IcePathJohto",
+      "border_filepath": "data/layouts/IcePathB2FBlackthornSide_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/IcePathB2FBlackthornSide_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ICE_PATH_B2F_MAHOGANY_SIDE_JOHTO",
+      "name": "IcePathB2FMahoganySide_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_IcePathJohto",
+      "border_filepath": "data/layouts/IcePathB2FMahoganySide_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/IcePathB2FMahoganySide_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ICE_PATH_B3F_JOHTO",
+      "name": "IcePathB3F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_IcePathJohto",
+      "border_filepath": "data/layouts/IcePathB3F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/IcePathB3F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ILEX_FOREST_JOHTO",
+      "name": "IlexForest_Johto_Layout",
+      "width": 30,
+      "height": 54,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_ForestJohto",
+      "border_filepath": "data/layouts/IlexForest_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/IlexForest_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ILEX_FOREST_AZALEA_GATE_JOHTO",
+      "name": "IlexForestAzaleaGate_Johto_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_GateIndoorJohto",
+      "border_filepath": "data/layouts/IlexForestAzaleaGate_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/IlexForestAzaleaGate_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_KURTS_HOUSE_JOHTO",
+      "name": "KurtsHouse_Johto_Layout",
+      "width": 16,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TraditionalHouseJohto",
+      "border_filepath": "data/layouts/KurtsHouse_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/KurtsHouse_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_LAKE_OF_RAGE_JOHTO",
+      "name": "LakeOfRage_Johto_Layout",
+      "width": 40,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoLakeofrage",
+      "border_filepath": "data/layouts/LakeOfRage_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/LakeOfRage_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_MAHOGANY_GYM_JOHTO",
+      "name": "MahoganyGym_Johto_Layout",
+      "width": 10,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EliteFourRoomIndoorJohto",
+      "border_filepath": "data/layouts/MahoganyGym_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/MahoganyGym_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_MAHOGANY_MART_1F_JOHTO",
+      "name": "MahoganyMart1F_Johto_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TraditionalHouseJohto",
+      "border_filepath": "data/layouts/MahoganyMart1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/MahoganyMart1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_MAHOGANY_TOWN_JOHTO",
+      "name": "MahoganyTown_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoMahogany",
+      "border_filepath": "data/layouts/MahoganyTown_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/MahoganyTown_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOUNT_MORTAR_1F_INSIDE_JOHTO",
+      "name": "MountMortar1FInside_Johto_Layout",
+      "width": 40,
+      "height": 54,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_DarkCaveJohto",
+      "border_filepath": "data/layouts/MountMortar1FInside_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/MountMortar1FInside_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOUNT_MORTAR_1F_OUTSIDE_JOHTO",
+      "name": "MountMortar1FOutside_Johto_Layout",
+      "width": 40,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_DarkCaveJohto",
+      "border_filepath": "data/layouts/MountMortar1FOutside_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/MountMortar1FOutside_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOUNT_MORTAR_2F_INSIDE_JOHTO",
+      "name": "MountMortar2FInside_Johto_Layout",
+      "width": 40,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_DarkCaveJohto",
+      "border_filepath": "data/layouts/MountMortar2FInside_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/MountMortar2FInside_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOUNT_MORTAR_B1F_JOHTO",
+      "name": "MountMortarB1F_Johto_Layout",
+      "width": 40,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_DarkCaveJohto",
+      "border_filepath": "data/layouts/MountMortarB1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/MountMortarB1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_MR_POKEMONS_HOUSE_JOHTO",
+      "name": "MrPokemonsHouse_Johto_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_FacilityIndoorJohto",
+      "border_filepath": "data/layouts/MrPokemonsHouse_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/MrPokemonsHouse_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_NATIONAL_PARK_JOHTO",
+      "name": "NationalPark_Johto_Layout",
+      "width": 40,
+      "height": 54,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_ParkJohto",
+      "border_filepath": "data/layouts/NationalPark_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/NationalPark_Johto/map.bin"
+    },
+    {
       "id": "LAYOUT_NEW_BARK_TOWN_JOHTO",
       "name": "NewBarkTown_Johto_Layout",
       "width": 20,
@@ -8190,6 +8820,906 @@
       "secondary_tileset": "gTileset_JohtoNewbark",
       "border_filepath": "data/layouts/NewBarkTown_Johto/border.bin",
       "blockdata_filepath": "data/layouts/NewBarkTown_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_OLIVINE_CAFE_JOHTO",
+      "name": "OlivineCafe_Johto_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_GameCornerJohto",
+      "border_filepath": "data/layouts/OlivineCafe_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/OlivineCafe_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_OLIVINE_CITY_JOHTO",
+      "name": "OlivineCity_Johto_Layout",
+      "width": 40,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoOlivine",
+      "border_filepath": "data/layouts/OlivineCity_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/OlivineCity_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_OLIVINE_GYM_JOHTO",
+      "name": "OlivineGym_Johto_Layout",
+      "width": 10,
+      "height": 16,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_ChampionsRoomJohto",
+      "border_filepath": "data/layouts/OlivineGym_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/OlivineGym_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_OLIVINE_LIGHTHOUSE_1F_JOHTO",
+      "name": "OlivineLighthouse1F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_LighthouseJohto",
+      "border_filepath": "data/layouts/OlivineLighthouse1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/OlivineLighthouse1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_OLIVINE_LIGHTHOUSE_2F_JOHTO",
+      "name": "OlivineLighthouse2F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_LighthouseJohto",
+      "border_filepath": "data/layouts/OlivineLighthouse2F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/OlivineLighthouse2F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_OLIVINE_LIGHTHOUSE_3F_JOHTO",
+      "name": "OlivineLighthouse3F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_LighthouseJohto",
+      "border_filepath": "data/layouts/OlivineLighthouse3F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/OlivineLighthouse3F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_OLIVINE_LIGHTHOUSE_4F_JOHTO",
+      "name": "OlivineLighthouse4F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_LighthouseJohto",
+      "border_filepath": "data/layouts/OlivineLighthouse4F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/OlivineLighthouse4F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_OLIVINE_LIGHTHOUSE_5F_JOHTO",
+      "name": "OlivineLighthouse5F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_LighthouseJohto",
+      "border_filepath": "data/layouts/OlivineLighthouse5F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/OlivineLighthouse5F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_OLIVINE_LIGHTHOUSE_6F_JOHTO",
+      "name": "OlivineLighthouse6F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_LighthouseJohto",
+      "border_filepath": "data/layouts/OlivineLighthouse6F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/OlivineLighthouse6F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_OLIVINE_PORT_JOHTO",
+      "name": "OlivinePort_Johto_Layout",
+      "width": 20,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_PortJohto",
+      "border_filepath": "data/layouts/OlivinePort_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/OlivinePort_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_OLIVINE_PORT_PASSAGE_JOHTO",
+      "name": "OlivinePortPassage_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_UndergroundIndoorJohto",
+      "border_filepath": "data/layouts/OlivinePortPassage_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/OlivinePortPassage_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_PLAYERS_HOUSE_1F_JOHTO",
+      "name": "PlayersHouse1F_Johto_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_PlayersHouseJohto",
+      "border_filepath": "data/layouts/PlayersHouse1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/PlayersHouse1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_PLAYERS_HOUSE_2F_JOHTO",
+      "name": "PlayersHouse2F_Johto_Layout",
+      "width": 8,
+      "height": 6,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_PlayersRoomJohto",
+      "border_filepath": "data/layouts/PlayersHouse2F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/PlayersHouse2F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_RADIO_TOWER_1F_JOHTO",
+      "name": "RadioTower1F_Johto_Layout",
+      "width": 18,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_RadioTowerJohto",
+      "border_filepath": "data/layouts/RadioTower1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/RadioTower1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_RADIO_TOWER_2F_JOHTO",
+      "name": "RadioTower2F_Johto_Layout",
+      "width": 18,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_RadioTowerJohto",
+      "border_filepath": "data/layouts/RadioTower2F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/RadioTower2F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_RADIO_TOWER_3F_JOHTO",
+      "name": "RadioTower3F_Johto_Layout",
+      "width": 18,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_RadioTowerJohto",
+      "border_filepath": "data/layouts/RadioTower3F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/RadioTower3F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_RADIO_TOWER_4F_JOHTO",
+      "name": "RadioTower4F_Johto_Layout",
+      "width": 18,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_RadioTowerJohto",
+      "border_filepath": "data/layouts/RadioTower4F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/RadioTower4F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_RADIO_TOWER_5F_JOHTO",
+      "name": "RadioTower5F_Johto_Layout",
+      "width": 18,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_RadioTowerJohto",
+      "border_filepath": "data/layouts/RadioTower5F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/RadioTower5F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_26_JOHTO",
+      "name": "Route26_Johto_Layout",
+      "width": 20,
+      "height": 108,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoNewbark",
+      "border_filepath": "data/layouts/Route26_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route26_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_27_JOHTO",
+      "name": "Route27_Johto_Layout",
+      "width": 80,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoNewbark",
+      "border_filepath": "data/layouts/Route27_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route27_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_28_JOHTO",
+      "name": "Route28_Johto_Layout",
+      "width": 40,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_KantoJohto",
+      "border_filepath": "data/layouts/Route28_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route28_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_29_JOHTO",
+      "name": "Route29_Johto_Layout",
+      "width": 60,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoNewbark",
+      "border_filepath": "data/layouts/Route29_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route29_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_29_ROUTE_46_GATE_JOHTO",
+      "name": "Route29Route46Gate_Johto_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_GateIndoorJohto",
+      "border_filepath": "data/layouts/Route29Route46Gate_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route29Route46Gate_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_30_JOHTO",
+      "name": "Route30_Johto_Layout",
+      "width": 20,
+      "height": 54,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoCherrygrove",
+      "border_filepath": "data/layouts/Route30_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route30_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_31_JOHTO",
+      "name": "Route31_Johto_Layout",
+      "width": 40,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoCherrygrove",
+      "border_filepath": "data/layouts/Route31_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route31_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_32_JOHTO",
+      "name": "Route32_Johto_Layout",
+      "width": 20,
+      "height": 90,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoViolet",
+      "border_filepath": "data/layouts/Route32_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route32_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_33_JOHTO",
+      "name": "Route33_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoModernAzalea",
+      "border_filepath": "data/layouts/Route33_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route33_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_34_JOHTO",
+      "name": "Route34_Johto_Layout",
+      "width": 20,
+      "height": 54,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoModernGoldenrod",
+      "border_filepath": "data/layouts/Route34_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route34_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_35_JOHTO",
+      "name": "Route35_Johto_Layout",
+      "width": 20,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoViolet",
+      "border_filepath": "data/layouts/Route35_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route35_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_35_NATIONAL_PARK_GATE_JOHTO",
+      "name": "Route35NationalParkGate_Johto_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_GateIndoorJohto",
+      "border_filepath": "data/layouts/Route35NationalParkGate_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route35NationalParkGate_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_36_JOHTO",
+      "name": "Route36_Johto_Layout",
+      "width": 60,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoViolet",
+      "border_filepath": "data/layouts/Route36_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route36_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_36_NATIONAL_PARK_GATE_JOHTO",
+      "name": "Route36NationalParkGate_Johto_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_GateIndoorJohto",
+      "border_filepath": "data/layouts/Route36NationalParkGate_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route36NationalParkGate_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_37_JOHTO",
+      "name": "Route37_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoViolet",
+      "border_filepath": "data/layouts/Route37_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route37_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_38_JOHTO",
+      "name": "Route38_Johto_Layout",
+      "width": 40,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoOlivine",
+      "border_filepath": "data/layouts/Route38_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route38_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_39_JOHTO",
+      "name": "Route39_Johto_Layout",
+      "width": 20,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoOlivine",
+      "border_filepath": "data/layouts/Route39_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route39_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_39_BARN_JOHTO",
+      "name": "Route39Barn_Johto_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TraditionalHouseJohto",
+      "border_filepath": "data/layouts/Route39Barn_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route39Barn_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_40_JOHTO",
+      "name": "Route40_Johto_Layout",
+      "width": 20,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoCianwood",
+      "border_filepath": "data/layouts/Route40_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route40_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_41_JOHTO",
+      "name": "Route41_Johto_Layout",
+      "width": 50,
+      "height": 54,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoCianwood",
+      "border_filepath": "data/layouts/Route41_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route41_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_42_JOHTO",
+      "name": "Route42_Johto_Layout",
+      "width": 60,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoMahogany",
+      "border_filepath": "data/layouts/Route42_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route42_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_43_JOHTO",
+      "name": "Route43_Johto_Layout",
+      "width": 20,
+      "height": 54,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoLakeofrage",
+      "border_filepath": "data/layouts/Route43_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route43_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_44_JOHTO",
+      "name": "Route44_Johto_Layout",
+      "width": 60,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoMahogany",
+      "border_filepath": "data/layouts/Route44_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route44_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_45_JOHTO",
+      "name": "Route45_Johto_Layout",
+      "width": 20,
+      "height": 90,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoBlackthorn",
+      "border_filepath": "data/layouts/Route45_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route45_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_46_JOHTO",
+      "name": "Route46_Johto_Layout",
+      "width": 20,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoBlackthorn",
+      "border_filepath": "data/layouts/Route46_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/Route46_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_CHAMBER_JOHTO",
+      "name": "RuinsOfAlphAerodactylChamber_Johto_Layout",
+      "width": 8,
+      "height": 10,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_RuinsOfAlphJohto",
+      "border_filepath": "data/layouts/RuinsOfAlphAerodactylChamber_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/RuinsOfAlphAerodactylChamber_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM_JOHTO",
+      "name": "RuinsOfAlphAerodactylItemRoom_Johto_Layout",
+      "width": 8,
+      "height": 10,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_RuinsOfAlphJohto",
+      "border_filepath": "data/layouts/RuinsOfAlphAerodactylItemRoom_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/RuinsOfAlphAerodactylItemRoom_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUINS_OF_ALPH_AERODACTYL_WORD_ROOM_JOHTO",
+      "name": "RuinsOfAlphAerodactylWordRoom_Johto_Layout",
+      "width": 20,
+      "height": 14,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_AerodactylWordRoomJohto",
+      "border_filepath": "data/layouts/RuinsOfAlphAerodactylWordRoom_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/RuinsOfAlphAerodactylWordRoom_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUINS_OF_ALPH_HO_OH_WORD_ROOM_JOHTO",
+      "name": "RuinsOfAlphHoOhWordRoom_Johto_Layout",
+      "width": 20,
+      "height": 24,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_HoOhWordRoomJohto",
+      "border_filepath": "data/layouts/RuinsOfAlphHoOhWordRoom_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/RuinsOfAlphHoOhWordRoom_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUINS_OF_ALPH_INNER_CHAMBER_JOHTO",
+      "name": "RuinsOfAlphInnerChamber_Johto_Layout",
+      "width": 20,
+      "height": 28,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_RuinsOfAlphJohto",
+      "border_filepath": "data/layouts/RuinsOfAlphInnerChamber_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/RuinsOfAlphInnerChamber_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUINS_OF_ALPH_KABUTO_WORD_ROOM_JOHTO",
+      "name": "RuinsOfAlphKabutoWordRoom_Johto_Layout",
+      "width": 20,
+      "height": 14,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_KabutoWordRoomJohto",
+      "border_filepath": "data/layouts/RuinsOfAlphKabutoWordRoom_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/RuinsOfAlphKabutoWordRoom_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUINS_OF_ALPH_OMANYTE_WORD_ROOM_JOHTO",
+      "name": "RuinsOfAlphOmanyteWordRoom_Johto_Layout",
+      "width": 20,
+      "height": 16,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_OmanyteWordRoomJohto",
+      "border_filepath": "data/layouts/RuinsOfAlphOmanyteWordRoom_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/RuinsOfAlphOmanyteWordRoom_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUINS_OF_ALPH_OUTSIDE_JOHTO",
+      "name": "RuinsOfAlphOutside_Johto_Layout",
+      "width": 20,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoDungeons",
+      "border_filepath": "data/layouts/RuinsOfAlphOutside_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/RuinsOfAlphOutside_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUINS_OF_ALPH_RESEARCH_CENTER_JOHTO",
+      "name": "RuinsOfAlphResearchCenter_Johto_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_FacilityIndoorJohto",
+      "border_filepath": "data/layouts/RuinsOfAlphResearchCenter_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/RuinsOfAlphResearchCenter_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_SILVER_CAVE_ITEM_ROOMS_JOHTO",
+      "name": "SilverCaveItemRooms_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CaveJohto",
+      "border_filepath": "data/layouts/SilverCaveItemRooms_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/SilverCaveItemRooms_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_SILVER_CAVE_OUTSIDE_JOHTO",
+      "name": "SilverCaveOutside_Johto_Layout",
+      "width": 40,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_KantoJohto",
+      "border_filepath": "data/layouts/SilverCaveOutside_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/SilverCaveOutside_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_SILVER_CAVE_ROOM_1_JOHTO",
+      "name": "SilverCaveRoom1_Johto_Layout",
+      "width": 20,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_DarkCaveJohto",
+      "border_filepath": "data/layouts/SilverCaveRoom1_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/SilverCaveRoom1_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_SILVER_CAVE_ROOM_2_JOHTO",
+      "name": "SilverCaveRoom2_Johto_Layout",
+      "width": 30,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CaveJohto",
+      "border_filepath": "data/layouts/SilverCaveRoom2_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/SilverCaveRoom2_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_SILVER_CAVE_ROOM_3_JOHTO",
+      "name": "SilverCaveRoom3_Johto_Layout",
+      "width": 20,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CaveJohto",
+      "border_filepath": "data/layouts/SilverCaveRoom3_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/SilverCaveRoom3_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_SLOWPOKE_WELL_B1F_JOHTO",
+      "name": "SlowpokeWellB1F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CaveJohto",
+      "border_filepath": "data/layouts/SlowpokeWellB1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/SlowpokeWellB1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_SLOWPOKE_WELL_B2F_JOHTO",
+      "name": "SlowpokeWellB2F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CaveJohto",
+      "border_filepath": "data/layouts/SlowpokeWellB2F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/SlowpokeWellB2F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_SPROUT_TOWER_1F_JOHTO",
+      "name": "SproutTower1F_Johto_Layout",
+      "width": 20,
+      "height": 16,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerDungeonJohto",
+      "border_filepath": "data/layouts/SproutTower1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/SproutTower1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_SPROUT_TOWER_2F_JOHTO",
+      "name": "SproutTower2F_Johto_Layout",
+      "width": 20,
+      "height": 16,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerDungeonJohto",
+      "border_filepath": "data/layouts/SproutTower2F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/SproutTower2F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_SPROUT_TOWER_3F_JOHTO",
+      "name": "SproutTower3F_Johto_Layout",
+      "width": 20,
+      "height": 16,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerDungeonJohto",
+      "border_filepath": "data/layouts/SproutTower3F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/SproutTower3F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEAM_ROCKET_BASE_B1F_JOHTO",
+      "name": "TeamRocketBaseB1F_Johto_Layout",
+      "width": 30,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_UndergroundDungeonJohto",
+      "border_filepath": "data/layouts/TeamRocketBaseB1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/TeamRocketBaseB1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEAM_ROCKET_BASE_B2F_JOHTO",
+      "name": "TeamRocketBaseB2F_Johto_Layout",
+      "width": 30,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_FacilityDungeonJohto",
+      "border_filepath": "data/layouts/TeamRocketBaseB2F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/TeamRocketBaseB2F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEAM_ROCKET_BASE_B3F_JOHTO",
+      "name": "TeamRocketBaseB3F_Johto_Layout",
+      "width": 30,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_FacilityDungeonJohto",
+      "border_filepath": "data/layouts/TeamRocketBaseB3F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/TeamRocketBaseB3F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_1F_JOHTO",
+      "name": "TinTower1F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerDungeonJohto",
+      "border_filepath": "data/layouts/TinTower1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/TinTower1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_2F_JOHTO",
+      "name": "TinTower2F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerDungeonJohto",
+      "border_filepath": "data/layouts/TinTower2F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/TinTower2F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_3F_JOHTO",
+      "name": "TinTower3F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerDungeonJohto",
+      "border_filepath": "data/layouts/TinTower3F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/TinTower3F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_4F_JOHTO",
+      "name": "TinTower4F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerDungeonJohto",
+      "border_filepath": "data/layouts/TinTower4F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/TinTower4F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_5F_JOHTO",
+      "name": "TinTower5F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerDungeonJohto",
+      "border_filepath": "data/layouts/TinTower5F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/TinTower5F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_6F_JOHTO",
+      "name": "TinTower6F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerDungeonJohto",
+      "border_filepath": "data/layouts/TinTower6F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/TinTower6F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_7F_JOHTO",
+      "name": "TinTower7F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerDungeonJohto",
+      "border_filepath": "data/layouts/TinTower7F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/TinTower7F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_8F_JOHTO",
+      "name": "TinTower8F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerDungeonJohto",
+      "border_filepath": "data/layouts/TinTower8F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/TinTower8F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_9F_JOHTO",
+      "name": "TinTower9F_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerDungeonJohto",
+      "border_filepath": "data/layouts/TinTower9F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/TinTower9F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_ROOF_JOHTO",
+      "name": "TinTowerRoof_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TowerFastshipJohto",
+      "border_filepath": "data/layouts/TinTowerRoof_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/TinTowerRoof_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_TOHJO_FALLS_JOHTO",
+      "name": "TohjoFalls_Johto_Layout",
+      "width": 30,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CaveJohto",
+      "border_filepath": "data/layouts/TohjoFalls_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/TohjoFalls_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNION_CAVE_1F_JOHTO",
+      "name": "UnionCave1F_Johto_Layout",
+      "width": 20,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CaveJohto",
+      "border_filepath": "data/layouts/UnionCave1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/UnionCave1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNION_CAVE_B1F_JOHTO",
+      "name": "UnionCaveB1F_Johto_Layout",
+      "width": 20,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CaveJohto",
+      "border_filepath": "data/layouts/UnionCaveB1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/UnionCaveB1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNION_CAVE_B2F_JOHTO",
+      "name": "UnionCaveB2F_Johto_Layout",
+      "width": 20,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CaveJohto",
+      "border_filepath": "data/layouts/UnionCaveB2F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/UnionCaveB2F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_VIOLET_CITY_JOHTO",
+      "name": "VioletCity_Johto_Layout",
+      "width": 40,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_JohtoViolet",
+      "border_filepath": "data/layouts/VioletCity_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/VioletCity_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_VIOLET_GYM_JOHTO",
+      "name": "VioletGym_Johto_Layout",
+      "width": 10,
+      "height": 16,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EliteFourRoomIndoorJohto",
+      "border_filepath": "data/layouts/VioletGym_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/VioletGym_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_WHIRL_ISLAND_B1F_JOHTO",
+      "name": "WhirlIslandB1F_Johto_Layout",
+      "width": 40,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_DarkCaveJohto",
+      "border_filepath": "data/layouts/WhirlIslandB1F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/WhirlIslandB1F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_WHIRL_ISLAND_B2F_JOHTO",
+      "name": "WhirlIslandB2F_Johto_Layout",
+      "width": 20,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_DarkCaveJohto",
+      "border_filepath": "data/layouts/WhirlIslandB2F_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/WhirlIslandB2F_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_WHIRL_ISLAND_CAVE_JOHTO",
+      "name": "WhirlIslandCave_Johto_Layout",
+      "width": 10,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_DarkCaveJohto",
+      "border_filepath": "data/layouts/WhirlIslandCave_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/WhirlIslandCave_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_WHIRL_ISLAND_LUGIA_CHAMBER_JOHTO",
+      "name": "WhirlIslandLugiaChamber_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_DarkCaveJohto",
+      "border_filepath": "data/layouts/WhirlIslandLugiaChamber_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/WhirlIslandLugiaChamber_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_WHIRL_ISLAND_NE_JOHTO",
+      "name": "WhirlIslandNE_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_DarkCaveJohto",
+      "border_filepath": "data/layouts/WhirlIslandNE_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/WhirlIslandNE_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_WHIRL_ISLAND_NW_JOHTO",
+      "name": "WhirlIslandNW_Johto_Layout",
+      "width": 10,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_DarkCaveJohto",
+      "border_filepath": "data/layouts/WhirlIslandNW_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/WhirlIslandNW_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_WHIRL_ISLAND_SE_JOHTO",
+      "name": "WhirlIslandSE_Johto_Layout",
+      "width": 10,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_DarkCaveJohto",
+      "border_filepath": "data/layouts/WhirlIslandSE_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/WhirlIslandSE_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_WHIRL_ISLAND_SW_JOHTO",
+      "name": "WhirlIslandSW_Johto_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_DarkCaveJohto",
+      "border_filepath": "data/layouts/WhirlIslandSW_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/WhirlIslandSW_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_WISE_TRIOS_ROOM_JOHTO",
+      "name": "WiseTriosRoom_Johto_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_TraditionalHouseJohto",
+      "border_filepath": "data/layouts/WiseTriosRoom_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/WiseTriosRoom_Johto/map.bin"
     }
   ]
 }

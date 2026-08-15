@@ -1,0 +1,56 @@
+{
+  "id": "MAP_ECRUTEAK_TIN_TOWER_ENTRANCE",
+  "name": "EcruteakTinTowerEntrance",
+  "layout": "LAYOUT_ECRUTEAK_TIN_TOWER_ENTRANCE_JOHTO",
+  "music": "MUS_LITTLEROOT",
+  "region_map_section": "MAPSEC_SPECIAL_AREA",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 4,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_CITY",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 5,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_CITY",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 5,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_TIN_TOWER_ENTRANCE",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 17,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_TIN_TOWER_ENTRANCE",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 17,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_WISE_TRIOS_ROOM",
+      "dest_warp_id": "2"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

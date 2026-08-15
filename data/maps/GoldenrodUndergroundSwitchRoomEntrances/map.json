@@ -1,0 +1,84 @@
+{
+  "id": "MAP_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES",
+  "name": "GoldenrodUndergroundSwitchRoomEntrances",
+  "layout": "LAYOUT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_JOHTO",
+  "music": "MUS_LITTLEROOT",
+  "region_map_section": "MAPSEC_SPECIAL_AREA",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 23,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_UNDERGROUND",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 22,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_UNDERGROUND_WAREHOUSE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 23,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_UNDERGROUND_WAREHOUSE",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 5,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_UNDERGROUND",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 4,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_CITY",
+      "dest_warp_id": "13"
+    },
+    {
+      "x": 5,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_CITY",
+      "dest_warp_id": "13"
+    },
+    {
+      "x": 21,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_UNDERGROUND",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 20,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_CITY",
+      "dest_warp_id": "12"
+    },
+    {
+      "x": 21,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_CITY",
+      "dest_warp_id": "12"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

@@ -1,0 +1,67 @@
+{
+  "id": "MAP_ROUTE_34",
+  "name": "Route34",
+  "layout": "LAYOUT_ROUTE_34_JOHTO",
+  "music": "MUS_LITTLEROOT",
+  "region_map_section": "MAPSEC_SPECIAL_AREA",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_GOLDENROD_CITY",
+      "offset": -10,
+      "direction": "up"
+    },
+    {
+      "map": "MAP_AZALEA_TOWN",
+      "offset": 36,
+      "direction": "right"
+    }
+  ],
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 13,
+      "y": 37,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_34_ILEX_FOREST_GATE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 14,
+      "y": 37,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_34_ILEX_FOREST_GATE",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 11,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_DAY_CARE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 11,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_DAY_CARE",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 13,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_DAY_CARE",
+      "dest_warp_id": "2"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

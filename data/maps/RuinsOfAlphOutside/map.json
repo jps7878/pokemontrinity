@@ -1,0 +1,98 @@
+{
+  "id": "MAP_RUINS_OF_ALPH_OUTSIDE",
+  "name": "RuinsOfAlphOutside",
+  "layout": "LAYOUT_RUINS_OF_ALPH_OUTSIDE_JOHTO",
+  "music": "MUS_LITTLEROOT",
+  "region_map_section": "MAPSEC_SPECIAL_AREA",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 2,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_HO_OH_CHAMBER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 14,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_KABUTO_CHAMBER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 2,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_OMANYTE_CHAMBER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 16,
+      "y": 33,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 10,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 17,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_RESEARCH_CENTER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 6,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_UNION_CAVE_B1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 6,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_UNION_CAVE_B1F",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 7,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_36_RUINS_OF_ALPH_GATE",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 13,
+      "y": 20,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_32_RUINS_OF_ALPH_GATE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 13,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_32_RUINS_OF_ALPH_GATE",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

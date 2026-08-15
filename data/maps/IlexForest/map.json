@@ -1,0 +1,42 @@
+{
+  "id": "MAP_ILEX_FOREST",
+  "name": "IlexForest",
+  "layout": "LAYOUT_ILEX_FOREST_JOHTO",
+  "music": "MUS_LITTLEROOT",
+  "region_map_section": "MAPSEC_SPECIAL_AREA",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 1,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_34_ILEX_FOREST_GATE",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 3,
+      "y": 42,
+      "elevation": 0,
+      "dest_map": "MAP_ILEX_FOREST_AZALEA_GATE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 3,
+      "y": 43,
+      "elevation": 0,
+      "dest_map": "MAP_ILEX_FOREST_AZALEA_GATE",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}
