@@ -22,7 +22,11 @@ GoldenrodDeptStore1F_EventScript_Directory::
 	end
 
 GoldenrodDeptStore1F_Text_Receptionist:
-	.string "Welcome to GOLDEN-\nROD DEPT.STORE.$"
+	.string "Welcome to GOLDENROD\n"
+	.string "DEPT.STORE.\p"
+	.string "The directory is on the wall.\n"
+	.string "5F has a new tenant this\l"
+	.string "season -- do brace yourself.$"
 
 GoldenrodDeptStore1F_Text_PokefanF:
 	.string "I'm raring to shop\nagain today!$"

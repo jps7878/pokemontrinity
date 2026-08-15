@@ -41,8 +41,22 @@ GoldenrodBikeShop_EventScript_Bicycle_9::
 	msgbox GoldenrodBikeShop_Text_Bicycle_9, MSGBOX_SIGN
 	end
 
+@ Trinity M4b S4 -- cameo only. GSC's clerk LENDS you a bicycle in exchange
+@ for advertising it (GoldenrodBikeShopClerkIntroText); the Act II player
+@ arrived from HOENN with one, so the pitch is dead on arrival and he knows it.
 GoldenrodBikeShop_Text_Clerk:
-	.string "I've been wandering these routes\nfor years. Lately there's talk of\lnothing but the HOENN champion.$"
+	.string "…sigh… I moved here, but I\n"
+	.string "can't sell my BICYCLES. Why is\l"
+	.string "that?\p"
+	.string "My plan was to lend one to a\n"
+	.string "promising trainer. Free. Just\l"
+	.string "ride it where people can see--\p"
+	.string "…You already have one.\p"
+	.string "Of course you do. HOENN frame.\n"
+	.string "Folds, doesn't it. Look at it.\p"
+	.string "Buy a second one. Nobody has\n"
+	.string "ever needed a second BICYCLE.\l"
+	.string "That has never stopped anyone.$"
 
 GoldenrodBikeShop_Text_Bicycle:
 	.string "It's a shiny new\nBICYCLE!$"

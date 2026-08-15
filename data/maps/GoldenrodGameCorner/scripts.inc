@@ -1,6 +1,12 @@
 GoldenrodGameCorner_MapScripts::
 	.byte 0
 
+@ Trinity M4b S4: the duplicate PHARMACIST was deleted here -- M4a's population
+@ run emitted TWO objects on (8,7) with identical sprite, movement and text
+@ (…_EventScript_Pharmacist and …_EventScript_Pharmacist_2). The second object,
+@ its script and its text string are gone; the survivor keeps the tile. Nothing
+@ on this map names a local id, so the shift of the objects after it is inert.
+
 GoldenrodGameCorner_EventScript_CoinVendor::
 	msgbox GoldenrodGameCorner_Text_CoinVendor, MSGBOX_NPC
 	end
@@ -15,10 +21,6 @@ GoldenrodGameCorner_EventScript_PrizeMonVendor::
 
 GoldenrodGameCorner_EventScript_Pharmacist::
 	msgbox GoldenrodGameCorner_Text_Pharmacist, MSGBOX_NPC
-	end
-
-GoldenrodGameCorner_EventScript_Pharmacist_2::
-	msgbox GoldenrodGameCorner_Text_Pharmacist_2, MSGBOX_NPC
 	end
 
 GoldenrodGameCorner_EventScript_PokefanM1::
@@ -46,34 +48,53 @@ GoldenrodGameCorner_EventScript_PokefanM2::
 	end
 
 GoldenrodGameCorner_Text_CoinVendor:
-	.string "They say the HOENN champion's\njourney is just getting started.\lWonder where they'll go next.$"
+	.string "COIN exchange, right here!\p"
+	.string "The GAME CORNER is a licensed\n"
+	.string "amusement facility of GOLDENROD\l"
+	.string "CITY. It says so on the wall.$"
 
 GoldenrodGameCorner_Text_TMVendor:
-	.string "JOHTO's changed a lot since the\nHOENN champion opened the sea\lroutes here.$"
+	.string "TM prizes, this counter.\p"
+	.string "Some of these you will not find\n"
+	.string "in a MART. Not in HOENN either,\l"
+	.string "before you ask.$"
 
 GoldenrodGameCorner_Text_PrizeMonVendor:
-	.string "Word is a strong trainer crossed\nthe sea from HOENN. I wonder if\lthey'll pass through JOHTO too.$"
+	.string "POKéMON prizes here!\p"
+	.string "People come in for one and\n"
+	.string "leave four hours later with a\l"
+	.string "cup of coins and no POKéMON.$"
 
 GoldenrodGameCorner_Text_Pharmacist:
-	.string "I've been wandering these routes\nfor years. Lately there's talk of\lnothing but the HOENN champion.$"
-
-GoldenrodGameCorner_Text_Pharmacist_2:
-	.string "I've been wandering these routes\nfor years. Lately there's talk of\lnothing but the HOENN champion.$"
+	.string "I only came in to get change.\p"
+	.string "That was Tuesday.$"
 
 GoldenrodGameCorner_Text_PokefanM1:
-	.string "This route sure gets more foot\ntraffic now that HOENN trainers\lkeep showing up.$"
+	.string "I always play the machine at\n"
+	.string "the end. It knows me.$"
 
 GoldenrodGameCorner_Text_CooltrainerM:
-	.string "My grandkids won't stop talking\nabout the new champion from over\lin HOENN. Kids these days!$"
+	.string "Watch the reels, not the\n"
+	.string "lights. The lights are for\l"
+	.string "people who are losing.$"
 
 GoldenrodGameCorner_Text_PokefanF:
-	.string "Nothing much happens around here,\nbut ever since that ferry started\lrunning to HOENN, who knows.$"
+	.string "My husband is at the counter\n"
+	.string "asking what a TM costs.\p"
+	.string "He has forty coins.$"
 
 GoldenrodGameCorner_Text_CooltrainerF:
 	.string "I won't quit until\nI win!$"
 
 GoldenrodGameCorner_Text_Gentleman:
-	.string "Nothing much happens around here,\nbut ever since that ferry started\lrunning to HOENN, who knows.$"
+	.string "I set myself a limit before I\n"
+	.string "come in. Then I raise it.\p"
+	.string "The limit is the ritual. The\n"
+	.string "raising is the hobby.$"
 
 GoldenrodGameCorner_Text_PokefanM2:
-	.string "They say the HOENN champion's\njourney is just getting started.\lWonder where they'll go next.$"
+	.string "There's a whole UNDERGROUND\n"
+	.string "beneath this city, you know.\p"
+	.string "They throw people down there\n"
+	.string "when they catch them cheating.\p"
+	.string "…Not literally. I assume.$"

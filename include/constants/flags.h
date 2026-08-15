@@ -85,9 +85,17 @@
 #define FLAG_TRINITY_J_KURT_LURE_BALL    0x3F // Trinity: was FLAG_UNUSED_0x03F — KURT's thank-you LURE BALL handed over. Bag-full retry guard.
 #define FLAG_TRINITY_J_BUGSY_TM19    0x40 // Trinity: was FLAG_UNUSED_0x040 — TM19 GIGA DRAIN handed over by BUGSY. Bag-full retry guard (GYM PATTERN G2): FLAG_TRINITY_BADGE10 is set first and unconditionally.
 #define FLAG_TRINITY_J_AZALEA_APRICORN    0x41 // Trinity: was FLAG_UNUSED_0x041 — AZALEA TOWN's apricorn tree has been picked (one WHITE APRICORN, once)
-#define FLAG_UNUSED_0x042    0x42 // Unused Flag
-#define FLAG_UNUSED_0x043    0x43 // Unused Flag
-#define FLAG_UNUSED_0x044    0x44 // Unused Flag
+// Trinity M4b S4 (the GOLDENROD chapter). The two _PRE_HIDE flags are pure object
+// visibility for the PRE-takeover casts, authored ONLY by each map's ON_TRANSITION
+// off VAR_TRINITY_JOHTO_ARC (single-authority rule). THE S8 FLIP CONTRACT: S8 writes
+// ONE thing -- setvar VAR_TRINITY_JOHTO_ARC, 6 -- and never touches these flags.
+// Predicate on all six maps: visible iff ARC != 6 (the occupation is a WINDOW, not a
+// terminal state -- a liberated tower whose staff stayed deleted forever is worse than
+// the bug that would avoid). S8's Rocket cast gets its OWN flag and appended objects,
+// so no removeobject of S8's can co-sign an S4 civilian into permanent non-existence.
+#define FLAG_TRINITY_J_WHITNEY_TM45    0x42 // Trinity: was FLAG_UNUSED_0x042 — TM45 ATTRACT handed over by WHITNEY. Bag-full retry guard (GYM PATTERN G2): FLAG_TRINITY_BADGE11 is set first and unconditionally.
+#define FLAG_TRINITY_J_GOLDENROD_PRE_HIDE    0x43 // Trinity: was FLAG_UNUSED_0x043 — GOLDENROD CITY's pre-takeover cast (7 civilians + the ROCKET scout) hidden. Visible iff ARC != 6.
+#define FLAG_TRINITY_J_RADIO_TOWER_PRE_HIDE    0x44 // Trinity: was FLAG_UNUSED_0x044 — the RADIO TOWER's pre-takeover cast (17 objects across 1F-5F) hidden. Visible iff ARC != 6. One flag, five maps, one predicate.
 #define FLAG_UNUSED_0x045    0x45 // Unused Flag
 #define FLAG_UNUSED_0x046    0x46 // Unused Flag
 #define FLAG_UNUSED_0x047    0x47 // Unused Flag

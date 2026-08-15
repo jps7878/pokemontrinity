@@ -17,7 +17,12 @@ GoldenrodDeptStore6F_Text_Lass:
 	.string "Do you listen to\nLUCKY CHANNEL?\pIf you want to\nwin, trade POKéMON\pwith as many peo-\nple as possible to\pget different ID\nnumbers.$"
 
 GoldenrodDeptStore6F_Text_SuperNerd:
-	.string "If you're tired,\ntry the vending\lmachine's drinks.\pYour POKéMON will\nlove them too.$"
+	.string "If you're tired, try the vending\n"
+	.string "machine's drinks.\p"
+	.string "Your POKéMON will love them\n"
+	.string "too. FRESH WATER, mostly. Don't\l"
+	.string "look at me like that -- it\l"
+	.string "works.$"
 
 GoldenrodDeptStore6F_Text_Directory:
 	.string "Take a Break from\nShopping!\p6F TRANQUIL SQUARE$"
