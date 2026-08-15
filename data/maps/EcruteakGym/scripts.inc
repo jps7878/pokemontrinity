@@ -1,6 +1,17 @@
 EcruteakGym_MapScripts::
 	.byte 0
 
+@ Trinity M4a Task 7: GSC pit-fall floor. The 30 hole tiles are wired as
+@ coord_events (not setholewarp) because GSC's Ecruteak Gym falls land back
+@ at the gym's own entrance, not at the hole's own x/y on another map.
+EcruteakGym_EventScript_Fall::
+	lockall
+	delay 20
+	playse SE_FALL
+	warp MAP_ECRUTEAK_GYM, 4, 15
+	waitstate
+	end
+
 EcruteakGym_EventScript_JEFFREY::
 	trainerbattle_single TRAINER_JOHTO_SAGE_JEFFREY, EcruteakGym_Text_JEFFREYSeen, EcruteakGym_Text_JEFFREYBeaten
 	msgbox EcruteakGym_Text_JEFFREYBeaten, MSGBOX_AUTOCLOSE

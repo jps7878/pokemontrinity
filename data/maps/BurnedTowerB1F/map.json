@@ -30,13 +30,6 @@
   ],
   "warp_events": [
     {
-      "x": 10,
-      "y": 9,
-      "elevation": 0,
-      "dest_map": "MAP_BURNED_TOWER_1F",
-      "dest_warp_id": "2"
-    },
-    {
       "x": 17,
       "y": 7,
       "elevation": 0,
@@ -69,7 +62,7 @@
       "y": 15,
       "elevation": 0,
       "dest_map": "MAP_BURNED_TOWER_1F",
-      "dest_warp_id": "13"
+      "dest_warp_id": "12"
     }
   ],
   "coord_events": [],
