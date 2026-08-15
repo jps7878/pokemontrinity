@@ -264,8 +264,19 @@
 #define VAR_ROXANNE_CALL_STEP_COUNTER                    0x40F4
 #define VAR_SCOTT_BF_CALL_STEP_COUNTER                   0x40F5
 #define VAR_RIVAL_RAYQUAZA_CALL_STEP_COUNTER             0x40F6
-#define VAR_UNUSED_0x40F7                                0x40F7 // Unused Var
-#define VAR_UNUSED_0x40F8                                0x40F8 // Unused Var
+// Trinity M4b: Act II (Johto) story state. Was VAR_UNUSED_0x40F7.
+//   0  arrived in Johto          1  met PROF.ELM
+//   2  starter stolen (SILVER active)
+//   3  Slowpoke Well cleared     4  Red Gyarados seen
+//   5  Rocket Base cleared       6  Radio Tower occupied (fires at 7 Johto badges)
+//   7  Tower cleared / G revealed   8  Clear Bell granted
+//   9  Suicune caught/beaten    10  Indigo League I cleared
+#define VAR_TRINITY_JOHTO_ARC                            0x40F7
+// Trinity M4b S1 scene scratch (New Bark chapter step machine). Was VAR_UNUSED_0x40F8.
+//   0 Elm not met (SILVER lurks in New Bark)   1 Elm met, theft armed
+//   2 theft done (SILVER waits on Route 29)    3 SILVER 1 beaten (OFFICER in the lab)
+//   4 chapter complete
+#define VAR_TRINITY_JOHTO_SCENE_NEWBARK                  0x40F8
 #define VAR_UNUSED_0x40F9                                0x40F9 // Unused Var
 #define VAR_UNUSED_0x40FA                                0x40FA // Unused Var
 #define VAR_UNUSED_0x40FB                                0x40FB // Unused Var

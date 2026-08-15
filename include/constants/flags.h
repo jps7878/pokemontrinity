@@ -57,13 +57,17 @@
 #define FLAG_TRINITY_BADGE15    0x2B // Trinity: was FLAG_UNUSED_0x02B — Pryce
 #define FLAG_TRINITY_BADGE16    0x2C // Trinity: was FLAG_UNUSED_0x02C — Clair
 #define FLAG_TRINITY_ARRIVED_JOHTO    0x2D // Trinity: was FLAG_UNUSED_0x02D — S.S. TIDAL Johto arrival scene (Olivine Port aide) has run
-#define FLAG_UNUSED_0x02E    0x2E // Unused Flag
-#define FLAG_UNUSED_0x02F    0x2F // Unused Flag
-#define FLAG_UNUSED_0x030    0x30 // Unused Flag
-#define FLAG_UNUSED_0x031    0x31 // Unused Flag
-#define FLAG_UNUSED_0x032    0x32 // Unused Flag
-#define FLAG_UNUSED_0x033    0x33 // Unused Flag
-#define FLAG_UNUSED_0x034    0x34 // Unused Flag
+// Trinity M4b S1 (New Bark & the Silver opener). The four _HIDE flags are pure
+// object visibility, driven from each map's ON_TRANSITION off
+// VAR_TRINITY_JOHTO_SCENE_NEWBARK; the other three are durable story state read
+// by later M4b slices.
+#define FLAG_TRINITY_J_SILVER_NEWBARK_HIDE    0x2E // Trinity: was FLAG_UNUSED_0x02E — New Bark SILVER (lurking outside the lab) hidden
+#define FLAG_TRINITY_J_SILVER_LAB_HIDE    0x2F // Trinity: was FLAG_UNUSED_0x02F — ELM'S LAB SILVER (break-in cutscene actor) hidden
+#define FLAG_TRINITY_J_SILVER_ROUTE29_HIDE    0x30 // Trinity: was FLAG_UNUSED_0x030 — Route 29 SILVER (TRAINER_SILVER_1) hidden
+#define FLAG_TRINITY_J_ELM_OFFICER_HIDE    0x31 // Trinity: was FLAG_UNUSED_0x031 — ELM'S LAB OFFICER (theft report) hidden
+#define FLAG_TRINITY_J_RADIO_CARD    0x32 // Trinity: was FLAG_UNUSED_0x032 — ELM granted the RADIO CARD PokeNav upgrade (flavor only; read by S4/S8 radio beats)
+#define FLAG_TRINITY_J_SILVER1_BEATEN    0x33 // Trinity: was FLAG_UNUSED_0x033 — TRAINER_SILVER_1 (Route 29) defeated
+#define FLAG_TRINITY_J_MRPOKEMON_HOOK    0x34 // Trinity: was FLAG_UNUSED_0x034 — ELM named MR.POKéMON; his Red Scale request is live (S7 pays it off)
 #define FLAG_UNUSED_0x035    0x35 // Unused Flag
 #define FLAG_UNUSED_0x036    0x36 // Unused Flag
 #define FLAG_UNUSED_0x037    0x37 // Unused Flag
