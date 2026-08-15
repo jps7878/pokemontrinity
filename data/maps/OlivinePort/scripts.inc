@@ -18,6 +18,16 @@ OlivinePort_OnFrame:
 	map_script_2 VAR_TEMP_1, 1, OlivinePort_EventScript_AideArrival
 	.2byte 0
 
+@ Trinity M4a fix 2: crystal-faithful pier layout. The player lands at (7,22),
+@ two tiles up the single-tile-wide pier column (x=7) from the SAILOR, who
+@ permanently stands on (7,23) facing up -- deliberately covering the arrow-warp
+@ / self-stub warp tile there (crystal's own OlivinePort parks its gangway
+@ sailor on that exact tile for the same reason). The pier tip (7,24) is south
+@ of him and is unreachable now; that's fine, it's just the gangway edge.
+@ The aide starts at (7,15) (top of the pier, at the plaza) and is a one-shot
+@ cutscene actor: she walks down to greet the player, then walks back and
+@ despawns via removeobject + a permanent hide-flag, so she never blocks the
+@ pier and never respawns.
 OlivinePort_EventScript_AideArrival::
 	lockall
 	setvar VAR_TEMP_1, 0
@@ -26,25 +36,33 @@ OlivinePort_EventScript_AideArrival::
 	msgbox OlivinePort_Text_WelcomeToOlivineCity, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_TRINITY_ARRIVED_JOHTO
+	applymovement LOCALID_OLIVINE_PORT_AIDE, OlivinePort_Movement_AideReturnToStart
+	waitmovement 0
+	removeobject LOCALID_OLIVINE_PORT_AIDE
 	releaseall
 	end
 
-@ Trinity M4a fix: the aide and the player share the same single-tile-wide pier
-@ column (x=7); she starts one tile north of the arrow-warp gangway tile (7,23)
-@ and steps onto it, landing directly adjacent-north of the player's (7,24)
-@ landing spot, already facing down toward them. (NPC applymovement does not
-@ trigger MB_SOUTH_ARROW_WARP -- only player-initiated movement does -- so her
-@ stepping onto (7,23) is inert; the player itself never moves during this scene.)
+@ (7,15) -> (7,21): six tiles down the plain-floor pier column, stopping one
+@ tile north of the player's (7,22) landing spot, already facing down.
 OlivinePort_Movement_AideApproachPlayer:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
 	walk_down
 	step_end
 
-OlivinePort_EventScript_Aide::
-	lock
-	faceplayer
-	msgbox OlivinePort_Text_AideRepeat, MSGBOX_DEFAULT
-	release
-	end
+@ (7,21) -> (7,15): walk back up to her starting spot at the plaza before
+@ despawning, so she's never seen popping out of existence mid-pier.
+OlivinePort_Movement_AideReturnToStart:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
 
 OlivinePort_EventScript_Sailor::
 	lock
@@ -73,10 +91,6 @@ OlivinePort_Text_WelcomeToOlivineCity:
 	.string "through ECRUTEAK and VIOLET.\p"
 	.string "Oh -- and JOHTO's GYM LEADERS are on a\n"
 	.string "whole other level. Good luck!$"
-
-OlivinePort_Text_AideRepeat:
-	.string "The GYM LEADERS of JOHTO are waiting.\n"
-	.string "Good luck out there, CHAMPION!$"
 
 OlivinePort_Text_BackToLilycove:
 	.string "Back to LILYCOVE CITY in HOENN?$"
