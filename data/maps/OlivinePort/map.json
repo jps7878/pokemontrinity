@@ -17,7 +17,7 @@
     {
       "local_id": "LOCALID_OLIVINE_PORT_AIDE",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
-      "x": 8,
+      "x": 7,
       "y": 22,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",

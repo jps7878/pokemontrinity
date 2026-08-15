@@ -29,9 +29,14 @@ OlivinePort_EventScript_AideArrival::
 	releaseall
 	end
 
+@ Trinity M4a fix: the aide and the player share the same single-tile-wide pier
+@ column (x=7); she starts one tile north of the arrow-warp gangway tile (7,23)
+@ and steps onto it, landing directly adjacent-north of the player's (7,24)
+@ landing spot, already facing down toward them. (NPC applymovement does not
+@ trigger MB_SOUTH_ARROW_WARP -- only player-initiated movement does -- so her
+@ stepping onto (7,23) is inert; the player itself never moves during this scene.)
 OlivinePort_Movement_AideApproachPlayer:
 	walk_down
-	walk_in_place_faster_left
 	step_end
 
 OlivinePort_EventScript_Aide::

@@ -91,7 +91,7 @@ LilycoveCity_Harbor_EventScript_GoToJohtoOpen::
 	msgbox LilycoveCity_Harbor_Text_JohtoItIs, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
 	call LilycoveCity_Harbor_EventScript_BoardFerry
-	warp MAP_OLIVINE_PORT, 7, 23
+	warp MAP_OLIVINE_PORT, 7, 24
 	waitstate
 	release
 	end
