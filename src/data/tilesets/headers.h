@@ -1429,6 +1429,281 @@ const struct Tileset gTileset_SilphCoKanto =
 };
 
 // M3 Johto tileset library
+const struct Tileset gTileset_AerodactylWordRoomJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_AerodactylWordRoomJohto,
+    .palettes = gTilesetPalettes_AerodactylWordRoomJohto,
+    .metatiles = gMetatiles_AerodactylWordRoomJohto,
+    .metatileAttributes = gMetatileAttributes_AerodactylWordRoomJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_CaveJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_CaveJohto,
+    .palettes = gTilesetPalettes_CaveJohto,
+    .metatiles = gMetatiles_CaveJohto,
+    .metatileAttributes = gMetatileAttributes_CaveJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_ChampionsRoomJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_ChampionsRoomJohto,
+    .palettes = gTilesetPalettes_ChampionsRoomJohto,
+    .metatiles = gMetatiles_ChampionsRoomJohto,
+    .metatileAttributes = gMetatileAttributes_ChampionsRoomJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_DarkCaveJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_DarkCaveJohto,
+    .palettes = gTilesetPalettes_DarkCaveJohto,
+    .metatiles = gMetatiles_DarkCaveJohto,
+    .metatileAttributes = gMetatileAttributes_DarkCaveJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_EliteFourRoomDungeonJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_EliteFourRoomDungeonJohto,
+    .palettes = gTilesetPalettes_EliteFourRoomDungeonJohto,
+    .metatiles = gMetatiles_EliteFourRoomDungeonJohto,
+    .metatileAttributes = gMetatileAttributes_EliteFourRoomDungeonJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_EliteFourRoomIndoorJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_EliteFourRoomIndoorJohto,
+    .palettes = gTilesetPalettes_EliteFourRoomIndoorJohto,
+    .metatiles = gMetatiles_EliteFourRoomIndoorJohto,
+    .metatileAttributes = gMetatileAttributes_EliteFourRoomIndoorJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_FacilityDungeonJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_FacilityDungeonJohto,
+    .palettes = gTilesetPalettes_FacilityDungeonJohto,
+    .metatiles = gMetatiles_FacilityDungeonJohto,
+    .metatileAttributes = gMetatileAttributes_FacilityDungeonJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_FacilityIndoorJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_FacilityIndoorJohto,
+    .palettes = gTilesetPalettes_FacilityIndoorJohto,
+    .metatiles = gMetatiles_FacilityIndoorJohto,
+    .metatileAttributes = gMetatileAttributes_FacilityIndoorJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_ForestJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_ForestJohto,
+    .palettes = gTilesetPalettes_ForestJohto,
+    .metatiles = gMetatiles_ForestJohto,
+    .metatileAttributes = gMetatileAttributes_ForestJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_GameCornerJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_GameCornerJohto,
+    .palettes = gTilesetPalettes_GameCornerJohto,
+    .metatiles = gMetatiles_GameCornerJohto,
+    .metatileAttributes = gMetatileAttributes_GameCornerJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_GateDungeonJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_GateDungeonJohto,
+    .palettes = gTilesetPalettes_GateDungeonJohto,
+    .metatiles = gMetatiles_GateDungeonJohto,
+    .metatileAttributes = gMetatileAttributes_GateDungeonJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_GateIndoorJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_GateIndoorJohto,
+    .palettes = gTilesetPalettes_GateIndoorJohto,
+    .metatiles = gMetatiles_GateIndoorJohto,
+    .metatileAttributes = gMetatileAttributes_GateIndoorJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoOhWordRoomJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoOhWordRoomJohto,
+    .palettes = gTilesetPalettes_HoOhWordRoomJohto,
+    .metatiles = gMetatiles_HoOhWordRoomJohto,
+    .metatileAttributes = gMetatileAttributes_HoOhWordRoomJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HouseJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HouseJohto,
+    .palettes = gTilesetPalettes_HouseJohto,
+    .metatiles = gMetatiles_HouseJohto,
+    .metatileAttributes = gMetatileAttributes_HouseJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_IcePathJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_IcePathJohto,
+    .palettes = gTilesetPalettes_IcePathJohto,
+    .metatiles = gMetatiles_IcePathJohto,
+    .metatileAttributes = gMetatileAttributes_IcePathJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_JohtoBlackthorn =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_JohtoBlackthorn,
+    .palettes = gTilesetPalettes_JohtoBlackthorn,
+    .metatiles = gMetatiles_JohtoBlackthorn,
+    .metatileAttributes = gMetatileAttributes_JohtoBlackthorn,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_JohtoCherrygrove =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_JohtoCherrygrove,
+    .palettes = gTilesetPalettes_JohtoCherrygrove,
+    .metatiles = gMetatiles_JohtoCherrygrove,
+    .metatileAttributes = gMetatileAttributes_JohtoCherrygrove,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_JohtoCianwood =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_JohtoCianwood,
+    .palettes = gTilesetPalettes_JohtoCianwood,
+    .metatiles = gMetatiles_JohtoCianwood,
+    .metatileAttributes = gMetatileAttributes_JohtoCianwood,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_JohtoDungeon =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_JohtoDungeon,
+    .palettes = gTilesetPalettes_JohtoDungeon,
+    .metatiles = gMetatiles_JohtoDungeon,
+    .metatileAttributes = gMetatileAttributes_JohtoDungeon,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_JohtoDungeons =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_JohtoDungeons,
+    .palettes = gTilesetPalettes_JohtoDungeons,
+    .metatiles = gMetatiles_JohtoDungeons,
+    .metatileAttributes = gMetatileAttributes_JohtoDungeons,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_JohtoEcruteak =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_JohtoEcruteak,
+    .palettes = gTilesetPalettes_JohtoEcruteak,
+    .metatiles = gMetatiles_JohtoEcruteak,
+    .metatileAttributes = gMetatileAttributes_JohtoEcruteak,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_JohtoLakeofrage =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_JohtoLakeofrage,
+    .palettes = gTilesetPalettes_JohtoLakeofrage,
+    .metatiles = gMetatiles_JohtoLakeofrage,
+    .metatileAttributes = gMetatileAttributes_JohtoLakeofrage,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_JohtoMahogany =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_JohtoMahogany,
+    .palettes = gTilesetPalettes_JohtoMahogany,
+    .metatiles = gMetatiles_JohtoMahogany,
+    .metatileAttributes = gMetatileAttributes_JohtoMahogany,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_JohtoModernAzalea =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_JohtoModernAzalea,
+    .palettes = gTilesetPalettes_JohtoModernAzalea,
+    .metatiles = gMetatiles_JohtoModernAzalea,
+    .metatileAttributes = gMetatileAttributes_JohtoModernAzalea,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_JohtoModernGoldenrod =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_JohtoModernGoldenrod,
+    .palettes = gTilesetPalettes_JohtoModernGoldenrod,
+    .metatiles = gMetatiles_JohtoModernGoldenrod,
+    .metatileAttributes = gMetatileAttributes_JohtoModernGoldenrod,
+    .callback = NULL,
+};
+
 const struct Tileset gTileset_JohtoNewbark =
 {
     .isCompressed = TRUE,
@@ -1437,5 +1712,247 @@ const struct Tileset gTileset_JohtoNewbark =
     .palettes = gTilesetPalettes_JohtoNewbark,
     .metatiles = gMetatiles_JohtoNewbark,
     .metatileAttributes = gMetatileAttributes_JohtoNewbark,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_JohtoOlivine =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_JohtoOlivine,
+    .palettes = gTilesetPalettes_JohtoOlivine,
+    .metatiles = gMetatiles_JohtoOlivine,
+    .metatileAttributes = gMetatileAttributes_JohtoOlivine,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_JohtoViolet =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_JohtoViolet,
+    .palettes = gTilesetPalettes_JohtoViolet,
+    .metatiles = gMetatiles_JohtoViolet,
+    .metatileAttributes = gMetatileAttributes_JohtoViolet,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_KabutoWordRoomJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_KabutoWordRoomJohto,
+    .palettes = gTilesetPalettes_KabutoWordRoomJohto,
+    .metatiles = gMetatiles_KabutoWordRoomJohto,
+    .metatileAttributes = gMetatileAttributes_KabutoWordRoomJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_KantoJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_KantoJohto,
+    .palettes = gTilesetPalettes_KantoJohto,
+    .metatiles = gMetatiles_KantoJohto,
+    .metatileAttributes = gMetatileAttributes_KantoJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_LabJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_LabJohto,
+    .palettes = gTilesetPalettes_LabJohto,
+    .metatiles = gMetatiles_LabJohto,
+    .metatileAttributes = gMetatileAttributes_LabJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_LighthouseJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_LighthouseJohto,
+    .palettes = gTilesetPalettes_LighthouseJohto,
+    .metatiles = gMetatiles_LighthouseJohto,
+    .metatileAttributes = gMetatileAttributes_LighthouseJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_MartJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_MartJohto,
+    .palettes = gTilesetPalettes_MartJohto,
+    .metatiles = gMetatiles_MartJohto,
+    .metatileAttributes = gMetatileAttributes_MartJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_OmanyteWordRoomJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_OmanyteWordRoomJohto,
+    .palettes = gTilesetPalettes_OmanyteWordRoomJohto,
+    .metatiles = gMetatiles_OmanyteWordRoomJohto,
+    .metatileAttributes = gMetatileAttributes_OmanyteWordRoomJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_ParkJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_ParkJohto,
+    .palettes = gTilesetPalettes_ParkJohto,
+    .metatiles = gMetatiles_ParkJohto,
+    .metatileAttributes = gMetatileAttributes_ParkJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_PlayersHouseJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_PlayersHouseJohto,
+    .palettes = gTilesetPalettes_PlayersHouseJohto,
+    .metatiles = gMetatiles_PlayersHouseJohto,
+    .metatileAttributes = gMetatileAttributes_PlayersHouseJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_PlayersRoomJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_PlayersRoomJohto,
+    .palettes = gTilesetPalettes_PlayersRoomJohto,
+    .metatiles = gMetatiles_PlayersRoomJohto,
+    .metatileAttributes = gMetatileAttributes_PlayersRoomJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_PokecenterJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_PokecenterJohto,
+    .palettes = gTilesetPalettes_PokecenterJohto,
+    .metatiles = gMetatiles_PokecenterJohto,
+    .metatileAttributes = gMetatileAttributes_PokecenterJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_PortJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_PortJohto,
+    .palettes = gTilesetPalettes_PortJohto,
+    .metatiles = gMetatiles_PortJohto,
+    .metatileAttributes = gMetatileAttributes_PortJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_RadioTowerJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_RadioTowerJohto,
+    .palettes = gTilesetPalettes_RadioTowerJohto,
+    .metatiles = gMetatiles_RadioTowerJohto,
+    .metatileAttributes = gMetatileAttributes_RadioTowerJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_RuinsOfAlphJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_RuinsOfAlphJohto,
+    .palettes = gTilesetPalettes_RuinsOfAlphJohto,
+    .metatiles = gMetatiles_RuinsOfAlphJohto,
+    .metatileAttributes = gMetatileAttributes_RuinsOfAlphJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_TowerDungeonJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_TowerDungeonJohto,
+    .palettes = gTilesetPalettes_TowerDungeonJohto,
+    .metatiles = gMetatiles_TowerDungeonJohto,
+    .metatileAttributes = gMetatileAttributes_TowerDungeonJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_TowerFastshipJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_TowerFastshipJohto,
+    .palettes = gTilesetPalettes_TowerFastshipJohto,
+    .metatiles = gMetatiles_TowerFastshipJohto,
+    .metatileAttributes = gMetatileAttributes_TowerFastshipJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_TowerIndoorJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_TowerIndoorJohto,
+    .palettes = gTilesetPalettes_TowerIndoorJohto,
+    .metatiles = gMetatiles_TowerIndoorJohto,
+    .metatileAttributes = gMetatileAttributes_TowerIndoorJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_TraditionalHouseJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_TraditionalHouseJohto,
+    .palettes = gTilesetPalettes_TraditionalHouseJohto,
+    .metatiles = gMetatiles_TraditionalHouseJohto,
+    .metatileAttributes = gMetatileAttributes_TraditionalHouseJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_TrainStationJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_TrainStationJohto,
+    .palettes = gTilesetPalettes_TrainStationJohto,
+    .metatiles = gMetatiles_TrainStationJohto,
+    .metatileAttributes = gMetatileAttributes_TrainStationJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_UndergroundDungeonJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_UndergroundDungeonJohto,
+    .palettes = gTilesetPalettes_UndergroundDungeonJohto,
+    .metatiles = gMetatiles_UndergroundDungeonJohto,
+    .metatileAttributes = gMetatileAttributes_UndergroundDungeonJohto,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_UndergroundIndoorJohto =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_UndergroundIndoorJohto,
+    .palettes = gTilesetPalettes_UndergroundIndoorJohto,
+    .metatiles = gMetatiles_UndergroundIndoorJohto,
+    .metatileAttributes = gMetatileAttributes_UndergroundIndoorJohto,
     .callback = NULL,
 };
