@@ -48,14 +48,14 @@
 #define FLAG_ENABLE_SHIP_JOHTO    0x22 // Trinity: gates the S.S. TIDAL Johto sea route. Stays UNSET in M1 (Johto is built in M3/M4). Was FLAG_UNUSED_0x022 (genuinely free).
 #define FLAG_RECEIVED_REWARD_HARJOT    0x23 // Trinity: HARJOT (Granite Cave) friend-reward claimed. Was FLAG_UNUSED_0x023 (genuinely free).
 #define FLAG_RECEIVED_REWARD_PRABHJIT  0x24 // Trinity: PRABHJIT (New Mauville) friend-reward claimed. Was FLAG_UNUSED_0x024 (genuinely free).
-#define FLAG_UNUSED_0x025    0x25 // Unused Flag
-#define FLAG_UNUSED_0x026    0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
-#define FLAG_UNUSED_0x02A    0x2A // Unused Flag
-#define FLAG_UNUSED_0x02B    0x2B // Unused Flag
-#define FLAG_UNUSED_0x02C    0x2C // Unused Flag
+#define FLAG_TRINITY_BADGE09    0x25 // Trinity: was FLAG_UNUSED_0x025 — Falkner
+#define FLAG_TRINITY_BADGE10    0x26 // Trinity: was FLAG_UNUSED_0x026 — Bugsy
+#define FLAG_TRINITY_BADGE11    0x27 // Trinity: was FLAG_UNUSED_0x027 — Whitney
+#define FLAG_TRINITY_BADGE12    0x28 // Trinity: was FLAG_UNUSED_0x028 — Morty
+#define FLAG_TRINITY_BADGE13    0x29 // Trinity: was FLAG_UNUSED_0x029 — Chuck
+#define FLAG_TRINITY_BADGE14    0x2A // Trinity: was FLAG_UNUSED_0x02A — Jasmine
+#define FLAG_TRINITY_BADGE15    0x2B // Trinity: was FLAG_UNUSED_0x02B — Pryce
+#define FLAG_TRINITY_BADGE16    0x2C // Trinity: was FLAG_UNUSED_0x02C — Clair
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag
 #define FLAG_UNUSED_0x02E    0x2E // Unused Flag
 #define FLAG_UNUSED_0x02F    0x2F // Unused Flag
@@ -1639,7 +1639,15 @@
 #define DAILY_FLAGS_END                             (FLAG_UNUSED_0x95F + (7 - FLAG_UNUSED_0x95F % 8))
 #define NUM_DAILY_FLAGS                             (DAILY_FLAGS_END - DAILY_FLAGS_START + 1)
 
-#define FLAGS_COUNT (DAILY_FLAGS_END + 1)
+// Trinity: Johto pickup flags
+// 320 flags reserved for Johto overworld item/hidden-item pickups, appended at the very
+// end of persisted flag space (after Daily Flags). Allocated sequentially by the M4a
+// Task 2 map converter — one flag per Johto pickup, in map-processing order.
+#define FLAG_TRINITY_JOHTO_PICKUPS_START            (DAILY_FLAGS_END + 1)
+#define FLAG_TRINITY_JOHTO_PICKUPS_END              (FLAG_TRINITY_JOHTO_PICKUPS_START + 319)
+#define NUM_TRINITY_JOHTO_PICKUP_FLAGS               (FLAG_TRINITY_JOHTO_PICKUPS_END - FLAG_TRINITY_JOHTO_PICKUPS_START + 1)
+
+#define FLAGS_COUNT (FLAG_TRINITY_JOHTO_PICKUPS_END + 1)
 
 // Special Flags (Stored in EWRAM (sSpecialFlags), not in the SaveBlock)
 #define SPECIAL_FLAGS_START                     0x4000
