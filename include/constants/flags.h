@@ -71,16 +71,20 @@
 #define FLAG_TRINITY_J_ELM_AFTERMATH    0x35 // Trinity: was FLAG_UNUSED_0x035 — New Bark chapter complete (ELM's aftermath ran, VIOLET pointer given). Terminal beat made observable to later slices; progression still gates on VAR_TRINITY_JOHTO_ARC >= 2, this is flavor-gating only.
 #define FLAG_TRINITY_J_FALKNER_TM40    0x36 // Trinity: was FLAG_UNUSED_0x036 — TM40 AERIAL ACE handed over by FALKNER. Bag-full retry guard (GYM PATTERN G2): the badge flag is set first and unconditionally, this one only after the item actually lands.
 #define FLAG_TRINITY_J_SPROUT_ELDER_GIFT    0x37 // Trinity: was FLAG_UNUSED_0x037 — SPROUT TOWER ELDER's reward (PP UP) handed over. Same bag-full retry guard, non-gym form.
-#define FLAG_UNUSED_0x038    0x38 // Unused Flag
-#define FLAG_UNUSED_0x039    0x39 // Unused Flag
-#define FLAG_UNUSED_0x03A    0x3A // Unused Flag
-#define FLAG_UNUSED_0x03B    0x3B // Unused Flag
-#define FLAG_UNUSED_0x03C    0x3C // Unused Flag
-#define FLAG_UNUSED_0x03D    0x3D // Unused Flag
-#define FLAG_UNUSED_0x03E    0x3E // Unused Flag
-#define FLAG_UNUSED_0x03F    0x3F // Unused Flag
-#define FLAG_UNUSED_0x040    0x40 // Unused Flag
-#define FLAG_UNUSED_0x041    0x41 // Unused Flag
+// Trinity M4b S3 (the AZALEA chapter). The six _HIDE flags are pure object
+// visibility, authored ONLY by each map's ON_TRANSITION off VAR_TRINITY_JOHTO_ARC /
+// VAR_TRINITY_JOHTO_SCENE_AZALEA (single-authority rule); scene bodies use
+// addobject/removeobject and never write them. The rest are durable story state.
+#define FLAG_TRINITY_J_AZALEA_ROCKETS_HIDE    0x38 // Trinity: was FLAG_UNUSED_0x038 — AZALEA TOWN's two TEAM ROCKET posts hidden (visible only while ARC == 2)
+#define FLAG_TRINITY_J_AZALEA_SLOWPOKES_HIDE    0x39 // Trinity: was FLAG_UNUSED_0x039 — the four AZALEA TOWN SLOWPOKE and KURT'S HOUSE SLOWPOKE hidden (visible at ARC >= 3). One flag, two maps, one predicate.
+#define FLAG_TRINITY_J_SILVER_AZALEA_HIDE    0x3A // Trinity: was FLAG_UNUSED_0x03A — AZALEA TOWN SILVER (TRAINER_SILVER_2) hidden
+#define FLAG_TRINITY_J_WELL_RAID_HIDE    0x3B // Trinity: was FLAG_UNUSED_0x03B — SLOWPOKE WELL raid cast (3 grunts, EXEC PROTON, hurt KURT, 2 tail-cut SLOWPOKE) hidden (visible only while ARC == 2)
+#define FLAG_TRINITY_J_WELL_KURT_END_HIDE    0x3C // Trinity: was FLAG_UNUSED_0x03C — the rescued-KURT actor: always hidden, spawned mid-scene with addobject
+#define FLAG_TRINITY_J_KURT_HOME_HIDE    0x3D // Trinity: was FLAG_UNUSED_0x03D — KURT at home hidden (visible at ARC >= 3, i.e. after the well)
+#define FLAG_TRINITY_J_SILVER2_BEATEN    0x3E // Trinity: was FLAG_UNUSED_0x03E — TRAINER_SILVER_2 (AZALEA TOWN) defeated
+#define FLAG_TRINITY_J_KURT_LURE_BALL    0x3F // Trinity: was FLAG_UNUSED_0x03F — KURT's thank-you LURE BALL handed over. Bag-full retry guard.
+#define FLAG_TRINITY_J_BUGSY_TM19    0x40 // Trinity: was FLAG_UNUSED_0x040 — TM19 GIGA DRAIN handed over by BUGSY. Bag-full retry guard (GYM PATTERN G2): FLAG_TRINITY_BADGE10 is set first and unconditionally.
+#define FLAG_TRINITY_J_AZALEA_APRICORN    0x41 // Trinity: was FLAG_UNUSED_0x041 — AZALEA TOWN's apricorn tree has been picked (one WHITE APRICORN, once)
 #define FLAG_UNUSED_0x042    0x42 // Unused Flag
 #define FLAG_UNUSED_0x043    0x43 // Unused Flag
 #define FLAG_UNUSED_0x044    0x44 // Unused Flag

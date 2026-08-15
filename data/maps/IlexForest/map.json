@@ -149,6 +149,14 @@
       "elevation": 3,
       "item": "ITEM_FULL_HEAL",
       "flag": "FLAG_TRINITY_JOHTO_PICKUPS_START + 52"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 22,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "IlexForest_EventScript_Shrine"
     }
   ]
 }

@@ -277,7 +277,12 @@
 //   2 theft done (SILVER waits on Route 29)    3 SILVER 1 beaten (OFFICER in the lab)
 //   4 chapter complete
 #define VAR_TRINITY_JOHTO_SCENE_NEWBARK                  0x40F8
-#define VAR_UNUSED_0x40F9                                0x40F9 // Unused Var
+// Trinity M4b S3 scene scratch (Azalea chapter). Was VAR_UNUSED_0x40F9.
+//   0 SLOWPOKE WELL not cleared (SILVER not in AZALEA)
+//   1 well cleared -- TRAINER_SILVER_2 armed on the ILEX FOREST approach
+//   2 SILVER 2 resolved (chapter complete)
+// Only the well-raid aftermath writes 1, and only the SILVER 2 aftermath writes 2.
+#define VAR_TRINITY_JOHTO_SCENE_AZALEA                   0x40F9
 #define VAR_UNUSED_0x40FA                                0x40FA // Unused Var
 #define VAR_UNUSED_0x40FB                                0x40FB // Unused Var
 #define VAR_UNUSED_0x40FC                                0x40FC // Unused Var
