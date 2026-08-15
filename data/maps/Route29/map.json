@@ -107,6 +107,20 @@
       "trainer_sight_or_berry_tree_id": "ITEM_POTION",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_TRINITY_JOHTO_PICKUPS_START + 100"
+    },
+    {
+      "local_id": "LOCALID_JOHTO_R29_SILVER",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+      "x": 52,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route29_EventScript_Silver",
+      "flag": "FLAG_TRINITY_J_SILVER_ROUTE29_HIDE"
     }
   ],
   "warp_events": [
@@ -118,7 +132,26 @@
       "dest_warp_id": "2"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 54,
+      "y": 8,
+      "elevation": 3,
+      "var": "VAR_TRINITY_JOHTO_SCENE_NEWBARK",
+      "var_value": "2",
+      "script": "Route29_EventScript_SilverSceneNorth"
+    },
+    {
+      "type": "trigger",
+      "x": 54,
+      "y": 9,
+      "elevation": 3,
+      "var": "VAR_TRINITY_JOHTO_SCENE_NEWBARK",
+      "var_value": "2",
+      "script": "Route29_EventScript_SilverSceneSouth"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",
