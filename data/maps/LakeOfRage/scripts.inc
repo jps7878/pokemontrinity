@@ -176,9 +176,12 @@ LakeOfRage_EventScript_Lance::
 	lock
 	goto_if_ge VAR_TRINITY_JOHTO_ARC, 4, LakeOfRage_EventScript_LanceIdle
 	msgbox LakeOfRage_Text_LanceForcedToEvolve, MSGBOX_DEFAULT
-	closemessage
-	applymovement LOCALID_JOHTO_LAKE_LANCE, LakeOfRage_Movement_LanceTurns
-	waitmovement 0
+	@ GSC speaks that first line BEFORE its faceplayer -- a man talking to the
+	@ water with his back turned -- and only then turns round. `faceplayer`
+	@ rather than a scripted turn, because his object rests MOVEMENT_TYPE_FACE_UP
+	@ and the player can be standing on any of (20,28), (22,28) or (21,29); a
+	@ fixed `face_down` would be wrong for two of the three.
+	faceplayer
 	msgbox LakeOfRage_Text_LanceIntro, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, LakeOfRage_EventScript_LanceRefused
 	msgbox LakeOfRage_Text_LanceRadioSignal, MSGBOX_DEFAULT
@@ -223,10 +226,6 @@ LakeOfRage_EventScript_LanceIdle::
 	msgbox LakeOfRage_Text_LanceIdle, MSGBOX_DEFAULT
 	release
 	end
-
-LakeOfRage_Movement_LanceTurns:
-	face_down
-	step_end
 
 @ ============================================================================
 @ The four post-raid trainers. GSC's parties scaled to the Act II band; the
