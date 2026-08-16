@@ -328,7 +328,17 @@
 // it matches on and can never re-fire. (S7's ON_FRAME pin warns about an entry whose
 // script does NOT advance its var; that is the failure this shape avoids.)
 #define VAR_TRINITY_JOHTO_SCENE_BLACKTHORN               0x40FE
-#define VAR_UNUSED_0x40FF                                0x40FF // Unused Var
+// Trinity M4b S10 scene scratch (the TIN TOWER showdown). Was VAR_UNUSED_0x40FF.
+//   0 the three-beast tableau stands in 1F's sealed sanctum, the showdown is armed
+//   1 the showdown has played -- SUICUNE is on the hall floor at (9,11) and the
+//     battle is live (a SUICUNE that FLED leaves the var here, so ON_TRANSITION
+//     puts it back and the talk path re-fights it)
+//   2 SUICUNE beaten or caught -- this is also VAR_TRINITY_JOHTO_ARC 9
+// Monotonic. The ON_FRAME cutscene consumes 0 and writes 1 before it ends, so it
+// fires exactly once per save (S9's rule: ON_FRAME is right for an on-entry
+// cutscene WHEN the scene advances the var it is gated on). Only the battle
+// aftermath writes 2, under a goto_if_ge guard.
+#define VAR_TRINITY_JOHTO_SCENE_TINTOWER                 0x40FF
 
 #define VARS_END                                         0x40FF
 #define VARS_COUNT                                       (VARS_END - VARS_START + 1)

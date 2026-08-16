@@ -6093,6 +6093,16 @@ u16 GetBattleBGM(void)
         case SPECIES_REGIELEKI:
         case SPECIES_REGIDRAGO:
             return MUS_VS_REGI;
+        // Trinity M4b S10: the three JOHTO beasts. Kept in step with
+        // BattleSetup_StartLegendaryBattle's switch (src/battle_setup.c), which is
+        // what actually chooses the song on the field path; this is the value any
+        // path passing song 0 would get, and it is where a reader looks first.
+        // HO-OH and LUGIA need no case: they fall to the default below, which is
+        // already the contract's MUS_RG_VS_LEGEND.
+        case SPECIES_SUICUNE:
+        case SPECIES_RAIKOU:
+        case SPECIES_ENTEI:
+            return MUS_C_VS_LEGEND_BEAST;
         default:
             return MUS_RG_VS_LEGEND;
         }

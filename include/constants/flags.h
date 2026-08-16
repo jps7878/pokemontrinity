@@ -781,9 +781,9 @@
 #define FLAG_TRINITY_J_CLAIR_TM02           0x2B6 // Trinity: was FLAG_UNUSED_0x2B6 -- G2 award guard - TM02 DRAGON CLAW. Awarded AT THE SHRINE with badge 16 (the brief's pin; GSC hands TM24 DRAGONBREATH back in the gym and has a documented double-give bug doing it). The badge is set BEFORE the TM, so the failable gift can never hold progression.
 #define FLAG_TRINITY_J_DEN_SILVER_HIDE      0x2B7 // Trinity: was FLAG_UNUSED_0x2B7 -- visibility - SILVER training in DRAGON'S DEN B1F (20,23). Visible iff FLAG_TRINITY_BADGE16. No battle: this is the arc-turn coda that seeds S11's VICTORY ROAD fight.
 #define FLAG_TRINITY_J_DEN_SILVER_MET       0x2B8 // Trinity: was FLAG_UNUSED_0x2B8 -- story - SILVER's Den coda has been heard once (his second line differs, as in GSC).
-#define FLAG_UNUSED_0x2B9  0x2B9 // Unused Flag
-#define FLAG_UNUSED_0x2BA  0x2BA // Unused Flag
-#define FLAG_UNUSED_0x2BB  0x2BB // Unused Flag
+#define FLAG_TRINITY_J_TIN_TOWER_OPEN              0x2B9 // Trinity M4b S10: was FLAG_UNUSED_0x2B9 -- story - the ECRUTEAK gatehouse sage has heard the CLEAR BELL and stood aside. Written ONCE, by the sage; read by his own ON_TRANSITION (the LEFT sage is visible iff this is CLEAR) and by both sages' talk script.
+#define FLAG_TRINITY_J_TIN_GATE_SAGE_HIDE          0x2BA // Trinity M4b S10: was FLAG_UNUSED_0x2BA -- visibility - the LEFT gatehouse sage at (4,6). The gate is TWO objects on the building's 2-wide waist; retiring this one reopens it. removeobject co-signs this flag (R1).
+#define FLAG_TRINITY_J_TT1_BEASTS_HIDE             0x2BB // Trinity M4b S10: was FLAG_UNUSED_0x2BB -- visibility - the three-beast tableau in TIN TOWER 1F's sealed sanctum (SUICUNE 9,9 / RAIKOU 7,9 / ENTEI 12,9). Authored by ON_TRANSITION on SCENE_TINTOWER == 0, exact equality; all three retire together, which is what makes ONE shared flag correct (S4 C1).
 
 // Event Flags
 #define FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG                      0x2BC
@@ -816,7 +816,7 @@
 #define FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY   0x2D7
 #define FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM                         0x2D8
 
-#define FLAG_UNUSED_0x2D9                                           0x2D9 // Unused Flag
+#define FLAG_TRINITY_J_SUICUNE_HALL_HIDE           0x2D9 // Trinity M4b S10: was FLAG_UNUSED_0x2D9 -- visibility - SUICUNE on the 1F hall floor at (9,11), after the showdown cutscene. Authored on SCENE_TINTOWER == 1, exact equality: a SUICUNE that FLED leaves the scene at 1 and is therefore standing there again on the next map load; a beaten or caught one moves the scene to 2 and is gone for good.
 
 #define FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER                     0x2DA
 #define FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT                          0x2DB
@@ -1262,23 +1262,23 @@
 #define FLAG_ITEM_SAFARI_ZONE_NORTH_EAST_NUGGET                     0x491
 #define FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL                  0x492
 
-#define FLAG_UNUSED_0x493                                           0x493 // Unused Flag
-#define FLAG_UNUSED_0x494                                           0x494 // Unused Flag
-#define FLAG_UNUSED_0x495                                           0x495 // Unused Flag
-#define FLAG_UNUSED_0x496                                           0x496 // Unused Flag
-#define FLAG_UNUSED_0x497                                           0x497 // Unused Flag
-#define FLAG_UNUSED_0x498                                           0x498 // Unused Flag
-#define FLAG_UNUSED_0x499                                           0x499 // Unused Flag
-#define FLAG_UNUSED_0x49A                                           0x49A // Unused Flag
-#define FLAG_UNUSED_0x49B                                           0x49B // Unused Flag
-#define FLAG_UNUSED_0x49C                                           0x49C // Unused Flag
-#define FLAG_UNUSED_0x49D                                           0x49D // Unused Flag
-#define FLAG_UNUSED_0x49E                                           0x49E // Unused Flag
-#define FLAG_UNUSED_0x49F                                           0x49F // Unused Flag
-#define FLAG_UNUSED_0x4A0                                           0x4A0 // Unused Flag
-#define FLAG_UNUSED_0x4A1                                           0x4A1 // Unused Flag
-#define FLAG_UNUSED_0x4A2                                           0x4A2 // Unused Flag
-#define FLAG_UNUSED_0x4A3                                           0x4A3 // Unused Flag
+#define FLAG_TRINITY_J_HOOH_HIDE                   0x493 // Trinity M4b S10: was FLAG_UNUSED_0x493 -- visibility - HO-OH on TIN TOWER ROOF (9,5). visible iff RAINBOW WING and SCENE_TINTOWER >= 2 and not _HOOH_RESOLVED.
+#define FLAG_TRINITY_J_HOOH_RESOLVED               0x494 // Trinity M4b S10: was FLAG_UNUSED_0x494 -- story - HO-OH beaten or caught. Terminal; the ONLY thing that stops ON_TRANSITION putting it back.
+#define FLAG_TRINITY_J_LUGIA_HIDE                  0x495 // Trinity M4b S10: was FLAG_UNUSED_0x495 -- visibility - LUGIA in the WHIRL ISLAND chamber (9,5), on the water. visible iff SILVER WING and not _LUGIA_RESOLVED.
+#define FLAG_TRINITY_J_LUGIA_RESOLVED              0x496 // Trinity M4b S10: was FLAG_UNUSED_0x496 -- story - LUGIA beaten or caught. Terminal.
+#define FLAG_TRINITY_J_RAIKOU_HIDE                 0x497 // Trinity M4b S10: was FLAG_UNUSED_0x497 -- visibility - RAIKOU in MT MORTAR B1F (3,18). visible iff _BEASTS_AWAKENED and not _RAIKOU_RESOLVED.
+#define FLAG_TRINITY_J_RAIKOU_RESOLVED             0x498 // Trinity M4b S10: was FLAG_UNUSED_0x498 -- story - RAIKOU beaten or caught. Terminal.
+#define FLAG_TRINITY_J_ENTEI_HIDE                  0x499 // Trinity M4b S10: was FLAG_UNUSED_0x499 -- visibility - ENTEI in DARK CAVE, BLACKTHORN side (21,27). visible iff _BEASTS_AWAKENED and not _ENTEI_RESOLVED.
+#define FLAG_TRINITY_J_ENTEI_RESOLVED              0x49A // Trinity M4b S10: was FLAG_UNUSED_0x49A -- story - ENTEI beaten or caught. Terminal.
+#define FLAG_RECEIVED_REWARD_IVRAJ                 0x49B // Trinity M4b S10: was FLAG_UNUSED_0x49B -- award guard - IVRAJ at the RUINS OF ALPH, the fourth M1 friend-reward post (HARJOT 0x23, PRABHJIT 0x24, SUMEET 0x264). Set AFTER the giveitem so a full bag leaves the reward reclaimable.
+#define FLAG_TRINITY_J_ICE_BOULDER_1               0x49C // Trinity M4b S10: was FLAG_UNUSED_0x49C -- visibility - ICE PATH B1F boulder at GSC (11,7). Sole writer is removeobject, which FlagSets before despawning (src/event_object_movement.c:1537-1545), so a boulder dropped down its hole stays dropped. NO authoring clause: one writer, correct default (S7 rule).
+#define FLAG_TRINITY_J_ICE_BOULDER_2               0x49D // Trinity M4b S10: was FLAG_UNUSED_0x49D -- visibility - ICE PATH B1F boulder at GSC (7,8). See _ICE_BOULDER_1.
+#define FLAG_TRINITY_J_ICE_BOULDER_3               0x49E // Trinity M4b S10: was FLAG_UNUSED_0x49E -- visibility - ICE PATH B1F boulder at GSC (8,9). See _ICE_BOULDER_1.
+#define FLAG_TRINITY_J_ICE_BOULDER_4               0x49F // Trinity M4b S10: was FLAG_UNUSED_0x49F -- visibility - ICE PATH B1F boulder at GSC (17,7). See _ICE_BOULDER_1.
+#define FLAG_TRINITY_J_ICE_LANDING_1               0x4A0 // Trinity M4b S10: was FLAG_UNUSED_0x4A0 -- visibility - the B2F MAHOGANY SIDE copy of boulder 1, at GSC (11,3). EXACT COMPLEMENT of _ICE_BOULDER_1: GSC ships EVENT_BOULDER_IN_ICE_PATH_1 set and _1A clear, and the fall inverts both. Cleared by the fall script.
+#define FLAG_TRINITY_J_ICE_LANDING_2               0x4A1 // Trinity M4b S10: was FLAG_UNUSED_0x4A1 -- visibility - the B2F copy of boulder 2, at GSC (4,7). See _ICE_LANDING_1.
+#define FLAG_TRINITY_J_ICE_LANDING_3               0x4A2 // Trinity M4b S10: was FLAG_UNUSED_0x4A2 -- visibility - the B2F copy of boulder 3, at GSC (3,12). See _ICE_LANDING_1.
+#define FLAG_TRINITY_J_ICE_LANDING_4               0x4A3 // Trinity M4b S10: was FLAG_UNUSED_0x4A3 -- visibility - the B2F copy of boulder 4, at GSC (12,13). See _ICE_LANDING_1.
 #define FLAG_UNUSED_0x4A4                                           0x4A4 // Unused Flag
 #define FLAG_UNUSED_0x4A5                                           0x4A5 // Unused Flag
 #define FLAG_UNUSED_0x4A6                                           0x4A6 // Unused Flag

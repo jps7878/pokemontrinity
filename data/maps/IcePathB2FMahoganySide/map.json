@@ -39,6 +39,62 @@
       "trainer_sight_or_berry_tree_id": "ITEM_MAX_POTION",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_TRINITY_JOHTO_PICKUPS_START + 43"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "x": 11,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_ICEB2_LANDING_1",
+      "script": "EventScript_StrengthBoulder",
+      "flag": "FLAG_TRINITY_J_ICE_LANDING_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "x": 4,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_ICEB2_LANDING_2",
+      "script": "EventScript_StrengthBoulder",
+      "flag": "FLAG_TRINITY_J_ICE_LANDING_2"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "x": 3,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_ICEB2_LANDING_3",
+      "script": "EventScript_StrengthBoulder",
+      "flag": "FLAG_TRINITY_J_ICE_LANDING_3"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "x": 12,
+      "y": 13,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_ICEB2_LANDING_4",
+      "script": "EventScript_StrengthBoulder",
+      "flag": "FLAG_TRINITY_J_ICE_LANDING_4"
     }
   ],
   "warp_events": [

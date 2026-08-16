@@ -504,6 +504,19 @@ void BattleSetup_StartLegendaryBattle(void)
     case SPECIES_HO_OH:
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RG_VS_LEGEND);
         break;
+    // Trinity M4b S10: the three JOHTO beasts, per the M4b contract's battle-music
+    // pairings. This case is REQUIRED, not decoration -- `default:` above sits on
+    // the GROUDON body, so before this an unlisted species silently got
+    // B_TRANSITION_GROUDON + MUS_VS_KYOGRE_GROUDON. Kept in step with the matching
+    // case in GetBattleBGM() (src/pokemon.c): CreateBattleStartTask's `song`
+    // argument is non-zero here, so PlayMapChosenOrBattleBGM never consults
+    // GetBattleBGM on this path, but the two must agree or the next reader is
+    // misled. HO-OH and LUGIA already had theirs, one line up.
+    case SPECIES_SUICUNE:
+    case SPECIES_RAIKOU:
+    case SPECIES_ENTEI:
+        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_C_VS_LEGEND_BEAST);
+        break;
     case SPECIES_MEW:
         CreateBattleStartTask(B_TRANSITION_GRID_SQUARES, MUS_VS_MEW);
         break;
