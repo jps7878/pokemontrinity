@@ -1,8 +1,22 @@
+@ M4b S11B: Johto Centers functional (heal + respawn). Vanilla nurse shape,
+@ copied verbatim from OldaleTown_PokemonCenter_1F/scripts.inc. The old GSC
+@ flavour line (retired here, see S11B report) is dropped -- the nurse's own
+@ object is now interaction-critical and out of scope for narrative flavour
+@ per S11B's mandate.
 OlivinePokecenter1F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, OlivinePokecenter1F_OnTransition
 	.byte 0
 
+OlivinePokecenter1F_OnTransition:
+	setrespawn HEAL_LOCATION_OLIVINE_CITY
+	end
+
 OlivinePokecenter1F_EventScript_Nurse::
-	msgbox OlivinePokecenter1F_Text_Nurse, MSGBOX_NPC
+	setvar VAR_0x800B, LOCALID_JOHTO_OLIVINE_NURSE
+	call Common_EventScript_PkmnCenterNurse
+	waitmessage
+	waitbuttonpress
+	release
 	end
 
 OlivinePokecenter1F_EventScript_FishingGuru::
@@ -16,9 +30,6 @@ OlivinePokecenter1F_EventScript_Fisher::
 OlivinePokecenter1F_EventScript_Teacher::
 	msgbox OlivinePokecenter1F_Text_Teacher, MSGBOX_NPC
 	end
-
-OlivinePokecenter1F_Text_Nurse:
-	.string "The old timers say JOHTO used to\nfeel far from everywhere. Not\lanymore, with HOENN so close now.$"
 
 OlivinePokecenter1F_Text_FishingGuru:
 	.string "The old timers say JOHTO used to\nfeel far from everywhere. Not\lanymore, with HOENN so close now.$"

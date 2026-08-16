@@ -36,6 +36,12 @@ OlivinePort_EventScript_AideArrival::
 	msgbox OlivinePort_Text_WelcomeToOlivineCity, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_TRINITY_ARRIVED_JOHTO
+	@ M4b S11B (I4 companion): pin the respawn Johto-side from the moment the
+	@ player disembarks, so a whiteout before ever visiting a Center still
+	@ lands them at OLIVINE, not wherever HOENN last set it. The sailor's
+	@ return-boat setrespawn HEAL_LOCATION_LILYCOVE_CITY below (talk-triggered
+	@ YES/NO only) still overrides this on an actual return trip; unaffected.
+	setrespawn HEAL_LOCATION_OLIVINE_CITY
 	applymovement LOCALID_OLIVINE_PORT_AIDE, OlivinePort_Movement_AideReturnToStart
 	waitmovement 0
 	removeobject LOCALID_OLIVINE_PORT_AIDE
