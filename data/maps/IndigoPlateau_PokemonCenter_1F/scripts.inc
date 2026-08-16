@@ -1,11 +1,16 @@
 @ ============================================================================
 @ M4b S11 -- the INDIGO PLATEAU POKéMON CENTER, and the ELITE FOUR reset.
 @
-@ THE RESPAWN HOLE THIS CLOSES. Not one POKéMON CENTER in JOHTO or KANTO sets a
+@ THE RESPAWN HOLE THIS CLOSES. No Johto or Kanto POKéMON CENTER sets a
 @ respawn: `setrespawn` appears on twenty HOENN maps and on none of the 217
-@ Johto or 269 Kanto maps. Whiting out anywhere in Act II therefore returned the
-@ player to their last HOENN heal location. For most of JOHTO that is an M4a gap
-@ (measured and escalated to M6); for THIS map it is a slice requirement,
+@ Johto or 269 Kanto maps. FIX ROUND 1 (review I4): one Johto MAP does carry a
+@ `setrespawn` outside the Center network -- OlivinePort's sailor script sets
+@ HEAL_LOCATION_LILYCOVE_CITY, but only on the confirmed return-boat prompt
+@ (a talk-triggered YES/NO, not anything that fires on arrival), so it never
+@ contests a Center respawn and the "no Center sets one" claim above still
+@ holds as written. Whiting out anywhere in Act II therefore returned the
+@ player to their last HOENN heal location. For most of JOHTO that is an M4a
+@ gap (measured and escalated to M6); for THIS map it is a slice requirement,
 @ because "lose in the LEAGUE, restart from the Center" is vanilla's own ELITE
 @ FOUR contract and vanilla implements it exactly here --
 @ EverGrandeCity_PokemonLeague_1F_OnTransition's
@@ -21,9 +26,14 @@
 @ IndigoPlateauPokecenter1F.asm) clears every room scene, every door event and
 @ all five EVENT_BEAT_ELITE_4_* on entering this Center. Putting it here rather
 @ than in the tree-wide EventScript_WhiteOut (which is what vanilla HOENN does,
-@ data/event_scripts.s:1084-1086) is both narrower -- Act I's script is not
-@ touched -- and strictly more complete, because it also covers loading a save
-@ in this room and any future path that walks back out of the league.
+@ data/event_scripts.s:1084-1086) is narrower -- Act I's script is not touched.
+@ FIX ROUND 1 (review M2): this comment previously also claimed the transition
+@ "covers loading a save in the room" -- FALSE. CB2_ContinueSavedGame runs
+@ MAP_SCRIPT_ON_LOAD, never MAP_SCRIPT_ON_TRANSITION (src/overworld.c:
+@ 1972-2000), so simply continuing a save parked in this room does NOT re-run
+@ this reset. Harmless in play: the Center is unreachable mid-gauntlet (the
+@ league rooms are one-way, S11 report §6.2), so any save sitting here already
+@ had the reset applied on the warp IN that put it there.
 @
 @ S6's CLEARED-FLAG RULE APPLIES AND IS THE REASON _LEAGUE_CLEARED EXISTS. Five
 @ flags below are CLEARED, so the chain's terminal state can never be inferred

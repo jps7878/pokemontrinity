@@ -21,6 +21,18 @@
 @ MB_INDIGO_PLATEAU_SIGN_1/2 in FireRed and MB_SECRET_BASE_SPOT_* here -- facing
 @ one and pressing A offered to dig a Secret Base. fix_behaviors makes them plain
 @ wall, and the readable sign is the bg_event below.
+@
+@ FIX ROUND 1 (review M6): the sign bg_event originally sat at (10,13), a
+@ collision-0 walkable tile in the SOUTH STAIRWAY -- players walked straight
+@ over it, not up to it, so it never read. Decoded, (10,13) is METATILE_ID
+@ (blockdata) col 0 / elev 3 / MB_NORMAL -- confirmed no reading tile. Moved to
+@ (10,6): collision 1 / elevation 0 (ELEVATION_TRANSITION) / MB_NORMAL, the
+@ wall panel immediately WEST of the Center's own door (11,6), with (10,7)
+@ (col 0, elev 3) walkable immediately south of it -- a player standing on the
+@ approach side, having just climbed the stairway, faces north and reads it.
+@ (12,6)/(12,7) decode identically and would work as well; (10,6) was chosen to
+@ keep the sign's original x-anchor. Not to be confused with the PLATEAU
+@ lettering above: (10,6) is metatile 795, not one of the 671/751 letter tiles.
 @ ============================================================================
 
 IndigoPlateau_Exterior_MapScripts::

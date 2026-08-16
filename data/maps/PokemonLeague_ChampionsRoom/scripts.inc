@@ -55,10 +55,25 @@ PokemonLeague_ChampionsRoom_EventScript_EnterRoom::
 	waitmovement 0
 	delay 20
 	setvar VAR_TRINITY_JOHTO_SCENE_INDIGO, 5
-	goto PokemonLeague_ChampionsRoom_EventScript_Lance
+	goto PokemonLeague_ChampionsRoom_EventScript_LanceBattle
 	end
 
+@ FIX ROUND 1 (review M5): this is the object's own `script` field, and it now
+@ carries the standard lock/faceplayer template every sitter's talk script
+@ uses -- unreachable today (the walk-in above always fires first, from
+@ EnterRoom's own ON_FRAME guard, and sets SCENE_INDIGO to 5 before the player
+@ could ever talk to Lance directly), but it is the shape a later slice copies,
+@ so it has to be correct on its own. The room's one REACHABLE path is still
+@ EnterRoom's `goto` directly into _LanceBattle below: it is already inside a
+@ lockall and the walk-in movement already leaves the player facing Lance, so
+@ it deliberately skips lock/faceplayer rather than re-entering through them
+@ with a gSelectedObjectEvent a map-script-triggered goto never set.
 PokemonLeague_ChampionsRoom_EventScript_Lance::
+	lock
+	faceplayer
+	goto PokemonLeague_ChampionsRoom_EventScript_LanceBattle
+
+PokemonLeague_ChampionsRoom_EventScript_LanceBattle::
 	goto_if_set FLAG_TRINITY_J_E4_LANCE_BEATEN, PokemonLeague_ChampionsRoom_EventScript_PostBattleIdle
 	playbgm MUS_ENCOUNTER_CHAMPION, FALSE
 	msgbox PokemonLeague_ChampionsRoom_Text_Intro, MSGBOX_DEFAULT
