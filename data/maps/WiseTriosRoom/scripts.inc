@@ -70,6 +70,8 @@ WiseTriosRoom_EventScript_SageCAwake::
 @ Text
 @ ============================================================================
 @ Adapts pokecrystal WiseTriosRoomSage3Text.
+@ INTENTIONALLY UNREACHABLE / DEFENSIVE (S10): see the topology at the top of
+@ this file -- this room is only enterable once the TIN TOWER gate is open.
 WiseTriosRoom_Text_SageA:
 	.string "We, the WISE TRIO, are the\n"
 	.string "protectors of the legendary POKéMON.\p"
@@ -78,12 +80,16 @@ WiseTriosRoom_Text_SageA:
 	.string "It is quiet work.$"
 
 @ GSC WiseTriosRoomSage1Text.
+@ INTENTIONALLY UNREACHABLE / DEFENSIVE (S10): see the topology at the top of
+@ this file -- this room is only enterable once the TIN TOWER gate is open.
 WiseTriosRoom_Text_SageAAwake:
 	.string "Astounding…\p"
 	.string "SUICUNE, ENTEI and RAIKOU have\n"
 	.string "arisen from their sleep.\p"
 	.string "Is the legend coming true?$"
 
+@ INTENTIONALLY UNREACHABLE / DEFENSIVE (S10): see the topology at the top of
+@ this file -- this room is only enterable once the TIN TOWER gate is open.
 WiseTriosRoom_Text_SageB:
 	.string "We train at the BURNED TOWER. Ash,\n"
 	.string "prayer, and a floor you must not\l"
@@ -95,6 +101,8 @@ WiseTriosRoom_Text_SageB:
 @ the BRASS TOWER / TIN TOWER history, the best piece of lore in this chapter.
 @ GSC hides it behind a battle S5 is not shipping, so it is given to SAGE B
 @ rather than lost.
+@ INTENTIONALLY UNREACHABLE / DEFENSIVE (S10): see the topology at the top of
+@ this file -- this room is only enterable once the TIN TOWER gate is open.
 WiseTriosRoom_Text_SageBAwake:
 	.string "We train at the BURNED TOWER, but\n"
 	.string "we have never heard of a hole\l"
@@ -119,6 +127,8 @@ WiseTriosRoom_Text_SageBAwake:
 	.string "their lives.\p"
 	.string "You met all three this morning.$"
 
+@ INTENTIONALLY UNREACHABLE / DEFENSIVE (S10): see the topology at the top of
+@ this file -- this room is only enterable once the TIN TOWER gate is open.
 WiseTriosRoom_Text_SageC:
 	.string "Behind me is the TIN TOWER.\p"
 	.string "It may be entered by those bearing\n"
@@ -131,6 +141,8 @@ WiseTriosRoom_Text_SageC:
 @ Adapts GSC WiseTriosRoomSage3BlocksExitText -- GSC's sage physically blocks
 @ the stair here. Trinity's does not: the TIN TOWER gate is S10's to build, and
 @ a resting NPC may not seal anything.
+@ INTENTIONALLY UNREACHABLE / DEFENSIVE (S10): see the topology at the top of
+@ this file -- this room is only enterable once the TIN TOWER gate is open.
 WiseTriosRoom_Text_SageCAwake:
 	.string "Now that SUICUNE, RAIKOU and ENTEI\n"
 	.string "have arisen, I would normally ask\l"
@@ -139,6 +151,31 @@ WiseTriosRoom_Text_SageCAwake:
 	.string "They woke for you. Whatever waits at\n"
 	.string "the top of the TIN TOWER is not\l"
 	.string "waiting for me.$"
+
+@ ============================================================================
+@ S10 NOTE, BINDING ON ANY LATER READER OF THIS FILE:
+@ SIX OF S5's TEXT BLOCKS BELOW ARE NOW INTENTIONALLY UNREACHABLE.
+@
+@ This room has exactly three warps: (7,4)/(7,5) out to the TIN TOWER courtyard
+@ and (1,4) back to ECRUTEAK TIN TOWER ENTRANCE. The courtyard is a WALLED
+@ 57-tile enclave of ECRUTEAK CITY whose only entrance is this room (measured:
+@ from EcruteakCity (37,7) the fill reaches 57 tiles and only these two doors;
+@ from any of the other 11 city doors it reaches 454 and all three are sealed
+@ off). So the ONLY way into this room is the gatehouse -- and S10 restored
+@ GSC's gate across the gatehouse's 2-tile waist at (4,6)/(5,6), which opens
+@ only on FLAG_TRINITY_J_TIN_TOWER_OPEN.
+@
+@ THEREFORE: the player can never stand in this room with that flag unset, so
+@ the _Pass branch added below is the only branch any of the three sages can
+@ ever take. WiseTriosRoom_Text_{SageA,SageB,SageC} and their three
+@ ..._Awake counterparts are INTENTIONALLY UNREACHABLE / DEFENSIVE and are kept
+@ deliberately, per S1: they cost no state, they are correct behaviour if a
+@ later slice ever re-opens the gate or gives this room a second entrance, and
+@ deleting shipped dialogue to chase a reachability count is the wrong trade.
+@ This is also GSC-faithful -- GSC reaches this room through the same gatehouse
+@ and its trio only ever speaks post-passage. Disclosed at the gate too, in
+@ EcruteakTinTowerEntrance/scripts.inc's R5 block.
+@ ============================================================================
 
 @ ============================================================================
 @ Trinity M4b S10 -- THE TRIO'S BLESSING.

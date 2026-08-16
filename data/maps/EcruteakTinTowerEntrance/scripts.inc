@@ -42,12 +42,22 @@ EcruteakTinTowerEntrance_MapScripts::
 @ unambiguous, and make it visible to reach_check instead of invisible to it.
 @
 @ R5 DISCLOSURE. While shut, this pair seals the building's north corridor, the
-@ WISE TRIOS ROOM, the 57-tile TIN TOWER courtyard and TIN TOWER 1F-Roof. ALL OF
-@ IT IS OPTIONAL CONTENT: no badge, no league requirement and no other slice's
-@ beat lies behind it (S11 gates INDIGO on the eight Johto badges -- see the S10
-@ plan's arc-9 handoff). It opens permanently the moment the CLEAR BELL is
-@ presented. This is a RESTORATION of GSC's own gate, which the M4a port shipped
-@ wide open, not a new seal.
+@ WISE TRIOS ROOM, the 57-tile TIN TOWER courtyard and TIN TOWER 1F-Roof. No
+@ badge, no league requirement and no S11 beat lies behind it (S11 gates INDIGO
+@ on the eight Johto badges -- see the S10 plan's arc-9 handoff). It opens
+@ permanently the moment the CLEAR BELL is presented, and it is a RESTORATION of
+@ GSC's own gate, which the M4a port shipped wide open, not a new seal.
+@
+@ BUT IT IS NOT COST-FREE, AND THE COST IS CONTENT, NOT TILES. The gate makes
+@ the WISE TRIOS ROOM reachable ONLY with FLAG_TRINITY_J_TIN_TOWER_OPEN already
+@ set, so SIX of S5's text blocks in that room -- the three sages' pre-awakening
+@ lines and their three FLAG_TRINITY_J_BEASTS_AWAKENED variants -- become
+@ permanently unreachable the moment this gate exists. That is GSC-faithful (GSC
+@ reaches that room the same way and its trio only ever speaks post-passage),
+@ and S5 shipped them knowing the gate was S10's, but it is a real retirement of
+@ shipped content and it is disclosed here rather than left to be discovered.
+@ The six are labelled INTENTIONALLY UNREACHABLE / DEFENSIVE at their own site
+@ with this topology as the argument (S1's rule).
 @
 @ THE THREE ERAS ARE GSC'S, in order:
 @   1. no FOGBADGE          -- "off limits to anyone without ECRUTEAK GYM's BADGE"
@@ -79,8 +89,13 @@ EcruteakTinTowerEntrance_EventScript_Sage::
 	lock
 	faceplayer
 	goto_if_set FLAG_TRINITY_J_TIN_TOWER_OPEN, EcruteakTinTowerEntrance_EventScript_SagePass
-	goto_if_set FLAG_TRINITY_J_CLEAR_BELL, EcruteakTinTowerEntrance_EventScript_SageBell
+	@ BADGE FIRST, which is GSC's own order. Testing the BELL first also works --
+	@ the CLEAR BELL is an arc-8 reward and FOGBADGE is reachable long before it,
+	@ so the bell-without-badge state is not reachable in a real save -- but
+	@ ordering it this way means the script never RELIES on that, and the
+	@ FOGBADGE refusal stays the outermost thing the sage says, as in GSC.
 	goto_if_unset FLAG_TRINITY_BADGE12, EcruteakTinTowerEntrance_EventScript_SageNoBadge
+	goto_if_set FLAG_TRINITY_J_CLEAR_BELL, EcruteakTinTowerEntrance_EventScript_SageBell
 	msgbox EcruteakTinTowerEntrance_Text_SageMomentous, MSGBOX_DEFAULT
 	release
 	end

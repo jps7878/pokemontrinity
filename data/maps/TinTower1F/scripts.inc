@@ -57,7 +57,17 @@ TinTower1F_MapScripts::
 @      legendary re-fightable).
 @   2  SUICUNE beaten or caught. Both casts hidden forever; ARC := 9.
 @
-@ WHY TWO SUICUNE OBJECTS. Object positions NEVER persist:
+@ SHIPPED SHAPE vs THE PLAN, and the shipped one is better. The plan had the
+@ cutscene end with `clearflag <hall hide>` + `addobject` so the hall SUICUNE
+@ existed for the battle. It does not need to: the SANCTUM object is the one
+@ already on screen, it is the one that leaps, and setting VAR_LAST_TALKED to it
+@ makes it the one that fights -- so the scene needs NO addobject at all, and
+@ the hall object is authored the ordinary way by ON_TRANSITION on the next map
+@ load. One fewer session-only spawn (S7's trap: `addobject` does not clear the
+@ visibility flag, so an addobject'ed actor persists only if ON_TRANSITION's
+@ predicate is already true) and one fewer place for the two states to disagree.
+@
+@ WHY TWO SUICUNE OBJECTS AT ALL. Object positions NEVER persist:
 @ LoadObjEventTemplatesFromHeader CpuCopy32s the ROM templates back on EVERY map
 @ load (src/overworld.c:521-530, S9's finding). So the leap cannot be what puts
 @ SUICUNE on the hall floor across a reload. One object per state, each with its
