@@ -1279,15 +1279,15 @@
 #define FLAG_TRINITY_J_ICE_LANDING_2               0x4A1 // Trinity M4b S10: was FLAG_UNUSED_0x4A1 -- visibility - the B2F copy of boulder 2, at GSC (4,7). See _ICE_LANDING_1.
 #define FLAG_TRINITY_J_ICE_LANDING_3               0x4A2 // Trinity M4b S10: was FLAG_UNUSED_0x4A2 -- visibility - the B2F copy of boulder 3, at GSC (3,12). See _ICE_LANDING_1.
 #define FLAG_TRINITY_J_ICE_LANDING_4               0x4A3 // Trinity M4b S10: was FLAG_UNUSED_0x4A3 -- visibility - the B2F copy of boulder 4, at GSC (12,13). See _ICE_LANDING_1.
-#define FLAG_UNUSED_0x4A4                                           0x4A4 // Unused Flag
-#define FLAG_UNUSED_0x4A5                                           0x4A5 // Unused Flag
-#define FLAG_UNUSED_0x4A6                                           0x4A6 // Unused Flag
-#define FLAG_UNUSED_0x4A7                                           0x4A7 // Unused Flag
-#define FLAG_UNUSED_0x4A8                                           0x4A8 // Unused Flag
-#define FLAG_UNUSED_0x4A9                                           0x4A9 // Unused Flag
-#define FLAG_UNUSED_0x4AA                                           0x4AA // Unused Flag
-#define FLAG_UNUSED_0x4AB                                           0x4AB // Unused Flag
-#define FLAG_UNUSED_0x4AC                                           0x4AC // Unused Flag
+#define FLAG_TRINITY_J_INDIGO_GATE_PASSED          0x4A4 // Trinity M4b S11: was FLAG_UNUSED_0x4A4 -- story - the ROUTE 26 league gate has been passed once (8 Johto badges, via C-COUNT). Latch only: it silences the pass line, it never re-opens the gate. G7: the gate READS badges 09-16 and writes none.
+#define FLAG_TRINITY_J_VR_SILVER_HIDE              0x4A5 // Trinity M4b S11: was FLAG_UNUSED_0x4A5 -- visibility - SILVER on VICTORY ROAD 2F (45,11). Single authoring site VictoryRoad_2F_OnTransition: visible iff NOT _SILVER5_BEATEN.
+#define FLAG_TRINITY_J_SILVER5_BEATEN              0x4A6 // Trinity M4b S11: was FLAG_UNUSED_0x4A6 -- story - SILVER 5 beaten, the rival arc closes. Set by the VICTORY ROAD scene; read by his visibility predicate and by the coord trigger guard.
+#define FLAG_TRINITY_J_E4_WILL_BEATEN              0x4A7 // Trinity M4b S11: was FLAG_UNUSED_0x4A7 -- ELITE FOUR run state - WILL (in LORELEI'S ROOM). CLEARED by IndigoPlateau_PokemonCenter_1F_OnTransition, so it is NOT the terminal state: see _LEAGUE_CLEARED.
+#define FLAG_TRINITY_J_E4_KOGA_BEATEN              0x4A8 // Trinity M4b S11: was FLAG_UNUSED_0x4A8 -- ELITE FOUR run state - KOGA (in BRUNO'S ROOM). Cleared on entering the INDIGO Center.
+#define FLAG_TRINITY_J_E4_BRUNO_BEATEN             0x4A9 // Trinity M4b S11: was FLAG_UNUSED_0x4A9 -- ELITE FOUR run state - BRUNO (in AGATHA'S ROOM). Cleared on entering the INDIGO Center.
+#define FLAG_TRINITY_J_E4_KAREN_BEATEN             0x4AA // Trinity M4b S11: was FLAG_UNUSED_0x4AA -- ELITE FOUR run state - KAREN (in LANCE'S ROOM). Cleared on entering the INDIGO Center.
+#define FLAG_TRINITY_J_E4_LANCE_BEATEN             0x4AB // Trinity M4b S11: was FLAG_UNUSED_0x4AB -- ELITE FOUR run state - LANCE (in the CHAMPION'S ROOM). Cleared on entering the INDIGO Center.
+#define FLAG_TRINITY_J_LEAGUE_CLEARED              0x4AC // Trinity M4b S11: was FLAG_UNUSED_0x4AC -- story, TERMINAL and never cleared - the JOHTO LEAGUE has been won at least once. S6's rule: a chain containing a clearflag must test its TERMINAL state explicitly, because the five _BEATEN flags above return to their starting values on every Center visit. Paired with VAR_TRINITY_JOHTO_ARC == 10.
 #define FLAG_UNUSED_0x4AD                                           0x4AD // Unused Flag
 #define FLAG_UNUSED_0x4AE                                           0x4AE // Unused Flag
 #define FLAG_UNUSED_0x4AF                                           0x4AF // Unused Flag

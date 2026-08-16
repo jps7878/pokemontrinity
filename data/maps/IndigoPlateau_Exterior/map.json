@@ -2,7 +2,7 @@
   "id": "MAP_INDIGO_PLATEAU_EXTERIOR",
   "name": "IndigoPlateau_Exterior",
   "layout": "LAYOUT_INDIGO_PLATEAU_EXTERIOR_KANTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_VICTORY_ROAD",
   "region_map_section": "MAPSEC_INDIGO_PLATEAU",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -19,7 +19,22 @@
       "direction": "down"
     }
   ],
-  "object_events": [],
+  "object_events": [
+    {
+      "local_id": "LOCALID_JOHTO_INDIGO_EXT_FAN",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
+      "x": 9,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "IndigoPlateau_Exterior_EventScript_Spectator",
+      "flag": "0"
+    }
+  ],
   "warp_events": [
     {
       "x": 11,
@@ -30,5 +45,14 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 10,
+      "y": 13,
+      "elevation": 3,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "IndigoPlateau_Exterior_EventScript_Sign"
+    }
+  ]
 }

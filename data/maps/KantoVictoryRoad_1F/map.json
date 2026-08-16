@@ -2,7 +2,7 @@
   "id": "MAP_KANTO_VICTORY_ROAD_1F",
   "name": "KantoVictoryRoad_1F",
   "layout": "LAYOUT_VICTORY_ROAD_1F_KANTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_VICTORY_ROAD",
   "region_map_section": "MAPSEC_KANTO_VICTORY_ROAD",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -13,7 +13,36 @@
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": null,
-  "object_events": [],
+  "object_events": [
+    {
+      "local_id": "LOCALID_JOHTO_VR1F_DARNELL",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+      "x": 5,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "KantoVictoryRoad_1F_EventScript_DARNELL",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_JOHTO_VR1F_SIENNA",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
+      "x": 14,
+      "y": 6,
+      "elevation": 4,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "KantoVictoryRoad_1F_EventScript_SIENNA",
+      "flag": "0"
+    }
+  ],
   "warp_events": [
     {
       "x": 3,
@@ -26,7 +55,7 @@
       "x": 11,
       "y": 20,
       "elevation": 3,
-      "dest_map": "MAP_ROUTE23",
+      "dest_map": "MAP_ROUTE_26",
       "dest_warp_id": "0"
     }
   ],

@@ -148,7 +148,21 @@
 #define VAR_ROUTE133_STATE                               0x4080 // Unused Var
 #define VAR_ROUTE134_STATE                               0x4081 // Unused Var
 #define VAR_LITTLEROOT_HOUSES_STATE_MAY                  0x4082
-#define VAR_UNUSED_0x4083                                0x4083 // Unused Var
+// Trinity M4b S11 scene scratch (the INDIGO PLATEAU ELITE FOUR run). Was
+// VAR_UNUSED_0x4083 -- the FIRST claim outside the contract's designated
+// VAR_UNUSED_0x40F8..0x40FF run, which S10 exhausted. The hex is deliberately
+// loud: the block was a convention, not the supply (M4b contract, S9 amendment).
+//   0 no room entered            1 in LORELEI'S ROOM  -- WILL
+//   2 in BRUNO'S ROOM   -- KOGA  3 in AGATHA'S ROOM   -- BRUNO
+//   4 in LANCE'S ROOM   -- KAREN 5 in the CHAMPION'S ROOM -- LANCE
+// A count of how many ENTRY doors have shut behind the player on THIS run, not a
+// count of defeats (that is the five FLAG_TRINITY_J_E4_*_BEATEN flags). Each
+// room's ON_FRAME consumes N-1 and writes N before it ends, so it fires exactly
+// once per run; each room's ON_LOAD compares == N to re-author the shut door on
+// a map reload. RESET TO 0 by IndigoPlateau_PokemonCenter_1F_OnTransition, which
+// is GSC's own design (IndigoPlateauPokecenter1FPrepareElite4Callback) and is
+// what makes a white-out mid-gauntlet restart the run from the Center.
+#define VAR_TRINITY_JOHTO_SCENE_INDIGO                   0x4083
 #define VAR_BIRCH_LAB_STATE                              0x4084
 #define VAR_PETALBURG_GYM_STATE                          0x4085 // 0-1: Wally tutorial, 2-6: 0-4 badges, 7: Defeated Norman, 8: Rematch Norman
 #define VAR_CONTEST_HALL_STATE                           0x4086
@@ -271,6 +285,9 @@
 //   5  Rocket Base cleared       6  Radio Tower occupied (fires at 7 Johto badges)
 //   7  Tower cleared / G revealed   8  Clear Bell granted
 //   9  Suicune caught/beaten    10  Indigo League I cleared
+// M4b S11 writes 10 in the HALL OF FAME, once, under S1's monotonic guard.
+// NOTE 9 is OPTIONAL (SUICUNE sits behind the CLEAR BELL gate), so 10 is NOT
+// "9 + 1": the INDIGO gate is the eight-badge C-COUNT, never an arc test.
 #define VAR_TRINITY_JOHTO_ARC                            0x40F7
 // Trinity M4b S1 scene scratch (New Bark chapter step machine). Was VAR_UNUSED_0x40F8.
 //   0 Elm not met (SILVER lurks in New Bark)   1 Elm met, theft armed

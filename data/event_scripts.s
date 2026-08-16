@@ -1652,3 +1652,4 @@ EventScript_VsSeekerChargingDone::
 	.include "data/scripts/battle_frontier.inc"
 	.include "data/scripts/apricorn_tree.inc"
 	.include "data/scripts/trinity_johto.inc"
+	.include "data/scripts/trinity_indigo.inc"

@@ -6157,6 +6157,17 @@ u16 GetBattleBGM(void)
                 return MUS_VS_AQUA_MAGMA;
             return MUS_RG_VS_TRAINER;
         case TRAINER_CLASS_CHAMPION:
+            // Trinity M4b S11: the same id-guard idiom as the Johto-leader and
+            // Rocket-exec cases above, with a single id instead of a range.
+            // MUS_VS_CHAMPION is WALLACE's theme and Act I already spent it; the
+            // house rule across this hack is that the second region's boss takes
+            // the RG variant (MUS_RG_VS_GYM_LEADER for the eight Johto leaders,
+            // MUS_RG_VS_TRAINER for the Rocket grunts). Act III's champion then
+            // still has a theme of its own to take. The guard must sit INSIDE the
+            // case body -- a test before the label is unreachable dead code (the
+            // M4b S2 review's I1).
+            if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_LANCE)
+                return MUS_RG_VS_CHAMPION;
             return MUS_VS_CHAMPION;
         case TRAINER_CLASS_RIVAL:
             if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)

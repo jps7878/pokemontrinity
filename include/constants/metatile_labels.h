@@ -153,6 +153,31 @@
 #define METATILE_EliteFour_OpenDoor_Opening          0x345
 #define METATILE_EliteFour_RightSpotlightOff         0x2DE
 
+// gTileset_PokemonLeagueKanto  (Trinity M4b S11)
+// These are pokefirered's own METATILE_PokemonLeague_* values, and they are
+// usable verbatim because tools/kanto_port/repartition_tileset.py preserves
+// ABSOLUTE metatile ids when it re-splits FireRed's 640/N pair into Emerald's
+// 512/512 pair ("each item keeps its absolute id"). Verified by decode: the
+// shipped PokemonLeague_LoreleisRoom (6,2) is 0x293, the CLOSED door mid, and
+// (6,1) is 0x28B.
+//
+// The exit door is the whole sequential gate. 0x293 is MB_NORMAL at collision
+// 1; 0x296 is MB_NON_ANIMATED_DOOR, which IsWarpMetatileBehavior accepts
+// (src/field_control_avatar.c:925-939) -- so the room's exit warp_event cannot
+// fire AT ALL until the sitter is beaten and Trinity_Indigo_EventScript_SetDoorOpen
+// runs. The six Entry_*_Closed tiles are an ART swap only: both the open and the
+// closed entry metatiles are collision 1 in the shipped blockdata, in this port
+// and in FireRed, which is why the rooms are one-way traps by construction.
+#define METATILE_PokemonLeagueKanto_Door_Top_Open           0x28E
+#define METATILE_PokemonLeagueKanto_Door_Mid_Open           0x296
+#define METATILE_PokemonLeagueKanto_Entry_TopLeft_Closed    0x29D
+#define METATILE_PokemonLeagueKanto_Entry_TopMid_Closed     0x29E
+#define METATILE_PokemonLeagueKanto_Entry_TopRight_Closed   0x29F
+#define METATILE_PokemonLeagueKanto_Entry_BottomLeft_Closed 0x2A5
+#define METATILE_PokemonLeagueKanto_Entry_BottomMid_Closed  0x2A6
+#define METATILE_PokemonLeagueKanto_Entry_BottomRight_Closed 0x2A7
+#define METATILE_PokemonLeagueKanto_Floor_ShadeFull_Lance   0x311
+
 // gTileset_EverGrande
 #define METATILE_EverGrande_Door_PokemonLeague  0x21D
 

@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE23",
   "name": "Route23",
   "layout": "LAYOUT_ROUTE23_KANTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_VICTORY_ROAD",
   "region_map_section": "MAPSEC_ROUTE_23",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
