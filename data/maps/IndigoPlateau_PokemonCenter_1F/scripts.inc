@@ -9,8 +9,10 @@
 @ (a talk-triggered YES/NO, not anything that fires on arrival), so it never
 @ contests a Center respawn and the "no Center sets one" claim above still
 @ holds as written. Whiting out anywhere in Act II therefore returned the
-@ player to their last HOENN heal location. For most of JOHTO that is an M4a
-@ gap (measured and escalated to M6); for THIS map it is a slice requirement,
+@ player to their last HOENN heal location. For most of JOHTO that WAS an M4a
+@ gap (measured here) -- S11B closed it tree-wide: all 11 JOHTO POKéMON
+@ CENTERS now carry their own setrespawn. THIS map's respawn was never
+@ contingent on that fix; it is a slice requirement in its own right,
 @ because "lose in the LEAGUE, restart from the Center" is vanilla's own ELITE
 @ FOUR contract and vanilla implements it exactly here --
 @ EverGrandeCity_PokemonLeague_1F_OnTransition's

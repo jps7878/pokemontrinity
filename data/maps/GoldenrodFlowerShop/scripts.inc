@@ -2,12 +2,15 @@ GoldenrodFlowerShop_MapScripts::
 	.byte 0
 
 @ Trinity M4b S4. FLORIA added at (5,6) -- GSC's tile.
-@ HAND-OFF TO S5, deliberate: in GSC, FLORIA is the source of the SQUIRTBOTTLE
-@ that wakes the SUDOWOODO blocking ROUTE 36. S5 owns SUDOWOODO and therefore
-@ owns the item-versus-flag decision, so S4 seeds the hook as DIALOGUE ONLY --
-@ she talks about the shop's watering can and the "tree" that will not move,
-@ and hands over nothing. S5 rewrites this one script; the map data already
-@ has the object, so no S4 file needs a second pass.
+@ M4b S12 CORRECTION: this header previously read "HAND-OFF TO S5", claiming
+@ FLORIA's dialogue promised a SQUIRTBOTTLE that wakes a SUDOWOODO blocking
+@ ROUTE 36. No SUDOWOODO object was ever placed by S4 or any slice through
+@ S11B -- that content is M6's, not M4b's. The final-review gate (S12) caught
+@ the dangling promise (a road-tree the player can never find) and DE-PROMISED
+@ the line below: FLORIA now frets about her shop and her watering can only,
+@ with no claim about ROUTE 36. When M6 actually builds the SUDOWOODO/
+@ SQUIRTBOTTLE puzzle, that slice owns rewriting her dialogue AND placing the
+@ object together, in the same pass -- not before.
 GoldenrodFlowerShop_EventScript_Floria::
 	msgbox GoldenrodFlowerShop_Text_Floria, MSGBOX_NPC
 	end
@@ -19,17 +22,15 @@ GoldenrodFlowerShop_EventScript_FlowerShopTeacher::
 GoldenrodFlowerShop_Text_Floria:
 	.string "FLORIA: Welcome to the FLOWER\n"
 	.string "SHOP!\p"
-	.string "…You've come up ROUTE 36,\n"
-	.string "haven't you. Then you've seen\l"
-	.string "the tree.\p"
-	.string "The one standing in the middle\n"
-	.string "of the road that isn't a tree.\p"
-	.string "Everyone tries to move it.\n"
-	.string "Nobody thinks to water it.\p"
-	.string "Our SQUIRTBOTTLE would settle\n"
-	.string "the question in about four\l"
-	.string "seconds. Sister has it, and\l"
-	.string "sister is out.$"
+	.string "I'm supposed to be watering\n"
+	.string "the whole shop today, and I\l"
+	.string "can't find our SQUIRTBOTTLE\l"
+	.string "anywhere.\p"
+	.string "Sister probably has it. Sister\n"
+	.string "is out.\p"
+	.string "So it's just me, some very\n"
+	.string "thirsty flowers, and a lot of\l"
+	.string "waiting.$"
 
 GoldenrodFlowerShop_Text_FlowerShopTeacher:
 	.string "Flowers do better in GOLDENROD\n"

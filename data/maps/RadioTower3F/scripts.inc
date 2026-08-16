@@ -102,8 +102,11 @@ RadioTower3F_EventScript_OpenShutterTiles::
 @     is kept clear of objects. The warp the door leads to, 3F (17,0), already
 @     exists in map.json -- warps cannot be created by script; what gates a warp
 @     is the COLLISION of the block in front of it.
-@ D3  The opening script repeats ON_TRANSITION's eight setmetatiles and THEN
-@     calls DrawWholeMapView, which the ON_LOAD author does not need.
+@ D3  [S12 correction] The opening script is authored from ON_LOAD, not
+@     ON_TRANSITION -- moved there tree-wide by the S9 systemic metatile-
+@     authoring repair (see the D2 slot note above). It does NOT call
+@     DrawWholeMapView; that view is drawn later in the same load, so the
+@     ON_LOAD author does not need it.
 @ D4  FLAG_TRINITY_J_CARD_KEY_USED is the door's ONLY state and this script's
 @     FIRST test, because a bg_event on a now-walkable tile is still triggerable
 @     by pressing A while facing it. FLAG_TRINITY_J_CARD_KEY is an INPUT.
