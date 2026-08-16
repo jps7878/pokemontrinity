@@ -766,21 +766,21 @@
 #define FLAG_TRINITY_J_UG_DOOR_4            0x2A7 // Trinity: was FLAG_UNUSED_0x2A7 -- door state - door 4, shaft 1 upper <-> lower.
 #define FLAG_TRINITY_J_UG_DOOR_5            0x2A8 // Trinity: was FLAG_UNUSED_0x2A8 -- door state - door 5, shaft 2 upper <-> lower.
 #define FLAG_TRINITY_J_UG_DOOR_6            0x2A9 // Trinity: was FLAG_UNUSED_0x2A9 -- door state - door 6, shaft 3 upper <-> lower.
-#define FLAG_UNUSED_0x2AA  0x2AA // Unused Flag
-#define FLAG_UNUSED_0x2AB  0x2AB // Unused Flag
-#define FLAG_UNUSED_0x2AC  0x2AC // Unused Flag
-#define FLAG_UNUSED_0x2AD  0x2AD // Unused Flag
-#define FLAG_UNUSED_0x2AE  0x2AE // Unused Flag
-#define FLAG_UNUSED_0x2AF  0x2AF // Unused Flag
-#define FLAG_UNUSED_0x2B0  0x2B0 // Unused Flag
-#define FLAG_UNUSED_0x2B1  0x2B1 // Unused Flag
-#define FLAG_UNUSED_0x2B2  0x2B2 // Unused Flag
-#define FLAG_UNUSED_0x2B3  0x2B3 // Unused Flag
-#define FLAG_UNUSED_0x2B4  0x2B4 // Unused Flag
-#define FLAG_UNUSED_0x2B5  0x2B5 // Unused Flag
-#define FLAG_UNUSED_0x2B6  0x2B6 // Unused Flag
-#define FLAG_UNUSED_0x2B7  0x2B7 // Unused Flag
-#define FLAG_UNUSED_0x2B8  0x2B8 // Unused Flag
+#define FLAG_TRINITY_J_BGYM_BOULDER_1       0x2AA // Trinity: was FLAG_UNUSED_0x2AA -- visibility - BLACKTHORN GYM 2F Strength boulder 1, GSC (8,2). SET ONLY by removeobject (RemoveObjectEventByLocalIdAndMap -> FlagSet, src/event_object_movement.c:1537-1545) when the boulder drops through a hole -- this is GSC's own EVENT_BOULDER_IN_BLACKTHORN_GYM_1 semantics. ONE writer + correct default (clear = on the floor), so it carries NO ON_TRANSITION authoring clause; giving it one would resurrect a fallen boulder (S7's rule).
+#define FLAG_TRINITY_J_BGYM_BOULDER_2       0x2AB // Trinity: was FLAG_UNUSED_0x2AB -- visibility - boulder 2, GSC (2,3). Same shape.
+#define FLAG_TRINITY_J_BGYM_BOULDER_3       0x2AC // Trinity: was FLAG_UNUSED_0x2AC -- visibility - boulder 3, GSC (6,16). Same shape.
+#define FLAG_TRINITY_J_BGYM_BOULDER_4       0x2AD // Trinity: was FLAG_UNUSED_0x2AD -- visibility - boulder 4, GSC (3,3). GSC makes its three decoys unfallable (object event -1); Trinity's hole hook is generic, so a decoy can plug a hole too and therefore needs its own flag. Deliberate, kinder deviation -- see docs/superpowers/plans/m4b/09-blackthorn-chapter.md 1.4.
+#define FLAG_TRINITY_J_BGYM_BOULDER_5       0x2AE // Trinity: was FLAG_UNUSED_0x2AE -- visibility - boulder 5, GSC (6,1). Same shape.
+#define FLAG_TRINITY_J_BGYM_BOULDER_6       0x2AF // Trinity: was FLAG_UNUSED_0x2AF -- visibility - boulder 6, GSC (8,14). Same shape.
+#define FLAG_TRINITY_J_BGYM_PLATFORM_A      0x2B0 // Trinity: was FLAG_UNUSED_0x2B0 -- door state (D4) - a boulder has plugged BLACKTHORN GYM 2F's hole A (2,5), so 1F (2,5) is a walkable platform. GSC's changeblock 2,4,$3a. THE RED HERRING: it opens a one-tile alcove off the entrance region and nothing else. Sole input to BlackthornGym1F's setmetatile authoring.
+#define FLAG_TRINITY_J_BGYM_PLATFORM_B      0x2B1 // Trinity: was FLAG_UNUSED_0x2B1 -- door state (D4) - hole B (8,7) plugged, so 1F (8,7) is walkable. GSC's changeblock 8,6,$3b. REQUIRED for badge 16: it is the only link from the hole-landing island to the east corridor.
+#define FLAG_TRINITY_J_BGYM_PLATFORM_C      0x2B2 // Trinity: was FLAG_UNUSED_0x2B2 -- door state (D4) - hole C (8,3) plugged, so 1F (8,3) is walkable. GSC's changeblock 8,2,$3b. REQUIRED for badge 16: the only link from the east corridor to CLAIR's chamber.
+#define FLAG_TRINITY_J_DEN_GRAMPS_BLOCK_HIDE 0x2B3 // Trinity: was FLAG_UNUSED_0x2B3 -- visibility - the GRAMPS standing IN the DRAGON'S DEN doorway at BLACKTHORN (20,2). Visible iff VAR_TRINITY_JOHTO_SCENE_BLACKTHORN == 0. He genuinely seals the den (see the R5 disclosure in BlackthornCity/scripts.inc); that is GSC's own gate and it opens the moment CLAIR is beaten.
+#define FLAG_TRINITY_J_DEN_GRAMPS_ASIDE_HIDE 0x2B4 // Trinity: was FLAG_UNUSED_0x2B4 -- visibility - the same character stood aside at (21,2), a dead-end alcove. Exact complement: visible iff SCENE_BLACKTHORN >= 1. Both authored in one ON_TRANSITION.
+#define FLAG_TRINITY_J_SHRINE_CLAIR_HIDE    0x2B5 // Trinity: was FLAG_UNUSED_0x2B5 -- visibility - CLAIR at the DRAGON SHRINE. addobject-only during the test scene, and afterwards OWNED BY THE AWARD GUARD (S7's C1 rule): she stays on stage at (4,8) iff the test is passed and FLAG_TRINITY_J_CLAIR_TM02 is still clear, so a full bag can never cost the TM.
+#define FLAG_TRINITY_J_CLAIR_TM02           0x2B6 // Trinity: was FLAG_UNUSED_0x2B6 -- G2 award guard - TM02 DRAGON CLAW. Awarded AT THE SHRINE with badge 16 (the brief's pin; GSC hands TM24 DRAGONBREATH back in the gym and has a documented double-give bug doing it). The badge is set BEFORE the TM, so the failable gift can never hold progression.
+#define FLAG_TRINITY_J_DEN_SILVER_HIDE      0x2B7 // Trinity: was FLAG_UNUSED_0x2B7 -- visibility - SILVER training in DRAGON'S DEN B1F (20,23). Visible iff FLAG_TRINITY_BADGE16. No battle: this is the arc-turn coda that seeds S11's VICTORY ROAD fight.
+#define FLAG_TRINITY_J_DEN_SILVER_MET       0x2B8 // Trinity: was FLAG_UNUSED_0x2B8 -- story - SILVER's Den coda has been heard once (his second line differs, as in GSC).
 #define FLAG_UNUSED_0x2B9  0x2B9 // Unused Flag
 #define FLAG_UNUSED_0x2BA  0x2BA // Unused Flag
 #define FLAG_UNUSED_0x2BB  0x2BB // Unused Flag

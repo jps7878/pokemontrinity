@@ -1755,6 +1755,64 @@ static bool8 PushBoulder_Move(struct Task *task, struct ObjectEvent *player, str
     return FALSE;
 }
 
+// Trinity M4b S9 -- GSC's boulder-into-hole mechanic (pokecrystal's CMDQUEUE_STONETABLE,
+// maps/BlackthornGym2F.asm).  pokeemerald-expansion ships the Strength push but not the
+// fall; pokefirered ships both, and this is its HandleBoulderFallThroughHole
+// (pokefirered/src/field_control_avatar.c:1066-1074) merged with the coord_event lookup of
+// its sibling HandleBoulderActivateVictoryRoadSwitch (:1076-1093), so WHICH holes exist and
+// WHAT happens when one is plugged live in map data, not here.  Both are called from
+// pokefirered's DoBoulderFinish (src/field_player_avatar.c:1445-1459), the exact counterpart
+// of PushBoulder_End below.
+//
+// currentCoords are MAP_OFFSET-shifted, which is the space MapGridGetMetatileBehaviorAt
+// wants and which the "+ MAP_OFFSET" on the coord_event compare converts into (a coord_event
+// stores unshifted map coordinates -- see GetCoordEventScriptAtMapPosition, which subtracts
+// MAP_OFFSET before calling GetCoordEventScriptAtPosition).
+//
+// THE ELEVATION SENTINEL.  A boulder-hole coord_event is tagged
+// elevation == BOULDER_HOLE_COORD_EVENT_ELEVATION so that the PLAYER's own coord scan can
+// never match it: GetCoordEventScriptAtPosition (src/field_control_avatar.c:1085-1097)
+// requires `coordEvent->elevation == <player's elevation> || == ELEVATION_TRANSITION`, and
+// every walkable tile of the one map that uses this decodes elevation 3.  The map data adds
+// two further independent guards (a var value the var never holds, and being listed after
+// the player's own fall trigger, which returns first) -- see
+// data/maps/BlackthornGym2F/scripts.inc.
+//
+// RemoveObjectEventByLocalIdAndMap FlagSets the boulder's own visibility flag before
+// despawning (src/event_object_movement.c:1537-1545), which is exactly GSC's
+// `disappear` + EVENT_BOULDER_IN_BLACKTHORN_GYM_N: the boulder is gone for good and the
+// floor below it gains a platform.  It is a no-op if the object is already gone, which is
+// what makes the script-side backstop's second removeobject safe.
+#define BOULDER_HOLE_COORD_EVENT_ELEVATION ELEVATION_MULTI_LEVEL
+
+static void TryBoulderFallThroughHole(struct ObjectEvent *boulder)
+{
+    u32 i;
+    s16 x = boulder->currentCoords.x;
+    s16 y = boulder->currentCoords.y;
+    const struct CoordEvent *coordEvents = gMapHeader.events->coordEvents;
+    u32 count = gMapHeader.events->coordEventCount;
+
+    if (MapGridGetMetatileBehaviorAt(x, y) != MB_CRACKED_FLOOR_HOLE)
+        return;
+
+    for (i = 0; i < count; i++)
+    {
+        if (coordEvents[i].x + MAP_OFFSET != x || coordEvents[i].y + MAP_OFFSET != y)
+            continue;
+        if (coordEvents[i].elevation != BOULDER_HOLE_COORD_EVENT_ELEVATION)
+            continue;
+        PlaySE(SE_FALL);
+        // So the script's `removeobject VAR_LAST_TALKED` names this boulder on BOTH paths:
+        // here it is already a no-op, and on the talk-triggered backstop it does the work.
+        gSpecialVar_LastTalked = boulder->localId;
+        RemoveObjectEventByLocalIdAndMap(boulder->localId, boulder->mapNum, boulder->mapGroup);
+        ScriptContext_SetupScript(coordEvents[i].script);
+        LockPlayerFieldControls();
+        return;
+    }
+}
+
 static bool8 PushBoulder_End(struct Task *task, struct ObjectEvent *player, struct ObjectEvent *boulder)
 {
     if (ObjectEventCheckHeldMovementStatus(player)
@@ -1765,6 +1823,13 @@ static bool8 PushBoulder_End(struct Task *task, struct ObjectEvent *player, stru
         gPlayerAvatar.preventStep = FALSE;
         UnlockPlayerFieldControls();
         DestroyTask(FindTaskIdByFunc(Task_PushBoulder));
+        // Trinity M4b S9. LAST, deliberately: after the unlock and the task teardown, so
+        // nothing this frame can stomp the lock the hook takes. (pokefirered calls its
+        // equivalent before the unlock; this ordering is strictly safer and otherwise
+        // identical.) `boulder` still points into gObjectEvents and its coords are read
+        // before the removal. On every other map in the game the behaviour test fails on
+        // the first line and this is a no-op.
+        TryBoulderFallThroughHole(boulder);
     }
     return FALSE;
 }

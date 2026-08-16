@@ -1,5 +1,95 @@
+@ ============================================================================
+@ Trinity M4b S9 -- BLACKTHORN CITY. Two beats: the DRAGON'S DEN gate and the
+@ GYM's doorman.
+@
+@ ---------------------------------------------------------------------------
+@ THE DEN GATE IS FLAVOR, NOT A SEAL -- MEASURED, NOT ASSUMED
+@ ---------------------------------------------------------------------------
+@ GSC parks its GRAMPS on (20,2) and swaps him for a second object at (21,2)
+@ once CLAIR sends the player to the shrine. The plan for this slice predicted
+@ he would genuinely seal the DRAGON'S DEN and wrote the R5 disclosure for it.
+@ THE MEASUREMENT SAYS OTHERWISE, and the measurement wins.
+@
+@ Decoded from data/layouts/BlackthornCity_Johto/map.bin: (20,1) is the
+@ DRAGON'S DEN door (MB_NON_ANIMATED_DOOR) and its only walkable neighbor at
+@ ground level is (20,2) -- (19,1), (21,1) and (19,2) all decode collision 1.
+@ BUT THE TOWN'S ROW 0 IS WALKABLE, 38 of its 40 tiles, and (20,0) sits
+@ directly above the door. That is not a port artifact: pokecrystal's
+@ maps/BlackthornCity.blk block row 0 is almost entirely block $71, which
+@ data/tilesets/johto_collision.asm gives as FLOOR,FLOOR,FLOOR,FLOOR. The strip
+@ is drawn as clifftop and is walkable in GSC too.
+@
+@ MEASURED, per door (the union fill is useless for this question -- a warp is
+@ always reachable from its own seed):
+@   GRAMPS BLOCKING: 910/1014 reachable, he costs 2 tiles ((20,2) and the
+@     (21,2) alcove behind it), and (20,1) is REACHABLE FROM ALL SEVEN other
+@     doors -- an 81-step detour up the left side and along row 0.
+@   GRAMPS ASIDE:    911/1014, every object costs exactly its own tile, all 8
+@     doors mutually reachable.
+@ So no R5 exception is needed and none is claimed: nothing is sealed in either
+@ state. He is kept at GSC's tile as characterization -- he tells you to leave,
+@ and the game does not enforce it. Walking in early is harmless: the shrine
+@ scene is gated on VAR_TRINITY_JOHTO_SCENE_BLACKTHORN == 1, SILVER on badge 16,
+@ and ELDER 1's pre-test line is GSC's own "Come again, if you so desire."
+@
+@ ---------------------------------------------------------------------------
+@ THE GYM DOORMAN MOVED -- FOURTH OCCURRENCE OF THE "EXPECT TO MOVE A GSC GUARD
+@ POST" RULE (S3, S6, S8, now S9)
+@ ---------------------------------------------------------------------------
+@ GSC's two SUPER NERD objects stand on (18,12)/(19,12). (18,12) is the ONLY
+@ walkable neighbor of the GYM door (18,11) -- (17,11), (19,11) and (18,10) all
+@ decode collision 1, and unlike the DEN door there is no clifftop above it --
+@ so a resting NPC there seals BLACKTHORN GYM. S9 ships ONE doorman, at
+@ (19,12), in the open plaza (rows 12-13, x 17-20 all walkable).
+@ MEASURED, and this is ALSO a live instance of the union-vs-per-door trap S8
+@ pinned -- the union fill reports the gym door reachable in both stagings,
+@ because it is its own seed:
+@   on GSC's (18,12): per-door 746 tiles and (18,11) SEALED from all 7 other
+@     doors.
+@   on S9's (19,12):  per-door 747 tiles and (18,11) reachable from all 7.
+@ He is also NOT a gate. GSC hides CLAIR until EVENT_CLEARED_RADIO_TOWER; the
+@ M4b contract makes the JOHTO gyms open-order and S8's fix round already ruled
+@ CLAIR reachable pre-tower, so his GSC "CLAIR is out" state is dropped and he
+@ keeps the two states that are still true.
+@ ============================================================================
+
 BlackthornCity_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, BlackthornCity_OnTransition
 	.byte 0
+
+@ The single authoring site for both GRAMPS flags. Exact complements, one
+@ predicate: SCENE_BLACKTHORN == 0 means CLAIR has not been beaten.
+BlackthornCity_OnTransition:
+	goto_if_ge VAR_TRINITY_JOHTO_SCENE_BLACKTHORN, 1, BlackthornCity_EventScript_DenOpen
+	clearflag FLAG_TRINITY_J_DEN_GRAMPS_BLOCK_HIDE
+	setflag FLAG_TRINITY_J_DEN_GRAMPS_ASIDE_HIDE
+	end
+
+BlackthornCity_EventScript_DenOpen::
+	setflag FLAG_TRINITY_J_DEN_GRAMPS_BLOCK_HIDE
+	clearflag FLAG_TRINITY_J_DEN_GRAMPS_ASIDE_HIDE
+	end
+
+BlackthornCity_EventScript_GrampsBlocking::
+	msgbox BlackthornCity_Text_GrampsRefusesEntry, MSGBOX_NPC
+	end
+
+BlackthornCity_EventScript_GrampsAside::
+	msgbox BlackthornCity_Text_GrampsGrantsEntry, MSGBOX_NPC
+	end
+
+BlackthornCity_EventScript_SuperNerd::
+	lock
+	faceplayer
+	goto_if_ge VAR_TRINITY_JOHTO_SCENE_BLACKTHORN, 1, BlackthornCity_EventScript_SuperNerdBeaten
+	msgbox BlackthornCity_Text_SuperNerdClairIsIn, MSGBOX_DEFAULT
+	release
+	end
+
+BlackthornCity_EventScript_SuperNerdBeaten::
+	msgbox BlackthornCity_Text_SuperNerdClairIsBeaten, MSGBOX_DEFAULT
+	release
+	end
 
 BlackthornCity_EventScript_BlackthornBlackBelt::
 	msgbox BlackthornCity_Text_BlackthornBlackBelt, MSGBOX_NPC
@@ -63,3 +153,28 @@ BlackthornCity_Text_DragonDensSign:
 
 BlackthornCity_Text_TrainerTips:
 	.string "TRAINER TIPS\pA POKéMON holding\na MIRACLEBERRY\pwill cure itself\nof any status\lproblem.$"
+
+BlackthornCity_Text_GrampsRefusesEntry:
+	.string "No. Only chosen trainers may train\n"
+	.string "here.\p"
+	.string "It does not matter what you won\n"
+	.string "somewhere else. Please leave.$"
+
+BlackthornCity_Text_GrampsGrantsEntry:
+	.string "If CLAIR allows it, her\n"
+	.string "grandfather -- our MASTER -- will\l"
+	.string "also allow it.\p"
+	.string "You may enter.$"
+
+BlackthornCity_Text_SuperNerdClairIsIn:
+	.string "CLAIR, our GYM LEADER, is waiting\n"
+	.string "for you.\p"
+	.string "I know what they call you in\n"
+	.string "HOENN. So does she. It will not\l"
+	.string "help you in there.$"
+
+BlackthornCity_Text_SuperNerdClairIsBeaten:
+	.string "You defeated CLAIR?\p"
+	.string "That's amazing!\p"
+	.string "I've never heard of her losing to\n"
+	.string "anyone other than LANCE.$"

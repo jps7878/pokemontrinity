@@ -792,6 +792,46 @@ static const struct MenuAction MultichoiceList_FamilyReward[] =
     {gText_Exit},
 };
 
+// Trinity M4b S9 -- the DRAGON SHRINE test. GSC's own options, in GSC's own order, so the
+// accepted answers below match pokecrystal maps/DragonShrine.asm exactly:
+//   1 PAL/FRIEND ok, UNDERLING wrong    2 STRATEGY/RAISING ok, CHEATING wrong
+//   3 TOUGH PERSON/ANYBODY ok, WEAK PERSON wrong
+//   4 LOVE/KNOWLEDGE ok, VIOLENCE wrong 5 BOTH ok, TOUGH and WEAK wrong
+static const struct MenuAction MultichoiceList_DragonTest1[] =
+{
+    {COMPOUND_STRING("PAL")},
+    {COMPOUND_STRING("UNDERLING")},
+    {COMPOUND_STRING("FRIEND")},
+};
+
+static const struct MenuAction MultichoiceList_DragonTest2[] =
+{
+    {COMPOUND_STRING("STRATEGY")},
+    {COMPOUND_STRING("RAISING")},
+    {COMPOUND_STRING("CHEATING")},
+};
+
+static const struct MenuAction MultichoiceList_DragonTest3[] =
+{
+    {COMPOUND_STRING("WEAK PERSON")},
+    {COMPOUND_STRING("TOUGH PERSON")},
+    {COMPOUND_STRING("ANYBODY")},
+};
+
+static const struct MenuAction MultichoiceList_DragonTest4[] =
+{
+    {COMPOUND_STRING("LOVE")},
+    {COMPOUND_STRING("VIOLENCE")},
+    {COMPOUND_STRING("KNOWLEDGE")},
+};
+
+static const struct MenuAction MultichoiceList_DragonTest5[] =
+{
+    {COMPOUND_STRING("TOUGH")},
+    {COMPOUND_STRING("BOTH")},
+    {COMPOUND_STRING("WEAK")},
+};
+
 static const struct MenuAction MultichoiceList_Exit[] =
 {
     {gText_Exit},
@@ -922,6 +962,11 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_BERRY_PLOT]                 = MULTICHOICE(MultichoiceList_BerryPlot),
     [MULTI_STARTER_TRIO]               = MULTICHOICE(MultichoiceList_StarterTrio),
     [MULTI_FAMILY_REWARD]              = MULTICHOICE(MultichoiceList_FamilyReward),
+    [MULTI_DRAGON_TEST_1]              = MULTICHOICE(MultichoiceList_DragonTest1),
+    [MULTI_DRAGON_TEST_2]              = MULTICHOICE(MultichoiceList_DragonTest2),
+    [MULTI_DRAGON_TEST_3]              = MULTICHOICE(MultichoiceList_DragonTest3),
+    [MULTI_DRAGON_TEST_4]              = MULTICHOICE(MultichoiceList_DragonTest4),
+    [MULTI_DRAGON_TEST_5]              = MULTICHOICE(MultichoiceList_DragonTest5),
 };
 
 const u8 *const gStdStrings[] =

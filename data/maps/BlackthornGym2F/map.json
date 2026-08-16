@@ -39,6 +39,90 @@
       "trainer_sight_or_berry_tree_id": "1",
       "script": "BlackthornGym2F_EventScript_FRAN",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "x": 8,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_BGYM2_BOULDER_1",
+      "script": "BlackthornGym2F_EventScript_Boulder",
+      "flag": "FLAG_TRINITY_J_BGYM_BOULDER_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "x": 2,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_BGYM2_BOULDER_2",
+      "script": "BlackthornGym2F_EventScript_Boulder",
+      "flag": "FLAG_TRINITY_J_BGYM_BOULDER_2"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "x": 6,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_BGYM2_BOULDER_3",
+      "script": "BlackthornGym2F_EventScript_Boulder",
+      "flag": "FLAG_TRINITY_J_BGYM_BOULDER_3"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "x": 3,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_BGYM2_BOULDER_4",
+      "script": "BlackthornGym2F_EventScript_Boulder",
+      "flag": "FLAG_TRINITY_J_BGYM_BOULDER_4"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "x": 6,
+      "y": 1,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_BGYM2_BOULDER_5",
+      "script": "BlackthornGym2F_EventScript_Boulder",
+      "flag": "FLAG_TRINITY_J_BGYM_BOULDER_5"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "x": 8,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_BGYM2_BOULDER_6",
+      "script": "BlackthornGym2F_EventScript_Boulder",
+      "flag": "FLAG_TRINITY_J_BGYM_BOULDER_6"
     }
   ],
   "warp_events": [
@@ -105,6 +189,33 @@
       "var": "VAR_TEMP_0",
       "var_value": "0",
       "script": "BlackthornGym2F_EventScript_FallToC"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 3,
+      "elevation": 15,
+      "var": "VAR_TEMP_0",
+      "var_value": "1",
+      "script": "BlackthornGym2F_EventScript_BoulderFellHoleC"
+    },
+    {
+      "type": "trigger",
+      "x": 2,
+      "y": 5,
+      "elevation": 15,
+      "var": "VAR_TEMP_0",
+      "var_value": "1",
+      "script": "BlackthornGym2F_EventScript_BoulderFellHoleA"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 7,
+      "elevation": 15,
+      "var": "VAR_TEMP_0",
+      "var_value": "1",
+      "script": "BlackthornGym2F_EventScript_BoulderFellHoleB"
     }
   ],
   "bg_events": []

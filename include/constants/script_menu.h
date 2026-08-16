@@ -125,6 +125,14 @@
 #define MULTI_BERRY_PLOT                   114
 #define MULTI_STARTER_TRIO                 115
 #define MULTI_FAMILY_REWARD                116
+// Trinity M4b S9: the DRAGON SHRINE elder's five-question test (pokecrystal
+// maps/DragonShrine.asm, DragonShrineQuestion1_MenuHeader .. Question5). Options and
+// their accepted/rejected split are GSC's, verbatim.
+#define MULTI_DRAGON_TEST_1                117
+#define MULTI_DRAGON_TEST_2                118
+#define MULTI_DRAGON_TEST_3                119
+#define MULTI_DRAGON_TEST_4                120
+#define MULTI_DRAGON_TEST_5                121
 
 // Lilycove SS Tidal Multichoice Selections
 #define SSTIDAL_SELECTION_SLATEPORT        0

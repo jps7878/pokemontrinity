@@ -317,7 +317,17 @@
 // so neither can re-fire. State 1 (not 0) is SILVER's gate because the BASEMENT KEY is
 // what unlocks the only route into the maze -- a trigger on 0 would be dead code.
 #define VAR_TRINITY_JOHTO_SCENE_GOLDENROD                0x40FD
-#define VAR_UNUSED_0x40FE                                0x40FE // Unused Var
+// Trinity M4b S9: the BLACKTHORN chapter scene. Was VAR_UNUSED_0x40FE.
+//   0 untouched
+//   1 CLAIR beaten -- she has refused the badge and sent the player to the DRAGON'S DEN
+//     (this is also what stands the DEN's GRAMPS aside)
+//   2 the DRAGON SHRINE test is passed (this is also FLAG_TRINITY_BADGE16)
+// Monotonic; the 0 -> 1 write sits behind a goto_if_ge guard in CLAIR's post-battle
+// continuation, and the 1 -> 2 write is inside the shrine scene, which is the body of a
+// MAP_SCRIPT_ON_FRAME_TABLE entry gated on == 1 -- so the scene advances the very value
+// it matches on and can never re-fire. (S7's ON_FRAME pin warns about an entry whose
+// script does NOT advance its var; that is the failure this shape avoids.)
+#define VAR_TRINITY_JOHTO_SCENE_BLACKTHORN               0x40FE
 #define VAR_UNUSED_0x40FF                                0x40FF // Unused Var
 
 #define VARS_END                                         0x40FF
