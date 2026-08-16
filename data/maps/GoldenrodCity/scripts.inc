@@ -455,7 +455,7 @@ GoldenrodCity_Text_Bobby:
 	.string "He's gone east. INDIGO first,\n"
 	.string "then home -- and home for that\l"
 	.string "man is VIRIDIAN.\p"
-	.string "Take your eighth badge. I'll\n"
+	.string "Go and finish the badges. I'll\n"
 	.string "be somewhere behind you.$"
 
 GoldenrodCity_Text_BobbyUnrevealed:

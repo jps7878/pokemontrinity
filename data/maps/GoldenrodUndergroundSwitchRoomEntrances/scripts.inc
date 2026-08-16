@@ -740,16 +740,16 @@ GoldenrodUndergroundSwitchRoomEntrances_Text_SuperNerd:
 	.string "better be careful.$"
 
 GoldenrodUndergroundSwitchRoomEntrances_Text_Switch1:
-	.string "It's labelled SWITCH 1.$"
+	.string "It's labeled SWITCH 1.$"
 
 GoldenrodUndergroundSwitchRoomEntrances_Text_Switch2:
-	.string "It's labelled SWITCH 2.$"
+	.string "It's labeled SWITCH 2.$"
 
 GoldenrodUndergroundSwitchRoomEntrances_Text_Switch3:
-	.string "It's labelled SWITCH 3.$"
+	.string "It's labeled SWITCH 3.$"
 
 GoldenrodUndergroundSwitchRoomEntrances_Text_Emergency:
-	.string "It's labelled EMERGENCY.$"
+	.string "It's labeled EMERGENCY.$"
 
 GoldenrodUndergroundSwitchRoomEntrances_Text_OffTurnOn:
 	.string "It's OFF.\nTurn it ON?$"

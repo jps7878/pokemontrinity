@@ -21,15 +21,26 @@ GoldenrodDeptStoreB1F_MapScripts::
 @ Trinity M4b S8 -- THE CRATE MAZE, and an M4a port fix.
 @
 @ GSC clears ONE of three crate gaps on every map load and the card-key crate
-@ separately (GoldenrodDeptStoreB1F.asm:18-41):
+@ separately (GoldenrodDeptStoreB1F.asm:18-41). Trinity pins the choice of gap;
+@ see below.
 @
-@   * (10,8) is the DEFAULT layout gap and is cleared UNCONDITIONALLY -- the
-@     LAYOUT_2 / LAYOUT_3 events that would pick a different gap are never set
-@     by anything in GSC, so layout 1 is permanent. M4a carried the raw
-@     blockdata and dropped the callback, so this gap HAS NEVER EXISTED in
-@     Trinity: B1F reads 51 of 189 tiles reachable from the elevator today, with
-@     the whole east half and the WAREHOUSE door walled off. Authored open here,
-@     always, which is what GSC does.
+@   * (10,8) is LAYOUT 1's gap. GSC ROTATES the layout -- GoldenrodDeptStoreElevator
+@     .asm:17-38 advances LAYOUT_1 -> 2 -> 3 on every elevator ride, and
+@     GoldenrodUndergroundWarehouse.asm:78-80 resets it to LAYOUT 1 at the CARD KEY
+@     handover -- so the gap MOVES between (10,8), (4,10) and (10,12) as the player
+@     uses the lift. TRINITY DELIBERATELY SIMPLIFIES THIS: we pin LAYOUT 1 and
+@     author (10,8) open on every load, permanently.
+@     WHY: the rotation is a flavour system, not a story beat (its own state is
+@     three mutually-exclusive events driven from a THIRD map), and pinning it
+@     costs nothing the chapter needs -- GSC itself resets to exactly this layout
+@     the moment the CARD KEY changes hands, which is the only moment this slice
+@     cares about. Logged as a simplification in the slice plan and report, not as
+@     a port of GSC's behaviour.
+@     WHAT IS A REAL PORT FIX: M4a carried the raw blockdata and dropped the
+@     callback ENTIRELY, so NO gap has ever existed in Trinity -- B1F reads 51 of
+@     189 tiles reachable from the elevator in the shipped ROM, with the whole east
+@     half and the WAREHOUSE door walled off. One of the three gaps has to be open
+@     at all times for the floor to work at all, and this is that fix.
 @   * (16,4) is the CARD KEY crate, `changeblock 16,4,$0d` iff
 @     EVENT_RECEIVED_CARD_KEY. It is what turns the WAREHOUSE into a shortcut to
 @     the street once the DIRECTOR is free, and it is the only way the

@@ -77,7 +77,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "3",
+      "trainer_sight_or_berry_tree_id": "1",
       "local_id": "LOCALID_JOHTO_RT5F_ARIANA",
       "script": "RadioTower5F_EventScript_Ariana",
       "flag": "FLAG_TRINITY_J_TOWER_5F_ROCKETS_HIDE"

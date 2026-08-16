@@ -545,7 +545,7 @@ TeamRocketBaseB3F_Text_EvidenceCrate:
 	.string "Catalogue tag. Valuation.\n"
 	.string "Project number.\p"
 	.string "And inside, wrapped twice, a\n"
-	.string "long grey feather.$"
+	.string "long gray feather.$"
 
 TeamRocketBaseB3F_Text_ReceivedSilverWing:
 	.string "{PLAYER} received the\n"

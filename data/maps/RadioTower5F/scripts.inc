@@ -238,18 +238,36 @@ RadioTower5F_Text_Studio1Sign_2:
 	.string "5F STUDIO 1$"
 
 @ ============================================================================
-@ EXEC ARIANA -- SIGHT-triggered at (17,2), and this is a DELIBERATE departure
-@ from R2's "the exec is talk-triggered".
+@ EXEC ARIANA -- SIGHT-triggered at (17,2) with RADIUS 1, and both halves of that
+@ are load-bearing.
 @
-@ R2 makes execs talk-triggered so playbgm MUS_RG_ENCOUNTER_ROCKET survives to
-@ the battle, and S7 accepted the cost that PETREL and ARIANA became
-@ walk-past-able. Here the geometry gives the better answer for free. (17,2) is
-@ a dead-end nook at the east end of the 5F north corridor, and the ONLY descent
-@ into STUDIO 1 is the one-tile column x=16, y=3..7 -- rows 3 and 4 are solid
-@ from x=6 to x=15. A west-facing cone of radius 3 from (17,2) covers (16,2),
-@ (15,2) and (14,2), which are the three tiles the player must cross to turn
-@ down that column. She is therefore UNMISSABLE and costs ZERO walkability,
-@ because her own tile is a dead end that nothing else needs.
+@ WHY SIGHT, against R2's "the exec is talk-triggered". R2 makes execs
+@ talk-triggered so playbgm MUS_RG_ENCOUNTER_ROCKET survives to the battle, and
+@ S7 accepted the cost that PETREL and ARIANA became walk-past-able. Here the
+@ geometry gives the better answer for free: (17,2) is a dead-end nook at the
+@ east end of the 5F north corridor, and the ONLY descent into STUDIO 1 is the
+@ one-tile column x=16, y=3..7 (rows 3 and 4 are solid from x=6 to x=15). Every
+@ player must stand on (16,2) to turn down it, so a west-facing cone that
+@ contains (16,2) is unmissable.
+@
+@ WHY RADIUS 1, AND NOT 3 (review C1 -- this was a REAL, SHIPPED-IN-DRAFT DEFECT).
+@ A sight post does NOT rest on its template tile after the battle. The approach
+@ task walks it toward the player and leaves it ADJACENT to wherever the player
+@ stood when the cone fired, so for a post at P facing d with radius r the set of
+@ possible RESTING tiles is P, P+d, ... P+(r-1)*d. At radius 3 hers was
+@ {(17,2), (16,2), (15,2)} -- and (16,2) is the mouth of the descent column.
+@ An ARIANA who fought at maximum range would spend the rest of the visit
+@ standing in the ONLY doorway to STUDIO 1, sealing ARCHER, GIOVANNI and the G
+@ reveal behind her. Measured, per-door: template 35/39, resting on (16,2)
+@ 15/35, resting on (15,2) 14/35.
+@
+@ At radius 1 the cone is exactly {(16,2)} -- still the provably-crossed tile,
+@ so she is still unmissable -- and the resting set collapses to {(17,2)}, her
+@ own dead end, which costs zero walkability because nothing else needs it.
+@
+@ THE RULE THIS COST US, now in the ledger: a sight post's cut-vertex audit runs
+@ over its WHOLE APPROACH PATH P..P+(r-1)*d, never over the template tile alone.
+@ Every other sight post in this slice was re-audited that way and is clean.
 @
 @ Her battle BGM is unaffected: GetBattleBGM()'s TEAM ROCKET case takes
 @ TRAINER_JOHTO_EXEC_PETREL_2..._ARIANA_2 (1081-1082) to MUS_VS_AQUA_MAGMA by id
@@ -359,6 +377,17 @@ RadioTower5F_EventScript_ArcherBeaten::
 	msgbox RadioTower5F_Text_Giovanni1, MSGBOX_DEFAULT
 	msgbox RadioTower5F_Text_Giovanni2, MSGBOX_DEFAULT
 	closemessage
+	@ ---- BOBBY INTERRUPTS. "Let him walk." has to land while G is still ON
+	@ SCREEN, or it is not an interruption -- it is a man narrating an empty
+	@ doorway. So BOBBY spawns and speaks FIRST, G finishes his exit AFTER, and
+	@ the player turns to face the voice behind them in between.
+	addobject LOCALID_JOHTO_RT5F_BOBBY
+	applymovement LOCALID_JOHTO_RT5F_BOBBY, RadioTower5F_Movement_BobbyEnters
+	waitmovement 0
+	msgbox RadioTower5F_Text_BobbyInterrupt, MSGBOX_DEFAULT
+	closemessage
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
+	@ G leaves unhurried, and unchallenged, which is the point of the beat.
 	applymovement LOCALID_JOHTO_RT5F_GIOVANNI, RadioTower5F_Movement_GiovanniLeaves
 	waitmovement 0
 	playse SE_EXIT
@@ -366,11 +395,6 @@ RadioTower5F_EventScript_ArcherBeaten::
 	removeobject LOCALID_JOHTO_RT5F_GIOVANNI
 	fadedefaultbgm
 	delay 30
-	@ ---- BOBBY. He comes from behind, off the stairs. ----
-	addobject LOCALID_JOHTO_RT5F_BOBBY
-	applymovement LOCALID_JOHTO_RT5F_BOBBY, RadioTower5F_Movement_BobbyEnters
-	waitmovement 0
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
 	msgbox RadioTower5F_Text_Bobby1, MSGBOX_DEFAULT
 	closemessage
 	@ The badge. A white flash is this repo's own idiom for a beat that has to
@@ -510,7 +534,7 @@ RadioTower5F_Text_ArcherBefore:
 	.string "…No. That is what I tell the\n"
 	.string "men.\p"
 	.string "The truth is he has been back\n"
-	.string "for two years, and he has not\l"
+	.string "for three years, and he has not\l"
 	.string "once called.\p"
 	.string "Tonight he will have to.$"
 
@@ -557,7 +581,7 @@ RadioTower5F_Text_Documents2:
 	.string "about the other.\p"
 	.string "Then MAHOGANY. Then this\n"
 	.string "building.\p"
-	.string "Every page authorised by one\n"
+	.string "Every page authorized by one\n"
 	.string "signature.\p"
 	.string "A single letter.\p"
 	.string "G.$"
@@ -592,19 +616,23 @@ RadioTower5F_Text_Giovanni2:
 	.string "…Don't. There is nothing here\n"
 	.string "to arrest and nothing here to\l"
 	.string "battle. Not tonight.\p"
-	.string "You have a badge left to earn,\n"
-	.string "and a LEAGUE after it, and by\l"
-	.string "the time you are done with both\l"
-	.string "I will be home.\p"
+	.string "There is a LEAGUE waiting for\n"
+	.string "you, and whatever you still owe\l"
+	.string "it, and by the time you are\l"
+	.string "done I will be home.\p"
 	.string "Come east when you're finished,\n"
 	.string "{PLAYER}.\p"
 	.string "I'd like to see what you do\n"
 	.string "with the rest of it.$"
 
+RadioTower5F_Text_BobbyInterrupt:
+	.string "?: Let him walk.$"
+
 RadioTower5F_Text_Bobby1:
-	.string "?: Let him walk.\p"
 	.string "BOBBY: Hey. Long way from\n"
-	.string "HOENN.$"
+	.string "HOENN.\p"
+	.string "Don't look at me like that. I\n"
+	.string "know exactly who just left.$"
 
 RadioTower5F_Text_Bobby2:
 	.string "BOBBY: INTERNATIONAL POLICE.\p"
@@ -626,8 +654,8 @@ RadioTower5F_Text_Bobby3:
 	.string "he's been building under that\l"
 	.string "gym.\p"
 	.string "So he walks, and I follow, and\n"
-	.string "you go and get your eighth\l"
-	.string "badge.\p"
+	.string "you finish what you came to\l"
+	.string "JOHTO to do.\p"
 	.string "You've been a very useful\n"
 	.string "friend, {PLAYER}. I'm sorry\l"
 	.string "about the useful part.$"
@@ -654,7 +682,7 @@ RadioTower5F_Text_ReceivedRainbowWing:
 
 RadioTower5F_Text_DescribeRainbowWing:
 	.string "DIRECTOR: A feather. It has\n"
-	.string "held its colour for however\l"
+	.string "held its color for however\l"
 	.string "long it has been down there.\p"
 	.string "The old people in ECRUTEAK say\n"
 	.string "a bird burned with the BRASS\l"

@@ -30,7 +30,7 @@ RadioTower4F_EventScript_DJMary::
 	faceplayer
 	goto_if_lt VAR_TRINITY_JOHTO_ARC, 6, RadioTower4F_EventScript_DJMaryIdle
 	goto_if_eq VAR_TRINITY_JOHTO_ARC, 6, RadioTower4F_EventScript_DJMaryHostage
-	goto_if_set FLAG_TRINITY_J_MARY_SCARF, RadioTower4F_EventScript_DJMaryIdle
+	goto_if_set FLAG_TRINITY_J_MARY_SCARF, RadioTower4F_EventScript_DJMaryThanked
 	msgbox RadioTower4F_Text_DJMarySaved, MSGBOX_DEFAULT
 	giveitem ITEM_SILK_SCARF
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
@@ -41,6 +41,14 @@ RadioTower4F_EventScript_DJMary::
 
 RadioTower4F_EventScript_DJMaryIdle::
 	msgbox RadioTower4F_Text_DJMary, MSGBOX_DEFAULT
+	release
+	end
+
+@ Her pre-takeover line is about a show that is running; after the rescue she is
+@ a woman who has just been let out of a studio. Sending both states to the same
+@ string would have her plugging the schedule at someone who saved her.
+RadioTower4F_EventScript_DJMaryThanked::
+	msgbox RadioTower4F_Text_DJMaryThanked, MSGBOX_DEFAULT
 	release
 	end
 
@@ -193,7 +201,7 @@ RadioTower4F_Text_GruntCAfter:
 
 RadioTower4F_Text_RichSeen:
 	.string "Most excellent.\p"
-	.string "This RADIO TOWER will fulfil\n"
+	.string "This RADIO TOWER will fulfill\n"
 	.string "our grand design.$"
 
 RadioTower4F_Text_RichBeaten:
@@ -206,3 +214,13 @@ RadioTower4F_Text_RichAfter:
 	.string "stop TEAM ROCKET?\p"
 	.string "We aren't a gang. We're a\n"
 	.string "budget with people attached.$"
+
+RadioTower4F_Text_DJMaryThanked:
+	.string "MARY: They had me reading their\n"
+	.string "script into a live microphone.\p"
+	.string "I kept mispronouncing it. Every\n"
+	.string "single name, every take.\p"
+	.string "It was the only thing I could\n"
+	.string "think of to do.\p"
+	.string "Tune in tonight. I'm doing the\n"
+	.string "whole show myself.$"

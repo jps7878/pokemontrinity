@@ -366,6 +366,6 @@ RadioTower3F_Text_ExplainSunnyDay:
 	.string "it.$"
 
 RadioTower3F_Text_CooltrainerFThanked:
-	.string "You were simply marvellous.\p"
+	.string "You were simply marvelous.\p"
 	.string "I'm putting today in the files\n"
 	.string "under your name.$"
