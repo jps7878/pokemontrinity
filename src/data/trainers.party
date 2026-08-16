@@ -20378,7 +20378,7 @@ Name: JED
 Class: Team Rocket
 Pic: Magma Grunt M
 Gender: Male
-Music: Magma
+Music: Aqua
 AI: Check Bad Move / Try To Faint
 
 MAGNETON
@@ -20395,7 +20395,7 @@ Name: ROSS
 Class: Team Rocket
 Pic: Magma Grunt M
 Gender: Male
-Music: Magma
+Music: Aqua
 AI: Check Bad Move / Try To Faint / Check Viability
 
 WEEZING
@@ -20412,7 +20412,7 @@ Name: MITCH
 Class: Team Rocket
 Pic: Magma Grunt M
 Gender: Male
-Music: Magma
+Music: Aqua
 AI: Check Bad Move / Try To Faint / Check Viability
 
 MAGNETON

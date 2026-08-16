@@ -95,14 +95,26 @@ TeamRocketBaseB1F_EventScript_Jed::
 @ purpose: (21,12), the tile below the second one, holds M4a's GUARD SPEC ball,
 @ so a north-facing bg_event there would be dead. FACING_ANY lets (22,11) read
 @ it instead -- decoded collision 0.
+@ NOTE ON THE TILES THEMSELVES: (19,11) (20,11) (21,11) decode MB_NORMAL at
+@ collision 1, NOT MB_BOOKSHELF. The bookshelf behaviour is a HOENN tileset
+@ affordance that M4a's Johto tilesets do not carry, so nothing here is
+@ readable by walking into it -- the bg_events are the entire mechanism, which
+@ is exactly why their reading tiles had to be decoded by hand.
 @ ============================================================================
 TeamRocketBaseB1F_EventScript_Statue::
 	msgbox TeamRocketBaseB1F_Text_Statue, MSGBOX_SIGN
 	end
 
+@ Minor 11. The predicate is an ARC test, NOT the cast's visibility flag. The
+@ switch is a bg_event with no object and no visibility of its own, so reading
+@ FLAG_TRINITY_J_BASE_CAST_HIDE here would make a piece of scenery depend on a
+@ flag whose single authoring site is this map's ON_TRANSITION -- the S1
+@ ownership rule cuts both ways, and a reader outside the owning predicate is
+@ how a flag quietly acquires a second meaning. ARC >= 5 is the state the line
+@ is actually about.
 TeamRocketBaseB1F_EventScript_SecretSwitch::
 	lockall
-	goto_if_set FLAG_TRINITY_J_BASE_CAST_HIDE, TeamRocketBaseB1F_EventScript_SwitchDead
+	goto_if_ge VAR_TRINITY_JOHTO_ARC, 5, TeamRocketBaseB1F_EventScript_SwitchDead
 	msgbox TeamRocketBaseB1F_Text_SecretSwitch, MSGBOX_DEFAULT
 	playse SE_PIN
 	waitse

@@ -78,8 +78,16 @@ MahoganyTown_EventScript_Fisher::
 @ scene variable of its own; S7 ships the sales pitch on his talk script, which
 @ is GSC's own second entry point into the same body (RageCandyBarMerchantScript
 @ is reached both by fallthrough from MahoganyTownPokefanMScript and by scall).
-@ He rests on (19,8), the upper of the two east-exit tiles; (19,9) stays clear,
-@ so the ROUTE 44 road is never blocked.
+@ MOVED (19,8) -> (18,8). GSC parks him on (19,8) to BLOCK the east exit until
+@ the hideout falls (his event is literally ..._BLOCKS_EAST), and x=19 is this
+@ map's right-edge CONNECTION BORDER COLUMN -- the tiles a player walking west
+@ out of ROUTE 44 arrives on. An NPC resting there is the connection-edge
+@ version of the "never rest on a warp" rule: the neighbouring map's objects do
+@ not exist until the transition, so the arrival tile can be occupied at the
+@ moment the player lands on it. One tile west costs nothing (row 8 is open from
+@ x=2 to x=19), keeps him in the road as GSC intends, and leaves every border
+@ tile clear. The tree-wide per-door sweep is what surfaced it: he was the only
+@ object in JOHTO standing on a door.
 @ ============================================================================
 MahoganyTown_EventScript_Merchant::
 	lock

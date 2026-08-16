@@ -166,9 +166,17 @@ TeamRocketBaseB3F_EventScript_PetrelBeaten::
 	release
 	end
 
+@ I5. `playbgm MUS_RG_ENCOUNTER_ROCKET, FALSE` is a MAP-BGM swap, not a jingle
+@ (S2's G3 finding), and the only thing that puts the map's own music back is
+@ `fadedefaultbgm`. The win path does that in PetrelBeaten; the RE-TALK path
+@ reaches this label with the encounter track already playing and, without the
+@ line below, would leave it playing for the rest of the visit. Guarding the
+@ playbgm on the trainer flag would work too, but restoring here is the smaller
+@ change and it also covers the run-away case.
 TeamRocketBaseB3F_EventScript_PetrelIdle::
 	lock
 	faceplayer
+	fadedefaultbgm
 	msgbox TeamRocketBaseB3F_Text_PetrelIdle, MSGBOX_DEFAULT
 	release
 	end

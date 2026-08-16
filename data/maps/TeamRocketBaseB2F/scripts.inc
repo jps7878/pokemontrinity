@@ -58,26 +58,43 @@ TeamRocketBaseB2F_OnTransition:
 	end
 
 TeamRocketBaseB2F_EventScript_SetCastVisibility::
-	goto_if_ne VAR_TRINITY_JOHTO_ARC, 4, TeamRocketBaseB2F_EventScript_HideAll
+	call TeamRocketBaseB2F_EventScript_SetLanceVisibility
+	goto_if_ne VAR_TRINITY_JOHTO_ARC, 4, TeamRocketBaseB2F_EventScript_HideRaidCast
 	clearflag FLAG_TRINITY_J_BASE_CAST_HIDE
 	goto_if_ge VAR_TRINITY_JOHTO_SCENE_MAHOGANY, 3, TeamRocketBaseB2F_EventScript_HideAriana
 	clearflag FLAG_TRINITY_J_BASE_ARIANA_HIDE
-	clearflag FLAG_TRINITY_J_BASE_LANCE_B2F_HIDE
 	return
 
 TeamRocketBaseB2F_EventScript_HideAriana::
 	setflag FLAG_TRINITY_J_BASE_ARIANA_HIDE
+	return
+
+TeamRocketBaseB2F_EventScript_HideRaidCast::
+	setflag FLAG_TRINITY_J_BASE_CAST_HIDE
+	setflag FLAG_TRINITY_J_BASE_ARIANA_HIDE
+	return
+
+@ LANCE outlives the rest of the cast for exactly one reason: TM15 is the only
+@ failable gift in the raid, and the G2 rule that keeps the arc write in front
+@ of the giveitem also means the raid can be OVER with the TM still owed. So the
+@ award guard is part of his visibility predicate, not just his script:
+@     visible iff (ARC == 4 and SCENE < 4)          -- the raid is running
+@              or (ARC >= 5 and TM15 not yet given) -- the bag was full
+@ Without the second clause a player whose bag was full walks out of the base
+@ and LANCE is gone for the save, taking TM15 with him.
+TeamRocketBaseB2F_EventScript_SetLanceVisibility::
+	goto_if_ge VAR_TRINITY_JOHTO_ARC, 5, TeamRocketBaseB2F_EventScript_LanceTmDebt
+	goto_if_ne VAR_TRINITY_JOHTO_ARC, 4, TeamRocketBaseB2F_EventScript_HideLance
 	goto_if_ge VAR_TRINITY_JOHTO_SCENE_MAHOGANY, 4, TeamRocketBaseB2F_EventScript_HideLance
 	clearflag FLAG_TRINITY_J_BASE_LANCE_B2F_HIDE
 	return
 
-TeamRocketBaseB2F_EventScript_HideLance::
-	setflag FLAG_TRINITY_J_BASE_LANCE_B2F_HIDE
+TeamRocketBaseB2F_EventScript_LanceTmDebt::
+	goto_if_set FLAG_TRINITY_J_LANCE_TM15, TeamRocketBaseB2F_EventScript_HideLance
+	clearflag FLAG_TRINITY_J_BASE_LANCE_B2F_HIDE
 	return
 
-TeamRocketBaseB2F_EventScript_HideAll::
-	setflag FLAG_TRINITY_J_BASE_CAST_HIDE
-	setflag FLAG_TRINITY_J_BASE_ARIANA_HIDE
+TeamRocketBaseB2F_EventScript_HideLance::
 	setflag FLAG_TRINITY_J_BASE_LANCE_B2F_HIDE
 	return
 
@@ -340,9 +357,19 @@ TeamRocketBaseB2F_EventScript_LanceSide::
 @ THE RAID ENDS HERE. Both the arc write (4 -> 5) and the scene write (3 -> 4)
 @ sit in the payoff below, each behind its own monotonic guard.
 @ ============================================================================
+@ THE DISPATCHER TESTS THE AWARD GUARD, NOT THE PHASE -- and that is the whole
+@ point of it. G2 says progression is never held behind a failable gift, so
+@ ClearRaidState advances the arc to 5 and the scene to 4 BEFORE the giveitem.
+@ A dispatcher keyed on `SCENE == 3` therefore routes a bag-full player into the
+@ pre-raid heal branch on their next talk, and TM15 is gone for the save. The
+@ SCENE >= 4 arm below is what makes the retry reachable, and
+@ SetLanceVisibility keeps LANCE on the map while he still owes it -- an award
+@ guard owns the GIVER'S VISIBILITY as well as the giver's script.
 TeamRocketBaseB2F_EventScript_Lance::
 	lock
 	faceplayer
+	@ Raid already over: the TM is the only thing that can still be outstanding.
+	goto_if_ge VAR_TRINITY_JOHTO_SCENE_MAHOGANY, 4, TeamRocketBaseB2F_EventScript_GiveHyperBeam
 	goto_if_ne VAR_TRINITY_JOHTO_SCENE_MAHOGANY, 3, TeamRocketBaseB2F_EventScript_LanceEarly
 	goto_if_unset FLAG_TRINITY_J_ELECTRODE_1, TeamRocketBaseB2F_EventScript_LanceElectrodes
 	goto_if_unset FLAG_TRINITY_J_ELECTRODE_2, TeamRocketBaseB2F_EventScript_LanceElectrodes
@@ -390,7 +417,11 @@ TeamRocketBaseB2F_EventScript_DoHeal::
 @ raid with, one floor up, through a shop wall.
 @ G2 award discipline: the TM is the only failable gift, so it owns its own
 @ flag and its own label, and the arc write happens BEFORE it -- a full bag can
-@ never cost progression.
+@ never cost PROGRESSION. It must not cost the TM either, and that takes two
+@ more things, both above: the dispatcher's SCENE >= 4 arm (so a later talk
+@ lands back here) and the award guard inside SetLanceVisibility (so there is
+@ still someone to talk to). Putting the arc write first is only safe when the
+@ retry path survives it.
 @ ============================================================================
 TeamRocketBaseB2F_EventScript_RaidCleared::
 	msgbox TeamRocketBaseB2F_Text_LanceSignalStopped, MSGBOX_DEFAULT
