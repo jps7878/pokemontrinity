@@ -20372,3 +20372,113 @@ Level: 62
 
 BELLOSSOM
 Level: 62
+
+=== TRAINER_JOHTO_ROCKET_SCI_JED ===
+Name: JED
+Class: Team Rocket
+Pic: Magma Grunt M
+Gender: Male
+Music: Magma
+AI: Check Bad Move / Try To Faint
+
+MAGNETON
+Level: 60
+
+MAGNETON
+Level: 60
+
+PORYGON2
+Level: 61
+
+=== TRAINER_JOHTO_ROCKET_SCI_ROSS ===
+Name: ROSS
+Class: Team Rocket
+Pic: Magma Grunt M
+Gender: Male
+Music: Magma
+AI: Check Bad Move / Try To Faint / Check Viability
+
+WEEZING
+Level: 64
+
+WEEZING
+Level: 64
+
+MUK
+Level: 65
+
+=== TRAINER_JOHTO_ROCKET_SCI_MITCH ===
+Name: MITCH
+Class: Team Rocket
+Pic: Magma Grunt M
+Gender: Male
+Music: Magma
+AI: Check Bad Move / Try To Faint / Check Viability
+
+MAGNETON
+Level: 65
+
+DITTO
+Level: 66
+
+=== TRAINER_JOHTO_FISHER_ANDRE ===
+Name: ANDRE
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint
+
+GYARADOS
+Level: 64
+
+=== TRAINER_JOHTO_FISHER_RAYMOND ===
+Name: RAYMOND
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Check Bad Move
+
+MAGIKARP
+Level: 60
+
+MAGIKARP
+Level: 60
+
+MAGIKARP
+Level: 60
+
+GYARADOS
+Level: 63
+
+=== TRAINER_JOHTO_COOLTRAINER_AARON ===
+Name: AARON
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint / Check Viability
+
+VENUSAUR
+Level: 63
+
+CHARIZARD
+Level: 63
+
+BLASTOISE
+Level: 63
+
+=== TRAINER_JOHTO_COOLTRAINER_LOIS ===
+Name: LOIS
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Check Bad Move / Try To Faint / Check Viability
+
+JUMPLUFF
+Level: 63
+
+NINETALES
+Level: 64

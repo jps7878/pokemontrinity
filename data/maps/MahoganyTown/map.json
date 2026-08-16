@@ -42,6 +42,48 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MahoganyTown_EventScript_Gramps",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
+      "x": 19,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_MAHOGANY_MERCHANT",
+      "script": "MahoganyTown_EventScript_Merchant",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+      "x": 7,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_MAHOGANY_FISHER",
+      "script": "MahoganyTown_EventScript_Fisher",
+      "flag": "FLAG_TRINITY_J_MAHOGANY_FISHER_HIDE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "x": 12,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_MAHOGANY_LASS",
+      "script": "MahoganyTown_EventScript_Lass",
+      "flag": "FLAG_TRINITY_J_MAHOGANY_LASS_HIDE"
     }
   ],
   "warp_events": [
@@ -106,6 +148,14 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "MahoganyTown_EventScript_MahoganyGymSign"
+    },
+    {
+      "type": "sign",
+      "x": 16,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "MahoganyTown_EventScript_PokecenterSign"
     }
   ]
 }

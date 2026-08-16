@@ -703,39 +703,39 @@
 #define FLAG_TRINITY_J_JASMINE_TM23  0x268 // Trinity: was FLAG_UNUSED_0x268 — TM23 IRON TAIL handed over by JASMINE. Same G2 guard; FLAG_TRINITY_BADGE14 is set first.
 #define FLAG_TRINITY_J_SUICUNE_CIANWOOD_HIDE  0x269 // Trinity: was FLAG_UNUSED_0x269 — the CIANWOOD CITY SUICUNE object hidden. Visible iff VAR_TRINITY_JOHTO_SCENE_WESTCOAST == 1 (armed once the beasts are awake, gone once the glimpse has played). Authored only by CianwoodCity's ON_TRANSITION.
 #define FLAG_TRINITY_J_SUICUNE_CIANWOOD  0x26A // Trinity: was FLAG_UNUSED_0x26A — SUICUNE glimpse 2 (the CIANWOOD shore) has played. Story state, monotonic, never cleared. S10 reads it alongside FLAG_TRINITY_J_BEASTS_AWAKENED.
-#define FLAG_UNUSED_0x26B  0x26B // Unused Flag
-#define FLAG_UNUSED_0x26C  0x26C // Unused Flag
-#define FLAG_UNUSED_0x26D  0x26D // Unused Flag
-#define FLAG_UNUSED_0x26E  0x26E // Unused Flag
-#define FLAG_UNUSED_0x26F  0x26F // Unused Flag
-#define FLAG_UNUSED_0x270  0x270 // Unused Flag
-#define FLAG_UNUSED_0x271  0x271 // Unused Flag
-#define FLAG_UNUSED_0x272  0x272 // Unused Flag
-#define FLAG_UNUSED_0x273  0x273 // Unused Flag
-#define FLAG_UNUSED_0x274  0x274 // Unused Flag
-#define FLAG_UNUSED_0x275  0x275 // Unused Flag
-#define FLAG_UNUSED_0x276  0x276 // Unused Flag
-#define FLAG_UNUSED_0x277  0x277 // Unused Flag
-#define FLAG_UNUSED_0x278  0x278 // Unused Flag
-#define FLAG_UNUSED_0x279  0x279 // Unused Flag
-#define FLAG_UNUSED_0x27A  0x27A // Unused Flag
-#define FLAG_UNUSED_0x27B  0x27B // Unused Flag
-#define FLAG_UNUSED_0x27C  0x27C // Unused Flag
-#define FLAG_UNUSED_0x27D  0x27D // Unused Flag
-#define FLAG_UNUSED_0x27E  0x27E // Unused Flag
-#define FLAG_UNUSED_0x27F  0x27F // Unused Flag
-#define FLAG_UNUSED_0x280  0x280 // Unused Flag
-#define FLAG_UNUSED_0x281  0x281 // Unused Flag
-#define FLAG_UNUSED_0x282  0x282 // Unused Flag
-#define FLAG_UNUSED_0x283  0x283 // Unused Flag
-#define FLAG_UNUSED_0x284  0x284 // Unused Flag
-#define FLAG_UNUSED_0x285  0x285 // Unused Flag
-#define FLAG_UNUSED_0x286  0x286 // Unused Flag
-#define FLAG_UNUSED_0x287  0x287 // Unused Flag
-#define FLAG_UNUSED_0x288  0x288 // Unused Flag
-#define FLAG_UNUSED_0x289  0x289 // Unused Flag
-#define FLAG_UNUSED_0x28A  0x28A // Unused Flag
-#define FLAG_UNUSED_0x28B  0x28B // Unused Flag
+#define FLAG_TRINITY_J_FORCE_SHINY       0x26B // Trinity: was FLAG_UNUSED_0x26B -- engine hook. include/config/pokemon.h's P_FLAG_FORCE_SHINY points at THIS flag, so while it is set every wild/gift POKeMON is forced shiny (src/pokemon.c:1071-1077, src/script_pokemon_util.c:364). Set and cleared inside one three-command window around the RED GYARADOS setwildbattle -- nothing can interleave, and an unsaved setflag cannot survive a reset.
+#define FLAG_TRINITY_J_RED_GYARADOS_HIDE 0x26C // Trinity: was FLAG_UNUSED_0x26C -- visibility - the LAKE OF RAGE RED GYARADOS. Visible iff NOT FLAG_TRINITY_J_RED_SCALE and NOT the trade having happened; authored only by LakeOfRage's ON_TRANSITION. The battle script's removeobject co-signs it (R1), which is what makes the fish stay gone.
+#define FLAG_TRINITY_J_RED_SCALE         0x26D // Trinity: was FLAG_UNUSED_0x26D -- story, CONSUMABLE. ITEM_RED_SCALE does not exist in this build (S1's open item, ruled here), so the scale is a flag: SET by the RED GYARADOS beat, CLEARED by MR.POKeMON on the trade. Because it is cleared, every reader must test the TERMINAL flag first -- S6's rule.
+#define FLAG_TRINITY_J_EXP_SHARE         0x26E // Trinity: was FLAG_UNUSED_0x26E -- story TERMINAL + G2 award guard - MR.POKeMON has handed over the EXP.SHARE. Tested BEFORE FLAG_TRINITY_J_RED_SCALE, because the scale returns to its starting value on the trade.
+#define FLAG_TRINITY_J_LANCE_LAKE_HIDE   0x26F // Trinity: was FLAG_UNUSED_0x26F -- visibility - LANCE on the LAKE OF RAGE shore. Visible iff FLAG_TRINITY_J_RED_GYARADOS_HIDE (the fish is gone) and ARC < 4.
+#define FLAG_TRINITY_J_LAKE_CIVILIANS_HIDE 0x270 // Trinity: was FLAG_UNUSED_0x270 -- visibility (4 trainers) - GSC's EVENT_LAKE_OF_RAGE_CIVILIANS. Visible iff ARC >= 5: they are the raid's victory lap, not an obstacle.
+#define FLAG_TRINITY_J_MART_ROCKETS_HIDE 0x271 // Trinity: was FLAG_UNUSED_0x271 -- visibility (2) - the MAHOGANY MART PHARMACIST and BLACK BELT, GSC's EVENT_TEAM_ROCKET_BASE_POPULATION. Visible iff ARC < 5.
+#define FLAG_TRINITY_J_MART_LANCE_HIDE   0x272 // Trinity: was FLAG_UNUSED_0x272 -- visibility (2) - LANCE and his DRAGONITE in the MART. addobject-only cutscene actors: the flag is SET on every transition (S1/S3 idiom) so no new-game default is needed.
+#define FLAG_TRINITY_J_MART_GRANNY_HIDE  0x273 // Trinity: was FLAG_UNUSED_0x273 -- visibility - the real shop owner behind the counter. Visible iff ARC >= 5.
+#define FLAG_TRINITY_J_MART_STAIRS       0x274 // Trinity: was FLAG_UNUSED_0x274 -- story - LANCE's DRAGONITE has uncovered the staircase. The ONLY input to MahoganyMart1F's setmetatile door authoring (D4); while it is clear the shop's 2x2 BOOKSHELF block covers the warp at (7,3).
+#define FLAG_TRINITY_J_BASE_CAST_HIDE    0x275 // Trinity: was FLAG_UNUSED_0x275 -- visibility (10 objects, 3 maps) - every grunt/scientist post in the TEAM ROCKET BASE plus the beaten ROCKET on B3F. Visible iff ARC == 4. The two execs and LANCE carry their own flags so that an exec's removeobject cannot co-sign the whole base away (R1's trap).
+#define FLAG_TRINITY_J_BASE_ARIANA_HIDE  0x276 // Trinity: was FLAG_UNUSED_0x276 -- visibility - EXEC ARIANA on B2F. Visible iff ARC == 4 and SCENE_MAHOGANY == 0.
+#define FLAG_TRINITY_J_BASE_PETREL_HIDE  0x277 // Trinity: was FLAG_UNUSED_0x277 -- visibility (2) - EXEC PETREL and the MURKROW in GIOVANNI's office. Visible iff ARC == 4; the MURKROW shares the flag because it outlives PETREL only until the next map load, exactly as in GSC.
+#define FLAG_TRINITY_J_BASE_LANCE_B2F_HIDE 0x278 // Trinity: was FLAG_UNUSED_0x278 -- visibility - LANCE at the B2F stairs. Visible iff ARC == 4 and SCENE_MAHOGANY < 2.
+#define FLAG_TRINITY_J_BASE_LANCE_B3F_HIDE 0x279 // Trinity: was FLAG_UNUSED_0x279 -- visibility - LANCE's B3F password cameo. Visible iff ARC == 4 and NOT FLAG_TRINITY_J_DOOR_B3F.
+#define FLAG_TRINITY_J_BASE_SILVER_HIDE  0x27A // Trinity: was FLAG_UNUSED_0x27A -- visibility - SILVER's B3F cameo actor. addobject-only: SET on every transition.
+#define FLAG_TRINITY_J_SILVER4_SEEN      0x27B // Trinity: was FLAG_UNUSED_0x27B -- story - SILVER's TEAM ROCKET BASE monologue has played. Writer only in S7; S8/S11 may read it.
+#define FLAG_TRINITY_J_PASSWORD_SLOWPOKETAIL 0x27C // Trinity: was FLAG_UNUSED_0x27C -- story - the first office password, learnt by RE-TALKING to the B3F female grunt after beating her (GSC's endifjustbattled gating, ported faithfully).
+#define FLAG_TRINITY_J_PASSWORD_RATICATE 0x27D // Trinity: was FLAG_UNUSED_0x27D -- story - the second office password, same shape, from the B3F male grunt.
+#define FLAG_TRINITY_J_PASSWORD_GIOVANNI 0x27E // Trinity: was FLAG_UNUSED_0x27E -- story - HAIL GIOVANNI, from the MURKROW inside the office. Opens the B2F transmitter door.
+#define FLAG_TRINITY_J_DOOR_B3F          0x27F // Trinity: was FLAG_UNUSED_0x27F -- door state - GIOVANNI's office door on B3F is open. The single input to TeamRocketBaseB3F's setmetatile authoring (D2/D4).
+#define FLAG_TRINITY_J_DOOR_B2F          0x280 // Trinity: was FLAG_UNUSED_0x280 -- door state - the transmitter door on B2F is open. Same shape.
+#define FLAG_TRINITY_J_ELECTRODE_1       0x281 // Trinity: was FLAG_UNUSED_0x281 -- visibility (2 objects) - the first ELECTRODE and its twin on LANCE's side of the transmitter. One flag per pair, so removing one removes both (GSC's own trick).
+#define FLAG_TRINITY_J_ELECTRODE_2       0x282 // Trinity: was FLAG_UNUSED_0x282 -- visibility (2 objects) - the second ELECTRODE pair.
+#define FLAG_TRINITY_J_ELECTRODE_3       0x283 // Trinity: was FLAG_UNUSED_0x283 -- visibility (2 objects) - the third ELECTRODE pair.
+#define FLAG_TRINITY_J_LANCE_TM15        0x284 // Trinity: was FLAG_UNUSED_0x284 -- G2 award guard - TM15 HYPER BEAM handed over by LANCE. Substitutes GSC's HM06 WHIRLPOOL, which does not exist in this build.
+#define FLAG_TRINITY_J_PRYCE_TM07        0x285 // Trinity: was FLAG_UNUSED_0x285 -- G2 award guard - TM07 HAIL handed over by PRYCE. FLAG_TRINITY_BADGE15 is set first and unconditionally.
+#define FLAG_TRINITY_J_R43_ROCKETS_HIDE  0x286 // Trinity: was FLAG_UNUSED_0x286 -- visibility (2) - the ROUTE 43 GATE toll ROCKETS. Visible iff ARC < 5.
+#define FLAG_TRINITY_J_R43_OFFICER_HIDE  0x287 // Trinity: was FLAG_UNUSED_0x287 -- visibility - the OFFICER the toll ROCKETS chased off his post. Visible iff ARC >= 5 (the exact complement).
+#define FLAG_TRINITY_J_R43_OFFICER_TM    0x288 // Trinity: was FLAG_UNUSED_0x288 -- G2 award guard - TM36 SLUDGE BOMB, left behind by the ROCKETS.
+#define FLAG_TRINITY_J_R43_TOLL          0x289 // Trinity: was FLAG_UNUSED_0x289 -- story - the ROUTE 43 toll has been paid once. GSC re-arms per direction; S7 makes it one-shot.
+#define FLAG_TRINITY_J_MAHOGANY_FISHER_HIDE 0x28A // Trinity: was FLAG_UNUSED_0x28A -- visibility - the FISHER who points at the LAKE. Visible iff ARC < 5, GSC's EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM. He is moved OFF the gym door (see MahoganyTown/scripts.inc).
+#define FLAG_TRINITY_J_MAHOGANY_LASS_HIDE 0x28B // Trinity: was FLAG_UNUSED_0x28B -- visibility - the LASS who points at GRANNY's real shop. Visible iff ARC >= 5.
 #define FLAG_UNUSED_0x28C  0x28C // Unused Flag
 #define FLAG_UNUSED_0x28D  0x28D // Unused Flag
 #define FLAG_UNUSED_0x28E  0x28E // Unused Flag

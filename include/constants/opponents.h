@@ -871,8 +871,10 @@
 // slice that allocates a new id simply bumps it (fresh save not required);
 // MAX_TRAINERS_COUNT 1100 is the real cap. M4b S2 raised it 1072 -> 1073 for
 // TRAINER_JOHTO_SAGE_LI; M4b S5 raised it 1073 -> 1074 for
-// TRAINER_JOHTO_COOLTRAINER_KENJI. Every later slice that claims an id must do the same.
-#define TRAINERS_COUNT                      1074
+// TRAINER_JOHTO_COOLTRAINER_KENJI; M4b S7 raised it 1074 -> 1081 for the three ROCKET
+// scientists and the four LAKE OF RAGE trainers. Every later slice that claims an id
+// must do the same.
+#define TRAINERS_COUNT                      1081
 #define MAX_TRAINERS_COUNT                  1100
 #define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)
 
@@ -1098,5 +1100,12 @@
 /* === Trinity M4b story trainers (allocated per slice from the 1072-1099 block) === */
 #define TRAINER_JOHTO_SAGE_LI                 1072  // S2: the SPROUT TOWER ELDER
 #define TRAINER_JOHTO_COOLTRAINER_KENJI       1073  // S5: the DANCE THEATER challenger
+#define TRAINER_JOHTO_ROCKET_SCI_JED          1074  // S7: ROCKET BASE B1F scientist
+#define TRAINER_JOHTO_ROCKET_SCI_ROSS         1075  // S7: ROCKET BASE B3F scientist
+#define TRAINER_JOHTO_ROCKET_SCI_MITCH        1076  // S7: ROCKET BASE B3F scientist
+#define TRAINER_JOHTO_FISHER_ANDRE            1077  // S7: LAKE OF RAGE, post-raid
+#define TRAINER_JOHTO_FISHER_RAYMOND          1078  // S7: LAKE OF RAGE, post-raid
+#define TRAINER_JOHTO_COOLTRAINER_AARON       1079  // S7: LAKE OF RAGE, post-raid
+#define TRAINER_JOHTO_COOLTRAINER_LOIS        1080  // S7: LAKE OF RAGE, post-raid
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

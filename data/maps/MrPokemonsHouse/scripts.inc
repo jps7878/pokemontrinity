@@ -3,12 +3,30 @@ MrPokemonsHouse_MapScripts::
 
 @ Trinity M4b S1: once PROF.ELM has named him (FLAG_TRINITY_J_MRPOKEMON_HOOK),
 @ MR.POKéMON seeds the Red Scale request -- adapted from pokecrystal
-@ MrPokemonText_GimmeTheScale (MrPokemonsHouse.asm:329-343). The EXP.SHARE
-@ payoff itself belongs to M4b S7 (Lake of Rage / Red Gyarados); note that
-@ ITEM_RED_SCALE does not exist in this build, so S7 owns the item decision.
+@ MrPokemonText_GimmeTheScale (MrPokemonsHouse.asm:329-343).
+@
+@ M4b S7 pays it off, and owns the item-vs-flag ruling S1 handed forward:
+@ ITEM_RED_SCALE does NOT exist in this build (verified across
+@ include/constants/items.h and src/data/items.h), so the scale ships as
+@ FLAG_TRINITY_J_RED_SCALE -- S1's own precedent, and S6's SECRETPOTION.
+@
+@ GUARD ORDER IS THE POINT (S6's terminal-state rule). The scale is a
+@ CONSUMABLE carried by a flag: this script CLEARS it on the trade, so after
+@ the trade the scale flag reads exactly as it did before the LAKE OF RAGE.
+@ A chain with a clearflag in it must therefore test its TERMINAL state
+@ FIRST -- hence FLAG_TRINITY_J_EXP_SHARE before FLAG_TRINITY_J_RED_SCALE.
+@ (This is the defect that bit S6's CIANWOOD PHARMACIST.)
+@
+@ The gift itself is GYM PATTERN G2-shaped: giveitem, then the VAR_RESULT
+@ check, and only then the two flag writes -- so a full bag costs the player
+@ nothing and the trade is re-offered on the next visit. GSC's own
+@ `giveitem RED_SCALE` at the lake has no such check and silently eats the
+@ scale; the flag form cannot have that bug.
 MrPokemonsHouse_EventScript__MrPokemon::
 	lock
 	faceplayer
+	goto_if_set FLAG_TRINITY_J_EXP_SHARE, MrPokemonsHouse_EventScript__AlreadyTraded
+	goto_if_set FLAG_TRINITY_J_RED_SCALE, MrPokemonsHouse_EventScript__RedScaleTrade
 	goto_if_set FLAG_TRINITY_J_MRPOKEMON_HOOK, MrPokemonsHouse_EventScript__RedScaleRequest
 	msgbox MrPokemonsHouse_Text__MrPokemon, MSGBOX_DEFAULT
 	release
@@ -16,6 +34,21 @@ MrPokemonsHouse_EventScript__MrPokemon::
 
 MrPokemonsHouse_EventScript__RedScaleRequest::
 	msgbox MrPokemonsHouse_Text__RedScaleRequest, MSGBOX_DEFAULT
+	release
+	end
+
+MrPokemonsHouse_EventScript__RedScaleTrade::
+	msgbox MrPokemonsHouse_Text__RedScaleTrade, MSGBOX_DEFAULT
+	giveitem ITEM_EXP_SHARE
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	setflag FLAG_TRINITY_J_EXP_SHARE
+	clearflag FLAG_TRINITY_J_RED_SCALE
+	msgbox MrPokemonsHouse_Text__ExpShareExplained, MSGBOX_DEFAULT
+	release
+	end
+
+MrPokemonsHouse_EventScript__AlreadyTraded::
+	msgbox MrPokemonsHouse_Text__AlreadyTraded, MSGBOX_DEFAULT
 	release
 	end
 
@@ -58,6 +91,26 @@ MrPokemonsHouse_Text__RedScaleRequest:
 	.string "trade for it. An EXP.SHARE.\p"
 	.string "It's no use to an old man with no\n"
 	.string "team.$"
+
+MrPokemonsHouse_Text__RedScaleTrade:
+	.string "That -- that is the SCALE!\p"
+	.string "Red as a coal. Warm, even.\n"
+	.string "Delightful. Simply delightful.\p"
+	.string "A trade is a trade. The EXP.SHARE\n"
+	.string "is yours.$"
+
+MrPokemonsHouse_Text__ExpShareExplained:
+	.string "Hold it on one of your team and\n"
+	.string "it takes a share of every battle,\l"
+	.string "whether it fought or not.\p"
+	.string "PROF.OAK swears by them. Good\n"
+	.string "for the ones still growing.$"
+
+MrPokemonsHouse_Text__AlreadyTraded:
+	.string "The RED SCALE sits on my desk\n"
+	.string "and it still hasn't faded.\p"
+	.string "Life is delightful. Always new\n"
+	.string "discoveries to be made.$"
 
 MrPokemonsHouse_Text__ForeignMagazines:
 	.string "It's packed with\nforeign magazines.\pCan't even read\ntheir titles…$"

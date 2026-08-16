@@ -301,7 +301,7 @@
 // FLAG_TRINITY_J_BEASTS_AWAKENED (glimpse 2 can never precede glimpse 1); 1 -> 2 happens
 // inside the scene, which is itself gated on == 1, so both writes are once-only.
 #define VAR_TRINITY_JOHTO_SCENE_WESTCOAST                0x40FB
-#define VAR_UNUSED_0x40FC                                0x40FC // Unused Var
+#define VAR_TRINITY_JOHTO_SCENE_MAHOGANY                 0x40FC // Trinity M4b S7: the MAHOGANY chapter scene. 0 untouched - 1 MART staircase cutscene ARMED (written by LANCE at the LAKE OF RAGE, GSC's setmapscene) - 2 staircase uncovered, raid live - 3 ARIANA beaten, ELECTRODE phase - 4 base cleared. Monotonic; every write sits behind a goto_if_ge guard. State 1 is what MahoganyMart1F's ON_FRAME table matches on, and the cutscene advances it to 2, which is why the table entry cannot re-fire.
 #define VAR_UNUSED_0x40FD                                0x40FD // Unused Var
 #define VAR_UNUSED_0x40FE                                0x40FE // Unused Var
 #define VAR_UNUSED_0x40FF                                0x40FF // Unused Var

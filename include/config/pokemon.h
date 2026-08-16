@@ -69,7 +69,14 @@
 // Flag settings
 // To use the following features in scripting, replace the 0s with the flag ID you're assigning it to.
 // Eg: Replace with FLAG_UNUSED_0x264 so you can use that flag to toggle the feature.
-#define P_FLAG_FORCE_SHINY               0  // If this flag is set, all wild and gift Pokémon will forced into being Shiny.
+#define P_FLAG_FORCE_SHINY               FLAG_TRINITY_J_FORCE_SHINY  // If this flag is set, all wild and gift Pokémon will forced into being Shiny.
+                                             // Trinity M4b S7: this is how the LAKE OF RAGE RED GYARADOS is red.
+                                             // GSC uses BATTLETYPE_FORCESHINY, which has no Emerald equivalent; the
+                                             // flag is set, setwildbattle builds the mon SYNCHRONOUSLY
+                                             // (ScrCmd_setwildbattle -> CreateScriptedWildMon -> CreateMon with
+                                             // OT_ID_PLAYER_ID, the branch that reads this at src/pokemon.c:1071-1077),
+                                             // and the flag is cleared on the very next command. Nothing else can be
+                                             // created inside that window.
 #define P_FLAG_FORCE_NO_SHINY            0  // If this flag is set, all wild and gift Pokémon will forced into NOT being Shiny.
 
 // Go here if you want to disable specific families of Pokémon.

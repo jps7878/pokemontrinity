@@ -13,7 +13,50 @@
   "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": null,
-  "object_events": [],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "x": 2,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_R43GATE_ROCKET_A",
+      "script": "Route43Gate_EventScript_TollRocket",
+      "flag": "FLAG_TRINITY_J_R43_ROCKETS_HIDE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "x": 7,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_R43GATE_ROCKET_B",
+      "script": "Route43Gate_EventScript_TollRocketB",
+      "flag": "FLAG_TRINITY_J_R43_ROCKETS_HIDE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_5",
+      "x": 0,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_R43GATE_OFFICER",
+      "script": "Route43Gate_EventScript_Officer",
+      "flag": "FLAG_TRINITY_J_R43_OFFICER_HIDE"
+    }
+  ],
   "warp_events": [
     {
       "x": 4,
