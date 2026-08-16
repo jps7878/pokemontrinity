@@ -792,8 +792,10 @@ static const struct MenuAction MultichoiceList_FamilyReward[] =
     {gText_Exit},
 };
 
-// Trinity M4b S9 -- the DRAGON SHRINE test. GSC's own options, in GSC's own order, so the
-// accepted answers below match pokecrystal maps/DragonShrine.asm exactly:
+// Trinity M4b S9 -- the DRAGON SHRINE test. GSC's own options and GSC's own order,
+// re-cased to this tree's uppercase house style for menu text (GSC writes "Pal",
+// "Underling"...). Wording and ordering are unchanged, so the accepted answers below
+// match pokecrystal maps/DragonShrine.asm index for index:
 //   1 PAL/FRIEND ok, UNDERLING wrong    2 STRATEGY/RAISING ok, CHEATING wrong
 //   3 TOUGH PERSON/ANYBODY ok, WEAK PERSON wrong
 //   4 LOVE/KNOWLEDGE ok, VIOLENCE wrong 5 BOTH ok, TOUGH and WEAK wrong

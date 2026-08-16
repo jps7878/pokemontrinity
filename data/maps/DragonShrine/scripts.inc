@@ -83,8 +83,9 @@ DragonShrine_EventScript_HideClair::
 	end
 
 @ ============================================================================
-@ THE TEST. GSC's five questions and all fifteen options, verbatim and in
-@ order; the accepted/rejected split is GSC's (see src/data/script_menu.h). A
+@ THE TEST. GSC's five questions and all fifteen options, in GSC's order and
+@ wording (re-cased to the tree's uppercase menu style); the accepted/rejected
+@ split is GSC's (see src/data/script_menu.h). A
 @ wrong answer plays GSC's two "I didn't quite catch that" lines and re-asks the
 @ SAME question, so the test cannot be failed -- also GSC. That is why no state
 @ var is needed: each question is a label and the retry is a goto.

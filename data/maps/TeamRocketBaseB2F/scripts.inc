@@ -13,6 +13,7 @@
 
 TeamRocketBaseB2F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, TeamRocketBaseB2F_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, TeamRocketBaseB2F_OnLoad
 	.byte 0
 
 @ ============================================================================
@@ -52,9 +53,26 @@ TeamRocketBaseB2F_MapScripts::
 @ scripting cost -- and here the scene removes both explicitly so the twin goes
 @ in the same breath rather than a map load later.
 @ ============================================================================
+@ D2 SLOT NOTE (M4b S9 fix round -- systemic, applied to all eight Trinity
+@ metatile authors). Metatile authoring MUST live in MAP_SCRIPT_ON_LOAD, never
+@ MAP_SCRIPT_ON_TRANSITION. RunOnTransitionMapScript() runs IMMEDIATELY BEFORE
+@ InitMap() on both map-load paths (src/overworld.c:876-877, :945-954), and
+@ InitMap -> InitMapLayoutData (src/fieldmap.c:96-103) CpuFastFill16s the whole
+@ backup grid to MAPGRID_UNDEFINED and CpuCopy16s the ROM layout back over it --
+@ so a setmetatile issued from ON_TRANSITION is erased before a single frame is
+@ drawn. ON_LOAD is the LAST statement of InitMap (src/fieldmap.c:71), i.e. it
+@ runs once the grid exists, AND of InitMapFromSavedGame (:80), so it also
+@ covers continue-from-save, which ON_TRANSITION never runs on at all. Vanilla's
+@ own metatile authors use exactly this slot (MauvilleCity_Gym, ShoalCave_*,
+@ SootopolisCity_Gym_1F, AncientTomb). Still no DrawWholeMapView needed:
+@ InitViewGraphics -> InitMapView -> DrawWholeMapView (src/overworld.c:575-580,
+@ :2368) runs later in the same load. qa_sweep.py check 7 is the regression gate.
+TeamRocketBaseB2F_OnLoad:
+	call TeamRocketBaseB2F_EventScript_AuthorDoor
+	end
+
 TeamRocketBaseB2F_OnTransition:
 	call TeamRocketBaseB2F_EventScript_SetCastVisibility
-	call TeamRocketBaseB2F_EventScript_AuthorDoor
 	end
 
 TeamRocketBaseB2F_EventScript_SetCastVisibility::
@@ -99,7 +117,8 @@ TeamRocketBaseB2F_EventScript_HideLance::
 	return
 
 @ D2. The shipped map.bin has this door SHUT, so the authoring direction is
-@ OPEN. No DrawWholeMapView -- ON_TRANSITION runs before the map is drawn.
+@ OPEN. Authored from ON_LOAD (see the slot note above); still no
+@ DrawWholeMapView, because the view is drawn later in the same load.
 TeamRocketBaseB2F_EventScript_AuthorDoor::
 	goto_if_set FLAG_TRINITY_J_DOOR_B2F, TeamRocketBaseB2F_EventScript_OpenDoorTiles
 	return
@@ -120,7 +139,7 @@ TeamRocketBaseB2F_EventScript_OpenDoorTiles::
 @     reading tile (S5's I1 pin), both decoded collision 0 elevation 3, both
 @     kept clear of objects.
 @ D3  The opening script repeats ON_TRANSITION's four setmetatiles and then
-@     calls `special DrawWholeMapView`, which ON_TRANSITION does not need.
+@     calls `special DrawWholeMapView`, which the ON_LOAD author does not need.
 @ D4  FLAG_TRINITY_J_DOOR_B2F is the door's ONLY state; the password flag is an
 @     INPUT. The script's first line tests the door flag, because a bg_event on
 @     a now-walkable tile is still triggerable by pressing A while facing it.

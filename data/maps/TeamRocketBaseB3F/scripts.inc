@@ -11,6 +11,7 @@
 
 TeamRocketBaseB3F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, TeamRocketBaseB3F_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, TeamRocketBaseB3F_OnLoad
 	.byte 0
 
 @ ============================================================================
@@ -42,32 +43,51 @@ TeamRocketBaseB3F_MapScripts::
 @ over the password he was guarding, and a MURKROW alone in an empty office
 @ after the base has fallen is set dressing nobody asked for.
 @ ============================================================================
+@ D2 SLOT NOTE (M4b S9 fix round -- systemic, applied to all eight Trinity
+@ metatile authors). Metatile authoring MUST live in MAP_SCRIPT_ON_LOAD, never
+@ MAP_SCRIPT_ON_TRANSITION. RunOnTransitionMapScript() runs IMMEDIATELY BEFORE
+@ InitMap() on both map-load paths (src/overworld.c:876-877, :945-954), and
+@ InitMap -> InitMapLayoutData (src/fieldmap.c:96-103) CpuFastFill16s the whole
+@ backup grid to MAPGRID_UNDEFINED and CpuCopy16s the ROM layout back over it --
+@ so a setmetatile issued from ON_TRANSITION is erased before a single frame is
+@ drawn. ON_LOAD is the LAST statement of InitMap (src/fieldmap.c:71), i.e. it
+@ runs once the grid exists, AND of InitMapFromSavedGame (:80), so it also
+@ covers continue-from-save, which ON_TRANSITION never runs on at all. Vanilla's
+@ own metatile authors use exactly this slot (MauvilleCity_Gym, ShoalCave_*,
+@ SootopolisCity_Gym_1F, AncientTomb). Still no DrawWholeMapView needed:
+@ InitViewGraphics -> InitMapView -> DrawWholeMapView (src/overworld.c:575-580,
+@ :2368) runs later in the same load. qa_sweep.py check 7 is the regression gate.
+TeamRocketBaseB3F_OnLoad:
+	call TeamRocketBaseB3F_EventScript_AuthorDoor
+	end
+
 TeamRocketBaseB3F_OnTransition:
 	setflag FLAG_TRINITY_J_BASE_SILVER_HIDE
 	goto_if_eq VAR_TRINITY_JOHTO_ARC, 4, TeamRocketBaseB3F_EventScript_ShowRaid
 	setflag FLAG_TRINITY_J_BASE_CAST_HIDE
 	setflag FLAG_TRINITY_J_BASE_PETREL_HIDE
 	setflag FLAG_TRINITY_J_BASE_LANCE_B3F_HIDE
-	goto TeamRocketBaseB3F_EventScript_AuthorDoor
+	end
 
 TeamRocketBaseB3F_EventScript_ShowRaid::
 	clearflag FLAG_TRINITY_J_BASE_CAST_HIDE
 	clearflag FLAG_TRINITY_J_BASE_PETREL_HIDE
 	clearflag FLAG_TRINITY_J_BASE_LANCE_B3F_HIDE
-	goto TeamRocketBaseB3F_EventScript_AuthorDoor
+	end
 
 @ D2. The shipped map.bin has this door SHUT, so the authoring direction is
-@ OPEN. No DrawWholeMapView -- ON_TRANSITION runs before the map is drawn.
+@ OPEN. Authored from ON_LOAD (see the slot note above); still no
+@ DrawWholeMapView, because the view is drawn later in the same load.
 TeamRocketBaseB3F_EventScript_AuthorDoor::
 	goto_if_set FLAG_TRINITY_J_DOOR_B3F, TeamRocketBaseB3F_EventScript_OpenDoorTiles
-	end
+	return
 
 TeamRocketBaseB3F_EventScript_OpenDoorTiles::
 	setmetatile 10, 8, METATILE_JohtoRocketBase_FloorTL, FALSE
 	setmetatile 11, 8, METATILE_JohtoRocketBase_FloorTR, FALSE
 	setmetatile 10, 9, METATILE_JohtoRocketBase_FloorBL, FALSE
 	setmetatile 11, 9, METATILE_JohtoRocketBase_FloorBR, FALSE
-	end
+	return
 
 @ ============================================================================
 @ D1/D3/D4/D5 -- GIOVANNI'S OFFICE DOOR. Two BG_EVENT_PLAYER_FACING_NORTH signs

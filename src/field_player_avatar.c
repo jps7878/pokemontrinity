@@ -1774,9 +1774,15 @@ static bool8 PushBoulder_Move(struct Task *task, struct ObjectEvent *player, str
 // never match it: GetCoordEventScriptAtPosition (src/field_control_avatar.c:1085-1097)
 // requires `coordEvent->elevation == <player's elevation> || == ELEVATION_TRANSITION`, and
 // every walkable tile of the one map that uses this decodes elevation 3.  The map data adds
-// two further independent guards (a var value the var never holds, and being listed after
-// the player's own fall trigger, which returns first) -- see
-// data/maps/BlackthornGym2F/scripts.inc.
+// a second, independent guard: a var value the var never holds, which makes
+// ShouldTriggerScriptRun false.
+//
+// NOTE, corrected in the S9 fix round: ORDERING IS NOT A GUARD.  The scan does NOT stop at
+// the first entry whose position matches -- GetCoordEventScriptAtPosition only returns when
+// TryRunCoordEventScript returns non-NULL, and a var-guard failure returns NULL and the loop
+// CONTINUES (:1087-1096).  Listing the player's own fall trigger first is therefore
+// irrelevant to safety; the elevation and var guards are the whole protection, and each is
+// sufficient alone.
 //
 // RemoveObjectEventByLocalIdAndMap FlagSets the boulder's own visibility flag before
 // despawning (src/event_object_movement.c:1537-1545), which is exactly GSC's
@@ -1802,7 +1808,9 @@ static void TryBoulderFallThroughHole(struct ObjectEvent *boulder)
             continue;
         if (coordEvents[i].elevation != BOULDER_HOLE_COORD_EVENT_ELEVATION)
             continue;
-        PlaySE(SE_FALL);
+        // SE_FALL is deliberately NOT played here (a deviation from pokefirered, which has
+        // no script leg): the script this sets up runs on BOTH paths and plays it, so
+        // sounding it here too would double it on the engine path.  One sound, one owner.
         // So the script's `removeobject VAR_LAST_TALKED` names this boulder on BOTH paths:
         // here it is already a no-op, and on the talk-triggered backstop it does the work.
         gSpecialVar_LastTalked = boulder->localId;
@@ -1829,6 +1837,13 @@ static bool8 PushBoulder_End(struct Task *task, struct ObjectEvent *player, stru
         // identical.) `boulder` still points into gObjectEvents and its coords are read
         // before the removal. On every other map in the game the behaviour test fails on
         // the first line and this is a no-op.
+        //
+        // ACCEPTED, and it is pokefirered's own shape: between UnlockPlayerFieldControls()
+        // above and the LockPlayerFieldControls() inside the hook there is a one-call
+        // window in which field controls are nominally free. Nothing can run in it -- this
+        // is straight-line code inside one task callback, no frame boundary and no input
+        // poll intervenes -- and ScriptContext_SetupScript has already armed the script by
+        // the time control returns to the main loop.
         TryBoulderFallThroughHole(boulder);
     }
     return FALSE;

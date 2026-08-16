@@ -57,10 +57,12 @@
 @ all carry attribute byte 0x00 = MB_NORMAL.
 @
 @ D2: the shipped map.bin has all three holes SHUT, so the authoring direction
-@ is OPEN, and ON_TRANSITION is the single authoring site. D3's DrawWholeMapView
-@ IS DELIBERATELY ABSENT AND THAT IS SOUND HERE: the switch is on 2F and the
-@ door is on 1F, so the player always crosses a map load between the push and
-@ the platform, and ON_TRANSITION runs before InitMap draws anything.
+@ is OPEN, and MAP_SCRIPT_ON_LOAD is the single authoring site (see the slot
+@ note above the handler -- ON_TRANSITION would have its work wiped by
+@ InitMapLayoutData microseconds later). D3's DrawWholeMapView IS DELIBERATELY
+@ ABSENT AND THAT IS SOUND HERE: the switch is on 2F and the door is on 1F, so
+@ the player always crosses a map load between the push and the platform, and
+@ the view is drawn later in that same load.
 @ setmetatile never touches elevation (src/fieldmap.c:383-393); all three
 @ opened tiles decode elevation 0 = ELEVATION_TRANSITION, which
 @ IsElevationMismatchAt always accepts (src/event_object_movement.c:9806-9822),
@@ -118,15 +120,29 @@
 	.set METATILE_JohtoEliteFourRoom_BoulderInPitBR,  751  @ GSC $3b q3  FLOOR
 
 BlackthornGym1F_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, BlackthornGym1F_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, BlackthornGym1F_OnLoad
 	.byte 0
 
-BlackthornGym1F_OnTransition:
+@ D2 SLOT NOTE (M4b S9 fix round -- systemic, applied to all eight Trinity
+@ metatile authors). Metatile authoring MUST live in MAP_SCRIPT_ON_LOAD, never
+@ MAP_SCRIPT_ON_TRANSITION. RunOnTransitionMapScript() runs IMMEDIATELY BEFORE
+@ InitMap() on both map-load paths (src/overworld.c:876-877, :945-954), and
+@ InitMap -> InitMapLayoutData (src/fieldmap.c:96-103) CpuFastFill16s the whole
+@ backup grid to MAPGRID_UNDEFINED and CpuCopy16s the ROM layout back over it --
+@ so a setmetatile issued from ON_TRANSITION is erased before a single frame is
+@ drawn. ON_LOAD is the LAST statement of InitMap (src/fieldmap.c:71), i.e. it
+@ runs once the grid exists, AND of InitMapFromSavedGame (:80), so it also
+@ covers continue-from-save, which ON_TRANSITION never runs on at all. Vanilla's
+@ own metatile authors use exactly this slot (MauvilleCity_Gym, ShoalCave_*,
+@ SootopolisCity_Gym_1F, AncientTomb). Still no DrawWholeMapView needed:
+@ InitViewGraphics -> InitMapView -> DrawWholeMapView (src/overworld.c:575-580,
+@ :2368) runs later in the same load. qa_sweep.py check 7 is the regression gate.
+BlackthornGym1F_OnLoad:
 	call BlackthornGym1F_EventScript_AuthorPlatforms
 	end
 
-@ D2. Three independent doors, one authoring site, authored OPEN because the
-@ shipped map.bin is SHUT. Monotonic: a platform flag is only ever set.
+@ Three independent doors, one authoring site (ON_LOAD), authored OPEN because
+@ the shipped map.bin is SHUT. Monotonic: a platform flag is only ever set.
 BlackthornGym1F_EventScript_AuthorPlatforms::
 	goto_if_unset FLAG_TRINITY_J_BGYM_PLATFORM_A, BlackthornGym1F_EventScript_SkipPlatformA
 	setmetatile 2, 4, METATILE_JohtoEliteFourRoom_BoulderInNookTL, TRUE

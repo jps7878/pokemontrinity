@@ -19,6 +19,7 @@
 
 MahoganyMart1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, MahoganyMart1F_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, MahoganyMart1F_OnLoad
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, MahoganyMart1F_OnFrame
 	.byte 0
 
@@ -35,18 +36,20 @@ MahoganyMart1F_MapScripts::
 @     map.json. It does -- `warp_event 7, 3 -> TEAM_ROCKET_BASE_B1F` has been in
 @     this map since the M4a port. What gates it is the COLLISION of the block
 @     underneath, which is exactly why GSC's reveal is a changeblock.
-@ D2  ON_TRANSITION is the SINGLE AUTHORING SITE for the door's tiles, the same
-@     way it is for visibility flags. It runs before InitMap and before the map
-@     is drawn, so it needs NO DrawWholeMapView. It authors in whichever
+@ D2  MAP_SCRIPT_ON_LOAD is the SINGLE AUTHORING SITE for the door's tiles.
+@     (NOT ON_TRANSITION, which is right for visibility flags and fatal for
+@     metatiles -- see the slot note above the handler.) It runs inside InitMap,
+@     once the grid exists and before the map is drawn, so it needs NO
+@     DrawWholeMapView. It authors in whichever
 @     direction the SHIPPED map.bin is not: this map ships OPEN (M4a dropped
 @     GSC's changeblock), so the transition only ever CLOSES. B2F and B3F ship
 @     closed, so theirs only ever OPEN.
 @ D3  The opening script repeats the same setmetatile set and then calls
 @     `special DrawWholeMapView`. Mid-scene the map is already on screen, so
-@     that redraw is mandatory -- ON_TRANSITION's is not.
+@     that redraw is mandatory -- the ON_LOAD author's is not.
 @ D4  The door flag is the door's ONLY state. Everything else (passwords, story
-@     beats) is an INPUT to the script that sets it; ON_TRANSITION reads the one
-@     flag and nothing else.
+@     beats) is an INPUT to the script that sets it; the ON_LOAD author reads
+@     the one flag and nothing else.
 @ D5  A setmetatile block is authored as a WHOLE GSC block -- all four Hoenn
 @     metatiles -- never a half, or the shutter is drawn half open.
 @
@@ -60,10 +63,27 @@ MahoganyMart1F_MapScripts::
 @                        which matters here, because their tiles (4,6) and
 @                        (3,6) sit directly above the two door tiles.
 @ ============================================================================
+@ D2 SLOT NOTE (M4b S9 fix round -- systemic, applied to all eight Trinity
+@ metatile authors). Metatile authoring MUST live in MAP_SCRIPT_ON_LOAD, never
+@ MAP_SCRIPT_ON_TRANSITION. RunOnTransitionMapScript() runs IMMEDIATELY BEFORE
+@ InitMap() on both map-load paths (src/overworld.c:876-877, :945-954), and
+@ InitMap -> InitMapLayoutData (src/fieldmap.c:96-103) CpuFastFill16s the whole
+@ backup grid to MAPGRID_UNDEFINED and CpuCopy16s the ROM layout back over it --
+@ so a setmetatile issued from ON_TRANSITION is erased before a single frame is
+@ drawn. ON_LOAD is the LAST statement of InitMap (src/fieldmap.c:71), i.e. it
+@ runs once the grid exists, AND of InitMapFromSavedGame (:80), so it also
+@ covers continue-from-save, which ON_TRANSITION never runs on at all. Vanilla's
+@ own metatile authors use exactly this slot (MauvilleCity_Gym, ShoalCave_*,
+@ SootopolisCity_Gym_1F, AncientTomb). Still no DrawWholeMapView needed:
+@ InitViewGraphics -> InitMapView -> DrawWholeMapView (src/overworld.c:575-580,
+@ :2368) runs later in the same load. qa_sweep.py check 7 is the regression gate.
+MahoganyMart1F_OnLoad:
+	call MahoganyMart1F_EventScript_AuthorStaircase
+	end
+
 MahoganyMart1F_OnTransition:
 	setflag FLAG_TRINITY_J_MART_LANCE_HIDE
 	call MahoganyMart1F_EventScript_SetStaffVisibility
-	call MahoganyMart1F_EventScript_AuthorStaircase
 	end
 
 MahoganyMart1F_EventScript_SetStaffVisibility::
@@ -77,7 +97,8 @@ MahoganyMart1F_EventScript_ShowGranny::
 	clearflag FLAG_TRINITY_J_MART_GRANNY_HIDE
 	return
 
-@ D2. The shipped map.bin has the staircase block as plain walkable floor, so
+@ D2 (authored from ON_LOAD -- see the slot note above).
+@ The shipped map.bin has the staircase block as plain walkable floor, so
 @ the authoring direction is CLOSED: while the staircase has not been uncovered,
 @ cover it with the shop's own shelving. No DrawWholeMapView here -- this runs
 @ before the map is drawn.

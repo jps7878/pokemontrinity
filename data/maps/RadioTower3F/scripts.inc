@@ -39,6 +39,7 @@
 
 RadioTower3F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, RadioTower3F_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, RadioTower3F_OnLoad
 	.byte 0
 
 @ Trinity M4b S4 -- RADIO TOWER 3F, pre-takeover. S8 FLIP CONTRACT: shared
@@ -50,14 +51,32 @@ RadioTower3F_MapScripts::
 @ The tower has two staircases per floor and the halves join through 4F, which
 @ a single-map tool cannot see -- the SPROUT TOWER limitation pinned in the S3
 @ ledger. The CARD KEY shutter that GSC opens at (14,2) is S8's.
-RadioTower3F_OnTransition:
-	call RadioTower_EventScript_SetPreTakeoverVisibility
-	call RadioTower_EventScript_SetTakeoverVisibility
+@ D2 SLOT NOTE (M4b S9 fix round -- systemic, applied to all eight Trinity
+@ metatile authors). Metatile authoring MUST live in MAP_SCRIPT_ON_LOAD, never
+@ MAP_SCRIPT_ON_TRANSITION. RunOnTransitionMapScript() runs IMMEDIATELY BEFORE
+@ InitMap() on both map-load paths (src/overworld.c:876-877, :945-954), and
+@ InitMap -> InitMapLayoutData (src/fieldmap.c:96-103) CpuFastFill16s the whole
+@ backup grid to MAPGRID_UNDEFINED and CpuCopy16s the ROM layout back over it --
+@ so a setmetatile issued from ON_TRANSITION is erased before a single frame is
+@ drawn. ON_LOAD is the LAST statement of InitMap (src/fieldmap.c:71), i.e. it
+@ runs once the grid exists, AND of InitMapFromSavedGame (:80), so it also
+@ covers continue-from-save, which ON_TRANSITION never runs on at all. Vanilla's
+@ own metatile authors use exactly this slot (MauvilleCity_Gym, ShoalCave_*,
+@ SootopolisCity_Gym_1F, AncientTomb). Still no DrawWholeMapView needed:
+@ InitViewGraphics -> InitMapView -> DrawWholeMapView (src/overworld.c:575-580,
+@ :2368) runs later in the same load. qa_sweep.py check 7 is the regression gate.
+RadioTower3F_OnLoad:
 	call RadioTower3F_EventScript_AuthorShutter
 	end
 
+RadioTower3F_OnTransition:
+	call RadioTower_EventScript_SetPreTakeoverVisibility
+	call RadioTower_EventScript_SetTakeoverVisibility
+	end
+
 @ D2. The shipped map.bin has the shutter SHUT, so the authoring direction is
-@ OPEN. No DrawWholeMapView -- ON_TRANSITION runs before the map is drawn.
+@ OPEN. Authored from ON_LOAD (see the slot note above); still no
+@ DrawWholeMapView, because the view is drawn later in the same load.
 RadioTower3F_EventScript_AuthorShutter::
 	goto_if_set FLAG_TRINITY_J_CARD_KEY_USED, RadioTower3F_EventScript_OpenShutterTiles
 	return
@@ -84,7 +103,7 @@ RadioTower3F_EventScript_OpenShutterTiles::
 @     exists in map.json -- warps cannot be created by script; what gates a warp
 @     is the COLLISION of the block in front of it.
 @ D3  The opening script repeats ON_TRANSITION's eight setmetatiles and THEN
-@     calls DrawWholeMapView, which ON_TRANSITION does not need.
+@     calls DrawWholeMapView, which the ON_LOAD author does not need.
 @ D4  FLAG_TRINITY_J_CARD_KEY_USED is the door's ONLY state and this script's
 @     FIRST test, because a bg_event on a now-walkable tile is still triggerable
 @     by pressing A while facing it. FLAG_TRINITY_J_CARD_KEY is an INPUT.

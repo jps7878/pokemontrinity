@@ -23,7 +23,7 @@
 @ ============================================================================
 
 GoldenrodUnderground_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, GoldenrodUnderground_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, GoldenrodUnderground_OnLoad
 	.byte 0
 
 @ ============================================================================
@@ -52,7 +52,21 @@ GoldenrodUnderground_MapScripts::
 @ ever walks this tunnel. The two GOLDENROD stairwells, the merchant row, the
 @ barbers and the COIN CASE are all on the open side and are untouched.
 @ ============================================================================
-GoldenrodUnderground_OnTransition:
+@ D2 SLOT NOTE (M4b S9 fix round -- systemic, applied to all eight Trinity
+@ metatile authors). Metatile authoring MUST live in MAP_SCRIPT_ON_LOAD, never
+@ MAP_SCRIPT_ON_TRANSITION. RunOnTransitionMapScript() runs IMMEDIATELY BEFORE
+@ InitMap() on both map-load paths (src/overworld.c:876-877, :945-954), and
+@ InitMap -> InitMapLayoutData (src/fieldmap.c:96-103) CpuFastFill16s the whole
+@ backup grid to MAPGRID_UNDEFINED and CpuCopy16s the ROM layout back over it --
+@ so a setmetatile issued from ON_TRANSITION is erased before a single frame is
+@ drawn. ON_LOAD is the LAST statement of InitMap (src/fieldmap.c:71), i.e. it
+@ runs once the grid exists, AND of InitMapFromSavedGame (:80), so it also
+@ covers continue-from-save, which ON_TRANSITION never runs on at all. Vanilla's
+@ own metatile authors use exactly this slot (MauvilleCity_Gym, ShoalCave_*,
+@ SootopolisCity_Gym_1F, AncientTomb). Still no DrawWholeMapView needed:
+@ InitViewGraphics -> InitMapView -> DrawWholeMapView (src/overworld.c:575-580,
+@ :2368) runs later in the same load. qa_sweep.py check 7 is the regression gate.
+GoldenrodUnderground_OnLoad:
 	call GoldenrodUnderground_EventScript_AuthorBasementDoor
 	end
 

@@ -34,18 +34,24 @@
 @ THE THREE HOLE COORD_EVENTS ARE FOR THE ENGINE HOOK, NOT FOR THE PLAYER
 @ ---------------------------------------------------------------------------
 @ map.json carries SIX coord_events on three tiles: M4a's FallToA/B/C (the
-@ player's fall) and S9's BoulderFellHoleA/B/C (the boulder's). Three
-@ INDEPENDENT reasons the player can never trigger the second set:
+@ player's fall) and S9's BoulderFellHoleA/B/C (the boulder's). TWO independent
+@ reasons the player can never trigger the second set, EITHER of which is
+@ sufficient on its own:
 @   1. elevation 15 (ELEVATION_MULTI_LEVEL). GetCoordEventScriptAtPosition
 @      (src/field_control_avatar.c:1085-1097) requires
 @      `elevation == <player's> || == ELEVATION_TRANSITION`, and EVERY walkable
 @      tile on this floor decodes elevation 3. TryBoulderFallThroughHole
 @      matches on 15 explicitly and ignores the var.
 @   2. var_value 1 on VAR_TEMP_0, which is zeroed by ClearTempFieldEventData on
-@      every map load and written by nothing on this map -- the same fact M4a's
-@      triggers rely on from the other side (they match == 0).
-@   3. ordering. GetCoordEventScriptAtPosition returns on the FIRST match and
-@      FallToA/B/C are listed first.
+@      every map load and written by nothing on this map -- so
+@      ShouldTriggerScriptRun is false. (M4a's triggers rely on the same fact
+@      from the other side: they match == 0.)
+@ CORRECTED IN THE S9 FIX ROUND -- A THIRD "GUARD" WAS CLAIMED HERE AND IT WAS
+@ FALSE. Ordering is NOT a guard: GetCoordEventScriptAtPosition does not stop at
+@ the first entry whose POSITION matches, it only returns when
+@ TryRunCoordEventScript returns non-NULL, and a var-guard failure returns NULL
+@ and the loop CONTINUES (:1087-1096). That FallToA/B/C are listed first buys
+@ nothing. The two guards above are the whole protection.
 @ check_holes.py is satisfied either way: it wants a coord_event at the hole's
 @ exact (x,y), and now there are two.
 @
@@ -74,15 +80,41 @@
 @ than a saved position.
 @
 @ ---------------------------------------------------------------------------
+@ THERE ARE NO DECOYS. BOULDERS 4, 5 AND 6 ARE THE THREE LOCKS.
+@ ---------------------------------------------------------------------------
+@ GSC gives boulders 4/5/6 no event, so they can never fall, and the natural
+@ reading -- which this file's first draft took -- is that they are red
+@ herrings. MEASURED, they are nothing of the sort: each one is the single
+@ obstacle standing on the approach to exactly one hole. Flood fill from the
+@ (1,7) door, boulders modelled as the blockers they are:
+@
+@   all six placed          96 tiles   (2,2) no   (8,1) no   (6,17) no
+@   boulder 4 (3,3) cleared 103        (2,2) YES  -- unlocks hole A's push tile
+@   boulder 5 (6,1) cleared 105        (8,1) YES  -- unlocks hole C's push tile
+@   boulder 6 (8,14) cleared 103       (6,17) YES -- unlocks hole B's approach
+@   all three cleared       119        everything open
+@
+@ So the puzzle is two-layer, and GSC built it that way: clear the lock, then
+@ push the payload.
+@   hole A: boulder 4 NORTH x2 ((3,3)->(3,1), freeing (3,2) so the player can
+@           reach (2,2)), then boulder 2 SOUTH x2 into (2,5).
+@   hole C: boulder 5 EAST x3 ((6,1)->(9,1); two pushes is not enough, it would
+@           sit ON (8,1)), then boulder 1 SOUTH x1 into (8,3).
+@   hole B: boulder 6 SOUTH x3 ((8,14)->(8,17), freeing the (8,15)/(8,16) column
+@           that is the only way into the bottom-right pocket), then boulder 3
+@           NORTH x9 and EAST x2 as described above.
+@
+@ ---------------------------------------------------------------------------
 @ DELIBERATE, KINDER DEVIATION FROM GSC (logged in the slice plan, 1.4)
 @ ---------------------------------------------------------------------------
 @ GSC's `stonetable` binds boulder N to hole N, so pushing the "wrong" boulder
 @ into a hole silently does nothing. The hook here is generic: ANY boulder in
-@ ANY hole plugs THAT hole. This removes an invisible trap, cannot waste a hole
-@ (the platform flag is permanent and there are six boulders for three holes),
-@ and cannot soft-lock (see above). It is why GSC's three "decoy" boulders --
-@ which carry no event in GSC and can never fall -- each get their own flag
-@ here.
+@ ANY hole plugs THAT hole. PLUG, NOT WASTE -- and that is exactly what makes
+@ the two-layer structure above safe to hand to a player: a lock boulder shoved
+@ into a hole by accident (or on purpose) still opens that hole's platform, so
+@ no sequence of pushes can spend a hole for nothing. Six boulders, three holes,
+@ permanent platform flags, and positions that reset on every map load. It is
+@ also why all six carry their own visibility flag.
 @
 @ ---------------------------------------------------------------------------
 @ THE BACKSTOP (belt and braces; the founder gate is clean-compile + review with
@@ -189,6 +221,9 @@ BlackthornGym2F_EventScript_BoulderColumn2::
 @     TryGetObjectEventIdByLocalIdAndMap fails to find the object
 @     (src/event_object_movement.c:1537-1545). On the backstop path it does the
 @     work, and its FlagSet is what makes the removal permanent (R1).
+@   playse SE_FALL is issued HERE and only here. The C hook deliberately does
+@     not sound it (pokefirered does, but pokefirered has no script leg), so it
+@     plays exactly once on both paths.
 @   SE_M_EARTHQUAKE stands in for GSC's `earthquake 80` screen shake -- the
 @     sound without the shake, which is the part that reads.
 @ Each script's ONLY durable output is one platform flag, which
