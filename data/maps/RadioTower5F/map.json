@@ -24,8 +24,9 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_RT5F_DIRECTOR",
       "script": "RadioTower5F_EventScript_Director",
-      "flag": "FLAG_TRINITY_J_RADIO_TOWER_PRE_HIDE"
+      "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -52,6 +53,62 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RadioTower5F_EventScript_Ben",
       "flag": "FLAG_TRINITY_J_RADIO_TOWER_PRE_HIDE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_M",
+      "x": 13,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_RT5F_ARCHER",
+      "script": "RadioTower5F_EventScript_ArcherIdle",
+      "flag": "FLAG_TRINITY_J_TOWER_5F_ROCKETS_HIDE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_F",
+      "x": 17,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "local_id": "LOCALID_JOHTO_RT5F_ARIANA",
+      "script": "RadioTower5F_EventScript_Ariana",
+      "flag": "FLAG_TRINITY_J_TOWER_5F_ROCKETS_HIDE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_4",
+      "x": 13,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_RT5F_GIOVANNI",
+      "script": "RadioTower5F_EventScript_GiovanniIdle",
+      "flag": "FLAG_TRINITY_J_TOWER_GIOVANNI_HIDE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
+      "x": 16,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "local_id": "LOCALID_JOHTO_RT5F_BOBBY",
+      "script": "RadioTower5F_EventScript_BobbyIdle",
+      "flag": "FLAG_TRINITY_J_TOWER_BOBBY_HIDE"
     }
   ],
   "warp_events": [
@@ -70,7 +127,17 @@
       "dest_warp_id": "2"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 5,
+      "elevation": 3,
+      "var": "VAR_TRINITY_JOHTO_SCENE_GOLDENROD",
+      "var_value": "3",
+      "script": "RadioTower5F_EventScript_ArcherScene"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",

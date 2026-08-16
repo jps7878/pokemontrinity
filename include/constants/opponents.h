@@ -872,9 +872,14 @@
 // MAX_TRAINERS_COUNT 1100 is the real cap. M4b S2 raised it 1072 -> 1073 for
 // TRAINER_JOHTO_SAGE_LI; M4b S5 raised it 1073 -> 1074 for
 // TRAINER_JOHTO_COOLTRAINER_KENJI; M4b S7 raised it 1074 -> 1081 for the three ROCKET
-// scientists and the four LAKE OF RAGE trainers. Every later slice that claims an id
-// must do the same.
-#define TRAINERS_COUNT                      1081
+// scientists and the four LAKE OF RAGE trainers; M4b S8 raised it 1081 -> 1100 for the
+// RADIO TOWER chapter's 19 posts, which EXHAUSTS the block. TRAINERS_COUNT ==
+// MAX_TRAINERS_COUNT is exactly the boundary and is safe: SanitizeTrainerId
+// (include/data.h:207-211) treats id >= TRAINERS_COUNT as partner-or-none, and partner
+// ids begin at TRAINER_PARTNER(PARTNER_NONE) == MAX_TRAINERS_COUNT == 1100, so 1099 is
+// the last real trainer and nothing overlaps. Every later slice that claims an id
+// must now raise MAX_TRAINERS_COUNT, which DOES shift the flag layout (fresh save).
+#define TRAINERS_COUNT                      1100
 #define MAX_TRAINERS_COUNT                  1100
 #define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)
 
@@ -1107,5 +1112,32 @@
 #define TRAINER_JOHTO_FISHER_RAYMOND          1078  // S7: LAKE OF RAGE, post-raid
 #define TRAINER_JOHTO_COOLTRAINER_AARON       1079  // S7: LAKE OF RAGE, post-raid
 #define TRAINER_JOHTO_COOLTRAINER_LOIS        1080  // S7: LAKE OF RAGE, post-raid
+// S8 -- the RADIO TOWER chapter. 19 ids, which EXHAUSTS the 1072-1099 block.
+// 1081/1082 are the two returning EXECS and are deliberately CONTIGUOUS: GetBattleBGM()'s
+// TEAM ROCKET case picks the boss theme by id range, so a contiguous pair is a second
+// range test in the same idiom as the 1050-1053 one (src/pokemon.c).
+#define TRAINER_JOHTO_EXEC_PETREL_2           1081  // S8: RADIO TOWER 5F, the fake DIRECTOR
+#define TRAINER_JOHTO_EXEC_ARIANA_2           1082  // S8: RADIO TOWER 5F, the corridor to STUDIO 1
+#define TRAINER_JOHTO_ROCKET_RT2F_A           1083  // S8: RADIO TOWER 2F (1,4)
+#define TRAINER_JOHTO_ROCKET_RT2F_B           1084  // S8: RADIO TOWER 2F (8,4)
+#define TRAINER_JOHTO_ROCKET_RT2F_C           1085  // S8: RADIO TOWER 2F (4,1)
+#define TRAINER_JOHTO_ROCKET_RT3F_A           1086  // S8: RADIO TOWER 3F (5,1)
+#define TRAINER_JOHTO_ROCKET_RT3F_B           1087  // S8: RADIO TOWER 3F (6,2)
+#define TRAINER_JOHTO_ROCKET_SCI_MARC         1088  // S8: RADIO TOWER 3F (9,6)
+#define TRAINER_JOHTO_ROCKET_RT3F_C           1089  // S8: RADIO TOWER 3F (16,6), behind the CARD KEY
+#define TRAINER_JOHTO_ROCKET_RT4F_A           1090  // S8: RADIO TOWER 4F (5,6)
+#define TRAINER_JOHTO_ROCKET_SCI_RICH         1091  // S8: RADIO TOWER 4F (4,2)
+#define TRAINER_JOHTO_ROCKET_RT4F_B           1092  // S8: RADIO TOWER 4F (12,4), behind the CARD KEY
+#define TRAINER_JOHTO_ROCKET_RT4F_C           1093  // S8: RADIO TOWER 4F (14,1), behind the CARD KEY
+#define TRAINER_JOHTO_ROCKET_UG_A             1094  // S8: UNDERGROUND SWITCH ROOMS (17,2)
+#define TRAINER_JOHTO_ROCKET_UG_B             1095  // S8: UNDERGROUND SWITCH ROOMS (11,2)
+#define TRAINER_JOHTO_ROCKET_UG_C             1096  // S8: UNDERGROUND SWITCH ROOMS (3,2)
+#define TRAINER_JOHTO_ROCKET_WH_A             1097  // S8: UNDERGROUND WAREHOUSE (9,8)
+#define TRAINER_JOHTO_ROCKET_WH_B             1098  // S8: UNDERGROUND WAREHOUSE (8,15)
+#define TRAINER_JOHTO_ROCKET_WH_C             1099  // S8: UNDERGROUND WAREHOUSE (14,3)
+// NOTE FOR S9-S11: 1099 is the LAST id available without raising MAX_TRAINERS_COUNT, and
+// raising it moves TRAINER_FLAGS_END and therefore every SYSTEM_FLAGS-relative flag id
+// (include/constants/flags.h:1384-1389) -- i.e. a fresh save. Sanctioned by the contract,
+// but no longer free.
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

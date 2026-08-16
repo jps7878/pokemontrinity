@@ -12,6 +12,7 @@ RadioTower2F_MapScripts::
 @ stair blocker and belongs to S8.
 RadioTower2F_OnTransition:
 	call RadioTower_EventScript_SetPreTakeoverVisibility
+	call RadioTower_EventScript_SetTakeoverVisibility
 	end
 
 RadioTower2F_EventScript_Teacher::
@@ -103,3 +104,80 @@ RadioTower2F_Text_OaksPKMNTalkSign:
 
 RadioTower2F_Text_PokemonRadioSign:
 	.string "Anywhere, Anytime\nPOKéMON Radio$"
+
+@ ============================================================================
+@ Trinity M4b S8 -- 2F, the SALES floor under occupation. Four R2 posts on
+@ GSC's own tiles (RadioTower2F.asm:646-651), all decoded collision 0 /
+@ elevation 3 / MB_NORMAL:
+@   (1,4) mt705 facing UP  sight 3 -- covers the west column up to the 3F door
+@   (8,4) mt516 facing DOWN sight 3
+@   (4,1) mt522 facing DOWN sight 2
+@   (10,5) mt642 facing UP sight 3
+@ GSC's fifth man is dropped: the 22-post budget spends its 2F share on four.
+@ ============================================================================
+RadioTower2F_EventScript_GruntA::
+	trainerbattle_single TRAINER_JOHTO_ROCKET_RT2F_A, RadioTower2F_Text_GruntASeen, RadioTower2F_Text_GruntABeaten
+	msgbox RadioTower2F_Text_GruntAAfter, MSGBOX_AUTOCLOSE
+	end
+
+RadioTower2F_EventScript_GruntB::
+	trainerbattle_single TRAINER_JOHTO_ROCKET_RT2F_B, RadioTower2F_Text_GruntBSeen, RadioTower2F_Text_GruntBBeaten
+	msgbox RadioTower2F_Text_GruntBAfter, MSGBOX_AUTOCLOSE
+	end
+
+RadioTower2F_EventScript_GruntC::
+	trainerbattle_single TRAINER_JOHTO_ROCKET_RT2F_C, RadioTower2F_Text_GruntCSeen, RadioTower2F_Text_GruntCBeaten
+	msgbox RadioTower2F_Text_GruntCAfter, MSGBOX_AUTOCLOSE
+	end
+
+RadioTower2F_EventScript_GruntF::
+	trainerbattle_single TRAINER_ROCKET_GRUNT_F_3, RadioTower2F_Text_GruntFSeen, RadioTower2F_Text_GruntFBeaten
+	msgbox RadioTower2F_Text_GruntFAfter, MSGBOX_AUTOCLOSE
+	end
+
+RadioTower2F_Text_GruntASeen:
+	.string "This floor sells the air time.\p"
+	.string "Do you know what an hour of\n"
+	.string "JOHTO's attention is worth?\p"
+	.string "We're about to find out.$"
+
+RadioTower2F_Text_GruntABeaten:
+	.string "That wasn't in the budget!$"
+
+RadioTower2F_Text_GruntAAfter:
+	.string "Fine. Go up. See how far the\n"
+	.string "stairs get you.$"
+
+RadioTower2F_Text_GruntBSeen:
+	.string "Hey! Nobody comes up here!$"
+
+RadioTower2F_Text_GruntBBeaten:
+	.string "Nobody comes up here…$"
+
+RadioTower2F_Text_GruntBAfter:
+	.string "I only took this job for the\n"
+	.string "uniform. It's a good uniform.$"
+
+RadioTower2F_Text_GruntCSeen:
+	.string "I've had strict orders.\p"
+	.string "Anyone who challenges TEAM\n"
+	.string "ROCKET gets crushed.$"
+
+RadioTower2F_Text_GruntCBeaten:
+	.string "What?!$"
+
+RadioTower2F_Text_GruntCAfter:
+	.string "I failed in my duties…\p"
+	.string "That's coming out of my pay.$"
+
+RadioTower2F_Text_GruntFSeen:
+	.string "Don't I think POKéMON are cute?\p"
+	.string "I'll think mine are cute --\n"
+	.string "right after they beat yours.$"
+
+RadioTower2F_Text_GruntFBeaten:
+	.string "Oh, no! They're useless!$"
+
+RadioTower2F_Text_GruntFAfter:
+	.string "I love my beautiful self.\p"
+	.string "Who cares about POKéMON?$"

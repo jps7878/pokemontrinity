@@ -302,7 +302,21 @@
 // inside the scene, which is itself gated on == 1, so both writes are once-only.
 #define VAR_TRINITY_JOHTO_SCENE_WESTCOAST                0x40FB
 #define VAR_TRINITY_JOHTO_SCENE_MAHOGANY                 0x40FC // Trinity M4b S7: the MAHOGANY chapter scene. 0 untouched - 1 MART staircase cutscene ARMED (written by LANCE at the LAKE OF RAGE, GSC's setmapscene) - 2 staircase uncovered, raid live - 3 ARIANA beaten, ELECTRODE phase - 4 base cleared. Monotonic; every write sits behind a goto_if_ge guard. State 1 is what MahoganyMart1F's ON_FRAME table matches on, and the cutscene advances it to 2, which is why the table entry cannot re-fire.
-#define VAR_UNUSED_0x40FD                                0x40FD // Unused Var
+// Trinity M4b S8: the GOLDENROD / RADIO TOWER chapter scene. Was VAR_UNUSED_0x40FD.
+//   0 the occupation is fresh
+//   1 the 5F imposter is beaten -- the BASEMENT KEY is in hand
+//   2 SILVER 4 beaten in the UNDERGROUND (the maze is being run)
+//   3 the real DIRECTOR is free -- the CARD KEY is in hand
+//   4 ARCHER beaten, G revealed, BOBBY revealed (this is also VAR_TRINITY_JOHTO_ARC 7)
+//   5 the DIRECTOR's rewards taken (this is also VAR_TRINITY_JOHTO_ARC 8)
+// Monotonic; every write sits behind a goto_if_ge guard or inside a coord/talk path that
+// consumes the exact predecessor value.
+// TWO coord_events ride this var and each one is the reason for its own state:
+//   SwitchRoomEntrances (19,4)/(19,5) match on 1 and the scene advances to 2
+//   RadioTower5F        (16,5)        matches on 3 and the scene advances to 4
+// so neither can re-fire. State 1 (not 0) is SILVER's gate because the BASEMENT KEY is
+// what unlocks the only route into the maze -- a trigger on 0 would be dead code.
+#define VAR_TRINITY_JOHTO_SCENE_GOLDENROD                0x40FD
 #define VAR_UNUSED_0x40FE                                0x40FE // Unused Var
 #define VAR_UNUSED_0x40FF                                0x40FF // Unused Var
 

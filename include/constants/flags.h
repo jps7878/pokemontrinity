@@ -736,36 +736,36 @@
 #define FLAG_TRINITY_J_R43_TOLL          0x289 // Trinity: was FLAG_UNUSED_0x289 -- story - the ROUTE 43 toll has been paid once. GSC re-arms per direction; S7 makes it one-shot.
 #define FLAG_TRINITY_J_MAHOGANY_FISHER_HIDE 0x28A // Trinity: was FLAG_UNUSED_0x28A -- visibility - the FISHER who points at the LAKE. Visible iff ARC < 5, GSC's EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM. He is moved OFF the gym door (see MahoganyTown/scripts.inc).
 #define FLAG_TRINITY_J_MAHOGANY_LASS_HIDE 0x28B // Trinity: was FLAG_UNUSED_0x28B -- visibility - the LASS who points at GRANNY's real shop. Visible iff ARC >= 5.
-#define FLAG_UNUSED_0x28C  0x28C // Unused Flag
-#define FLAG_UNUSED_0x28D  0x28D // Unused Flag
-#define FLAG_UNUSED_0x28E  0x28E // Unused Flag
-#define FLAG_UNUSED_0x28F  0x28F // Unused Flag
-#define FLAG_UNUSED_0x290  0x290 // Unused Flag
-#define FLAG_UNUSED_0x291  0x291 // Unused Flag
-#define FLAG_UNUSED_0x292  0x292 // Unused Flag
-#define FLAG_UNUSED_0x293  0x293 // Unused Flag
-#define FLAG_UNUSED_0x294  0x294 // Unused Flag
-#define FLAG_UNUSED_0x295  0x295 // Unused Flag
-#define FLAG_UNUSED_0x296  0x296 // Unused Flag
-#define FLAG_UNUSED_0x297  0x297 // Unused Flag
-#define FLAG_UNUSED_0x298  0x298 // Unused Flag
-#define FLAG_UNUSED_0x299  0x299 // Unused Flag
-#define FLAG_UNUSED_0x29A  0x29A // Unused Flag
-#define FLAG_UNUSED_0x29B  0x29B // Unused Flag
-#define FLAG_UNUSED_0x29C  0x29C // Unused Flag
-#define FLAG_UNUSED_0x29D  0x29D // Unused Flag
-#define FLAG_UNUSED_0x29E  0x29E // Unused Flag
-#define FLAG_UNUSED_0x29F  0x29F // Unused Flag
-#define FLAG_UNUSED_0x2A0  0x2A0 // Unused Flag
-#define FLAG_UNUSED_0x2A1  0x2A1 // Unused Flag
-#define FLAG_UNUSED_0x2A2  0x2A2 // Unused Flag
-#define FLAG_UNUSED_0x2A3  0x2A3 // Unused Flag
-#define FLAG_UNUSED_0x2A4  0x2A4 // Unused Flag
-#define FLAG_UNUSED_0x2A5  0x2A5 // Unused Flag
-#define FLAG_UNUSED_0x2A6  0x2A6 // Unused Flag
-#define FLAG_UNUSED_0x2A7  0x2A7 // Unused Flag
-#define FLAG_UNUSED_0x2A8  0x2A8 // Unused Flag
-#define FLAG_UNUSED_0x2A9  0x2A9 // Unused Flag
+#define FLAG_TRINITY_J_TOWER_ROCKETS_HIDE   0x28C // Trinity: was FLAG_UNUSED_0x28C -- visibility (13 objects, RADIO TOWER 1F-4F + 5F's ARIANA's floor-mates). Visible iff VAR_TRINITY_JOHTO_ARC == 6. THE OCCUPATION IS A WINDOW: at ARC 7 the tower repopulates with S4's staff (that cast rides FLAG_TRINITY_J_RADIO_TOWER_PRE_HIDE, the exact complement).
+#define FLAG_TRINITY_J_TOWER_5F_ROCKETS_HIDE 0x28D // Trinity: was FLAG_UNUSED_0x28D -- visibility (2 objects: EXEC ARCHER at 5F (13,5) and EXEC ARIANA at 5F (17,2)). Visible iff ARC == 6. These two have their OWN flag because the liberation scene removeobject's them, and removeobject CO-SIGNS the flag (RemoveObjectEventByLocalIdAndMap -> FlagSet, src/event_object_movement.c:1537-1545) -- on the shared tower flag that one tidy-up would delete all 15 posts. R1's rule: anything that must be removed gets its own flag. The co-sign BETWEEN these two is intended; GSC retires the pair in one breath.
+#define FLAG_TRINITY_J_GOLDENROD_ROCKETS_HIDE 0x28E // Trinity: was FLAG_UNUSED_0x28E -- visibility (5 objects) - the ROCKETS holding GOLDENROD's pavement during the takeover. Visible iff ARC == 6. Distinct from S4's FLAG_TRINITY_J_GOLDENROD_SCOUT_HIDE, whose man is retired permanently at the takeover.
+#define FLAG_TRINITY_J_UNDERGROUND_ROCKETS_HIDE 0x28F // Trinity: was FLAG_UNUSED_0x28F -- visibility (7 objects, 2 maps: 4 in the SWITCH ROOMS, 3 in the WAREHOUSE). Visible iff ARC == 6. One predicate, authored once per map. No member is ever removeobject'd (S7's rule: a shared cast flag across maps forbids it).
+#define FLAG_TRINITY_J_WAREHOUSE_DIRECTOR_HIDE 0x290 // Trinity: was FLAG_UNUSED_0x290 -- visibility - the real DIRECTOR, tied up in the UNDERGROUND WAREHOUSE. Visible iff ARC == 6; at ARC >= 7 he is back at his 5F desk, which is the SAME character on a different object (RadioTower5F's (3,6), flag 0).
+#define FLAG_TRINITY_J_UG_SILVER_HIDE       0x291 // Trinity: was FLAG_UNUSED_0x291 -- visibility - SILVER in the SWITCH ROOMS. An addobject-ONLY cutscene actor: the ON_TRANSITION SETS this flag unconditionally, so the template can never spawn, and the scene addobject's him. addobject does NOT clear a visibility flag (there is no FlagClear counterpart to removeobject's FlagSet, src/event_object_movement.c:1803), so the spawn is session-only and cannot outlive the scene.
+#define FLAG_TRINITY_J_TOWER_GIOVANNI_HIDE  0x292 // Trinity: was FLAG_UNUSED_0x292 -- visibility - GIOVANNI's cameo on RADIO TOWER 5F. addobject-only, same shape as SILVER above.
+#define FLAG_TRINITY_J_TOWER_BOBBY_HIDE     0x293 // Trinity: was FLAG_UNUSED_0x293 -- visibility - BOBBY on RADIO TOWER 5F. addobject-only, same shape.
+#define FLAG_TRINITY_J_GOLDENROD_BOBBY_HIDE 0x294 // Trinity: was FLAG_UNUSED_0x294 -- visibility - BOBBY's coda post outside the RADIO TOWER. Visible iff ARC >= 7. Terminal state: he never leaves again this act.
+#define FLAG_TRINITY_J_BASEMENT_KEY         0x295 // Trinity: was FLAG_UNUSED_0x295 -- key-as-flag (GSC's BASEMENT_KEY; ITEM_BASEMENT_KEY exists but is Act I's New Mauville key and must not be reused). Handed over by the 5F imposter. An INPUT to the door, never the door's state (D4).
+#define FLAG_TRINITY_J_BASEMENT_DOOR        0x296 // Trinity: was FLAG_UNUSED_0x296 -- door state (D4) - the GOLDENROD UNDERGROUND door at (18,6) is unlocked. The single input to that map's setmetatile authoring. Monotonic: once open, always open.
+#define FLAG_TRINITY_J_CARD_KEY             0x297 // Trinity: was FLAG_UNUSED_0x297 -- key-as-flag (GSC's CARD_KEY; ITEM_CARD_KEY exists but is KANTO's SILPH CO key, reserved for M5). Handed over by the rescued DIRECTOR. Also the predicate for the DEPT. STORE B1F crate that opens the WAREHOUSE shortcut, exactly as GSC keys it on EVENT_RECEIVED_CARD_KEY.
+#define FLAG_TRINITY_J_CARD_KEY_USED        0x298 // Trinity: was FLAG_UNUSED_0x298 -- door state (D4) - the RADIO TOWER 3F shutter is open. The single input to RadioTower3F's setmetatile authoring, and the FIRST test in the slot script (a bg_event on a now-walkable tile is still triggerable).
+#define FLAG_TRINITY_J_SILVER4_BEATEN       0x299 // Trinity: was FLAG_UNUSED_0x299 -- story - SILVER 4 beaten in the GOLDENROD UNDERGROUND. Read by S9's DRAGON'S DEN coda and by Act III.
+#define FLAG_TRINITY_J_WING_RAINBOW         0x29A // Trinity: was FLAG_UNUSED_0x29A -- story CLAIM - the RAINBOW WING, from the rescued DIRECTOR. Shipped as a flag, not an item (no ITEM_RAINBOW_WING in this build; S1's ITEM_RED_SCALE and S6's ITEM_SECRET_POTION precedent). S10 consumes it at the TIN TOWER summit.
+#define FLAG_TRINITY_J_WING_SILVER          0x29B // Trinity: was FLAG_UNUSED_0x29B -- story CLAIM - the SILVER WING, seized from GIOVANNI's office in the TEAM ROCKET BASE (B3F, ARC >= 7). Flag, not item. S10 consumes it at the WHIRL ISLANDS.
+#define FLAG_TRINITY_J_CLEAR_BELL           0x29C // Trinity: was FLAG_UNUSED_0x29C -- story CLAIM - the CLEAR BELL, from the rescued DIRECTOR. Flag, not item. S10 consumes it at the ECRUTEAK TIN TOWER ENTRANCE gate. Its award is what writes VAR_TRINITY_JOHTO_ARC = 8.
+#define FLAG_TRINITY_J_BOBBY_REVEALED       0x29D // Trinity: was FLAG_UNUSED_0x29D -- story - BOBBY has shown the INTERNATIONAL POLICE badge. Terminal marker for the act's second reveal; M5 (Act III) consumes it.
+#define FLAG_TRINITY_J_RADIO_TM11           0x29E // Trinity: was FLAG_UNUSED_0x29E -- G2 award guard - TM11 SUNNY DAY from the 3F COOLTRAINER F after the tower is freed. Her visibility rides S4's ARC != 6, which is permanently true from ARC 7 on, so she can never vanish owing the TM (S7's C1 rule is satisfied by the predicate, not by an extra clause).
+#define FLAG_TRINITY_J_MARY_SCARF           0x29F // Trinity: was FLAG_UNUSED_0x29F -- G2 award guard - the SILK SCARF from DJ MARY on 4F (substitutes GSC's PINK BOW, which does not exist in this build). Same visibility argument as the TM above.
+#define FLAG_TRINITY_J_UG_SWITCH_1          0x2A0 // Trinity: was FLAG_UNUSED_0x2A0 -- puzzle input - UNDERGROUND SWITCH 1. Contributes 1 to the switch position.
+#define FLAG_TRINITY_J_UG_SWITCH_2          0x2A1 // Trinity: was FLAG_UNUSED_0x2A1 -- puzzle input - UNDERGROUND SWITCH 2. Contributes 2.
+#define FLAG_TRINITY_J_UG_SWITCH_3          0x2A2 // Trinity: was FLAG_UNUSED_0x2A2 -- puzzle input - UNDERGROUND SWITCH 3. Contributes 3. position = 1*S1 + 2*S2 + 3*S3, range 0-6, GSC's own arithmetic.
+#define FLAG_TRINITY_J_UG_EMERGENCY         0x2A3 // Trinity: was FLAG_UNUSED_0x2A3 -- puzzle input - the EMERGENCY panel's own read-out. Turning it ON forces switches 1-3 on and doors 3/5/6 open + 1/2/4 shut, which is the ONE configuration that reaches the WAREHOUSE; turning it OFF resets everything to position 0. Any individual switch toggle clears it, so the panel never lies about the configuration (a small, deliberate improvement on GSC, which leaves it stale).
+#define FLAG_TRINITY_J_UG_DOOR_1            0x2A4 // Trinity: was FLAG_UNUSED_0x2A4 -- door state (D4) - UNDERGROUND door 1, top corridor <-> shaft 3 upper. Doors 1-6 are STICKY: a switch position only opens the one door it names and shuts the one it names (position N shuts door 7-N), so their state is history, not a function of the position. Doors 7-11 ARE a pure function of the position and therefore carry no flag at all.
+#define FLAG_TRINITY_J_UG_DOOR_2            0x2A5 // Trinity: was FLAG_UNUSED_0x2A5 -- door state - door 2, top corridor <-> shaft 2 upper.
+#define FLAG_TRINITY_J_UG_DOOR_3            0x2A6 // Trinity: was FLAG_UNUSED_0x2A6 -- door state - door 3, top corridor <-> shaft 1 upper.
+#define FLAG_TRINITY_J_UG_DOOR_4            0x2A7 // Trinity: was FLAG_UNUSED_0x2A7 -- door state - door 4, shaft 1 upper <-> lower.
+#define FLAG_TRINITY_J_UG_DOOR_5            0x2A8 // Trinity: was FLAG_UNUSED_0x2A8 -- door state - door 5, shaft 2 upper <-> lower.
+#define FLAG_TRINITY_J_UG_DOOR_6            0x2A9 // Trinity: was FLAG_UNUSED_0x2A9 -- door state - door 6, shaft 3 upper <-> lower.
 #define FLAG_UNUSED_0x2AA  0x2AA // Unused Flag
 #define FLAG_UNUSED_0x2AB  0x2AB // Unused Flag
 #define FLAG_UNUSED_0x2AC  0x2AC // Unused Flag

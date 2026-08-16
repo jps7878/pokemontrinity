@@ -180,6 +180,14 @@
   "bg_events": [
     {
       "type": "sign",
+      "x": 18,
+      "y": 6,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "GoldenrodUnderground_EventScript_BasementDoor"
+    },
+    {
+      "type": "sign",
       "x": 19,
       "y": 6,
       "elevation": 0,

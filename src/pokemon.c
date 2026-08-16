@@ -6136,9 +6136,14 @@ u16 GetBattleBGM(void)
             // (TRAINER_EXEC_PROTON 1050 .. TRAINER_EXEC_ARCHER 1053) and take
             // the boss theme; the twelve grunts (1054-1065) take RG's trainer
             // theme. No Act I trainer uses this class, so nothing in HOENN can
-            // reach either branch.
-            if (TRAINER_BATTLE_PARAM.opponentA >= TRAINER_EXEC_PROTON
-             && TRAINER_BATTLE_PARAM.opponentA <= TRAINER_EXEC_ARCHER)
+            // reach either branch. M4b S8 adds a SECOND contiguous exec range: the
+            // RADIO TOWER's returning PETREL and ARIANA need their own ids (a trainer
+            // id can be fought at most once per save, R3b), and 1081-1082 were
+            // allocated adjacent for exactly this test.
+            if ((TRAINER_BATTLE_PARAM.opponentA >= TRAINER_EXEC_PROTON
+              && TRAINER_BATTLE_PARAM.opponentA <= TRAINER_EXEC_ARCHER)
+             || (TRAINER_BATTLE_PARAM.opponentA >= TRAINER_JOHTO_EXEC_PETREL_2
+              && TRAINER_BATTLE_PARAM.opponentA <= TRAINER_JOHTO_EXEC_ARIANA_2))
                 return MUS_VS_AQUA_MAGMA;
             return MUS_RG_VS_TRAINER;
         case TRAINER_CLASS_CHAMPION:

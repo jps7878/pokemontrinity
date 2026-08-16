@@ -481,3 +481,88 @@ TeamRocketBaseB3F_Text_Oath:
 	.string "Exploit POKéMON for profit!\p"
 	.string "All POKéMON exist for the glory\n"
 	.string "of TEAM ROCKET!$"
+
+@ ============================================================================
+@ Trinity M4b S8 -- THE EVIDENCE CRATE. A revisit beat: once the RADIO TOWER
+@ has fallen (ARC >= 7) the seized paperwork in GIOVANNI's office is worth a
+@ second look, and what is filed with it is the SILVER WING.
+@
+@ D1 GEOMETRY. bg_event at (12,3) -- metatile 582, collision 1, elevation 0, the
+@ middle of the desk block (11,3)(12,3)(13,3) -- BG_EVENT_PLAYER_FACING_SOUTH,
+@ read from (12,2) (metatile 580, collision 0, elevation 3), which is its ONLY
+@ reading tile: (12,4) is collision 1 and the desk itself is solid. (12,2) is
+@ inside the office and is reachable once S7's door is open (verified by
+@ re-running reach_check with the door's two collision tiles opened); it is kept
+@ clear of objects. S7 already owns the bookshelf at (10,1)-(13,1) with its
+@ Oath bg_events, which is why this is the desk and not the shelf.
+@
+@ THE SILVER WING IS A FLAG, not an item (no ITEM_SILVER_WING in this build;
+@ S1's ITEM_RED_SCALE and S6's ITEM_SECRET_POTION precedent). Fanfare + a
+@ "received" line so it reads as a pickup, and no G2 guard because there is no
+@ giveitem to fail.
+@
+@ GUARD ORDER. The office-door test is first and is UNREACHABLE-BY-CONSTRUCTION
+@ (a player standing on (12,2) has already opened the door), but S7 owns that
+@ door's state and writing the dependency down beats inheriting it silently.
+@ ============================================================================
+TeamRocketBaseB3F_EventScript_EvidenceCrate::
+	lockall
+	goto_if_unset FLAG_TRINITY_J_DOOR_B3F, TeamRocketBaseB3F_EventScript_CrateSealed
+	goto_if_lt VAR_TRINITY_JOHTO_ARC, 7, TeamRocketBaseB3F_EventScript_CrateSealed
+	goto_if_set FLAG_TRINITY_J_WING_SILVER, TeamRocketBaseB3F_EventScript_CrateEmptied
+	msgbox TeamRocketBaseB3F_Text_EvidenceCrate, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_ITEM
+	waitfanfare
+	msgbox TeamRocketBaseB3F_Text_ReceivedSilverWing, MSGBOX_DEFAULT
+	setflag FLAG_TRINITY_J_WING_SILVER
+	msgbox TeamRocketBaseB3F_Text_SilverWingFile, MSGBOX_DEFAULT
+	releaseall
+	end
+
+TeamRocketBaseB3F_EventScript_CrateSealed::
+	msgbox TeamRocketBaseB3F_Text_CrateSealed, MSGBOX_DEFAULT
+	releaseall
+	end
+
+TeamRocketBaseB3F_EventScript_CrateEmptied::
+	msgbox TeamRocketBaseB3F_Text_CrateEmptied, MSGBOX_DEFAULT
+	releaseall
+	end
+
+TeamRocketBaseB3F_Text_CrateSealed:
+	.string "A steel crate under the desk.\p"
+	.string "Banded, sealed and heavy. It\n"
+	.string "doesn't move.$"
+
+TeamRocketBaseB3F_Text_EvidenceCrate:
+	.string "The bands on the crate have\n"
+	.string "been cut. Someone came back for\l"
+	.string "the contents and was in a\l"
+	.string "hurry.\p"
+	.string "Most of the folders are gone.\p"
+	.string "One is left, because it is not\n"
+	.string "paper.\p"
+	.string "Catalogue tag. Valuation.\n"
+	.string "Project number.\p"
+	.string "And inside, wrapped twice, a\n"
+	.string "long grey feather.$"
+
+TeamRocketBaseB3F_Text_ReceivedSilverWing:
+	.string "{PLAYER} received the\n"
+	.string "SILVER WING.$"
+
+TeamRocketBaseB3F_Text_SilverWingFile:
+	.string "The tag reads: RECOVERED, WHIRL\n"
+	.string "ISLANDS. HOLD PENDING PHASE\l"
+	.string "TWO.\p"
+	.string "The DIRECTOR gave you a feather\n"
+	.string "because he loved POKéMON and\l"
+	.string "didn't know what else to do\l"
+	.string "with it.\p"
+	.string "This one was inventory.$"
+
+TeamRocketBaseB3F_Text_CrateEmptied:
+	.string "The crate is empty now.\p"
+	.string "Just the tag, and the shape in\n"
+	.string "the packing where something\l"
+	.string "used to lie.$"

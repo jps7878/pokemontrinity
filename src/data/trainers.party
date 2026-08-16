@@ -20482,3 +20482,308 @@ Level: 63
 
 NINETALES
 Level: 64
+
+=== TRAINER_JOHTO_EXEC_PETREL_2 ===
+Name: PETREL
+Class: Team Rocket
+Pic: Magma Admin
+Gender: Male
+Music: Magma
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+WEEZING
+Level: 68
+
+MUK
+Level: 67
+
+GOLBAT
+Level: 67
+
+RATICATE
+Level: 66
+
+=== TRAINER_JOHTO_EXEC_ARIANA_2 ===
+Name: ARIANA
+Class: Team Rocket
+Pic: Aqua Admin F
+Gender: Female
+Music: Aqua
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+ARBOK
+Level: 70
+
+VILEPLUME
+Level: 68
+
+MURKROW
+Level: 68
+
+WEEZING
+Level: 67
+
+=== TRAINER_JOHTO_ROCKET_RT2F_A ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+AI: Basic Trainer
+
+RATICATE
+Level: 64
+
+GOLBAT
+Level: 64
+
+KOFFING
+Level: 65
+
+=== TRAINER_JOHTO_ROCKET_RT2F_B ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+AI: Basic Trainer
+
+MUK
+Level: 65
+
+GOLBAT
+Level: 64
+
+=== TRAINER_JOHTO_ROCKET_RT2F_C ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+AI: Basic Trainer
+
+HOUNDOUR
+Level: 64
+
+HOUNDOOM
+Level: 66
+
+=== TRAINER_JOHTO_ROCKET_RT3F_A ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+AI: Basic Trainer
+
+WEEZING
+Level: 66
+
+RATICATE
+Level: 65
+
+CROBAT
+Level: 66
+
+=== TRAINER_JOHTO_ROCKET_RT3F_B ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+AI: Basic Trainer
+
+ARBOK
+Level: 66
+
+MUK
+Level: 66
+
+=== TRAINER_JOHTO_ROCKET_SCI_MARC ===
+Name: MARC
+Class: Team Rocket
+Pic: Magma Grunt M
+Gender: Male
+Music: Aqua
+AI: Check Bad Move / Try To Faint / Check Viability
+
+MAGNETON
+Level: 66
+
+ELECTRODE
+Level: 66
+
+PORYGON
+Level: 67
+
+=== TRAINER_JOHTO_ROCKET_RT3F_C ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+AI: Basic Trainer
+
+GOLBAT
+Level: 66
+
+WEEZING
+Level: 67
+
+RATICATE
+Level: 67
+
+=== TRAINER_JOHTO_ROCKET_RT4F_A ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+AI: Basic Trainer
+
+MUK
+Level: 67
+
+CROBAT
+Level: 67
+
+=== TRAINER_JOHTO_ROCKET_SCI_RICH ===
+Name: RICH
+Class: Team Rocket
+Pic: Magma Grunt M
+Gender: Male
+Music: Aqua
+AI: Check Bad Move / Try To Faint / Check Viability
+
+ELECTRODE
+Level: 67
+
+MAGNETON
+Level: 67
+
+PORYGON2
+Level: 68
+
+=== TRAINER_JOHTO_ROCKET_RT4F_B ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt F
+Gender: Female
+Music: Aqua
+AI: Basic Trainer
+
+VILEPLUME
+Level: 67
+
+ARBOK
+Level: 68
+
+=== TRAINER_JOHTO_ROCKET_RT4F_C ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+AI: Basic Trainer
+
+HOUNDOOM
+Level: 68
+
+WEEZING
+Level: 68
+
+GOLBAT
+Level: 67
+
+=== TRAINER_JOHTO_ROCKET_UG_A ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+AI: Basic Trainer
+
+RATICATE
+Level: 66
+
+MUK
+Level: 67
+
+=== TRAINER_JOHTO_ROCKET_UG_B ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+AI: Basic Trainer
+
+GOLBAT
+Level: 66
+
+ARBOK
+Level: 67
+
+WEEZING
+Level: 67
+
+=== TRAINER_JOHTO_ROCKET_UG_C ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+AI: Basic Trainer
+
+HOUNDOOM
+Level: 67
+
+CROBAT
+Level: 67
+
+=== TRAINER_JOHTO_ROCKET_WH_A ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+AI: Basic Trainer
+
+MUK
+Level: 68
+
+GOLBAT
+Level: 67
+
+RATICATE
+Level: 67
+
+=== TRAINER_JOHTO_ROCKET_WH_B ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+AI: Basic Trainer
+
+WEEZING
+Level: 68
+
+ARBOK
+Level: 68
+
+=== TRAINER_JOHTO_ROCKET_WH_C ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+AI: Basic Trainer
+
+CROBAT
+Level: 68
+
+HOUNDOOM
+Level: 68
+
+MUK
+Level: 68

@@ -74,6 +74,7 @@ RadioTower1F_MapScripts::
 @ ============================================================================
 RadioTower1F_OnTransition:
 	call RadioTower_EventScript_SetPreTakeoverVisibility
+	call RadioTower_EventScript_SetTakeoverVisibility
 	end
 
 @ Shared by all five floors -- one predicate, one place to read it.
@@ -84,6 +85,27 @@ RadioTower_EventScript_SetPreTakeoverVisibility::
 
 RadioTower_EventScript_HidePreTakeover::
 	setflag FLAG_TRINITY_J_RADIO_TOWER_PRE_HIDE
+	return
+
+@ ============================================================================
+@ Trinity M4b S8 -- THE OCCUPATION CAST, the exact complement of the above.
+@ Shared by all five floors, same shape, one place to read it.
+@
+@   FLAG_TRINITY_J_TOWER_ROCKETS_HIDE    visible iff VAR_TRINITY_JOHTO_ARC == 6
+@
+@ Thirteen sight-triggered posts across 1F-4F (R2's grunt shape). ARCHER and
+@ ARIANA on 5F ride a SEPARATE flag, because the liberation scene removeobject's
+@ them and removeobject CO-SIGNS the flag -- on this shared one that single
+@ tidy-up would delete all fifteen posts (R1's trap, S7's cross-map corollary).
+@ Nothing on this flag is ever removeobject'd.
+@ ============================================================================
+RadioTower_EventScript_SetTakeoverVisibility::
+	goto_if_ne VAR_TRINITY_JOHTO_ARC, 6, RadioTower_EventScript_HideTakeover
+	clearflag FLAG_TRINITY_J_TOWER_ROCKETS_HIDE
+	return
+
+RadioTower_EventScript_HideTakeover::
+	setflag FLAG_TRINITY_J_TOWER_ROCKETS_HIDE
 	return
 
 RadioTower1F_EventScript_Receptionist::
@@ -203,3 +225,36 @@ RadioTower1F_Text_Directory:
 
 RadioTower1F_Text_LuckyChannelSign:
 	.string "LUCKY CHANNEL!\pWin with POKéMON\nID numbers!\pTrade your POKéMON\nto collect differ-\lent ID numbers!$"
+
+@ ============================================================================
+@ Trinity M4b S8 -- the occupation. ROCKET-POST PATTERN R2: an ordinary
+@ sight-triggered TRAINER_TYPE_NORMAL post, so PlayTrainerEncounterMusic's
+@ map-BGM swap is correct for him and no NO_MUSIC is wanted.
+@
+@ DECODE (14,1): metatile 526, collision 0, elevation 3, MB_NORMAL. GSC's own
+@ tile (RadioTower1F.asm:491). Facing DOWN with sight 3 puts his cone on
+@ (14,2) (14,3) (14,4) -- row 2 is the open concourse the player has to walk
+@ east along to reach the 2F stairs at (15,0), so he cannot be slipped past.
+@ He seals nothing: (14,1) hangs off row 2 with (13,1) and (15,1) both open.
+@ ============================================================================
+RadioTower1F_EventScript_Grunt::
+	trainerbattle_single TRAINER_ROCKET_GRUNT_M_8, RadioTower1F_Text_GruntSeen, RadioTower1F_Text_GruntBeaten
+	msgbox RadioTower1F_Text_GruntAfter, MSGBOX_AUTOCLOSE
+	end
+
+RadioTower1F_Text_GruntSeen:
+	.string "We've taken the RADIO TOWER.\p"
+	.string "Every set in JOHTO, every car\n"
+	.string "radio, every POKéGEAR -- ours.\p"
+	.string "Now the whole region gets to\n"
+	.string "hear what TEAM ROCKET sounds\l"
+	.string "like.$"
+
+RadioTower1F_Text_GruntBeaten:
+	.string "Too strong. We'll have to\n"
+	.string "watch you…$"
+
+RadioTower1F_Text_GruntAfter:
+	.string "You're too strong.\p"
+	.string "The plan could come apart. I\n"
+	.string "have to warn the others…$"

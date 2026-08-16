@@ -46,10 +46,75 @@ GoldenrodCity_MapScripts::
 @ moment they run; an arc write after them leaves the flags describing the
 @ PREVIOUS state until the next map load, i.e. the flip lags by one entry.
 @ ============================================================================
+@ ============================================================================
+@ Trinity M4b S8 -- THE TAKEOVER FIRES HERE, and it is the FIRST thing this
+@ transition does.
+@
+@ AMENDMENT TO THE S8 BRIEF, deliberate and controller-visible. The brief asked
+@ for "a coord/ON_FRAME in GOLDENROD, NOT inside the flip ON_TRANSITIONs". Both
+@ of those are unsafe, and the flip contract in this very file names editing
+@ this script as the third, sanctioned option ("or S8 edits these scripts"):
+@
+@   * ON_FRAME is disqualified by S7's own pin. TryRunOnFrameMapScript fires
+@     from ProcessPlayerFieldInput EVERY FRAME while its gating var matches and
+@     returns TRUE, aborting player input (src/field_control_avatar.c:177). An
+@     entry gated on ARC == 5 fires forever for a player who has only six
+@     badges, because the script cannot advance the var it is gated on. That is
+@     a hard input lock.
+@   * A coord_event is disqualified by hazard (b) below -- the city's and the
+@     tower's visibility calls read VAR_TRINITY_JOHTO_ARC during ON_TRANSITION,
+@     i.e. before the player is standing anywhere. A write that lands after the
+@     map has loaded leaves the player in a city whose population describes the
+@     PREVIOUS state until the next map load.
+@   * The write as the first line of this transition is exactly what hazard (b)
+@     prescribes: "Arc write first."
+@
+@ EVERY route into the occupied area passes through GOLDENROD CITY -- the tower
+@ door (5,15), both UNDERGROUND stairwells (9,5)/(11,29), the dept store, the
+@ gym, the Pokecentre and the Magnet Train station are all warps FROM this map,
+@ and ROUTE 34 / the ROUTE 35 gate are its only other entrances. So the flip is
+@ always coherent by the time any occupied map loads.
+@
+@ ONE WRITE, ONCE. `goto_if_ne ... 5` is both the monotonic guard and the
+@ once-only guard: ARC 5 is written exactly once (by S7's base terminator) and
+@ this is its only consumer.
+@ ============================================================================
 GoldenrodCity_OnTransition:
+	call GoldenrodCity_EventScript_TryRocketTakeover
 	call GoldenrodCity_EventScript_SetPreTakeoverVisibility
 	call GoldenrodCity_EventScript_SetScoutVisibility
+	call GoldenrodCity_EventScript_SetTakeoverVisibility
+	call GoldenrodCity_EventScript_SetBobbyVisibility
 	end
+
+GoldenrodCity_EventScript_TryRocketTakeover::
+	goto_if_ne VAR_TRINITY_JOHTO_ARC, 5, GoldenrodCity_EventScript_NoTakeover
+	call Trinity_EventScript_CountJohtoBadges
+	goto_if_lt VAR_TEMP_A, 7, GoldenrodCity_EventScript_NoTakeover
+	setvar VAR_TRINITY_JOHTO_ARC, 6
+GoldenrodCity_EventScript_NoTakeover::
+	return
+
+@ S8's own cast, its own flag, appended objects -- so no S4 local id shifts and
+@ no removeobject here can co-sign an S4 civilian into permanent non-existence.
+GoldenrodCity_EventScript_SetTakeoverVisibility::
+	goto_if_ne VAR_TRINITY_JOHTO_ARC, 6, GoldenrodCity_EventScript_HideTakeover
+	clearflag FLAG_TRINITY_J_GOLDENROD_ROCKETS_HIDE
+	return
+
+GoldenrodCity_EventScript_HideTakeover::
+	setflag FLAG_TRINITY_J_GOLDENROD_ROCKETS_HIDE
+	return
+
+@ BOBBY's coda post. Terminal state -- once the tower falls he stays.
+GoldenrodCity_EventScript_SetBobbyVisibility::
+	goto_if_lt VAR_TRINITY_JOHTO_ARC, 7, GoldenrodCity_EventScript_HideBobby
+	clearflag FLAG_TRINITY_J_GOLDENROD_BOBBY_HIDE
+	return
+
+GoldenrodCity_EventScript_HideBobby::
+	setflag FLAG_TRINITY_J_GOLDENROD_BOBBY_HIDE
+	return
 
 GoldenrodCity_EventScript_SetPreTakeoverVisibility::
 	goto_if_eq VAR_TRINITY_JOHTO_ARC, 6, GoldenrodCity_EventScript_HidePreTakeover
@@ -134,6 +199,54 @@ GoldenrodCity_EventScript_Gramps::
 
 GoldenrodCity_EventScript_RocketScout::
 	msgbox GoldenrodCity_Text_RocketScout, MSGBOX_NPC
+	end
+
+@ ============================================================================
+@ Trinity M4b S8 -- the occupation cast. Talk-only set dressing, no trainer ids
+@ (the 22-post budget is spent inside the tower and the UNDERGROUND). Adapts
+@ pokecrystal GoldenrodCityRocket1..6Text; GSC's sixth man at (31,10) is
+@ dropped -- he stands one tile from the PP SPEECH HOUSE door and buys nothing.
+@ ============================================================================
+GoldenrodCity_EventScript_Rocket1::
+	msgbox GoldenrodCity_Text_Rocket1, MSGBOX_NPC
+	end
+
+GoldenrodCity_EventScript_Rocket2::
+	msgbox GoldenrodCity_Text_Rocket2, MSGBOX_NPC
+	end
+
+GoldenrodCity_EventScript_Rocket3::
+	msgbox GoldenrodCity_Text_Rocket3, MSGBOX_NPC
+	end
+
+GoldenrodCity_EventScript_Rocket4::
+	msgbox GoldenrodCity_Text_Rocket4, MSGBOX_NPC
+	end
+
+GoldenrodCity_EventScript_Rocket5::
+	msgbox GoldenrodCity_Text_Rocket5, MSGBOX_NPC
+	end
+
+@ BOBBY's coda. He is DIALOGUE-ONLY this act (the design spec puts his battle in
+@ the KANTO Crew Gauntlet), and this post is the reason the reveal is not a
+@ character who appears once and evaporates. Two states on the flag the 5F scene
+@ sets, so a player who somehow reads him first is never told the twist twice.
+GoldenrodCity_EventScript_Bobby::
+	lock
+	faceplayer
+	goto_if_unset FLAG_TRINITY_J_BOBBY_REVEALED, GoldenrodCity_EventScript_BobbyUnrevealed
+	msgbox GoldenrodCity_Text_Bobby, MSGBOX_DEFAULT
+	release
+	end
+
+@ INTENTIONALLY UNREACHABLE / DEFENSIVE. This object is visible iff ARC >= 7,
+@ and the only writer of ARC 7 is the 5F scene, whose last acts are setting
+@ FLAG_TRINITY_J_BOBBY_REVEALED and then the arc -- so the flag is always set
+@ before this object can spawn. Written as real dialogue anyway, because a
+@ flavour NPC must never dead-end.
+GoldenrodCity_EventScript_BobbyUnrevealed::
+	msgbox GoldenrodCity_Text_BobbyUnrevealed, MSGBOX_DEFAULT
+	release
 	end
 
 GoldenrodCity_EventScript_StationSign::
@@ -301,3 +414,52 @@ GoldenrodCity_Text_UndergroundSignSouth:
 
 GoldenrodCity_Text_FlowerShopSign:
 	.string "Blooming Beautiful\nFLOWER SHOP$"
+
+@ ============================================================================
+@ Trinity M4b S8 -- occupation text. GSC's lines, kept short and unpleasant.
+@ ============================================================================
+GoldenrodCity_Text_Rocket1:
+	.string "Stay out of the way.\p"
+	.string "The street's ours this morning.$"
+
+GoldenrodCity_Text_Rocket2:
+	.string "The TOWER? Company business.\p"
+	.string "Take one more step toward that\n"
+	.string "door and it'll be my business.$"
+
+GoldenrodCity_Text_Rocket3:
+	.string "POKéMON are tools. Tools make\n"
+	.string "money. That's the whole of it.\p"
+	.string "Anyone who tells you different\n"
+	.string "is selling something.$"
+
+GoldenrodCity_Text_Rocket4:
+	.string "Three years we waited.\p"
+	.string "Three years of odd jobs and\n"
+	.string "keeping our heads down.\p"
+	.string "Tonight it goes out on the air.$"
+
+GoldenrodCity_Text_Rocket5:
+	.string "Hey. Champion.\p"
+	.string "HOENN was a long swim from\n"
+	.string "here. Go home.$"
+
+GoldenrodCity_Text_Bobby:
+	.string "BOBBY: Funny how it works.\p"
+	.string "Six of us kept turning up on\n"
+	.string "your road since HOENN, and you\l"
+	.string "never once asked why.\p"
+	.string "I'm not sorry. You were the\n"
+	.string "fastest way to him, {PLAYER}, and\l"
+	.string "you didn't need handling.\p"
+	.string "He's gone east. INDIGO first,\n"
+	.string "then home -- and home for that\l"
+	.string "man is VIRIDIAN.\p"
+	.string "Take your eighth badge. I'll\n"
+	.string "be somewhere behind you.$"
+
+GoldenrodCity_Text_BobbyUnrevealed:
+	.string "BOBBY: Long way from HOENN,\n"
+	.string "isn't it.\p"
+	.string "Don't mind me. I'm just\n"
+	.string "watching the door.$"
