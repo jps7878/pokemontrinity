@@ -16826,7 +16826,7 @@ Wobbuffet
 Level: 41
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_RED ===
+=== TRAINER_RED_PLACEHOLDER ===
 Name: RED
 Class: Rival
 Pic: Red
@@ -25446,4 +25446,921 @@ Level: 76
 
 SPECIES_BUTTERFREE
 Level: 77
+
+/* === Trinity M5a Kanto bosses === */
+
+=== TRAINER_BROCK ===
+Name: BROCK
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Golem
+Level: 74
+
+Omastar
+Level: 74
+
+Onix
+Level: 75
+
+Kabutops
+Level: 75
+
+Rhydon
+Level: 76
+
+=== TRAINER_MISTY ===
+Name: MISTY
+Class: Leader
+Pic: Leader Juan
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Golduck
+Level: 76
+
+Quagsire
+Level: 76
+
+Lapras
+Level: 77
+
+Gyarados
+Level: 77
+
+Starmie
+Level: 78
+
+=== TRAINER_LTSURGE ===
+Name: SURGE
+Class: Leader
+Pic: Leader Wattson
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Electrode
+Level: 77
+
+Magneton
+Level: 77
+
+Electabuzz
+Level: 78
+
+Jolteon
+Level: 78
+
+Raichu
+Level: 79
+
+=== TRAINER_ERIKA ===
+Name: ERIKA
+Class: Leader
+Pic: Elite Four Glacia
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Tangela
+Level: 79
+
+Jumpluff
+Level: 79
+
+Victreebel
+Level: 80
+
+Bellossom
+Level: 80
+
+Vileplume
+Level: 81
+
+=== TRAINER_JANINE ===
+Name: JANINE
+Class: Leader
+Pic: Elite Four Phoebe
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Ariados
+Level: 80
+
+Venomoth
+Level: 80
+
+Weezing
+Level: 81
+
+Muk
+Level: 81
+
+Crobat
+Level: 82
+
+=== TRAINER_SABRINA ===
+Name: SABRINA
+Class: Leader
+Pic: Psychic M
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Espeon
+Level: 82
+
+SPECIES_MR_MIME
+Level: 82
+
+Jynx
+Level: 82
+
+Hypno
+Level: 83
+
+Slowbro
+Level: 83
+
+Alakazam
+Level: 84
+
+=== TRAINER_BLAINE ===
+Name: BLAINE
+Class: Leader
+Pic: Leader Flannery
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Magcargo
+Level: 84
+
+Rapidash
+Level: 84
+
+Ninetales
+Level: 85
+
+Houndoom
+Level: 85
+
+Magmar
+Level: 85
+
+Arcanine
+Level: 86
+
+=== TRAINER_GIOVANNI ===
+Name: GIOVANNI
+Class: Leader
+Pic: Steven
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Persian
+Level: 86
+
+Dugtrio
+Level: 86
+
+Rhydon
+Level: 87
+
+Marowak
+Level: 87
+
+Nidoqueen
+Level: 87
+
+Nidoking
+Level: 88
+
+=== TRAINER_BLUE_GRUDGE ===
+Name: BLUE
+Class: Rival
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Pidgeot
+Level: 82
+
+Alakazam
+Level: 82
+
+Rhydon
+Level: 83
+
+Arcanine
+Level: 83
+
+Exeggutor
+Level: 83
+
+Gyarados
+Level: 84
+
+=== TRAINER_SILVER_FINAL ===
+Name: SILVER
+Class: Rival
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Sneasel
+Level: 84
+
+Magneton
+Level: 83
+
+Gengar
+Level: 84
+
+Crobat
+Level: 85
+
+Alakazam
+Level: 83
+
+Feraligatr
+Level: 86
+
+=== TRAINER_SILVER_MTMOON ===
+Name: SILVER
+Class: Rival
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Sneasel
+Level: 85
+
+Magneton
+Level: 85
+
+Gengar
+Level: 86
+
+Crobat
+Level: 86
+
+Alakazam
+Level: 86
+
+Feraligatr
+Level: 88
+
+=== TRAINER_HARJOT_K ===
+Name: HARJOT
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Elite Four
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Hariyama
+Level: 83
+
+Hitmonlee
+Level: 83
+
+Hitmonchan
+Level: 83
+
+Medicham
+Level: 84
+
+Machamp
+Level: 85
+
+=== TRAINER_IVRAJ_K ===
+Name: IVRAJ
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Espeon
+Level: 83
+
+Slowking
+Level: 83
+
+Xatu
+Level: 83
+
+Gardevoir
+Level: 84
+
+Alakazam
+Level: 85
+
+=== TRAINER_SUMEET_K ===
+Name: SUMEET
+Class: Kindler
+Pic: Kindler
+Gender: Male
+Music: Hiker
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Arcanine
+Level: 83
+
+Ninetales
+Level: 83
+
+Houndoom
+Level: 84
+
+Magcargo
+Level: 83
+
+Typhlosion
+Level: 85
+
+=== TRAINER_PRABHJIT_K ===
+Name: PRABHJIT
+Class: Guitarist
+Pic: Guitarist
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Electrode
+Level: 83
+
+Magneton
+Level: 83
+
+Jolteon
+Level: 84
+
+Raichu
+Level: 84
+
+Ampharos
+Level: 85
+
+=== TRAINER_GURNAV ===
+Name: GURNAV
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Rich
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Houndoom
+Level: 83
+
+Absol
+Level: 84
+
+Sableye
+Level: 83
+
+Mightyena
+Level: 84
+
+Umbreon
+Level: 85
+
+=== TRAINER_WALLY_K ===
+Name: WALLY
+Class: Rival
+Pic: Wally
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Altaria
+Level: 86
+
+Magneton
+Level: 86
+
+Delcatty
+Level: 86
+
+Roselia
+Level: 87
+
+Gardevoir
+Level: 88
+
+=== TRAINER_LORELEI ===
+Name: LORELEI
+Class: Elite Four
+Pic: Elite Four Glacia
+Gender: Female
+Music: Elite Four
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Dewgong
+Level: 88
+
+Cloyster
+Level: 88
+
+Jynx
+Level: 88
+
+Slowbro
+Level: 89
+
+Piloswine
+Level: 89
+
+Lapras
+Level: 90
+
+=== TRAINER_AGATHA ===
+Name: AGATHA
+Class: Elite Four
+Pic: Elite Four Phoebe
+Gender: Female
+Music: Elite Four
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Crobat
+Level: 88
+
+Arbok
+Level: 88
+
+Weezing
+Level: 88
+
+Misdreavus
+Level: 89
+
+Muk
+Level: 89
+
+Gengar
+Level: 90
+
+=== TRAINER_BRUNO_II ===
+Name: BRUNO
+Class: Elite Four
+Pic: Black Belt
+Gender: Male
+Music: Elite Four
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Hitmontop
+Level: 88
+
+Hitmonlee
+Level: 89
+
+Hitmonchan
+Level: 89
+
+Hariyama
+Level: 89
+
+Steelix
+Level: 89
+
+Machamp
+Level: 90
+
+=== TRAINER_BLUE_E4 ===
+Name: BLUE
+Class: Champion
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Pidgeot
+Level: 88
+
+Alakazam
+Level: 89
+
+Rhydon
+Level: 89
+
+Arcanine
+Level: 89
+
+Exeggutor
+Level: 89
+
+Gyarados
+Level: 90
+
+=== TRAINER_ASH ===
+Name: ASH
+Class: Champion
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Charizard
+Level: 91
+
+Sceptile
+Level: 91
+
+Infernape
+Level: 91
+
+Greninja
+Level: 92
+
+Lucario
+Level: 92
+
+Pikachu
+Level: 100
+
+=== TRAINER_RED ===
+Name: RED
+Class: Rival
+Pic: Red
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Venusaur
+Level: 98
+
+Charizard
+Level: 99
+
+Blastoise
+Level: 99
+
+Snorlax
+Level: 98
+
+Lapras
+Level: 98
+
+Pikachu
+Level: 100
+
+=== TRAINER_BOBBY ===
+Name: BOBBY
+Class: Dragon Tamer
+Pic: Dragon Tamer
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Flygon
+Level: 90
+
+Kingdra
+Level: 90
+
+Altaria
+Level: 90
+
+Gyarados
+Level: 91
+
+Dragonite
+Level: 91
+
+Salamence
+Level: 92
+
+=== TRAINER_K_GRUNT_M_1 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Basic Trainer
+
+Raticate
+Level: 78
+
+Golbat
+Level: 79
+
+Weezing
+Level: 80
+
+=== TRAINER_K_GRUNT_M_2 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Basic Trainer
+
+Golbat
+Level: 78
+
+Muk
+Level: 79
+
+Marowak
+Level: 80
+
+=== TRAINER_K_GRUNT_M_3 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Basic Trainer
+
+Machoke
+Level: 78
+
+Hypno
+Level: 79
+
+Houndoom
+Level: 80
+
+=== TRAINER_K_GRUNT_M_4 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Basic Trainer
+
+Raticate
+Level: 82
+
+Weezing
+Level: 83
+
+Houndoom
+Level: 84
+
+=== TRAINER_K_GRUNT_M_5 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Basic Trainer
+
+Golbat
+Level: 82
+
+Marowak
+Level: 83
+
+Machoke
+Level: 84
+
+=== TRAINER_K_GRUNT_M_6 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Basic Trainer
+
+Muk
+Level: 82
+
+Hypno
+Level: 83
+
+Weezing
+Level: 84
+
+=== TRAINER_K_GRUNT_M_7 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Basic Trainer
+
+Houndoom
+Level: 82
+
+Raticate
+Level: 83
+
+Golbat
+Level: 84
+
+=== TRAINER_K_GRUNT_M_8 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Basic Trainer
+
+Marowak
+Level: 85
+
+Machoke
+Level: 86
+
+Muk
+Level: 87
+
+=== TRAINER_K_GRUNT_M_9 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Basic Trainer
+
+Hypno
+Level: 85
+
+Weezing
+Level: 86
+
+Raticate
+Level: 87
+
+=== TRAINER_K_GRUNT_M_10 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Basic Trainer
+
+Golbat
+Level: 85
+
+Houndoom
+Level: 86
+
+Marowak
+Level: 87
+
+=== TRAINER_K_GRUNT_F_1 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt F
+Gender: Female
+Music: Aqua
+Double Battle: No
+AI: Basic Trainer
+
+Hypno
+Level: 79
+
+Muk
+Level: 80
+
+=== TRAINER_K_GRUNT_F_2 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt F
+Gender: Female
+Music: Aqua
+Double Battle: No
+AI: Basic Trainer
+
+Raticate
+Level: 78
+
+Machoke
+Level: 79
+
+Golbat
+Level: 80
+
+=== TRAINER_K_GRUNT_F_3 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt F
+Gender: Female
+Music: Aqua
+Double Battle: No
+AI: Basic Trainer
+
+Weezing
+Level: 82
+
+Marowak
+Level: 83
+
+Houndoom
+Level: 84
+
+=== TRAINER_K_GRUNT_F_4 ===
+Name: GRUNT
+Class: Team Rocket
+Pic: Aqua Grunt F
+Gender: Female
+Music: Aqua
+Double Battle: No
+AI: Basic Trainer
+
+Machoke
+Level: 86
+
+Muk
+Level: 87
+
+=== TRAINER_K_SCIENTIST_1 ===
+Name: SCIENTIST
+Class: Team Rocket
+Pic: Magma Grunt M
+Gender: Male
+Music: Magma
+Double Battle: No
+AI: Basic Trainer
+
+Magneton
+Level: 80
+
+Porygon2
+Level: 82
+
+Electrode
+Level: 83
+
+=== TRAINER_K_SCIENTIST_2 ===
+Name: SCIENTIST
+Class: Team Rocket
+Pic: Magma Grunt M
+Gender: Male
+Music: Magma
+Double Battle: No
+AI: Basic Trainer
+
+Electrode
+Level: 81
+
+Magneton
+Level: 83
+
+Porygon2
+Level: 85
+
+=== TRAINER_K_SCIENTIST_3 ===
+Name: SCIENTIST
+Class: Team Rocket
+Pic: Magma Grunt M
+Gender: Male
+Music: Magma
+Double Battle: No
+AI: Basic Trainer
+
+Porygon2
+Level: 82
+
+Electrode
+Level: 84
+
+Magneton
+Level: 86
 

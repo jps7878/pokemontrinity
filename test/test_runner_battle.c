@@ -381,7 +381,7 @@ static void BattleTest_Run(void *data)
         DATA.recordedBattle.battleFlags = BATTLE_TYPE_IS_MASTER | BATTLE_TYPE_TRAINER | BATTLE_TYPE_INGAME_PARTNER | BATTLE_TYPE_MULTI | BATTLE_TYPE_TWO_OPPONENTS;
         DATA.recordedBattle.partnerId = TRAINER_PARTNER(PARTNER_STEVEN);
         DATA.recordedBattle.opponentA = TRAINER_LEAF;
-        DATA.recordedBattle.opponentB = TRAINER_RED;
+        DATA.recordedBattle.opponentB = TRAINER_RED_PLACEHOLDER;
         DATA.hasAI = TRUE;
         DATA.currentMonIndexes[0] = 0; // Player first mon
         DATA.currentMonIndexes[1] = 0; // Opponent A first mon
@@ -402,7 +402,7 @@ static void BattleTest_Run(void *data)
     case BATTLE_TEST_AI_ONE_VS_TWO:
         DATA.recordedBattle.battleFlags = BATTLE_TYPE_IS_MASTER | BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TWO_OPPONENTS;
         DATA.recordedBattle.opponentA = TRAINER_LEAF;
-        DATA.recordedBattle.opponentB = TRAINER_RED;
+        DATA.recordedBattle.opponentB = TRAINER_RED_PLACEHOLDER;
         DATA.currentMonIndexes[0] = 0; // Player first mon
         DATA.currentMonIndexes[1] = 0; // Opponent A first mon
         DATA.currentMonIndexes[2] = 1; // Player second mon

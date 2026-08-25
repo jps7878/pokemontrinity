@@ -854,7 +854,7 @@
 #define TRAINER_MARIELA                     848
 #define TRAINER_ALVARO                      849
 #define TRAINER_EVERETT                     850
-#define TRAINER_RED                         851
+#define TRAINER_RED_PLACEHOLDER             851
 #define TRAINER_LEAF                        852
 #define TRAINER_BRENDAN_PLACEHOLDER         853
 #define TRAINER_MAY_PLACEHOLDER             854
@@ -883,8 +883,11 @@
 // it claims 1100-1102 for the three Wise Trio sages (TRAINERS_COUNT -> 1103) and
 // raises MAX_TRAINERS_COUNT 1100 -> 1800 per the Task 8 census verdict (D=331
 // demand, 111.5% headroom over the raised cap) to reopen id space for M5a
-// Task 10's Kanto trainer population run (287 ids) and beyond.
-#define TRAINERS_COUNT                      1390
+// Task 10's Kanto trainer population run (287 ids) and beyond. Task 10's
+// route-trainer population run raised it 1103 -> 1390. Task 11 raises it
+// 1390 -> 1431 for the fixed Kanto boss corps (see the banner comment above
+// TRAINER_BROCK below).
+#define TRAINERS_COUNT                      1431
 #define MAX_TRAINERS_COUNT                  1800
 #define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)
 
@@ -1438,5 +1441,59 @@
 #define TRAINER_KANTO_BUG_CATCHER_SAMMY          1387
 #define TRAINER_KANTO_BUG_CATCHER_ANTHONY        1388
 #define TRAINER_KANTO_BUG_CATCHER_CHARLIE        1389
+
+// M5a Task 11: Kanto boss corps (data-only; M5b's story slices wire these
+// onto maps). Frees TRAINER_RED for the real finale superboss by renaming
+// the vestigial base-game placeholder (id 851, a lone Lv5 Charmander never
+// wired to any script or map, only referenced symbolically by the AI-multi
+// test harness) to TRAINER_RED_PLACEHOLDER -- see that #define above --
+// matching the existing TRAINER_BRENDAN_PLACEHOLDER / TRAINER_MAY_PLACEHOLDER
+// precedent for the identical collision. 8 Kanto gym leaders, Blue's grudge
+// rematch, Silver's final + Mt. Moon rematch, the crew (Harjot/Ivraj/Sumeet/
+// Prabhjit) at Act III power plus Gurnav's debut and Wally's rematch, League
+// II's four (Lorelei/Agatha/Bruno/Champion Blue), the Ash/Red/Bobby finale
+// cast, and the Team Rocket corps (10 male grunts, 4 female grunts, 3
+// scientists) -- 41 new ids, TRAINERS_COUNT 1390 -> 1431.
+#define TRAINER_BROCK                             1390
+#define TRAINER_MISTY                             1391
+#define TRAINER_LTSURGE                           1392
+#define TRAINER_ERIKA                             1393
+#define TRAINER_JANINE                            1394
+#define TRAINER_SABRINA                           1395
+#define TRAINER_BLAINE                            1396
+#define TRAINER_GIOVANNI                          1397
+#define TRAINER_BLUE_GRUDGE                       1398
+#define TRAINER_SILVER_FINAL                      1399
+#define TRAINER_SILVER_MTMOON                     1400
+#define TRAINER_HARJOT_K                          1401
+#define TRAINER_IVRAJ_K                           1402
+#define TRAINER_SUMEET_K                          1403
+#define TRAINER_PRABHJIT_K                        1404
+#define TRAINER_GURNAV                            1405
+#define TRAINER_WALLY_K                           1406
+#define TRAINER_LORELEI                           1407
+#define TRAINER_AGATHA                            1408
+#define TRAINER_BRUNO_II                          1409
+#define TRAINER_BLUE_E4                           1410
+#define TRAINER_ASH                               1411
+#define TRAINER_RED                               1412
+#define TRAINER_BOBBY                             1413
+#define TRAINER_K_GRUNT_M_1                       1414
+#define TRAINER_K_GRUNT_M_2                       1415
+#define TRAINER_K_GRUNT_M_3                       1416
+#define TRAINER_K_GRUNT_M_4                       1417
+#define TRAINER_K_GRUNT_M_5                       1418
+#define TRAINER_K_GRUNT_M_6                       1419
+#define TRAINER_K_GRUNT_M_7                       1420
+#define TRAINER_K_GRUNT_M_8                       1421
+#define TRAINER_K_GRUNT_M_9                       1422
+#define TRAINER_K_GRUNT_M_10                      1423
+#define TRAINER_K_GRUNT_F_1                       1424
+#define TRAINER_K_GRUNT_F_2                       1425
+#define TRAINER_K_GRUNT_F_3                       1426
+#define TRAINER_K_GRUNT_F_4                       1427
+#define TRAINER_K_SCIENTIST_1                     1428
+#define TRAINER_K_SCIENTIST_2                     1429
+#define TRAINER_K_SCIENTIST_3                     1430
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H
