@@ -26,6 +26,28 @@
 KantoVictoryRoad_1F_MapScripts::
 	.byte 0
 
+@ ============================================================================
+@ Trinity M5a T5 fix round 1 (review Finding 3). The (20,10) warp_event
+@ (dest MAP_ROUTE23 #0, added in T5's original pass as the ROUTE 23
+@ reciprocal) never auto-fires by itself: it decodes to MB_CAVE, which is
+@ not in IsWarpMetatileBehavior's list (src/field_control_avatar.c:925-939),
+@ so TryStartWarpEventScript (:880) always returns FALSE there -- and a
+@ tree-wide scan for a genuine door/ladder/escalator-class behavior anywhere
+@ on this map found exactly one: (3,2) MB_LADDER, already the live
+@ VICTORY_ROAD_2F warp. Nowhere near the room's south side qualifies, so
+@ relocating instead of scripting was not an option here. The JSON entry
+@ stays as reciprocal-index bookkeeping (real, in-bounds dest_warp_id for
+@ qa_sweep, and what ROUTE23's own (5,28)->#2 pairing points at); this
+@ coord_event -- Route28's exact mechanism, see that map's scripts.inc for
+@ the full IsWarpMetatileBehavior/TryStartCoordEventScript writeup -- is
+@ what actually fires. Unconditional (no gate this direction; the M4b S11
+@ ROUTE26 #0 <-> VR1F #1 corridor above is untouched by any of this).
+@ ============================================================================
+KantoVictoryRoad_1F_EventScript_Route23ReturnWarp::
+	warp MAP_ROUTE23, 5, 28
+	waitstate
+	end
+
 KantoVictoryRoad_1F_EventScript_DARNELL::
 	trainerbattle_single TRAINER_VR_COOLTRAINER_M_1, KantoVictoryRoad_1F_Text_DARNELLSeen, KantoVictoryRoad_1F_Text_DARNELLBeaten
 	msgbox KantoVictoryRoad_1F_Text_DARNELLAfter, MSGBOX_AUTOCLOSE

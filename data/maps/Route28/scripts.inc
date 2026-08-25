@@ -18,6 +18,17 @@ Route28_Text_Sign:
 @ as one fires, so the coord_event always wins and the warp never auto-fires
 @ on this tile -- the OPEN branch below has to reissue it by hand.
 @
+@ Fix round 1 (review Finding 2, root cause note): the (39,8) warp_event in
+@ map.json is RECIPROCAL-INDEX BOOKKEEPING ONLY, not the live mechanism --
+@ its tile decodes to MB_NORMAL, which IsWarpMetatileBehavior
+@ (src/field_control_avatar.c:925-939) rejects (only MB_WARP_DOOR/LADDER/
+@ ESCALATOR/NON_ANIM_DOOR/the four hardcoded specials qualify), so
+@ TryStartWarpEventScript (:880) would never have fired it even without the
+@ coord_event stacked on top. Kept anyway so warp_events[2] is a real,
+@ in-bounds dest_warp_id for qa_sweep's tree-wide bounds check and so
+@ Route22's own (8,7) entry (its mirror -- see that map's scripts.inc) has
+@ something real to point back at.
+@
 @ WHY A SCRIPTED GATE HERE AND NOT A PHYSICAL BLOCKER (the Route26 League gate's
 @ shape, mirrored otherwise): Route 28's east edge is wide open column-to-column
 @ (x=39 walkable at every row 0-17, plus fully-open plazas at y=0/16/17), so no

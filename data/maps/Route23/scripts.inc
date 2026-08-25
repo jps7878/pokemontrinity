@@ -198,3 +198,135 @@ Route23_Text_Guard7Pass:
 	.string "VIRIDIAN.\p"
 	.string "VICTORY ROAD's ahead. Good luck\n"
 	.string "in there.$"
+
+@ ============================================================================
+@ Trinity M5a T5 fix round 1 -- PHYSICAL badge-count nets (controller ruling,
+@ Finding 4). The talk-triggered Guard1..7 scripts above are informational
+@ only and do not block a walk-around; Route 23 is wide at each guard's row
+@ (up to 18 walkable tiles), so a badgeless flood fill from the KANTO door
+@ reaches (5,28) untouched. reach_check.py's Map class, used as a library
+@ (not the CLI, which can't model coord_events), found the EXACT set of
+@ "individually sufficient" bypass columns per row -- the columns that, left
+@ open alone with everything else in the row blocked, still bridge south to
+@ north -- and confirmed netting only those (plus the guard's own standing
+@ tile) fully disconnects (5,28) from the south door with all 7 guards' nets
+@ active and zero badges: see task-5-report.md fix round 1 for the flood-fill
+@ evidence and t5-reach/route23-badgeless.txt for the saved run.
+@
+@ Guards 4/5 sit at the river (MB_SHALLOW_WATER); their nets are on the
+@ MB_OCEAN_WATER surf lane one row over, at elevation 1 (decoded, matching
+@ the water tiles' own elevation) -- a surfing player is caught exactly the
+@ same way a walking one is, `applymovement` + `walk_down` works while
+@ surfing (ordinary directional movement, not a forced-current tile).
+@
+@ Refusal step-back mirrors ROUTE26's LeagueGateOfficer idiom exactly
+@ (data/maps/Route26/scripts.inc Route26_EventScript_LeagueGateRefuse):
+@ msgbox -> closemessage -> applymovement LOCALID_PLAYER walk_down ->
+@ waitmovement -> releaseall. The "NetOpen" branches are INTENTIONALLY EMPTY,
+@ same idiom as Route26_EventScript_LeagueGateOpen: the trigger fires on
+@ every crossing regardless of badge count (that is what makes the refusal
+@ reliable), and an empty branch is what makes an already-qualified crossing
+@ free. Refusal text is reused from each guard's own talk script above --
+@ same tone, same count-not-name framing.
+@ ============================================================================
+Route23_Movement_NetStepBack:
+	walk_down
+	step_end
+
+Route23_EventScript_Guard1Net::
+	lockall
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 1, Route23_EventScript_Guard1NetOpen
+	msgbox Route23_Text_Guard1Refuse, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_PLAYER, Route23_Movement_NetStepBack
+	waitmovement 0
+	releaseall
+	end
+
+Route23_EventScript_Guard1NetOpen::
+	end
+
+Route23_EventScript_Guard2Net::
+	lockall
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 2, Route23_EventScript_Guard2NetOpen
+	msgbox Route23_Text_Guard2Refuse, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_PLAYER, Route23_Movement_NetStepBack
+	waitmovement 0
+	releaseall
+	end
+
+Route23_EventScript_Guard2NetOpen::
+	end
+
+Route23_EventScript_Guard3Net::
+	lockall
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 3, Route23_EventScript_Guard3NetOpen
+	msgbox Route23_Text_Guard3Refuse, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_PLAYER, Route23_Movement_NetStepBack
+	waitmovement 0
+	releaseall
+	end
+
+Route23_EventScript_Guard3NetOpen::
+	end
+
+Route23_EventScript_Guard4Net::
+	lockall
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 4, Route23_EventScript_Guard4NetOpen
+	msgbox Route23_Text_Guard4Refuse, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_PLAYER, Route23_Movement_NetStepBack
+	waitmovement 0
+	releaseall
+	end
+
+Route23_EventScript_Guard4NetOpen::
+	end
+
+Route23_EventScript_Guard5Net::
+	lockall
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 5, Route23_EventScript_Guard5NetOpen
+	msgbox Route23_Text_Guard5Refuse, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_PLAYER, Route23_Movement_NetStepBack
+	waitmovement 0
+	releaseall
+	end
+
+Route23_EventScript_Guard5NetOpen::
+	end
+
+Route23_EventScript_Guard6Net::
+	lockall
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 6, Route23_EventScript_Guard6NetOpen
+	msgbox Route23_Text_Guard6Refuse, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_PLAYER, Route23_Movement_NetStepBack
+	waitmovement 0
+	releaseall
+	end
+
+Route23_EventScript_Guard6NetOpen::
+	end
+
+Route23_EventScript_Guard7Net::
+	lockall
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 7, Route23_EventScript_Guard7NetOpen
+	msgbox Route23_Text_Guard7Refuse, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_PLAYER, Route23_Movement_NetStepBack
+	waitmovement 0
+	releaseall
+	end
+
+Route23_EventScript_Guard7NetOpen::
+	end

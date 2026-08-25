@@ -32,3 +32,26 @@ Route22_Text_KantoGateGuardClosed:
 Route22_Text_KantoGateGuardOpen:
 	.string "Road's open. Safe travels out to\n"
 	.string "JOHTO.$"
+
+@ ============================================================================
+@ Trinity M5a T5 fix round 1 (review Finding 2). The (8,7) warp_event in
+@ map.json (dest MAP_ROUTE_28 #2) never auto-fires by itself: it decodes to
+@ MB_NORMAL, which is not in IsWarpMetatileBehavior's list
+@ (src/field_control_avatar.c:925-939 -- MB_WARP_DOOR/LADDER/ESCALATOR/
+@ NON_ANIM_DOOR/the four hardcoded special warps only), so
+@ TryStartWarpEventScript (:880) always returns FALSE there and the player
+@ could walk right over it doing nothing. The JSON entry stays as
+@ RECIPROCAL-INDEX BOOKKEEPING ONLY (keeps warp_events[2] a real, in-bounds
+@ dest_warp_id for qa_sweep's tree-wide bounds check and for anyone reading
+@ the pairing) -- the coord_event below is what actually fires, exactly
+@ mirroring Route28's own (39,8) mechanism one tile away: a trigger at the
+@ true decoded elevation (3, matching (8,7)'s own MB_NORMAL tile), always
+@ open (no gate needed this direction -- only west->east into KANTO is
+@ gated), issuing the warp by hand since a script's own `warp` command
+@ bypasses IsWarpMetatileBehavior entirely (it is not the automatic
+@ step-on-a-warp-tile path).
+@ ============================================================================
+Route22_EventScript_KantoGateReturnWarp::
+	warp MAP_ROUTE_28, 39, 8
+	waitstate
+	end
