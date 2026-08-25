@@ -54,11 +54,15 @@ static EWRAM_DATA struct HofGfx *sHofGfxPtr = NULL;
 EWRAM_DATA struct HallofFameTeam *gHoFSaveBuffer = NULL;
 
 // Trinity: set only by GameClearKanto (src/post_battle_event_funcs.c) prior to
-// SetMainCallback2(CB2_DoHallOfFameScreen). Read once by StartCredits() below
-// to pick the true-ending credits roll over the Act I/II SoftReset. Never
-// persisted -- it only needs to survive the single continuous HoF-screen task
-// chain within this boot, and every path through StartCredits() ends in a
-// SoftReset (immediate, or after the credits sequence) that clears it anyway.
+// SetMainCallback2(CB2_DoHallOfFameScreen). A one-shot latch: StartCredits()
+// below consumes it on read (clears it back to FALSE the instant it's
+// checked), so it does NOT rely on every StartCredits() path ending in a
+// SoftReset to stay correct -- if a future milestone ever adds a post-credits
+// continuation that doesn't reset the console, a stale TRUE can't roll the
+// true-ending credits on some later, unrelated Hall of Fame visit in the same
+// boot. Never persisted -- it only needs to survive the single continuous
+// HoF-screen task chain between GameClearKanto() running and StartCredits()
+// reading it.
 static bool8 sTrinityTrueGameClear = FALSE;
 
 void SetHallOfFameTrueGameClear(void)
@@ -806,7 +810,14 @@ static void StartCredits(void)
     // once the credits finish (src/credits.c, Task_CreditsSoftReset) -- Continue
     // then lands wherever GameClearKanto pointed the continue-warp (Indigo
     // Plateau), which is the spec's intent.
-    if (sTrinityTrueGameClear)
+    //
+    // sTrinityTrueGameClear is consumed on read (one-shot latch) rather than
+    // relying on "this always ends in a SoftReset anyway" to keep it correct
+    // -- see the comment at its declaration above.
+    bool8 trueClear = sTrinityTrueGameClear;
+    sTrinityTrueGameClear = FALSE;
+
+    if (trueClear)
         SetMainCallback2(CB2_StartCreditsSequence);
     else
         SoftReset(RESET_ALL);
