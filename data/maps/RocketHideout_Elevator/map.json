@@ -2,7 +2,7 @@
   "id": "MAP_ROCKET_HIDEOUT_ELEVATOR",
   "name": "RocketHideout_Elevator",
   "layout": "LAYOUT_ROCKET_HIDEOUT_ELEVATOR_KANTO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_SILPH",
   "region_map_section": "MAPSEC_ROCKET_HIDEOUT",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
