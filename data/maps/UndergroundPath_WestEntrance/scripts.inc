@@ -1,2 +1,9 @@
 UndergroundPath_WestEntrance_MapScripts::
 	.byte 0
+
+UndergroundPath_WestEntrance_EventScript_BaldingMan::
+	msgbox UndergroundPath_WestEntrance_Text_BaldingMan, MSGBOX_NPC
+	end
+
+UndergroundPath_WestEntrance_Text_BaldingMan:
+	.string "I heard a sleepy POKéMON appeared\nout near CELADON CITY, too.$"

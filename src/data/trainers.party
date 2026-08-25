@@ -20837,3 +20837,4613 @@ Level: 68
 
 Ariados
 Level: 68
+
+/* === Trinity M5a Kanto route trainers === */
+
+=== TRAINER_KANTO_LASS_KAY ===
+Name: KAY
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_WEEPINBELL
+Level: 80
+
+SPECIES_WEEPINBELL
+Level: 81
+
+
+=== TRAINER_KANTO_BEAUTY_BRIDGET ===
+Name: BRIDGET
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_GLOOM
+Level: 79
+
+SPECIES_WEEPINBELL
+Level: 79
+
+SPECIES_GLOOM
+Level: 80
+
+SPECIES_WEEPINBELL
+Level: 80
+
+
+=== TRAINER_KANTO_PICNICKER_TINA ===
+Name: TINA
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_VENUSAUR
+Level: 80
+
+SPECIES_VENUSAUR
+Level: 81
+
+
+=== TRAINER_KANTO_BEAUTY_TAMIA ===
+Name: TAMIA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_WEEPINBELL
+Level: 80
+
+SPECIES_WEEPINBELL
+Level: 81
+
+
+=== TRAINER_KANTO_BEAUTY_LORI ===
+Name: LORI
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_EXEGGCUTE
+Level: 80
+
+
+=== TRAINER_KANTO_LASS_LISA ===
+Name: LISA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_GLOOM
+Level: 80
+
+SPECIES_GLOOM
+Level: 81
+
+
+=== TRAINER_KANTO_COOLTRAINER_MARY ===
+Name: MARY
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_WEEPINBELL
+Level: 80
+
+SPECIES_GLOOM
+Level: 80
+
+SPECIES_WEEPINBELL
+Level: 81
+
+SPECIES_GLOOM
+Level: 81
+
+SPECIES_VENUSAUR
+Level: 80
+
+
+=== TRAINER_KANTO_SWIMMER_M_LUIS ===
+Name: LUIS
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KINGDRA
+Level: 78
+
+SPECIES_SHELLDER
+Level: 78
+
+
+=== TRAINER_KANTO_PICNICKER_DIANA ===
+Name: DIANA
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SEAKING
+Level: 79
+
+
+=== TRAINER_KANTO_BURGLAR_QUINN ===
+Name: QUINN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GROWLITHE
+Level: 84
+
+SPECIES_VULPIX
+Level: 84
+
+SPECIES_NINETALES
+Level: 84
+
+
+=== TRAINER_KANTO_SUPER_NERD_ERIK ===
+Name: ERIK
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_VULPIX
+Level: 84
+
+SPECIES_VULPIX
+Level: 85
+
+SPECIES_NINETALES
+Level: 84
+
+
+=== TRAINER_KANTO_SUPER_NERD_AVERY ===
+Name: AVERY
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_RAPIDASH
+Level: 83
+
+SPECIES_CHARIZARD
+Level: 83
+
+SPECIES_VULPIX
+Level: 83
+
+SPECIES_GROWLITHE
+Level: 83
+
+
+=== TRAINER_KANTO_BURGLAR_RAMON ===
+Name: RAMON
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_RAPIDASH
+Level: 85
+
+
+=== TRAINER_KANTO_SUPER_NERD_DEREK ===
+Name: DEREK
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_RAPIDASH
+Level: 85
+
+
+=== TRAINER_KANTO_BURGLAR_DUSTY ===
+Name: DUSTY
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_VULPIX
+Level: 84
+
+SPECIES_GROWLITHE
+Level: 84
+
+
+=== TRAINER_KANTO_SUPER_NERD_ZAC ===
+Name: ZAC
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GROWLITHE
+Level: 84
+
+SPECIES_VULPIX
+Level: 84
+
+
+=== TRAINER_KANTO_JUGGLER_KAYDEN ===
+Name: KAYDEN
+Class: Ninja Boy
+Pic: Ninja Boy
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_HYPNO
+Level: 84
+
+
+=== TRAINER_KANTO_JUGGLER_SHAWN ===
+Name: SHAWN
+Class: Ninja Boy
+Pic: Ninja Boy
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_HYPNO
+Level: 83
+
+SPECIES_HYPNO
+Level: 84
+
+
+=== TRAINER_KANTO_JUGGLER_KIRK ===
+Name: KIRK
+Class: Ninja Boy
+Pic: Ninja Boy
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_HYPNO
+Level: 82
+
+SPECIES_HYPNO
+Level: 83
+
+SPECIES_ALAKAZAM
+Level: 82
+
+SPECIES_HYPNO
+Level: 84
+
+
+=== TRAINER_KANTO_TAMER_EDGAR ===
+Name: EDGAR
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ARBOK
+Level: 83
+
+SPECIES_SANDSLASH
+Level: 83
+
+SPECIES_ARBOK
+Level: 84
+
+
+=== TRAINER_KANTO_TAMER_PHIL ===
+Name: PHIL
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SANDSLASH
+Level: 83
+
+SPECIES_ARBOK
+Level: 83
+
+
+=== TRAINER_KANTO_JUGGLER_NATE ===
+Name: NATE
+Class: Ninja Boy
+Pic: Ninja Boy
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_HYPNO
+Level: 83
+
+SPECIES_ALAKAZAM
+Level: 83
+
+
+=== TRAINER_KANTO_CRUSH_GIRL_JOCELYN ===
+Name: JOCELYN
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_HITMONCHAN
+Level: 84
+
+SPECIES_HITMONCHAN
+Level: 85
+
+
+=== TRAINER_KANTO_PKMN_RANGER_LOGAN ===
+Name: LOGAN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_EXEGGCUTE
+Level: 84
+
+SPECIES_EXEGGUTOR
+Level: 85
+
+
+=== TRAINER_KANTO_PKMN_RANGER_BETH ===
+Name: BETH
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_WEEPINBELL
+Level: 84
+
+SPECIES_GLOOM
+Level: 84
+
+SPECIES_GLOOM
+Level: 85
+
+
+=== TRAINER_KANTO_LASS_IRIS ===
+Name: IRIS
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_CLEFAIRY
+Level: 77
+
+
+=== TRAINER_KANTO_BUG_CATCHER_ROBBY ===
+Name: ROBBY
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_BUTTERFREE
+Level: 76
+
+SPECIES_BUTTERFREE
+Level: 77
+
+SPECIES_BUTTERFREE
+Level: 78
+
+
+=== TRAINER_KANTO_SUPER_NERD_JOVAN ===
+Name: JOVAN
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MAGNETON
+Level: 76
+
+SPECIES_ELECTRODE
+Level: 76
+
+
+=== TRAINER_KANTO_LASS_MIRIAM ===
+Name: MIRIAM
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_GLOOM
+Level: 76
+
+SPECIES_WEEPINBELL
+Level: 76
+
+
+=== TRAINER_KANTO_BUG_CATCHER_KENT ===
+Name: KENT
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_BEEDRILL
+Level: 76
+
+SPECIES_BEEDRILL
+Level: 77
+
+
+=== TRAINER_KANTO_YOUNGSTER_JOSH ===
+Name: JOSH
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_RATICATE
+Level: 76
+
+SPECIES_RATICATE
+Level: 77
+
+SPECIES_CROBAT
+Level: 76
+
+
+=== TRAINER_KANTO_HIKER_MARCOS ===
+Name: MARCOS
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GOLEM
+Level: 76
+
+SPECIES_GOLEM
+Level: 77
+
+SPECIES_STEELIX
+Level: 76
+
+
+=== TRAINER_KANTO_CAMPER_LIAM ===
+Name: LIAM
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GOLEM
+Level: 76
+
+SPECIES_SANDSLASH
+Level: 76
+
+
+=== TRAINER_KANTO_SCIENTIST_TED ===
+Name: TED
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ELECTRODE
+Level: 82
+
+SPECIES_WEEZING
+Level: 82
+
+
+=== TRAINER_KANTO_YOUNGSTER_JOHNSON ===
+Name: JOHNSON
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ARBOK
+Level: 83
+
+SPECIES_ARBOK
+Level: 84
+
+SPECIES_RATICATE
+Level: 83
+
+
+=== TRAINER_KANTO_BURGLAR_ARNIE ===
+Name: ARNIE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_CHARIZARD
+Level: 83
+
+SPECIES_CHARIZARD
+Level: 84
+
+
+=== TRAINER_KANTO_BURGLAR_SIMON ===
+Name: SIMON
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_NINETALES
+Level: 84
+
+
+=== TRAINER_KANTO_SCIENTIST_BRAYDON ===
+Name: BRAYDON
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MAGNETON
+Level: 83
+
+SPECIES_MAGNETON
+Level: 84
+
+SPECIES_ELECTRODE
+Level: 83
+
+
+=== TRAINER_KANTO_BURGLAR_LEWIS ===
+Name: LEWIS
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GROWLITHE
+Level: 83
+
+SPECIES_RAPIDASH
+Level: 83
+
+
+=== TRAINER_KANTO_SCIENTIST_IVAN ===
+Name: IVAN
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MAGNETON
+Level: 83
+
+SPECIES_ELECTRODE
+Level: 83
+
+
+=== TRAINER_KANTO_CHANNELER_PATRICIA ===
+Name: PATRICIA
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GENGAR
+Level: 80
+
+
+=== TRAINER_KANTO_CHANNELER_CARLY ===
+Name: CARLY
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GENGAR
+Level: 80
+
+
+=== TRAINER_KANTO_CHANNELER_HOPE ===
+Name: HOPE
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GENGAR
+Level: 80
+
+
+=== TRAINER_KANTO_CHANNELER_LAUREL ===
+Name: LAUREL
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GENGAR
+Level: 80
+
+SPECIES_GENGAR
+Level: 81
+
+
+=== TRAINER_KANTO_CHANNELER_JODY ===
+Name: JODY
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GENGAR
+Level: 80
+
+
+=== TRAINER_KANTO_CHANNELER_PAULA ===
+Name: PAULA
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GENGAR
+Level: 80
+
+
+=== TRAINER_KANTO_CHANNELER_RUTH ===
+Name: RUTH
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GENGAR
+Level: 80
+
+
+=== TRAINER_KANTO_CHANNELER_TAMMY ===
+Name: TAMMY
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GENGAR
+Level: 80
+
+
+=== TRAINER_KANTO_CHANNELER_KARINA ===
+Name: KARINA
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GENGAR
+Level: 80
+
+
+=== TRAINER_KANTO_CHANNELER_JANAE ===
+Name: JANAE
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GENGAR
+Level: 80
+
+
+=== TRAINER_KANTO_CHANNELER_ANGELICA ===
+Name: ANGELICA
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GENGAR
+Level: 80
+
+SPECIES_GENGAR
+Level: 81
+
+SPECIES_GENGAR
+Level: 82
+
+
+=== TRAINER_KANTO_CHANNELER_JENNIFER ===
+Name: JENNIFER
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GENGAR
+Level: 80
+
+
+=== TRAINER_KANTO_CHANNELER_EMILIA ===
+Name: EMILIA
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GENGAR
+Level: 80
+
+
+=== TRAINER_KANTO_PICNICKER_DANA ===
+Name: DANA
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PERSIAN
+Level: 79
+
+SPECIES_GLOOM
+Level: 79
+
+SPECIES_PIDGEOT
+Level: 79
+
+
+=== TRAINER_KANTO_PICNICKER_ARIANA ===
+Name: ARIANA
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PIDGEOT
+Level: 79
+
+SPECIES_RATICATE
+Level: 79
+
+SPECIES_RATICATE
+Level: 80
+
+SPECIES_WEEPINBELL
+Level: 79
+
+
+=== TRAINER_KANTO_PICNICKER_LEAH ===
+Name: LEAH
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_WEEPINBELL
+Level: 80
+
+SPECIES_CLEFAIRY
+Level: 80
+
+
+=== TRAINER_KANTO_HIKER_LUCAS ===
+Name: LUCAS
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GOLEM
+Level: 79
+
+SPECIES_GOLEM
+Level: 80
+
+
+=== TRAINER_KANTO_HIKER_OLIVER ===
+Name: OLIVER
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_STEELIX
+Level: 79
+
+SPECIES_STEELIX
+Level: 80
+
+SPECIES_GOLEM
+Level: 79
+
+
+=== TRAINER_KANTO_HIKER_LENNY ===
+Name: LENNY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GOLEM
+Level: 79
+
+SPECIES_MACHAMP
+Level: 79
+
+SPECIES_GOLEM
+Level: 80
+
+SPECIES_GOLEM
+Level: 81
+
+
+=== TRAINER_KANTO_POKEMANIAC_ASHTON ===
+Name: ASHTON
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_CUBONE
+Level: 80
+
+SPECIES_SLOWBRO
+Level: 80
+
+
+=== TRAINER_KANTO_POKEMANIAC_COOPER ===
+Name: COOPER
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SLOWBRO
+Level: 79
+
+SPECIES_SLOWBRO
+Level: 80
+
+SPECIES_SLOWBRO
+Level: 81
+
+
+=== TRAINER_KANTO_HIKER_DUDLEY ===
+Name: DUDLEY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GOLEM
+Level: 79
+
+SPECIES_GOLEM
+Level: 80
+
+SPECIES_GOLEM
+Level: 81
+
+
+=== TRAINER_KANTO_PICNICKER_SOFIA ===
+Name: SOFIA
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_JIGGLYPUFF
+Level: 79
+
+SPECIES_PIDGEOT
+Level: 79
+
+SPECIES_PERSIAN
+Level: 79
+
+
+=== TRAINER_KANTO_HIKER_ALLEN ===
+Name: ALLEN
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GOLEM
+Level: 81
+
+
+=== TRAINER_KANTO_HIKER_ERIC ===
+Name: ERIC
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MACHAMP
+Level: 79
+
+SPECIES_STEELIX
+Level: 79
+
+
+=== TRAINER_KANTO_POKEMANIAC_STEVE ===
+Name: STEVE
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_CHARIZARD
+Level: 80
+
+SPECIES_CUBONE
+Level: 80
+
+
+=== TRAINER_KANTO_PICNICKER_MARTHA ===
+Name: MARTHA
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GLOOM
+Level: 80
+
+SPECIES_VENUSAUR
+Level: 80
+
+
+=== TRAINER_KANTO_POKEMANIAC_WINSTON ===
+Name: WINSTON
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SLOWBRO
+Level: 81
+
+
+=== TRAINER_KANTO_PICNICKER_CAROL ===
+Name: CAROL
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PIDGEOT
+Level: 79
+
+SPECIES_PIDGEOT
+Level: 80
+
+
+=== TRAINER_KANTO_HIKER_CLARK ===
+Name: CLARK
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GOLEM
+Level: 79
+
+SPECIES_STEELIX
+Level: 79
+
+
+=== TRAINER_KANTO_POKEMANIAC_HERMAN ===
+Name: HERMAN
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_CUBONE
+Level: 79
+
+SPECIES_SLOWBRO
+Level: 79
+
+
+=== TRAINER_KANTO_HIKER_TRENT ===
+Name: TRENT
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_STEELIX
+Level: 79
+
+SPECIES_GOLEM
+Level: 79
+
+
+=== TRAINER_KANTO_POKEMANIAC_MARK ===
+Name: MARK
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_RHYPERIOR
+Level: 82
+
+SPECIES_LICKITUNG
+Level: 82
+
+
+=== TRAINER_KANTO_PICNICKER_HEIDI ===
+Name: HEIDI
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PIKACHU
+Level: 79
+
+SPECIES_CLEFAIRY
+Level: 79
+
+
+=== TRAINER_KANTO_YOUNGSTER_EDDIE ===
+Name: EDDIE
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ARBOK
+Level: 79
+
+
+=== TRAINER_KANTO_GAMER_HUGO ===
+Name: HUGO
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_POLITOED
+Level: 78
+
+SPECIES_KINGDRA
+Level: 78
+
+
+=== TRAINER_KANTO_YOUNGSTER_DILLON ===
+Name: DILLON
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SANDSLASH
+Level: 79
+
+SPECIES_CROBAT
+Level: 79
+
+
+=== TRAINER_KANTO_YOUNGSTER_DAVE ===
+Name: DAVE
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_NIDORINO
+Level: 78
+
+SPECIES_NIDORINO
+Level: 79
+
+
+=== TRAINER_KANTO_GAMER_JASPER ===
+Name: JASPER
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_WEEPINBELL
+Level: 78
+
+SPECIES_GLOOM
+Level: 78
+
+
+=== TRAINER_KANTO_GAMER_DARIAN ===
+Name: DARIAN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GROWLITHE
+Level: 78
+
+SPECIES_VULPIX
+Level: 78
+
+
+=== TRAINER_KANTO_ENGINEER_BRAXTON ===
+Name: BRAXTON
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MAGNETON
+Level: 79
+
+
+=== TRAINER_KANTO_YOUNGSTER_YASU ===
+Name: YASU
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_RATICATE
+Level: 78
+
+SPECIES_RATICATE
+Level: 79
+
+SPECIES_RATICATE
+Level: 80
+
+
+=== TRAINER_KANTO_GAMER_DIRK ===
+Name: DIRK
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ELECTRODE
+Level: 78
+
+SPECIES_MAGNETON
+Level: 78
+
+
+=== TRAINER_KANTO_ENGINEER_BERNIE ===
+Name: BERNIE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MAGNETON
+Level: 78
+
+SPECIES_MAGNETON
+Level: 79
+
+SPECIES_MAGNETON
+Level: 80
+
+
+=== TRAINER_KANTO_FISHERMAN_NED ===
+Name: NED
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SEAKING
+Level: 80
+
+SPECIES_POLITOED
+Level: 80
+
+SPECIES_SEAKING
+Level: 81
+
+
+=== TRAINER_KANTO_FISHERMAN_CHIP ===
+Name: CHIP
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_TENTACRUEL
+Level: 80
+
+SPECIES_SEAKING
+Level: 80
+
+
+=== TRAINER_KANTO_FISHERMAN_HANK ===
+Name: HANK
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SEAKING
+Level: 81
+
+
+=== TRAINER_KANTO_FISHERMAN_ELLIOT ===
+Name: ELLIOT
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_POLITOED
+Level: 79
+
+SPECIES_SHELLDER
+Level: 79
+
+SPECIES_SEAKING
+Level: 79
+
+SPECIES_KINGDRA
+Level: 79
+
+
+=== TRAINER_KANTO_ROCKER_LUCA ===
+Name: LUCA
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ELECTRODE
+Level: 82
+
+SPECIES_ELECTRODE
+Level: 83
+
+
+=== TRAINER_KANTO_CAMPER_JUSTIN ===
+Name: JUSTIN
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_NIDORINO
+Level: 82
+
+SPECIES_NIDORINO
+Level: 83
+
+
+=== TRAINER_KANTO_FISHERMAN_ANDREW ===
+Name: ANDREW
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GYARADOS
+Level: 80
+
+SPECIES_GYARADOS
+Level: 81
+
+
+=== TRAINER_KANTO_YOUNG_COUPLE_GIA_JES ===
+Name: GIA_JES
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_NIDORINO
+Level: 80
+
+SPECIES_NIDORINA
+Level: 80
+
+
+=== TRAINER_KANTO_YOUNG_COUPLE_GIA_JES_2 ===
+Name: GIA_JES
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_NIDORINO
+Level: 80
+
+SPECIES_NIDORINA
+Level: 80
+
+
+=== TRAINER_KANTO_PICNICKER_ALMA ===
+Name: ALMA
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SEAKING
+Level: 81
+
+SPECIES_POLITOED
+Level: 81
+
+SPECIES_KINGDRA
+Level: 81
+
+
+=== TRAINER_KANTO_BIRD_KEEPER_SEBASTIAN ===
+Name: SEBASTIAN
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PIDGEOT
+Level: 82
+
+SPECIES_PIDGEOT
+Level: 83
+
+
+=== TRAINER_KANTO_PICNICKER_SUSIE ===
+Name: SUSIE
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PIDGEOT
+Level: 80
+
+SPECIES_PERSIAN
+Level: 80
+
+SPECIES_RATICATE
+Level: 80
+
+SPECIES_PIKACHU
+Level: 80
+
+SPECIES_PERSIAN
+Level: 81
+
+
+=== TRAINER_KANTO_BEAUTY_SHEILA ===
+Name: SHEILA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_CLEFAIRY
+Level: 82
+
+SPECIES_PERSIAN
+Level: 82
+
+
+=== TRAINER_KANTO_BEAUTY_LOLA ===
+Name: LOLA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_RATICATE
+Level: 81
+
+SPECIES_PIKACHU
+Level: 81
+
+SPECIES_RATICATE
+Level: 82
+
+
+=== TRAINER_KANTO_PICNICKER_VALERIE ===
+Name: VALERIE
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_POLITOED
+Level: 82
+
+SPECIES_POLITOED
+Level: 83
+
+
+=== TRAINER_KANTO_PICNICKER_GWEN ===
+Name: GWEN
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PIDGEOT
+Level: 81
+
+SPECIES_PERSIAN
+Level: 81
+
+SPECIES_PIDGEOT
+Level: 82
+
+SPECIES_PIDGEOT
+Level: 83
+
+
+=== TRAINER_KANTO_BIRD_KEEPER_ROBERT ===
+Name: ROBERT
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PIDGEOT
+Level: 81
+
+SPECIES_PIDGEOT
+Level: 82
+
+SPECIES_FEAROW
+Level: 81
+
+SPECIES_FEAROW
+Level: 82
+
+
+=== TRAINER_KANTO_BIRD_KEEPER_PERRY ===
+Name: PERRY
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_FEAROW
+Level: 81
+
+SPECIES_PIDGEOT
+Level: 81
+
+SPECIES_PIDGEOT
+Level: 82
+
+SPECIES_FEAROW
+Level: 82
+
+SPECIES_FEAROW
+Level: 83
+
+
+=== TRAINER_KANTO_BIKER_JARED ===
+Name: JARED
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KOFFING
+Level: 81
+
+SPECIES_KOFFING
+Level: 82
+
+SPECIES_KOFFING
+Level: 83
+
+
+=== TRAINER_KANTO_BIKER_GERALD ===
+Name: GERALD
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KOFFING
+Level: 82
+
+SPECIES_MUK
+Level: 82
+
+
+=== TRAINER_KANTO_BIRD_KEEPER_DONALD ===
+Name: DONALD
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_FARFETCHD
+Level: 83
+
+
+=== TRAINER_KANTO_BIRD_KEEPER_BECK ===
+Name: BECK
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PIDGEOT
+Level: 82
+
+SPECIES_FEAROW
+Level: 82
+
+
+=== TRAINER_KANTO_BIRD_KEEPER_MARLON ===
+Name: MARLON
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_FEAROW
+Level: 81
+
+SPECIES_DODRIO
+Level: 81
+
+SPECIES_FEAROW
+Level: 82
+
+
+=== TRAINER_KANTO_BIKER_ISAAC ===
+Name: ISAAC
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MUK
+Level: 81
+
+SPECIES_MUK
+Level: 82
+
+SPECIES_KOFFING
+Level: 81
+
+
+=== TRAINER_KANTO_BIKER_MALIK ===
+Name: MALIK
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KOFFING
+Level: 82
+
+SPECIES_MUK
+Level: 82
+
+
+=== TRAINER_KANTO_BIRD_KEEPER_MITCH ===
+Name: MITCH
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PIDGEOT
+Level: 81
+
+SPECIES_FEAROW
+Level: 81
+
+SPECIES_PIDGEOT
+Level: 82
+
+SPECIES_FEAROW
+Level: 82
+
+
+=== TRAINER_KANTO_BIRD_KEEPER_CARTER ===
+Name: CARTER
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PIDGEOT
+Level: 81
+
+SPECIES_DODRIO
+Level: 81
+
+SPECIES_PIDGEOT
+Level: 82
+
+
+=== TRAINER_KANTO_BIKER_LUKAS ===
+Name: LUKAS
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KOFFING
+Level: 81
+
+SPECIES_KOFFING
+Level: 82
+
+SPECIES_MUK
+Level: 81
+
+SPECIES_KOFFING
+Level: 83
+
+
+=== TRAINER_KANTO_BIRD_KEEPER_BENNY ===
+Name: BENNY
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_FEAROW
+Level: 82
+
+SPECIES_FEAROW
+Level: 83
+
+
+=== TRAINER_KANTO_TWINS_KIRI_JAN ===
+Name: KIRI_JAN
+Class: Twins
+Pic: Twins
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_CHARIZARD
+Level: 82
+
+SPECIES_BLASTOISE
+Level: 82
+
+
+=== TRAINER_KANTO_TWINS_KIRI_JAN_2 ===
+Name: KIRI_JAN
+Class: Twins
+Pic: Twins
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_CHARIZARD
+Level: 82
+
+SPECIES_BLASTOISE
+Level: 82
+
+
+=== TRAINER_KANTO_PICNICKER_YAZMIN ===
+Name: YAZMIN
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_WEEPINBELL
+Level: 82
+
+SPECIES_GLOOM
+Level: 82
+
+SPECIES_TANGELA
+Level: 82
+
+
+=== TRAINER_KANTO_BIRD_KEEPER_EDWIN ===
+Name: EDWIN
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PIDGEOT
+Level: 81
+
+SPECIES_FARFETCHD
+Level: 81
+
+SPECIES_DODRIO
+Level: 81
+
+SPECIES_PIDGEOT
+Level: 82
+
+
+=== TRAINER_KANTO_BIRD_KEEPER_CHESTER ===
+Name: CHESTER
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_DODRIO
+Level: 81
+
+SPECIES_DODRIO
+Level: 82
+
+SPECIES_DODRIO
+Level: 83
+
+
+=== TRAINER_KANTO_PICNICKER_KINDRA ===
+Name: KINDRA
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GLOOM
+Level: 81
+
+SPECIES_GLOOM
+Level: 82
+
+SPECIES_GLOOM
+Level: 83
+
+
+=== TRAINER_KANTO_BEAUTY_OLIVIA ===
+Name: OLIVIA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_VENUSAUR
+Level: 82
+
+SPECIES_VENUSAUR
+Level: 83
+
+
+=== TRAINER_KANTO_BIKER_ALEX ===
+Name: ALEX
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KOFFING
+Level: 81
+
+SPECIES_MUK
+Level: 81
+
+SPECIES_WEEZING
+Level: 81
+
+
+=== TRAINER_KANTO_BIKER_ERNEST ===
+Name: ERNEST
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KOFFING
+Level: 81
+
+SPECIES_KOFFING
+Level: 82
+
+SPECIES_WEEZING
+Level: 81
+
+SPECIES_KOFFING
+Level: 83
+
+SPECIES_MUK
+Level: 81
+
+
+=== TRAINER_KANTO_PICNICKER_BECKY ===
+Name: BECKY
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PIKACHU
+Level: 82
+
+SPECIES_RAICHU
+Level: 82
+
+
+=== TRAINER_KANTO_BEAUTY_GRACE ===
+Name: GRACE
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_PIDGEOT
+Level: 82
+
+SPECIES_WIGGLYTUFF
+Level: 82
+
+
+=== TRAINER_KANTO_PICNICKER_CELIA ===
+Name: CELIA
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_CLEFAIRY
+Level: 83
+
+
+=== TRAINER_KANTO_CRUSH_KIN_RON_MYA ===
+Name: RON_MYA
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_HITMONCHAN
+Level: 82
+
+SPECIES_HITMONLEE
+Level: 82
+
+
+=== TRAINER_KANTO_CRUSH_KIN_RON_MYA_2 ===
+Name: RON_MYA
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_HITMONCHAN
+Level: 82
+
+SPECIES_HITMONLEE
+Level: 82
+
+
+=== TRAINER_KANTO_BIKER_LAO ===
+Name: LAO
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MUK
+Level: 82
+
+SPECIES_KOFFING
+Level: 82
+
+
+=== TRAINER_KANTO_CUE_BALL_KOJI ===
+Name: KOJI
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MACHAMP
+Level: 81
+
+SPECIES_PRIMEAPE
+Level: 81
+
+SPECIES_MACHAMP
+Level: 82
+
+
+=== TRAINER_KANTO_CUE_BALL_LUKE ===
+Name: LUKE
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PRIMEAPE
+Level: 82
+
+SPECIES_MACHAMP
+Level: 82
+
+
+=== TRAINER_KANTO_BIKER_RUBEN ===
+Name: RUBEN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_WEEZING
+Level: 81
+
+SPECIES_KOFFING
+Level: 81
+
+SPECIES_WEEZING
+Level: 82
+
+
+=== TRAINER_KANTO_BIKER_HIDEO ===
+Name: HIDEO
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_WEEZING
+Level: 83
+
+
+=== TRAINER_KANTO_CUE_BALL_CAMRON ===
+Name: CAMRON
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PRIMEAPE
+Level: 82
+
+SPECIES_MACHAMP
+Level: 82
+
+
+=== TRAINER_KANTO_YOUNG_COUPLE_LEA_JED ===
+Name: LEA_JED
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_RAPIDASH
+Level: 82
+
+SPECIES_NINETALES
+Level: 82
+
+
+=== TRAINER_KANTO_YOUNG_COUPLE_LEA_JED_2 ===
+Name: LEA_JED
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_RAPIDASH
+Level: 82
+
+SPECIES_NINETALES
+Level: 82
+
+
+=== TRAINER_KANTO_BIKER_VIRGIL ===
+Name: VIRGIL
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_WEEZING
+Level: 81
+
+SPECIES_KOFFING
+Level: 81
+
+SPECIES_WEEZING
+Level: 82
+
+
+=== TRAINER_KANTO_CUE_BALL_ISAIAH ===
+Name: ISAIAH
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MACHAMP
+Level: 82
+
+SPECIES_MACHAMP
+Level: 83
+
+
+=== TRAINER_KANTO_CUE_BALL_RAUL ===
+Name: RAUL
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PRIMEAPE
+Level: 82
+
+SPECIES_PRIMEAPE
+Level: 83
+
+
+=== TRAINER_KANTO_BIKER_NIKOLAS ===
+Name: NIKOLAS
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ELECTRODE
+Level: 82
+
+SPECIES_ELECTRODE
+Level: 83
+
+
+=== TRAINER_KANTO_BIKER_BILLY ===
+Name: BILLY
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MUK
+Level: 83
+
+
+=== TRAINER_KANTO_CUE_BALL_JAMAL ===
+Name: JAMAL
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PRIMEAPE
+Level: 81
+
+SPECIES_PRIMEAPE
+Level: 82
+
+SPECIES_MACHAMP
+Level: 81
+
+SPECIES_MACHAMP
+Level: 82
+
+
+=== TRAINER_KANTO_CUE_BALL_ZEEK ===
+Name: ZEEK
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MACHAMP
+Level: 83
+
+
+=== TRAINER_KANTO_CUE_BALL_COREY ===
+Name: COREY
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PRIMEAPE
+Level: 82
+
+SPECIES_MACHAMP
+Level: 82
+
+
+=== TRAINER_KANTO_BIKER_WILLIAM ===
+Name: WILLIAM
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KOFFING
+Level: 81
+
+SPECIES_WEEZING
+Level: 81
+
+SPECIES_KOFFING
+Level: 82
+
+SPECIES_KOFFING
+Level: 83
+
+SPECIES_WEEZING
+Level: 82
+
+
+=== TRAINER_KANTO_BIKER_JAXON ===
+Name: JAXON
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_WEEZING
+Level: 82
+
+SPECIES_MUK
+Level: 82
+
+
+=== TRAINER_KANTO_BIRD_KEEPER_JACOB ===
+Name: JACOB
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_FEAROW
+Level: 81
+
+SPECIES_FEAROW
+Level: 82
+
+SPECIES_FEAROW
+Level: 83
+
+SPECIES_FEAROW
+Level: 84
+
+
+=== TRAINER_KANTO_BIRD_KEEPER_RAMIRO ===
+Name: RAMIRO
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_DODRIO
+Level: 83
+
+
+=== TRAINER_KANTO_BIRD_KEEPER_WILTON ===
+Name: WILTON
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_FEAROW
+Level: 82
+
+SPECIES_FEAROW
+Level: 83
+
+
+=== TRAINER_KANTO_SWIMMER_M_REECE ===
+Name: REECE
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SEAKING
+Level: 82
+
+SPECIES_KINGDRA
+Level: 82
+
+SPECIES_STARYU
+Level: 82
+
+
+=== TRAINER_KANTO_SWIMMER_M_RICHARD ===
+Name: RICHARD
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_TENTACRUEL
+Level: 82
+
+SPECIES_SHELLDER
+Level: 82
+
+
+=== TRAINER_KANTO_SWIMMER_M_TONY ===
+Name: TONY
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KINGDRA
+Level: 82
+
+SPECIES_KINGDRA
+Level: 83
+
+
+=== TRAINER_KANTO_SWIMMER_M_MATTHEW ===
+Name: MATTHEW
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_POLITOED
+Level: 82
+
+SPECIES_POLITOED
+Level: 83
+
+
+=== TRAINER_KANTO_SWIMMER_M_DOUGLAS ===
+Name: DOUGLAS
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KINGDRA
+Level: 81
+
+SPECIES_TENTACRUEL
+Level: 81
+
+SPECIES_TENTACRUEL
+Level: 82
+
+SPECIES_SEAKING
+Level: 81
+
+
+=== TRAINER_KANTO_SWIMMER_M_DAVID ===
+Name: DAVID
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SEAKING
+Level: 82
+
+SPECIES_SHELLDER
+Level: 82
+
+SPECIES_SEAKING
+Level: 83
+
+
+=== TRAINER_KANTO_SWIMMER_M_AXLE ===
+Name: AXLE
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_TENTACRUEL
+Level: 81
+
+SPECIES_TENTACRUEL
+Level: 82
+
+SPECIES_STARYU
+Level: 81
+
+SPECIES_KINGDRA
+Level: 81
+
+SPECIES_TENTACRUEL
+Level: 83
+
+
+=== TRAINER_KANTO_SWIMMER_F_ALICE ===
+Name: ALICE
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_SEAKING
+Level: 82
+
+SPECIES_SEAKING
+Level: 83
+
+
+=== TRAINER_KANTO_SWIMMER_F_CONNIE ===
+Name: CONNIE
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_STARYU
+Level: 82
+
+SPECIES_STARYU
+Level: 83
+
+SPECIES_STARYU
+Level: 84
+
+
+=== TRAINER_KANTO_SWIMMER_F_ANYA ===
+Name: ANYA
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_POLITOED
+Level: 81
+
+SPECIES_SEAKING
+Level: 81
+
+SPECIES_SEAKING
+Level: 82
+
+SPECIES_SEAKING
+Level: 83
+
+SPECIES_POLITOED
+Level: 82
+
+
+=== TRAINER_KANTO_SIS_AND_BRO_LIA_LUC ===
+Name: LIA_LUC
+Class: Twins
+Pic: Twins
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SEAKING
+Level: 82
+
+SPECIES_SEAKING
+Level: 83
+
+
+=== TRAINER_KANTO_SIS_AND_BRO_LIA_LUC_2 ===
+Name: LIA_LUC
+Class: Twins
+Pic: Twins
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SEAKING
+Level: 82
+
+SPECIES_SEAKING
+Level: 83
+
+
+=== TRAINER_KANTO_SWIMMER_F_MELISSA ===
+Name: MELISSA
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_POLITOED
+Level: 82
+
+SPECIES_SEAKING
+Level: 82
+
+
+=== TRAINER_KANTO_PICNICKER_MISSY ===
+Name: MISSY
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SEAKING
+Level: 82
+
+SPECIES_SEAKING
+Level: 83
+
+
+=== TRAINER_KANTO_SWIMMER_F_NORA ===
+Name: NORA
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_SHELLDER
+Level: 82
+
+SPECIES_SHELLDER
+Level: 83
+
+SPECIES_CLOYSTER
+Level: 82
+
+
+=== TRAINER_KANTO_BIRD_KEEPER_ROGER ===
+Name: ROGER
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_FEAROW
+Level: 82
+
+SPECIES_FEAROW
+Level: 83
+
+SPECIES_PIDGEOT
+Level: 82
+
+
+=== TRAINER_KANTO_SWIMMER_M_DEAN ===
+Name: DEAN
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_STARYU
+Level: 84
+
+
+=== TRAINER_KANTO_PICNICKER_IRENE ===
+Name: IRENE
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_TENTACRUEL
+Level: 82
+
+SPECIES_KINGDRA
+Level: 82
+
+SPECIES_DEWGONG
+Level: 82
+
+
+=== TRAINER_KANTO_SWIMMER_M_BARRY ===
+Name: BARRY
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SHELLDER
+Level: 82
+
+SPECIES_CLOYSTER
+Level: 82
+
+
+=== TRAINER_KANTO_SWIMMER_M_DARRIN ===
+Name: DARRIN
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KINGDRA
+Level: 81
+
+SPECIES_KINGDRA
+Level: 82
+
+SPECIES_KINGDRA
+Level: 83
+
+SPECIES_KINGDRA
+Level: 84
+
+
+=== TRAINER_KANTO_SWIMMER_F_SHIRLEY ===
+Name: SHIRLEY
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_KINGDRA
+Level: 82
+
+SPECIES_KINGDRA
+Level: 83
+
+SPECIES_KINGDRA
+Level: 84
+
+
+=== TRAINER_KANTO_SWIMMER_F_TIFFANY ===
+Name: TIFFANY
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_SEAKING
+Level: 84
+
+
+=== TRAINER_KANTO_FISHERMAN_RONALD ===
+Name: RONALD
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SEAKING
+Level: 81
+
+SPECIES_SEAKING
+Level: 82
+
+SPECIES_SEAKING
+Level: 83
+
+SPECIES_SEAKING
+Level: 84
+
+
+=== TRAINER_KANTO_FISHERMAN_WADE ===
+Name: WADE
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GYARADOS
+Level: 81
+
+SPECIES_GYARADOS
+Level: 82
+
+SPECIES_GYARADOS
+Level: 83
+
+SPECIES_GYARADOS
+Level: 84
+
+SPECIES_GYARADOS
+Level: 85
+
+SPECIES_GYARADOS
+Level: 86
+
+
+=== TRAINER_KANTO_SWIMMER_M_SPENCER ===
+Name: SPENCER
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KINGDRA
+Level: 83
+
+SPECIES_TENTACRUEL
+Level: 83
+
+
+=== TRAINER_KANTO_SIS_AND_BRO_LIL_IAN ===
+Name: LIL_IAN
+Class: Twins
+Pic: Twins
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KINGDRA
+Level: 83
+
+SPECIES_STARMIE
+Level: 83
+
+
+=== TRAINER_KANTO_SIS_AND_BRO_LIL_IAN_2 ===
+Name: LIL_IAN
+Class: Twins
+Pic: Twins
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KINGDRA
+Level: 83
+
+SPECIES_STARMIE
+Level: 83
+
+
+=== TRAINER_KANTO_FISHERMAN_CLAUDE ===
+Name: CLAUDE
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SHELLDER
+Level: 82
+
+SPECIES_CLOYSTER
+Level: 82
+
+
+=== TRAINER_KANTO_FISHERMAN_NOLAN ===
+Name: NOLAN
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SEAKING
+Level: 83
+
+SPECIES_SEAKING
+Level: 84
+
+
+=== TRAINER_KANTO_SWIMMER_M_JACK ===
+Name: JACK
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_STARMIE
+Level: 84
+
+
+=== TRAINER_KANTO_SWIMMER_M_JEROME ===
+Name: JEROME
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_STARYU
+Level: 83
+
+SPECIES_BLASTOISE
+Level: 83
+
+
+=== TRAINER_KANTO_SWIMMER_M_ROLAND ===
+Name: ROLAND
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_POLITOED
+Level: 83
+
+SPECIES_TENTACRUEL
+Level: 83
+
+SPECIES_KINGDRA
+Level: 83
+
+
+=== TRAINER_KANTO_CAMPER_ETHAN ===
+Name: ETHAN
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PRIMEAPE
+Level: 78
+
+
+=== TRAINER_KANTO_LASS_RELI ===
+Name: RELI
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_NIDORINO
+Level: 78
+
+SPECIES_NIDORINA
+Level: 78
+
+
+=== TRAINER_KANTO_YOUNGSTER_TIMMY ===
+Name: TIMMY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SANDSLASH
+Level: 77
+
+SPECIES_ARBOK
+Level: 77
+
+
+=== TRAINER_KANTO_LASS_ALI ===
+Name: ALI
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_PIDGEOT
+Level: 77
+
+SPECIES_GLOOM
+Level: 77
+
+SPECIES_WEEPINBELL
+Level: 77
+
+
+=== TRAINER_KANTO_BUG_CATCHER_CALE ===
+Name: CALE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_BUTTERFREE
+Level: 76
+
+SPECIES_BEEDRILL
+Level: 76
+
+SPECIES_BUTTERFREE
+Level: 77
+
+SPECIES_BEEDRILL
+Level: 77
+
+
+=== TRAINER_KANTO_CAMPER_SHANE ===
+Name: SHANE
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_RATICATE
+Level: 77
+
+SPECIES_ARBOK
+Level: 77
+
+
+=== TRAINER_KANTO_HIKER_FRANKLIN ===
+Name: FRANKLIN
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MACHAMP
+Level: 78
+
+SPECIES_GOLEM
+Level: 78
+
+
+=== TRAINER_KANTO_YOUNGSTER_JOEY ===
+Name: JOEY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_RATICATE
+Level: 78
+
+SPECIES_FEAROW
+Level: 78
+
+
+=== TRAINER_KANTO_HIKER_WAYNE ===
+Name: WAYNE
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_STEELIX
+Level: 78
+
+
+=== TRAINER_KANTO_YOUNGSTER_DAN ===
+Name: DAN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SLOWBRO
+Level: 78
+
+
+=== TRAINER_KANTO_PICNICKER_KELSEY ===
+Name: KELSEY
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_NIDORINO
+Level: 78
+
+SPECIES_NIDORINA
+Level: 78
+
+
+=== TRAINER_KANTO_HIKER_NOB ===
+Name: NOB
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GOLEM
+Level: 77
+
+SPECIES_GOLEM
+Level: 78
+
+SPECIES_MACHAMP
+Level: 77
+
+SPECIES_GOLEM
+Level: 79
+
+
+=== TRAINER_KANTO_CAMPER_FLINT ===
+Name: FLINT
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_RATICATE
+Level: 77
+
+SPECIES_ARBOK
+Level: 77
+
+
+=== TRAINER_KANTO_YOUNGSTER_CHAD ===
+Name: CHAD
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ARBOK
+Level: 77
+
+SPECIES_SANDSLASH
+Level: 77
+
+
+=== TRAINER_KANTO_LASS_HALEY ===
+Name: HALEY
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_GLOOM
+Level: 77
+
+SPECIES_PIDGEOT
+Level: 77
+
+SPECIES_GLOOM
+Level: 78
+
+
+=== TRAINER_KANTO_LASS_ROBIN ===
+Name: ROBIN
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_JIGGLYPUFF
+Level: 77
+
+
+=== TRAINER_KANTO_BUG_CATCHER_JAMES ===
+Name: JAMES
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_BUTTERFREE
+Level: 76
+
+SPECIES_BUTTERFREE
+Level: 77
+
+
+=== TRAINER_KANTO_LASS_SALLY ===
+Name: SALLY
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_RATICATE
+Level: 76
+
+SPECIES_NIDORINA
+Level: 76
+
+
+=== TRAINER_KANTO_BUG_CATCHER_GREG ===
+Name: GREG
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_BEEDRILL
+Level: 76
+
+SPECIES_BEEDRILL
+Level: 77
+
+SPECIES_BUTTERFREE
+Level: 76
+
+SPECIES_BUTTERFREE
+Level: 77
+
+
+=== TRAINER_KANTO_YOUNGSTER_CALVIN ===
+Name: CALVIN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_FEAROW
+Level: 77
+
+
+=== TRAINER_KANTO_LASS_JANICE ===
+Name: JANICE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_PIDGEOT
+Level: 76
+
+SPECIES_PIDGEOT
+Level: 77
+
+
+=== TRAINER_KANTO_BUG_CATCHER_COLTON ===
+Name: COLTON
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_BUTTERFREE
+Level: 76
+
+SPECIES_BEEDRILL
+Level: 76
+
+SPECIES_BUTTERFREE
+Level: 77
+
+
+=== TRAINER_KANTO_YOUNGSTER_BEN ===
+Name: BEN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_RATICATE
+Level: 76
+
+SPECIES_ARBOK
+Level: 76
+
+
+=== TRAINER_KANTO_LASS_CRISSY ===
+Name: CRISSY
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_PARASECT
+Level: 82
+
+SPECIES_PARASECT
+Level: 83
+
+SPECIES_PARASECT
+Level: 84
+
+
+=== TRAINER_KANTO_BUG_CATCHER_KEIGO ===
+Name: KEIGO
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_BEEDRILL
+Level: 78
+
+SPECIES_BUTTERFREE
+Level: 78
+
+SPECIES_BEEDRILL
+Level: 79
+
+
+=== TRAINER_KANTO_CAMPER_RICKY ===
+Name: RICKY
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_BLASTOISE
+Level: 79
+
+
+=== TRAINER_KANTO_PICNICKER_NANCY ===
+Name: NANCY
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_RATICATE
+Level: 78
+
+SPECIES_PIKACHU
+Level: 78
+
+
+=== TRAINER_KANTO_BUG_CATCHER_ELIJAH ===
+Name: ELIJAH
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_BUTTERFREE
+Level: 79
+
+
+=== TRAINER_KANTO_PICNICKER_ISABELLE ===
+Name: ISABELLE
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PIDGEOT
+Level: 78
+
+SPECIES_PIDGEOT
+Level: 79
+
+SPECIES_PIDGEOT
+Level: 80
+
+
+=== TRAINER_KANTO_CAMPER_JEFF ===
+Name: JEFF
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_FEAROW
+Level: 78
+
+SPECIES_RATICATE
+Level: 78
+
+
+=== TRAINER_KANTO_LASS_JULIA ===
+Name: JULIA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_CLEFAIRY
+Level: 80
+
+SPECIES_CLEFAIRY
+Level: 81
+
+
+=== TRAINER_KANTO_GAMER_RICH ===
+Name: RICH
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GROWLITHE
+Level: 80
+
+SPECIES_VULPIX
+Level: 80
+
+
+=== TRAINER_KANTO_SUPER_NERD_GLENN ===
+Name: GLENN
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MUK
+Level: 80
+
+SPECIES_MUK
+Level: 81
+
+SPECIES_MUK
+Level: 82
+
+
+=== TRAINER_KANTO_LASS_PAIGE ===
+Name: PAIGE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_NIDORINA
+Level: 80
+
+SPECIES_NIDORINA
+Level: 81
+
+
+=== TRAINER_KANTO_SUPER_NERD_LESLIE ===
+Name: LESLIE
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KOFFING
+Level: 81
+
+
+=== TRAINER_KANTO_LASS_ANDREA ===
+Name: ANDREA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_PERSIAN
+Level: 80
+
+SPECIES_PERSIAN
+Level: 81
+
+SPECIES_PERSIAN
+Level: 82
+
+
+=== TRAINER_KANTO_LASS_MEGAN ===
+Name: MEGAN
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_PIDGEOT
+Level: 79
+
+SPECIES_RATICATE
+Level: 79
+
+SPECIES_NIDORINO
+Level: 79
+
+SPECIES_PERSIAN
+Level: 79
+
+SPECIES_PIKACHU
+Level: 79
+
+
+=== TRAINER_KANTO_GAMER_STAN ===
+Name: STAN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_POLITOED
+Level: 80
+
+SPECIES_POLITOED
+Level: 81
+
+SPECIES_POLITOED
+Level: 82
+
+
+=== TRAINER_KANTO_SUPER_NERD_AIDAN ===
+Name: AIDAN
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ELECTRODE
+Level: 79
+
+SPECIES_KOFFING
+Level: 79
+
+SPECIES_ELECTRODE
+Level: 80
+
+SPECIES_MAGNETON
+Level: 79
+
+
+=== TRAINER_KANTO_TWINS_ELI_ANNE ===
+Name: ELI_ANNE
+Class: Twins
+Pic: Twins
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_CLEFAIRY
+Level: 80
+
+SPECIES_JIGGLYPUFF
+Level: 80
+
+
+=== TRAINER_KANTO_TWINS_ELI_ANNE_2 ===
+Name: ELI_ANNE
+Class: Twins
+Pic: Twins
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_CLEFAIRY
+Level: 80
+
+SPECIES_JIGGLYPUFF
+Level: 80
+
+
+=== TRAINER_KANTO_BIKER_RICARDO ===
+Name: RICARDO
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KOFFING
+Level: 80
+
+SPECIES_KOFFING
+Level: 81
+
+SPECIES_MUK
+Level: 80
+
+
+=== TRAINER_KANTO_BIKER_JAREN ===
+Name: JAREN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MUK
+Level: 80
+
+SPECIES_MUK
+Level: 81
+
+
+=== TRAINER_KANTO_PICNICKER_ALICIA ===
+Name: ALICIA
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GLOOM
+Level: 78
+
+SPECIES_WEEPINBELL
+Level: 78
+
+SPECIES_GLOOM
+Level: 79
+
+SPECIES_WEEPINBELL
+Level: 79
+
+
+=== TRAINER_KANTO_HIKER_JEREMY ===
+Name: JEREMY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MACHAMP
+Level: 79
+
+SPECIES_STEELIX
+Level: 79
+
+
+=== TRAINER_KANTO_HIKER_ALAN ===
+Name: ALAN
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GOLEM
+Level: 79
+
+SPECIES_STEELIX
+Level: 79
+
+
+=== TRAINER_KANTO_CAMPER_CHRIS ===
+Name: CHRIS
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GROWLITHE
+Level: 79
+
+SPECIES_CHARIZARD
+Level: 79
+
+
+=== TRAINER_KANTO_BUG_CATCHER_BRENT ===
+Name: BRENT
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_BEEDRILL
+Level: 79
+
+SPECIES_BEEDRILL
+Level: 80
+
+
+=== TRAINER_KANTO_BUG_CATCHER_CONNER ===
+Name: CONNER
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_BUTTERFREE
+Level: 79
+
+SPECIES_BEEDRILL
+Level: 79
+
+SPECIES_VENOMOTH
+Level: 79
+
+
+=== TRAINER_KANTO_HIKER_BRICE ===
+Name: BRICE
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GOLEM
+Level: 79
+
+SPECIES_MACHAMP
+Level: 79
+
+SPECIES_GOLEM
+Level: 80
+
+
+=== TRAINER_KANTO_PICNICKER_CAITLIN ===
+Name: CAITLIN
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PERSIAN
+Level: 80
+
+
+=== TRAINER_KANTO_CAMPER_DREW ===
+Name: DREW
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_RATICATE
+Level: 79
+
+SPECIES_SANDSLASH
+Level: 79
+
+SPECIES_ARBOK
+Level: 79
+
+SPECIES_SANDSLASH
+Level: 80
+
+
+=== TRAINER_KANTO_LASS_ANN ===
+Name: ANN
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_PIDGEOT
+Level: 78
+
+SPECIES_NIDORINA
+Level: 78
+
+
+=== TRAINER_KANTO_YOUNGSTER_TYLER ===
+Name: TYLER
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_NIDORINO
+Level: 79
+
+
+=== TRAINER_KANTO_GENTLEMAN_ARTHUR ===
+Name: ARTHUR
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_NIDORINO
+Level: 79
+
+SPECIES_NIDORINA
+Level: 79
+
+
+=== TRAINER_KANTO_GENTLEMAN_THOMAS ===
+Name: THOMAS
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GROWLITHE
+Level: 78
+
+SPECIES_GROWLITHE
+Level: 79
+
+
+=== TRAINER_KANTO_FISHERMAN_DALE ===
+Name: DALE
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SEAKING
+Level: 78
+
+SPECIES_TENTACRUEL
+Level: 78
+
+SPECIES_SEAKING
+Level: 79
+
+
+=== TRAINER_KANTO_GENTLEMAN_BROOKS ===
+Name: BROOKS
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PIKACHU
+Level: 80
+
+
+=== TRAINER_KANTO_GENTLEMAN_LAMAR ===
+Name: LAMAR
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GROWLITHE
+Level: 78
+
+SPECIES_RAPIDASH
+Level: 78
+
+
+=== TRAINER_KANTO_LASS_DAWN ===
+Name: DAWN
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+SPECIES_RATICATE
+Level: 78
+
+SPECIES_PIKACHU
+Level: 78
+
+
+=== TRAINER_KANTO_FISHERMAN_BARNY ===
+Name: BARNY
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_TENTACRUEL
+Level: 78
+
+SPECIES_STARYU
+Level: 78
+
+SPECIES_SHELLDER
+Level: 78
+
+
+=== TRAINER_KANTO_SAILOR_PHILLIP ===
+Name: PHILLIP
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MACHAMP
+Level: 79
+
+
+=== TRAINER_KANTO_SAILOR_HUEY ===
+Name: HUEY
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_TENTACRUEL
+Level: 78
+
+SPECIES_STARYU
+Level: 78
+
+
+=== TRAINER_KANTO_SAILOR_DYLAN ===
+Name: DYLAN
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KINGDRA
+Level: 78
+
+SPECIES_KINGDRA
+Level: 79
+
+SPECIES_KINGDRA
+Level: 80
+
+
+=== TRAINER_KANTO_SAILOR_DUNCAN ===
+Name: DUNCAN
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_KINGDRA
+Level: 78
+
+SPECIES_SHELLDER
+Level: 78
+
+SPECIES_TENTACRUEL
+Level: 78
+
+
+=== TRAINER_KANTO_SAILOR_LEONARD ===
+Name: LEONARD
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SHELLDER
+Level: 79
+
+
+=== TRAINER_KANTO_SAILOR_TREVOR ===
+Name: TREVOR
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MACHAMP
+Level: 78
+
+SPECIES_TENTACRUEL
+Level: 78
+
+
+=== TRAINER_KANTO_SAILOR_EDMOND ===
+Name: EDMOND
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MACHAMP
+Level: 78
+
+SPECIES_SHELLDER
+Level: 78
+
+
+=== TRAINER_KANTO_BLACK_BELT_HITOSHI ===
+Name: HITOSHI
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MACHAMP
+Level: 82
+
+SPECIES_PRIMEAPE
+Level: 82
+
+SPECIES_PRIMEAPE
+Level: 83
+
+
+=== TRAINER_KANTO_BLACK_BELT_HIDEKI ===
+Name: HIDEKI
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MACHAMP
+Level: 83
+
+SPECIES_MACHAMP
+Level: 84
+
+
+=== TRAINER_KANTO_BLACK_BELT_AARON ===
+Name: AARON
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PRIMEAPE
+Level: 84
+
+
+=== TRAINER_KANTO_BLACK_BELT_MIKE ===
+Name: MIKE
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PRIMEAPE
+Level: 82
+
+SPECIES_PRIMEAPE
+Level: 83
+
+SPECIES_PRIMEAPE
+Level: 84
+
+
+=== TRAINER_KANTO_BLACK_BELT_KOICHI ===
+Name: KOICHI
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_HITMONLEE
+Level: 84
+
+SPECIES_HITMONCHAN
+Level: 84
+
+
+=== TRAINER_KANTO_PSYCHIC_CAMERON ===
+Name: CAMERON
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SLOWBRO
+Level: 83
+
+SPECIES_SLOWBRO
+Level: 84
+
+SPECIES_SLOWBRO
+Level: 85
+
+
+=== TRAINER_KANTO_PSYCHIC_JOHAN ===
+Name: JOHAN
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ALAKAZAM
+Level: 82
+
+SPECIES_SLOWBRO
+Level: 82
+
+SPECIES_MR_MIME
+Level: 82
+
+SPECIES_ALAKAZAM
+Level: 83
+
+
+=== TRAINER_KANTO_PSYCHIC_PRESTON ===
+Name: PRESTON
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SLOWBRO
+Level: 84
+
+
+=== TRAINER_KANTO_CHANNELER_AMANDA ===
+Name: AMANDA
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GENGAR
+Level: 83
+
+SPECIES_GENGAR
+Level: 84
+
+
+=== TRAINER_KANTO_CHANNELER_STACY ===
+Name: STACY
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GENGAR
+Level: 84
+
+
+=== TRAINER_KANTO_CHANNELER_TASHA ===
+Name: TASHA
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_GENGAR
+Level: 83
+
+SPECIES_GENGAR
+Level: 84
+
+SPECIES_GENGAR
+Level: 85
+
+
+=== TRAINER_KANTO_PSYCHIC_TYRON ===
+Name: TYRON
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MR_MIME
+Level: 83
+
+SPECIES_ALAKAZAM
+Level: 83
+
+
+=== TRAINER_KANTO_SCIENTIST_TRAVIS ===
+Name: TRAVIS
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MAGNETON
+Level: 82
+
+SPECIES_KOFFING
+Level: 82
+
+
+=== TRAINER_KANTO_SCIENTIST_JERRY ===
+Name: JERRY
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MAGNETON
+Level: 81
+
+SPECIES_ELECTRODE
+Level: 81
+
+SPECIES_MAGNETON
+Level: 82
+
+
+=== TRAINER_KANTO_SCIENTIST_CONNOR ===
+Name: CONNOR
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MUK
+Level: 81
+
+SPECIES_WEEZING
+Level: 81
+
+SPECIES_KOFFING
+Level: 81
+
+SPECIES_WEEZING
+Level: 82
+
+
+=== TRAINER_KANTO_SCIENTIST_JOSE ===
+Name: JOSE
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ELECTRODE
+Level: 82
+
+SPECIES_WEEZING
+Level: 82
+
+
+=== TRAINER_KANTO_SCIENTIST_RODNEY ===
+Name: RODNEY
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ELECTRODE
+Level: 83
+
+
+=== TRAINER_KANTO_JUGGLER_DALTON ===
+Name: DALTON
+Class: Ninja Boy
+Pic: Ninja Boy
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ALAKAZAM
+Level: 82
+
+SPECIES_MR_MIME
+Level: 82
+
+
+=== TRAINER_KANTO_SCIENTIST_BEAU ===
+Name: BEAU
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MAGNETON
+Level: 81
+
+SPECIES_KOFFING
+Level: 81
+
+SPECIES_WEEZING
+Level: 81
+
+SPECIES_MAGNETON
+Level: 82
+
+
+=== TRAINER_KANTO_SCIENTIST_TAYLOR ===
+Name: TAYLOR
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ELECTRODE
+Level: 81
+
+SPECIES_KOFFING
+Level: 81
+
+SPECIES_MAGNETON
+Level: 81
+
+SPECIES_MAGNETON
+Level: 82
+
+SPECIES_KOFFING
+Level: 82
+
+
+=== TRAINER_KANTO_SCIENTIST_JOSHUA ===
+Name: JOSHUA
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ELECTRODE
+Level: 82
+
+SPECIES_MUK
+Level: 82
+
+
+=== TRAINER_KANTO_SCIENTIST_PARKER ===
+Name: PARKER
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MUK
+Level: 82
+
+SPECIES_ELECTRODE
+Level: 82
+
+
+=== TRAINER_KANTO_SCIENTIST_ED ===
+Name: ED
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ELECTRODE
+Level: 81
+
+SPECIES_KOFFING
+Level: 81
+
+SPECIES_MAGNETON
+Level: 81
+
+
+=== TRAINER_KANTO_ENGINEER_BAILY ===
+Name: BAILY
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ELECTRODE
+Level: 79
+
+SPECIES_MAGNETON
+Level: 79
+
+
+=== TRAINER_KANTO_SAILOR_DWAYNE ===
+Name: DWAYNE
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PIKACHU
+Level: 79
+
+SPECIES_PIKACHU
+Level: 80
+
+
+=== TRAINER_KANTO_GENTLEMAN_TUCKER ===
+Name: TUCKER
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_PIKACHU
+Level: 80
+
+
+=== TRAINER_KANTO_BLACK_BELT_TAKASHI ===
+Name: TAKASHI
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MACHAMP
+Level: 84
+
+SPECIES_MACHAMP
+Level: 85
+
+SPECIES_MACHAMP
+Level: 86
+
+
+=== TRAINER_KANTO_COOLTRAINER_YUJI ===
+Name: YUJI
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SANDSLASH
+Level: 84
+
+SPECIES_GOLEM
+Level: 84
+
+SPECIES_STEELIX
+Level: 84
+
+SPECIES_GOLEM
+Level: 85
+
+SPECIES_MAROWAK
+Level: 84
+
+
+=== TRAINER_KANTO_BLACK_BELT_ATSUSHI ===
+Name: ATSUSHI
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MACHAMP
+Level: 85
+
+SPECIES_MACHAMP
+Level: 86
+
+
+=== TRAINER_KANTO_TAMER_JASON ===
+Name: JASON
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_RHYPERIOR
+Level: 86
+
+
+=== TRAINER_KANTO_TAMER_COLE ===
+Name: COLE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_ARBOK
+Level: 85
+
+SPECIES_TAUROS
+Level: 85
+
+
+=== TRAINER_KANTO_BLACK_BELT_KIYO ===
+Name: KIYO
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MACHAMP
+Level: 86
+
+
+=== TRAINER_KANTO_COOLTRAINER_SAMUEL ===
+Name: SAMUEL
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_SANDSLASH
+Level: 84
+
+SPECIES_SANDSLASH
+Level: 85
+
+SPECIES_RHYPERIOR
+Level: 84
+
+SPECIES_NIDORINO
+Level: 85
+
+SPECIES_NIDOKING
+Level: 85
+
+
+=== TRAINER_KANTO_COOLTRAINER_WARREN ===
+Name: WARREN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_MAROWAK
+Level: 84
+
+SPECIES_MAROWAK
+Level: 85
+
+SPECIES_RHYPERIOR
+Level: 84
+
+SPECIES_NIDORINA
+Level: 85
+
+SPECIES_NIDOQUEEN
+Level: 85
+
+
+=== TRAINER_KANTO_BUG_CATCHER_RICK ===
+Name: RICK
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_BEEDRILL
+Level: 75
+
+SPECIES_BUTTERFREE
+Level: 75
+
+
+=== TRAINER_KANTO_BUG_CATCHER_DOUG ===
+Name: DOUG
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_BEEDRILL
+Level: 75
+
+SPECIES_BEEDRILL
+Level: 76
+
+SPECIES_BEEDRILL
+Level: 77
+
+
+=== TRAINER_KANTO_BUG_CATCHER_SAMMY ===
+Name: SAMMY
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_BEEDRILL
+Level: 76
+
+
+=== TRAINER_KANTO_BUG_CATCHER_ANTHONY ===
+Name: ANTHONY
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_BUTTERFREE
+Level: 75
+
+SPECIES_BUTTERFREE
+Level: 76
+
+
+=== TRAINER_KANTO_BUG_CATCHER_CHARLIE ===
+Name: CHARLIE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+SPECIES_BUTTERFREE
+Level: 75
+
+SPECIES_BUTTERFREE
+Level: 76
+
+SPECIES_BUTTERFREE
+Level: 77
+

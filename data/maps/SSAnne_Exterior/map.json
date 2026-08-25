@@ -52,5 +52,14 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 58,
+      "y": 28,
+      "elevation": 3,
+      "item": "ITEM_LAVA_COOKIE",
+      "flag": "FLAG_TRINITY_KANTO_PICKUPS_START + 164"
+    }
+  ]
 }

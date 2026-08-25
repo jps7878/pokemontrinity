@@ -31,5 +31,62 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 7,
+      "y": 3,
+      "elevation": 3,
+      "item": "ITEM_POTION",
+      "flag": "FLAG_TRINITY_KANTO_PICKUPS_START + 217"
+    },
+    {
+      "type": "hidden_item",
+      "x": 17,
+      "y": 5,
+      "elevation": 3,
+      "item": "ITEM_PARALYZE_HEAL",
+      "flag": "FLAG_TRINITY_KANTO_PICKUPS_START + 218"
+    },
+    {
+      "type": "hidden_item",
+      "x": 31,
+      "y": 4,
+      "elevation": 3,
+      "item": "ITEM_AWAKENING",
+      "flag": "FLAG_TRINITY_KANTO_PICKUPS_START + 219"
+    },
+    {
+      "type": "hidden_item",
+      "x": 45,
+      "y": 3,
+      "elevation": 3,
+      "item": "ITEM_BURN_HEAL",
+      "flag": "FLAG_TRINITY_KANTO_PICKUPS_START + 220"
+    },
+    {
+      "type": "hidden_item",
+      "x": 70,
+      "y": 3,
+      "elevation": 3,
+      "item": "ITEM_ICE_HEAL",
+      "flag": "FLAG_TRINITY_KANTO_PICKUPS_START + 221"
+    },
+    {
+      "type": "hidden_item",
+      "x": 55,
+      "y": 2,
+      "elevation": 3,
+      "item": "ITEM_ETHER",
+      "flag": "FLAG_TRINITY_KANTO_PICKUPS_START + 222"
+    },
+    {
+      "type": "hidden_item",
+      "x": 62,
+      "y": 5,
+      "elevation": 3,
+      "item": "ITEM_ANTIDOTE",
+      "flag": "FLAG_TRINITY_KANTO_PICKUPS_START + 223"
+    }
+  ]
 }
