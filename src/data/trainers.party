@@ -20787,3 +20787,53 @@ Level: 68
 
 MUK
 Level: 68
+
+/* === Trinity M5a Wise Trio (Task 9 batch) === */
+
+=== TRAINER_SAGE_GAKU ===
+Name: GAKU
+Class: Psychic
+Pic: Expert M
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Basic Trainer
+
+Noctowl
+Level: 68
+
+Bellossom
+Level: 68
+
+=== TRAINER_SAGE_MASA ===
+Name: MASA
+Class: Psychic
+Pic: Expert M
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Basic Trainer
+
+Xatu
+Level: 68
+
+Slowking
+Level: 68
+
+=== TRAINER_SAGE_KOJI ===
+Name: KOJI
+Class: Psychic
+Pic: Expert M
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Basic Trainer
+
+Victreebel
+Level: 69
+
+Exeggutor
+Level: 68
+
+Ariados
+Level: 68

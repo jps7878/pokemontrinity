@@ -869,18 +869,23 @@
 // it sizes the ROM tables gTrainers[][] and sTrainerSlides[][][] and bounds
 // GetTrainerFromId (include/data.h:210). It is NOT a saveblock quantity, so a
 // slice that allocates a new id simply bumps it (fresh save not required);
-// MAX_TRAINERS_COUNT 1100 is the real cap. M4b S2 raised it 1072 -> 1073 for
-// TRAINER_JOHTO_SAGE_LI; M4b S5 raised it 1073 -> 1074 for
-// TRAINER_JOHTO_COOLTRAINER_KENJI; M4b S7 raised it 1074 -> 1081 for the three ROCKET
-// scientists and the four LAKE OF RAGE trainers; M4b S8 raised it 1081 -> 1100 for the
-// RADIO TOWER chapter's 19 posts, which EXHAUSTS the block. TRAINERS_COUNT ==
-// MAX_TRAINERS_COUNT is exactly the boundary and is safe: SanitizeTrainerId
-// (include/data.h:207-211) treats id >= TRAINERS_COUNT as partner-or-none, and partner
-// ids begin at TRAINER_PARTNER(PARTNER_NONE) == MAX_TRAINERS_COUNT == 1100, so 1099 is
-// the last real trainer and nothing overlaps. Every later slice that claims an id
-// must now raise MAX_TRAINERS_COUNT, which DOES shift the flag layout (fresh save).
-#define TRAINERS_COUNT                      1100
-#define MAX_TRAINERS_COUNT                  1100
+// MAX_TRAINERS_COUNT is the real cap and IS a saveblock quantity (it sizes
+// TRAINER_FLAGS_END in constants/flags.h:1384, so raising it shifts every
+// SYSTEM_FLAGS-relative flag and requires a fresh save). M4b S2 raised
+// TRAINERS_COUNT 1072 -> 1073 for TRAINER_JOHTO_SAGE_LI; M4b S5 raised it
+// 1073 -> 1074 for TRAINER_JOHTO_COOLTRAINER_KENJI; M4b S7 raised it 1074 -> 1081
+// for the three ROCKET scientists and the four LAKE OF RAGE trainers; M4b S8 raised
+// it 1081 -> 1100 for the RADIO TOWER chapter's 19 posts, which EXHAUSTED the
+// 1072-1099 block (TRAINERS_COUNT == MAX_TRAINERS_COUNT == 1100 was exactly the
+// boundary; SanitizeTrainerId (include/data.h:207-211) treats id >= TRAINERS_COUNT
+// as partner-or-none, and partner ids begin at TRAINER_PARTNER(PARTNER_NONE) ==
+// MAX_TRAINERS_COUNT, so nothing overlapped). M5a Task 9 is the fresh-save batch:
+// it claims 1100-1102 for the three Wise Trio sages (TRAINERS_COUNT -> 1103) and
+// raises MAX_TRAINERS_COUNT 1100 -> 1800 per the Task 8 census verdict (D=331
+// demand, 111.5% headroom over the raised cap) to reopen id space for M5a
+// Task 10's Kanto trainer population run (287 ids) and beyond.
+#define TRAINERS_COUNT                      1103
+#define MAX_TRAINERS_COUNT                  1800
 #define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)
 
 // --- Trinity M4a Johto route trainers (Task 2 auto) ---
@@ -1135,9 +1140,14 @@
 #define TRAINER_JOHTO_ROCKET_WH_A             1097  // S8: UNDERGROUND WAREHOUSE (9,8)
 #define TRAINER_JOHTO_ROCKET_WH_B             1098  // S8: UNDERGROUND WAREHOUSE (8,15)
 #define TRAINER_JOHTO_ROCKET_WH_C             1099  // S8: UNDERGROUND WAREHOUSE (14,3)
-// NOTE FOR S9-S11: 1099 is the LAST id available without raising MAX_TRAINERS_COUNT, and
-// raising it moves TRAINER_FLAGS_END and therefore every SYSTEM_FLAGS-relative flag id
-// (include/constants/flags.h:1384-1389) -- i.e. a fresh save. Sanctioned by the contract,
-// but no longer free.
+// NOTE FOR S9-S11: 1099 was the LAST id available before M5a Task 9 raised
+// MAX_TRAINERS_COUNT (1100 -> 1800), which moved TRAINER_FLAGS_END and therefore every
+// SYSTEM_FLAGS-relative flag id (include/constants/flags.h:1384-1389) -- i.e. a fresh
+// save. Sanctioned by the contract and now spent (see M5a Task 9 batch below).
+
+/* === Trinity M5a Wise Trio (Task 9 batch) === */
+#define TRAINER_SAGE_GAKU                     1100  // Wise Trio: Noctowl / Bellossom
+#define TRAINER_SAGE_MASA                     1101  // Wise Trio: Xatu / Slowking
+#define TRAINER_SAGE_KOJI                     1102  // Wise Trio: Victreebel / Exeggutor / Ariados
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

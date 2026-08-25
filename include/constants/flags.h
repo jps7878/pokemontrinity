@@ -1687,7 +1687,15 @@
 #define FLAG_TRINITY_JOHTO_PICKUPS_END              (FLAG_TRINITY_JOHTO_PICKUPS_START + 319)
 #define NUM_TRINITY_JOHTO_PICKUP_FLAGS               (FLAG_TRINITY_JOHTO_PICKUPS_END - FLAG_TRINITY_JOHTO_PICKUPS_START + 1)
 
-#define FLAGS_COUNT (FLAG_TRINITY_JOHTO_PICKUPS_END + 1)
+// Trinity: Kanto pickup flags
+// 320 flags reserved for Kanto overworld item/hidden-item pickups, appended at the very
+// end of persisted flag space (after the Johto pickup block). Allocated sequentially by
+// the M5a Task 10 map converter — one flag per Kanto pickup, in map-processing order.
+#define FLAG_TRINITY_KANTO_PICKUPS_START            (FLAG_TRINITY_JOHTO_PICKUPS_END + 1)
+#define FLAG_TRINITY_KANTO_PICKUPS_END              (FLAG_TRINITY_KANTO_PICKUPS_START + 319)
+#define NUM_TRINITY_KANTO_PICKUP_FLAGS               (FLAG_TRINITY_KANTO_PICKUPS_END - FLAG_TRINITY_KANTO_PICKUPS_START + 1)
+
+#define FLAGS_COUNT (FLAG_TRINITY_KANTO_PICKUPS_END + 1)
 
 // Special Flags (Stored in EWRAM (sSpecialFlags), not in the SaveBlock)
 #define SPECIAL_FLAGS_START                     0x4000
