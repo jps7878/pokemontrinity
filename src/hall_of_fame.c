@@ -53,6 +53,19 @@ static EWRAM_DATA struct HallofFameTeam *sHofMonPtr = NULL;
 static EWRAM_DATA struct HofGfx *sHofGfxPtr = NULL;
 EWRAM_DATA struct HallofFameTeam *gHoFSaveBuffer = NULL;
 
+// Trinity: set only by GameClearKanto (src/post_battle_event_funcs.c) prior to
+// SetMainCallback2(CB2_DoHallOfFameScreen). Read once by StartCredits() below
+// to pick the true-ending credits roll over the Act I/II SoftReset. Never
+// persisted -- it only needs to survive the single continuous HoF-screen task
+// chain within this boot, and every path through StartCredits() ends in a
+// SoftReset (immediate, or after the credits sequence) that clears it anyway.
+static bool8 sTrinityTrueGameClear = FALSE;
+
+void SetHallOfFameTrueGameClear(void)
+{
+    sTrinityTrueGameClear = TRUE;
+}
+
 static void ClearVramOamPltt_LoadHofPal(void);
 static void LoadHofGfx(void);
 static void InitHofBgs(void);
@@ -779,14 +792,24 @@ static void StartCredits(void)
 {
     // Trinity: the Hoenn League is League 1 of 3 -- beating the Hoenn Champion ends
     // Act I, not the game. Do NOT roll the full staff "THE END" credits here. The
-    // true ending credits belong to the final Kanto/Mt. Silver victory (a future
-    // milestone) and reuse CB2_StartCreditsSequence unchanged. The game has already
-    // been saved (TrySavingData(SAVE_HALL_OF_FAME)) and FLAG_SYS_GAME_CLEAR was set
-    // in GameClear(), and the screen is already faded to black at this point, so a
-    // soft-reset returns to the title; choosing Continue drops the player back into
-    // the post-game overworld (the continue-game warp set to their bedroom) -- exactly
-    // what vanilla does after the credits, minus the credits.
-    SoftReset(RESET_ALL);
+    // true ending credits belong to the final Kanto/Mt. Silver victory and reuse
+    // CB2_StartCreditsSequence unchanged (this is exactly vanilla's original call
+    // here, before Trinity M1 replaced it -- see GameClearKanto in
+    // src/post_battle_event_funcs.c, M5a Task 6). The game has already been saved
+    // (TrySavingData(SAVE_HALL_OF_FAME)) and FLAG_SYS_GAME_CLEAR was set in
+    // GameClear()/GameClearJohto()/GameClearKanto(), and the screen is already
+    // faded to black at this point, so for the non-true-clear (Act I/II) case a
+    // soft-reset returns to the title; choosing Continue drops the player back
+    // into the post-game overworld (the continue-game warp set accordingly) --
+    // exactly what vanilla does after the credits, minus the credits. For the
+    // true (Kanto) clear, CB2_StartCreditsSequence itself ends in a SoftReset
+    // once the credits finish (src/credits.c, Task_CreditsSoftReset) -- Continue
+    // then lands wherever GameClearKanto pointed the continue-warp (Indigo
+    // Plateau), which is the spec's intent.
+    if (sTrinityTrueGameClear)
+        SetMainCallback2(CB2_StartCreditsSequence);
+    else
+        SoftReset(RESET_ALL);
 }
 
 #undef tDontSaveData

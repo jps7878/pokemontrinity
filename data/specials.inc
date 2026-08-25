@@ -291,6 +291,8 @@ gSpecials::
 	def_special LookThroughPorthole
 	def_special DoSoftReset
 	def_special GameClear
+	def_special GameClearJohto @ Trinity M5a Task 6 -- HoF-II ceremony (Act II close)
+	def_special GameClearKanto @ Trinity M5a Task 6 -- Act III finale (M5b S11 call site)
 	def_special MoveElevator
 	def_special ShowGlassWorkshopMenu
 	def_special SpawnCameraObject

@@ -22,6 +22,13 @@ void CB2_DoHallOfFameScreen(void);
 void CB2_DoHallOfFameScreenDontSaveData(void);
 void CB2_DoHallOfFamePC(void);
 
+// Trinity: called by GameClearKanto (src/post_battle_event_funcs.c) before
+// handing off to CB2_DoHallOfFameScreen. Tells the HoF screen's exit path
+// (StartCredits() in src/hall_of_fame.c) that this is the true final-region
+// game clear, so it should roll the real ending credits instead of the
+// Act I/II silent SoftReset.
+void SetHallOfFameTrueGameClear(void);
+
 // hof_pc.c
 void ReturnFromHallOfFamePC(void);
 

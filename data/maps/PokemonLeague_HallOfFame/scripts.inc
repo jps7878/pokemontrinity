@@ -1,9 +1,21 @@
 @ ============================================================================
 @ M4b S11 -- HALL OF FAME II. The close of Act II.
 @
-@ THE DECISION, AND IT IS A DECISION: THIS IS A SCENE, NOT `special GameClear`.
-@ FLAG_SYS_GAME_CLEAR is neither read nor written here. No soft reset. No
-@ credits. Reasoning, from the engine rather than from taste:
+@ UPDATE -- M5a Task 6: the door left open below has been walked through. This
+@ room now calls `special GameClearJohto`, a purpose-built clone of GameClear()
+@ that does the genuine PC-record append and retargets the continue-warp to
+@ HEAL_LOCATION_INDIGO_PLATEAU -- and NOTHING else (no credits, no additional
+@ game-clear state; see src/post_battle_event_funcs.c). It still touches
+@ FLAG_SYS_GAME_CLEAR the same untouched-semantics way GameClear() always did
+@ (already TRUE from Act I), and it still ends in Trinity's silent SoftReset
+@ (src/hall_of_fame.c, StartCredits()) -- there is still no credits roll here.
+@ The rest of this header is kept as the historical record of why the M4b
+@ interim substitute (a plain heal, no real PC record) was chosen, and of
+@ exactly which GameClear() behaviour GameClearJohto was built to reproduce.
+@
+@ THE ORIGINAL DECISION, AND IT WAS A DECISION: THIS WAS A SCENE, NOT
+@ `special GameClear`. FLAG_SYS_GAME_CLEAR was neither read nor written here.
+@ No soft reset. No credits. Reasoning, from the engine rather than from taste:
 @
 @ GameClear() (src/post_battle_event_funcs.c:12-86) would do four attractive
 @ things and one disqualifying one.
@@ -86,7 +98,13 @@ PokemonLeague_HallOfFame_EventScript_Ceremony::
 	msgbox PokemonLeague_HallOfFame_Text_ActIIComplete, MSGBOX_DEFAULT
 	closemessage
 	call PokemonLeague_HallOfFame_EventScript_RecordTheLeague
-	call Common_EventScript_OutOfCenterPartyHeal
+	@ M5a Task 6: the interim heal-only substitute (no real PC record, and the
+	@ engine continue-warp was never fixed off HOENN -- see the room-header
+	@ comment above) is replaced by the real special this room was always
+	@ waiting for. One-line revert if GameClearJohto ever needs to be pulled:
+	@ call Common_EventScript_OutOfCenterPartyHeal
+	special GameClearJohto
+	waitstate
 	fadescreenspeed FADE_TO_BLACK, 24
 	warp MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F, 0
 	waitstate
