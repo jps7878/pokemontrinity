@@ -74,10 +74,34 @@ OlivinePort_EventScript_Sailor::
 	lock
 	faceplayer
 	msgbox OlivinePort_Text_BackToLilycove, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, OlivinePort_EventScript_SailorDecline
+	goto_if_eq VAR_RESULT, YES, OlivinePort_EventScript_SailorToLilycove
+	@ Trinity M5a T5 -- KANTO leg, gated OFF behind FLAG_TRINITY_K_ARRIVED.
+	@ M5b S1's S.S. AQUA arrival cutscene is the one writer; this task only
+	@ reads it, so this second question stays unreachable until that slice
+	@ lands (read-only check, no regression to the existing LILYCOVE branch).
+	goto_if_unset FLAG_TRINITY_K_ARRIVED, OlivinePort_EventScript_SailorDecline
+	msgbox OlivinePort_Text_OverToVermilion, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, OlivinePort_EventScript_SailorToVermilion
+	goto OlivinePort_EventScript_SailorDecline
+	end
+
+OlivinePort_EventScript_SailorToLilycove::
 	closemessage
 	setrespawn HEAL_LOCATION_LILYCOVE_CITY
 	warp MAP_LILYCOVE_CITY_HARBOR, 8, 11
+	waitstate
+	release
+	end
+
+@ Dock tile decoded on VERMILION CITY: (24,33), MB_NORMAL, elevation 3,
+@ collision 0, one tile north of the S.S. ANNE dock's (22-24,34)
+@ MB_SOUTH_ARROW_WARP trio -- see task-5-report.md. Fade-warp idiom only
+@ (YESNO -> warp -> waitstate), no cutscene: M5b S1 owns the one scripted
+@ arrival, this is every REPEAT crossing after it.
+OlivinePort_EventScript_SailorToVermilion::
+	closemessage
+	setrespawn HEAL_LOCATION_VERMILION_CITY
+	warp MAP_VERMILION_CITY, 24, 33
 	waitstate
 	release
 	end
@@ -129,6 +153,10 @@ OlivinePort_Text_WelcomeToOlivineCity:
 
 OlivinePort_Text_BackToLilycove:
 	.string "Back to LILYCOVE CITY in HOENN?$"
+
+OlivinePort_Text_OverToVermilion:
+	.string "How about VERMILION CITY, over in\n"
+	.string "KANTO?$"
 
 OlivinePort_Text_SailAnotherTime:
 	.string "Please sail with us another time!$"

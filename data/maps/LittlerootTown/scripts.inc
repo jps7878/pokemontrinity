@@ -388,16 +388,11 @@ LittlerootTown_EventScript_GoSaveBirchTrigger::
 	end
 
 LittlerootTown_EventScript_TownSign::
-	@ TEMP M2 debug warp: reading the Littleroot town sign warps to the ported Pallet Town (Kanto pilot). Remove for release.
-	warp MAP_PALLET_TOWN, 12, 10
-	waitstate
+	msgbox LittlerootTown_Text_TownSign, MSGBOX_SIGN
 	end
 
 LittlerootTown_EventScript_BirchsLabSign::
-	@ TEMP M3 debug warp: Birch's lab sign warps to ported New Bark Town (Johto pilot). Remove at M4 (S.S. Tidal JOHTO gate).
-	@ Cell (9,9): open plaza centre. (8,8) from the brief is the town sign block (GBC bg_event 8,8 NewBarkTownSign) -- impassable.
-	warp MAP_NEW_BARK_TOWN, 9, 9
-	waitstate
+	msgbox LittlerootTown_Text_ProfBirchsLab, MSGBOX_SIGN
 	end
 
 LittlerootTown_EventScript_BrendansHouseSign::

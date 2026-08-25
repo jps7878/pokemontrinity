@@ -34,9 +34,26 @@
       "elevation": 0,
       "dest_map": "MAP_ROUTE_28",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 39,
+      "y": 8,
+      "elevation": 3,
+      "dest_map": "MAP_ROUTE22",
+      "dest_warp_id": "2"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 39,
+      "y": 8,
+      "elevation": 3,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
+      "script": "Route28_EventScript_KantoGateCheck"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",

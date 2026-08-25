@@ -1288,16 +1288,16 @@
 #define FLAG_TRINITY_J_E4_KAREN_BEATEN             0x4AA // Trinity M4b S11: was FLAG_UNUSED_0x4AA -- ELITE FOUR run state - KAREN (in LANCE'S ROOM). Cleared on entering the INDIGO Center.
 #define FLAG_TRINITY_J_E4_LANCE_BEATEN             0x4AB // Trinity M4b S11: was FLAG_UNUSED_0x4AB -- ELITE FOUR run state - LANCE (in the CHAMPION'S ROOM). Cleared on entering the INDIGO Center.
 #define FLAG_TRINITY_J_LEAGUE_CLEARED              0x4AC // Trinity M4b S11: was FLAG_UNUSED_0x4AC -- story, TERMINAL and never cleared - the JOHTO LEAGUE has been won at least once. S6's rule: a chain containing a clearflag must test its TERMINAL state explicitly, because the five _BEATEN flags above return to their starting values on every Center visit. Paired with VAR_TRINITY_JOHTO_ARC == 10.
-#define FLAG_UNUSED_0x4AD                                           0x4AD // Unused Flag
-#define FLAG_UNUSED_0x4AE                                           0x4AE // Unused Flag
-#define FLAG_UNUSED_0x4AF                                           0x4AF // Unused Flag
-#define FLAG_UNUSED_0x4B0                                           0x4B0 // Unused Flag
-#define FLAG_UNUSED_0x4B1                                           0x4B1 // Unused Flag
-#define FLAG_UNUSED_0x4B2                                           0x4B2 // Unused Flag
-#define FLAG_UNUSED_0x4B3                                           0x4B3 // Unused Flag
-#define FLAG_UNUSED_0x4B4                                           0x4B4 // Unused Flag
-#define FLAG_UNUSED_0x4B5                                           0x4B5 // Unused Flag
-#define FLAG_UNUSED_0x4B6                                           0x4B6 // Unused Flag
+#define FLAG_TRINITY_BADGE17    0x4AD // Trinity: was FLAG_UNUSED_0x4AD — Brock
+#define FLAG_TRINITY_BADGE18    0x4AE // Trinity: was FLAG_UNUSED_0x4AE — Misty
+#define FLAG_TRINITY_BADGE19    0x4AF // Trinity: was FLAG_UNUSED_0x4AF — Surge
+#define FLAG_TRINITY_BADGE20    0x4B0 // Trinity: was FLAG_UNUSED_0x4B0 — Erika
+#define FLAG_TRINITY_BADGE21    0x4B1 // Trinity: was FLAG_UNUSED_0x4B1 — Janine
+#define FLAG_TRINITY_BADGE22    0x4B2 // Trinity: was FLAG_UNUSED_0x4B2 — Sabrina
+#define FLAG_TRINITY_BADGE23    0x4B3 // Trinity: was FLAG_UNUSED_0x4B3 — Blaine
+#define FLAG_TRINITY_BADGE24    0x4B4 // Trinity: was FLAG_UNUSED_0x4B4 — Giovanni
+#define FLAG_TRINITY_K_ARRIVED    0x4B5 // Trinity M5a: was FLAG_UNUSED_0x4B5 — KANTO arrival gate (S.S. AQUA / VERMILION dock, Goldenrod<->Saffron MAGNET TRAIN pass on 0x4B6). M5b S1 is the one writer; this task (M5a T5) only reads it.
+#define FLAG_TRINITY_K_TRAIN_PASS    0x4B6 // Trinity M5a: was FLAG_UNUSED_0x4B6 — MAGNET TRAIN pass (Goldenrod<->Saffron). M5b S2 is the one writer; this task (M5a T5) only reads it.
 #define FLAG_UNUSED_0x4B7                                           0x4B7 // Unused Flag
 #define FLAG_UNUSED_0x4B8                                           0x4B8 // Unused Flag
 #define FLAG_UNUSED_0x4B9                                           0x4B9 // Unused Flag
