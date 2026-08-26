@@ -25958,10 +25958,10 @@ Level: 90
 
 === TRAINER_BLUE_E4 ===
 Name: BLUE
-Class: Champion
+Class: Elite Four
 Pic: Cooltrainer M
 Gender: Male
-Music: Male
+Music: Elite Four
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
 
@@ -26039,10 +26039,10 @@ Level: 100
 
 === TRAINER_BOBBY ===
 Name: BOBBY
-Class: Dragon Tamer
+Class: Cooltrainer
 Pic: Dragon Tamer
 Gender: Male
-Music: Intense
+Music: Cool
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
 

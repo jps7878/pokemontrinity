@@ -1451,7 +1451,8 @@
 // precedent for the identical collision. 8 Kanto gym leaders, Blue's grudge
 // rematch, Silver's final + Mt. Moon rematch, the crew (Harjot/Ivraj/Sumeet/
 // Prabhjit) at Act III power plus Gurnav's debut and Wally's rematch, League
-// II's four (Lorelei/Agatha/Bruno/Champion Blue), the Ash/Red/Bobby finale
+// II's four (Lorelei/Agatha/Bruno/Blue -- Blue holds the fourth Elite Four
+// seat here; Ash alone is Champion), the Ash/Red/Bobby finale
 // cast, and the Team Rocket corps (10 male grunts, 4 female grunts, 3
 // scientists) -- 41 new ids, TRAINERS_COUNT 1390 -> 1431.
 #define TRAINER_BROCK                             1390
