@@ -12,11 +12,21 @@ Route23_MapScripts::
 @
 @ They check ASCENDING KANTO BADGE COUNTS by route position, not by the FRLG
 @ badge name at that slot: guard 1 (southernmost, nearest ROUTE 22) wants
-@ >=1 badge, guard 7 (northernmost, nearest VICTORY ROAD) wants >=7, via
-@ Trinity_EventScript_CountKantoBadges (data/scripts/trinity_kanto.inc,
-@ mirrors trinity_johto.inc's C-COUNT verbatim). Dialogue is deliberately
-@ badge-agnostic -- it names the count needed, never which specific badges
-@ the player holds.
+@ >=2 badges, guard 7 (northernmost, nearest VICTORY ROAD) wants >=8 (ALL
+@ EIGHT), via Trinity_EventScript_CountKantoBadges (data/scripts/
+@ trinity_kanto.inc, mirrors trinity_johto.inc's C-COUNT verbatim). Dialogue
+@ is deliberately badge-agnostic -- it names the count needed, never which
+@ specific badges the player holds.
+@
+@ THRESHOLDS 2..8, not 1..7 (founder decision, resolved 2026-08-26, final
+@ review finding 1): guard N requires N+1 badges, matching pokefirered's own
+@ Cascade-through-Earth checkpoint ladder (FRLG indices 2..8 -- FRLG's
+@ Route 23 has no 1-badge checkpoint at all). The check stays COUNT-based,
+@ not badge-specific -- open gym order is unaffected, only the numbers
+@ guards 1-7 compare against moved up by one, with guard 7 now the true
+@ 8-badge/all-badges gate. Talk scripts and coord_event nets share the same
+@ threshold per guard (see the fix-round-1 net block below) -- both paths
+@ were updated together.
 @
 @ Guards 4 and 5 (SOUL/16,112 and MARSH/10,94) stand on MB_SHALLOW_WATER at
 @ the edge of ROUTE 23's river, one tile north of MB_OCEAN_WATER -- FRLG
@@ -30,7 +40,7 @@ Route23_EventScript_Guard1::
 	lock
 	faceplayer
 	call Trinity_EventScript_CountKantoBadges
-	goto_if_lt VAR_TEMP_A, 1, Route23_EventScript_Guard1Refuse
+	goto_if_lt VAR_TEMP_A, 2, Route23_EventScript_Guard1Refuse
 	msgbox Route23_Text_Guard1Pass, MSGBOX_DEFAULT
 	release
 	end
@@ -44,7 +54,7 @@ Route23_EventScript_Guard2::
 	lock
 	faceplayer
 	call Trinity_EventScript_CountKantoBadges
-	goto_if_lt VAR_TEMP_A, 2, Route23_EventScript_Guard2Refuse
+	goto_if_lt VAR_TEMP_A, 3, Route23_EventScript_Guard2Refuse
 	msgbox Route23_Text_Guard2Pass, MSGBOX_DEFAULT
 	release
 	end
@@ -58,7 +68,7 @@ Route23_EventScript_Guard3::
 	lock
 	faceplayer
 	call Trinity_EventScript_CountKantoBadges
-	goto_if_lt VAR_TEMP_A, 3, Route23_EventScript_Guard3Refuse
+	goto_if_lt VAR_TEMP_A, 4, Route23_EventScript_Guard3Refuse
 	msgbox Route23_Text_Guard3Pass, MSGBOX_DEFAULT
 	release
 	end
@@ -72,7 +82,7 @@ Route23_EventScript_Guard4::
 	lock
 	faceplayer
 	call Trinity_EventScript_CountKantoBadges
-	goto_if_lt VAR_TEMP_A, 4, Route23_EventScript_Guard4Refuse
+	goto_if_lt VAR_TEMP_A, 5, Route23_EventScript_Guard4Refuse
 	msgbox Route23_Text_Guard4Pass, MSGBOX_DEFAULT
 	release
 	end
@@ -86,7 +96,7 @@ Route23_EventScript_Guard5::
 	lock
 	faceplayer
 	call Trinity_EventScript_CountKantoBadges
-	goto_if_lt VAR_TEMP_A, 5, Route23_EventScript_Guard5Refuse
+	goto_if_lt VAR_TEMP_A, 6, Route23_EventScript_Guard5Refuse
 	msgbox Route23_Text_Guard5Pass, MSGBOX_DEFAULT
 	release
 	end
@@ -100,7 +110,7 @@ Route23_EventScript_Guard6::
 	lock
 	faceplayer
 	call Trinity_EventScript_CountKantoBadges
-	goto_if_lt VAR_TEMP_A, 6, Route23_EventScript_Guard6Refuse
+	goto_if_lt VAR_TEMP_A, 7, Route23_EventScript_Guard6Refuse
 	msgbox Route23_Text_Guard6Pass, MSGBOX_DEFAULT
 	release
 	end
@@ -114,7 +124,7 @@ Route23_EventScript_Guard7::
 	lock
 	faceplayer
 	call Trinity_EventScript_CountKantoBadges
-	goto_if_lt VAR_TEMP_A, 7, Route23_EventScript_Guard7Refuse
+	goto_if_lt VAR_TEMP_A, 8, Route23_EventScript_Guard7Refuse
 	msgbox Route23_Text_Guard7Pass, MSGBOX_DEFAULT
 	release
 	end
@@ -128,74 +138,74 @@ Route23_Text_Guard1Refuse:
 	.string "Whoa there, TRAINER! This road's\n"
 	.string "KANTO LEAGUE territory from here\l"
 	.string "on.\p"
-	.string "Come back when you've got 1 KANTO\n"
-	.string "BADGE. Just the one, to start.$"
+	.string "Come back when you've got 2 KANTO\n"
+	.string "BADGES. That's the going rate\l"
+	.string "out here.$"
 
 Route23_Text_Guard1Pass:
-	.string "Got your first BADGE? Go on,\n"
-	.string "then.$"
+	.string "2 BADGES on you? Go on, then.$"
 
 Route23_Text_Guard2Refuse:
 	.string "Hold it. Nobody gets further up\n"
 	.string "this road without proving\l"
 	.string "themselves first.\p"
-	.string "Come back when you've got 2 KANTO\n"
+	.string "Come back when you've got 3 KANTO\n"
 	.string "BADGES.$"
 
 Route23_Text_Guard2Pass:
-	.string "2 BADGES. Not bad. Through you\n"
+	.string "3 BADGES. Not bad. Through you\n"
 	.string "go.$"
 
 Route23_Text_Guard3Refuse:
 	.string "This stretch's mine to watch, and\n"
 	.string "I'm not waving you past on\l"
 	.string "nothing.\p"
-	.string "Come back when you've got 3 KANTO\n"
+	.string "Come back when you've got 4 KANTO\n"
 	.string "BADGES.$"
 
 Route23_Text_Guard3Pass:
-	.string "3 BADGES, confirmed. Carry on.$"
+	.string "4 BADGES, confirmed. Carry on.$"
 
 Route23_Text_Guard4Refuse:
 	.string "Careful of the water there. And\n"
 	.string "careful of me, too -- I don't let\l"
 	.string "just anybody through.\p"
-	.string "Come back when you've got 4 KANTO\n"
+	.string "Come back when you've got 5 KANTO\n"
 	.string "BADGES.$"
 
 Route23_Text_Guard4Pass:
-	.string "4 BADGES. You're making good\n"
+	.string "5 BADGES. You're making good\n"
 	.string "time. Go on ahead.$"
 
 Route23_Text_Guard5Refuse:
 	.string "This close to VICTORY ROAD, we\n"
 	.string "check everybody twice.\p"
-	.string "Come back when you've got 5 KANTO\n"
+	.string "Come back when you've got 6 KANTO\n"
 	.string "BADGES.$"
 
 Route23_Text_Guard5Pass:
-	.string "5 BADGES. Half the LEAGUE's gyms,\n"
-	.string "at least. Through you go.$"
+	.string "6 BADGES. Three-quarters of the\n"
+	.string "LEAGUE's gyms. Through you go.$"
 
 Route23_Text_Guard6Refuse:
 	.string "Not much further to VICTORY ROAD\n"
 	.string "now, but you're not ready yet.\p"
-	.string "Come back when you've got 6 KANTO\n"
+	.string "Come back when you've got 7 KANTO\n"
 	.string "BADGES.$"
 
 Route23_Text_Guard6Pass:
-	.string "6 BADGES. Almost there. Go on.$"
+	.string "7 BADGES. Almost there. Go on.$"
 
 Route23_Text_Guard7Refuse:
 	.string "Last checkpoint before VICTORY\n"
 	.string "ROAD itself, and the strictest\l"
 	.string "one.\p"
-	.string "Come back when you've got 7 KANTO\n"
-	.string "BADGES. All of them but the last.$"
+	.string "Come back when you've got 8 KANTO\n"
+	.string "BADGES. Every last one of them.$"
 
 Route23_Text_Guard7Pass:
-	.string "All 7. That's every gym but\n"
-	.string "VIRIDIAN.\p"
+	.string "All 8. Every gym in KANTO,\n"
+	.string "beaten.\p"
 	.string "VICTORY ROAD's ahead. Good luck\n"
 	.string "in there.$"
 
@@ -236,7 +246,7 @@ Route23_Movement_NetStepBack:
 Route23_EventScript_Guard1Net::
 	lockall
 	call Trinity_EventScript_CountKantoBadges
-	goto_if_ge VAR_TEMP_A, 1, Route23_EventScript_Guard1NetOpen
+	goto_if_ge VAR_TEMP_A, 2, Route23_EventScript_Guard1NetOpen
 	msgbox Route23_Text_Guard1Refuse, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_PLAYER, Route23_Movement_NetStepBack
@@ -250,7 +260,7 @@ Route23_EventScript_Guard1NetOpen::
 Route23_EventScript_Guard2Net::
 	lockall
 	call Trinity_EventScript_CountKantoBadges
-	goto_if_ge VAR_TEMP_A, 2, Route23_EventScript_Guard2NetOpen
+	goto_if_ge VAR_TEMP_A, 3, Route23_EventScript_Guard2NetOpen
 	msgbox Route23_Text_Guard2Refuse, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_PLAYER, Route23_Movement_NetStepBack
@@ -264,7 +274,7 @@ Route23_EventScript_Guard2NetOpen::
 Route23_EventScript_Guard3Net::
 	lockall
 	call Trinity_EventScript_CountKantoBadges
-	goto_if_ge VAR_TEMP_A, 3, Route23_EventScript_Guard3NetOpen
+	goto_if_ge VAR_TEMP_A, 4, Route23_EventScript_Guard3NetOpen
 	msgbox Route23_Text_Guard3Refuse, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_PLAYER, Route23_Movement_NetStepBack
@@ -278,7 +288,7 @@ Route23_EventScript_Guard3NetOpen::
 Route23_EventScript_Guard4Net::
 	lockall
 	call Trinity_EventScript_CountKantoBadges
-	goto_if_ge VAR_TEMP_A, 4, Route23_EventScript_Guard4NetOpen
+	goto_if_ge VAR_TEMP_A, 5, Route23_EventScript_Guard4NetOpen
 	msgbox Route23_Text_Guard4Refuse, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_PLAYER, Route23_Movement_NetStepBack
@@ -292,7 +302,7 @@ Route23_EventScript_Guard4NetOpen::
 Route23_EventScript_Guard5Net::
 	lockall
 	call Trinity_EventScript_CountKantoBadges
-	goto_if_ge VAR_TEMP_A, 5, Route23_EventScript_Guard5NetOpen
+	goto_if_ge VAR_TEMP_A, 6, Route23_EventScript_Guard5NetOpen
 	msgbox Route23_Text_Guard5Refuse, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_PLAYER, Route23_Movement_NetStepBack
@@ -306,7 +316,7 @@ Route23_EventScript_Guard5NetOpen::
 Route23_EventScript_Guard6Net::
 	lockall
 	call Trinity_EventScript_CountKantoBadges
-	goto_if_ge VAR_TEMP_A, 6, Route23_EventScript_Guard6NetOpen
+	goto_if_ge VAR_TEMP_A, 7, Route23_EventScript_Guard6NetOpen
 	msgbox Route23_Text_Guard6Refuse, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_PLAYER, Route23_Movement_NetStepBack
@@ -320,7 +330,7 @@ Route23_EventScript_Guard6NetOpen::
 Route23_EventScript_Guard7Net::
 	lockall
 	call Trinity_EventScript_CountKantoBadges
-	goto_if_ge VAR_TEMP_A, 7, Route23_EventScript_Guard7NetOpen
+	goto_if_ge VAR_TEMP_A, 8, Route23_EventScript_Guard7NetOpen
 	msgbox Route23_Text_Guard7Refuse, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_PLAYER, Route23_Movement_NetStepBack
