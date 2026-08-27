@@ -55,58 +55,58 @@ Route25_EventScript_SeaCottageSign::
 	end
 
 Route25_Text_FranklinSeen:
-	.string "…$"
+	.string "This route runs right up to the\ncape. Good climbing, good\lbattling.$"
 
 Route25_Text_FranklinBeaten:
-	.string "…$"
+	.string "Better climbing than my POKéMON\nbattled, apparently.$"
 
 Route25_Text_JoeySeen:
-	.string "…$"
+	.string "I've got a RATTATA in the top\npercentage of RATTATA!$"
 
 Route25_Text_JoeyBeaten:
-	.string "…$"
+	.string "Still top percentage. Just not\ntoday.$"
 
 Route25_Text_WayneSeen:
-	.string "…$"
+	.string "The SEA COTTAGE is up ahead.\nSomeone smart lives there.$"
 
 Route25_Text_WayneBeaten:
-	.string "…$"
+	.string "Should've asked him for battle\ntips first.$"
 
 Route25_Text_DanSeen:
-	.string "…$"
+	.string "You look like you're headed to\nCERULEAN. Long way to come for\la badge.$"
 
 Route25_Text_DanBeaten:
-	.string "…$"
+	.string "Guess it was worth the trip.$"
 
 Route25_Text_KelseySeen:
-	.string "…$"
+	.string "Picnicking here beats picnicking\nanywhere else in KANTO.$"
 
 Route25_Text_KelseyBeaten:
-	.string "…$"
+	.string "Even the sandwiches saw that\ncoming.$"
 
 Route25_Text_NobSeen:
-	.string "…$"
+	.string "Climbed every hill on this route\ntwice. Never lost my footing.$"
 
 Route25_Text_NobBeaten:
-	.string "…$"
+	.string "Lost something else, though.$"
 
 Route25_Text_FlintSeen:
-	.string "…$"
+	.string "Set up camp right here. The view\nof the cape's worth the walk.$"
 
 Route25_Text_FlintBeaten:
-	.string "…$"
+	.string "Worth the walk. Not worth the\nbattle, apparently.$"
 
 Route25_Text_ChadSeen:
-	.string "…$"
+	.string "Two LEAGUES and you're still\nwalking this route on foot?$"
 
 Route25_Text_ChadBeaten:
-	.string "…$"
+	.string "Fine. Foot traffic like that\nearns a loss.$"
 
 Route25_Text_HaleySeen:
-	.string "…$"
+	.string "Last trainer before the cape.\nMake it count.$"
 
 Route25_Text_HaleyBeaten:
-	.string "…$"
+	.string "It counted. Go see BILL.$"
 
 Route25_Text_Man:
 	.string "Hello, are you here alone?\pIf you're out at CERULEAN's cape…\nWell, it should be as a couple.$"

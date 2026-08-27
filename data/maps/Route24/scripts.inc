@@ -39,37 +39,37 @@ Route24_Text_Rocket:
 	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
 
 Route24_Text_EthanSeen:
-	.string "…$"
+	.string "This bridge has seen more\nbattles than the GYM has.$"
 
 Route24_Text_EthanBeaten:
-	.string "…$"
+	.string "Nugget Bridge, undefeated no\nmore.$"
 
 Route24_Text_ReliSeen:
-	.string "…$"
+	.string "Cross NUGGET BRIDGE, you fight\nevery trainer on it. House rule.$"
 
 Route24_Text_ReliBeaten:
-	.string "…$"
+	.string "Guess the house rule favors you\ntoday.$"
 
 Route24_Text_TimmySeen:
-	.string "…$"
+	.string "I've been camped on this bridge\nfor a WEEK waiting for a real\lchallenge.$"
 
 Route24_Text_TimmyBeaten:
-	.string "…$"
+	.string "That was it. That was the real\nchallenge.$"
 
 Route24_Text_AliSeen:
-	.string "…$"
+	.string "Careful, the current under this\nbridge runs faster than it looks.$"
 
 Route24_Text_AliBeaten:
-	.string "…$"
+	.string "Faster than you, too, apparently.$"
 
 Route24_Text_CaleSeen:
-	.string "…$"
+	.string "Caught half my BUG team right\nunder this bridge.$"
 
 Route24_Text_CaleBeaten:
-	.string "…$"
+	.string "Should've caught a stronger\nhalf.$"
 
 Route24_Text_ShaneSeen:
-	.string "…$"
+	.string "Last one on the bridge. Beat me\nand it's a clean sweep for you.$"
 
 Route24_Text_ShaneBeaten:
-	.string "…$"
+	.string "Clean sweep. NUGGET BRIDGE is\nyours.$"

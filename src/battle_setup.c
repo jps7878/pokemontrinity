@@ -517,6 +517,12 @@ void BattleSetup_StartLegendaryBattle(void)
     case SPECIES_ENTEI:
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_C_VS_LEGEND_BEAST);
         break;
+    // Trinity M5b S3: ZAPDOS, same MUS_RG_VS_LEGEND pairing as HO-OH/LUGIA just
+    // above. REQUIRED, not decorative, for the same reason as the beast case: an
+    // unlisted species falls to `default:` on the GROUDON body.
+    case SPECIES_ZAPDOS:
+        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RG_VS_LEGEND);
+        break;
     case SPECIES_MEW:
         CreateBattleStartTask(B_TRANSITION_GRID_SQUARES, MUS_VS_MEW);
         break;

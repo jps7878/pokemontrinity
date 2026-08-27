@@ -1304,14 +1304,14 @@
 #define FLAG_TRINITY_K_OLIVINE_BOBBY_HIDE    0x4BA // Trinity M5b S1: was FLAG_UNUSED_0x4BA -- object-visibility plumbing, OlivinePort's BOBBY. Dynamic, ON_TRANSITION-authored every load (GoldenrodCity_EventScript_SetBobbyVisibility pattern): visible iff FLAG_TRINITY_J_LEAGUE_CLEARED set AND VAR_TRINITY_JOHTO_ARC >= 10 AND FLAG_TRINITY_K_ARRIVED unset.
 #define FLAG_TRINITY_K_VERMILION_BOBBY_HIDE    0x4BB // Trinity M5b S1: was FLAG_UNUSED_0x4BB -- object-visibility plumbing, VermilionCity's addobject-only BOBBY session actor (the one arrival cutscene). Unconditionally setflag'd every VermilionCity_OnTransition (RadioTower5F_OnTransition's own Giovanni/Bobby treatment) so he never auto-spawns from his template; only the arrival scene's addobject ever shows him.
 #define FLAG_TRINITY_K_SABRINA_TM29    0x4BC // Trinity M5b S2: was FLAG_UNUSED_0x4BC -- G2 TM award guard (bag-full retry), FLAG_TRINITY_K_SURGE_TM24's pattern verbatim.
-#define FLAG_UNUSED_0x4BD                                           0x4BD // Unused Flag
-#define FLAG_UNUSED_0x4BE                                           0x4BE // Unused Flag
-#define FLAG_UNUSED_0x4BF                                           0x4BF // Unused Flag
-#define FLAG_UNUSED_0x4C0                                           0x4C0 // Unused Flag
-#define FLAG_UNUSED_0x4C1                                           0x4C1 // Unused Flag
-#define FLAG_UNUSED_0x4C2                                           0x4C2 // Unused Flag
-#define FLAG_UNUSED_0x4C3                                           0x4C3 // Unused Flag
-#define FLAG_UNUSED_0x4C4                                           0x4C4 // Unused Flag
+#define FLAG_TRINITY_K_MISTY_TM18    0x4BD // Trinity M5b S3: was FLAG_UNUSED_0x4BD -- G2 TM award guard (bag-full retry), FLAG_TRINITY_K_SURGE_TM24's pattern verbatim.
+#define FLAG_TRINITY_K_MACHINE_PART    0x4BE // Trinity M5b S3: was FLAG_UNUSED_0x4BE -- key-item-as-flag (M4b CianwoodPharmacy/SECRETPOTION precedent). Set on the CeruleanCity_Gym pool pickup, cleared when handed to the PowerPlant manager.
+#define FLAG_TRINITY_K_SABOTEUR_HIDE    0x4BF // Trinity M5b S3: was FLAG_UNUSED_0x4BF -- object-visibility plumbing, CeruleanCity_Gym's fleeing saboteur (R1 single-member cast shape). Dynamic, ON_TRANSITION-authored off VAR_TRINITY_SCENE_CERULEAN_SABOTEUR.
+#define FLAG_TRINITY_K_SABOTEUR_DONE    0x4C0 // Trinity M5b S3: was FLAG_UNUSED_0x4C0 -- terminal, the CeruleanCity_Gym saboteur scene has played. Gates the pool pickup.
+#define FLAG_TRINITY_K_ZAPDOS_HIDE    0x4C1 // Trinity M5b S3: was FLAG_UNUSED_0x4C1 -- object-visibility plumbing, PowerPlant's ZAPDOS (static-legendary contract clause 1).
+#define FLAG_TRINITY_K_ZAPDOS_RESOLVED    0x4C2 // Trinity M5b S3: was FLAG_UNUSED_0x4C2 -- terminal, static-legendary contract clause 3 (written on WON and on the CAUGHT fall-through).
+#define FLAG_TRINITY_K_PLANT_RESTORED    0x4C3 // Trinity M5b S3: was FLAG_UNUSED_0x4C3 -- terminal, the PowerPlant manager has the MACHINE PART back. Gates ZAPDOS.
+#define FLAG_TRINITY_K_CAVE_GUARD_HIDE    0x4C4 // Trinity M5b S3: was FLAG_UNUSED_0x4C4 -- object-visibility plumbing, CeruleanCity's Cerulean Cave mouth guard. Dynamic, ON_TRANSITION-authored: visible iff VAR_TRINITY_KANTO_ARC < 6.
 #define FLAG_UNUSED_0x4C5                                           0x4C5 // Unused Flag
 #define FLAG_UNUSED_0x4C6                                           0x4C6 // Unused Flag
 #define FLAG_UNUSED_0x4C7                                           0x4C7 // Unused Flag

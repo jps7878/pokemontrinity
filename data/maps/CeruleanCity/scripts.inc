@@ -1,5 +1,64 @@
 CeruleanCity_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, CeruleanCity_OnTransition
 	.byte 0
+
+@ ============================================================================
+@ Trinity M5b S3 -- CERULEAN CAVE MOUTH. Full decode:
+@ docs/superpowers/plans/m5b/03-cerulean-power-plant.md section 3.
+@
+@ The cave door (warp_events[7], (1,12)->MAP_CERULEAN_CAVE_1F#0) has exactly
+@ ONE walkable neighbour, (1,13) directly south (north/east/west all collision
+@ 1) -- a true one-tile chokepoint. T10 placed the guard object RIGHT ON that
+@ tile with flag "0" (always present, unconditional) -- the cave was
+@ permanently sealed in the shipped tree, a T10 placeholder state, not a
+@ finished gate.
+@
+@ THE CONTRACT'S COORDINATE RULE FORBIDS A RESTING NPC SEALING A CORRIDOR
+@ (established twice already: AZALEA's two chokepoint guards were moved one
+@ tile in M4b S4's fix round for exactly this; Route43Gate's own header states
+@ it as a rule, "a gate NPC never blocks the gate"). So the guard moves
+@ (1,13) -> (2,13) -- decoded col 0 elev 3 MB_NORMAL, adjacent, off the
+@ chokepoint, same one-tile-relocation shape as the AZALEA fix. He becomes
+@ pure flavour/warning; a coord_event at the now-empty (1,13) is the actual
+@ gate, mirroring Route28_EventScript_KantoGateCheck (this hack's established
+@ "story-gated one-way passage, no resting NPC" pattern) -- VAR_TEMP_1 == 0 is
+@ the "always fires" idiom (cleared to 0 by ClearTempFieldEventData on every
+@ map load, consumed synchronously in the same script run; trinity_kanto.inc's
+@ own C-COUNT header cites the identical reasoning for its scratch var).
+@
+@ Visibility: single-writer discipline -- S3 reads VAR_TRINITY_KANTO_ARC,
+@ writes nothing to it. Visible pre-arc6 (warning, backed up by the
+@ coord_event regardless of whether the player detours around him);
+@ hidden at arc>=6 ("he steps aside/vanishes").
+@ ============================================================================
+CeruleanCity_OnTransition::
+	goto_if_ge VAR_TRINITY_KANTO_ARC, 6, CeruleanCity_EventScript_HideCaveGuard
+	clearflag FLAG_TRINITY_K_CAVE_GUARD_HIDE
+	end
+
+CeruleanCity_EventScript_HideCaveGuard::
+	setflag FLAG_TRINITY_K_CAVE_GUARD_HIDE
+	end
+
+CeruleanCity_EventScript_CaveMouthCheck::
+	goto_if_ge VAR_TRINITY_KANTO_ARC, 6, CeruleanCity_EventScript_CaveMouthOpen
+	lockall
+	msgbox CeruleanCity_Text_CaveMouthNotYet, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_PLAYER, CeruleanCity_Movement_CaveMouthStepBack
+	waitmovement 0
+	releaseall
+	end
+
+CeruleanCity_EventScript_CaveMouthOpen::
+	end
+
+CeruleanCity_Movement_CaveMouthStepBack:
+	walk_down
+	step_end
+
+CeruleanCity_Text_CaveMouthNotYet:
+	.string "The air past here feels wrong\nfor you -- like the cave itself\lis waiting on somebody else\lfirst.$"
 
 CeruleanCity_EventScript_Policeman::
 	msgbox CeruleanCity_Text_Policeman, MSGBOX_NPC

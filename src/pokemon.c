@@ -6103,6 +6103,14 @@ u16 GetBattleBGM(void)
         case SPECIES_RAIKOU:
         case SPECIES_ENTEI:
             return MUS_C_VS_LEGEND_BEAST;
+        // Trinity M5b S3: ZAPDOS. This case is belt-and-braces documentation
+        // parity, not a behavioural fix -- the default below already returns
+        // MUS_RG_VS_LEGEND, the same answer HO-OH/LUGIA rely on without a case
+        // of their own. Kept in step with BattleSetup_StartLegendaryBattle's
+        // switch (src/battle_setup.c), which is what actually chooses the song
+        // on the field path.
+        case SPECIES_ZAPDOS:
+            return MUS_RG_VS_LEGEND;
         default:
             return MUS_RG_VS_LEGEND;
         }
