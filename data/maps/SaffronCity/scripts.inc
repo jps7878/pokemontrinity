@@ -57,20 +57,27 @@ SaffronCity_EventScript_TrainerFanClubSign::
 	msgbox SaffronCity_Text_TrainerFanClubSign, MSGBOX_SIGN
 	end
 
+@ Trinity M5b S2: the FRLG-ported lines here presupposed the SILPH CO. Rocket
+@ takeover had already been cleared -- true in FRLG canon (beating Silph Co.
+@ is a hard prerequisite to reaching Saffron there), false in Trinity's own
+@ arc, where "Act III's raid is Celadon S6/Viridian S10" (no Saffron/Silph
+@ raid exists yet at this point in the story). Rewritten to plain pre-raid
+@ city-life flavor; see docs/superpowers/plans/m5b/02-saffron-chapter.md
+@ section 5.4.
 SaffronCity_Text_Youngster:
-	.string "Yeah! TEAM ROCKET is gone!\nIt's safe to go out again!$"
+	.string "SAFFRON's the biggest city in\nKANTO. Get lost here once, you'll\lnever admit it.$"
 
 SaffronCity_Text_WorkerM:
-	.string "You beat TEAM ROCKET all alone?\nThat's amazing!$"
+	.string "SILPH CO. keeps this whole city\nrunning. Half of KANTO's business\lgoes through their front door.$"
 
 SaffronCity_Text_Man:
-	.string "I saw the ROCKET BOSS escaping\nSILPH's building.$"
+	.string "Word is a CHAMPION cleared JOHTO's\nLEAGUE. Now they're working their\lway through us too.$"
 
 SaffronCity_Text_Boy:
-	.string "I flew here on my PIDGEOT when\nI read about SILPH.\pIt's already over?\nI missed the media action…$"
+	.string "I flew here on my PIDGEOT just to\nsee SAFFRON. It's noisier than I\lpictured.$"
 
 SaffronCity_Text_Lass:
-	.string "People fled from here in droves\nwhen those ROCKETS came.\pThey should be flocking back to\nSAFFRON now.$"
+	.string "Everyone in SAFFRON's always in\na hurry. I like it that way.$"
 
 SaffronCity_Text_CitySign:
 	.string "SAFFRON CITY\nShining, Golden Land of Commerce$"

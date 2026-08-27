@@ -6,4 +6,4 @@ SaffronCity_MrPsychicsHouse_EventScript_MrPsychic::
 	end
 
 SaffronCity_MrPsychicsHouse_Text_MrPsychic:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "I don't need cards or a crystal\nball to tell you something big is\lcoming. I can just feel it.$"

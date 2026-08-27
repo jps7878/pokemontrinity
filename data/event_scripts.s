@@ -812,6 +812,7 @@ gStdScripts_End::
 	.include "data/maps/SaffronCity_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/SaffronCity_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/SaffronCity_PokemonTrainerFanClub/scripts.inc"
+	.include "data/maps/SaffronMagnetTrainStation/scripts.inc"
 	.include "data/maps/SeafoamIslands_1F/scripts.inc"
 	.include "data/maps/SeafoamIslands_B1F/scripts.inc"
 	.include "data/maps/SeafoamIslands_B2F/scripts.inc"

@@ -207,6 +207,13 @@
       "elevation": 0,
       "dest_map": "MAP_SAFFRON_CITY_POKEMON_TRAINER_FAN_CLUB",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 34,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_SAFFRON_MAGNET_TRAIN_STATION",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],
