@@ -13,6 +13,24 @@ PalletTown_ProfessorOaksLab_EventScript_Aide2::
 	msgbox PalletTown_ProfessorOaksLab_Text_Aide2, MSGBOX_NPC
 	end
 
+@ ============================================================================
+@ Trinity M5b S5 -- OAK himself. T10's port dropped him entirely (no object at
+@ all, not merely hidden) along with FRLG's whole VAR_MAP_SCENE_PALLET_TOWN_
+@ PROFESSOR_OAKS_LAB state machine (starter selection values 1-6, National Dex
+@ ceremony values 7-9) -- both skipped per the brief, an Act III player already
+@ has a starter and a Pokedex. This is a plain, permanent, ungated flavour NPC:
+@ a dex-praise beat for a three-region trainer, nothing else. (6,3) is his own
+@ FRLG idle-desk coordinate (pokefirered's own map.json), re-decoded fresh
+@ against this tree: col=0 elev=3 MB_NORMAL, free. No OBJ_EVENT_GFX_PROF_OAK
+@ exists in this tree (grep, 0 hits) -- OBJ_EVENT_GFX_PROF_BIRCH substitutes,
+@ the same cross-professor substitution already shipped once in this tree
+@ (ElmsLab uses BIRCH for ELM). No local_id needed: nothing scripts
+@ removeobject/applymovement against him (S4's Brock precedent).
+@ ============================================================================
+PalletTown_ProfessorOaksLab_EventScript_Oak::
+	msgbox PalletTown_ProfessorOaksLab_Text_Oak, MSGBOX_NPC
+	end
+
 PalletTown_ProfessorOaksLab_EventScript_Computer::
 	msgbox PalletTown_ProfessorOaksLab_Text_Computer, MSGBOX_SIGN
 	end
@@ -47,5 +65,12 @@ PalletTown_ProfessorOaksLab_Text_Computer_2:
 PalletTown_ProfessorOaksLab_Text_LeftSign:
 	.string "Press START to open the MENU!$"
 
+@ Trinity M5b S5: was a verbatim, out-of-context copy of Aide1's own
+@ "grandkids" gossip line on what reads as a lab bookshelf/terminal sign --
+@ same defect class as S4's Pewter museum fix (exact-duplicate boilerplate
+@ stuck somewhere it doesn't fit). Replaced with real in-context lab flavour.
 PalletTown_ProfessorOaksLab_Text_RightSign:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "A bookshelf packed with research\nnotes on POKéMON from three\lregions.$"
+
+PalletTown_ProfessorOaksLab_Text_Oak:
+	.string "Ah, {PLAYER}! I've had my eye on\nyour POKéDEX data since the HOENN\lsurvey started forwarding it here.\pA full HOENN register, a full\nJOHTO register, and now you're\lwalking KANTO's routes with the\lsame POKé BALLS on your belt.\pI won't pretend I'm not curious\nhow far you'll take it. Three\lregions, one TRAINER. Remarkable\lwork.$"
