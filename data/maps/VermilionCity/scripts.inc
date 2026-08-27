@@ -35,11 +35,27 @@ VermilionCity_OnFrame:
 @ permanent SAILOR stands at (23,33) facing down; BOBBY's session template
 @ sits at (22,33), free, same row -- all three tiles read as one straight
 @ line on the open deck, well inside the 15x10 camera window.
-@ Once-only by construction: gated on FLAG_TRINITY_K_ARRIVED at the arm
-@ step above, and this scene is the flag's one writer -- it cannot re-fire.
+@ Fix round 1 (review Finding 1, CRITICAL): MAP_SCRIPT_ON_FRAME_TABLE fires
+@ EVERY FRAME, not once (S7's own pin) -- VAR_TEMP_1 must be disarmed as the
+@ scene's own SECOND instruction, exactly the OlivinePort template's shape
+@ (OlivinePort_EventScript_AideArrival's `setvar VAR_TEMP_1, 0` immediately
+@ after `lockall`). Without it, TryRunOnFrameMapScript re-evaluates the
+@ table every frame after releaseall, VAR_TEMP_1 is still 1, and the whole
+@ scene (including a bare addobject with no flag check) relaunches forever.
+@ The corrected claim: once-only because arming ITSELF is now one-shot
+@ (VAR_TEMP_1 disarmed here), AND FLAG_TRINITY_K_ARRIVED (set at the end)
+@ keeps ON_TRANSITION from ever re-arming it on a later map load.
 VermilionCity_EventScript_Arrival::
 	lockall
+	setvar VAR_TEMP_1, 0
+	@ Fix round 1 (review Finding 3): R4 fade sandwich around the addobject,
+	@ exact RadioTower5F precedent ("R4 fade: nothing pops",
+	@ RadioTower5F/scripts.inc:368-374) -- BOBBY otherwise pops into existence
+	@ two tiles from the player, camera-center, with no diegetic cover.
+	fadescreen FADE_TO_BLACK
 	addobject LOCALID_KANTO_VERMILION_BOBBY
+	delay 20
+	fadescreen FADE_FROM_BLACK
 	turnobject LOCALID_KANTO_VERMILION_SAILOR, DIR_EAST
 	turnobject LOCALID_KANTO_VERMILION_BOBBY, DIR_EAST
 	msgbox VermilionCity_Text_SailorWelcome, MSGBOX_DEFAULT

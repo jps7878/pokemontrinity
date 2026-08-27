@@ -65,21 +65,137 @@ VermilionCity_Gym_OnTransition::
 VermilionCity_Gym_EventScript_SkipRoll::
 	end
 
-@ SWITCH1_ID, SWITCH2_ID <- two DISTINCT random values in 1..15. `random 15`
-@ writes VAR_RESULT in [0,15); +1 shifts to a trash-can id. If the second
-@ roll ties the first, bump by one and wrap 16 -> 1 -- O(1), no retry loop.
+@ ============================================================================
+@ Fix round 1 (review Finding 2, Important, RULING): SWITCH2_ID is NOT a
+@ uniform-random 1..15 pick -- that made the informed second guess ~1/14
+@ instead of FRLG's real ~1/3, roughly 5x longer than canon, and the
+@ "faithful" claim in the sub-plan/report was wrong. Restored FRLG's actual
+@ adjacency rule (pokefirered src/field_specials.c:552-650,
+@ SetVermilionTrashCans): SWITCH2 is always an orthogonal grid-neighbor of
+@ SWITCH1 on the 5x3 trash-can layout, picked uniformly among that cell's
+@ valid neighbors (2 for a corner, 3 for an edge, 4 for the interior
+@ three), edge-clamped by construction (never computed out of range, so
+@ FRLG's own dead ">15" safety clamp -- verified unreachable for every one
+@ of the 15 cases in its C source -- has no analogue needed here).
+@
+@ GRID (id = (row-1)*5 + col, matching this map's own TrashCan1..15
+@ bg_events at x=1,3,5,7,9 / y=10,12,14):
+@     1  2  3  4  5
+@     6  7  8  9 10
+@    11 12 13 14 15
+@
+@ DERIVATION TABLE (per SWITCH1, its valid SWITCH2 set -- cross-checked
+@ 1:1 against every case of the FRLG switch statement):
+@   1:{2,6}      2:{1,3,7}     3:{2,4,8}     4:{3,5,9}    5:{4,10}
+@   6:{1,7,11}   7:{2,6,8,12}  8:{3,7,9,13}  9:{4,8,10,14} 10:{5,9,15}
+@  11:{6,12}    12:{7,11,13}  13:{8,12,14}  14:{9,13,15}  15:{10,14}
+@
+@ Implementation mirrors FRLG's own shape exactly: SWITCH2_ID <- SWITCH1_ID,
+@ then one of four shared deltas (+-1, +-5, the grid's own row/col stride)
+@ is applied, chosen by a `random <n>` sized to that position's neighbor
+@ count (2/3/3/4, same as FRLG's Random()%2, %3, %4).
+@ ============================================================================
 VermilionCity_Gym_EventScript_RollSwitches::
 	random 15
 	addvar VAR_RESULT, 1
 	copyvar SWITCH1_ID, VAR_RESULT
-	random 15
-	addvar VAR_RESULT, 1
-	copyvar SWITCH2_ID, VAR_RESULT
-	goto_if_ne SWITCH2_ID, SWITCH1_ID, VermilionCity_Gym_EventScript_RollDone
+	copyvar SWITCH2_ID, SWITCH1_ID
+	goto_if_eq SWITCH1_ID, 1, VermilionCity_Gym_EventScript_Neighbor_CornerTL
+	goto_if_eq SWITCH1_ID, 2, VermilionCity_Gym_EventScript_Neighbor_EdgeTop
+	goto_if_eq SWITCH1_ID, 3, VermilionCity_Gym_EventScript_Neighbor_EdgeTop
+	goto_if_eq SWITCH1_ID, 4, VermilionCity_Gym_EventScript_Neighbor_EdgeTop
+	goto_if_eq SWITCH1_ID, 5, VermilionCity_Gym_EventScript_Neighbor_CornerTR
+	goto_if_eq SWITCH1_ID, 6, VermilionCity_Gym_EventScript_Neighbor_EdgeLeft
+	goto_if_eq SWITCH1_ID, 7, VermilionCity_Gym_EventScript_Neighbor_Center
+	goto_if_eq SWITCH1_ID, 8, VermilionCity_Gym_EventScript_Neighbor_Center
+	goto_if_eq SWITCH1_ID, 9, VermilionCity_Gym_EventScript_Neighbor_Center
+	goto_if_eq SWITCH1_ID, 10, VermilionCity_Gym_EventScript_Neighbor_EdgeRight
+	goto_if_eq SWITCH1_ID, 11, VermilionCity_Gym_EventScript_Neighbor_CornerBL
+	goto_if_eq SWITCH1_ID, 12, VermilionCity_Gym_EventScript_Neighbor_EdgeBottom
+	goto_if_eq SWITCH1_ID, 13, VermilionCity_Gym_EventScript_Neighbor_EdgeBottom
+	goto_if_eq SWITCH1_ID, 14, VermilionCity_Gym_EventScript_Neighbor_EdgeBottom
+	@ SWITCH1_ID == 15, the only value not tested above (random 15 + addvar 1
+	@ bounds it to 1..15) -- bottom-right corner.
+	goto VermilionCity_Gym_EventScript_Neighbor_CornerBR
+
+@ id 1 {2,6}: E or S.
+VermilionCity_Gym_EventScript_Neighbor_CornerTL::
+	random 2
+	goto_if_eq VAR_RESULT, 0, VermilionCity_Gym_EventScript_SwitchPlus1
+	goto VermilionCity_Gym_EventScript_SwitchPlus5
+
+@ id 5 {4,10}: S or W.
+VermilionCity_Gym_EventScript_Neighbor_CornerTR::
+	random 2
+	goto_if_eq VAR_RESULT, 0, VermilionCity_Gym_EventScript_SwitchPlus5
+	goto VermilionCity_Gym_EventScript_SwitchMinus1
+
+@ id 11 {6,12}: N or E.
+VermilionCity_Gym_EventScript_Neighbor_CornerBL::
+	random 2
+	goto_if_eq VAR_RESULT, 0, VermilionCity_Gym_EventScript_SwitchMinus5
+	goto VermilionCity_Gym_EventScript_SwitchPlus1
+
+@ id 15 {10,14}: N or W.
+VermilionCity_Gym_EventScript_Neighbor_CornerBR::
+	random 2
+	goto_if_eq VAR_RESULT, 0, VermilionCity_Gym_EventScript_SwitchMinus5
+	goto VermilionCity_Gym_EventScript_SwitchMinus1
+
+@ ids 2,3,4 {W,E,S}: E, S, or W.
+VermilionCity_Gym_EventScript_Neighbor_EdgeTop::
+	random 3
+	goto_if_eq VAR_RESULT, 0, VermilionCity_Gym_EventScript_SwitchPlus1
+	goto_if_eq VAR_RESULT, 1, VermilionCity_Gym_EventScript_SwitchPlus5
+	goto VermilionCity_Gym_EventScript_SwitchMinus1
+
+@ id 6 {1,7,11}: N, E, or S.
+VermilionCity_Gym_EventScript_Neighbor_EdgeLeft::
+	random 3
+	goto_if_eq VAR_RESULT, 0, VermilionCity_Gym_EventScript_SwitchMinus5
+	goto_if_eq VAR_RESULT, 1, VermilionCity_Gym_EventScript_SwitchPlus1
+	goto VermilionCity_Gym_EventScript_SwitchPlus5
+
+@ id 10 {5,9,15}: N, S, or W.
+VermilionCity_Gym_EventScript_Neighbor_EdgeRight::
+	random 3
+	goto_if_eq VAR_RESULT, 0, VermilionCity_Gym_EventScript_SwitchMinus5
+	goto_if_eq VAR_RESULT, 1, VermilionCity_Gym_EventScript_SwitchPlus5
+	goto VermilionCity_Gym_EventScript_SwitchMinus1
+
+@ ids 12,13,14 {N,E,W}: N, E, or W.
+VermilionCity_Gym_EventScript_Neighbor_EdgeBottom::
+	random 3
+	goto_if_eq VAR_RESULT, 0, VermilionCity_Gym_EventScript_SwitchMinus5
+	goto_if_eq VAR_RESULT, 1, VermilionCity_Gym_EventScript_SwitchPlus1
+	goto VermilionCity_Gym_EventScript_SwitchMinus1
+
+@ ids 7,8,9 {N,W,E,S}: N, E, S, or W.
+VermilionCity_Gym_EventScript_Neighbor_Center::
+	random 4
+	goto_if_eq VAR_RESULT, 0, VermilionCity_Gym_EventScript_SwitchMinus5
+	goto_if_eq VAR_RESULT, 1, VermilionCity_Gym_EventScript_SwitchPlus1
+	goto_if_eq VAR_RESULT, 2, VermilionCity_Gym_EventScript_SwitchPlus5
+	goto VermilionCity_Gym_EventScript_SwitchMinus1
+
+@ Four shared deltas, reached only via `goto` (never `call`) from the shape
+@ handlers above, so `return` here unwinds straight to RollSwitches' own
+@ caller (VermilionCity_Gym_OnTransition / TrySwitchTwo's reset), one call
+@ frame, matching RollSwitches' own contract.
+VermilionCity_Gym_EventScript_SwitchPlus1::
 	addvar SWITCH2_ID, 1
-	goto_if_le SWITCH2_ID, 15, VermilionCity_Gym_EventScript_RollDone
-	setvar SWITCH2_ID, 1
-VermilionCity_Gym_EventScript_RollDone::
+	return
+
+VermilionCity_Gym_EventScript_SwitchMinus1::
+	subvar SWITCH2_ID, 1
+	return
+
+VermilionCity_Gym_EventScript_SwitchPlus5::
+	addvar SWITCH2_ID, 5
+	return
+
+VermilionCity_Gym_EventScript_SwitchMinus5::
+	subvar SWITCH2_ID, 5
 	return
 
 VermilionCity_Gym_EventScript_TrashCan1::
@@ -340,7 +456,8 @@ VermilionCity_Gym_Text_ThunderBadgeInfo:
 	.string "It just means KANTO's noticed.\n"
 	.string "Seven of these, and VIRIDIAN has\l"
 	.string "to open the door.\p"
-	.string "That's one. Take this too.$"
+	.string "That's the THUNDERBADGE.\n"
+	.string "Take this too.$"
 
 VermilionCity_Gym_Text_ExplainThunderbolt:
 	.string "SURGE: TM24. THUNDERBOLT.\p"
