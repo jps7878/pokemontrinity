@@ -51,6 +51,38 @@ ViridianCity_EventScript_HideBlue::
 @ TryStartWarpEventScript fire the real door warp) exactly like Route26's/
 @ Cerulean's own bare `end` open branches -- this is what "the coord_event
 @ gates entry, it doesn't replace the warp" means mechanically.
+@
+@ FIX ROUND 1 (review I1): THE BOUNCE MUST BE DIRECTION-AWARE, NOT walk_down.
+@ (36,11) is a pure east-west thru-tile, not a dead end: north is the door
+@ (36,10, collision 1, never actually stood on), and south is (36,12),
+@ decoded col=1 elev=0 MB_JUMP_SOUTH -- a one-way ledge TOP, part of a whole
+@ row-12 ledge band ((34,12)/(35,12)/(37,12)/(38,12) all the same behaviour).
+@ `applymovement`'s walk_down ignores collision/ledge rules entirely (it is
+@ forced movement), so the original `walk_down` bounce silently parked the
+@ player ON that impassable ledge top -- and since a jump ledge only permits
+@ entry FROM THE MATCHING DIRECTION, the only way off it again was a forced
+@ south hop into the lower street, nowhere near where they started.
+@ Because (36,11)'s only real neighbours are (35,11)/(37,11) (east-west),
+@ EVERY arrival here -- ordinary lateral foot traffic included, not just a
+@ genuine door attempt -- is lateral, and the fix must bounce the player back
+@ toward the side they arrived from, not toward a fixed direction that
+@ happens to be a ledge. GetPlayerFacingDirection() is reliable for this:
+@ movement sets facing to the direction of travel, and TryStartCoordEventScript
+@ runs on the SAME frame the step completes (see the I2 note above the sign
+@ script) -- before any subsequent turn/input could change it. A player
+@ facing EAST on arrival was walking east, i.e. came FROM THE WEST (35,11),
+@ so they bounce WEST, back the way they came; anyone else (WEST -- came
+@ from 37,11 -- or the defensive NORTH/SOUTH cases, which should not occur on
+@ a lateral-only tile) bounces EAST to (37,11). Both landing tiles decoded
+@ fresh: (35,11) col=0 elev=3 MB_NORMAL, (37,11) col=0 elev=3 MB_NORMAL --
+@ both real, standable street tiles, neither the ledge, neither sealing
+@ anything (reach_check.py re-run post-fix, see the fix report).
+@ The seal itself stays airtight on purpose: a lateral entrant who then
+@ turns to face the door and presses up would reach TryDoorWarp without
+@ re-triggering the coord_event (coord_events fire on tile ENTRY, not on
+@ turning in place) -- so the refusal must keep firing on every arrival
+@ regardless of facing, exactly as shipped. Only the bounce direction was
+@ wrong, not the "fire on every entry" design.
 @ ============================================================================
 ViridianCity_EventScript_GymDoorCheck::
 	call Trinity_EventScript_CountKantoBadges
@@ -62,13 +94,28 @@ ViridianCity_EventScript_GymDoorRefuse::
 	lockall
 	msgbox ViridianCity_Text_GymDoorRefuse, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_PLAYER, ViridianCity_Movement_GymDoorStepBack
+	specialvar VAR_RESULT, GetPlayerFacingDirection
+	goto_if_eq VAR_RESULT, DIR_EAST, ViridianCity_EventScript_GymDoorBounceWest
+	applymovement LOCALID_PLAYER, ViridianCity_Movement_GymDoorBounceEast
 	waitmovement 0
 	releaseall
 	end
 
-ViridianCity_Movement_GymDoorStepBack:
-	walk_down
+@ Facing EAST on arrival == came from (35,11) -- bounce back west.
+ViridianCity_EventScript_GymDoorBounceWest::
+	applymovement LOCALID_PLAYER, ViridianCity_Movement_GymDoorBounceWest
+	waitmovement 0
+	releaseall
+	end
+
+@ Every other facing (WEST -- came from (37,11) -- and the defensive
+@ NORTH/SOUTH default) bounces east. Falls through from GymDoorRefuse above.
+ViridianCity_Movement_GymDoorBounceEast:
+	walk_right
+	step_end
+
+ViridianCity_Movement_GymDoorBounceWest:
+	walk_left
 	step_end
 
 @ ============================================================================
@@ -160,6 +207,23 @@ ViridianCity_EventScript_CitySign::
 	msgbox ViridianCity_Text_CitySign, MSGBOX_SIGN
 	end
 
+@ FIX ROUND 1 (review I2): this bg_event sign is at (36,10), read by facing
+@ north from (36,11) and pressing A -- but TryStartCoordEventScript
+@ (field_control_avatar.c:611-612, called from TryStartStepBasedScript, which
+@ only runs `if (input->tookStep)`) fires on the SAME frame the player's step
+@ onto (36,11) completes, strictly BEFORE ProcessPlayerFieldInput's later
+@ `pressedAButton` check that would read this sign. While the gate refuses,
+@ that coord_event ALWAYS resolves to a real effect (lockall+msgbox+bounce,
+@ see GymDoorRefuse above) and immediately ejects the player back off the
+@ tile -- so nobody sealed ever gets an idle frame standing on (36,11) to
+@ face north and press A here. This sign is genuinely UNREACHABLE while
+@ sealed, not merely "a separate input path" as originally (wrongly) claimed
+@ in the sub-plan/report -- corrected there too. Its text is written for the
+@ OPEN state only, where it IS reachable (the pass-through branch is a bare
+@ `end`, so a player standing on (36,11) once open is never interrupted).
+@ The sealed-state flavour this sign used to carry is folded into
+@ GymDoorRefuse's own msgbox instead, since that is the ONLY text a sealed
+@ player can actually see here.
 ViridianCity_EventScript_GymDoor::
 	msgbox ViridianCity_Text_GymDoor, MSGBOX_SIGN
 	end
@@ -196,11 +260,13 @@ ViridianCity_Text_TrainerTips2:
 ViridianCity_Text_CitySign:
 	.string "VIRIDIAN CITY \nThe Eternally Green Paradise$"
 
+@ OPEN-state nameplate only (see the FIX ROUND 1 note on the script above) --
+@ coordinated with, but not spoiling, S10's own GIOVANNI reveal.
 ViridianCity_Text_GymDoor:
-	.string "VIRIDIAN GYM's doors are sealed\nshut. Whoever's in there isn't\lopen for business.$"
+	.string "VIRIDIAN CITY POKéMON GYM\nThe leader's name isn't posted.\lEveryone who's been inside says\lit should be.$"
 
 ViridianCity_Text_GymDoorRefuse:
-	.string "Something slams against the door\nfrom the inside.\pA rough voice shouts for you to\nget lost -- TEAM ROCKET doesn't\ltake visitors.\pYou back away from the door.$"
+	.string "VIRIDIAN GYM's doors are sealed\nshut. Something slams against them\lfrom the inside.\pA rough voice shouts for you to\nget lost -- TEAM ROCKET doesn't\ltake visitors.\pYou back away from the door.$"
 
 ViridianCity_Text_BlueSeen:
 	.string "So it's really you.\pTwo Leagues down and you show up\nHERE, of all places. Right in\lfront of my town's gym.\pI've got some things to settle\nbefore you go anywhere near that\ldoor.$"

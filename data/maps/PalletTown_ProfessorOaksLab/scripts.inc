@@ -72,5 +72,9 @@ PalletTown_ProfessorOaksLab_Text_LeftSign:
 PalletTown_ProfessorOaksLab_Text_RightSign:
 	.string "A bookshelf packed with research\nnotes on POKéMON from three\lregions.$"
 
+@ FIX ROUND 1 (review M2, folded minor): "a full HOENN register, a full JOHTO
+@ register" was an underived factual claim about the player's own POKéDEX --
+@ nothing in this tree gates or checks dex completion. Reworded to praise the
+@ journey itself, not an unverified completion state.
 PalletTown_ProfessorOaksLab_Text_Oak:
-	.string "Ah, {PLAYER}! I've had my eye on\nyour POKéDEX data since the HOENN\lsurvey started forwarding it here.\pA full HOENN register, a full\nJOHTO register, and now you're\lwalking KANTO's routes with the\lsame POKé BALLS on your belt.\pI won't pretend I'm not curious\nhow far you'll take it. Three\lregions, one TRAINER. Remarkable\lwork.$"
+	.string "Ah, {PLAYER}! I've had my eye on\nyour POKéDEX data since the HOENN\lsurvey started forwarding it here.\pHOENN's entries, JOHTO's entries,\nand now you're walking KANTO's\lroutes with the same POKé BALLS\lon your belt.\pI won't pretend I'm not curious\nhow far you'll take it. Three\lregions, one TRAINER. Remarkable\lwork.$"
