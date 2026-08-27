@@ -81,15 +81,35 @@ SaffronCity_Gym_EventScript_Tyron::
 	end
 
 @ ============================================================================
-@ G4 -- the guide. Roster verified against trainers.party + species_info.h +
-@ src/data/types_info.h this session: Espeon/MrMime/Hypno/Alakazam (pure
-@ PSYCHIC), Jynx (ICE/PSYCHIC), Slowbro (WATER/PSYCHIC), all L82-84. TYPE_BUG
-@ row col=PSYCHIC = X(2.0) and TYPE_DARK row col=PSYCHIC = X(2.0), both flat
-@ (no P_UPDATED_STATS-style config macro) -- uniformly 2x across her whole
-@ six, since the mixed types' second half is never itself Bug/Dark-resistant.
+@ G4 -- the guide. Roster re-verified against trainers.party +
+@ src/data/pokemon/species_info/gen_1_families.h + src/data/types_info.h,
+@ ALL SIX individually (fix round: the first pass wrongly called MR. MIME
+@ pure PSYCHIC by assumption instead of checking its own .types line).
+@
+@ Per-mon .types, checked for #if P_UPDATED_TYPES conditionals on every one:
+@   ESPEON (18212)   PSYCHIC only, unconditional
+@   MR. MIME (15761) #if P_UPDATED_TYPES >= GEN_6: PSYCHIC/FAIRY -- and this
+@                     build's config/pokemon.h sets P_UPDATED_TYPES GEN_LATEST,
+@                     so the FAIRY branch is what's actually compiled
+@   JYNX (16372)     ICE/PSYCHIC, unconditional
+@   HYPNO (12505)    PSYCHIC only, unconditional
+@   SLOWBRO (10192)  WATER/PSYCHIC, unconditional
+@   ALAKAZAM (8491)  PSYCHIC only, unconditional
+@ All L82-84.
+@
+@ TYPE_BUG row col=PSYCHIC(15) = X(2.0); TYPE_DARK row col=PSYCHIC(15) =
+@ X(2.0) -- both flat/unconditional. TYPE_BUG row col=FAIRY(19) = X(0.5);
+@ TYPE_DARK row col=FAIRY(19) = X(0.5) -- ALSO both flat. Per mon:
+@   ESPEON/HYPNO/ALAKAZAM (no 2nd type): BUG 2.0x1=2.0, DARK 2.0x1=2.0
+@   JYNX (ICE 2nd type, BUG/DARK vs ICE both neutral): BUG 2.0, DARK 2.0
+@   SLOWBRO (WATER 2nd type, BUG/DARK vs WATER both neutral): BUG 2.0, DARK 2.0
+@   MR. MIME (FAIRY 2nd type): BUG 2.0x0.5=1.0 (NEUTRAL), DARK 2.0x0.5=1.0
+@     (NEUTRAL) -- FAIRY's resistance to both exactly cancels PSYCHIC's own
+@     weakness to them. The ONE exception in the whole six; named in the
+@     guide's own text below, not hedged into invisibility.
 @ TYPE_GHOST's column is a conditional macro (PSY_RS) in this build, so it is
 @ deliberately NOT claimed here (the S3/S4 "verify every factual claim"
-@ lesson -- state only the unconditional floor).
+@ lesson -- state only what was actually checked, not assumed).
 @ ============================================================================
 SaffronCity_Gym_EventScript_GymGuy::
 	lock
@@ -257,9 +277,9 @@ SaffronCity_Gym_Text_GymGuyAdvice:
 	.string "ESPEON, MR. MIME, JYNX, HYPNO,\l"
 	.string "SLOWBRO, ALAKAZAM. LEVEL 82 to\l"
 	.string "84.\p"
-	.string "BUG and DARK-type moves are your\n"
-	.string "answer. Every one of her POKéMON\l"
-	.string "takes double from them.\p"
+	.string "BUG and DARK-type moves hit five\n"
+	.string "of the six hard. MR. MIME's\l"
+	.string "FAIRY half shrugs both off.\p"
 	.string "Oh -- and the floor isn't just a\n"
 	.string "floor. Watch your step.$"
 
