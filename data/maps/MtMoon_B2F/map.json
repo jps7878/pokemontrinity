@@ -25,7 +25,8 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtMoon_B2F_EventScript_DomeFossil",
-      "flag": "0"
+      "flag": "FLAG_TRINITY_K_MTMOON_DOME_FOSSIL_HIDE",
+      "local_id": "LOCALID_KANTO_MTMOON_B2F_DOME_FOSSIL"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_FOSSIL",
@@ -38,7 +39,8 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtMoon_B2F_EventScript_HelixFossil",
-      "flag": "0"
+      "flag": "FLAG_TRINITY_K_MTMOON_HELIX_FOSSIL_HIDE",
+      "local_id": "LOCALID_KANTO_MTMOON_B2F_HELIX_FOSSIL"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",

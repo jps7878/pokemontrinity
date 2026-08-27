@@ -79,13 +79,20 @@ PewterCity_Gym_EventScript_GymGuyPostVictory::
 
 @ ============================================================================
 @ G5 -- the statues. (4,12)/(8,12) decode col=1 MB_SIGNPOST (T10-placed,
-@ correct). Read tiles NORTH (4,11)/(8,11) and SOUTH (4,13)/(8,13) BOTH
-@ decode dry MB_NORMAL -- Pewter has no water/hazard gimmick at all, so
-@ restricting ANY -> NORTH in map.json is a pure house-convention match
-@ (VioletGym's/VermilionCity_Gym's/CeruleanCity_Gym's own two-statue
-@ pattern), NOT a hazard-driven choice. FRLG's own source for all three
-@ ported Kanto gyms ships ANY -- stated honestly, not invented as a false
-@ geometry reason (the S3 false-decode lesson).
+@ correct). FIX ROUND (review M4): the two candidate approach tiles were
+@ mislabeled. `BG_EVENT_PLAYER_FACING_NORTH` requires the PLAYER's own
+@ facing direction to be DIR_NORTH at interact time
+@ (GetInteractedBackgroundEventScript, src/field_control_avatar.c:430) --
+@ i.e. the player must be standing SOUTH of the sign, looking up at it. So
+@ the tile this constraint actually uses is the SOUTH one, (4,13)/(8,13);
+@ the NORTH one, (4,11)/(8,11), plays no role under this constraint (it
+@ would need FACING_SOUTH instead). Both decode dry MB_NORMAL either way --
+@ Pewter has no water/hazard gimmick at all, so restricting ANY -> NORTH in
+@ map.json is a pure house-convention match (VioletGym's/VermilionCity_
+@ Gym's/CeruleanCity_Gym's own two-statue pattern), NOT a hazard-driven
+@ choice. FRLG's own source for all three ported Kanto gyms ships ANY --
+@ stated honestly, not invented as a false geometry reason (the S3
+@ false-decode lesson).
 @ ============================================================================
 PewterCity_Gym_EventScript_GymStatue::
 	lockall
@@ -138,8 +145,8 @@ PewterCity_Gym_Text_ExplainSandstorm:
 	.string "Whips up a storm that batters\n"
 	.string "anything that isn't ROCK, GROUND,\l"
 	.string "or STEEL. My kind of weather.\p"
-	.string "It's good for one use. Pick the\n"
-	.string "POKéMON carefully.$"
+	.string "Teach it to whoever you like.\n"
+	.string "It won't wear out.$"
 
 PewterCity_Gym_Text_BrockPostBattle::
 	.string "There are all kinds of TRAINERS out\n"

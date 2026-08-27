@@ -1313,9 +1313,9 @@
 #define FLAG_TRINITY_K_PLANT_RESTORED    0x4C3 // Trinity M5b S3: was FLAG_UNUSED_0x4C3 -- terminal, the PowerPlant manager has the MACHINE PART back. Gates ZAPDOS.
 #define FLAG_TRINITY_K_CAVE_GUARD_HIDE    0x4C4 // Trinity M5b S3: was FLAG_UNUSED_0x4C4 -- object-visibility plumbing, CeruleanCity's Cerulean Cave mouth guard. Dynamic, ON_TRANSITION-authored: visible iff VAR_TRINITY_KANTO_ARC < 6.
 #define FLAG_TRINITY_K_BROCK_TM37    0x4C5 // Trinity M5b S4: was FLAG_UNUSED_0x4C5 -- PewterCity_Gym Brock's TM37 (Sandstorm) award guard, bag-full retry.
-#define FLAG_UNUSED_0x4C6                                           0x4C6 // Unused Flag
-#define FLAG_UNUSED_0x4C7                                           0x4C7 // Unused Flag
-#define FLAG_UNUSED_0x4C8                                           0x4C8 // Unused Flag
+#define FLAG_TRINITY_K_MTMOON_DOME_FOSSIL_HIDE    0x4C6 // Trinity M5b S4 fix round (review C1): was FLAG_UNUSED_0x4C6 -- object-visibility plumbing, MtMoon_B2F's DOME FOSSIL. SET by removeobject's own engine co-sign (RemoveObjectEventByLocalIdAndMap -> FlagSet, src/event_object_movement.c:1537-1545) when either fossil is taken; CLEARED by MtMoon_B2F_OnTransition while unset. Mirrors pokefirered's own FLAG_HIDE_DOME_FOSSIL.
+#define FLAG_TRINITY_K_MTMOON_HELIX_FOSSIL_HIDE    0x4C7 // Trinity M5b S4 fix round (review C1): was FLAG_UNUSED_0x4C7 -- object-visibility plumbing, MtMoon_B2F's HELIX FOSSIL. SET by removeobject's own engine co-sign (RemoveObjectEventByLocalIdAndMap -> FlagSet, src/event_object_movement.c:1537-1545) when either fossil is taken; CLEARED by MtMoon_B2F_OnTransition while unset. Mirrors pokefirered's own FLAG_HIDE_HELIX_FOSSIL.
+#define FLAG_TRINITY_K_MTMOON_FOSSIL_TAKEN    0x4C8 // Trinity M5b S4 fix round (review C1): was FLAG_UNUSED_0x4C8 -- terminal, either fossil has been taken (both objects removed). Mirrors pokefirered's own FLAG_GOT_FOSSIL_FROM_MT_MOON.
 #define FLAG_UNUSED_0x4C9                                           0x4C9 // Unused Flag
 #define FLAG_UNUSED_0x4CA                                           0x4CA // Unused Flag
 #define FLAG_UNUSED_0x4CB                                           0x4CB // Unused Flag
