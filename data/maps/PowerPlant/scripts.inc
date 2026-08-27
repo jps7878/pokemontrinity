@@ -87,7 +87,11 @@ PowerPlant_Text_ManagerWhoWouldRuinMyGenerator:
 PowerPlant_Text_ManagerIWontForgiveHim:
 	.string "MANAGER: I won't forgive him.\p"
 	.string "He can cry and apologize all he\n"
-	.string "wants -- I'll still hammer him.$"
+	.string "wants -- I'll still hammer him.\p"
+	.string "Someone said he ditched it in\n"
+	.string "the CERULEAN GYM's pool before\l"
+	.string "he ran off. Check the water\l"
+	.string "yourself, if you're curious.$"
 
 PowerPlant_Text_ManagerThatsThePart:
 	.string "MANAGER: That's it! That's the\n"

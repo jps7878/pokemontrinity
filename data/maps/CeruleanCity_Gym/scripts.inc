@@ -51,16 +51,29 @@ CeruleanCity_Gym_Text_DianaBeaten:
 @ party (src/data/trainers.h): GOLDUCK 76 (WATER), QUAGSIRE 76 (WATER/GROUND),
 @ LAPRAS 77 (WATER/ICE), GYARADOS 77 (WATER/FLYING), STARMIE 78 (WATER/PSYCHIC) --
 @ confirmed against species_info.h, no P_UPDATED_STATS branch on any of the
-@ five. No single type hits the whole roster for at least double (the S2 Mr.
-@ Mime lesson): ELECTRIC is 2x/0x(immune!)/2x/4x/2x -- QUAGSIRE'S GROUND TYPING
-@ ABSORBS IT. GRASS is 2x/4x/4x/1x(merely neutral!)/2x -- GYARADOS'S FLYING
-@ TYPING CANCELS THE ADVANTAGE BACK TO NEUTRAL. Guide states both floors with
-@ their one exception each, not a blanket claim.
+@ five. Full table, re-verified against src/data/types_info.h's
+@ gTypeEffectivenessTable directly (per-mon = product of the two component
+@ single-type multipliers; fix round I3 caught GRASS-vs-ICE being misread as a
+@ 2.0x weakness when the table row is X(1.0), neutral):
+@   ELECTRIC: Golduck 2x, Quagsire 0x (immune, GROUND row col ELECTRIC = X(0.0)),
+@             Lapras 2x, Gyarados 4x (FLYING row col ELECTRIC = X(2.0), stacks
+@             with WATER's own 2x), Starmie 2x.
+@   GRASS:    Golduck 2x, Quagsire 4x (GROUND row col GRASS = X(2.0), stacks),
+@             Lapras 2x (ICE row col GRASS = X(1.0), neutral -- WATER's 2x is
+@             the only contribution), Gyarados 1x (FLYING row col GRASS =
+@             X(0.5), cancels WATER's 2x back to neutral), Starmie 2x.
+@ No single type hits the whole roster for at least double (the S2 Mr. Mime
+@ lesson): ELECTRIC misses QUAGSIRE (immune); GRASS misses GYARADOS (merely
+@ neutral). Guide states both floors with their one exception each, not a
+@ blanket claim.
 @
 @ G5 THE STATUES: facing constraint ANY -> NORTH in map.json (matches VioletGym's/
 @ VermilionCity_Gym's own two-statue convention -- a facing-constraint fix, the
-@ tiles themselves are untouched). (6,18)/(10,18) are dry land reachable without
-@ Surf; (6,16)/(10,16) sit inside the pool.
+@ tiles themselves are untouched; both (6,16)/(10,16) north of the statues AND
+@ (6,18)/(10,18) south of them decode col 0 elev 3 MB_NORMAL dry walkway --
+@ fix round I2 corrected an earlier false claim that the north side "sits
+@ inside the pool"; it does not, the whole row 16 is dry, and NORTH is simply
+@ the established two-statue convention, not a Surf-access requirement).
 @
 @ G6 LUIS and DIANA: T10 placeholder "..." text replaced above.
 @
@@ -204,12 +217,26 @@ CeruleanCity_Gym_Text_GymStatueCertified:
 @
 @ Player is never moved (GSC's own grunt never moves the player either, only
 @ itself). Object: OBJ_EVENT_GFX_AQUA_MEMBER_M, this hack's established
-@ Team-Rocket-grunt stand-in (SlowpokeWellB1F, RadioTower4F, etc). Starts (9,8),
-@ runs down the map's x=9 land spine (col 0 elev 3 MB_NORMAL end to end, rows
-@ 6-18, including through the single water cell (9,9) -- irrelevant, scripted
-@ movement ignores collision/water entirely, S6's pin) to (9,14), bumps, then
-@ continues to (9,18) and out. removeobject at the end co-signs the HIDE flag
-@ permanently (R1).
+@ Team-Rocket-grunt stand-in (SlowpokeWellB1F, RadioTower4F, etc). Starts (9,10)
+@ (fix round M1: originally (9,8), whose approach path crossed the single water
+@ cell (9,9) -- scripted movement ignores collision/water entirely, S6's pin,
+@ so nothing would have blocked it, but the actor would have visibly strode on
+@ the pool surface; moved off it rather than merely noting the engine permits
+@ it). (9,10)-(9,18) decodes col 0 elev 3 MB_NORMAL end to end, dry the whole
+@ way -- runs down to (9,14), bumps, then continues to (9,18) and out.
+@ removeobject at the end co-signs the HIDE flag permanently (R1). Working
+@ state machine (var states, disarm timing, R1 co-sign) unchanged by this fix.
+@
+@ DISCOVERABILITY (fix round I1): the Machine Part sits on 1 of 123 Surf-
+@ reachable pool tiles with no in-engine affordance pointing at it --
+@ BG_EVENT_HIDDEN_ITEM is the only kind the Itemfinder actually scans
+@ (src/item_use.c:452,481 both gate on `kind == BG_EVENT_HIDDEN_ITEM`; this is
+@ a plain sign-kind bg_event, invisible to it, by the mechanism decision in
+@ section 1 of the sub-plan). Since the mechanism itself is staying (a real
+@ hidden_item would drop the saboteur-done gate and the key-item-as-flag
+@ shape), the fix is dialogue: the saboteur's own apology names the pool
+@ (below), and the manager's waiting line (PowerPlant_Text_
+@ ManagerIWontForgiveHim) points at "the CERULEAN GYM's pool" explicitly.
 @
 @ Skipped from GSC, logged: the Route 24/25 flag entanglement (Act III's Rocket
 @ arc is Celadon/Viridian, this stays self-contained); the four-part apology/
@@ -265,8 +292,6 @@ CeruleanCity_Gym_Movement_SaboteurApproach:
 	walk_down
 	walk_down
 	walk_down
-	walk_down
-	walk_down
 	step_end
 
 CeruleanCity_Gym_Movement_SaboteurFlees:
@@ -278,12 +303,15 @@ CeruleanCity_Gym_Movement_SaboteurFlees:
 
 CeruleanCity_Gym_Text_SaboteurApology:
 	.string "Oof -- sorry! Didn't see you\n"
-	.string "there. I was just leaving.$"
+	.string "there. You just about caught me\l"
+	.string "mid-splash, crouched at the far\l"
+	.string "end of the pool.$"
 
 CeruleanCity_Gym_Text_SaboteurSpotted:
 	.string "Wait -- you're the one MISTY's\n"
 	.string "been talking about. This is a\l"
-	.string "big mistake. Forget you saw me!$"
+	.string "big mistake. Forget you saw me\l"
+	.string "-- forget the water, too!$"
 
 @ ============================================================================
 @ Trinity M5b S3 -- THE POOL PICKUP. Full mechanism decision (option 1 hidden_
