@@ -6137,6 +6137,13 @@ u16 GetBattleBGM(void)
             if (TRAINER_BATTLE_PARAM.opponentA >= TRAINER_FALKNER
              && TRAINER_BATTLE_PARAM.opponentA <= TRAINER_CLAIR)
                 return MUS_RG_VS_GYM_LEADER;
+            // Trinity M5b S1: the eight Kanto leaders (contiguous ids, 1390-1397)
+            // take the same RG gym theme -- ledgered on S1 (which only fights
+            // SURGE) because every later Act III gym slice (S2-S9) inherits it
+            // with zero further scripting, same reasoning as the Johto guard.
+            if (TRAINER_BATTLE_PARAM.opponentA >= TRAINER_BROCK
+             && TRAINER_BATTLE_PARAM.opponentA <= TRAINER_GIOVANNI)
+                return MUS_RG_VS_GYM_LEADER;
             return MUS_VS_GYM_LEADER;
         case TRAINER_CLASS_TEAM_ROCKET:
             // Trinity: before this case TEAM ROCKET fell through to the default

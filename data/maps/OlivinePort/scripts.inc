@@ -8,10 +8,31 @@ OlivinePort_MapScripts::
 @ OnFrame (same two-step arm/fire idiom as EverGrandeCity_HallOfFame's OnWarp+OnFrame).
 OlivinePort_OnTransition:
 	call_if_unset FLAG_TRINITY_ARRIVED_JOHTO, OlivinePort_EventScript_ArmAideArrival
+	call OlivinePort_EventScript_SetBobbyVisibility
 	end
 
 OlivinePort_EventScript_ArmAideArrival::
 	setvar VAR_TEMP_1, 1
+	return
+
+@ Trinity M5b S1 -- BOBBY's Olivine summons post. Dynamic, re-authored every
+@ load (GoldenrodCity_EventScript_SetBobbyVisibility's own pattern, not the
+@ aide's one-way terminal-flag shape above): he must both APPEAR post-HoF-II
+@ and DISAPPEAR again once the crossing has happened, so a fixed terminal
+@ flag cannot express his window. Visible iff arc-J is 10 (post HALL OF FAME
+@ II) AND FLAG_TRINITY_J_LEAGUE_CLEARED is set (redundant with arc==10 by
+@ construction, checked anyway to mirror the S1 brief's gate literally) AND
+@ FLAG_TRINITY_K_ARRIVED is still unset (his summons is spent once the
+@ crossing happens; BOBBY_Departure is the one thing that ever sets it).
+OlivinePort_EventScript_SetBobbyVisibility::
+	goto_if_unset FLAG_TRINITY_J_LEAGUE_CLEARED, OlivinePort_EventScript_HideBobby
+	goto_if_lt VAR_TRINITY_JOHTO_ARC, 10, OlivinePort_EventScript_HideBobby
+	goto_if_set FLAG_TRINITY_K_ARRIVED, OlivinePort_EventScript_HideBobby
+	clearflag FLAG_TRINITY_K_OLIVINE_BOBBY_HIDE
+	return
+
+OlivinePort_EventScript_HideBobby::
+	setflag FLAG_TRINITY_K_OLIVINE_BOBBY_HIDE
 	return
 
 OlivinePort_OnFrame:
@@ -112,6 +133,58 @@ OlivinePort_EventScript_SailorDecline::
 	end
 
 @ ============================================================================
+@ Trinity M5b S1 -- BOBBY's summons. Talk-triggered (G1 idiom: named characters
+@ are talk-triggered, never sight-triggered), dialogue only -- his battle is
+@ the KANTO Crew Gauntlet (M5b S11). Visibility is OlivinePort_OnTransition's
+@ own job (see above); this is purely the conversation + the one scripted
+@ crossing. No lockall/movement staging here: the ONE cutscene budget (spec
+@ decision 5) is spent at the Vermilion end, not here -- BOBBY is a
+@ conversation at Olivine, not a set-piece.
+@ ============================================================================
+OlivinePort_EventScript_Bobby::
+	lock
+	faceplayer
+	goto_if_set FLAG_TRINITY_K_AQUA_TICKET, OlivinePort_EventScript_BobbyWaiting
+	msgbox OlivinePort_Text_BobbySummons, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_ITEM
+	waitfanfare
+	msgbox OlivinePort_Text_ReceivedAquaTicket, MSGBOX_DEFAULT
+	setflag FLAG_TRINITY_K_AQUA_TICKET
+	msgbox OlivinePort_Text_BobbyExplainTicket, MSGBOX_DEFAULT
+	msgbox OlivinePort_Text_BobbyReadyQuestion, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OlivinePort_EventScript_BobbyDecline
+	goto OlivinePort_EventScript_BobbyDeparture
+	end
+
+@ Reached only via the goto_if_set above -- already lock'd/faceplayer'd.
+OlivinePort_EventScript_BobbyWaiting::
+	msgbox OlivinePort_Text_BobbyStillReady, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, OlivinePort_EventScript_BobbyDeparture
+	release
+	end
+
+OlivinePort_EventScript_BobbyDecline::
+	msgbox OlivinePort_Text_BobbyDecline, MSGBOX_DEFAULT
+	release
+	end
+
+@ Dock tile decoded on VERMILION CITY: (24,33), MB_NORMAL, elevation 3,
+@ collision 0 -- same landing tile the repeat-crossing sailor uses (see
+@ OlivinePort_EventScript_SailorToVermilion above). warp/waitstate alone
+@ triggers the engine's own transition fade; no extra fadescreen needed.
+@ No removeobject for BOBBY here: OlivinePort_EventScript_SetBobbyVisibility
+@ hides him on any future OlivinePort visit the instant the Vermilion
+@ arrival scene sets FLAG_TRINITY_K_ARRIVED, which this warp leads straight
+@ into.
+OlivinePort_EventScript_BobbyDeparture::
+	closemessage
+	setrespawn HEAL_LOCATION_VERMILION_CITY
+	warp MAP_VERMILION_CITY, 24, 33
+	waitstate
+	release
+	end
+
+@ ============================================================================
 @ Trinity M4b S6 -- two of GSC's port bystanders, on GSC's own tiles (4,14) and
 @ (13,14). The plaza is rows 14-15, x=2..15, all MB_NORMAL collision 0 elevation
 @ 3; the ONLY cut vertex on this map is (7,15), the mouth of the single-tile
@@ -160,3 +233,38 @@ OlivinePort_Text_OverToVermilion:
 
 OlivinePort_Text_SailAnotherTime:
 	.string "Please sail with us another time!$"
+
+@ BOBBY's established voice: RadioTower5F_Text_Bobby1..3 (the reveal) and
+@ GoldenrodCity_Text_Bobby (the coda, "Go and finish the badges. I'll be
+@ somewhere behind you.") -- terse, wry, professional. This summons pays off
+@ that closing line directly.
+OlivinePort_Text_BobbySummons:
+	.string "BOBBY: There you are.\p"
+	.string "JOHTO's done. I need you across the\n"
+	.string "water.\p"
+	.string "GIOVANNI didn't stick around for\n"
+	.string "INDIGO. He's gone east -- KANTO, and\l"
+	.string "everything that means for him.\p"
+	.string "My office wants eyes on him that\n"
+	.string "aren't mine. You're already the\l"
+	.string "reason two LEAGUES know his name.\p"
+	.string "Got you passage on the S.S. AQUA.\n"
+	.string "VERMILION CITY, KANTO side.$"
+
+OlivinePort_Text_ReceivedAquaTicket:
+	.string "{PLAYER} received the\n"
+	.string "S.S. AQUA TICKET.$"
+
+OlivinePort_Text_BobbyExplainTicket:
+	.string "BOBBY: Show that at the dock and\n"
+	.string "you're on board. One-way, for now.$"
+
+OlivinePort_Text_BobbyReadyQuestion:
+	.string "BOBBY: Whenever you're ready.$"
+
+OlivinePort_Text_BobbyStillReady:
+	.string "BOBBY: Boat's waiting. Ready?$"
+
+OlivinePort_Text_BobbyDecline:
+	.string "BOBBY: It'll keep. Come find me\n"
+	.string "when you are.$"

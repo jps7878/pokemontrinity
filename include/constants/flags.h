@@ -1298,11 +1298,11 @@
 #define FLAG_TRINITY_BADGE24    0x4B4 // Trinity: was FLAG_UNUSED_0x4B4 — Giovanni
 #define FLAG_TRINITY_K_ARRIVED    0x4B5 // Trinity M5a: was FLAG_UNUSED_0x4B5 — KANTO arrival gate (S.S. AQUA / VERMILION dock, Goldenrod<->Saffron MAGNET TRAIN pass on 0x4B6). M5b S1 is the one writer; this task (M5a T5) only reads it.
 #define FLAG_TRINITY_K_TRAIN_PASS    0x4B6 // Trinity M5a: was FLAG_UNUSED_0x4B6 — MAGNET TRAIN pass (Goldenrod<->Saffron). M5b S2 is the one writer; this task (M5a T5) only reads it.
-#define FLAG_UNUSED_0x4B7                                           0x4B7 // Unused Flag
-#define FLAG_UNUSED_0x4B8                                           0x4B8 // Unused Flag
-#define FLAG_UNUSED_0x4B9                                           0x4B9 // Unused Flag
-#define FLAG_UNUSED_0x4BA                                           0x4BA // Unused Flag
-#define FLAG_UNUSED_0x4BB                                           0x4BB // Unused Flag
+#define FLAG_TRINITY_K_AQUA_TICKET    0x4B7 // Trinity M5b S1: was FLAG_UNUSED_0x4B7 -- key item as flag (M4b precedent). BOBBY's Olivine summons issues it; his own departure script reads it to gate the S.S. AQUA crossing. One writer (OlivinePort_EventScript_Bobby).
+#define FLAG_TRINITY_K_VERMGYM_SWITCHES_FOUND    0x4B8 // Trinity M5b S1: was FLAG_UNUSED_0x4B8 -- VERMILION GYM trash-can switch puzzle, solved state. Persists across sessions (unlike the puzzle's own transient VAR_TEMP_*/FLAG_TEMP_1 scratch). One writer (VermilionCity_Gym_EventScript_FoundSwitchTwo).
+#define FLAG_TRINITY_K_SURGE_TM24    0x4B9 // Trinity M5b S1: was FLAG_UNUSED_0x4B9 -- G2 TM award guard (bag-full retry), VioletGym's FLAG_TRINITY_J_FALKNER_TM40 pattern.
+#define FLAG_TRINITY_K_OLIVINE_BOBBY_HIDE    0x4BA // Trinity M5b S1: was FLAG_UNUSED_0x4BA -- object-visibility plumbing, OlivinePort's BOBBY. Dynamic, ON_TRANSITION-authored every load (GoldenrodCity_EventScript_SetBobbyVisibility pattern): visible iff FLAG_TRINITY_J_LEAGUE_CLEARED set AND VAR_TRINITY_JOHTO_ARC >= 10 AND FLAG_TRINITY_K_ARRIVED unset.
+#define FLAG_TRINITY_K_VERMILION_BOBBY_HIDE    0x4BB // Trinity M5b S1: was FLAG_UNUSED_0x4BB -- object-visibility plumbing, VermilionCity's addobject-only BOBBY session actor (the one arrival cutscene). Unconditionally setflag'd every VermilionCity_OnTransition (RadioTower5F_OnTransition's own Giovanni/Bobby treatment) so he never auto-spawns from his template; only the arrival scene's addobject ever shows him.
 #define FLAG_UNUSED_0x4BC                                           0x4BC // Unused Flag
 #define FLAG_UNUSED_0x4BD                                           0x4BD // Unused Flag
 #define FLAG_UNUSED_0x4BE                                           0x4BE // Unused Flag

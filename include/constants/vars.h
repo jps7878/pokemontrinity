@@ -170,7 +170,15 @@
 #define VAR_CONTEST_TYPE                                 0x4088
 #define VAR_SECRET_BASE_INITIALIZED                      0x4089
 #define VAR_CONTEST_PRIZE_PICKUP                         0x408A
-#define VAR_UNUSED_0x408B                                0x408B // Unused Var
+// Trinity M5b: Act III (Kanto) story state. Was VAR_UNUSED_0x408B.
+//   0  pre-arrival (BOBBY's summons pending at Olivine)
+//   1  arrived (Vermilion scene done; Kanto + Route 28 gate open)
+//   2  Blue grudge fought          3  Celadon basement cleared
+//   4  rig destroyed + Earth Badge won   5  Silver final fought
+//   6  Ash beaten (credits rolled)  7  Red beaten
+// One writer per value (story_audit.py-enforced). M5b S1 writes 1, once,
+// under the Vermilion arrival scene's arm/fire once-only guard.
+#define VAR_TRINITY_KANTO_ARC                            0x408B
 #define VAR_LITTLEROOT_HOUSES_STATE_BRENDAN              0x408C
 #define VAR_LITTLEROOT_RIVAL_STATE                       0x408D
 #define VAR_BOARD_BRINEY_BOAT_STATE                      0x408E

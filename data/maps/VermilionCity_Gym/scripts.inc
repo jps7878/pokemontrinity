@@ -1,161 +1,439 @@
+@ ============================================================================
+@ Trinity M5b S1 -- THE GYM PATTERN (G1-G7), copied from VioletGym/scripts.inc
+@ (map/leader/badge/TM/type substituted) + the FRLG trash-can switch puzzle,
+@ script-reimplemented (see docs/superpowers/plans/m5b/01-arrival-vermilion.md
+@ section 4.3 for the faithful-vs-simplified design call: the RANDOM SWITCH
+@ LOGIC is faithful to FRLG, ported via this engine's own `random` opcode in
+@ place of the FRLG-only `SetVermilionTrashCans` special (absent from this
+@ tree); the BARRIER's cosmetic beam-node animation is simplified to a plain
+@ locked/open swap, since the ported Kanto tileset carries no symbolic
+@ METATILE_* constants for it and hand-guessing 30 numeric ids for a purely
+@ cosmetic payoff is exactly the risk class this dispatch was warned against.
+@ `famechecker`/`QuestLog_CutRecording` (FRLG's replay/fame system) do not
+@ exist in this tree and are dropped, not substituted.
+@ ============================================================================
+
+.equ FOUND_FIRST_SWITCH, FLAG_TEMP_1
+.equ TRASH_CAN_ID,       VAR_TEMP_1
+.equ SWITCH1_ID,         VAR_TEMP_2
+.equ SWITCH2_ID,         VAR_TEMP_3
+
 VermilionCity_Gym_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, VermilionCity_Gym_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, VermilionCity_Gym_OnTransition
 	.byte 0
 
+@ D-pattern: ON_LOAD is the single setmetatile-authoring site for the barrier
+@ (brief-pinned; matches FRLG's own choice for this exact gym). If already
+@ solved, re-stamp the OPEN floor over the shipped-locked barrier -- map.bin
+@ always reloads the locked baseline, so a solved gym must re-open on every
+@ load. No DrawWholeMapView here: nothing is on screen yet at ON_LOAD time.
+VermilionCity_Gym_OnLoad::
+	call_if_set FLAG_TRINITY_K_VERMGYM_SWITCHES_FOUND, VermilionCity_Gym_EventScript_StampOpenFloor
+	end
+
+@ The barrier: (3-7,6) and (3-7,7), 10 tiles, shipped col=1 (locked) by
+@ default -- decoded raw metatile ids 0x2a9/0x2aa/0x285/0x2ab/0x2ac (row 6)
+@ and 0x2b1/0x2b2/0x28d/0x2b3/0x2b4 (row 7), all distinct FRLG beam-node
+@ graphics with no symbolic name in this tree. 0x281 is a plain floor
+@ metatile already load-bearing at (5,8)/(4,17)/(4,18)/(5,9) on this exact
+@ map -- its walkability and art are independently proven, not guessed.
+@ setmetatile's own trailing arg authors passability directly, so 0x281's
+@ baked attributes don't need to match.
+VermilionCity_Gym_EventScript_StampOpenFloor::
+	setmetatile 3, 6, 0x281, 0
+	setmetatile 4, 6, 0x281, 0
+	setmetatile 5, 6, 0x281, 0
+	setmetatile 6, 6, 0x281, 0
+	setmetatile 7, 6, 0x281, 0
+	setmetatile 3, 7, 0x281, 0
+	setmetatile 4, 7, 0x281, 0
+	setmetatile 5, 7, 0x281, 0
+	setmetatile 6, 7, 0x281, 0
+	setmetatile 7, 7, 0x281, 0
+	return
+
+@ Re-roll which two cans hide the switches on every (re-)entry, unless
+@ already solved -- FRLG's own InitTrashCans does the same (its own
+@ FLAG_TEMP_1-based FOUND_FIRST_SWITCH does not survive a map reload
+@ either; TRASH_CAN_ID/SWITCH1_ID/SWITCH2_ID are VAR_TEMP_*, likewise
+@ cleared every load by ClearTempFieldEventData -- no persistent scene var
+@ needed, see the sub-plan section 1).
+VermilionCity_Gym_OnTransition::
+	goto_if_set FLAG_TRINITY_K_VERMGYM_SWITCHES_FOUND, VermilionCity_Gym_EventScript_SkipRoll
+	call VermilionCity_Gym_EventScript_RollSwitches
+VermilionCity_Gym_EventScript_SkipRoll::
+	end
+
+@ SWITCH1_ID, SWITCH2_ID <- two DISTINCT random values in 1..15. `random 15`
+@ writes VAR_RESULT in [0,15); +1 shifts to a trash-can id. If the second
+@ roll ties the first, bump by one and wrap 16 -> 1 -- O(1), no retry loop.
+VermilionCity_Gym_EventScript_RollSwitches::
+	random 15
+	addvar VAR_RESULT, 1
+	copyvar SWITCH1_ID, VAR_RESULT
+	random 15
+	addvar VAR_RESULT, 1
+	copyvar SWITCH2_ID, VAR_RESULT
+	goto_if_ne SWITCH2_ID, SWITCH1_ID, VermilionCity_Gym_EventScript_RollDone
+	addvar SWITCH2_ID, 1
+	goto_if_le SWITCH2_ID, 15, VermilionCity_Gym_EventScript_RollDone
+	setvar SWITCH2_ID, 1
+VermilionCity_Gym_EventScript_RollDone::
+	return
+
+VermilionCity_Gym_EventScript_TrashCan1::
+	lockall
+	setvar TRASH_CAN_ID, 1
+	goto VermilionCity_Gym_EventScript_TrashCan
+	end
+
+VermilionCity_Gym_EventScript_TrashCan2::
+	lockall
+	setvar TRASH_CAN_ID, 2
+	goto VermilionCity_Gym_EventScript_TrashCan
+	end
+
+VermilionCity_Gym_EventScript_TrashCan3::
+	lockall
+	setvar TRASH_CAN_ID, 3
+	goto VermilionCity_Gym_EventScript_TrashCan
+	end
+
+VermilionCity_Gym_EventScript_TrashCan4::
+	lockall
+	setvar TRASH_CAN_ID, 4
+	goto VermilionCity_Gym_EventScript_TrashCan
+	end
+
+VermilionCity_Gym_EventScript_TrashCan5::
+	lockall
+	setvar TRASH_CAN_ID, 5
+	goto VermilionCity_Gym_EventScript_TrashCan
+	end
+
+VermilionCity_Gym_EventScript_TrashCan6::
+	lockall
+	setvar TRASH_CAN_ID, 6
+	goto VermilionCity_Gym_EventScript_TrashCan
+	end
+
+VermilionCity_Gym_EventScript_TrashCan7::
+	lockall
+	setvar TRASH_CAN_ID, 7
+	goto VermilionCity_Gym_EventScript_TrashCan
+	end
+
+VermilionCity_Gym_EventScript_TrashCan8::
+	lockall
+	setvar TRASH_CAN_ID, 8
+	goto VermilionCity_Gym_EventScript_TrashCan
+	end
+
+VermilionCity_Gym_EventScript_TrashCan9::
+	lockall
+	setvar TRASH_CAN_ID, 9
+	goto VermilionCity_Gym_EventScript_TrashCan
+	end
+
+VermilionCity_Gym_EventScript_TrashCan10::
+	lockall
+	setvar TRASH_CAN_ID, 10
+	goto VermilionCity_Gym_EventScript_TrashCan
+	end
+
+VermilionCity_Gym_EventScript_TrashCan11::
+	lockall
+	setvar TRASH_CAN_ID, 11
+	goto VermilionCity_Gym_EventScript_TrashCan
+	end
+
+VermilionCity_Gym_EventScript_TrashCan12::
+	lockall
+	setvar TRASH_CAN_ID, 12
+	goto VermilionCity_Gym_EventScript_TrashCan
+	end
+
+VermilionCity_Gym_EventScript_TrashCan13::
+	lockall
+	setvar TRASH_CAN_ID, 13
+	goto VermilionCity_Gym_EventScript_TrashCan
+	end
+
+VermilionCity_Gym_EventScript_TrashCan14::
+	lockall
+	setvar TRASH_CAN_ID, 14
+	goto VermilionCity_Gym_EventScript_TrashCan
+	end
+
+VermilionCity_Gym_EventScript_TrashCan15::
+	lockall
+	setvar TRASH_CAN_ID, 15
+	goto VermilionCity_Gym_EventScript_TrashCan
+	end
+
+VermilionCity_Gym_EventScript_TrashCan::
+	goto_if_set FLAG_TRINITY_K_VERMGYM_SWITCHES_FOUND, VermilionCity_Gym_EventScript_LocksAlreadyOpen
+	goto_if_set FOUND_FIRST_SWITCH, VermilionCity_Gym_EventScript_TrySwitchTwo
+	goto_if_eq TRASH_CAN_ID, SWITCH1_ID, VermilionCity_Gym_EventScript_FoundSwitchOne
+	msgbox VermilionCity_Gym_Text_JustTrash, MSGBOX_DEFAULT
+	releaseall
+	end
+
+VermilionCity_Gym_EventScript_FoundSwitchOne::
+	msgbox VermilionCity_Gym_Text_FirstLockOpened, MSGBOX_DEFAULT
+	playse SE_PIN
+	waitse
+	setflag FOUND_FIRST_SWITCH
+	releaseall
+	end
+
+VermilionCity_Gym_EventScript_TrySwitchTwo::
+	goto_if_eq TRASH_CAN_ID, SWITCH2_ID, VermilionCity_Gym_EventScript_FoundSwitchTwo
+	msgbox VermilionCity_Gym_Text_LocksReset, MSGBOX_DEFAULT
+	clearflag FOUND_FIRST_SWITCH
+	call VermilionCity_Gym_EventScript_RollSwitches
+	releaseall
+	end
+
+VermilionCity_Gym_EventScript_FoundSwitchTwo::
+	msgbox VermilionCity_Gym_Text_SecondLockOpened, MSGBOX_DEFAULT
+	closemessage
+	call VermilionCity_Gym_EventScript_StampOpenFloor
+	special DrawWholeMapView
+	playse SE_UNLOCK
+	waitse
+	setflag FLAG_TRINITY_K_VERMGYM_SWITCHES_FOUND
+	releaseall
+	end
+
+VermilionCity_Gym_EventScript_LocksAlreadyOpen::
+	msgbox VermilionCity_Gym_Text_JustTrash, MSGBOX_DEFAULT
+	releaseall
+	end
+
+@ ============================================================================
+@ G1-G7 -- SURGE. Canonical file: VioletGym/scripts.inc.
+@ G1: TRAINER_TYPE_NONE, sight 0, flag 0, MOVEMENT_TYPE_FACE_DOWN, at the
+@ FRLG tile (5,2) (decoded col=0 elev=3 MB_NORMAL, free), local_id appended
+@ to map.json after Baily/Dwayne/GymGuy/Tucker so none of T10's ids shift.
+@ Sprite OBJ_EVENT_GFX_WATTSON matches TRAINER_LTSURGE.Pic = Leader Wattson
+@ (both male -- no gender-mismatch M6 flag needed here, unlike Falkner).
+@ ============================================================================
+VermilionCity_Gym_EventScript_LtSurge::
+	trainerbattle_single TRAINER_LTSURGE, VermilionCity_Gym_Text_LtSurgeIntro, VermilionCity_Gym_Text_LtSurgeDefeat, VermilionCity_Gym_EventScript_LtSurgeDefeated, NO_MUSIC
+	goto_if_unset FLAG_TRINITY_K_SURGE_TM24, VermilionCity_Gym_EventScript_GiveThunderbolt
+	msgbox VermilionCity_Gym_Text_LtSurgePostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+VermilionCity_Gym_EventScript_LtSurgeDefeated::
+	message VermilionCity_Gym_Text_ReceivedThunderBadge
+	waitmessage
+	call Common_EventScript_PlayGymBadgeFanfare
+	setflag FLAG_TRINITY_BADGE19
+	msgbox VermilionCity_Gym_Text_ThunderBadgeInfo, MSGBOX_DEFAULT
+	goto VermilionCity_Gym_EventScript_GiveThunderbolt
+	end
+
+VermilionCity_Gym_EventScript_GiveThunderbolt::
+	giveitem ITEM_TM_THUNDERBOLT
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	setflag FLAG_TRINITY_K_SURGE_TM24
+	msgbox VermilionCity_Gym_Text_ExplainThunderbolt, MSGBOX_DEFAULT
+	release
+	end
+
+@ ============================================================================
+@ G6 -- T10's gym trainers, ids/tiles/wiring reviewed and kept, placeholder
+@ "..." text replaced with real Kanto-dockworker dialogue + a distinct
+@ post-battle line each.
+@ ============================================================================
 VermilionCity_Gym_EventScript_Baily::
 	trainerbattle_single TRAINER_KANTO_ENGINEER_BAILY, VermilionCity_Gym_Text_BailySeen, VermilionCity_Gym_Text_BailyBeaten
-	msgbox VermilionCity_Gym_Text_BailyBeaten, MSGBOX_AUTOCLOSE
+	msgbox VermilionCity_Gym_Text_BailyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 VermilionCity_Gym_EventScript_Dwayne::
 	trainerbattle_single TRAINER_KANTO_SAILOR_DWAYNE, VermilionCity_Gym_Text_DwayneSeen, VermilionCity_Gym_Text_DwayneBeaten
-	msgbox VermilionCity_Gym_Text_DwayneBeaten, MSGBOX_AUTOCLOSE
-	end
-
-VermilionCity_Gym_EventScript_GymGuy::
-	msgbox VermilionCity_Gym_Text_GymGuy, MSGBOX_NPC
+	msgbox VermilionCity_Gym_Text_DwaynePostBattle, MSGBOX_AUTOCLOSE
 	end
 
 VermilionCity_Gym_EventScript_Tucker::
 	trainerbattle_single TRAINER_KANTO_GENTLEMAN_TUCKER, VermilionCity_Gym_Text_TuckerSeen, VermilionCity_Gym_Text_TuckerBeaten
-	msgbox VermilionCity_Gym_Text_TuckerBeaten, MSGBOX_AUTOCLOSE
+	msgbox VermilionCity_Gym_Text_TuckerPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+@ ============================================================================
+@ G4 -- the guide. (4,17), OBJ_EVENT_GFX_EXPERT_M, matches VioletGym's guide
+@ graphics. Roster verified against trainers.party + species_info.h: SURGE
+@ runs ELECTRODE/MAGNETON/ELECTABUZZ/JOLTEON/RAICHU L77-79, all ELECTRIC
+@ (MAGNETON adds MAGNEMITE_FAMILY_TYPE2, STEEL in this build). GROUND moves
+@ hit every one of them for at least double -- kept to that floor claim
+@ rather than an exact multiplier, since MAGNETON's second type depends on
+@ P_UPDATED_STATS.
+@ ============================================================================
+VermilionCity_Gym_EventScript_GymGuy::
+	lock
+	faceplayer
+	goto_if_set FLAG_TRINITY_BADGE19, VermilionCity_Gym_EventScript_GymGuyPostVictory
+	msgbox VermilionCity_Gym_Text_GymGuyAdvice, MSGBOX_DEFAULT
+	release
+	end
+
+VermilionCity_Gym_EventScript_GymGuyPostVictory::
+	msgbox VermilionCity_Gym_Text_GymGuyPostVictory, MSGBOX_DEFAULT
+	release
+	end
+
+@ ============================================================================
+@ G5 -- the statues. (3,17)/(7,17) decode col=1 MB_SIGNPOST (T10-placed,
+@ correct); read tiles (3,18)/(7,18) col=0 elev=3, free. Facing constraint
+@ corrected ANY -> NORTH in map.json to match the established pattern
+@ exactly (VioletGym's own two statues use BG_EVENT_PLAYER_FACING_NORTH) --
+@ coordinates untouched, this is a facing-constraint fix, not a re-place.
+@ ============================================================================
 VermilionCity_Gym_EventScript_GymStatue::
-	msgbox VermilionCity_Gym_Text_GymStatue, MSGBOX_SIGN
+	lockall
+	goto_if_set FLAG_TRINITY_BADGE19, VermilionCity_Gym_EventScript_GymStatueCertified
+	msgbox VermilionCity_Gym_Text_GymStatue, MSGBOX_DEFAULT
+	releaseall
 	end
 
 VermilionCity_Gym_EventScript_GymStatue_2::
-	msgbox VermilionCity_Gym_Text_GymStatue_2, MSGBOX_SIGN
+	lockall
+	goto_if_set FLAG_TRINITY_BADGE19, VermilionCity_Gym_EventScript_GymStatueCertified
+	msgbox VermilionCity_Gym_Text_GymStatue, MSGBOX_DEFAULT
+	releaseall
 	end
 
-VermilionCity_Gym_EventScript_TrashCan1::
-	msgbox VermilionCity_Gym_Text_TrashCan1, MSGBOX_SIGN
+VermilionCity_Gym_EventScript_GymStatueCertified::
+	msgbox VermilionCity_Gym_Text_GymStatueCertified, MSGBOX_DEFAULT
+	releaseall
 	end
 
-VermilionCity_Gym_EventScript_TrashCan2::
-	msgbox VermilionCity_Gym_Text_TrashCan2, MSGBOX_SIGN
-	end
+@ ============================================================================
+@ Text
+@ ============================================================================
+VermilionCity_Gym_Text_LtSurgeIntro:
+	.string "SURGE: A GYM full of trash cans,\n"
+	.string "and half this region still can't\l"
+	.string "find the switches.\p"
+	.string "Two LEAGUES down and you're still\n"
+	.string "standing in my GYM. Big electric\l"
+	.string "surprise, CHAMPION -- let's see you\l"
+	.string "handle a third.$"
 
-VermilionCity_Gym_EventScript_TrashCan3::
-	msgbox VermilionCity_Gym_Text_TrashCan3, MSGBOX_SIGN
-	end
+@ RBY canon: "Big Electric SURPRISE! Hahaha!"
+VermilionCity_Gym_Text_LtSurgeDefeat:
+	.string "Big electric surprise, all right.\n"
+	.string "Just not the one I meant.$"
 
-VermilionCity_Gym_EventScript_TrashCan4::
-	msgbox VermilionCity_Gym_Text_TrashCan4, MSGBOX_SIGN
-	end
+VermilionCity_Gym_Text_ReceivedThunderBadge:
+	.string "{PLAYER} received the\n"
+	.string "THUNDERBADGE from SURGE.$"
 
-VermilionCity_Gym_EventScript_TrashCan5::
-	msgbox VermilionCity_Gym_Text_TrashCan5, MSGBOX_SIGN
-	end
+VermilionCity_Gym_Text_ThunderBadgeInfo:
+	.string "SURGE: THUNDERBADGE.\p"
+	.string "Won't hit any harder for you. You\n"
+	.string "already hit hard enough.\p"
+	.string "It just means KANTO's noticed.\n"
+	.string "Seven of these, and VIRIDIAN has\l"
+	.string "to open the door.\p"
+	.string "That's one. Take this too.$"
 
-VermilionCity_Gym_EventScript_TrashCan6::
-	msgbox VermilionCity_Gym_Text_TrashCan6, MSGBOX_SIGN
-	end
+VermilionCity_Gym_Text_ExplainThunderbolt:
+	.string "SURGE: TM24. THUNDERBOLT.\p"
+	.string "You may already carry one. Doesn't\n"
+	.string "matter -- mine's been through a\l"
+	.string "few GYM ceilings.\p"
+	.string "Full power, no charge-up, no\n"
+	.string "excuses. Teach it to whatever you\l"
+	.string "like. It won't wear out.$"
 
-VermilionCity_Gym_EventScript_TrashCan7::
-	msgbox VermilionCity_Gym_Text_TrashCan7, MSGBOX_SIGN
-	end
-
-VermilionCity_Gym_EventScript_TrashCan8::
-	msgbox VermilionCity_Gym_Text_TrashCan8, MSGBOX_SIGN
-	end
-
-VermilionCity_Gym_EventScript_TrashCan9::
-	msgbox VermilionCity_Gym_Text_TrashCan9, MSGBOX_SIGN
-	end
-
-VermilionCity_Gym_EventScript_TrashCan10::
-	msgbox VermilionCity_Gym_Text_TrashCan10, MSGBOX_SIGN
-	end
-
-VermilionCity_Gym_EventScript_TrashCan11::
-	msgbox VermilionCity_Gym_Text_TrashCan11, MSGBOX_SIGN
-	end
-
-VermilionCity_Gym_EventScript_TrashCan12::
-	msgbox VermilionCity_Gym_Text_TrashCan12, MSGBOX_SIGN
-	end
-
-VermilionCity_Gym_EventScript_TrashCan13::
-	msgbox VermilionCity_Gym_Text_TrashCan13, MSGBOX_SIGN
-	end
-
-VermilionCity_Gym_EventScript_TrashCan14::
-	msgbox VermilionCity_Gym_Text_TrashCan14, MSGBOX_SIGN
-	end
-
-VermilionCity_Gym_EventScript_TrashCan15::
-	msgbox VermilionCity_Gym_Text_TrashCan15, MSGBOX_SIGN
-	end
+VermilionCity_Gym_Text_LtSurgePostBattle:
+	.string "SURGE: Go rattle somebody else's\n"
+	.string "cage.$"
 
 VermilionCity_Gym_Text_BailySeen:
-	.string "…$"
+	.string "Watch the trash cans -- SURGE\n"
+	.string "wires half of them.$"
 
 VermilionCity_Gym_Text_BailyBeaten:
-	.string "…$"
+	.string "Ha! Shocked myself worse than\n"
+	.string "that once.$"
+
+VermilionCity_Gym_Text_BailyPostBattle:
+	.string "SURGE trained us on the docks.\n"
+	.string "Losing to him builds character.$"
 
 VermilionCity_Gym_Text_DwayneSeen:
-	.string "…$"
+	.string "Every PIKACHU on this dock's a\n"
+	.string "SURGE loaner. Don't ask how.$"
 
 VermilionCity_Gym_Text_DwayneBeaten:
-	.string "…$"
+	.string "Current's stronger than I\n"
+	.string "figured.$"
 
-VermilionCity_Gym_Text_GymGuy:
-	.string "KANTO's got its own trainers worth\nwatching, but even we're curious\labout this HOENN-JOHTO champion.$"
+VermilionCity_Gym_Text_DwaynePostBattle:
+	.string "Find the second switch yet? I\n"
+	.string "never do.$"
 
 VermilionCity_Gym_Text_TuckerSeen:
-	.string "…$"
+	.string "A GENTLEMAN doesn't dig through\n"
+	.string "trash. I make an exception here.$"
 
 VermilionCity_Gym_Text_TuckerBeaten:
-	.string "…$"
+	.string "Quite the jolt. Quite the loss.$"
+
+VermilionCity_Gym_Text_TuckerPostBattle:
+	.string "SURGE is through that far door.\n"
+	.string "Mind the cans on your way.$"
+
+VermilionCity_Gym_Text_GymGuyAdvice:
+	.string "Hey! Champion, right? Word travels\n"
+	.string "fast on this dock.\p"
+	.string "SURGE runs ELECTRIC types --\n"
+	.string "ELECTRODE, MAGNETON, ELECTABUZZ,\l"
+	.string "JOLTEON, RAICHU. LEVEL 77 to 79.\p"
+	.string "GROUND moves are your answer.\n"
+	.string "Every one of his POKéMON takes\l"
+	.string "at least double from them.\p"
+	.string "Oh -- and two of these trash cans\n"
+	.string "aren't trash. Good luck finding\l"
+	.string "which.$"
+
+VermilionCity_Gym_Text_GymGuyPostVictory:
+	.string "Straight through SURGE! Found\n"
+	.string "both switches too, I'd guess.\p"
+	.string "THUNDERBADGE. One of seven.$"
 
 VermilionCity_Gym_Text_GymStatue:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "VERMILION CITY POKéMON GYM\n"
+	.string "LEADER: SURGE\p"
+	.string "The Lightning American$"
 
-VermilionCity_Gym_Text_GymStatue_2:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+VermilionCity_Gym_Text_GymStatueCertified:
+	.string "VERMILION CITY POKéMON GYM\n"
+	.string "LEADER: SURGE\p"
+	.string "SURGE'S CERTIFIED TRAINERS:\n"
+	.string "{PLAYER}$"
 
-VermilionCity_Gym_Text_TrashCan1:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+@ Trash-can puzzle text. Replaces T10's 15 flat flavor placeholders -- once
+@ the cans are interactive puzzle objects rather than read-only signs, a
+@ single set of state-dependent lines (wrong guess / first switch / reset /
+@ second switch) is what the mechanic actually needs; see the sub-plan.
+VermilionCity_Gym_Text_JustTrash:
+	.string "Just trash.$"
 
-VermilionCity_Gym_Text_TrashCan2:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+VermilionCity_Gym_Text_FirstLockOpened:
+	.string "A switch! One of the locks up\n"
+	.string "ahead just clicked open.$"
 
-VermilionCity_Gym_Text_TrashCan3:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+VermilionCity_Gym_Text_LocksReset:
+	.string "Wrong can -- and that resets the\n"
+	.string "other lock too. Try again.$"
 
-VermilionCity_Gym_Text_TrashCan4:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
-
-VermilionCity_Gym_Text_TrashCan5:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
-
-VermilionCity_Gym_Text_TrashCan6:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
-
-VermilionCity_Gym_Text_TrashCan7:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
-
-VermilionCity_Gym_Text_TrashCan8:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
-
-VermilionCity_Gym_Text_TrashCan9:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
-
-VermilionCity_Gym_Text_TrashCan10:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
-
-VermilionCity_Gym_Text_TrashCan11:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
-
-VermilionCity_Gym_Text_TrashCan12:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
-
-VermilionCity_Gym_Text_TrashCan13:
-	.string "Never met the champion myself.\nHeard they came up through HOENN\land JOHTO before setting foot here.$"
-
-VermilionCity_Gym_Text_TrashCan14:
-	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
-
-VermilionCity_Gym_Text_TrashCan15:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+VermilionCity_Gym_Text_SecondLockOpened:
+	.string "The second switch! Both locks\n"
+	.string "are open now.$"
