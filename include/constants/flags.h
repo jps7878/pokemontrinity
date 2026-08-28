@@ -1317,13 +1317,13 @@
 #define FLAG_TRINITY_K_MTMOON_HELIX_FOSSIL_HIDE    0x4C7 // Trinity M5b S4 fix round (review C1): was FLAG_UNUSED_0x4C7 -- object-visibility plumbing, MtMoon_B2F's HELIX FOSSIL. SET by removeobject's own engine co-sign (RemoveObjectEventByLocalIdAndMap -> FlagSet, src/event_object_movement.c:1537-1545) when either fossil is taken; CLEARED by MtMoon_B2F_OnTransition while unset. Mirrors pokefirered's own FLAG_HIDE_HELIX_FOSSIL.
 #define FLAG_TRINITY_K_MTMOON_FOSSIL_TAKEN    0x4C8 // Trinity M5b S4 fix round (review C1): was FLAG_UNUSED_0x4C8 -- terminal, either fossil has been taken (both objects removed). Mirrors pokefirered's own FLAG_GOT_FOSSIL_FROM_MT_MOON.
 #define FLAG_TRINITY_K_BLUE_GRUDGE_HIDE    0x4C9 // Trinity M5b S5: was FLAG_UNUSED_0x4C9 -- object-visibility plumbing, ViridianCity's BLUE grudge battle. ON_TRANSITION single authority: visible iff VAR_TRINITY_KANTO_ARC < 2 (mirrors CeruleanCity_OnTransition's cave-guard shape). Terminal state is the arc value itself (S5 is the ONE writer of VAR_TRINITY_KANTO_ARC == 2) -- this flag exists only for the object's own native "flag" visibility field, not as a second record of "defeated".
-#define FLAG_UNUSED_0x4CA                                           0x4CA // Unused Flag
-#define FLAG_UNUSED_0x4CB                                           0x4CB // Unused Flag
-#define FLAG_UNUSED_0x4CC                                           0x4CC // Unused Flag
-#define FLAG_UNUSED_0x4CD                                           0x4CD // Unused Flag
-#define FLAG_UNUSED_0x4CE                                           0x4CE // Unused Flag
-#define FLAG_UNUSED_0x4CF                                           0x4CF // Unused Flag
-#define FLAG_UNUSED_0x4D0                                           0x4D0 // Unused Flag
+#define FLAG_TRINITY_K_ERIKA_TM22    0x4CA // Trinity M5b S6: was FLAG_UNUSED_0x4CA -- CeladonCity_Gym Erika's TM22 (Solar Beam) award guard, bag-full retry, FLAG_TRINITY_K_BROCK_TM37's pattern verbatim.
+#define FLAG_TRINITY_K_HIDEOUT_RAID_HIDE    0x4CB // Trinity M5b S6: was FLAG_UNUSED_0x4CB -- object-visibility plumbing, ROCKET HIDEOUT's whole raid cast (9 grunts, B1F-B4F, R1 shared-flag pattern). ON_TRANSITION-authored per floor: visible iff VAR_TRINITY_KANTO_ARC == 2.
+#define FLAG_TRINITY_K_LIFT_KEY    0x4CC // Trinity M5b S6: was FLAG_UNUSED_0x4CC -- key item as flag (M4b Card Key precedent). Set on F_2's defeat, RocketHideout_B4F. No further mechanical gate this slice (elevator UI skipped, see 06-celadon-chapter.md section 7) -- a collectible/narrative beat.
+#define FLAG_TRINITY_K_GS_BALL    0x4CD // Trinity M5b S6: was FLAG_UNUSED_0x4CD -- key item as flag. Set on the evidence-room pickup, RocketHideout_B4F. WRITER LANDS HERE; S13's Celebi chain is the eventual reader (handoff noted, no FORTHCOMING_KANTO_FLAG_WRITERS entry needed -- the writer exists from this commit forward).
+#define FLAG_TRINITY_K_HIDEOUT_OPENED    0x4CE // Trinity M5b S6: was FLAG_UNUSED_0x4CE -- CeladonCity_GameCorner's poster-switch state (mirrors pokefirered's own FLAG_OPENED_ROCKET_HIDEOUT). The door's only state (D4).
+#define FLAG_TRINITY_K_HIDEOUT_B1F_DOOR    0x4CF // Trinity M5b S6: was FLAG_UNUSED_0x4CF -- RocketHideout_B1F's single-grunt barrier, its only state (D4). Set on F_1's defeat.
+#define FLAG_TRINITY_K_HIDEOUT_B4F_DOOR    0x4D0 // Trinity M5b S6: was FLAG_UNUSED_0x4D0 -- RocketHideout_B4F's two-grunt barrier, its only state (D4). Set once both M_6 and M_7 are defeated.
 #define FLAG_UNUSED_0x4D1                                           0x4D1 // Unused Flag
 #define FLAG_UNUSED_0x4D2                                           0x4D2 // Unused Flag
 #define FLAG_UNUSED_0x4D3                                           0x4D3 // Unused Flag

@@ -1,5 +1,54 @@
+@ ============================================================================
+@ Trinity M5b S6 -- THE POSTER SWITCH (D1-D3), pokefirered's own
+@ RocketHideout entrance mechanism, adapted to this tree's metatile ids.
+@ D1: the (15,2) stair warp to RocketHideout_B1F already exists in map.json
+@ (T10 shipped it open) -- the poster gate is the STORY seal this slice adds,
+@ not a new warp. D2: ON_LOAD is the single authoring site for the sealed
+@ state (setmetatile only, no DrawWholeMapView -- InitMap draws fresh on
+@ every load). D3: the poster's own opening script repeats the same
+@ setmetatiles AND calls DrawWholeMapView (the mid-scene redraw D2 alone
+@ cannot provide). D4: FLAG_TRINITY_K_HIDEOUT_OPENED is the door's only
+@ state. Metatile ids resolved from pokefirered's own
+@ include/constants/metatile_labels.h raw values, which transfer 1:1 into
+@ this tree's own BuildingKanto/GameCornerKanto combo (repartition_tileset.py
+@ preserves absolute metatile ids exactly within a combo -- see
+@ 06-celadon-chapter.md section 2.1): Floor_ShadeFull=658,
+@ Floor_StairsTop=669, PurpleWall_Floor=719, PurpleWall_StairsTop=678,
+@ PurpleWall_stairsBottom=679, StairsBottom=671, StairsTop=670.
+@ ============================================================================
 CeladonCity_GameCorner_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, CeladonCity_GameCorner_OnLoad
 	.byte 0
+
+CeladonCity_GameCorner_OnLoad::
+	call_if_unset FLAG_TRINITY_K_HIDEOUT_OPENED, CeladonCity_GameCorner_EventScript_SealHideoutStairs
+	end
+
+CeladonCity_GameCorner_EventScript_SealHideoutStairs::
+	setmetatile 15, 2, 658, 0
+	setmetatile 16, 2, 658, 0
+	setmetatile 17, 2, 658, 0
+	setmetatile 16, 3, 719, 1
+	setmetatile 17, 3, 719, 1
+	return
+
+CeladonCity_GameCorner_EventScript_Poster::
+	lockall
+	msgbox CeladonCity_GameCorner_Text_Poster, MSGBOX_DEFAULT
+	call_if_unset FLAG_TRINITY_K_HIDEOUT_OPENED, CeladonCity_GameCorner_EventScript_OpenHideoutStairs
+	releaseall
+	end
+
+CeladonCity_GameCorner_EventScript_OpenHideoutStairs::
+	playse SE_UNLOCK
+	setmetatile 15, 2, 669, 0
+	setmetatile 16, 2, 670, 1
+	setmetatile 17, 2, 671, 1
+	setmetatile 16, 3, 678, 1
+	setmetatile 17, 3, 679, 1
+	special DrawWholeMapView
+	setflag FLAG_TRINITY_K_HIDEOUT_OPENED
+	return
 
 CeladonCity_GameCorner_EventScript_InfoClerk::
 	msgbox CeladonCity_GameCorner_Text_InfoClerk, MSGBOX_NPC
@@ -129,10 +178,6 @@ CeladonCity_GameCorner_EventScript_SlotMachine21::
 	msgbox CeladonCity_GameCorner_Text_SlotMachine21, MSGBOX_SIGN
 	end
 
-CeladonCity_GameCorner_EventScript_Poster::
-	msgbox CeladonCity_GameCorner_Text_Poster, MSGBOX_SIGN
-	end
-
 CeladonCity_GameCorner_Text_InfoClerk:
 	.string "Welcome!\pYou can exchange your COINS for\nfabulous prizes next door.$"
 
@@ -230,4 +275,4 @@ CeladonCity_GameCorner_Text_SlotMachine21:
 	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
 
 CeladonCity_GameCorner_Text_Poster:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "There's a switch hidden behind\nthis poster.\pYou push it.$"
