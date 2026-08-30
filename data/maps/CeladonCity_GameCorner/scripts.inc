@@ -32,10 +32,29 @@ CeladonCity_GameCorner_EventScript_SealHideoutStairs::
 	setmetatile 17, 3, 719, 1
 	return
 
+@ FIX ROUND (review C2, CRITICAL): the poster carried zero arc reads --
+@ clearing Celadon at arc==1 (before ViridianCity's Blue grudge battle, the
+@ ONE writer of VAR_TRINITY_KANTO_ARC value 2) could open the hideout and
+@ reach the evidence room, setting arc straight to 3 and PERMANENTLY hiding
+@ Blue (ViridianCity_OnTransition: visible iff ARC < 2). Fixed: the poster
+@ refuses below arc 2, the refusal text saying so in-world (the switch means
+@ nothing until Blue's own intel names the Game Corner, S5's own scene).
+@ This is the SOLE entrance to RocketHideout_B1F-B4F (verified: every other
+@ warp into those maps originates FROM inside the raid itself -- B2F's own
+@ two up-warps and both RocketHideout_Elevator exits all require having
+@ already entered via this door) -- so the raid cast's own visibility
+@ predicate (ON_TRANSITION, visible iff arc < 3) needs no change: arc is
+@ provably >= 2 on every load of every raid map once this gate is live.
 CeladonCity_GameCorner_EventScript_Poster::
 	lockall
+	goto_if_lt VAR_TRINITY_KANTO_ARC, 2, CeladonCity_GameCorner_EventScript_PosterTooEarly
 	msgbox CeladonCity_GameCorner_Text_Poster, MSGBOX_DEFAULT
 	call_if_unset FLAG_TRINITY_K_HIDEOUT_OPENED, CeladonCity_GameCorner_EventScript_OpenHideoutStairs
+	releaseall
+	end
+
+CeladonCity_GameCorner_EventScript_PosterTooEarly::
+	msgbox CeladonCity_GameCorner_Text_PosterTooEarly, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -276,3 +295,6 @@ CeladonCity_GameCorner_Text_SlotMachine21:
 
 CeladonCity_GameCorner_Text_Poster:
 	.string "There's a switch hidden behind\nthis poster.\pYou push it.$"
+
+CeladonCity_GameCorner_Text_PosterTooEarly:
+	.string "Just an old poster.\pWhatever's behind it, you have no\nreason yet to go looking.$"

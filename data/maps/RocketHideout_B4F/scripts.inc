@@ -135,20 +135,38 @@ RocketHideout_B4F_EventScript_LiftPlatformRight::
 	waitstate
 	end
 
+@ FIX ROUND (review I5): the lift signs themselves carry no visual cue --
+@ nothing marks (11,16)/(17,17) as interactable before the player walks up
+@ and presses A blind. A small decorative crate prop (OBJ_EVENT_GFX_MOVING_
+@ BOX, a plain existing sprite, no new art) sits one tile north of each
+@ platform sign -- (10,16) and (17,16), both decoded col=0 elev=3 MB_NORMAL,
+@ free of every existing object -- giving each platform a visible landmark.
+@ TRAINER_TYPE_NONE, non-blocking of the sign's own remaining approach
+@ tiles (the sign itself, BG_EVENT_PLAYER_FACING_ANY, is still reachable
+@ from its other three sides).
+RocketHideout_B4F_EventScript_LiftCrateFlavor::
+	msgbox RocketHideout_B4F_Text_LiftCrateFlavor, MSGBOX_NPC
+	end
+
 @ THE EVIDENCE ROOM. Replaces FRLG's Giovanni-in-the-Hideout confrontation
 @ (adapted away, see section 7 -- Trinity's Giovanni stays hidden until
 @ Viridian, S10). One combined interaction: the GS BALL seizure and the
-@ Viridian-coordinates reveal are two narrated beats inside a single scene
-@ (VAR_TRINITY_SCENE_HIDEOUT_EVIDENCE sequences them), not a two-prop
-@ examine-in-order puzzle -- there is no gameplay reason to split them.
-@ The durable write (arc->3) lands FIRST, S4's I3(b) ordering rule: once-only
-@ guarded, HallOfFame's own shape (S5's own precedent for this exact idiom).
+@ Viridian-coordinates reveal are two narrated beats inside a single,
+@ strictly-linear scene -- no scene var. FIX ROUND (review I4): the original
+@ draft claimed a VAR_TRINITY_SCENE_HIDEOUT_EVIDENCE 0/1/2 sequence but never
+@ actually branched on it or wrote 1 anywhere -- a dead claim. Un-claimed
+@ (var restored to VAR_UNUSED_0x409B, see vars.h) rather than built out for
+@ its own sake: the object's own map.json "flag" field IS
+@ FLAG_TRINITY_K_GS_BALL, so the engine auto-hides this prop the instant it
+@ is set (same idiom as every other key-item-as-flag pickup this tree), and
+@ a hidden object can never be walked up to and re-interacted -- there is no
+@ real "re-entry" case for a scene var to disambiguate. The durable write
+@ (arc->3) lands FIRST, S4's I3(b) ordering rule: once-only guarded,
+@ HallOfFame's own shape (S5's own precedent for this exact idiom).
 @ INTENTIONALLY DEFENSIVE: the goto_if_ge below is dead code in ordinary
-@ play -- the object's own map.json "flag" field IS FLAG_TRINITY_K_GS_BALL,
-@ so the engine auto-hides this prop the instant it is set (same idiom as
-@ every other key-item-as-flag pickup this tree), and a hidden object can
-@ never be walked up to and re-interacted. Kept anyway as a guard against
-@ any future script elsewhere ever calling this label directly.
+@ play, for the same reason (nothing can ever re-trigger this label after
+@ the object hides) -- kept as a guard against any future script elsewhere
+@ ever calling this label directly.
 RocketHideout_B4F_EventScript_Evidence::
 	lockall
 	msgbox RocketHideout_B4F_Text_EvidenceSeized, MSGBOX_DEFAULT
@@ -156,7 +174,6 @@ RocketHideout_B4F_EventScript_Evidence::
 	msgbox RocketHideout_B4F_Text_EvidenceCoordinates, MSGBOX_DEFAULT
 	goto_if_ge VAR_TRINITY_KANTO_ARC, 3, RocketHideout_B4F_EventScript_EvidenceDone
 	setvar VAR_TRINITY_KANTO_ARC, 3
-	setvar VAR_TRINITY_SCENE_HIDEOUT_EVIDENCE, 2
 
 RocketHideout_B4F_EventScript_EvidenceDone::
 	releaseall
@@ -172,7 +189,7 @@ RocketHideout_B4F_Text_Grunt1PostBattle:
 	.string "Go on. Not like it matters\nnow.$"
 
 RocketHideout_B4F_Text_Grunt1FoundKey:
-	.string "She was carrying a KEY.\pSomething for the restricted\nlift -- not that it'll do you\lmuch good from here.$"
+	.string "She was carrying a KEY.\pSomething for the restricted\nlift -- there's an old platform\lsomewhere else on this floor. Go\lfind it.$"
 
 RocketHideout_B4F_Text_Grunt2Seen:
 	.string "Nobody gets past this door\nwithout my say-so.$"
@@ -206,3 +223,6 @@ RocketHideout_B4F_Text_LiftNeedsKey:
 
 RocketHideout_B4F_Text_LiftReturnPrompt:
 	.string "Ride the lift back up?$"
+
+RocketHideout_B4F_Text_LiftCrateFlavor:
+	.string "A stack of crates beside the old\nservice lift platform.$"
