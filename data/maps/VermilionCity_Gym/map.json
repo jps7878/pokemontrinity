@@ -68,7 +68,7 @@
     },
     {
       "local_id": "LOCALID_KANTO_VERMGYM_SURGE",
-      "graphics_id": "OBJ_EVENT_GFX_WATTSON",
+      "graphics_id": "OBJ_EVENT_GFX_LT_SURGE",
       "x": 5,
       "y": 2,
       "elevation": 3,

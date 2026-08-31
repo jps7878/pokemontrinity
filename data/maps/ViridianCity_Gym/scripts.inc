@@ -13,11 +13,11 @@ ViridianCity_Gym_MapScripts::
 
 @ ----------------------------------------------------------------------------
 @ G1-G7. TRAINER_GIOVANNI (1397), inside S1's GetBattleBGM leader-range guard
-@ -> MUS_RG_VS_GYM_LEADER, zero code change. No dedicated Giovanni sprite
-@ exists (grep, 0 hits) -- OBJ_EVENT_GFX_MAXIE substitutes (the closest
-@ available thematic match, a calculating besuited crime-boss archetype;
-@ disclosed M6 art debt, same class as every other leader substitution this
-@ milestone -- see the sub-plan section 6 for the full reasoning).
+@ -> MUS_RG_VS_GYM_LEADER, zero code change. Trinity M6 P3: real FRLG
+@ Giovanni OW sprite (OBJ_EVENT_GFX_GIOVANNI) and real front pic
+@ (TRAINER_GIOVANNI.Pic = Giovanni) ported -- the OBJ_EVENT_GFX_MAXIE
+@ substitute this comment used to describe is retired at this object (see
+@ docs/superpowers/plans/m6/03-art-pass.md section 1 for the port trace).
 @ ----------------------------------------------------------------------------
 ViridianCity_Gym_EventScript_Giovanni::
 	trainerbattle_single TRAINER_GIOVANNI, ViridianCity_Gym_Text_GiovanniSeen, ViridianCity_Gym_Text_GiovanniBeaten, ViridianCity_Gym_EventScript_GiovanniDefeated, NO_MUSIC

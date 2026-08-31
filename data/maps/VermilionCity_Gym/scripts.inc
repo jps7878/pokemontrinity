@@ -333,8 +333,9 @@ VermilionCity_Gym_EventScript_LocksAlreadyOpen::
 @ G1: TRAINER_TYPE_NONE, sight 0, flag 0, MOVEMENT_TYPE_FACE_DOWN, at the
 @ FRLG tile (5,2) (decoded col=0 elev=3 MB_NORMAL, free), local_id appended
 @ to map.json after Baily/Dwayne/GymGuy/Tucker so none of T10's ids shift.
-@ Sprite OBJ_EVENT_GFX_WATTSON matches TRAINER_LTSURGE.Pic = Leader Wattson
-@ (both male -- no gender-mismatch M6 flag needed here, unlike Falkner).
+@ Trinity M6 P3: Sprite OBJ_EVENT_GFX_LT_SURGE (real FRLG OW port) and
+@ TRAINER_LTSURGE.Pic = Surge (real FRLG front pic) -- the Wattson
+@ substitute this comment used to describe is retired at this object.
 @ ============================================================================
 VermilionCity_Gym_EventScript_LtSurge::
 	trainerbattle_single TRAINER_LTSURGE, VermilionCity_Gym_Text_LtSurgeIntro, VermilionCity_Gym_Text_LtSurgeDefeat, VermilionCity_Gym_EventScript_LtSurgeDefeated, NO_MUSIC
