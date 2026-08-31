@@ -51,12 +51,18 @@
 @ counterpart there, ANY boulder in hole (9,18) reveals B4F's other one,
 @ matching this tree's own engine hook (TryBoulderFallThroughHole, keyed on
 @ (x,y) + the coord_event's elevation sentinel, never on which object it is).
-@ The lock boulders' own talk-script backstops now route through one shared
+@ The lock boulder's own talk-script backstop routes through one shared
 @ CheckOnHole subroutine testing BOTH hole coordinates, not a hardcoded home
-@ column -- so a lock accidentally shoved into either hole (a real
-@ possibility once cleared sideways and pushed further) still correctly
-@ plugs that hole, "plug not waste," the same shape as Blackthorn Gym 2F's
-@ own deviation from GSC's per-boulder binding.
+@ column, honoring the hook's own contract rather than assuming it away:
+@ Blackthorn Gym 2F's own header rule is that ANY boulder in ANY hole plugs
+@ THAT hole, generic by design. Checked directly (Map query, not assumed):
+@ the lock's entire reachable set is 8 tiles, row 16 x=3..10 (walled at x=2
+@ and x=11), and row 15 above it is solid wall end to end -- there is no
+@ tile anywhere to stand and push it south, so it cannot reach either hole
+@ from any position it can ever occupy. The generic dispatch costs nothing
+@ and keeps that a verified fact of this map's own geometry rather than an
+@ assumption baked into the script -- if a future edit ever opened a path,
+@ the dispatch would already be correct without further changes.
 @ ============================================================================
 
 .equ NUM_BOULDERS_PRESENT, VAR_TEMP_2

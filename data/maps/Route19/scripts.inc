@@ -102,7 +102,7 @@ Route19_Text_DavidBeaten:
 	.string "Ha! Didn't expect to lose my\nfooting like that.$"
 
 Route19_Text_AxleSeen:
-	.string "Race you to SEAFOAM! ...After\nthis, I mean.$"
+	.string "Race you to SEAFOAM! …After\nthis, I mean.$"
 
 Route19_Text_AxleBeaten:
 	.string "You'd win that race too.$"

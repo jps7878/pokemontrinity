@@ -263,5 +263,15 @@ CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilRegeneratorTakesTime:
 CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilizedMonBroughtBackToLife:
 	.string "Your fossilized POKéMON is done!\nIt's alive!$"
 
+@ Trinity M5b S9 fix round 2 (fold 1): was {STR_VAR_1} -- a real print bug.
+@ In all three fanfare routines that show this line (ReceivedOmanyte/Kabuto/
+@ AerodactylFanfare), STR_VAR_2 is buffered BEFORE this message runs and
+@ STR_VAR_1 only AFTER it (for the next step in the chain, Common_
+@ EventScript_NameReceivedPartyMon/BoxMon's own nickname prompt -- Devon's
+@ own RustboroCity_DevonCorp_2F_EventScript_ReceivedLileepFanfare carries the
+@ identical ordering and its own text correctly targets {STR_VAR_2}, matching
+@ the value that's actually buffered by the time the message fires). Fixed
+@ to match Devon's own shape instead of reordering the buffer calls, which
+@ would have starved the later nickname-prompt step of its own STR_VAR_1.
 CinnabarIsland_PokemonLab_ExperimentRoom_Text_ReceivedMonFromResearcher:
-	.string "{PLAYER} received {STR_VAR_1}\nfrom the researcher.$"
+	.string "{PLAYER} received {STR_VAR_2}\nfrom the researcher.$"

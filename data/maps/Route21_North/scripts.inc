@@ -48,10 +48,10 @@ Route21_North_Text_LilSeen:
 	.string "My brother and I fish and\nbattle out here every week!$"
 
 Route21_North_Text_LilBeaten:
-	.string "Ian's turn to lose, then.$"
+	.string "IAN's turn to lose, then.$"
 
 Route21_North_Text_IanSeen:
-	.string "Lil already told you we battle\nout here, huh? Let's go!$"
+	.string "LIL already told you we battle\nout here, huh? Let's go!$"
 
 Route21_North_Text_IanBeaten:
-	.string "Aw, Lil's never gonna let this\ngo.$"
+	.string "Aw, LIL's never gonna let this\ngo.$"
