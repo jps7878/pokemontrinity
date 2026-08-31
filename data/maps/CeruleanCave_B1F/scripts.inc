@@ -25,21 +25,30 @@
 @ tree-wide -- a visible ball in PowerPlant/map.json
 @ (FLAG_TRINITY_KANTO_PICKUPS_START + 80) and mart listings in BOTH
 @ CeladonCity_DepartmentStore_2F_Pokemart_TMs and LilycoveCity_
-@ DepartmentStore_4F's AttackTMs list. RETARGETED to ITEM_TM_SKILL_SWAP
-@ (TM48): a tree-wide census of every giveitem / hidden_item(bg_event) /
-@ mart-list TM occurrence across all 50 classic TMs (both the numbered
-@ ITEM_TMnn and named ITEM_TM_<MOVE> spellings, cross-mapped via
-@ include/constants/tms_hms.h's FOREACH_TM ordering) found Skill Swap the
-@ ONLY TM with zero hits in those three categories -- every other TM is
-@ already a curated NPC award, a bg_event hidden pickup, or a mart sale
-@ somewhere else in this 3-region tree (full candidate table: M6 P1
-@ report). It does carry two ordinary field-ball copies elsewhere
-@ (Route12's Kanto placement, MtPyre_Exterior's native Hoenn one) -- that's
-@ each region's own routine per-region TM distribution, the same category
-@ TM25's own PowerPlant ball sat in without being the disqualifying factor;
-@ TM25 failed dedup on its TWO mart listings, not that ball. ONLY the item
-@ id changed here -- the pickup flag (+ 241), x/y/elevation, and script are
-@ byte-identical to what shipped in M5b.
+@ DepartmentStore_4F's AttackTMs list.
+@
+@ DEDUP CRITERION (P1b controller ruling, corrects P1's over-strict first
+@ pass): the replacement TM must be UNIQUE only against the prestige-
+@ placement classes the founder actually objected to -- a curated NPC
+@ AWARD (`giveitem`) or another bg_event HIDDEN pickup elsewhere in the
+@ tree. Overlap with MART stock (any tier, Celadon's premium rung
+@ included) is ACCEPTABLE -- an infinitely purchasable TM (TMs here are
+@ reusable, I_REUSABLE_TMS) isn't cheapened by one free hidden copy. P1's
+@ first pass wrongly disqualified on mart overlap too, which left only
+@ TM48 Skill Swap clean and forced a utility pick over a powerful one; P1b
+@ recategorizes the same tree-wide census under this corrected rule (no
+@ re-grep needed, the data didn't change) and RETARGETS to
+@ ITEM_TM_ICE_BEAM (TM13) -- award=0, hidden_item=0 tree-wide, its only
+@ occurrence anywhere else being the Celadon mart listing, which no longer
+@ disqualifies. Ice Beam is a battle-defining special coverage move (95
+@ accuracy / 90 power / 10% freeze), the top offensive dedup-clean
+@ candidate found; the offered "leader-award or already-hidden" classes
+@ (e.g. TM35/TM15, both gym/hidden-elsewhere) stay excluded under the same
+@ rule. Thematic note (a plus, not required): Ice coverage is a classic
+@ complement to a Psychic-type's kit, hitting the Dragon/Ground/Flying
+@ threats pure Psychic can't -- a fitting extra edge to find beside
+@ MEWTWO. ONLY the item id changed here -- the pickup flag (+ 241),
+@ x/y/elevation, and script are byte-identical to what shipped in M5b.
 @
 @ Legendary contract, three clauses (bird-contract precedent, re-read this
 @ slice from SeafoamIslands_B4F/scripts.inc:280-326 and PowerPlant/scripts.inc):
