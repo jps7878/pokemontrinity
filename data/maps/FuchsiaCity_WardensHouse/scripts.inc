@@ -22,7 +22,7 @@ FuchsiaCity_WardensHouse_EventScript_DisplaySign2_2::
 	end
 
 FuchsiaCity_WardensHouse_Text_Warden:
-	.string "Never met the champion myself.\nHeard they came up through HOENN\land JOHTO before setting foot here.$"
+	.string "The name's BAOBA, if you want to\nget official about it. Folks 'round\lhere just call me the WARDEN.\pLost my GOLD TEETH out in the ZONE\nsomewhere. Can't whistle right\lwithout 'em -- but I get by.\pNever met the champion myself.\nHeard they came up through HOENN\land JOHTO before setting foot here.$"
 
 FuchsiaCity_WardensHouse_Text_DisplaySign2:
 	.string "Old POKéMON merchandise is on\ndisplay.$"

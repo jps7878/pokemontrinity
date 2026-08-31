@@ -1324,7 +1324,7 @@
 #define FLAG_TRINITY_K_HIDEOUT_OPENED    0x4CE // Trinity M5b S6: was FLAG_UNUSED_0x4CE -- CeladonCity_GameCorner's poster-switch state (mirrors pokefirered's own FLAG_OPENED_ROCKET_HIDEOUT). The door's only state (D4).
 #define FLAG_TRINITY_K_HIDEOUT_B1F_DOOR    0x4CF // Trinity M5b S6: was FLAG_UNUSED_0x4CF -- RocketHideout_B1F's single-grunt barrier, its only state (D4). Set on F_1's defeat.
 #define FLAG_TRINITY_K_HIDEOUT_B4F_DOOR    0x4D0 // Trinity M5b S6: was FLAG_UNUSED_0x4D0 -- RocketHideout_B4F's two-grunt barrier, its only state (D4). Set once both M_6 and M_7 are defeated.
-#define FLAG_UNUSED_0x4D1                                           0x4D1 // Unused Flag
+#define FLAG_TRINITY_K_JANINE_TM06    0x4D1 // Trinity M5b S8: was FLAG_UNUSED_0x4D1 -- FuchsiaCity_Gym Janine's TM06 (Toxic) award guard, bag-full retry, FLAG_TRINITY_K_BROCK_TM37's pattern verbatim.
 #define FLAG_UNUSED_0x4D2                                           0x4D2 // Unused Flag
 #define FLAG_UNUSED_0x4D3                                           0x4D3 // Unused Flag
 #define FLAG_UNUSED_0x4D4                                           0x4D4 // Unused Flag

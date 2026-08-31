@@ -31,7 +31,7 @@ KantoSafariZone_North_Text_TrainerTips2:
 	.string "TRAINER TIPS\pPOKéMON hide in tall grass.\pZigzag through grassy areas to\nflush them out.$"
 
 KantoSafariZone_North_Text_TrainerTips3:
-	.string "TRAINER TIPS\pWin a free HM for finding the\nSECRET HOUSE.$"
+	.string "TRAINER TIPS\pFind the SECRET HOUSE for a nice\nsurprise.$"
 
 KantoSafariZone_North_Text_RestHouseSign:
 	.string "REST HOUSE$"

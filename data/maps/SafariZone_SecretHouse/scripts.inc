@@ -6,4 +6,4 @@ SafariZone_SecretHouse_EventScript_Attendant::
 	end
 
 SafariZone_SecretHouse_Text_Attendant:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "You found the SECRET HOUSE!\pNot everyone makes it out this\nfar. Congratulations.$"

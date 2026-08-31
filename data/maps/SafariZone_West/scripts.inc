@@ -18,7 +18,7 @@ SafariZone_West_EventScript_RestHouseSign::
 	end
 
 SafariZone_West_Text_LostTeethNotice:
-	.string "REQUEST NOTICE\pPlease find the SAFARI WARDEN's\nlost GOLD TEETH.\lThey're around here somewhere.\pReward offered!\nContact: WARDEN$"
+	.string "NOTICE\pThe SAFARI WARDEN lost his GOLD\nTEETH out here somewhere.\lProbably still around, if anyone's\lcurious.$"
 
 SafariZone_West_Text_TrainerTips:
 	.string "TRAINER TIPS\pZone Exploration Campaign!\nThe Search for the SECRET HOUSE!$"

@@ -1,13 +1,36 @@
+@ Trinity M5b S8 -- both labels below are C-invoked directly
+@ (src/safari_zone.c's SafariZoneTakeStep/CB2_EndSafariBattle,
+@ src/start_menu.c's SafariZoneRetirePrompt -> RetirePrompt -> Retire ->
+@ here), with zero awareness of which region's Safari Zone is active. The
+@ region check MUST run before either label's own `setvar ..., 1` line
+@ overwrites the signal set at Kanto entry (VAR_SAFARI_ZONE_STATE==3,
+@ FuchsiaCity_SafariZone_Entrance_EventScript_TryEnterSafariZone). See
+@ docs/superpowers/plans/m5b/08-fuchsia-safari.md section 1.3.
 SafariZone_EventScript_OutOfBallsMidBattle::
+	goto_if_eq VAR_SAFARI_ZONE_STATE, 3, SafariZone_EventScript_OutOfBallsMidBattleKanto
 	setvar VAR_SAFARI_ZONE_STATE, 1
 	special ExitSafariMode
 	setwarp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
 	end
 
+SafariZone_EventScript_OutOfBallsMidBattleKanto::
+	setvar VAR_SAFARI_ZONE_STATE, 1
+	special ExitSafariMode
+	setwarp MAP_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 4, 1
+	end
+
 SafariZone_EventScript_Exit::
+	goto_if_eq VAR_SAFARI_ZONE_STATE, 3, SafariZone_EventScript_ExitKanto
 	setvar VAR_SAFARI_ZONE_STATE, 1
 	special ExitSafariMode
 	warp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
+	waitstate
+	end
+
+SafariZone_EventScript_ExitKanto::
+	setvar VAR_SAFARI_ZONE_STATE, 1
+	special ExitSafariMode
+	warp MAP_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 4, 1
 	waitstate
 	end
 
