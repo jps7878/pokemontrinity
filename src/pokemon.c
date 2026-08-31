@@ -6110,6 +6110,9 @@ u16 GetBattleBGM(void)
         // switch (src/battle_setup.c), which is what actually chooses the song
         // on the field path.
         case SPECIES_ZAPDOS:
+        // Trinity M5b S9: ARTICUNO. Same belt-and-braces documentation parity as
+        // ZAPDOS just above -- the default already agrees.
+        case SPECIES_ARTICUNO:
             return MUS_RG_VS_LEGEND;
         default:
             return MUS_RG_VS_LEGEND;

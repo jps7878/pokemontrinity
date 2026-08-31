@@ -16,16 +16,16 @@ PokemonMansion_1F_EventScript_Statue::
 	end
 
 PokemonMansion_1F_Text_TedSeen:
-	.string "…$"
+	.string "Who are you?\nThere shouldn't be anyone\lhere.$"
 
 PokemonMansion_1F_Text_TedBeaten:
-	.string "…$"
+	.string "Ouch!$"
 
 PokemonMansion_1F_Text_JohnsonSeen:
-	.string "…$"
+	.string "W-w-waah! You startled me!\nI thought you were a ghost.$"
 
 PokemonMansion_1F_Text_JohnsonBeaten:
-	.string "…$"
+	.string "Tch! I can't get any wins.$"
 
 PokemonMansion_1F_Text_Statue:
 	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"

@@ -16,16 +16,16 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
-      "x": 13,
-      "y": 16,
+      "x": 6,
+      "y": 17,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EventScript_StrengthBoulder",
-      "flag": "FLAG_TEMP_6"
+      "script": "SeafoamIslands_B3F_EventScript_Boulder2",
+      "flag": "FLAG_TRINITY_K_SEAFOAM_B3F_BOULDER_2"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
@@ -37,8 +37,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EventScript_StrengthBoulder",
-      "flag": "FLAG_TEMP_5"
+      "script": "SeafoamIslands_B3F_EventScript_Boulder1",
+      "flag": "FLAG_TRINITY_K_SEAFOAM_B3F_BOULDER_1"
     }
   ],
   "warp_events": [
@@ -106,7 +106,44 @@
       "dest_warp_id": "3"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 18,
+      "elevation": 3,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "SeafoamIslands_B3F_EventScript_FallToHole1"
+    },
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 18,
+      "elevation": 3,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "SeafoamIslands_B3F_EventScript_FallToHole2"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 18,
+      "elevation": 15,
+      "var": "VAR_TEMP_0",
+      "var_value": "1",
+      "script": "SeafoamIslands_B3F_EventScript_BoulderFellHole1"
+    },
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 18,
+      "elevation": 15,
+      "var": "VAR_TEMP_0",
+      "var_value": "1",
+      "script": "SeafoamIslands_B3F_EventScript_BoulderFellHole2"
+    }
+  ],
   "bg_events": [
     {
       "type": "hidden_item",

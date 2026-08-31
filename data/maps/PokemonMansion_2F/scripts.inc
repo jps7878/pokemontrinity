@@ -19,10 +19,10 @@ PokemonMansion_2F_EventScript_DiaryJuly5th::
 	end
 
 PokemonMansion_2F_Text_ArnieSeen:
-	.string "…$"
+	.string "Heh, this old place has more\nthan just dust in it.$"
 
 PokemonMansion_2F_Text_ArnieBeaten:
-	.string "…$"
+	.string "Guess I'll go dig somewhere\nelse.$"
 
 PokemonMansion_2F_Text_Statue:
 	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"

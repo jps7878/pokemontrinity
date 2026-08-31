@@ -521,6 +521,8 @@ void BattleSetup_StartLegendaryBattle(void)
     // above. REQUIRED, not decorative, for the same reason as the beast case: an
     // unlisted species falls to `default:` on the GROUDON body.
     case SPECIES_ZAPDOS:
+    // Trinity M5b S9: ARTICUNO, same pairing. Same REQUIRED reasoning.
+    case SPECIES_ARTICUNO:
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RG_VS_LEGEND);
         break;
     case SPECIES_MEW:

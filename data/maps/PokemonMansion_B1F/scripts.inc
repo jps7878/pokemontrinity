@@ -24,16 +24,16 @@ PokemonMansion_B1F_EventScript_Statue_2::
 	end
 
 PokemonMansion_B1F_Text_LewisSeen:
-	.string "…$"
+	.string "Uh-oh… Where am I now?$"
 
 PokemonMansion_B1F_Text_LewisBeaten:
-	.string "…$"
+	.string "Awooh!$"
 
 PokemonMansion_B1F_Text_IvanSeen:
-	.string "…$"
+	.string "This place is ideal for a lab.\nLook at all this space.$"
 
 PokemonMansion_B1F_Text_IvanBeaten:
-	.string "…$"
+	.string "What was that for?$"
 
 PokemonMansion_B1F_Text_DiarySep1st:
 	.string "Diary: Sept. 1\nMEWTWO is far too powerful.\pWe have failed to curb its vicious\ntendencies…$"

@@ -1325,20 +1325,20 @@
 #define FLAG_TRINITY_K_HIDEOUT_B1F_DOOR    0x4CF // Trinity M5b S6: was FLAG_UNUSED_0x4CF -- RocketHideout_B1F's single-grunt barrier, its only state (D4). Set on F_1's defeat.
 #define FLAG_TRINITY_K_HIDEOUT_B4F_DOOR    0x4D0 // Trinity M5b S6: was FLAG_UNUSED_0x4D0 -- RocketHideout_B4F's two-grunt barrier, its only state (D4). Set once both M_6 and M_7 are defeated.
 #define FLAG_TRINITY_K_JANINE_TM06    0x4D1 // Trinity M5b S8: was FLAG_UNUSED_0x4D1 -- FuchsiaCity_Gym Janine's TM06 (Toxic) award guard, bag-full retry, FLAG_TRINITY_K_BROCK_TM37's pattern verbatim.
-#define FLAG_UNUSED_0x4D2                                           0x4D2 // Unused Flag
-#define FLAG_UNUSED_0x4D3                                           0x4D3 // Unused Flag
-#define FLAG_UNUSED_0x4D4                                           0x4D4 // Unused Flag
-#define FLAG_UNUSED_0x4D5                                           0x4D5 // Unused Flag
-#define FLAG_UNUSED_0x4D6                                           0x4D6 // Unused Flag
-#define FLAG_UNUSED_0x4D7                                           0x4D7 // Unused Flag
-#define FLAG_UNUSED_0x4D8                                           0x4D8 // Unused Flag
-#define FLAG_UNUSED_0x4D9                                           0x4D9 // Unused Flag
-#define FLAG_UNUSED_0x4DA                                           0x4DA // Unused Flag
-#define FLAG_UNUSED_0x4DB                                           0x4DB // Unused Flag
-#define FLAG_UNUSED_0x4DC                                           0x4DC // Unused Flag
-#define FLAG_UNUSED_0x4DD                                           0x4DD // Unused Flag
-#define FLAG_UNUSED_0x4DE                                           0x4DE // Unused Flag
-#define FLAG_UNUSED_0x4DF                                           0x4DF // Unused Flag
+#define FLAG_TRINITY_K_BLAINE_TM38    0x4D2 // Trinity M5b S9: was FLAG_UNUSED_0x4D2 -- CinnabarIsland_Gym Blaine's TM38 (Fire Blast) award guard, bag-full retry, FLAG_TRINITY_K_BROCK_TM37's pattern verbatim.
+#define FLAG_TRINITY_K_SEAFOAM_B3F_BOULDER_1    0x4D3 // Trinity M5b S9: was FLAG_UNUSED_0x4D3 -- SeafoamIslands_B3F boulder at (9,16), falls into hole (9,18). Correct default (clear=present), one writer (removeobject), no authoring clause -- Blackthorn pin.
+#define FLAG_TRINITY_K_SEAFOAM_B3F_BOULDER_2    0x4D4 // Trinity M5b S9: was FLAG_UNUSED_0x4D4 -- SeafoamIslands_B3F boulder relocated to (6,17), falls into hole (6,18). Same shape as BOULDER_1.
+#define FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_1    0x4D5 // Trinity M5b S9: was FLAG_UNUSED_0x4D5 -- SeafoamIslands_B4F boulder revealed at (9,18) once B3F_BOULDER_1 falls; wrong default (should start hidden), re-hidden every ON_TRANSITION load unless the B3F source flag is set.
+#define FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_2    0x4D6 // Trinity M5b S9: was FLAG_UNUSED_0x4D6 -- SeafoamIslands_B4F boulder revealed at (8,18) once B3F_BOULDER_2 falls. Same shape as BOULDER_1.
+#define FLAG_TRINITY_K_ARTICUNO_HIDE    0x4D7 // Trinity M5b S9: was FLAG_UNUSED_0x4D7 -- legendary contract clause 1, SeafoamIslands_B4F. Gate: both B4F boulder flags set (current stopped) -- the puzzle IS the gate, no story flag.
+#define FLAG_TRINITY_K_ARTICUNO_RESOLVED    0x4D8 // Trinity M5b S9: was FLAG_UNUSED_0x4D8 -- legendary contract clause 3 (terminal), set on WON and CAUGHT.
+#define FLAG_TRINITY_K_OLD_AMBER    0x4D9 // Trinity M5b S9: was FLAG_UNUSED_0x4D9 -- PewterCity_Museum_1F Old Amber pickup guard, bag-full retry, S4's planted "ask Cinnabar" hook paid off here.
+#define FLAG_TRINITY_K_BLAINE_QUIZ_1    0x4DA // Trinity M5b S9: was FLAG_UNUSED_0x4DA -- CinnabarIsland_Gym quiz door 1 (Quinn's room). FRLG's own FLAG_CINNABAR_GYM_QUIZ_1 does not exist in this tree (pokeemerald-expansion carries no FRLG-specific flags at all -- confirmed by grep, zero FLAG_CINNABAR_*/FLAG_POKEMON_MANSION_*/FLAG_STOPPED_SEAFOAM_*/FLAG_HIDE_SEAFOAM_* hits anywhere in this header), so this is claimed fresh rather than reused.
+#define FLAG_TRINITY_K_BLAINE_QUIZ_2    0x4DB // Trinity M5b S9: was FLAG_UNUSED_0x4DB -- CinnabarIsland_Gym quiz door 2 (Avery's room). Same shape as QUIZ_1.
+#define FLAG_TRINITY_K_BLAINE_QUIZ_3    0x4DC // Trinity M5b S9: was FLAG_UNUSED_0x4DC -- CinnabarIsland_Gym quiz door 3 (Ramon's room). Same shape as QUIZ_1.
+#define FLAG_TRINITY_K_BLAINE_QUIZ_4    0x4DD // Trinity M5b S9: was FLAG_UNUSED_0x4DD -- CinnabarIsland_Gym quiz door 4 (Derek's room). Same shape as QUIZ_1.
+#define FLAG_TRINITY_K_BLAINE_QUIZ_5    0x4DE // Trinity M5b S9: was FLAG_UNUSED_0x4DE -- CinnabarIsland_Gym quiz door 5 (Dusty's room). Same shape as QUIZ_1.
+#define FLAG_TRINITY_K_BLAINE_QUIZ_6    0x4DF // Trinity M5b S9: was FLAG_UNUSED_0x4DF -- CinnabarIsland_Gym quiz door 6 (Zac's room). Same shape as QUIZ_1.
 #define FLAG_UNUSED_0x4E0                                           0x4E0 // Unused Flag
 #define FLAG_UNUSED_0x4E1                                           0x4E1 // Unused Flag
 #define FLAG_UNUSED_0x4E2                                           0x4E2 // Unused Flag
