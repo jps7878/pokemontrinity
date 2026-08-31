@@ -352,9 +352,13 @@ CianwoodCity_EventScript_EusineNotYet::
 	release
 	end
 
+@ Fix round 1 (review m3): "across two regions" was an underived claim --
+@ SUICUNE appears on exactly three maps tree-wide (BurnedTowerB1F,
+@ TinTower1F, CianwoodCity), all Johto, and there is no roamer wiring to
+@ back a cross-region chase. Softened to something this tree can support.
 CianwoodCity_Text_Eusine:
-	.string "I've chased that thing across two\n"
-	.string "regions and never gotten this close.\p"
+	.string "I've chased that thing all over\n"
+	.string "JOHTO and never gotten this close.\p"
 	.string "You didn't even come looking for\n"
 	.string "it, did you.\p"
 	.string "…\p"

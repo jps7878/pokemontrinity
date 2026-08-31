@@ -89,19 +89,27 @@ MtMoon_1F_Text_ZubatSign:
 @ Trinity M5b S13b -- SILVER, the Mt. Moon rematch. TRAINER_SILVER_MTMOON
 @ (real party data, opponents.h), confirmed unconsumed by every prior slice.
 @ ALWAYS-AVAILABLE per the founder decision: no arc gate, no story flag on
-@ the object's own visibility (flag "0" -- present from a fresh save, the
-@ same as this map's other ungated flavour trainers). "Always-available"
-@ names the RE-APPROACH, not a bypass of one-fight-per-id: the fight itself
-@ is still gated by the engine's own per-trainer flag
-@ (`checktrainerflag TRAINER_SILVER_MTMOON`, TRAINER_FLAGS_START + id,
-@ structurally reserved, zero registry cost) -- explicit top-of-script guard
-@ here rather than relying on trainerbattle's own internal post-battle-
-@ address fallthrough, because a msgbox precedes the trainerbattle call:
-@ without the explicit guard, a re-approach would replay the challenge line
-@ every visit (the trainerbattle macro's own idempotence only skips the
-@ FIGHT, not script lines before it) -- same shape as BOBBY's farewell and
-@ the Wise Trio, this same slice. `trainerbattle_no_intro` (not
-@ trainerbattle_single): a custom challenge line already plays via msgbox,
+@ the object's own visibility (flag "0" -- unconditionally present in the
+@ map data from a new save, the SAME as this map's other ungated flavour
+@ trainers; in actual play Mt. Moon is only reachable after Act II, so no
+@ save ever really stands here before then -- fix round 1, review m8, the
+@ earlier "fresh save" wording described the flag's own state, not a real
+@ play sequence). "Always-available" names the RE-APPROACH, not a bypass
+@ of one-fight-per-id: the fight itself is still gated by the engine's own
+@ per-trainer flag (`checktrainerflag TRAINER_SILVER_MTMOON`,
+@ TRAINER_FLAGS_START + id, structurally reserved, zero registry cost) --
+@ explicit top-of-script guard here rather than relying on trainerbattle's
+@ own internal post-battle-address fallthrough, because a msgbox precedes
+@ the trainerbattle call. CORRECTED (fix round 1, review m1): for
+@ `trainerbattle_no_intro` specifically there is NO internal idempotence at
+@ all (`EventScript_DoNoIntroTrainerBattle`, data/scripts/
+@ trainer_battle.inc, has no `GetTrainerFlag` check and calls
+@ `dotrainerbattle` unconditionally) -- the explicit guard is not skipping
+@ a msgbox an existing fallthrough would otherwise replay, it is the ONLY
+@ thing standing between this NPC and being infinitely re-fightable.
+@ Same shape as BOBBY's farewell and the Wise Trio, this same slice.
+@ `trainerbattle_no_intro` (not trainerbattle_single): a custom challenge
+@ line already plays via msgbox,
 @ matching TRAINER_SILVER_2's own established idiom (AzaleaTown/
 @ scripts.inc). Placement (20,25): col=0 elev=3 MB_CAVE, decoded directly
 @ from MtMoon_1F's own map.bin, clear of every existing object/item ball on

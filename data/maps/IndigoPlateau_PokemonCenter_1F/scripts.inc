@@ -228,18 +228,39 @@ IndigoPlateau_PokemonCenter_1F_EventScript_GauntletNotYet::
 @ S13b addition: the FAREWELL, gated arc>=6 (world-tour postgame, the same
 @ VAR_TRINITY_KANTO_ARC read every other package in this milestone uses)
 @ AND `checktrainerflag TRAINER_BOBBY` unset -- a NEW branch prepended
-@ before the badge-count check, purely additive: for arc<6, or once the
-@ farewell has been fought, control falls straight through to
-@ BobbyRewardFlow (the ORIGINAL script body, renamed but byte-for-byte
-@ unchanged) and every existing behaviour -- hosting, the reward offer, the
-@ post-reward flavour -- is completely unaffected. One-fight-per-id via the
-@ engine's own trainer flag (checktrainerflag TRAINER_BOBBY), same semantics
-@ as SILVER_MTMOON/SAGE_* elsewhere in this slice -- no new custom flag.
-@ Loss/whiteout: `trainerbattle_no_intro` is the identical mechanism
-@ WALLY_K and the five gauntlet fighters already use in this same room
-@ (proven); a whiteout sends the player to their last Pokémon Center like
-@ any other trainer fight, and BOBBY's own object/hosting logic is
-@ untouched either way -- his farewell state is gated purely on the
+@ before the badge-count check. `lock`/`faceplayer` moved up into this new
+@ entry point; the original body (now `BobbyRewardFlow`) is reached only
+@ by `goto` from here, so it is BEHAVIOURALLY unaffected, not byte-for-byte
+@ identical (fix round 1, review m6 -- the earlier "byte-for-byte" wording
+@ was imprecise). One real, disclosed side effect (review m5): an arc>=6
+@ player who has NOT yet claimed the gauntlet reward is routed past
+@ `BobbyRewardFlow` straight into the farewell every visit until it is won
+@ -- the reward becomes reachable again only after beating BOBBY once. This
+@ is a deferral, not a loss (`FLAG_TRINITY_K_GAUNTLET_REWARD` is untouched,
+@ a whiteout just re-offers the farewell), ruled coherent by the controller
+@ and kept as-is, not "every existing behaviour... completely unaffected"
+@ as originally claimed.
+@
+@ One-fight-per-id via the engine's own trainer flag
+@ (checktrainerflag TRAINER_BOBBY), same semantics as SILVER_MTMOON/SAGE_*
+@ elsewhere in this slice -- no new custom flag. CORRECTED (fix round 1,
+@ review C3): `trainerbattle_no_intro` is NOT "the identical mechanism
+@ WALLY_K and the five gauntlet fighters already use in this same room" --
+@ that claim was FALSE. Census of this file: all six existing fights
+@ (HARJOT_K/IVRAJ_K/SUMEET_K/PRABHJIT_K/GURNAV/WALLY_K) use
+@ `trainerbattle_single`; BOBBY's is the ONLY `trainerbattle_no_intro` here.
+@ The two macros are not interchangeable: `trainerbattle_single` ->
+@ `EventScript_TryDoNormalTrainerBattle` supplies its own `lock`/
+@ `faceplayer` AND a `GetTrainerFlag` idempotence check;
+@ `trainerbattle_no_intro` -> `EventScript_DoNoIntroTrainerBattle` supplies
+@ NEITHER and calls `dotrainerbattle` unconditionally (data/scripts/
+@ trainer_battle.inc). The explicit `checktrainerflag TRAINER_BOBBY` guard
+@ two lines below is therefore the LOAD-BEARING mechanism, not a mirror of
+@ a room precedent that does not exist -- without it, BOBBY would be
+@ infinitely re-fightable. Loss/whiteout: resolves through the engine's
+@ own standard trainer-battle-loss path (return to the last Pokémon
+@ Center), the same as any trainer fight; BOBBY's own object/hosting logic
+@ is untouched either way -- his farewell state is gated purely on the
 @ engine trainer flag, which a whiteout does not clear.
 @ ============================================================================
 IndigoPlateau_PokemonCenter_1F_EventScript_Bobby::
@@ -530,12 +551,16 @@ IndigoPlateau_PokemonCenter_1F_Text_BobbyPostReward:
 	.string "I don't think that's going to\n"
 	.string "matter.$"
 
-@ S13b: the farewell. "Not my job today" callback -- IndigoPlateau_
-@ PokemonCenter_1F_Text_BobbyBriefing's own line, above -- deliberately
-@ inverted now that the world tour puts BOBBY off duty.
+@ S13b: the farewell. FIX ROUND 1 (review m4): "I told you" was rewritten
+@ timeless -- the original wording presumed the player had seen
+@ Text_BobbyBriefing's own "not my job today" line, but that branch only
+@ fires while the gauntlet is incomplete (a player who clears all five
+@ crew fighters before ever talking to BOBBY never sees it), so "I told
+@ you" could be false. No conditional added -- rephrased instead, per the
+@ simpler of the ruling's two options.
 IndigoPlateau_PokemonCenter_1F_Text_BobbyFarewellIntro:
-	.string "BOBBY: Not my job, I told you --\n"
-	.string "back at the gauntlet.\p"
+	.string "BOBBY: Wasn't my job, back at the\n"
+	.string "gauntlet.\p"
 	.string "Today's different. Come on,\n"
 	.string "then.$"
 

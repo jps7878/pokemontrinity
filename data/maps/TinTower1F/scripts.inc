@@ -295,9 +295,13 @@ TinTower1F_EventScript_SageA::
 @ content independent of the Kanto arc, matching every other purely-Johto
 @ script in this file). One-fight-per-id via the engine trainer flag,
 @ explicit top-of-branch guard (same reasoning as BOBBY/SILVER this slice:
-@ a msgbox precedes the fight, so the guard must be explicit, not left to
-@ trainerbattle's own internal fallthrough). trainerbattle_no_intro: a
-@ custom challenge line plays first via msgbox.
+@ a msgbox precedes the fight, so the guard must be explicit). CORRECTED
+@ (fix round 1, review m1): `trainerbattle_no_intro` has NO internal
+@ idempotence at all (`EventScript_DoNoIntroTrainerBattle`, data/scripts/
+@ trainer_battle.inc, has no `GetTrainerFlag` check) -- the guard is not
+@ merely avoiding a replayed msgbox, it is the ONLY thing preventing an
+@ infinitely re-fightable sage. trainerbattle_no_intro: a custom challenge
+@ line plays first via msgbox.
 TinTower1F_EventScript_SageAAfter::
 	msgbox TinTower1F_Text_SageAAfter, MSGBOX_DEFAULT
 	checktrainerflag TRAINER_SAGE_GAKU

@@ -177,6 +177,22 @@ PowerPlant_EventScript_Zapdos::
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, PowerPlant_EventScript_ZapdosDefeated
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, PowerPlant_EventScript_ZapdosFled
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, PowerPlant_EventScript_ZapdosFled
+	@ Trinity M5b S13b fix round 1 (review C2, cross-slice ruling): every
+	@ shipped legendary contract was missing this branch. `setteleportoutcome`
+	@ is emitted from FOUR battle scripts (asm/macros/battle_script.inc:2100-
+	@ 2101), not only Teleport's own: BattleScript_DoEffectTeleport,
+	@ BattleScript_RoarSuccessEndBattle, and -- the route that actually
+	@ matters for a WILD legendary -- BattleScript_EmergencyExitWild /
+	@ _WildEnd2 (data/battle_scripts_1.s:6565/6596). A player who Skill
+	@ Swaps or Entrainments ABILITY_EMERGENCY_EXIT/WIMP_OUT onto ZAPDOS (its
+	@ own ability, Pressure, carries no cantBeSwapped/cantBeOverwritten flag
+	@ -- src/data/abilities.h -- so it does not block the transfer) and
+	@ drops it below half HP
+	@ ends the battle B_OUTCOME_MON_TELEPORTED -- with no branch here, that
+	@ fell through to "CAUGHT" and set FLAG_TRINITY_K_ZAPDOS_RESOLVED with
+	@ nothing caught, a permanent uncatchable loss. Routed to the same Fled
+	@ handler as a normal RAN outcome.
+	goto_if_eq VAR_RESULT, B_OUTCOME_MON_TELEPORTED, PowerPlant_EventScript_ZapdosFled
 	@ fall-through == B_OUTCOME_CAUGHT. ON_RESUME has already removed the object.
 	setflag FLAG_TRINITY_K_ZAPDOS_RESOLVED
 	release

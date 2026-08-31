@@ -79,6 +79,15 @@ KurtsHouse_EventScript_KurtApricornCheck::
 	goto_if_eq VAR_RESULT, TRUE, KurtsHouse_EventScript_TradeWhite
 	checkitem ITEM_BLACK_APRICORN
 	goto_if_eq VAR_RESULT, TRUE, KurtsHouse_EventScript_TradeBlack
+	@ Fix round 1 (review M2): the GS_BALL flag alone only implies arc>=3
+	@ (set alongside `setvar VAR_TRINITY_KANTO_ARC, 3` in
+	@ RocketHideout_B4F_EventScript_Evidence), but CELEBI's own visibility
+	@ at the shrine requires arc>=6 (IlexForest/scripts.inc). Without this
+	@ guard, Kurt would point the player at the shrine for the whole of arcs
+	@ 3-5, where nothing is there yet -- a live dangling quest thread. Added
+	@ ahead of the GS-Ball branch so the pointer only fires once the shrine
+	@ can actually pay off.
+	goto_if_lt VAR_TRINITY_KANTO_ARC, 6, KurtsHouse_EventScript_KurtNoApricorns
 	goto_if_unset FLAG_TRINITY_K_GS_BALL, KurtsHouse_EventScript_KurtNoApricorns
 	goto_if_set FLAG_TRINITY_J_CELEBI_RESOLVED, KurtsHouse_EventScript_KurtNoApricorns
 	msgbox KurtsHouse_Text_KurtGSBall, MSGBOX_DEFAULT
@@ -94,11 +103,15 @@ KurtsHouse_EventScript_KurtNoApricorns::
 @ already exists, S6; FLAG_TRINITY_J_CELEBI_RESOLVED gates it back off once
 @ the shrine encounter resolves, IlexForest/scripts.inc). Idempotent,
 @ replayable -- points the player at the shrine without promising anything
-@ the text can't back up.
+@ the text can't back up. FIX ROUND 1 (review M1): "again"/"still" were
+@ dropped -- both presupposed a prior Kurt/GS-Ball scene that never
+@ happened (a tree-wide grep for "GS BALL" returns only the Kanto pickup
+@ itself and this pair of new files); this is genuinely the player's first
+@ time showing Kurt the ball.
 KurtsHouse_Text_KurtGSBall:
-	.string "That GS BALL again.\p"
-	.string "I still can't open it. But if it's\n"
-	.string "meant for anyone, it's whatever\lstands at the ILEX FOREST shrine.\p"
+	.string "That GS BALL you're carrying…\p"
+	.string "I can't open it. But if it's meant\n"
+	.string "for anyone, it's whatever stands\lat the ILEX FOREST shrine.\p"
 	.string "Try there.$"
 
 KurtsHouse_EventScript_TradeRed::

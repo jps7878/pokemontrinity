@@ -45,18 +45,26 @@
 @ south-facing read tile (8,23). MB_ICE checked tree-wide on this map: 0
 @ cells -- no manual slide/ice derivation needed.
 @
-@ Outcome switch (the 13-A lesson, re-derived here rather than assumed):
-@ sCelebiLevelUpLearnset (src/data/pokemon/level_up_learnsets/gen_9.h, the
-@ ACTIVE table -- P_LVL_UP_LEARNSETS is GEN_LATEST/GEN_9,
-@ include/config/pokemon.h:14) at L70 gives Confusion(1)/Heal Bell(1)/
-@ Magical Leaf(10)/Baton Pass(20)/Ancient Power(30)/Life Dew(40)/Leech
-@ Seed(50)/Recover(60)/Future Sight(70) -- NO Teleport, Metronome, or
-@ Transform. Baton Pass cannot trigger B_OUTCOME_MON_TELEPORTED (that
-@ outcome is set specifically by the TELEPORT move's own battle script,
-@ src/battle_script_commands.c's BS_SetTeleportOutcome, not by Baton Pass).
-@ B_OUTCOME_MON_TELEPORTED is therefore UNREACHABLE for this Celebi -- the
-@ three-branch bird shape (WON/RAN/PLAYER_TELEPORTED) is correct and
-@ sufficient, not a gap.
+@ Outcome switch. CORRECTED (fix round 1, review C2): the original claim
+@ here -- "B_OUTCOME_MON_TELEPORTED is UNREACHABLE for this Celebi" -- was
+@ FALSE. `GiveBoxMonInitialMoveset` (src/pokemon.c:1828-1876) keeps only
+@ the LAST FOUR level-up moves at or below the mon's level, so L70 Celebi
+@ actually knows Life Dew(40)/Leech Seed(50)/Recover(60)/Future Sight(70)
+@ -- still no Teleport/Metronome/Transform/Roar/Whirlwind, so the MOVE-side
+@ route to B_OUTCOME_MON_TELEPORTED genuinely is closed. But
+@ `setteleportoutcome` is emitted from FOUR battle scripts, not one
+@ (asm/macros/battle_script.inc:2100-2101): BattleScript_DoEffectTeleport,
+@ BattleScript_RoarSuccessEndBattle, and -- the route the original comment
+@ missed entirely -- BattleScript_EmergencyExitWild / _WildEnd2
+@ (data/battle_scripts_1.s:6565/6596), the WILD-side handler for
+@ ABILITY_EMERGENCY_EXIT/WIMP_OUT. Celebi's own ability, Natural Cure
+@ (src/data/pokemon/species_info/gen_2_families.h), carries no
+@ cantBeSwapped/cantBeOverwritten flag (src/data/abilities.h), so a player
+@ can Skill Swap or Entrainment Emergency Exit/Wimp Out onto it, drop it
+@ below half HP, and end the battle B_OUTCOME_MON_TELEPORTED. Without this
+@ branch that fell through to "CAUGHT" and set FLAG_TRINITY_J_CELEBI_
+@ RESOLVED with nothing caught -- a permanent, uncatchable loss, the exact
+@ 13-A C1 class. Routed to the same Fled handler as a normal RAN outcome.
 @ ============================================================================
 IlexForest_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, IlexForest_OnTransition
@@ -106,6 +114,9 @@ IlexForest_EventScript_Celebi::
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, IlexForest_EventScript_CelebiDefeated
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, IlexForest_EventScript_CelebiFled
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, IlexForest_EventScript_CelebiFled
+	@ Fix round 1 (review C2): see the header comment above for the full
+	@ Emergency Exit/Wimp Out derivation. Routed to the same Fled handler.
+	goto_if_eq VAR_RESULT, B_OUTCOME_MON_TELEPORTED, IlexForest_EventScript_CelebiFled
 	@ fall-through == B_OUTCOME_CAUGHT. ON_RESUME has already removed the
 	@ object.
 	setflag FLAG_TRINITY_J_CELEBI_RESOLVED
@@ -140,9 +151,15 @@ IlexForest_EventScript_Signpost::
 @ ============================================================================
 @ Trinity M4b S3 -- the ILEX FOREST SHRINE. Adapts pokecrystal
 @ maps/IlexForest.asm's IlexForestShrineScript / Text_IlexForestShrine.
-@ CELEBI IS POST-GAME: the GS BALL branch, the CelebiShrineEvent special and
-@ the L30 encounter are all skipped, and this text must not promise a
-@ summoning. Reverent flavour only.
+@ UPDATED (fix round 1, review m2): this comment originally said "CELEBI IS
+@ POST-GAME: the GS BALL branch, the CelebiShrineEvent special and the L30
+@ encounter are all skipped, and this text must not promise a summoning" --
+@ true when M4b S3 shipped this sign, FALSIFIED by M5b S13b, which added
+@ exactly a GS-Ball-gated CELEBI at this shrine (see the header comment
+@ above `IlexForest_MapScripts::`). Left stale through 13-B's own first
+@ commit; corrected here. This sign's own text is UNCHANGED and still
+@ correct either way -- it never promises a summoning, so nothing it says
+@ needs to change now that one exists next to it.
 @ (8,22) decodes collision 1 / elevation 0 -- the shrine tile itself -- read
 @ facing north from (8,23), which decodes collision 0 / elevation 3. Same shape
 @ as the GYM PATTERN's G5 statues.

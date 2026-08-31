@@ -93,21 +93,43 @@ BirthIsland_Exterior_EventScript_Deoxys::
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, BirthIsland_Exterior_EventScript_DefeatedDeoxys
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, BirthIsland_Exterior_EventScript_RanFromDeoxys
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, BirthIsland_Exterior_EventScript_RanFromDeoxys
-	@ Trinity M5b S13b fix (the 13-A outcome-switch lesson, applied here to
-	@ PRE-EXISTING vanilla content this slice makes reachable for the first
-	@ time): sDeoxysNormalLevelUpLearnset (src/data/pokemon/level_up_
-	@ learnsets/gen_9.h, the ACTIVE table -- P_LVL_UP_LEARNSETS is GEN_LATEST/
-	@ GEN_9, include/config/pokemon.h:14) gives DEOXYS_NORMAL TELEPORT
-	@ NATURALLY at level 13 -- reachable at L80 by construction, no Metronome/
-	@ Transform needed. Without this branch, B_OUTCOME_MON_TELEPORTED (10)
-	@ fell through to `setflag FLAG_BATTLED_DEOXYS` below, which
-	@ BirthIsland_Exterior_OnTransition reads to HIDE BOTH DEOXYS AND THE
-	@ TRIANGLE PUZZLE permanently (worse than Mew's own C1 case: even the
-	@ puzzle that would let the player try again disappears) -- and nothing
-	@ in the tree ever clears FLAG_BATTLED_DEOXYS (hall_of_fame.inc's own
-	@ reset list clears FLAG_DEFEATED_DEOXYS, a different flag). Routed to
-	@ the same RanFromDeoxys handler as a normal RAN/PLAYER_TELEPORTED
-	@ outcome, matching NewIsland's own C1 fix shape exactly.
+	@ CORRECTED (fix round 1, review C1): the derivation originally given
+	@ here was INVERTED. `GiveBoxMonInitialMoveset` (src/pokemon.c:1828-1876)
+	@ keeps only the LAST FOUR level-up moves at or below the mon's level.
+	@ sDeoxysNormalLevelUpLearnset (src/data/pokemon/level_up_learnsets/
+	@ gen_9.h, the ACTIVE table -- P_LVL_UP_LEARNSETS is GEN_LATEST/GEN_9,
+	@ include/config/pokemon.h:14) is Wrap(1)/Leer(1)/Night Shade(7)/
+	@ Teleport(13)/Knock Off(19)/Psyshock(25)/Psychic(31)/Gravity(37)/Skill
+	@ Swap(43)/Zen Headbutt(49)/Cosmic Power(55)/Recover(61)/Psycho
+	@ Boost(67)/Hyper Beam(73) -- so AT L80 (this slice's own level) DEOXYS
+	@ actually knows Cosmic Power/Recover/Psycho Boost/Hyper Beam. Teleport
+	@ was shifted OUT of the held four back at Knock Off (L19); it is NOT
+	@ reachable "by construction" at L80, and never was the bug this comment
+	@ originally claimed to have found here. The real story: at the
+	@ PRE-EXISTING VANILLA level, L30, the same last-four walk yields Night
+	@ Shade/Teleport/Knock Off/Psyshock -- Teleport WAS naturally in range,
+	@ a genuine vanilla bug -- and this slice's own `seteventmon ..., 30 ->
+	@ 80` level edit two lines up is what CLOSES that route, not something
+	@ separate from it.
+	@
+	@ The branch below stays anyway, now for its TRUE reason (review C2,
+	@ cross-slice ruling): `setteleportoutcome` is emitted from FOUR battle
+	@ scripts (asm/macros/battle_script.inc:2100-2101), not only Teleport's
+	@ own -- BattleScript_EmergencyExitWild / _WildEnd2
+	@ (data/battle_scripts_1.s:6565/6596) is the WILD-side handler for
+	@ ABILITY_EMERGENCY_EXIT/WIMP_OUT, and DEOXYS's own ability, Pressure
+	@ (src/data/pokemon/species_info/gen_3_families.h), carries no
+	@ cantBeSwapped/cantBeOverwritten flag (src/data/abilities.h) -- so a
+	@ player can Skill Swap or Entrainment either ability onto it at ANY
+	@ level and end the battle B_OUTCOME_MON_TELEPORTED regardless of its
+	@ own moveset. Without this branch that outcome fell through to `setflag
+	@ FLAG_BATTLED_DEOXYS` below, which BirthIsland_Exterior_OnTransition
+	@ reads to HIDE BOTH DEOXYS AND THE TRIANGLE PUZZLE permanently (worse
+	@ than Mew's own 13-A C1 case: even the puzzle that would let the player
+	@ try again disappears) -- and nothing in the tree ever clears
+	@ FLAG_BATTLED_DEOXYS (hall_of_fame.inc's own reset list clears
+	@ FLAG_DEFEATED_DEOXYS, a different flag). Routed to the same
+	@ RanFromDeoxys handler as a normal RAN/PLAYER_TELEPORTED outcome.
 	goto_if_eq VAR_RESULT, B_OUTCOME_MON_TELEPORTED, BirthIsland_Exterior_EventScript_RanFromDeoxys
 	@ fall-through == B_OUTCOME_CAUGHT.
 	setflag FLAG_BATTLED_DEOXYS

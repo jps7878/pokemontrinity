@@ -468,13 +468,26 @@ MossdeepCity_Text_SootopolisNewGymLeader:
 @ MB_NORMAL, decoded directly from MossdeepCity's own map.bin this
 @ session, mutually adjacent and clear of every other object on this map.
 @
-@ Outcome switch (re-derived, not assumed): sJirachiLevelUpLearnset
-@ (src/data/pokemon/level_up_learnsets/gen_9.h, the ACTIVE table) at L70
-@ gives Confusion(1)/Wish(1)/Swift(7)/Life Dew(21)/Zen Headbutt(28)/
-@ Gravity(35)/Psychic(42)/Meteor Mash(49)/Healing Wish(56)/Rest(63)/Future
-@ Sight(70) -- NO Teleport, Metronome, or Transform. B_OUTCOME_MON_
-@ TELEPORTED is unreachable for this Jirachi; the three-branch bird shape
-@ is correct and sufficient.
+@ Outcome switch. CORRECTED (fix round 1, review C2): the original claim
+@ here -- "B_OUTCOME_MON_TELEPORTED is unreachable for this Jirachi" --
+@ was FALSE. `GiveBoxMonInitialMoveset` (src/pokemon.c:1828-1876) keeps
+@ only the LAST FOUR level-up moves at or below the mon's level, so L70
+@ Jirachi actually knows Meteor Mash(49)/Healing Wish(56)/Rest(63)/Future
+@ Sight(70) -- still no Teleport/Metronome/Transform/Roar/Whirlwind, so
+@ the MOVE-side route is genuinely closed. But `setteleportoutcome` is
+@ emitted from FOUR battle scripts, not one (asm/macros/battle_script.inc:
+@ 2100-2101): BattleScript_DoEffectTeleport, BattleScript_
+@ RoarSuccessEndBattle, and -- the route the original comment missed --
+@ BattleScript_EmergencyExitWild / _WildEnd2 (data/battle_scripts_1.s:
+@ 6565/6596), the WILD-side handler for ABILITY_EMERGENCY_EXIT/WIMP_OUT.
+@ Jirachi's own ability, Serene Grace (src/data/pokemon/species_info/
+@ gen_3_families.h), carries no cantBeSwapped/cantBeOverwritten flag
+@ (src/data/abilities.h), so a player can Skill Swap or Entrainment
+@ Emergency Exit/Wimp Out onto it, drop it below half HP, and end the
+@ battle B_OUTCOME_MON_TELEPORTED. Without this branch that fell through
+@ to "CAUGHT" and set FLAG_TRINITY_K_JIRACHI_RESOLVED with nothing caught
+@ -- a permanent, uncatchable loss, the exact 13-A C1 class. Routed to the
+@ same Fled handler as a normal RAN outcome.
 @ ============================================================================
 MossdeepCity_EventScript_Astronomer::
 	lock
@@ -517,6 +530,9 @@ MossdeepCity_EventScript_Jirachi::
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, MossdeepCity_EventScript_JirachiDefeated
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, MossdeepCity_EventScript_JirachiFled
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, MossdeepCity_EventScript_JirachiFled
+	@ Fix round 1 (review C2): see the header comment above for the full
+	@ Emergency Exit/Wimp Out derivation. Routed to the same Fled handler.
+	goto_if_eq VAR_RESULT, B_OUTCOME_MON_TELEPORTED, MossdeepCity_EventScript_JirachiFled
 	@ fall-through == B_OUTCOME_CAUGHT. ON_RESUME has already removed the
 	@ object.
 	setflag FLAG_TRINITY_K_JIRACHI_RESOLVED
