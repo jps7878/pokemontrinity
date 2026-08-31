@@ -11,35 +11,35 @@
 @ (5,7)->(7,7)->(7,3)->(13,3)->(13,5)->(18,5)->(18,2)->(24,2)->(27,3)->
 @ (27,6)->(33,6)->(33,20)->(29,20)->(27,18)->(27,10)->(18,10)->(18,12)->
 @ (20,12)->(20,13). The floor DOES contain one genuinely water-isolated
-@ 14-cell pocket at (5,12)-(9,15) -- but MEWTWO and TM25 are not on it. This
-@ was NOT re-engineered to force Surf per the controller's ruling (reachable-
-@ on-foot ships as-is); an M6 note is logged instead: FRLG-parity Surf
-@ staging (moving MEWTWO onto the water-isolated pocket, or otherwise gating
-@ the approach behind Surf) is available as a balance/flavour option for a
-@ future polish pass, not required.
-@ TM25 (a hidden pickup, map.json bg_events) sits on the same island at
-@ (24,13), the cave's "top-shelf" prize alongside its guardian.
+@ 14-cell pocket at (5,12)-(9,15) -- but MEWTWO and the hidden TM pickup are
+@ not on it. This was NOT re-engineered to force Surf per the controller's
+@ ruling (reachable-on-foot ships as-is); an M6 note is logged instead:
+@ FRLG-parity Surf staging (moving MEWTWO onto the water-isolated pocket, or
+@ otherwise gating the approach behind Surf) is available as a balance/
+@ flavour option for a future polish pass, not required.
+@ The hidden pickup (map.json bg_events) sits on the same island at (24,13),
+@ the cave's "top-shelf" prize alongside its guardian.
 @
-@ DISCLOSED DUPLICATE -- and CORRECTED to name all three sources (fix round
-@ 1, review C3): TM25 is awarded in THREE places tree-wide. (1) A visible
-@ OBJ_EVENT_GFX_ITEM_BALL pickup in PowerPlant/map.json
-@ (FLAG_TRINITY_KANTO_PICKUPS_START + 80, shipped S3, likely FRLG's own real
-@ TM25 placement). (2) A purchasable listing on the Celadon Department Store
-@ 2F TM mart (CeladonCity_DepartmentStore_2F_Pokemart_TMs,
-@ CeladonCity_DepartmentStore_2F/scripts.inc:36) -- a normal, expected TM-mart
-@ sale, not a story-award duplicate, but a live TM25 source nonetheless. (3)
-@ THIS hidden pickup (+ 241). The sub-plan's original "none found" dedup
-@ claim (§3.2) was false -- an incomplete grep missed all of this; the
-@ implementer's own re-run mid-session found only (1), not (2), and even
-@ that correction was left un-landed in the committed sub-plan text (review
-@ C3) until this fix round. Kept anyway per the brief's own "spec-binding:
-@ TM25 Thunder" line rather than substituted for a different TM, because TMs
-@ in this tree are reusable/unlimited-use (I_REUSABLE_TMS, S4's own finding)
-@ -- a third copy is redundant, not a functional bug, dead flag, or
-@ soft-lock. M6 BALANCE NOTE (controller ruling m1): a future pass should
-@ decide whether three live TM25 sources is intentional generosity or worth
-@ trimming to two; this hidden pickup is the newest and the easiest to
-@ retarget to a different TM if the founder wants variety instead.
+@ M6 P1 (Balance-2, founder-dictated 2026-08-31): this pickup shipped M5b as
+@ ITEM_TM25 (Thunder), a disclosed duplicate of two other live TM25 sources
+@ tree-wide -- a visible ball in PowerPlant/map.json
+@ (FLAG_TRINITY_KANTO_PICKUPS_START + 80) and mart listings in BOTH
+@ CeladonCity_DepartmentStore_2F_Pokemart_TMs and LilycoveCity_
+@ DepartmentStore_4F's AttackTMs list. RETARGETED to ITEM_TM_SKILL_SWAP
+@ (TM48): a tree-wide census of every giveitem / hidden_item(bg_event) /
+@ mart-list TM occurrence across all 50 classic TMs (both the numbered
+@ ITEM_TMnn and named ITEM_TM_<MOVE> spellings, cross-mapped via
+@ include/constants/tms_hms.h's FOREACH_TM ordering) found Skill Swap the
+@ ONLY TM with zero hits in those three categories -- every other TM is
+@ already a curated NPC award, a bg_event hidden pickup, or a mart sale
+@ somewhere else in this 3-region tree (full candidate table: M6 P1
+@ report). It does carry two ordinary field-ball copies elsewhere
+@ (Route12's Kanto placement, MtPyre_Exterior's native Hoenn one) -- that's
+@ each region's own routine per-region TM distribution, the same category
+@ TM25's own PowerPlant ball sat in without being the disqualifying factor;
+@ TM25 failed dedup on its TWO mart listings, not that ball. ONLY the item
+@ id changed here -- the pickup flag (+ 241), x/y/elevation, and script are
+@ byte-identical to what shipped in M5b.
 @
 @ Legendary contract, three clauses (bird-contract precedent, re-read this
 @ slice from SeafoamIslands_B4F/scripts.inc:280-326 and PowerPlant/scripts.inc):

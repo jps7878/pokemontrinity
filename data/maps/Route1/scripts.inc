@@ -52,8 +52,9 @@ Route1_EventScript_Silver::
 	end
 
 @ INTENTIONALLY UNREACHABLE / DEFENSIVE -- SilverAftermath removeobject's
-@ SILVER and the ON_TRANSITION hides him permanently once arc>=5 -- there is
-@ never an object left to re-trigger this talk.
+@ SILVER and the ON_TRANSITION hides him permanently once he's been fought
+@ (checktrainerflag TRAINER_SILVER_FINAL, S14 fix) -- there is never an
+@ object left to re-trigger this talk.
 Route1_EventScript_SilverIdle::
 	lock
 	faceplayer
