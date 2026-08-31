@@ -128,6 +128,7 @@ VermilionCity_EventScript_Sailor::
 	lock
 	faceplayer
 	goto_if_unset FLAG_TRINITY_K_ARRIVED, VermilionCity_EventScript_SailorNotYet
+	goto_if_set FLAG_TRINITY_K_MYSTERIOUS_INVITATION, VermilionCity_EventScript_SailorTwoDestinations
 	msgbox VermilionCity_Text_BackToOlivine, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, VermilionCity_EventScript_SailorDecline
 	closemessage
@@ -137,24 +138,55 @@ VermilionCity_EventScript_Sailor::
 	release
 	end
 
-@ Trinity M5b S13 -- the MYSTERIOUS INVITATION's own destination, reached only
-@ after the player declines the OLIVINE crossing above. FLAG_TRINITY_K_
-@ MYSTERIOUS_INVITATION is co-signed the moment MEWTWO's CERULEAN CAVE
-@ contract resolves (NewIsland/scripts.inc's own resolved handler) -- it is
-@ never set here, only read. Fade-warp only (YESNO -> warp -> waitstate),
-@ the exact idiom the OLIVINE leg above already uses -- no ship-corridor map,
-@ per the founder's decision. No setrespawn: NEW ISLAND has no PC, so a
-@ faint there must respawn the player at their EXISTING Kanto respawn point,
-@ not strand them -- the OLIVINE leg's setrespawn is deliberately NOT mirrored.
 VermilionCity_EventScript_SailorDecline::
-	goto_if_set FLAG_TRINITY_K_MYSTERIOUS_INVITATION, VermilionCity_EventScript_OfferNewIsland
 	msgbox VermilionCity_Text_SailAnotherTime, MSGBOX_DEFAULT
 	release
 	end
 
-VermilionCity_EventScript_OfferNewIsland::
-	msgbox VermilionCity_Text_MysteriousInvitation, MSGBOX_YESNO
+@ ============================================================================
+@ Trinity M5b S13a fix round 1 (review M1(b)/(c), M5). Once FLAG_TRINITY_K_
+@ MYSTERIOUS_INVITATION is set, this branch REPLACES the Olivine-only path
+@ above at the top of the conversation -- both destinations are named in the
+@ very FIRST thing the Sailor says, a genuinely visible choice, not something
+@ that only surfaces after the player happens to decline Olivine blind (the
+@ shipped-then-reviewed shape: New Island was reachable only via a NO to
+@ "Back to Olivine?", with zero forewarning that saying no led anywhere).
+@ Sequential YESNO -- the already-proven, already-shipped idiom throughout
+@ this file -- not a true multichoice widget: `dynmultichoice` exists in the
+@ engine (asm/macros/event.inc) but has zero precedent anywhere in this tree,
+@ and the ruling's own "multichoice OR EQUIVALENT -- your mechanism" grants
+@ this lower-risk choice.
+@
+@ FLAG_TRINITY_K_MYSTERIOUS_INVITATION is co-signed the moment MEWTWO's
+@ contract resolves, in CeruleanCave_B1F_EventScript_MewtwoResolved
+@ (data/maps/CeruleanCave_B1F/scripts.inc) -- it is never set here, only
+@ read. (Corrected cross-reference: the pre-fix comment here named
+@ "NewIsland/scripts.inc's own resolved handler", which does not exist and
+@ was never the co-sign site -- review M5.)
+@
+@ Fade-warp only on both legs (YESNO -> warp -> waitstate), the exact idiom
+@ the OLIVINE leg above already uses -- no ship-corridor map, per the
+@ founder's decision. No setrespawn on the NEW ISLAND leg specifically: NEW
+@ ISLAND has no PC, so a faint there must respawn the player at their
+@ EXISTING Kanto respawn point, not strand them -- contrast the OLIVINE leg's
+@ own setrespawn two screens up. (The pre-fix comment on this point lived in
+@ NewIsland/scripts.inc pointing back at "this file's header comment", which
+@ says nothing about setrespawn -- the real discussion is HERE; review M5.)
+@ ============================================================================
+VermilionCity_EventScript_SailorTwoDestinations::
+	msgbox VermilionCity_Text_TwoDestinations, MSGBOX_DEFAULT
+	msgbox VermilionCity_Text_NewIslandOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, VermilionCity_EventScript_GoToNewIsland
+	msgbox VermilionCity_Text_BackToOlivine, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, VermilionCity_EventScript_SailAnotherTimeAfterAll
+	closemessage
+	setrespawn HEAL_LOCATION_OLIVINE_CITY
+	warp MAP_OLIVINE_PORT, 7, 22
+	waitstate
+	release
+	end
+
+VermilionCity_EventScript_GoToNewIsland::
 	closemessage
 	warp MAP_NEW_ISLAND, 5, 7
 	waitstate
@@ -175,11 +207,19 @@ VermilionCity_Text_BackToOlivine:
 	.string "Back to OLIVINE CITY, over in\n"
 	.string "JOHTO?$"
 
-VermilionCity_Text_MysteriousInvitation:
-	.string "Say -- that odd letter you got says\n"
-	.string "there's an island east of here that\l"
-	.string "isn't on any chart. Want me to take\l"
-	.string "you out to it?$"
+@ M1(c): this line must reference ONLY an invitation that actually exists.
+@ CeruleanCave_B1F_Text_Invitation (data/maps/CeruleanCave_B1F/scripts.inc)
+@ is the moment the player finds and takes the envelope this line points
+@ back to -- the two texts are written to agree on what happened.
+VermilionCity_Text_TwoDestinations:
+	.string "That envelope you picked up at\n"
+	.string "CERULEAN CAVE has sailing marks on\l"
+	.string "it -- looks like an invitation. I\l"
+	.string "could take you out to the island it\l"
+	.string "points to, or back to OLIVINE CITY.$"
+
+VermilionCity_Text_NewIslandOffer:
+	.string "Out to the island, then?$"
 
 VermilionCity_Text_SailAnotherTime:
 	.string "Please sail with us another time!$"

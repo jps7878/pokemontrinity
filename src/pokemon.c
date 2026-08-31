@@ -6116,14 +6116,24 @@ u16 GetBattleBGM(void)
         // Trinity M5b S11: MOLTRES. Same belt-and-braces documentation parity.
         case SPECIES_MOLTRES:
             return MUS_RG_VS_LEGEND;
-        // Trinity M5b S13a: MEWTWO. UNLIKE the birds' cases just above, this
-        // one is BEHAVIOURALLY REQUIRED, not documentation parity -- the
-        // `default:` below returns the generic MUS_RG_VS_LEGEND, which is the
-        // WRONG answer here (battle_setup.c's own switch gives Mewtwo its
-        // dedicated MUS_RG_VS_MEWTWO on the field path; this function must
-        // agree for any path that passes song 0 and lands here instead).
+        // Trinity M5b S13a fix round 1 (review m3): MEWTWO and MEW, both
+        // belt-and-braces documentation parity, same class as ZAPDOS/
+        // ARTICUNO/MOLTRES just above -- NOT a behavioural fix. Traced this
+        // round: GetBattleBGM() has three callers (this file, PlayBattleBGM's
+        // only caller is the starter battle, not BATTLE_TYPE_LEGENDARY; the
+        // PlayMapChosenOrBattleBGM(0) callers are Battle Tower / cable club /
+        // recorded battle) -- no live path was found that reaches this
+        // function with song 0 for a legendary battle, so no case here is
+        // actually load-bearing. The original comment claimed this one case
+        // was "BEHAVIOURALLY REQUIRED" against a "WRONG" default answer;
+        // that claim was unverified and is retracted. Kept in step with
+        // BattleSetup_StartLegendaryBattle's switch (src/battle_setup.c),
+        // which is what actually chooses the song on the field path, for the
+        // same reason every other case in this switch exists.
         case SPECIES_MEWTWO:
             return MUS_RG_VS_MEWTWO;
+        case SPECIES_MEW:
+            return MUS_VS_MEW;
         default:
             return MUS_RG_VS_LEGEND;
         }

@@ -5,9 +5,14 @@
 @ complete, unrelated Mew encounter -- FarawayIsland_Interior/scripts.inc --
 @ that this slice deliberately leaves untouched; see the sub-plan §2/§3.4 for
 @ the full reasoning). Reached only via VermilionCity's own Sailor object
-@ (VermilionCity/scripts.inc), gated on FLAG_TRINITY_K_MYSTERIOUS_INVITATION,
-@ which this map's own MEW-resolved handler co-signs (§3.3 of the sub-plan --
-@ P3 is folded into P1's own resolution site, not a separate scene).
+@ (VermilionCity/scripts.inc), gated on FLAG_TRINITY_K_MYSTERIOUS_INVITATION.
+@ CORRECTED CROSS-REFERENCE (fix round 1, review M5): that flag is co-signed
+@ in CeruleanCave_B1F_EventScript_MewtwoResolved
+@ (data/maps/CeruleanCave_B1F/scripts.inc), NOT by any handler on this map --
+@ the original comment here claimed "this map's own MEW-resolved handler",
+@ which does not exist and was never the co-sign site (P3 folds into P1's
+@ own resolution site on CERULEAN CAVE's own map, per sub-plan §3.3; New
+@ Island only ever READS the flag, at map.json's own OnTransition gate).
 @
 @ MEW's contract reuses the ENGINE'S OWN vanilla flags -- FLAG_HIDE_MEW,
 @ FLAG_DEFEATED_MEW, FLAG_CAUGHT_MEW (flags.h:807/525/528) -- rather than
@@ -24,6 +29,28 @@
 @ never been part of any Trinity story path across three milestones -- but
 @ any future slice that DOES wire FarawayIsland must re-litigate this call,
 @ not assume it still holds.
+@
+@ COMPLETING THE DISCLOSURE (fix round 1, review M4): the writer set behind
+@ this reuse was NOT fully derived at implementation time. `FLAG_DEFEATED_MEW`
+@ has a THIRD live writer beyond this map and FarawayIsland_Interior:
+@ `data/scripts/hall_of_fame.inc`'s `EverGrandeCity_HallOfFame_EventScript_
+@ ResetDefeatedEventLegendaries` unconditionally `clearflag`s it (alongside
+@ FLAG_DEFEATED_LATIAS_OR_LATIOS/FLAG_DEFEATED_DEOXYS), called from EVERY
+@ entry into the HOENN Hall of Fame (EverGrandeCity_HallOfFame/scripts.inc).
+@ PLAIN STATEMENT of what this means: a player who DEFEATS (does not catch)
+@ MEW here and later RE-CLEARS the Hoenn Elite Four gets MEW BACK on NEW
+@ ISLAND -- this map's own ON_TRANSITION gate reads FLAG_DEFEATED_MEW
+@ directly, so the clear is not inert. This is a DELIBERATE, DISCLOSED
+@ DIVERGENCE from every other Trinity legendary in this milestone: Zapdos/
+@ Articuno/Moltres/Mewtwo all use a Trinity-owned `_RESOLVED` flag that
+@ NOTHING ever clears (one-shot, permanent). MEW is not one-shot for the
+@ "defeated, not caught" outcome specifically -- ruling (controller, fix
+@ round 1): KEEP the vanilla-flag reuse anyway (the registry is budget-tight,
+@ and a defeated-not-caught MEW respawning after a full Hoenn E4 re-clear is
+@ vanilla-consistent behaviour and player-friendly, not a bug) -- but the
+@ divergence must be named, not silently inherited. CAUGHT is still terminal
+@ (FLAG_CAUGHT_MEW has no clearing writer anywhere in the tree, confirmed by
+@ the same grep).
 @ ============================================================================
 NewIsland_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, NewIsland_OnTransition
@@ -67,13 +94,23 @@ NewIsland_EventScript_TryRemoveMew::
 @ OBJ_EVENT_GFX_SPECIES(MEW), flag FLAG_HIDE_MEW). Clause 2 (the fight)
 @ follows the exact shipped shape: seteventmon then BOTH
 @ BattleSetup_StartLegendaryBattle switches already case SPECIES_MEW
-@ (src/battle_setup.c:531-533, src/pokemon.c -- SPECIES_MEW falls to
-@ GetBattleBGM's default, which already returns the right generic legend
-@ theme; MEW's own dedicated MUS_VS_MEW is chosen on the field path by
+@ (src/battle_setup.c:531-533; src/pokemon.c's GetBattleBGM now also cases
+@ SPECIES_MEW directly, fix round 1 review m3 -- documentation-parity wording,
+@ same class as the ZAPDOS/ARTICUNO/MOLTRES cases, not a behavioural fix;
+@ MEW's own dedicated MUS_VS_MEW is chosen on the field path by
 @ BattleSetup_StartLegendaryBattle's own case, unchanged, no engine edit
-@ needed for MEW). Clause 3 (terminal) sets FLAG_DEFEATED_MEW on WON and
-@ FLAG_CAUGHT_MEW on the CAUGHT fall-through -- FarawayIsland_Interior's own
-@ exact idiom (scripts.inc:140-148), copied verbatim onto the vanilla flags.
+@ needed for MEW's actual in-battle music). Clause 3 (terminal) sets
+@ FLAG_DEFEATED_MEW on WON and FLAG_CAUGHT_MEW on the CAUGHT fall-through --
+@ FarawayIsland_Interior's own idiom (scripts.inc:140-148), NOW genuinely
+@ matched (fix round 1, review C1): the original claim of "copied verbatim"
+@ was FALSE -- the source has FOUR outcome branches (WON/RAN/PLAYER_
+@ TELEPORTED/MON_TELEPORTED), and this script shipped with only three,
+@ silently dropping MON_TELEPORTED (Metronome/Transform can both reach it on
+@ a species with either move, and MEW's own L90 learnset carries both --
+@ src/data/pokemon/level_up_learnsets/gen_1.h). A Mew that teleports away
+@ fell through to `setflag FLAG_CAUGHT_MEW` uncaught, permanently. Fixed
+@ below with the fourth branch; the comment now describes what the code
+@ actually does.
 NewIsland_EventScript_Mew::
 	lock
 	faceplayer
@@ -92,6 +129,16 @@ NewIsland_EventScript_Mew::
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, NewIsland_EventScript_MewDefeated
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, NewIsland_EventScript_MewFled
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, NewIsland_EventScript_MewFled
+	@ Fix round 1 (review C1): the fourth branch FarawayIsland_Interior:139
+	@ has and this script originally dropped. B_OUTCOME_MON_TELEPORTED fires
+	@ when MEW itself teleports away mid-battle (Metronome can call Teleport;
+	@ Transform can copy a Teleport user's moveset outright -- both real for
+	@ this Mew's L90 learnset) -- without this branch it fell through to
+	@ `setflag FLAG_CAUGHT_MEW` despite nothing being caught, permanently
+	@ hiding a MEW the player never caught (nothing clears FLAG_CAUGHT_MEW
+	@ anywhere in the tree). Routed to the same MewFled handler as a normal
+	@ RAN outcome -- MEW got away either way.
+	goto_if_eq VAR_RESULT, B_OUTCOME_MON_TELEPORTED, NewIsland_EventScript_MewFled
 	@ fall-through == B_OUTCOME_CAUGHT. ON_RESUME has already removed the
 	@ object; FLAG_TRINITY_K_MYSTERIOUS_INVITATION was already armed back at
 	@ P1's own MEWTWO resolution (this is P4's own terminal state, not P3's).
@@ -136,8 +183,12 @@ NewIsland_Text_Mew:
 @ arrival tile OlivinePort's own two Kanto-crossing warps already use
 @ (OlivinePort/scripts.inc:125,182 -- `warp MAP_VERMILION_CITY, 24, 33`),
 @ one tile east of LOCALID_KANTO_VERMILION_SAILOR's own (23,33) so the player
-@ never lands on top of the NPC. No setrespawn (see this file's header
-@ comment) -- a faint on NEW ISLAND must not strand the player here.
+@ never lands on top of the NPC. No setrespawn -- a faint on NEW ISLAND must
+@ not strand the player here; the discussion of WHY (contrasted against the
+@ OLIVINE leg's own setrespawn) lives in VermilionCity/scripts.inc, at
+@ VermilionCity_EventScript_SailorTwoDestinations's own header comment, NOT
+@ in this file (fix round 1, review M5 -- the pre-fix comment here pointed
+@ at "this file's header comment", which says nothing about setrespawn).
 @ ---------------------------------------------------------------------------
 NewIsland_EventScript_Sailor::
 	lock
