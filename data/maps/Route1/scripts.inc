@@ -5,6 +5,22 @@
 @ well before Giovanni's badge fight, so an arc-only gate would let Silver
 @ appear before the badge is even won, contradicting the brief's own explicit
 @ sequential order ("badge 24, TM26 ... -> Silver's final battle").
+@
+@ FIX (S14 final-review F1, Major): the hide half of this gate was
+@ originally `arc >= 5`. Route 1 sits OFF the mandatory post-badge path
+@ (Viridian -> Route 22/23 -> league), and a tree-wide grep found no NPC,
+@ sign, or scene anywhere that points the player here -- so the DEFAULT
+@ player reaches the league, arc jumps 4->6 at the Hall of Fame having
+@ never fought Silver, and the old `arc >= 5` condition then hides him
+@ forever. No `==5` reader exists anywhere in the tree (verified fresh),
+@ so this was silent content deletion, not a soft-lock. Fixed per the
+@ review's option (a): the hide condition now reads SILVER's own
+@ fought-state via the engine's per-trainer flag, `checktrainerflag
+@ TRAINER_SILVER_FINAL` (same idiom as TRAINER_SILVER_MTMOON's own guard,
+@ MtMoon_1F/scripts.inc, and TRAINER_BOBBY's, IndigoPlateau_
+@ PokemonCenter_1F/scripts.inc:270-271) -- Silver now stays visible/
+@ re-fightable across the league regardless of arc, and disappears only
+@ once he has actually been beaten. The BADGE24 half is unchanged.
 @ ============================================================================
 Route1_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route1_OnTransition
@@ -12,7 +28,8 @@ Route1_MapScripts::
 
 Route1_OnTransition::
 	goto_if_unset FLAG_TRINITY_BADGE24, Route1_EventScript_HideSilver
-	goto_if_ge VAR_TRINITY_KANTO_ARC, 5, Route1_EventScript_HideSilver
+	checktrainerflag TRAINER_SILVER_FINAL
+	goto_if TRUE, Route1_EventScript_HideSilver
 	clearflag FLAG_TRINITY_K_SILVER_FINAL_HIDE
 	end
 

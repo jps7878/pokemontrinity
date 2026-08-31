@@ -254,9 +254,11 @@ PokemonLeague_HallOfFame_Text_AshCeremony:
 
 @ THE TRUE ENDING. HOENN, JOHTO, KANTO -- the trilogy closes here. Mt. Silver
 @ hint: text-only tease (S11 sub-plan §6.3), no map, no mechanical promise.
-@ TRAINER_RED (src/data/trainers.party, L98-100) exists in the corps and is
-@ deliberately NOT wired to anything this slice -- forward-hook for a later
-@ milestone, same class as M1's S.S. Tidal Johto-destination placeholder.
+@ FIX (S14 final-review F2): this comment previously said TRAINER_RED was
+@ "deliberately NOT wired to anything this slice -- forward-hook for a
+@ later milestone." Stale -- S12 wired him for real, at
+@ SilverCaveRoom3/scripts.inc:37 (arc>=7 gated, per the arc-spine census).
+@ This text is the tease pointing at that fight, not an unfulfilled hook.
 PokemonLeague_HallOfFame_Text_ActIIIComplete:
 	.string "Three leagues.\p"
 	.string "HOENN. JOHTO. And now KANTO --\n"
