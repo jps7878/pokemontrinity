@@ -139,7 +139,14 @@ static const u8 sCreditsText_WhereItContinued[]   = _("Where it continued");
 static const u8 sCreditsText_WhereItFinished[]    = _("Where it finished");
 
 static const u8 sCreditsText_TheChampions[]       = _("The Champions");
-static const u8 sCreditsText_StevenLanceAsh[]     = _("Steven, Lance, Ash");
+// FIX ROUND 2 (re-review NEW-1): was "Steven, Lance, Ash" -- Trinity's Act I
+// Champion is WALLACE, not Steven. data/maps/EverGrandeCity_ChampionsRoom/
+// scripts.inc:43 `trainerbattle_no_intro TRAINER_WALLACE, ...` is the only
+// Act I champion battle; Steven is the optional, skippable MeteorFalls_
+// StevensCave post-game fight, never a Champion the player dethrones (which
+// also falsified "beat them all"). src/pokemon.c's own champion-theme
+// comment already had this right ("MUS_VS_CHAMPION above by WALLACE/Act I").
+static const u8 sCreditsText_WallaceLanceAsh[]    = _("Wallace, Lance, Ash");
 static const u8 sCreditsText_AndTheTrainer[]      = _("and the trainer who beat them all");
 
 static const u8 sCreditsText_TwentyFourBadges[]   = _("Twenty-Four Badges");
@@ -219,7 +226,7 @@ static const struct CreditsEntry sCreditsEntry_WhereItContinued   = {11, FALSE, 
 static const struct CreditsEntry sCreditsEntry_WhereItFinished    = {11, FALSE, sCreditsText_WhereItFinished };
 
 static const struct CreditsEntry sCreditsEntry_TheChampions       = {10,  TRUE, sCreditsText_TheChampions };
-static const struct CreditsEntry sCreditsEntry_StevenLanceAsh     = {11, FALSE, sCreditsText_StevenLanceAsh };
+static const struct CreditsEntry sCreditsEntry_WallaceLanceAsh    = {11, FALSE, sCreditsText_WallaceLanceAsh };
 static const struct CreditsEntry sCreditsEntry_AndTheTrainer      = {11, FALSE, sCreditsText_AndTheTrainer };
 
 static const struct CreditsEntry sCreditsEntry_TwentyFourBadges   = {12,  TRUE, sCreditsText_TwentyFourBadges };
@@ -469,7 +476,7 @@ static const struct CreditsEntry *const sCreditsEntryPointerTable[PAGE_COUNT][EN
     },
     [PAGE_THE_CHAMPIONS] = {
         &sCreditsEntry_TheChampions,
-        &sCreditsEntry_StevenLanceAsh,
+        &sCreditsEntry_WallaceLanceAsh,
         &sCreditsEntry_AndTheTrainer,
         _,
         _,
