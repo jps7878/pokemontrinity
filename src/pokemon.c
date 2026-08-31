@@ -6113,6 +6113,8 @@ u16 GetBattleBGM(void)
         // Trinity M5b S9: ARTICUNO. Same belt-and-braces documentation parity as
         // ZAPDOS just above -- the default already agrees.
         case SPECIES_ARTICUNO:
+        // Trinity M5b S11: MOLTRES. Same belt-and-braces documentation parity.
+        case SPECIES_MOLTRES:
             return MUS_RG_VS_LEGEND;
         default:
             return MUS_RG_VS_LEGEND;
@@ -6186,6 +6188,19 @@ u16 GetBattleBGM(void)
             // M4b S2 review's I1).
             if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_LANCE)
                 return MUS_RG_VS_CHAMPION;
+            // Trinity M5b S11: ASH, Act III's champion. Both native champion
+            // tracks are spent (MUS_VS_CHAMPION above by WALLACE/Act I,
+            // MUS_RG_VS_CHAMPION by LANCE just above), so per this case's own
+            // house rule ("Act III's champion then still has a theme of its
+            // own to take") a third track is needed. No new audio asset is in
+            // scope this slice; MUS_VS_FRONTIER_BRAIN (RSE's Battle Frontier
+            // facility-head theme) is confirmed unused anywhere else in
+            // Trinity's story content (no Battle Frontier boss is ever
+            // fought), making it a genuinely free, high-stakes, never-heard
+            // track repurposed here -- same id-guard idiom as the LANCE case
+            // immediately above.
+            if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_ASH)
+                return MUS_VS_FRONTIER_BRAIN;
             return MUS_VS_CHAMPION;
         case TRAINER_CLASS_RIVAL:
             if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)

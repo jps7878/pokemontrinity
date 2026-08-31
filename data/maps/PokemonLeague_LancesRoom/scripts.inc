@@ -28,7 +28,19 @@ PokemonLeague_LancesRoom_MapScripts::
 
 PokemonLeague_LancesRoom_OnLoad:
 	call_if_set FLAG_TRINITY_J_E4_KAREN_BEATEN, PokemonLeague_LancesRoom_EventScript_SetDoorOpen
+	call_if_set FLAG_TRINITY_K_E4_BLUE_BEATEN, PokemonLeague_LancesRoom_EventScript_SetDoorOpen
 	call_if_eq VAR_TRINITY_JOHTO_SCENE_INDIGO, 4, PokemonLeague_LancesRoom_EventScript_CloseEntry
+	@ Trinity M5b S11 -- roster switch (sub-plan §1.2). BLUE holds the 4th
+	@ E4-II seat here (standing ruling: Ash alone is Champion).
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_LancesRoom_EventScript_ShowBlue
+	showobjectat LOCALID_JOHTO_E4_KAREN, MAP_POKEMON_LEAGUE_LANCES_ROOM
+	hideobjectat LOCALID_KANTO_E4_BLUE, MAP_POKEMON_LEAGUE_LANCES_ROOM
+	end
+
+PokemonLeague_LancesRoom_EventScript_ShowBlue::
+	hideobjectat LOCALID_JOHTO_E4_KAREN, MAP_POKEMON_LEAGUE_LANCES_ROOM
+	showobjectat LOCALID_KANTO_E4_BLUE, MAP_POKEMON_LEAGUE_LANCES_ROOM
 	end
 
 PokemonLeague_LancesRoom_EventScript_SetDoorOpen::
@@ -172,3 +184,59 @@ PokemonLeague_LancesRoom_Text_PostBattle:
 	.string "met anyone lonelier.\p"
 	.string "Go on. LANCE is waiting, and he\n"
 	.string "has been all week.$"
+
+@ ============================================================================
+@ Trinity M5b S11 -- BLUE, Kanto's E4-II (4th seat, per the standing ruling --
+@ Ash alone is Champion). He is not a stranger: this player fought him once
+@ already in VIRIDIAN, a grudge match he lost (ViridianCity_Text_BlueBeaten).
+@ This room is what he did with the loss. Self-contained mirror of KAREN's
+@ script above -- same 28x24 door helpers, local (not shared) copies.
+@ ============================================================================
+PokemonLeague_LancesRoom_EventScript_Blue::
+	lock
+	faceplayer
+	goto_if_set FLAG_TRINITY_K_E4_BLUE_BEATEN, PokemonLeague_LancesRoom_EventScript_BluePostBattle
+	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
+	msgbox PokemonLeague_LancesRoom_Text_BlueIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_BLUE_E4, PokemonLeague_LancesRoom_Text_BlueDefeat
+	goto PokemonLeague_LancesRoom_EventScript_BlueDefeated
+	end
+
+PokemonLeague_LancesRoom_EventScript_BlueDefeated::
+	setflag FLAG_TRINITY_K_E4_BLUE_BEATEN
+	call PokemonLeague_LancesRoom_EventScript_OpenDoor
+	msgbox PokemonLeague_LancesRoom_Text_BluePostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+PokemonLeague_LancesRoom_EventScript_BluePostBattle::
+	msgbox PokemonLeague_LancesRoom_Text_BluePostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+PokemonLeague_LancesRoom_Text_BlueIntro:
+	.string "VIRIDIAN. You remember.\p"
+	.string "I lost that one on my own gym's\n"
+	.string "front step, in front of the sign\l"
+	.string "with my own name on it.\p"
+	.string "I didn't take it well. I'm not\n"
+	.string "going to pretend I did.\p"
+	.string "But I took the ELITE FOUR seat\n"
+	.string "they offered me instead of\l"
+	.string "sulking about it, so -- progress.\p"
+	.string "Let's see if the lesson stuck.$"
+
+PokemonLeague_LancesRoom_Text_BlueDefeat:
+	.string "…Yeah. It stuck.\p"
+	.string "Good.$"
+
+PokemonLeague_LancesRoom_Text_BluePostBattle:
+	.string "Twice, now.\p"
+	.string "I used to think that meant\n"
+	.string "something was wrong with me.\p"
+	.string "Turns out it just means you're\n"
+	.string "better. I can live with that.\p"
+	.string "Go on. ASH doesn't lose the way\n"
+	.string "I do -- he just doesn't lose.\l"
+	.string "You'll want to find out for\l"
+	.string "yourself what that means.$"

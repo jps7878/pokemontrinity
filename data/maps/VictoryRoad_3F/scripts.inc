@@ -17,11 +17,91 @@
 
 VictoryRoad_3F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, VictoryRoad_3F_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, VictoryRoad_3F_OnResume
 	.byte 0
 
 VictoryRoad_3F_OnTransition:
 	setholewarp MAP_VICTORY_ROAD_2F
+	call_if_set FLAG_TRINITY_K_MOLTRES_RESOLVED, VictoryRoad_3F_EventScript_HideMoltres
+	call_if_unset FLAG_TRINITY_K_MOLTRES_RESOLVED, VictoryRoad_3F_EventScript_TryShowMoltres
 	end
+
+@ ============================================================================
+@ Trinity M5b S11 -- MOLTRES, the third bird, static legendary contract, three
+@ clauses. Mirrors S3's ZAPDOS (PowerPlant/scripts.inc) and S9's ARTICUNO
+@ (SeafoamIslands_B4F/scripts.inc) exactly. Tile (10,16): TRUE, re-derived via
+@ tools/johto_port/reach_check.py's own Map class -- col 0, elev 3, MB_CAVE
+@ (0x8) -- the same tile family Zapdos/Articuno both use. Gate: NONE (reaching
+@ it in KANTO VICTORY ROAD is the whole condition -- no story flag), so
+@ Clause 1's TryShowMoltres is an unconditional clearflag, unlike Zapdos's own
+@ FLAG_TRINITY_K_PLANT_RESTORED-gated version.
+@
+@ Clause 1 -- ON_TRANSITION show-if-unset-terminal. Clause 2 -- ON_RESUME +
+@ FLAG_SYS_CTRL_OBJ_DELETE removeobject for the caught case. Clause 3 -- ONE
+@ durable terminal flag (FLAG_TRINITY_K_MOLTRES_RESOLVED), written on WON and
+@ on the CAUGHT fall-through.
+@
+@ Music: dowildbattle can only play MUS_VS_WILD, so special
+@ BattleSetup_StartLegendaryBattle is used instead. SPECIES_MOLTRES added to
+@ its switch (src/battle_setup.c) and to GetBattleBGM's switch (src/pokemon.c),
+@ same REQUIRED/belt-and-braces split Zapdos/Articuno already established.
+@ ============================================================================
+VictoryRoad_3F_EventScript_HideMoltres::
+	setflag FLAG_TRINITY_K_MOLTRES_HIDE
+	return
+
+VictoryRoad_3F_EventScript_TryShowMoltres::
+	clearflag FLAG_TRINITY_K_MOLTRES_HIDE
+	return
+
+VictoryRoad_3F_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, VictoryRoad_3F_EventScript_TryRemoveMoltres
+	end
+
+VictoryRoad_3F_EventScript_TryRemoveMoltres::
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn
+	removeobject LOCALID_KANTO_VR3F_MOLTRES
+	return
+
+VictoryRoad_3F_EventScript_Moltres::
+	lock
+	faceplayer
+	msgbox VictoryRoad_3F_Text_Moltres, MSGBOX_DEFAULT
+	closemessage
+	waitse
+	playmoncry SPECIES_MOLTRES, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	seteventmon SPECIES_MOLTRES, 80
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, VictoryRoad_3F_EventScript_MoltresDefeated
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, VictoryRoad_3F_EventScript_MoltresFled
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, VictoryRoad_3F_EventScript_MoltresFled
+	@ fall-through == B_OUTCOME_CAUGHT. ON_RESUME has already removed the object.
+	setflag FLAG_TRINITY_K_MOLTRES_RESOLVED
+	release
+	end
+
+VictoryRoad_3F_EventScript_MoltresDefeated::
+	setflag FLAG_TRINITY_K_MOLTRES_RESOLVED
+	goto Common_EventScript_RemoveStaticPokemon
+
+VictoryRoad_3F_EventScript_MoltresFled::
+	setvar VAR_0x8004, SPECIES_MOLTRES
+	goto Common_EventScript_LegendaryFlewAway
+
+VictoryRoad_3F_Text_Moltres:
+	.string "The rock ledge above the hole is\n"
+	.string "warm to the touch, though nothing\l"
+	.string "here should be burning.\p"
+	.string "Something with wings the color of\n"
+	.string "a struck match is watching you\l"
+	.string "from the dark.$"
 
 VictoryRoad_3F_EventScript_BRODY::
 	trainerbattle_single TRAINER_VR_COOLTRAINER_M_3, VictoryRoad_3F_Text_BRODYSeen, VictoryRoad_3F_Text_BRODYBeaten

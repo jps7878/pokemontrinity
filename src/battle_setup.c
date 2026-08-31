@@ -523,6 +523,9 @@ void BattleSetup_StartLegendaryBattle(void)
     case SPECIES_ZAPDOS:
     // Trinity M5b S9: ARTICUNO, same pairing. Same REQUIRED reasoning.
     case SPECIES_ARTICUNO:
+    // Trinity M5b S11: MOLTRES, the third bird, same pairing and same REQUIRED
+    // reasoning -- mirrors the Zapdos/Articuno contract exactly.
+    case SPECIES_MOLTRES:
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RG_VS_LEGEND);
         break;
     case SPECIES_MEW:

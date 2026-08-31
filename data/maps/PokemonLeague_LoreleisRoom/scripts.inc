@@ -55,7 +55,20 @@ PokemonLeague_LoreleisRoom_MapScripts::
 
 PokemonLeague_LoreleisRoom_OnLoad:
 	call_if_set FLAG_TRINITY_J_E4_WILL_BEATEN, PokemonLeague_LoreleisRoom_EventScript_SetDoorOpen
+	call_if_set FLAG_TRINITY_K_E4_LORELEI_BEATEN, PokemonLeague_LoreleisRoom_EventScript_SetDoorOpen
 	call_if_eq VAR_TRINITY_JOHTO_SCENE_INDIGO, 1, PokemonLeague_LoreleisRoom_EventScript_CloseEntry
+	@ Trinity M5b S11 -- the roster switch (sub-plan §1.2). Live 8-Kanto-badge
+	@ check, zero flags (SetObjectInvisibility is SCREFF_HARDWARE only), same
+	@ idiom as the Indigo II lobby's own OnLoad.
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_LoreleisRoom_EventScript_ShowLorelei
+	showobjectat LOCALID_JOHTO_E4_WILL, MAP_POKEMON_LEAGUE_LORELEIS_ROOM
+	hideobjectat LOCALID_KANTO_E4_LORELEI, MAP_POKEMON_LEAGUE_LORELEIS_ROOM
+	end
+
+PokemonLeague_LoreleisRoom_EventScript_ShowLorelei::
+	hideobjectat LOCALID_JOHTO_E4_WILL, MAP_POKEMON_LEAGUE_LORELEIS_ROOM
+	showobjectat LOCALID_KANTO_E4_LORELEI, MAP_POKEMON_LEAGUE_LORELEIS_ROOM
 	end
 
 PokemonLeague_LoreleisRoom_EventScript_SetDoorOpen::
@@ -141,3 +154,59 @@ PokemonLeague_LoreleisRoom_Text_PostBattle:
 	.string "Now, {PLAYER} -- move on, and\n"
 	.string "experience the true ferocity of\l"
 	.string "the ELITE FOUR.$"
+
+@ ============================================================================
+@ Trinity M5b S11 -- LORELEI, Kanto's E4-II. Self-contained mirror of WILL's
+@ script above (object-level exclusivity via ON_LOAD's showobjectat/
+@ hideobjectat means only one of the two objects/scripts is ever reachable
+@ for a given room-load, so no live badge check is needed HERE, only in the
+@ room's ON_LOAD). trainerbattle_no_intro, own FLAG_TRINITY_K_E4_LORELEI_
+@ BEATEN, same door-open call -- sub-plan §4.
+@ ============================================================================
+PokemonLeague_LoreleisRoom_EventScript_Lorelei::
+	lock
+	faceplayer
+	goto_if_set FLAG_TRINITY_K_E4_LORELEI_BEATEN, PokemonLeague_LoreleisRoom_EventScript_LoreleiPostBattle
+	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
+	msgbox PokemonLeague_LoreleisRoom_Text_LoreleiIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_LORELEI, PokemonLeague_LoreleisRoom_Text_LoreleiDefeat
+	goto PokemonLeague_LoreleisRoom_EventScript_LoreleiDefeated
+	end
+
+PokemonLeague_LoreleisRoom_EventScript_LoreleiDefeated::
+	setflag FLAG_TRINITY_K_E4_LORELEI_BEATEN
+	call Trinity_Indigo_EventScript_OpenDoor
+	msgbox PokemonLeague_LoreleisRoom_Text_LoreleiPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+PokemonLeague_LoreleisRoom_EventScript_LoreleiPostBattle::
+	msgbox PokemonLeague_LoreleisRoom_Text_LoreleiPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+@ LORELEI has watched this trainer's whole KANTO run from the record book
+@ downstairs -- specific recognition, not generic badge-count boilerplate
+@ (S8's I1 still applies: nobody counts badges here).
+PokemonLeague_LoreleisRoom_Text_LoreleiIntro:
+	.string "Welcome back, {PLAYER}.\p"
+	.string "The last trainer to stand in\n"
+	.string "this room was JOHTO's CHAMPION.\l"
+	.string "You watched that happen.\p"
+	.string "I am LORELEI. I keep this floor\n"
+	.string "cold on purpose -- it clears the\l"
+	.string "head before anything else does.\p"
+	.string "Let's see what three regions'\n"
+	.string "worth of training actually\l"
+	.string "looks like.$"
+
+PokemonLeague_LoreleisRoom_Text_LoreleiDefeat:
+	.string "Clear-headed, and correct.\n"
+	.string "That's a rare combination.$"
+
+PokemonLeague_LoreleisRoom_Text_LoreleiPostBattle:
+	.string "The cold never bothered me. Losing\n"
+	.string "to someone who earned it doesn't\l"
+	.string "either.\p"
+	.string "Go on, {PLAYER}. The rest of us\n"
+	.string "are waiting.$"

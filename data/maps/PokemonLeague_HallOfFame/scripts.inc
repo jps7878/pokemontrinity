@@ -80,6 +80,23 @@ PokemonLeague_HallOfFame_OnFrame:
 
 PokemonLeague_HallOfFame_EventScript_Ceremony::
 	lockall
+	@ Trinity M5b S11 -- roster switch, object layer. Both HoF objects share
+	@ the same tile (6,4); without this they would render stacked. Runs
+	@ before anything else in this script, and the screen arrives here
+	@ already faded to black (both ChampionsRoom defeat scripts fade out
+	@ before their `warp` into this room), so there is no visible flash.
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_HallOfFame_EventScript_ShowAshHof
+	showobjectat LOCALID_JOHTO_HOF_LANCE, MAP_POKEMON_LEAGUE_HALL_OF_FAME
+	hideobjectat LOCALID_KANTO_HOF_ASH, MAP_POKEMON_LEAGUE_HALL_OF_FAME
+	goto PokemonLeague_HallOfFame_EventScript_CeremonyJohto
+PokemonLeague_HallOfFame_EventScript_ShowAshHof::
+	hideobjectat LOCALID_JOHTO_HOF_LANCE, MAP_POKEMON_LEAGUE_HALL_OF_FAME
+	showobjectat LOCALID_KANTO_HOF_ASH, MAP_POKEMON_LEAGUE_HALL_OF_FAME
+	goto PokemonLeague_HallOfFame_EventScript_CeremonyKanto
+	end
+
+PokemonLeague_HallOfFame_EventScript_CeremonyJohto::
 	applymovement LOCALID_PLAYER, PokemonLeague_HallOfFame_Movement_WalkIn
 	waitmovement 0
 	applymovement LOCALID_JOHTO_HOF_LANCE, Common_Movement_WalkInPlaceFasterLeft
@@ -110,6 +127,110 @@ PokemonLeague_HallOfFame_EventScript_Ceremony::
 	waitstate
 	releaseall
 	end
+
+@ ============================================================================
+@ Trinity M5b S11 -- HALL OF FAME III. THE TRUE ENDING.
+@
+@ special GameClearKanto is already fully built (src/post_battle_event_funcs.c,
+@ M5a Task 6) -- SetHallOfFameTrueGameClear() is the one-shot latch StartCredits()
+@ (src/hall_of_fame.c) checks to roll the real credits (CB2_StartCreditsSequence)
+@ instead of Act I/II's silent SoftReset. This call site is the ONLY reachable
+@ path to it (sub-plan §6.1) -- so src/credits.c/data/credits.h needed no
+@ branching logic of its own, just new content.
+@
+@ FLAG_TRINITY_K_LEAGUE_CLEARED is NOT allocated (a self-caught economy over
+@ the sub-plan's own placeholder for it): GameClearKanto already calls
+@ FlagSet(FLAG_IS_CHAMPION) natively, and that flag is a genuine, permanent,
+@ engine-recognized "this save has reached the true ending" signal -- a
+@ second Trinity-only flag asserting the identical fact would have been
+@ redundant, and the 0x4E9-0x4EF budget (S11 sub-plan §0) has no room for it
+@ regardless.
+@ ============================================================================
+PokemonLeague_HallOfFame_EventScript_CeremonyKanto::
+	applymovement LOCALID_PLAYER, PokemonLeague_HallOfFame_Movement_WalkIn
+	waitmovement 0
+	applymovement LOCALID_KANTO_HOF_ASH, Common_Movement_WalkInPlaceFasterLeft
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+	waitmovement 0
+	delay 18
+	msgbox PokemonLeague_HallOfFame_Text_AshCeremony, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_KANTO_HOF_ASH, Common_Movement_WalkInPlaceFasterUp
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterUp
+	waitmovement 0
+	delay 20
+	dofieldeffect FLDEFF_HALL_OF_FAME_RECORD
+	waitfieldeffect FLDEFF_HALL_OF_FAME_RECORD
+	delay 40
+	msgbox PokemonLeague_HallOfFame_Text_ActIIIComplete, MSGBOX_DEFAULT
+	closemessage
+	call PokemonLeague_HallOfFame_EventScript_RecordTheKantoLeague
+	special GameClearKanto
+	waitstate
+	fadescreenspeed FADE_TO_BLACK, 24
+	warp MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F, 0
+	waitstate
+	releaseall
+	end
+
+@ Same shape as RecordTheLeague below, minus a terminal setflag (GameClearKanto,
+@ called immediately after this returns, already sets FLAG_IS_CHAMPION
+@ natively -- see the header comment above). State write first (S4's I3(b)
+@ ordering hazard), arc write behind the monotonic guard, VAR_TRINITY_KANTO_ARC
+@ -> 6, the ONE writer of that value.
+PokemonLeague_HallOfFame_EventScript_RecordTheKantoLeague::
+	goto_if_ge VAR_TRINITY_KANTO_ARC, 6, PokemonLeague_HallOfFame_EventScript_KantoArcAlreadySet
+	setvar VAR_TRINITY_KANTO_ARC, 6
+	setrespawn HEAL_LOCATION_INDIGO_PLATEAU
+	return
+
+PokemonLeague_HallOfFame_EventScript_KantoArcAlreadySet::
+	setrespawn HEAL_LOCATION_INDIGO_PLATEAU
+	return
+
+@ GSC HallOfFame_LanceText's own shape, kept: ASH leads the new CHAMPION in
+@ and reads the dedication. PIKACHU is on his shoulder, exactly as it was
+@ in the ChampionsRoom -- ASH never returns it to a POKé BALL to walk in here.
+PokemonLeague_HallOfFame_Text_AshCeremony:
+	.string "ASH: PIKACHU and I have stood in\n"
+	.string "here more times than I can\l"
+	.string "count, watching somebody else get\l"
+	.string "the record book.\p"
+	.string "This is where we induct LEAGUE\n"
+	.string "CHAMPIONS. Their partners are\l"
+	.string "recorded with them.\p"
+	.string "Today we record a trainer who\n"
+	.string "crossed three regions that were\l"
+	.string "never home, and never once asked\l"
+	.string "what she'd be paid for finishing\l"
+	.string "the job.\p"
+	.string "{PLAYER}, allow me and PIKACHU to\n"
+	.string "register you and your team.$"
+
+@ THE TRUE ENDING. HOENN, JOHTO, KANTO -- the trilogy closes here. Mt. Silver
+@ hint: text-only tease (S11 sub-plan §6.3), no map, no mechanical promise.
+@ TRAINER_RED (src/data/trainers.party, L98-100) exists in the corps and is
+@ deliberately NOT wired to anything this slice -- forward-hook for a later
+@ milestone, same class as M1's S.S. Tidal Johto-destination placeholder.
+PokemonLeague_HallOfFame_Text_ActIIIComplete:
+	.string "Three leagues.\p"
+	.string "HOENN. JOHTO. And now KANTO --\n"
+	.string "and the board on the wall has\l"
+	.string "run out of room to write more\l"
+	.string "names under yours.\p"
+	.string "Somewhere north of here there's a\n"
+	.string "mountain that doesn't have a gym,\l"
+	.string "a LEAGUE, or a reason for anybody\l"
+	.string "to climb it.\p"
+	.string "People still do. They say there's\n"
+	.string "someone at the top who hasn't\l"
+	.string "lost since before this record\l"
+	.string "book existed.\p"
+	.string "MT. SILVER.\p"
+	.string "Not today. Today, this is enough.\p"
+	.string "Three regions. Three leagues.\n"
+	.string "One journey, finished.\p"
+	.string "Congratulations, CHAMPION.$"
 
 @ The durable half. State writes first (S4's I3(b) ordering hazard), the arc
 @ write behind S1's monotonic guard, and the respawn set to the PLATEAU so the

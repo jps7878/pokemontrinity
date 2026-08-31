@@ -33,9 +33,28 @@
 @ ============================================================================
 
 PokemonLeague_ChampionsRoom_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, PokemonLeague_ChampionsRoom_OnLoad
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PokemonLeague_ChampionsRoom_OnWarp
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PokemonLeague_ChampionsRoom_OnFrame
 	.byte 0
+
+@ ============================================================================
+@ Trinity M5b S11 -- the roster switch (sub-plan §1.2), object layer only.
+@ This room previously had no ON_LOAD; added fresh, same live-badge-check
+@ idiom as the four E4-II rooms. Runs pre-render, so there is no flash of the
+@ wrong champion before the walk-in below ever starts.
+@ ============================================================================
+PokemonLeague_ChampionsRoom_OnLoad:
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_ChampionsRoom_EventScript_ShowAsh
+	showobjectat LOCALID_JOHTO_E4_LANCE, MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM
+	hideobjectat LOCALID_KANTO_CHAMP_ASH, MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM
+	end
+
+PokemonLeague_ChampionsRoom_EventScript_ShowAsh::
+	hideobjectat LOCALID_JOHTO_E4_LANCE, MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM
+	showobjectat LOCALID_KANTO_CHAMP_ASH, MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM
+	end
 
 PokemonLeague_ChampionsRoom_OnWarp:
 	map_script_2 VAR_TEMP_1, 0, PokemonLeague_ChampionsRoom_EventScript_TurnPlayerNorth
@@ -55,6 +74,11 @@ PokemonLeague_ChampionsRoom_EventScript_EnterRoom::
 	waitmovement 0
 	delay 20
 	setvar VAR_TRINITY_JOHTO_SCENE_INDIGO, 5
+	@ Trinity M5b S11 -- roster switch. The walk-in itself is shared (same
+	@ movement table, same camera window); only which champion is waiting at
+	@ the far end differs.
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_ChampionsRoom_EventScript_AshBattle
 	goto PokemonLeague_ChampionsRoom_EventScript_LanceBattle
 	end
 
@@ -106,6 +130,100 @@ PokemonLeague_ChampionsRoom_EventScript_PostBattleIdle::
 	msgbox PokemonLeague_ChampionsRoom_Text_PostBattle, MSGBOX_DEFAULT
 	releaseall
 	end
+
+@ ============================================================================
+@ Trinity M5b S11 -- CHAMPION ASH. Same shape as LANCE's block above, one
+@ economy: the idempotency guard reads checktrainerflag TRAINER_ASH instead
+@ of a new story flag (S11 sub-plan §0 point 3) -- this branch is exactly as
+@ unreachable in play as LANCE's own PostBattleIdle is (same reasoning: the
+@ walk-in always fires first and advances SCENE_INDIGO past its own trigger
+@ before a direct talk could ever land here), so S1's "a story talk script
+@ carries its own state guard regardless" is honored without spending a
+@ scarce flag on genuinely dead code.
+@
+@ B1-B5 GRAMMAR: B1 the silent walk-in (shared with LANCE, above). B2 ASH's
+@ opening line (the reveal -- PIKACHU named before ASH is, letting
+@ recognition land before the name does). B3 trainerbattle_no_intro. B4 the
+@ defeat line + idempotency guard. B5 the closing speech + warp to the SAME
+@ Hall of Fame room LANCE's own defeat warps to (branched again there).
+@
+@ TEAM, fully derived (src/data/trainers.party, TRAINER_ASH): Charizard
+@ (Fire/Flying), Sceptile (Grass/Dragon), Infernape (Fire/Fighting), Greninja
+@ (Water/Dark), Lucario (Fighting/Steel), Pikachu (Electric) -- L91-92,
+@ Pikachu L100.
+@ ============================================================================
+PokemonLeague_ChampionsRoom_EventScript_Ash::
+	lock
+	faceplayer
+	goto PokemonLeague_ChampionsRoom_EventScript_AshBattle
+
+PokemonLeague_ChampionsRoom_EventScript_AshBattle::
+	checktrainerflag TRAINER_ASH
+	goto_if TRUE, PokemonLeague_ChampionsRoom_EventScript_AshPostBattleIdle
+	playbgm MUS_ENCOUNTER_CHAMPION, FALSE
+	msgbox PokemonLeague_ChampionsRoom_Text_AshIntro, MSGBOX_DEFAULT
+	setvar VAR_LAST_TALKED, LOCALID_KANTO_CHAMP_ASH
+	trainerbattle_no_intro TRAINER_ASH, PokemonLeague_ChampionsRoom_Text_AshDefeat
+	goto PokemonLeague_ChampionsRoom_EventScript_AshDefeated
+	end
+
+PokemonLeague_ChampionsRoom_EventScript_AshDefeated::
+	msgbox PokemonLeague_ChampionsRoom_Text_AshPostBattle, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_KANTO_CHAMP_ASH, Common_Movement_WalkInPlaceFasterUp
+	waitmovement 0
+	delay 20
+	msgbox PokemonLeague_ChampionsRoom_Text_AshComeWithMe, MSGBOX_DEFAULT
+	closemessage
+	fadescreen FADE_TO_BLACK
+	warp MAP_POKEMON_LEAGUE_HALL_OF_FAME, 0
+	waitstate
+	releaseall
+	end
+
+@ INTENTIONALLY UNREACHABLE / DEFENSIVE -- see the header comment above.
+PokemonLeague_ChampionsRoom_EventScript_AshPostBattleIdle::
+	msgbox PokemonLeague_ChampionsRoom_Text_AshPostBattle, MSGBOX_DEFAULT
+	releaseall
+	end
+
+@ THE REVEAL. PIKACHU is named before ASH is -- the one Pokémon in this
+@ lineup every player already recognizes on sight, let to land first.
+PokemonLeague_ChampionsRoom_Text_AshIntro:
+	.string "A PIKACHU turns to look at you\n"
+	.string "before its trainer does.\p"
+	.string "It's been riding on his shoulder\n"
+	.string "since you walked in. It doesn't\l"
+	.string "look like it belongs in a\l"
+	.string "POKé BALL, and it isn't in one.\p"
+	.string "I'm ASH.\p"
+	.string "You beat LORELEI, AGATHA, BRUNO\n"
+	.string "and BLUE to get here. Most\l"
+	.string "people don't get this far.\p"
+	.string "I'm not most people's kind of\n"
+	.string "CHAMPION, either. Let's find out\l"
+	.string "what kind you are.$"
+
+PokemonLeague_ChampionsRoom_Text_AshDefeat:
+	.string "…Huh.\p"
+	.string "PIKACHU and I have done this a\n"
+	.string "long time, and it still surprises\l"
+	.string "me when somebody's ready for us.$"
+
+PokemonLeague_ChampionsRoom_Text_AshPostBattle:
+	.string "That's the whole team. Every one\n"
+	.string "of them's been with me since\l"
+	.string "before this title meant anything.\p"
+	.string "You didn't beat a CHAMPION today.\n"
+	.string "You beat a kid who never stopped\l"
+	.string "traveling, who happened to end up\l"
+	.string "with a title attached to him.\p"
+	.string "I think that's the only kind\n"
+	.string "worth being.$"
+
+PokemonLeague_ChampionsRoom_Text_AshComeWithMe:
+	.string "ASH: Come on. There's a room\n"
+	.string "through here for exactly this.$"
 
 PokemonLeague_ChampionsRoom_Movement_PlayerEnter:
 	walk_up

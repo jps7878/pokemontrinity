@@ -1348,13 +1348,13 @@
 #define FLAG_TRINITY_K_RIG_RESOLVED    0x4E6 // Trinity M5b S10: was FLAG_UNUSED_0x4E6 -- terminal, the rig scene has played. Corroboration: setflag site removeobject's both legendaries.
 #define FLAG_TRINITY_K_GIOVANNI_BASEMENT_HIDE    0x4E7 // Trinity M5b S10: was FLAG_UNUSED_0x4E7 -- Giovanni's BASEMENT object's own hide flag (R1 co-sign on removeobject); separate from his unconditional gym-state object, no template-position reuse across states.
 #define FLAG_TRINITY_K_SILVER_FINAL_HIDE    0x4E8 // Trinity M5b S10: was FLAG_UNUSED_0x4E8 -- Route1 SILVER's own visibility flag; visible iff FLAG_TRINITY_BADGE24 set AND VAR_TRINITY_KANTO_ARC < 5.
-#define FLAG_UNUSED_0x4E9                                           0x4E9 // Unused Flag
-#define FLAG_UNUSED_0x4EA                                           0x4EA // Unused Flag
-#define FLAG_UNUSED_0x4EB                                           0x4EB // Unused Flag
-#define FLAG_UNUSED_0x4EC                                           0x4EC // Unused Flag
-#define FLAG_UNUSED_0x4ED                                           0x4ED // Unused Flag
-#define FLAG_UNUSED_0x4EE                                           0x4EE // Unused Flag
-#define FLAG_UNUSED_0x4EF                                           0x4EF // Unused Flag
+#define FLAG_TRINITY_K_MOLTRES_HIDE    0x4E9 // Trinity M5b S11: was FLAG_UNUSED_0x4E9 -- MOLTRES's own visibility flag (Zapdos/Articuno contract clause 1), KantoVictoryRoad_3F. Ungated: clears unconditionally every ON_TRANSITION unless FLAG_TRINITY_K_MOLTRES_RESOLVED is set.
+#define FLAG_TRINITY_K_MOLTRES_RESOLVED    0x4EA // Trinity M5b S11: was FLAG_UNUSED_0x4EA -- terminal (contract clause 3), written on WON and on the CAUGHT fall-through.
+#define FLAG_TRINITY_K_E4_LORELEI_BEATEN    0x4EB // Trinity M5b S11: was FLAG_UNUSED_0x4EB -- PokemonLeague_LoreleisRoom's Kanto-roster (E4-II) door/idempotency flag, FLAG_TRINITY_J_E4_WILL_BEATEN's pattern verbatim, cleared on every INDIGO Center visit alongside it.
+#define FLAG_TRINITY_K_E4_AGATHA_BEATEN    0x4EC // Trinity M5b S11: was FLAG_UNUSED_0x4EC -- PokemonLeague_BrunosRoom's Kanto-roster (AGATHA occupies this room) door/idempotency flag.
+#define FLAG_TRINITY_K_E4_BRUNOII_BEATEN    0x4ED // Trinity M5b S11: was FLAG_UNUSED_0x4ED -- PokemonLeague_AgathasRoom's Kanto-roster (BRUNO-II occupies this room) door/idempotency flag. Distinct name from Johto's own FLAG_TRINITY_J_E4_BRUNO_BEATEN (different room, different character).
+#define FLAG_TRINITY_K_E4_BLUE_BEATEN    0x4EE // Trinity M5b S11: was FLAG_UNUSED_0x4EE -- PokemonLeague_LancesRoom's Kanto-roster (BLUE holds the 4th E4-II seat here) door/idempotency flag.
+#define FLAG_TRINITY_K_GAUNTLET_REWARD    0x4EF // Trinity M5b S11: was FLAG_UNUSED_0x4EF -- Indigo II lobby Crew Gauntlet's ONE combined reward, claimed-once guard. BOBBY's own script is the only setter, after a genuinely successful giveitem (bag-full retry pattern).
 
 #define FLAG_DEFEATED_RUSTBORO_GYM                                  0x4F0
 #define FLAG_DEFEATED_DEWFORD_GYM                                   0x4F1

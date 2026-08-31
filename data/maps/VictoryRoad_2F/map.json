@@ -133,5 +133,14 @@
       "script": "VictoryRoad_2F_EventScript_SilverScene"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 3,
+      "y": 15,
+      "elevation": 3,
+      "item": "ITEM_TM35",
+      "flag": "FLAG_TRINITY_KANTO_PICKUPS_START + 239"
+    }
+  ]
 }

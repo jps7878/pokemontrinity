@@ -55,7 +55,18 @@ PokemonLeague_AgathasRoom_MapScripts::
 
 PokemonLeague_AgathasRoom_OnLoad:
 	call_if_set FLAG_TRINITY_J_E4_BRUNO_BEATEN, PokemonLeague_AgathasRoom_EventScript_SetDoorOpen
+	call_if_set FLAG_TRINITY_K_E4_BRUNOII_BEATEN, PokemonLeague_AgathasRoom_EventScript_SetDoorOpen
 	call_if_eq VAR_TRINITY_JOHTO_SCENE_INDIGO, 3, PokemonLeague_AgathasRoom_EventScript_CloseEntry
+	@ Trinity M5b S11 -- roster switch (sub-plan §1.2).
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_AgathasRoom_EventScript_ShowBrunoII
+	showobjectat LOCALID_JOHTO_E4_BRUNO, MAP_POKEMON_LEAGUE_AGATHAS_ROOM
+	hideobjectat LOCALID_KANTO_E4_BRUNOII, MAP_POKEMON_LEAGUE_AGATHAS_ROOM
+	end
+
+PokemonLeague_AgathasRoom_EventScript_ShowBrunoII::
+	hideobjectat LOCALID_JOHTO_E4_BRUNO, MAP_POKEMON_LEAGUE_AGATHAS_ROOM
+	showobjectat LOCALID_KANTO_E4_BRUNOII, MAP_POKEMON_LEAGUE_AGATHAS_ROOM
 	end
 
 PokemonLeague_AgathasRoom_EventScript_SetDoorOpen::
@@ -136,3 +147,53 @@ PokemonLeague_AgathasRoom_Text_PostBattle:
 	.string "Having lost, I have no right to\n"
 	.string "say anything…\p"
 	.string "Go. Face your next challenge.$"
+
+@ ============================================================================
+@ Trinity M5b S11 -- BRUNO-II, Kanto's E4-II (occupies AGATHA's room). Self-
+@ contained mirror of BRUNO's script above. Roster reasoning re-derived for
+@ the naming collision: this trainer id is TRAINER_BRUNO_II (distinct from
+@ Johto's TRAINER_BRUNO_E4), and its own flag name (FLAG_TRINITY_K_E4_
+@ BRUNOII_BEATEN) is likewise distinct from FLAG_TRINITY_J_E4_BRUNO_BEATEN.
+@ ============================================================================
+PokemonLeague_AgathasRoom_EventScript_BrunoII::
+	lock
+	faceplayer
+	goto_if_set FLAG_TRINITY_K_E4_BRUNOII_BEATEN, PokemonLeague_AgathasRoom_EventScript_BrunoIIPostBattle
+	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
+	msgbox PokemonLeague_AgathasRoom_Text_BrunoIIIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_BRUNO_II, PokemonLeague_AgathasRoom_Text_BrunoIIDefeat
+	goto PokemonLeague_AgathasRoom_EventScript_BrunoIIDefeated
+	end
+
+PokemonLeague_AgathasRoom_EventScript_BrunoIIDefeated::
+	setflag FLAG_TRINITY_K_E4_BRUNOII_BEATEN
+	call Trinity_Indigo_EventScript_OpenDoor
+	msgbox PokemonLeague_AgathasRoom_Text_BrunoIIPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+PokemonLeague_AgathasRoom_EventScript_BrunoIIPostBattle::
+	msgbox PokemonLeague_AgathasRoom_Text_BrunoIIPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+PokemonLeague_AgathasRoom_Text_BrunoIIIntro:
+	.string "BRUNO. ELITE FOUR, KANTO.\p"
+	.string "Same name as the man one room\n"
+	.string "back. Different me, same creed:\l"
+	.string "the body doesn't lie to you.\p"
+	.string "HITMONLEE doesn't feint. HARIYAMA\n"
+	.string "doesn't bluff. Every hit means\l"
+	.string "exactly what it looks like.\p"
+	.string "Show me what three regions of\n"
+	.string "training actually built.$"
+
+PokemonLeague_AgathasRoom_Text_BrunoIIDefeat:
+	.string "…No bluff in that, either.\n"
+	.string "Good.$"
+
+PokemonLeague_AgathasRoom_Text_BrunoIIPostBattle:
+	.string "Strength like that doesn't come\n"
+	.string "from luck.\p"
+	.string "One room left before the door\n"
+	.string "that matters. Go.$"

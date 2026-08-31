@@ -55,7 +55,19 @@ PokemonLeague_BrunosRoom_MapScripts::
 
 PokemonLeague_BrunosRoom_OnLoad:
 	call_if_set FLAG_TRINITY_J_E4_KOGA_BEATEN, PokemonLeague_BrunosRoom_EventScript_SetDoorOpen
+	call_if_set FLAG_TRINITY_K_E4_AGATHA_BEATEN, PokemonLeague_BrunosRoom_EventScript_SetDoorOpen
 	call_if_eq VAR_TRINITY_JOHTO_SCENE_INDIGO, 2, PokemonLeague_BrunosRoom_EventScript_CloseEntry
+	@ Trinity M5b S11 -- roster switch (sub-plan §1.2), same idiom as Lorelei's
+	@ Room.
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_BrunosRoom_EventScript_ShowAgatha
+	showobjectat LOCALID_JOHTO_E4_KOGA, MAP_POKEMON_LEAGUE_BRUNOS_ROOM
+	hideobjectat LOCALID_KANTO_E4_AGATHA, MAP_POKEMON_LEAGUE_BRUNOS_ROOM
+	end
+
+PokemonLeague_BrunosRoom_EventScript_ShowAgatha::
+	hideobjectat LOCALID_JOHTO_E4_KOGA, MAP_POKEMON_LEAGUE_BRUNOS_ROOM
+	showobjectat LOCALID_KANTO_E4_AGATHA, MAP_POKEMON_LEAGUE_BRUNOS_ROOM
 	end
 
 PokemonLeague_BrunosRoom_EventScript_SetDoorOpen::
@@ -137,3 +149,54 @@ PokemonLeague_BrunosRoom_Text_PostBattle:
 	.string "…And I must burn that file.\p"
 	.string "Go on to the next room, and put\n"
 	.string "your abilities to the test.$"
+
+@ ============================================================================
+@ Trinity M5b S11 -- AGATHA, Kanto's E4-II (occupies BRUNO's room -- room
+@ furniture, not resident's name, same convention M4 already set). Self-
+@ contained mirror of KOGA's script above.
+@ ============================================================================
+PokemonLeague_BrunosRoom_EventScript_Agatha::
+	lock
+	faceplayer
+	goto_if_set FLAG_TRINITY_K_E4_AGATHA_BEATEN, PokemonLeague_BrunosRoom_EventScript_AgathaPostBattle
+	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
+	msgbox PokemonLeague_BrunosRoom_Text_AgathaIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_AGATHA, PokemonLeague_BrunosRoom_Text_AgathaDefeat
+	goto PokemonLeague_BrunosRoom_EventScript_AgathaDefeated
+	end
+
+PokemonLeague_BrunosRoom_EventScript_AgathaDefeated::
+	setflag FLAG_TRINITY_K_E4_AGATHA_BEATEN
+	call Trinity_Indigo_EventScript_OpenDoor
+	msgbox PokemonLeague_BrunosRoom_Text_AgathaPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+PokemonLeague_BrunosRoom_EventScript_AgathaPostBattle::
+	msgbox PokemonLeague_BrunosRoom_Text_AgathaPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+PokemonLeague_BrunosRoom_Text_AgathaIntro:
+	.string "Hmph. Another young trainer who\n"
+	.string "thinks POKéMON battling is all\l"
+	.string "sunshine and adventure.\p"
+	.string "I am AGATHA. I have been at this\n"
+	.string "since before your GYM LEADERS\l"
+	.string "were born.\p"
+	.string "GHOST and POISON types aren't\n"
+	.string "flashy. They're patient. They\l"
+	.string "wait for you to make a mistake.\p"
+	.string "Let's see how long you last\n"
+	.string "without making one!$"
+
+PokemonLeague_BrunosRoom_Text_AgathaDefeat:
+	.string "…Not one mistake.\n"
+	.string "How irritating.$"
+
+PokemonLeague_BrunosRoom_Text_AgathaPostBattle:
+	.string "Old bones, sharp mind -- that's\n"
+	.string "supposed to be my line.\p"
+	.string "Go on, then. Don't make BRUNO\n"
+	.string "wait; he's insufferable when he's\l"
+	.string "kept waiting.$"
