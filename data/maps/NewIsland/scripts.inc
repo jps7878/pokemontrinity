@@ -11,8 +11,17 @@
 @ (data/maps/CeruleanCave_B1F/scripts.inc), NOT by any handler on this map --
 @ the original comment here claimed "this map's own MEW-resolved handler",
 @ which does not exist and was never the co-sign site (P3 folds into P1's
-@ own resolution site on CERULEAN CAVE's own map, per sub-plan §3.3; New
-@ Island only ever READS the flag, at map.json's own OnTransition gate).
+@ own resolution site on CERULEAN CAVE's own map, per sub-plan §3.3).
+@ CORRECTED AGAIN (fix round 2, review N4): the fix-round-1 wording above
+@ ("New Island only ever READS the flag") was ALSO false -- this map does
+@ not read FLAG_TRINITY_K_MYSTERIOUS_INVITATION anywhere in its own code at
+@ all (confirmed by grep: the only `setflag` is CeruleanCave_B1F/
+@ scripts.inc:158, the only `goto_if_set`/read is VermilionCity/
+@ scripts.inc:131). This map is the flag's DESTINATION, not a reader of it --
+@ the gate that actually admits the player lives entirely in VermilionCity's
+@ own Sailor script; this file's own `NewIsland_OnTransition` gate reads
+@ VAR_TRINITY_KANTO_ARC and FLAG_DEFEATED_MEW/FLAG_CAUGHT_MEW instead (MEW's
+@ own visibility state, a separate concern from the invitation).
 @
 @ MEW's contract reuses the ENGINE'S OWN vanilla flags -- FLAG_HIDE_MEW,
 @ FLAG_DEFEATED_MEW, FLAG_CAUGHT_MEW (flags.h:807/525/528) -- rather than
@@ -94,7 +103,10 @@ NewIsland_EventScript_TryRemoveMew::
 @ OBJ_EVENT_GFX_SPECIES(MEW), flag FLAG_HIDE_MEW). Clause 2 (the fight)
 @ follows the exact shipped shape: seteventmon then BOTH
 @ BattleSetup_StartLegendaryBattle switches already case SPECIES_MEW
-@ (src/battle_setup.c:531-533; src/pokemon.c's GetBattleBGM now also cases
+@ (src/battle_setup.c:539-540 -- corrected citation, fix round 2, review N4;
+@ was :531-533 in the round-1 comment, stale after round 1's own
+@ SPECIES_MEWTWO case addition shifted every line below it; src/pokemon.c's
+@ GetBattleBGM now also cases
 @ SPECIES_MEW directly, fix round 1 review m3 -- documentation-parity wording,
 @ same class as the ZAPDOS/ARTICUNO/MOLTRES cases, not a behavioural fix;
 @ MEW's own dedicated MUS_VS_MEW is chosen on the field path by

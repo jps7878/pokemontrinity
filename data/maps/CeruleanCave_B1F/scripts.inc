@@ -54,12 +54,18 @@
 @ SILENT ENCOUNTER (sub-plan §3.1's own reading, delegated by the brief):
 @ FRLG's Cerulean Cave Mewtwo has no approach dialogue at all. This is read
 @ as "no flavour msgbox before the fight" -- straight from lock/faceplayer to
-@ the cry and the battle -- and, on the WON path, Common_EventScript_
-@ RemoveStaticPokemon (fade/removeobject/fade, NO text) rather than the
-@ "flew away" message LegendaryFlewAway would print, so the encounter stays
-@ wordless start to finish on its most likely outcome. This is the one clause
-@ where MEWTWO's contract DIVERGES from the bird template by design, not by
-@ omission.
+@ the cry and the battle. CORRECTED (fix round 2, review N1): the WON path
+@ does NOT stay wordless start to finish -- that was true of round 1's
+@ shipped shape (a bare `goto Common_EventScript_RemoveStaticPokemon`, fade/
+@ removeobject/fade, no text) but round 1's own M1(a) fix (see
+@ MewtwoDefeated's own comment at :120-129 below) inlined that body and added
+@ the MYSTERIOUS INVITATION msgbox immediately after the fade back in. The
+@ silence now covers MEWTWO's OWN encounter only -- no approach line, no
+@ battle-outcome line, nothing while MEWTWO himself is on screen or fading
+@ out -- and ends there by design: the beat that follows is a deliberately
+@ separate narrative moment, not part of MEWTWO's own silence. This is the
+@ one clause where MEWTWO's contract DIVERGES from the bird template by
+@ design, not by omission.
 @
 @ P3 (MYSTERIOUS INVITATION) folds into this file's own resolution site
 @ (sub-plan §3.3): the flag is co-signed the instant MEWTWO resolves, WON or
