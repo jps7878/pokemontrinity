@@ -41,13 +41,20 @@ ViridianCity_EventScript_HideBlue::
 @ decoded value, 3 -- not a wildcard, matching both existing precedents'
 @ own JSON exactly.
 @
-@ THE CONDITION. C-COUNT >= 7 AND arc >= 3, verbatim from the master plan's
-@ own S10 line ("gates: 7 Kanto badges via C-COUNT + arc>=3") -- no
-@ contradiction with the brief, so S10 adds only its interior; this gate
-@ script and coord_event need zero changes once S10 lands its own arc/badge
-@ writes. `call Trinity_EventScript_CountKantoBadges` + the two `goto_if_lt`s
-@ touch no hardware register, so the pass-through path stays "free" (returns
-@ FALSE from TryStartCoordEventScript, letting the SAME step's
+@ THE CONDITION. C-COUNT >= 7 AND arc >= 4 -- RAISED from S5's own original
+@ arc >= 3 by S10 (the gate-timing decision, docs/superpowers/plans/m5b/
+@ 10-viridian-climax.md section 5). The master plan's own S10 line read
+@ "gates: 7 Kanto badges via C-COUNT + arc>=3", but arc reaches 3 the instant
+@ Celadon's raid resolves (S6) -- well before S10's own rig scene -- so an
+@ unmodified arc>=3 gate would let a player with 7 badges walk into an empty
+@ gym (no Giovanni, no barrier, nothing) before ever finding the basement.
+@ S10's OWN arc value 4 (written only at the rig scene's resolution) is the
+@ correct threshold: by construction, the gym's interior can never be
+@ observed before the rig has played, in EVERY reachable order, with zero
+@ staging/branching needed inside the gym itself. `call
+@ Trinity_EventScript_CountKantoBadges` + the two `goto_if_lt`s touch no
+@ hardware register, so the pass-through path stays "free" (returns FALSE
+@ from TryStartCoordEventScript, letting the SAME step's
 @ TryStartWarpEventScript fire the real door warp) exactly like Route26's/
 @ Cerulean's own bare `end` open branches -- this is what "the coord_event
 @ gates entry, it doesn't replace the warp" means mechanically.
@@ -87,7 +94,7 @@ ViridianCity_EventScript_HideBlue::
 ViridianCity_EventScript_GymDoorCheck::
 	call Trinity_EventScript_CountKantoBadges
 	goto_if_lt VAR_TEMP_A, 7, ViridianCity_EventScript_GymDoorRefuse
-	goto_if_lt VAR_TRINITY_KANTO_ARC, 3, ViridianCity_EventScript_GymDoorRefuse
+	goto_if_lt VAR_TRINITY_KANTO_ARC, 4, ViridianCity_EventScript_GymDoorRefuse
 	end
 
 ViridianCity_EventScript_GymDoorRefuse::
@@ -279,3 +286,40 @@ ViridianCity_Text_BlueIntel:
 
 ViridianCity_Text_BlueIdle:
 	.string "…$"
+
+@ ============================================================================
+@ Trinity M5b S10 -- the hidden basement entrance. No FRLG door exists here to
+@ "unseal" (unlike Celadon's own Game Corner staircase) -- this is a wholly
+@ Trinity-original location, authored as a scripted bg_event sign rather than
+@ a new door tile or warp_event (zero new art, zero new metatile placement,
+@ and check-8-transparent by construction -- see docs/superpowers/plans/m5b/
+@ 10-viridian-climax.md section 2). (30,11) decoded col=0 elev=3 MB_NORMAL,
+@ clear of every existing object/bg_event/warp. Gated on arc>=3 (Celadon
+@ cleared) -- defensive: the door-seal's own arc>=4 gate (above) already makes
+@ the gym itself unreachable this early, but a player who somehow reaches
+@ Viridian before Celadon should not stumble into raid content early either.
+@ ============================================================================
+ViridianCity_EventScript_HideoutGrate::
+	goto_if_lt VAR_TRINITY_KANTO_ARC, 3, ViridianCity_EventScript_HideoutGrateSealed
+	msgbox ViridianCity_Text_HideoutGrate, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, ViridianCity_EventScript_HideoutGrateDecline
+	closemessage
+	setrespawn HEAL_LOCATION_VIRIDIAN_CITY
+	warp MAP_VIRIDIAN_HIDEOUT_B1F, 12, 3
+	waitstate
+	end
+
+ViridianCity_EventScript_HideoutGrateSealed::
+	msgbox ViridianCity_Text_HideoutGrateSealed, MSGBOX_SIGN
+	end
+
+ViridianCity_EventScript_HideoutGrateDecline::
+	closemessage
+	release
+	end
+
+ViridianCity_Text_HideoutGrate:
+	.string "A loose service grate at the\nside of the gym. Whatever's\ldown there, it doesn't look like\lcity maintenance.\pClimb down?$"
+
+ViridianCity_Text_HideoutGrateSealed:
+	.string "A rusted grate, bolted flush\nto the ground. It hasn't been\lmoved in years -- probably.$"

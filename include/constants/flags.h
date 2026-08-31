@@ -1340,14 +1340,14 @@
 #define FLAG_TRINITY_K_BLAINE_QUIZ_5    0x4DE // Trinity M5b S9: was FLAG_UNUSED_0x4DE -- CinnabarIsland_Gym quiz door 5 (Dusty's room). Same shape as QUIZ_1.
 #define FLAG_TRINITY_K_BLAINE_QUIZ_6    0x4DF // Trinity M5b S9: was FLAG_UNUSED_0x4DF -- CinnabarIsland_Gym quiz door 6 (Zac's room). Same shape as QUIZ_1.
 #define FLAG_TRINITY_K_SEAFOAM_B3F_LOCK_1    0x4E0 // Trinity M5b S9 fix round (review C2): was FLAG_UNUSED_0x4E0 -- SeafoamIslands_B3F lock/decoy boulder at (9,16), TRAINER_TYPE_NONE, no B4F reveal target -- FRLG's own "clear the lock, then push the payload" shape. Object-visibility plumbing only; if it ever falls into a hole the generic engine hook still needs a real flag to removeobject-cosign.
-#define FLAG_UNUSED_0x4E1                                           0x4E1 // Unused Flag
-#define FLAG_UNUSED_0x4E2                                           0x4E2 // Unused Flag
-#define FLAG_UNUSED_0x4E3                                           0x4E3 // Unused Flag
-#define FLAG_UNUSED_0x4E4                                           0x4E4 // Unused Flag
-#define FLAG_UNUSED_0x4E5                                           0x4E5 // Unused Flag
-#define FLAG_UNUSED_0x4E6                                           0x4E6 // Unused Flag
-#define FLAG_UNUSED_0x4E7                                           0x4E7 // Unused Flag
-#define FLAG_UNUSED_0x4E8                                           0x4E8 // Unused Flag
+#define FLAG_TRINITY_K_GIOVANNI_TM26    0x4E1 // Trinity M5b S10: was FLAG_UNUSED_0x4E1 -- ViridianCity_Gym G2 TM award guard (bag-full retry), FLAG_TRINITY_K_BLAINE_QUIZ pattern class.
+#define FLAG_TRINITY_K_VBASEMENT_RAID_HIDE    0x4E2 // Trinity M5b S10: was FLAG_UNUSED_0x4E2 -- R1 shared cast-hide, all 6 Viridian basement raid posts (3 per floor); visible iff VAR_TRINITY_KANTO_ARC == 3.
+#define FLAG_TRINITY_K_VBASEMENT_B2F_DOOR    0x4E3 // Trinity M5b S10: was FLAG_UNUSED_0x4E3 -- ViridianHideout_B2F barrier's ONLY state (D1-D5), independent of RocketHideout_B4F's own FLAG_TRINITY_K_HIDEOUT_B4F_DOOR.
+#define FLAG_TRINITY_K_RIG_MEWTWO_HIDE    0x4E4 // Trinity M5b S10: was FLAG_UNUSED_0x4E4 -- Mewtwo's own visibility flag in the rig room; visible iff arc==3 AND FLAG_TRINITY_K_RIG_RESOLVED unset.
+#define FLAG_TRINITY_K_RIG_MEW_HIDE    0x4E5 // Trinity M5b S10: was FLAG_UNUSED_0x4E5 -- Mew's own visibility flag; unconditionally set every ON_TRANSITION (pure addobject-spawned session actor, never visible on a fresh load).
+#define FLAG_TRINITY_K_RIG_RESOLVED    0x4E6 // Trinity M5b S10: was FLAG_UNUSED_0x4E6 -- terminal, the rig scene has played. Corroboration: setflag site removeobject's both legendaries.
+#define FLAG_TRINITY_K_GIOVANNI_BASEMENT_HIDE    0x4E7 // Trinity M5b S10: was FLAG_UNUSED_0x4E7 -- Giovanni's BASEMENT object's own hide flag (R1 co-sign on removeobject); separate from his unconditional gym-state object, no template-position reuse across states.
+#define FLAG_TRINITY_K_SILVER_FINAL_HIDE    0x4E8 // Trinity M5b S10: was FLAG_UNUSED_0x4E8 -- Route1 SILVER's own visibility flag; visible iff FLAG_TRINITY_BADGE24 set AND VAR_TRINITY_KANTO_ARC < 5.
 #define FLAG_UNUSED_0x4E9                                           0x4E9 // Unused Flag
 #define FLAG_UNUSED_0x4EA                                           0x4EA // Unused Flag
 #define FLAG_UNUSED_0x4EB                                           0x4EB // Unused Flag

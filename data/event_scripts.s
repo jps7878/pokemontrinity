@@ -710,6 +710,8 @@ gStdScripts_End::
 	.include "data/maps/RocketHideout_B3F/scripts.inc"
 	.include "data/maps/RocketHideout_B4F/scripts.inc"
 	.include "data/maps/RocketHideout_Elevator/scripts.inc"
+	.include "data/maps/ViridianHideout_B1F/scripts.inc"
+	.include "data/maps/ViridianHideout_B2F/scripts.inc"
 	.include "data/maps/Route1/scripts.inc"
 	.include "data/maps/Route10/scripts.inc"
 	.include "data/maps/Route10_PokemonCenter_1F/scripts.inc"
