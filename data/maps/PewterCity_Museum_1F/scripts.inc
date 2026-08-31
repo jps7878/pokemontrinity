@@ -30,8 +30,16 @@ PewterCity_Museum_1F_EventScript_OldAmberAlreadyGiven::
 	release
 	end
 
+@ Trinity M5b S9 fix round (minor): display-case text now reflects the
+@ handover -- the case reads empty once FLAG_TRINITY_K_OLD_AMBER is set,
+@ instead of still describing amber that's no longer there.
 PewterCity_Museum_1F_EventScript_OldAmber::
+	goto_if_set FLAG_TRINITY_K_OLD_AMBER, PewterCity_Museum_1F_EventScript_OldAmberCaseEmpty
 	msgbox PewterCity_Museum_1F_Text_OldAmber, MSGBOX_NPC
+	end
+
+PewterCity_Museum_1F_EventScript_OldAmberCaseEmpty::
+	msgbox PewterCity_Museum_1F_Text_OldAmberCaseEmpty, MSGBOX_NPC
 	end
 
 PewterCity_Museum_1F_EventScript_Scientist2::
@@ -60,6 +68,9 @@ PewterCity_Museum_1F_Text_OldAmberGone:
 
 PewterCity_Museum_1F_Text_OldAmber:
 	.string "A beautiful piece of AMBER, clear\ngold, with something ancient\lsealed inside it.$"
+
+PewterCity_Museum_1F_Text_OldAmberCaseEmpty:
+	.string "The display case sits empty now\nwhere the AMBER used to be.$"
 
 PewterCity_Museum_1F_Text_Scientist2:
 	.string "We have two fossils of rare,\nprehistoric POKéMON on exhibit.$"

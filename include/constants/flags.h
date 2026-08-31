@@ -1339,7 +1339,7 @@
 #define FLAG_TRINITY_K_BLAINE_QUIZ_4    0x4DD // Trinity M5b S9: was FLAG_UNUSED_0x4DD -- CinnabarIsland_Gym quiz door 4 (Derek's room). Same shape as QUIZ_1.
 #define FLAG_TRINITY_K_BLAINE_QUIZ_5    0x4DE // Trinity M5b S9: was FLAG_UNUSED_0x4DE -- CinnabarIsland_Gym quiz door 5 (Dusty's room). Same shape as QUIZ_1.
 #define FLAG_TRINITY_K_BLAINE_QUIZ_6    0x4DF // Trinity M5b S9: was FLAG_UNUSED_0x4DF -- CinnabarIsland_Gym quiz door 6 (Zac's room). Same shape as QUIZ_1.
-#define FLAG_UNUSED_0x4E0                                           0x4E0 // Unused Flag
+#define FLAG_TRINITY_K_SEAFOAM_B3F_LOCK_1    0x4E0 // Trinity M5b S9 fix round (review C2): was FLAG_UNUSED_0x4E0 -- SeafoamIslands_B3F lock/decoy boulder at (9,16), TRAINER_TYPE_NONE, no B4F reveal target -- FRLG's own "clear the lock, then push the payload" shape. Object-visibility plumbing only; if it ever falls into a hole the generic engine hook still needs a real flag to removeobject-cosign.
 #define FLAG_UNUSED_0x4E1                                           0x4E1 // Unused Flag
 #define FLAG_UNUSED_0x4E2                                           0x4E2 // Unused Flag
 #define FLAG_UNUSED_0x4E3                                           0x4E3 // Unused Flag

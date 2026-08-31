@@ -124,9 +124,47 @@ RustboroCity_DevonCorp_2F_EventScript_StillRegenerating::
 	release
 	end
 
+@ Trinity M5b S9 fix round (review I1): guard added. VAR_WHICH_FOSSIL_REVIVED
+@ is a global var Cinnabar's own Kanto fossil lab now also writes (values
+@ 1-3: Omanyte/Kabuto/Aerodactyl -- data/maps/CinnabarIsland_PokemonLab_
+@ ExperimentRoom/scripts.inc), so a value this switch never anticipated (3,
+@ Kanto-only) is reachable here in principle if the player ever returns to
+@ this room with VAR_FOSSIL_RESURRECTION_STATE still ==2 and this var still
+@ holding a stale Kanto value. Before the fix, neither goto_if_eq matched and
+@ execution fell to a bare `end` -- reached under the caller's `lock`
+@ (FossilScientist::lock/faceplayer, both still active here), with no
+@ matching `release`: a permanent control freeze. `release` added before
+@ `end` so an unexpected value degrades to silently doing nothing, not
+@ locking the game.
+@
+@ State ownership, traced both directions (I1's second half): whoever holds
+@ VAR_FOSSIL_RESURRECTION_STATE==1 owns the pending fossil -- the var is
+@ written to 1 only at a `removeitem`+`setvar` site (this file's own
+@ NoticeRootFossil/NoticeClawFossil, or Cinnabar's NoticeHelixFossil/
+@ NoticeDomeFossil/NoticeOldAmber), each of which also sets VAR_WHICH_
+@ FOSSIL_REVIVED to ITS OWN region-scoped range in the same breath (1-2 here,
+@ 1-3 there) -- so the two regions can never observe each other's mid-flight
+@ state as their OWN, because reaching state==1 in either room always means
+@ THAT room's own most recent handoff, overwriting whatever the other room
+@ last left behind. Forward direction (Hoenn -> Kanto, the only one strict
+@ act linearity actually permits): impossible for a Kanto player to observe
+@ Hoenn's own state==1 mid-flight, because Hoenn's story is 100% complete
+@ (its own quest already resolved to 0, one way or another) before Kanto
+@ opens. Backward direction (a Kanto player somehow standing in Devon's
+@ room, the scenario this guard defends against regardless of whether the
+@ tree's own travel rules currently permit it): Devon's own state==1/2
+@ checks read the SAME single global var Cinnabar also writes, so if
+@ Cinnabar last set state to 2 with VAR_WHICH_FOSSIL_REVIVED==3, Devon's
+@ FossilScientist entry point (`goto_if_eq ..., 2, FossilMonReady`) would
+@ misroute a Kanto-owned "ready" state into Devon's own room -- now handled
+@ safely (releases instead of freezing) rather than correctly narratively;
+@ full narrative disambiguation (e.g. a region-scoped state var) is a larger
+@ change than this guard and is not required unless backward travel is ever
+@ actually built.
 RustboroCity_DevonCorp_2F_EventScript_FossilMonReady::
 	goto_if_eq VAR_WHICH_FOSSIL_REVIVED, 1, RustboroCity_DevonCorp_2F_EventScript_LileepReady
 	goto_if_eq VAR_WHICH_FOSSIL_REVIVED, 2, RustboroCity_DevonCorp_2F_EventScript_AnorithReady
+	release
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_LileepReady::

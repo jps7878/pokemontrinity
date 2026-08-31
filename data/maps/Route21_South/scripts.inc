@@ -27,31 +27,31 @@ Route21_South_EventScript_Roland::
 	end
 
 Route21_South_Text_ClaudeSeen:
-	.string "…$"
+	.string "CINNABAR's volcano keeps this\nwater warm year-round. Nice, eh?$"
 
 Route21_South_Text_ClaudeBeaten:
-	.string "…$"
+	.string "Not as nice as your POKéMON,\napparently.$"
 
 Route21_South_Text_NolanSeen:
-	.string "…$"
+	.string "Heading to CINNABAR? Not before\nyou battle me!$"
 
 Route21_South_Text_NolanBeaten:
-	.string "…$"
+	.string "Go on, then. You've earned it.$"
 
 Route21_South_Text_JackSeen:
-	.string "…$"
+	.string "This close to the volcano, even\nthe sea feels alive.$"
 
 Route21_South_Text_JackBeaten:
-	.string "…$"
+	.string "So does your POKéMON team,\nturns out.$"
 
 Route21_South_Text_JeromeSeen:
-	.string "…$"
+	.string "One more battle before I head\ninto CINNABAR myself.$"
 
 Route21_South_Text_JeromeBeaten:
-	.string "…$"
+	.string "Guess that's one battle I'll\nremember.$"
 
 Route21_South_Text_RolandSeen:
-	.string "…$"
+	.string "Last stretch of open water\nbefore dry land. Ready?$"
 
 Route21_South_Text_RolandBeaten:
-	.string "…$"
+	.string "You made it look easy.$"

@@ -60,64 +60,64 @@ Route20_EventScript_SeafoamIslandsSign_2::
 	end
 
 Route20_Text_MelissaSeen:
-	.string "…$"
+	.string "The water's calmer along this\nstretch. Good for practicing.$"
 
 Route20_Text_MelissaBeaten:
-	.string "…$"
+	.string "Guess I need more practice.$"
 
 Route20_Text_MissySeen:
-	.string "…$"
+	.string "Picnicking with a view of\nSEAFOAM. Doesn't get better.$"
 
 Route20_Text_MissyBeaten:
-	.string "…$"
+	.string "Well, my picnic's ruined now.$"
 
 Route20_Text_NoraSeen:
-	.string "…$"
+	.string "You look like you've swum some\ndistance already.$"
 
 Route20_Text_NoraBeaten:
-	.string "…$"
+	.string "And you battle like it, too.$"
 
 Route20_Text_RogerSeen:
-	.string "…$"
+	.string "My POKéMON love the sea breeze\nas much as I do!$"
 
 Route20_Text_RogerBeaten:
-	.string "…$"
+	.string "Even the breeze couldn't save\nme from that.$"
 
 Route20_Text_DeanSeen:
-	.string "…$"
+	.string "I dare you to out-swim me!\nBattle first, though.$"
 
 Route20_Text_DeanBeaten:
-	.string "…$"
+	.string "Didn't even get to the swimming\npart.$"
 
 Route20_Text_IreneSeen:
-	.string "…$"
+	.string "Care to join my picnic once\nwe're through here?$"
 
 Route20_Text_IreneBeaten:
-	.string "…$"
+	.string "Oh dear. Let's get you a snack\nafter that.$"
 
 Route20_Text_BarrySeen:
-	.string "…$"
+	.string "Nothing beats a swim before\na battle to warm up.$"
 
 Route20_Text_BarryBeaten:
-	.string "…$"
+	.string "Guess I warmed up for nothing.$"
 
 Route20_Text_DarrinSeen:
-	.string "…$"
+	.string "SEAFOAM's currents get faster\nthe closer you get. Ready?$"
 
 Route20_Text_DarrinBeaten:
-	.string "…$"
+	.string "Not as ready as you, clearly.$"
 
 Route20_Text_ShirleySeen:
-	.string "…$"
+	.string "I've swum this route a hundred\ntimes. Still love it.$"
 
 Route20_Text_ShirleyBeaten:
-	.string "…$"
+	.string "A hundred and one, and I still\nlost.$"
 
 Route20_Text_TiffanySeen:
-	.string "…$"
+	.string "Let's see what you've got\nbefore you reach the caves!$"
 
 Route20_Text_TiffanyBeaten:
-	.string "…$"
+	.string "You've got plenty, it turns\nout.$"
 
 Route20_Text_SeafoamIslandsSign:
 	.string "SEAFOAM ISLANDS$"

@@ -27,31 +27,31 @@ Route21_North_EventScript_Ian::
 	end
 
 Route21_North_Text_RonaldSeen:
-	.string "…$"
+	.string "The fishing's good this close\nto CINNABAR. Battle first?$"
 
 Route21_North_Text_RonaldBeaten:
-	.string "…$"
+	.string "Reeled in a loss, that time.$"
 
 Route21_North_Text_WadeSeen:
-	.string "…$"
+	.string "I've hooked some strange things\nfishing out here.$"
 
 Route21_North_Text_WadeBeaten:
-	.string "…$"
+	.string "Guess I hooked more than I\ncould handle just now.$"
 
 Route21_North_Text_SpencerSeen:
-	.string "…$"
+	.string "CINNABAR's just south of here.\nWant to test yourself first?$"
 
 Route21_North_Text_SpencerBeaten:
-	.string "…$"
+	.string "Well, that answers that.$"
 
 Route21_North_Text_LilSeen:
-	.string "…$"
+	.string "My brother and I fish and\nbattle out here every week!$"
 
 Route21_North_Text_LilBeaten:
-	.string "…$"
+	.string "Ian's turn to lose, then.$"
 
 Route21_North_Text_IanSeen:
-	.string "…$"
+	.string "Lil already told you we battle\nout here, huh? Let's go!$"
 
 Route21_North_Text_IanBeaten:
-	.string "…$"
+	.string "Aw, Lil's never gonna let this\ngo.$"

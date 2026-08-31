@@ -2,27 +2,61 @@
 @ Trinity M5b S9 -- SEAFOAM ISLANDS B3F. Strength-boulder-into-hole puzzle.
 @
 @ MUST-CITE adjudication (sub-plan 09-cinnabar-seafoam.md section 1): PROMOTE.
-@ The two boulders here were T10-placed on session-scoped FLAG_TEMP_5/FLAG_TEMP_6.
-@ FRLG's own HandleBoulderFallThroughHole (pokefirered src/field_control_avatar.c:
-@ 1066-1074) FlagClears a persistent save-block flag to reveal the fallen boulder on
-@ the floor below -- that reveal must survive a real map transition, which a
-@ VAR_TEMP cannot (ClearTempFieldEventData zeroes it on every load). Promoted to
-@ FLAG_TRINITY_K_SEAFOAM_B3F_BOULDER_1/2.
+@ Persistent flags kept from the first pass (fix round did not touch this
+@ finding): `FLAG_TRINITY_K_SEAFOAM_B3F_BOULDER_1/2` survive a real map
+@ transition, which the T10 placeholder `FLAG_TEMP_5/6` cannot.
 @
-@ Engine: this tree's own TryBoulderFallThroughHole (src/field_player_avatar.c:
-@ 1758-1850, built for Blackthorn Gym 2F -- "Trinity M4b S9") is reused verbatim.
-@ A pushed boulder landing on MB_CRACKED_FLOOR_HOLE triggers a coord_event at that
-@ (x,y) tagged elevation 15 (BOULDER_HOLE_COORD_EVENT_ELEVATION) -- invisible to the
-@ player's own coord scan, which only ever presents elevation 3 here.
+@ FIX ROUND (review: 4 Critical). Controller ruling replaced the first pass's
+@ invented "stage 2" (push the revealed B4F boulder again, into the current)
+@ with FRLG's real, simpler mechanism: the fallen boulders' PRESENCE on B4F
+@ IS the calm condition (see SeafoamIslands_B4F/scripts.inc header) -- nothing
+@ on B3F changes for that fix, but the boulder PLACEMENT here was also wrong
+@ and is corrected in the same round (C2):
 @
-@ Trinity's own boulder placement corrected: T10 kept the two FRLG boulders that,
-@ at FRLG's own coordinates, never fall ((9,16)/(13,16), trainer_type NONE) and
-@ dropped the two that do ((6,17)/(12,16), trainer_type = the B4F reveal flag).
-@ (13,16) cannot reach either hole in this map's own geometry (decoded: south push
-@ dead-ends at (13,17), a wall at (13,18); no route to stand east of it at (14,17),
-@ also a wall, so a sideways push is impossible either). Relocated to (6,17), one
-@ tile north of the other hole -- FRLG's own position for the boulder that falls
-@ there. (9,16) is kept; it already lines up with its own hole two tiles south.
+@ FRLG's real lock+payload design (read fresh from
+@ pokefirered/data/maps/SeafoamIslands_B3F/map.json): boulder 4 (9,16) and
+@ boulder 6 (13,16) are LOCKS (TRAINER_TYPE_NONE, no B4F reveal target,
+@ blocking the approach to a hole); boulders 3 (6,17) and 5 (12,16) are the
+@ PAYLOADS that actually fall. The first pass's decode was wrong: it treated
+@ (9,16) as itself the payload for hole (9,18) via a straight 2-tile push,
+@ when FRLG's own payload for that hole starts at (12,16) and the lock at
+@ (9,16) exists specifically to block the LAST tile of that payload's route
+@ ((9,16) is where the player must stand to push (9,17)->(9,18)).
+@
+@ Every tile of the corrected route decoded TRUE this time (Map queries, not
+@ the ASCII grid the first pass's error came from), including the tile the
+@ player stands on for each push (the row/column *above* each push, not just
+@ the destination):
+@   (12,16) payload start, col0 elev3 MB_CAVE
+@   push SOUTH: player (12,15) col0 elev3 MB_CAVE -> boulder to (12,17) col0
+@     elev3 MB_CAVE
+@   push WEST x3 along row 17, player stands one tile EAST of the boulder
+@     each time ((13,17)->(12,17)->(11,17), all col0 elev3 MB_CAVE, confirmed
+@     open as the boulder vacates each): boulder (12,17)->(11,17)->(10,17)->
+@     (9,17), all col0 elev3 MB_CAVE
+@   push SOUTH: player (9,16) col0 elev3 MB_CAVE -> boulder (9,17)->(9,18),
+@     the hole
+@ The lock at (9,16) sits exactly on that last push's standing tile and MUST
+@ be cleared sideways first -- confirmed it cannot be wasted into the hole
+@ itself (its own north tile, (9,15), is col1 wall, so there is no standing
+@ tile to push it south from); it can only be shoved west to (8,16) or east
+@ to (10,16), both confirmed col0 elev3 MB_CAVE, clearing (9,16) for the
+@ payload's final push.
+@ Boulder 2's own route ((6,17)->south->hole (6,18)) is unchanged from the
+@ first pass -- already correct, already unblocked (player stands (6,16),
+@ col0 elev3 MB_CAVE), no lock needed there per the ruling.
+@
+@ I6: the hole->boulder reveal mapping is generic by HOLE POSITION, not by
+@ boulder identity -- ANY boulder that lands in hole (6,18) reveals B4F's
+@ counterpart there, ANY boulder in hole (9,18) reveals B4F's other one,
+@ matching this tree's own engine hook (TryBoulderFallThroughHole, keyed on
+@ (x,y) + the coord_event's elevation sentinel, never on which object it is).
+@ The lock boulders' own talk-script backstops now route through one shared
+@ CheckOnHole subroutine testing BOTH hole coordinates, not a hardcoded home
+@ column -- so a lock accidentally shoved into either hole (a real
+@ possibility once cleared sideways and pushed further) still correctly
+@ plugs that hole, "plug not waste," the same shape as Blackthorn Gym 2F's
+@ own deviation from GSC's per-boulder binding.
 @ ============================================================================
 
 .equ NUM_BOULDERS_PRESENT, VAR_TEMP_2
@@ -45,13 +79,11 @@ SeafoamIslands_B3F_EventScript_AddBoulderPresent::
 	addvar NUM_BOULDERS_PRESENT, 1
 	return
 
-@ Both boulders gone (fallen through their holes) -- still the current. Uniform
-@ METATILE_General_CalmWater sweep, not FRLG's duplicate hand-painted layout: see
-@ sub-plan section 5.5 for the full reasoning (this tree has no registered
-@ _CURRENT_STOPPED sibling layout for Kanto Seafoam, and FRLG's own per-cell
-@ substitution is position-sensitive, not a clean lookup -- FRLG's own script
-@ already uses this exact command for the two tiles its layout-swap doesn't reach,
-@ this just scales it to every current cell on this floor).
+@ Both payload boulders gone (fallen through their holes) -- still THIS
+@ floor's own current. Uniform METATILE_General_CalmWater sweep, not FRLG's
+@ duplicate hand-painted layout: see sub-plan section 5.5 for the full
+@ reasoning (unaffected by this fix round -- the calm-water mechanism itself
+@ was not part of the C1-C3 findings).
 SeafoamIslands_B3F_EventScript_CalmCurrent::
 	setmetatile 15,  5, METATILE_General_CalmWater, 0
 	setmetatile 15,  6, METATILE_General_CalmWater, 0
@@ -113,13 +145,14 @@ SeafoamIslands_B3F_EventScript_CalmCurrent::
 	end
 
 @ ----------------------------------------------------------------------------
-@ Hole (6,18): boulder 2 (relocated to (6,17)) falls here into B4F (8,18).
-@ Hole (9,18): boulder 1 (9,16) falls here into B4F (9,18).
-@ Player-fall landings reuse this map's own (currently dead in this engine, see
-@ sub-plan 5.3) warp_events' destinations: (6,18)->B4F(8,17), (9,18)->B4F(9,17),
-@ both MB_NORTHWARD_CURRENT (col0) -- the player who falls personally lands
-@ mid-current and gets swept, distinct from the boulders' own (8,18)/(9,18)
-@ landing tiles one row south (no object/warp overlap).
+@ Hole (6,18): boulder 2 (6,17) falls here into B4F (8,18).
+@ Hole (9,18): the payload boulder (12,16), routed via the lock's cleared
+@ tile, falls here into B4F (9,18).
+@ Player-fall landings reuse this map's own (dead in this engine, see
+@ sub-plan 5.3) warp_events' destinations: (6,18)->B4F(8,17), (9,18)->B4F
+@ (9,17), both live current on B4F -- traced safe in the fix round, see the
+@ report's C3 section (this floor's own scripting is unaffected by that
+@ finding; the trace concerns B4F's engine behavior only).
 @ ----------------------------------------------------------------------------
 SeafoamIslands_B3F_EventScript_FallToHole1::
 	lockall
@@ -156,32 +189,51 @@ SeafoamIslands_B3F_EventScript_BoulderFellHole2::
 	end
 
 @ ----------------------------------------------------------------------------
-@ The two boulders. Primary path: the engine hook removes the boulder the instant
-@ it lands in a hole, so it can never be talked to there. Backstop path (the
-@ Blackthorn precedent, mandatory not decoration -- the founder gate is
-@ clean-compile + review, no play-tests, so a new runtime hook is the one thing
-@ that cannot be proven by running it): each boulder's own talk script checks its
-@ own position and runs the same fall script if it happens to be sitting in its
-@ hole; otherwise falls through to vanilla EventScript_StrengthBoulder.
+@ All three boulders (lock + both payloads). Primary path: the engine hook
+@ removes a boulder the instant it lands in a hole, so it can never be talked
+@ to there. Backstop path (Blackthorn precedent, mandatory not decoration --
+@ the founder gate is clean-compile + review, no play-tests, so a new runtime
+@ hook is the one thing that cannot be proven by running it): every boulder's
+@ own talk script routes through ONE shared CheckOnHole subroutine testing
+@ its current position against BOTH hole coordinates -- generic by hole
+@ position (I6), not by which boulder it is, so the lock plugs whichever hole
+@ it's shoved into just as validly as either payload.
 @ ----------------------------------------------------------------------------
-SeafoamIslands_B3F_EventScript_Boulder1::
+SeafoamIslands_B3F_EventScript_Lock1::
 	getobjectxy VAR_LAST_TALKED, 0, VAR_0x8004, VAR_0x8005
-	goto_if_eq VAR_0x8004, 9, SeafoamIslands_B3F_EventScript_Boulder1CheckHole
+	call SeafoamIslands_B3F_EventScript_CheckOnHole
+	goto_if_eq VAR_RESULT, 1, SeafoamIslands_B3F_EventScript_BoulderFellHole1
+	goto_if_eq VAR_RESULT, 2, SeafoamIslands_B3F_EventScript_BoulderFellHole2
 	goto EventScript_StrengthBoulder
 	end
 
-SeafoamIslands_B3F_EventScript_Boulder1CheckHole::
-	goto_if_eq VAR_0x8005, 18, SeafoamIslands_B3F_EventScript_BoulderFellHole2
+SeafoamIslands_B3F_EventScript_Boulder1::
+	getobjectxy VAR_LAST_TALKED, 0, VAR_0x8004, VAR_0x8005
+	call SeafoamIslands_B3F_EventScript_CheckOnHole
+	goto_if_eq VAR_RESULT, 1, SeafoamIslands_B3F_EventScript_BoulderFellHole1
+	goto_if_eq VAR_RESULT, 2, SeafoamIslands_B3F_EventScript_BoulderFellHole2
 	goto EventScript_StrengthBoulder
 	end
 
 SeafoamIslands_B3F_EventScript_Boulder2::
 	getobjectxy VAR_LAST_TALKED, 0, VAR_0x8004, VAR_0x8005
-	goto_if_eq VAR_0x8004, 6, SeafoamIslands_B3F_EventScript_Boulder2CheckHole
+	call SeafoamIslands_B3F_EventScript_CheckOnHole
+	goto_if_eq VAR_RESULT, 1, SeafoamIslands_B3F_EventScript_BoulderFellHole1
+	goto_if_eq VAR_RESULT, 2, SeafoamIslands_B3F_EventScript_BoulderFellHole2
 	goto EventScript_StrengthBoulder
 	end
 
-SeafoamIslands_B3F_EventScript_Boulder2CheckHole::
-	goto_if_eq VAR_0x8005, 18, SeafoamIslands_B3F_EventScript_BoulderFellHole1
-	goto EventScript_StrengthBoulder
-	end
+@ VAR_0x8004/0x8005 already hold the talked-to boulder's (x,y). VAR_RESULT:
+@ 1 if standing in hole (6,18), 2 if standing in hole (9,18), 0 otherwise.
+SeafoamIslands_B3F_EventScript_CheckOnHole::
+	setvar VAR_RESULT, 0
+	goto_if_ne VAR_0x8004, 6, SeafoamIslands_B3F_EventScript_CheckOnHole2
+	goto_if_ne VAR_0x8005, 18, SeafoamIslands_B3F_EventScript_CheckOnHole2
+	setvar VAR_RESULT, 1
+	return
+
+SeafoamIslands_B3F_EventScript_CheckOnHole2::
+	goto_if_ne VAR_0x8004, 9, Common_EventScript_NopReturn
+	goto_if_ne VAR_0x8005, 18, Common_EventScript_NopReturn
+	setvar VAR_RESULT, 2
+	return

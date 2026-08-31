@@ -3,33 +3,53 @@
 @ ARTICUNO L78 (static legendary contract, three clauses, mirrors S3's shipped
 @ ZAPDOS precedent exactly).
 @
-@ Two-stage puzzle (FRLG's own real shape, read from source, not guessed): a
-@ boulder pushed into a B3F hole (SeafoamIslands_B3F/scripts.inc) clears the
-@ matching FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_N here, revealing a fresh pushable
-@ boulder at (9,18)/(8,18) -- the player must then push THAT boulder onto an
-@ adjacent current tile to plug it (stage 2), which is what actually stills this
-@ floor's current and opens the way to ARTICUNO.
+@ FIX ROUND (review: 4 Critical, C1). The first pass invented a "stage 2"
+@ (push the revealed boulder again, onto an adjacent current tile, to mark it
+@ "used") that FRLG's own design does not have. Read fresh from
+@ pokefirered/data/maps/SeafoamIslands_B4F/scripts.inc:28-32:
+@   SeafoamIslands_B4F_EventScript_CheckStoppedCurrent::
+@       setvar NUM_BOULDERS_PRESENT, 0
+@       call_if_unset FLAG_HIDE_SEAFOAM_B4F_BOULDER_1, ...AddBoulderPresent
+@       call_if_unset FLAG_HIDE_SEAFOAM_B4F_BOULDER_2, ...AddBoulderPresent
+@       call_if_eq NUM_BOULDERS_PRESENT, 2, ...StoppedCurrent
+@ The fallen boulders' own PRESENCE on B4F -- not a second push -- IS the
+@ calm condition: a boulder that has fallen through a hole and landed here
+@ physically dams the current by sitting in it. There is no "used" state.
+@ Corrected: `NUM_BOULDERS_USED`/the whole push-into-current backstop
+@ (`Boulder1`/`Boulder2`/`CheckOnCurrent`) deleted outright; the two landed
+@ boulders now carry the vanilla `EventScript_StrengthBoulder` (still
+@ pushable, for feel, matching FRLG's shape of a normal Strength boulder --
+@ FRLG's own B4F boulders carry literally no script (`0x0`); Trinity keeps
+@ them interactively pushable rather than inert, a harmless cosmetic
+@ difference since pushing them anywhere on the map does not change the flag
+@ that actually drives the calm condition). `NUM_BOULDERS_PRESENT` is counted
+@ the FRLG way -- `call_if_unset` on each boulder's own B4F hide flag --
+@ in BOTH ON_TRANSITION (which also decides ARTICUNO's visibility) and
+@ ON_LOAD (which owns the setmetatile sweep, per the ON_LOAD-only gate
+@ below); both recompute independently rather than sharing one computation,
+@ since nothing guarantees VAR_TEMP_2 survives the gap between the two
+@ callbacks. A fresh save (both `FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_1/2` set
+@ = hidden, their default with no other writer) now correctly shows: zero
+@ revealed boulders, live current, ARTICUNO hidden -- traced end to end, not
+@ assumed.
 @
-@ Wrong default on the revealed boulders (should start hidden; the engine's own
-@ default is shown -- !FlagGet(flagId) gates spawn, src/event_object_movement.c:
-@ 1497,2738). Fixed the same way S3's Zapdos fixes its own wrong default: an
-@ ON_TRANSITION recompute every load. It only ever RE-hides while the B3F source
-@ hasn't fallen yet (call_if_unset); once it has, the call never fires again and
-@ the B4F flag's own state (present, or gone-because-pushed-into-water) is left
-@ alone -- verified by tracing both branches, not assumed.
+@ Wrong default on the revealed boulders (should start hidden; the engine's
+@ own default is shown -- !FlagGet(flagId) gates spawn, src/event_object_
+@ movement.c:1497,2738). Fixed the same way S3's Zapdos fixes its own wrong
+@ default: an ON_TRANSITION recompute every load. It only ever RE-hides while
+@ the B3F source hasn't fallen yet (call_if_unset); once it has, the call
+@ never fires again and the B4F flag's own state (permanently present, one
+@ writer, the B3F-side clearflag) is left alone.
 @ ============================================================================
 
-.equ NUM_BOULDERS_USED, VAR_TEMP_2
+.equ NUM_BOULDERS_PRESENT, VAR_TEMP_2
 
 @ setmetatile authoring must live in MAP_SCRIPT_ON_LOAD (qa_sweep.py's own gate:
 @ InitMapLayoutData wipes the grid immediately after ON_TRANSITION runs,
-@ src/overworld.c:876-877 + src/fieldmap.c:96-103) -- so the current-stopped sweep
-@ is split into its own ON_LOAD script; boulder-reveal and ARTICUNO visibility
+@ src/overworld.c:876-877 + src/fieldmap.c:96-103) -- so the current-stopped
+@ sweep is its own ON_LOAD script; boulder-reveal and ARTICUNO visibility
 @ (no setmetatile) stay on ON_TRANSITION, matching the Zapdos precedent's own
-@ split (its hide/show is ON_TRANSITION too). Both recompute NUM_BOULDERS_USED
-@ independently rather than sharing one computation across the two callbacks --
-@ ON_TRANSITION runs first, but nothing guarantees VAR_TEMP_2 survives untouched
-@ until ON_LOAD runs, so each callback counts its own copy.
+@ split.
 SeafoamIslands_B4F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, SeafoamIslands_B4F_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, SeafoamIslands_B4F_OnLoad
@@ -39,24 +59,17 @@ SeafoamIslands_B4F_MapScripts::
 SeafoamIslands_B4F_OnTransition::
 	call_if_unset FLAG_TRINITY_K_SEAFOAM_B3F_BOULDER_1, SeafoamIslands_B4F_EventScript_HideBoulder1
 	call_if_unset FLAG_TRINITY_K_SEAFOAM_B3F_BOULDER_2, SeafoamIslands_B4F_EventScript_HideBoulder2
-	setvar NUM_BOULDERS_USED, 0
-	call_if_set FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_1, SeafoamIslands_B4F_EventScript_AddBoulderUsed
-	call_if_set FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_2, SeafoamIslands_B4F_EventScript_AddBoulderUsed
+	setvar NUM_BOULDERS_PRESENT, 0
+	call_if_unset FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_1, SeafoamIslands_B4F_EventScript_AddBoulderPresent
+	call_if_unset FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_2, SeafoamIslands_B4F_EventScript_AddBoulderPresent
 	call_if_set FLAG_TRINITY_K_ARTICUNO_RESOLVED, SeafoamIslands_B4F_EventScript_HideArticuno
 	call_if_unset FLAG_TRINITY_K_ARTICUNO_RESOLVED, SeafoamIslands_B4F_EventScript_TryShowArticuno
 	end
 
-SeafoamIslands_B4F_OnLoad::
-	setvar NUM_BOULDERS_USED, 0
-	call_if_set FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_1, SeafoamIslands_B4F_EventScript_AddBoulderUsed
-	call_if_set FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_2, SeafoamIslands_B4F_EventScript_AddBoulderUsed
-	goto_if_eq NUM_BOULDERS_USED, 2, SeafoamIslands_B4F_EventScript_CalmCurrent
-	end
-
-@ Clause 1's gate: ARTICUNO shows only once both B4F boulders are used (current
-@ stopped) -- the puzzle IS the gate, no separate story flag.
+@ Clause 1's gate: ARTICUNO shows only once both boulders are present
+@ (current stopped) -- the puzzle IS the gate, no separate story flag.
 SeafoamIslands_B4F_EventScript_TryShowArticuno::
-	goto_if_ne NUM_BOULDERS_USED, 2, SeafoamIslands_B4F_EventScript_HideArticuno
+	goto_if_ne NUM_BOULDERS_PRESENT, 2, SeafoamIslands_B4F_EventScript_HideArticuno
 	clearflag FLAG_TRINITY_K_ARTICUNO_HIDE
 	return
 
@@ -68,13 +81,20 @@ SeafoamIslands_B4F_EventScript_HideBoulder2::
 	setflag FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_2
 	return
 
-SeafoamIslands_B4F_EventScript_AddBoulderUsed::
-	addvar NUM_BOULDERS_USED, 1
+SeafoamIslands_B4F_EventScript_AddBoulderPresent::
+	addvar NUM_BOULDERS_PRESENT, 1
 	return
 
-@ Both revealed boulders pushed into the current (stage 2 complete) -- still the
-@ current (uniform METATILE_General_CalmWater sweep, sub-plan section 5.5). ARTICUNO
-@ visibility is already resolved above (TryShowArticuno), not here.
+SeafoamIslands_B4F_OnLoad::
+	setvar NUM_BOULDERS_PRESENT, 0
+	call_if_unset FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_1, SeafoamIslands_B4F_EventScript_AddBoulderPresent
+	call_if_unset FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_2, SeafoamIslands_B4F_EventScript_AddBoulderPresent
+	goto_if_eq NUM_BOULDERS_PRESENT, 2, SeafoamIslands_B4F_EventScript_CalmCurrent
+	end
+
+@ Both boulders present (fallen and landed) -- still the current. Uniform
+@ METATILE_General_CalmWater sweep, sub-plan section 5.5 (unaffected by this
+@ fix round). ARTICUNO visibility is already resolved above, not here.
 SeafoamIslands_B4F_EventScript_CalmCurrent::
 	setmetatile  3,  1, METATILE_General_CalmWater, 0
 	setmetatile  3,  2, METATILE_General_CalmWater, 0
@@ -252,69 +272,11 @@ SeafoamIslands_B4F_EventScript_CalmCurrent::
 	special DrawWholeMapView
 	end
 
-@ ----------------------------------------------------------------------------
-@ The two revealed boulders' own stage-2 push-into-current detection. No engine
-@ hook needed here (unlike the B3F hole-fall): Task_PushBoulder/PushBoulder_Move
-@ place no terrain restriction beyond plain collision, and every current tile
-@ around these boulders is col0 -- the push itself already works. This is a pure
-@ script-side "did I just get pushed onto flowing water" check, run every time
-@ the player talks to the boulder (the only trigger point available).
-@
-@ Checked against BOTH boulders' full reachable set, not just each one's own
-@ "home" column: (8,18)/(9,18) are adjacent and either boulder could in
-@ principle end up sideways-pushed into the other's column before being pushed
-@ further north/south (once its neighbor has moved out of the way). A check
-@ gated on a fixed home column alone would miss that case; checking the full
-@ (x,y) pair against all four current tiles does not.
-@ ----------------------------------------------------------------------------
-SeafoamIslands_B4F_EventScript_Boulder1::
-	getobjectxy VAR_LAST_TALKED, 0, VAR_0x8004, VAR_0x8005
-	call SeafoamIslands_B4F_EventScript_CheckOnCurrent
-	goto_if_eq VAR_RESULT, TRUE, SeafoamIslands_B4F_EventScript_Boulder1Used
-	goto EventScript_StrengthBoulder
-	end
-
-SeafoamIslands_B4F_EventScript_Boulder1Used::
-	removeobject VAR_LAST_TALKED
-	setflag FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_1
-	return
-
-SeafoamIslands_B4F_EventScript_Boulder2::
-	getobjectxy VAR_LAST_TALKED, 0, VAR_0x8004, VAR_0x8005
-	call SeafoamIslands_B4F_EventScript_CheckOnCurrent
-	goto_if_eq VAR_RESULT, TRUE, SeafoamIslands_B4F_EventScript_Boulder2Used
-	goto EventScript_StrengthBoulder
-	end
-
-SeafoamIslands_B4F_EventScript_Boulder2Used::
-	removeobject VAR_LAST_TALKED
-	setflag FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_2
-	return
-
-@ VAR_0x8004/0x8005 already hold the talked-to boulder's (x,y). TRUE in
-@ VAR_RESULT iff that tile is one of the four current cells flanking the
-@ landing pool: (8,17) (9,17) (8,19) (9,19).
-SeafoamIslands_B4F_EventScript_CheckOnCurrent::
-	setvar VAR_RESULT, FALSE
-	goto_if_ne VAR_0x8005, 17, SeafoamIslands_B4F_EventScript_CheckOnCurrentRowSouth
-	goto_if_eq VAR_0x8004, 8, SeafoamIslands_B4F_EventScript_SetOnCurrentTrue
-	goto_if_eq VAR_0x8004, 9, SeafoamIslands_B4F_EventScript_SetOnCurrentTrue
-	return
-
-SeafoamIslands_B4F_EventScript_CheckOnCurrentRowSouth::
-	goto_if_ne VAR_0x8005, 19, Common_EventScript_NopReturn
-	goto_if_eq VAR_0x8004, 8, SeafoamIslands_B4F_EventScript_SetOnCurrentTrue
-	goto_if_eq VAR_0x8004, 9, SeafoamIslands_B4F_EventScript_SetOnCurrentTrue
-	return
-
-SeafoamIslands_B4F_EventScript_SetOnCurrentTrue::
-	setvar VAR_RESULT, TRUE
-	return
-
 @ ============================================================================
 @ ARTICUNO -- static legendary contract, three clauses, mirrors S3's shipped
-@ ZAPDOS (PowerPlant/scripts.inc) exactly. L78 via seteventmon. Gate: the current-
-@ stopped condition above (the puzzle IS the gate, no separate story flag).
+@ ZAPDOS (PowerPlant/scripts.inc) exactly. L78 via seteventmon. Gate: the
+@ current-stopped condition above (the puzzle IS the gate, no separate story
+@ flag).
 @ ============================================================================
 SeafoamIslands_B4F_EventScript_HideArticuno::
 	setflag FLAG_TRINITY_K_ARTICUNO_HIDE

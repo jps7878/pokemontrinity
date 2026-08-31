@@ -63,40 +63,64 @@ CinnabarIsland_Gym_OnLoadOpenAllDoors::
 @ BLAINE. G1-G7 pattern verbatim. FRLG position (5,4) decoded col0/elev3/
 @ MB_NORMAL -- dry, matches.
 @ ============================================================================
+@ Trinity M5b S9 fix round (review I5): badge-award flow reshaped to the
+@ exact shipped Pewter pattern (PewterCity_Gym_EventScript_Brock/
+@ BrockDefeated/GiveTM37) rather than the first pass's own ad hoc shape.
 CinnabarIsland_Gym_EventScript_Blaine::
 	trainerbattle_single TRAINER_BLAINE, CinnabarIsland_Gym_Text_BlaineIntro, CinnabarIsland_Gym_Text_BlaineDefeat, CinnabarIsland_Gym_EventScript_BlaineDefeated, NO_MUSIC
-	msgbox CinnabarIsland_Gym_Text_BlainePostBattle, MSGBOX_AUTOCLOSE
+	goto_if_unset FLAG_TRINITY_K_BLAINE_TM38, CinnabarIsland_Gym_EventScript_GiveTM38
+	msgbox CinnabarIsland_Gym_Text_BlainePostBattle, MSGBOX_DEFAULT
+	release
 	end
 
 CinnabarIsland_Gym_EventScript_BlaineDefeated::
+	message CinnabarIsland_Gym_Text_ReceivedVolcanoBadge
+	waitmessage
+	call Common_EventScript_PlayGymBadgeFanfare
 	setflag FLAG_TRINITY_BADGE23
-	goto_if_set FLAG_TRINITY_K_BLAINE_TM38, Common_EventScript_NopReturn
 	msgbox CinnabarIsland_Gym_Text_ExplainVolcanoBadge, MSGBOX_DEFAULT
+	goto CinnabarIsland_Gym_EventScript_GiveTM38
+	end
+
+CinnabarIsland_Gym_EventScript_GiveTM38::
 	giveitem ITEM_TM38
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_TRINITY_K_BLAINE_TM38
 	msgbox CinnabarIsland_Gym_Text_FireBlastIsUltimateFireMove, MSGBOX_DEFAULT
-	return
+	release
+	end
 
 @ ============================================================================
 @ Statues, GymGuy.
 @ ============================================================================
+@ Trinity M5b S9 fix round (review I5): statue text re-shaped to the Trinity
+@ epithet form the other five (six, counting Sabrina) already-shipped Kanto
+@ leaders use ("LEADER: X\pThe ___$", e.g. Brock "The Rock-Solid Trainer,"
+@ Misty "The Tomboyish Mermaid," Surge "The Lightning American," Erika "The
+@ Nature-Loving Trainer," Sabrina "The Master of Psychic Pokémon," Janine
+@ "Master of Poison POKéMON") -- the first pass instead invented a
+@ "WINNING TRAINERS: none yet." tracker matching FRLG's own real statue text
+@ but NOT this milestone's own established convention. Blaine's epithet,
+@ "The Fire-and-Brimstone Trainer," is his real canonical title (same
+@ register as the other five/six). Post-badge branch and label name
+@ (`GymStatueCertified`, `MSGBOX_DEFAULT`) also matched to the sibling shape
+@ exactly (`PewterCity_Gym_EventScript_GymStatueCertified`).
 CinnabarIsland_Gym_EventScript_GymStatue::
 	lockall
-	goto_if_set FLAG_TRINITY_BADGE23, CinnabarIsland_Gym_EventScript_GymStatuePostVictory
-	msgbox CinnabarIsland_Gym_Text_GymStatue, MSGBOX_SIGN
+	goto_if_set FLAG_TRINITY_BADGE23, CinnabarIsland_Gym_EventScript_GymStatueCertified
+	msgbox CinnabarIsland_Gym_Text_GymStatue, MSGBOX_DEFAULT
 	releaseall
 	end
 
 CinnabarIsland_Gym_EventScript_GymStatue_2::
 	lockall
-	goto_if_set FLAG_TRINITY_BADGE23, CinnabarIsland_Gym_EventScript_GymStatuePostVictory
-	msgbox CinnabarIsland_Gym_Text_GymStatue, MSGBOX_SIGN
+	goto_if_set FLAG_TRINITY_BADGE23, CinnabarIsland_Gym_EventScript_GymStatueCertified
+	msgbox CinnabarIsland_Gym_Text_GymStatue, MSGBOX_DEFAULT
 	releaseall
 	end
 
-CinnabarIsland_Gym_EventScript_GymStatuePostVictory::
-	msgbox CinnabarIsland_Gym_Text_GymStatuePlayerWon, MSGBOX_SIGN
+CinnabarIsland_Gym_EventScript_GymStatueCertified::
+	msgbox CinnabarIsland_Gym_Text_GymStatueCertified, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -508,28 +532,42 @@ CinnabarIsland_Gym_Text_BlaineIntro:
 	.string "Hah!\pI am BLAINE, the red-hot LEADER\nof CINNABAR GYM!\pMy fiery POKéMON are all rough\land tumble!$"
 
 CinnabarIsland_Gym_Text_BlaineDefeat:
-	.string "I have burned down to nothing!\nNot even ashes remain!\pYou have earned the VOLCANOBADGE.$"
+	.string "I have burned down to nothing!\nNot even ashes remain!$"
 
 CinnabarIsland_Gym_Text_BlainePostBattle:
 	.string "Hah! Come back when you've got\nmore fire in you.$"
 
+@ Trinity M5b S9 fix round (review I5): the "heightens the SPECIAL stats"
+@ claim is killed -- no such engine boost exists (badges carry no stat
+@ modifier in this tree, grepped: no GetBadgeBoost-class function touches
+@ Special/SpAttack/SpDefense anywhere). Pinned shape restored verbatim from
+@ PewterCity_Gym_Text_BoulderBadgeInfo, the milestone's own established
+@ badge-explanation text.
+CinnabarIsland_Gym_Text_ReceivedVolcanoBadge:
+	.string "{PLAYER} received the\nVOLCANOBADGE from BLAINE.$"
+
 CinnabarIsland_Gym_Text_ExplainVolcanoBadge:
-	.string "Hah!\pThe VOLCANOBADGE heightens the\nSPECIAL stats of your POKéMON.\pHere, you can have this, too!$"
+	.string "BLAINE: The VOLCANOBADGE.\pDoesn't make you stronger. Just\nmeans KANTO's noticed you.\pSeven of these, and VIRIDIAN opens\nthe door.\pTake this too -- you earned it.$"
 
 CinnabarIsland_Gym_Text_FireBlastIsUltimateFireMove:
 	.string "FIRE BLAST is the ultimate fire\ntechnique.\pIt won't wear out, so don't waste\nit on WATER POKéMON.$"
 
 CinnabarIsland_Gym_Text_GymStatue:
-	.string "CINNABAR POKéMON GYM\nLEADER: BLAINE\pWINNING TRAINERS: none yet.$"
+	.string "CINNABAR POKéMON GYM\nLEADER: BLAINE\pThe Fire-and-Brimstone Trainer$"
 
-CinnabarIsland_Gym_Text_GymStatuePlayerWon:
-	.string "CINNABAR POKéMON GYM\nLEADER: BLAINE\pWINNING TRAINERS: {PLAYER}$"
+CinnabarIsland_Gym_Text_GymStatueCertified:
+	.string "CINNABAR POKéMON GYM\nLEADER: BLAINE\pBLAINE'S CERTIFIED TRAINERS:\n{PLAYER}$"
 
 CinnabarIsland_Gym_Text_GymGuyAdvice:
 	.string "Yo! Champ in the making!\pThe hotheaded BLAINE is a FIRE\nPOKéMON pro.\pWater AND Ground both land clean\non every one of his six -- no\lexceptions. His MAGCARGO eats it\lworst of all, being ROCK too.$"
 
+@ Trinity M5b S9 fix round (review I5): restored to the milestone's own
+@ pinned "<BADGE>. One of seven." close (PewterCity_Gym_Text_
+@ GymGuyPostVictory's own shape, confirmed against 3 other siblings, S7's
+@ own fold precedent) -- never counts the player's own badges, just names
+@ this one's place in the set of seven Kanto badges.
 CinnabarIsland_Gym_Text_GymGuyPostVictory:
-	.string "{PLAYER}! You beat that firebrand!$"
+	.string "Straight through BLAINE! Figured\nas much.\pVOLCANOBADGE. One of seven.$"
 
 CinnabarIsland_Gym_Text_PokemonQuizRules:
 	.string "POKéMON Quiz!\pGet it right, and the door opens to\nthe next room.\pGet it wrong, and face a TRAINER!$"

@@ -51,7 +51,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SeafoamIslands_B4F_EventScript_Boulder1",
+      "script": "EventScript_StrengthBoulder",
       "flag": "FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_1"
     },
     {
@@ -64,7 +64,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SeafoamIslands_B4F_EventScript_Boulder2",
+      "script": "EventScript_StrengthBoulder",
       "flag": "FLAG_TRINITY_K_SEAFOAM_B4F_BOULDER_2"
     }
   ],

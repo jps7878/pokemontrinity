@@ -18,13 +18,44 @@
 @ No multichoice extension needed -- Mt. Moon's take-one rule (S4 handoff) plus a
 @ single Old Amber source means the player holds at most two fossil items at
 @ once; checked in priority order instead (Helix, then Dome, then Amber).
+@
+@ FIX ROUND (review C4, CRITICAL): the first pass never gave this map ANY
+@ map scripts, so the only `setvar VAR_FOSSIL_RESURRECTION_STATE, 2` in the
+@ whole chain was Devon's own Hoenn-side ON_TRANSITION -- the Kanto chain
+@ could hand over a fossil (state 0->1) and then never advance to 2, since
+@ nothing here ever ran that transition. Devon's own pattern restored in
+@ full (RustboroCity_DevonCorp_2F/scripts.inc:1-7, 16-24): MAP_SCRIPT_ON_
+@ TRANSITION advances 1->2 on its own; Garett (the room's other NPC) carries
+@ the same `call_if_eq ..., 1, SetFossilReady` backstop Devon's own other-NPC
+@ scripts use, so walking up to him without leaving the map also advances
+@ the state. FossilScientist's own entry point deliberately does NOT carry
+@ that backstop, matching Devon's own FossilScientist exactly -- re-talking
+@ to the SAME NPC while state==1 stays "still regenerating"; only a real
+@ ON_TRANSITION (leave and come back) or talking to Garett first advances
+@ it. Traced end to end: hand fossil (0->1) -> leave -> re-enter (ON_
+@ TRANSITION: 1->2) -> talk to FossilScientist -> goto_if_eq state==2 fires
+@ -> correct species given via VAR_WHICH_FOSSIL_REVIVED, party/PC/no-room
+@ paths all reachable exactly as Devon's own chain already proves them.
 @ ============================================================================
 
 CinnabarIsland_PokemonLab_ExperimentRoom_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, CinnabarIsland_PokemonLab_ExperimentRoom_OnTransition
 	.byte 0
 
+CinnabarIsland_PokemonLab_ExperimentRoom_OnTransition:
+	call_if_eq VAR_FOSSIL_RESURRECTION_STATE, 1, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetFossilReady
+	end
+
+CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetFossilReady::
+	setvar VAR_FOSSIL_RESURRECTION_STATE, 2
+	return
+
 CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_Garett::
-	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_Garett, MSGBOX_NPC
+	lock
+	faceplayer
+	call_if_eq VAR_FOSSIL_RESURRECTION_STATE, 1, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetFossilReady
+	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_Garett, MSGBOX_DEFAULT
+	release
 	end
 
 CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilScientist::

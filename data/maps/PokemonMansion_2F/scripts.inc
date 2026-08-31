@@ -25,7 +25,7 @@ PokemonMansion_2F_Text_ArnieBeaten:
 	.string "Guess I'll go dig somewhere\nelse.$"
 
 PokemonMansion_2F_Text_Statue:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "This old place has seen quieter\ndays. Word is a champion's been\lpassing through from JOHTO.$"
 
 PokemonMansion_2F_Text_DiaryJuly10th:
 	.string "Diary: July 10\nWe christened the newly discovered\lPOKéMON, MEW.$"
