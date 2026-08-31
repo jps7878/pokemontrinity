@@ -43,7 +43,16 @@ ViridianHideout_B1F_EventScript_Scientist1::
 @ clearing Celadon sees a locked stairwell, not raid content, matching the
 @ same posture as ViridianCity's own grate sign). Open, this is the "way
 @ back up" -- a plain scripted ride, the OlivinePort/SaffronMagnetTrain shape.
+@ FIX ROUND 1 (review Minor 8/9): lockall/releaseall wrapping added
+@ (matching CeladonCity_GameCorner_EventScript_Poster:48-58's own
+@ precedent), and DescendToB2F below now carries the SAME defensive arc>=3
+@ guard as this script -- both are unreachable below arc 3 in practice (the
+@ grate itself gates entry to this whole floor), so the asymmetry was inert,
+@ but the sealed-hatch flavour text implies a defensive posture that should
+@ be applied consistently, not just on the way this script happens to be
+@ reached first.
 ViridianHideout_B1F_EventScript_ExitToCity::
+	lockall
 	goto_if_lt VAR_TRINITY_KANTO_ARC, 3, ViridianHideout_B1F_EventScript_ExitSealed
 	msgbox ViridianHideout_B1F_Text_ExitToCity, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, ViridianHideout_B1F_EventScript_ExitDecline
@@ -54,15 +63,18 @@ ViridianHideout_B1F_EventScript_ExitToCity::
 	end
 
 ViridianHideout_B1F_EventScript_ExitSealed::
-	msgbox ViridianHideout_B1F_Text_ExitSealed, MSGBOX_SIGN
+	msgbox ViridianHideout_B1F_Text_ExitSealed, MSGBOX_DEFAULT
+	releaseall
 	end
 
 ViridianHideout_B1F_EventScript_ExitDecline::
 	closemessage
-	release
+	releaseall
 	end
 
 ViridianHideout_B1F_EventScript_DescendToB2F::
+	lockall
+	goto_if_lt VAR_TRINITY_KANTO_ARC, 3, ViridianHideout_B1F_EventScript_ExitSealed
 	msgbox ViridianHideout_B1F_Text_DescendToB2F, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, ViridianHideout_B1F_EventScript_ExitDecline
 	closemessage

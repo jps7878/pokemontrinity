@@ -96,26 +96,49 @@ ViridianCity_Gym_EventScript_Warren::
 @ four more at 2x, Persian neutral (1x). The exception is named, not
 @ blanket-claimed (the S2 Mr. Mime lesson).
 @ ----------------------------------------------------------------------------
+@ FIX ROUND 1 (review M4): the two-branch G4 shape, canonical form
+@ PewterCity_Gym_EventScript_GymGuy:67-78 (lock/faceplayer/goto_if_set
+@ BADGE.../PostVictory). The type-advice content itself was already
+@ independently verified correct (review's own "exactly right" verdict) --
+@ only the branching wrapper and the missing post-badge line were absent.
 ViridianCity_Gym_EventScript_GymGuy::
-	msgbox ViridianCity_Gym_Text_GymGuy, MSGBOX_NPC
+	lock
+	faceplayer
+	goto_if_set FLAG_TRINITY_BADGE24, ViridianCity_Gym_EventScript_GymGuyPostVictory
+	msgbox ViridianCity_Gym_Text_GymGuy, MSGBOX_DEFAULT
+	release
 	end
 
+ViridianCity_Gym_EventScript_GymGuyPostVictory::
+	msgbox ViridianCity_Gym_Text_GymGuyPostVictory, MSGBOX_DEFAULT
+	release
+	end
+
+@ FIX ROUND 1 (review M4): re-aligned to the tree-wide statue shape,
+@ canonical form PewterCity_Gym_EventScript_GymStatue:97-102 (lockall /
+@ goto_if_set BADGE,...Certified / msgbox MSGBOX_DEFAULT / releaseall) --
+@ the original T10-inherited MSGBOX_SIGN/no-lockall shape and the
+@ generic, gym/leader-less filler text were both replaced. Both statues
+@ share ONE pre-badge text and ONE certified text, matching every other
+@ Kanto gym's own two-statue convention (Vermilion/Cerulean: one shared
+@ GymStatue script+text for both positions, not two distinct ones).
 ViridianCity_Gym_EventScript_GymStatue::
-	goto_if_unset FLAG_TRINITY_BADGE24, ViridianCity_Gym_EventScript_GymStatuePreBadge
-	msgbox ViridianCity_Gym_Text_GymStatueCertified, MSGBOX_SIGN
-	end
-
-ViridianCity_Gym_EventScript_GymStatuePreBadge::
-	msgbox ViridianCity_Gym_Text_GymStatue, MSGBOX_SIGN
+	lockall
+	goto_if_set FLAG_TRINITY_BADGE24, ViridianCity_Gym_EventScript_GymStatueCertified
+	msgbox ViridianCity_Gym_Text_GymStatue, MSGBOX_DEFAULT
+	releaseall
 	end
 
 ViridianCity_Gym_EventScript_GymStatue_2::
-	goto_if_unset FLAG_TRINITY_BADGE24, ViridianCity_Gym_EventScript_GymStatue2PreBadge
-	msgbox ViridianCity_Gym_Text_GymStatueCertified, MSGBOX_SIGN
+	lockall
+	goto_if_set FLAG_TRINITY_BADGE24, ViridianCity_Gym_EventScript_GymStatueCertified
+	msgbox ViridianCity_Gym_Text_GymStatue, MSGBOX_DEFAULT
+	releaseall
 	end
 
-ViridianCity_Gym_EventScript_GymStatue2PreBadge::
-	msgbox ViridianCity_Gym_Text_GymStatue_2, MSGBOX_SIGN
+ViridianCity_Gym_EventScript_GymStatueCertified::
+	msgbox ViridianCity_Gym_Text_GymStatueCertified, MSGBOX_DEFAULT
+	releaseall
 	end
 
 ViridianCity_Gym_Text_GiovanniSeen:
@@ -187,11 +210,16 @@ ViridianCity_Gym_Text_WarrenBeaten:
 ViridianCity_Gym_Text_GymGuy:
 	.string "GIOVANNI's team is almost all\nGROUND-type -- Dugtrio, Rhydon,\lMarowak, both Nido, and Persian.\pWATER moves are your best bet:\nquadruple effective on RHYDON,\ldouble on four of the rest.\pOnly PERSIAN shrugs it off --\nplain NORMAL, no Ground half\lto exploit.$"
 
-ViridianCity_Gym_Text_GymStatue:
-	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
+ViridianCity_Gym_Text_GymGuyPostVictory:
+	.string "Last gym in KANTO, and you beat\nit clean. Not bad for someone who\lwalked in from HOENN.$"
 
-ViridianCity_Gym_Text_GymStatue_2:
-	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
+ViridianCity_Gym_Text_GymStatue:
+	.string "VIRIDIAN CITY POKéMON GYM\n"
+	.string "LEADER: GIOVANNI\p"
+	.string "The Earth-Shaking Boss$"
 
 ViridianCity_Gym_Text_GymStatueCertified:
-	.string "VIRIDIAN CITY POKéMON GYM\nLEADER: GIOVANNI\lWinning Trainers: CERTIFIED$"
+	.string "VIRIDIAN CITY POKéMON GYM\n"
+	.string "LEADER: GIOVANNI\p"
+	.string "GIOVANNI'S CERTIFIED TRAINERS:\n"
+	.string "{PLAYER}$"

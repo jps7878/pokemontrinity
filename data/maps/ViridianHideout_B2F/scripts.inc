@@ -3,32 +3,40 @@
 @ barrier, the raid, and the rig scene (Giovanni, Mewtwo, Mew). Full decode +
 @ design: docs/superpowers/plans/m5b/10-viridian-climax.md.
 @
-@ Reuses RocketHideout_B4F's own LAYOUT_ROCKET_HIDEOUT_B4F_KANTO. The floor's
-@ shared blockdata is two disconnected static-collision components (178-tile
-@ "main" containing the gate posts+barrier+sanctum, 138-tile "left" containing
-@ the B3F stair (11,15) and Celadon's own F_1 tile (4,2)) -- re-derived fresh
-@ this session, matching S6's own B4F finding for the SAME underlying
-@ blockdata. Unlike Celadon, THIS floor's own arrival tile lands directly in
-@ the 178-tile component, so no lift-shuttle bridge is needed.
+@ Reuses RocketHideout_B4F's own LAYOUT_ROCKET_HIDEOUT_B4F_KANTO. FIX ROUND 1
+@ (review M6/Minor 11) -- the full component enumeration of this shared
+@ blockdata is SEVEN static-collision components, not two:
+@ [178, 138, 4, 4, 1, 1, 1] (327 walkable total). The two that matter:
+@ 178 tiles ("main" -- gate posts, barrier, sanctum) and 138 tiles ("left" --
+@ the B3F stair (11,15) and Celadon's own F_1 tile (4,2)); the remaining five
+@ (4+4+1+1+1 = 11 tiles) are small pre-existing pockets this floor's content
+@ never touches. Re-derived fresh this session by full BFS, matching S6's
+@ own B4F finding for the SAME underlying blockdata AND
+@ s10-reach/viridian_basement_manual_seeding.txt's own correct enumeration
+@ (the earlier draft of THIS comment claimed only two components while
+@ contradicting itself twelve lines later -- both readings are replaced here
+@ with the single true count). Unlike Celadon, THIS floor's own arrival tile
+@ lands directly in the 178-tile component, so no lift-shuttle bridge is
+@ needed.
 @
 @ SELF-CAUGHT (reach_check.py per-map decode, before shipping): the FIRST
-@ arrival-tile choice, (16,3), was ALSO inside the 178-tile component by raw
-@ membership, but a fresh full-component re-derivation (not assumed from the
-@ earlier headcount) found it sits in its OWN tiny 4-tile pocket alongside
-@ (17,3) -- separate from the 178-tile body entirely (my earlier "clear tile,
-@ inside the room's northern extent" reasoning checked openness but never
-@ re-verified component membership after the fact). Worse, a second
+@ arrival-tile choice, (16,3), decodes as a clear, open tile, but is NOT in
+@ the 178-tile component at all -- it sits in one of the four-tile pockets,
+@ alongside (17,3), fully disconnected from the main body (my earlier
+@ "clear tile, inside the room's northern extent" reasoning checked openness
+@ but never re-verified component membership after the fact). A second
 @ candidate, (18,5), IS genuinely inside the 178-tile component but sits
 @ NORTH of the barrier -- landing there let the player reach the sanctum
 @ (Giovanni/Mewtwo/Mew) immediately, with the barrier instead blocking the
 @ path OUT to the two gate posts, inverting the intended gate direction
 @ entirely. Fixed: the arrival tile is `(18,16)`, decoded fresh, `col=0
-@ elev=3 MB_NORMAL`, south of the barrier in the same sub-region as the gate
-@ posts -- re-verified with the barrier ARTIFICIALLY sealed (both grunt
-@ posts reachable, the sanctum NOT) and with it open (everything reachable,
-@ 171 of 327 walkable tiles, matching the 178-tile component minus the 6
-@ placed-object self-tiles almost exactly). Both simulated states saved to
-@ s10-reach/.
+@ elev=3 MB_NORMAL`, inside the 178-tile component, south of the barrier in
+@ the same sub-region as the gate posts -- re-verified with the barrier
+@ ARTIFICIALLY sealed (both grunt posts reachable, the sanctum NOT: 127
+@ tiles reachable, re-derived and corrected from an earlier false "40 tiles"
+@ claim, review C3) and with it open (everything reachable, 171 of 327
+@ walkable tiles, matching the 178-tile component minus the 6 placed-object
+@ self-tiles almost exactly). Both simulated states saved to s10-reach/.
 @
 @ ON_TRANSITION is the SINGLE AUTHORITY for all three visibility flags here
 @ (S1 rule, AzaleaTown's own multi-flag shape copied verbatim): the raid cast
@@ -182,9 +190,16 @@ ViridianHideout_B2F_EventScript_Giovanni::
 	waitmoncry
 	msgbox ViridianHideout_B2F_Text_RigFails, MSGBOX_DEFAULT
 	closemessage
+	delay 20
+	applymovement LOCALID_KANTO_VBASEMENT_MEWTWO, ViridianHideout_B2F_Movement_MewtwoFlees
+	waitmovement 0
 	playse SE_WARP_OUT
+	waitse
 	removeobject LOCALID_KANTO_VBASEMENT_MEWTWO
+	applymovement LOCALID_KANTO_VBASEMENT_MEW, ViridianHideout_B2F_Movement_MewFlees
+	waitmovement 0
 	playse SE_WARP_OUT
+	waitse
 	removeobject LOCALID_KANTO_VBASEMENT_MEW
 	setflag FLAG_TRINITY_K_RIG_RESOLVED
 	msgbox ViridianHideout_B2F_Text_GiovanniAftermath, MSGBOX_DEFAULT
@@ -211,7 +226,10 @@ ViridianHideout_B2F_EventScript_GiovanniRetreat::
 @ ----------------------------------------------------------------------------
 @ The way back up.
 @ ----------------------------------------------------------------------------
+@ FIX ROUND 1 (review Minor 8): lockall/releaseall wrapping added, matching
+@ CeladonCity_GameCorner_EventScript_Poster:48-58's own precedent.
 ViridianHideout_B2F_EventScript_AscendToB1F::
+	lockall
 	msgbox ViridianHideout_B2F_Text_AscendToB1F, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, ViridianHideout_B2F_EventScript_AscendDecline
 	closemessage
@@ -221,8 +239,27 @@ ViridianHideout_B2F_EventScript_AscendToB1F::
 
 ViridianHideout_B2F_EventScript_AscendDecline::
 	closemessage
-	release
+	releaseall
 	end
+
+@ FIX ROUND 1 (review M1): the documented M4b R4-deviation shape
+@ (TinTower1F/scripts.inc:149-158, Raikou/Entei's own withdrawal --
+@ applymovement flee / waitmovement / playse SE_WARP_OUT / waitse /
+@ removeobject), applied to BOTH legendaries. The original draft dropped the
+@ movement and the waitse; this restores the full documented shape, matching
+@ what the sub-plan claimed but the shipped script didn't do. Both paths
+@ decoded fresh, dry floor the whole way: MEWTWO flees west along row 5,
+@ (20,5)->(19,5)->(18,5), all col=0 elev=3 MB_NORMAL; MEW flees south,
+@ (21,5)->(21,6)->(21,7), same.
+ViridianHideout_B2F_Movement_MewtwoFlees:
+	walk_fast_left
+	walk_fast_left
+	step_end
+
+ViridianHideout_B2F_Movement_MewFlees:
+	walk_fast_down
+	walk_fast_down
+	step_end
 
 ViridianHideout_B2F_Text_Grunt1Seen:
 	.string "This door doesn't open till\nyou've beaten both of us.$"

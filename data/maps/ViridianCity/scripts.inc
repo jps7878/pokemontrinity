@@ -97,9 +97,25 @@ ViridianCity_EventScript_GymDoorCheck::
 	goto_if_lt VAR_TRINITY_KANTO_ARC, 4, ViridianCity_EventScript_GymDoorRefuse
 	end
 
+@ FIX ROUND 1 (review M3): the door-seal's OWN condition is C-COUNT>=7 AND
+@ arc>=4, but nothing distinguished WHY a given refusal fired -- a player who
+@ has already cleared the rig (arc>=4, Giovanni upstairs, "This floor's
+@ finished... I'll be waiting upstairs" per ViridianHideout_B2F_Text_
+@ GiovanniAftermath) but hasn't yet earned all 7 OTHER Kanto badges (a real,
+@ normal-order state -- S6's own raid only requires 4 badges to reach arc 3)
+@ would see the ORIGINAL "TEAM ROCKET doesn't take visitors" text, directly
+@ contradicting what the player just did. Branch on arc alone (badge count
+@ never distinguishes the TEXT, only whether the door opens at all).
 ViridianCity_EventScript_GymDoorRefuse::
 	lockall
+	goto_if_ge VAR_TRINITY_KANTO_ARC, 4, ViridianCity_EventScript_GymDoorRefusePostRig
 	msgbox ViridianCity_Text_GymDoorRefuse, MSGBOX_DEFAULT
+	goto ViridianCity_EventScript_GymDoorRefuseBounce
+
+ViridianCity_EventScript_GymDoorRefusePostRig::
+	msgbox ViridianCity_Text_GymDoorRefusePostRig, MSGBOX_DEFAULT
+
+ViridianCity_EventScript_GymDoorRefuseBounce::
 	closemessage
 	specialvar VAR_RESULT, GetPlayerFacingDirection
 	goto_if_eq VAR_RESULT, DIR_EAST, ViridianCity_EventScript_GymDoorBounceWest
@@ -249,8 +265,17 @@ ViridianCity_Text_TutorialOldMan:
 ViridianCity_Text_Woman:
 	.string "Ever since that gym went quiet,\nnobody in town will say why.\lFolks just look away and change\lthe subject.$"
 
+@ FIX ROUND 1 (review M5): a precise in-world pointer to the grate. No
+@ suitable pre-existing grate/manhole/drain metatile was found anywhere in
+@ gTileset_GeneralKanto/gTileset_ViridianCityKanto (grepped
+@ metatile_labels.h tree-wide for grate/manhole/drain/sewer/vent -- zero
+@ hits anywhere in the ROM, not just this tileset), so per the ruling's own
+@ fallback clause this relies on the text pointer alone -- logged, not
+@ silently assumed. (30,11) is due west of the gym door (36,10), on the
+@ SAME forecourt row (11) -- "west side of the yard" locates it precisely
+@ without naming a coordinate the player can't see.
 ViridianCity_Text_Youngster:
-	.string "My dad says there's men in dark\nuniforms coming and going near\lthe gym at night. He won't let me\lanywhere near it.$"
+	.string "My dad says there's men in dark\nuniforms coming and going near\lthe gym at night.\pI snuck a look once -- there's a\nloose grate on the west side of\lthe yard. That's how they get in\land out without anyone seeing.$"
 
 ViridianCity_Text_Boy:
 	.string "Those POKé BALLS at your waist!\nYou have POKéMON, don't you?\pIt's great that you can carry and\nuse POKéMON anytime, anywhere.$"
@@ -274,6 +299,13 @@ ViridianCity_Text_GymDoor:
 
 ViridianCity_Text_GymDoorRefuse:
 	.string "VIRIDIAN GYM's doors are sealed\nshut. Something slams against them\lfrom the inside.\pA rough voice shouts for you to\nget lost -- TEAM ROCKET doesn't\ltake visitors.\pYou back away from the door.$"
+
+@ FIX ROUND 1 (review M3): the post-rig branch -- Team Rocket is gone, the
+@ door itself is quiet, but Giovanni's own line
+@ (ViridianHideout_B2F_Text_GiovanniAftermath: "I'll be waiting upstairs")
+@ still needs seven badges honoured before he opens up.
+ViridianCity_Text_GymDoorRefusePostRig:
+	.string "VIRIDIAN GYM's doors sit quiet now\n-- no more shouting, no more\lslamming.\pA note is pinned beside the handle:\nseven badges, then he'll talk.\lYou're not there yet.$"
 
 ViridianCity_Text_BlueSeen:
 	.string "So it's really you.\pTwo Leagues down and you show up\nHERE, of all places. Right in\lfront of my town's gym.\pI've got some things to settle\nbefore you go anywhere near that\ldoor.$"
@@ -299,23 +331,32 @@ ViridianCity_Text_BlueIdle:
 @ the gym itself unreachable this early, but a player who somehow reaches
 @ Viridian before Celadon should not stumble into raid content early either.
 @ ============================================================================
+@ FIX ROUND 1 (review Minor 8): lockall/releaseall wrapping added, matching
+@ the in-tree bg_event precedent (CeladonCity_GameCorner_EventScript_
+@ Poster:48-58) instead of running unlocked with a bare `release` on
+@ decline (harmless in practice -- ScriptContext_SetupScript already calls
+@ LockPlayerFieldControls -- but NPCs kept walking through the prompt and it
+@ diverged from the shipped idiom).
 ViridianCity_EventScript_HideoutGrate::
+	lockall
 	goto_if_lt VAR_TRINITY_KANTO_ARC, 3, ViridianCity_EventScript_HideoutGrateSealed
 	msgbox ViridianCity_Text_HideoutGrate, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, ViridianCity_EventScript_HideoutGrateDecline
 	closemessage
 	setrespawn HEAL_LOCATION_VIRIDIAN_CITY
+	setescapewarp MAP_VIRIDIAN_CITY, 30, 11
 	warp MAP_VIRIDIAN_HIDEOUT_B1F, 12, 3
 	waitstate
 	end
 
 ViridianCity_EventScript_HideoutGrateSealed::
-	msgbox ViridianCity_Text_HideoutGrateSealed, MSGBOX_SIGN
+	msgbox ViridianCity_Text_HideoutGrateSealed, MSGBOX_DEFAULT
+	releaseall
 	end
 
 ViridianCity_EventScript_HideoutGrateDecline::
 	closemessage
-	release
+	releaseall
 	end
 
 ViridianCity_Text_HideoutGrate:

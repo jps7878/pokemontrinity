@@ -174,7 +174,7 @@
 //   0  pre-arrival (BOBBY's summons pending at Olivine)
 //   1  arrived (Vermilion scene done; Kanto + Route 28 gate open)
 //   2  Blue grudge fought          3  Celadon basement cleared
-//   4  rig destroyed + Earth Badge won   5  Silver final fought
+//   4  rig destroyed (Giovanni retreats to the gym)   5  Silver final fought
 //   6  Ash beaten (credits rolled)  7  Red beaten
 // One writer per value (story_audit.py-enforced). M5b S1 writes 1, once,
 // under the Vermilion arrival scene's arm/fire once-only guard.
