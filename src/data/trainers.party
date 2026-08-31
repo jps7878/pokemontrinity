@@ -19720,7 +19720,7 @@ Level: 73
 === TRAINER_KOGA_E4 ===
 Name: KOGA
 Class: Elite Four
-Pic: Elite Four Sidney
+Pic: Koga
 Gender: Male
 Music: Elite Four
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
@@ -19743,7 +19743,7 @@ Level: 74
 === TRAINER_BRUNO_E4 ===
 Name: BRUNO
 Class: Elite Four
-Pic: Black Belt
+Pic: Bruno
 Gender: Male
 Music: Elite Four
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
@@ -19789,7 +19789,7 @@ Level: 75
 === TRAINER_LANCE ===
 Name: LANCE
 Class: Champion
-Pic: Elite Four Drake
+Pic: Lance
 Gender: Male
 Music: Elite Four
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
@@ -25452,7 +25452,7 @@ Level: 77
 === TRAINER_BROCK ===
 Name: BROCK
 Class: Leader
-Pic: Leader Roxanne
+Pic: Brock
 Gender: Male
 Music: Male
 Double Battle: No
@@ -25476,7 +25476,7 @@ Level: 76
 === TRAINER_MISTY ===
 Name: MISTY
 Class: Leader
-Pic: Leader Juan
+Pic: Misty
 Gender: Female
 Music: Female
 Double Battle: No
@@ -25500,7 +25500,7 @@ Level: 78
 === TRAINER_LTSURGE ===
 Name: SURGE
 Class: Leader
-Pic: Leader Wattson
+Pic: Surge
 Gender: Male
 Music: Male
 Double Battle: No
@@ -25524,7 +25524,7 @@ Level: 79
 === TRAINER_ERIKA ===
 Name: ERIKA
 Class: Leader
-Pic: Elite Four Glacia
+Pic: Erika
 Gender: Female
 Music: Female
 Double Battle: No
@@ -25572,7 +25572,7 @@ Level: 82
 === TRAINER_SABRINA ===
 Name: SABRINA
 Class: Leader
-Pic: Psychic M
+Pic: Sabrina
 Gender: Female
 Music: Female
 Double Battle: No
@@ -25599,7 +25599,7 @@ Level: 84
 === TRAINER_BLAINE ===
 Name: BLAINE
 Class: Leader
-Pic: Leader Flannery
+Pic: Blaine
 Gender: Male
 Music: Male
 Double Battle: No
@@ -25626,7 +25626,7 @@ Level: 86
 === TRAINER_GIOVANNI ===
 Name: GIOVANNI
 Class: Leader
-Pic: Steven
+Pic: Giovanni
 Gender: Male
 Music: Male
 Double Battle: No
@@ -25653,7 +25653,7 @@ Level: 88
 === TRAINER_BLUE_GRUDGE ===
 Name: BLUE
 Class: Rival
-Pic: Cooltrainer M
+Pic: Blue
 Gender: Male
 Music: Male
 Double Battle: No
@@ -25878,7 +25878,7 @@ Level: 88
 === TRAINER_LORELEI ===
 Name: LORELEI
 Class: Elite Four
-Pic: Elite Four Glacia
+Pic: Lorelei
 Gender: Female
 Music: Elite Four
 Double Battle: No
@@ -25905,7 +25905,7 @@ Level: 90
 === TRAINER_AGATHA ===
 Name: AGATHA
 Class: Elite Four
-Pic: Elite Four Phoebe
+Pic: Agatha
 Gender: Female
 Music: Elite Four
 Double Battle: No
@@ -25932,7 +25932,7 @@ Level: 90
 === TRAINER_BRUNO_II ===
 Name: BRUNO
 Class: Elite Four
-Pic: Black Belt
+Pic: Bruno
 Gender: Male
 Music: Elite Four
 Double Battle: No
@@ -25959,7 +25959,7 @@ Level: 90
 === TRAINER_BLUE_E4 ===
 Name: BLUE
 Class: Elite Four
-Pic: Cooltrainer M
+Pic: Blue
 Gender: Male
 Music: Elite Four
 Double Battle: No

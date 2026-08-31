@@ -108,7 +108,22 @@
 #define TRAINER_PIC_LEAF                  90
 #define TRAINER_PIC_RS_BRENDAN            91
 #define TRAINER_PIC_RS_MAY                92
-#define TRAINER_PIC_COUNT                 93
+// Trinity M6 P3: real FRLG boss front pics (the 13-character porting worklist,
+// docs/superpowers/plans/m6/03-art-pass.md section 2.1)
+#define TRAINER_PIC_BROCK                  93
+#define TRAINER_PIC_MISTY                  94
+#define TRAINER_PIC_SURGE                  95
+#define TRAINER_PIC_ERIKA                  96
+#define TRAINER_PIC_KOGA                   97
+#define TRAINER_PIC_SABRINA                98
+#define TRAINER_PIC_BLAINE                 99
+#define TRAINER_PIC_GIOVANNI              100
+#define TRAINER_PIC_LORELEI               101
+#define TRAINER_PIC_AGATHA                102
+#define TRAINER_PIC_BRUNO                 103
+#define TRAINER_PIC_LANCE                 104
+#define TRAINER_PIC_BLUE                  105
+#define TRAINER_PIC_COUNT                 106
 
 // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_BRENDAN                0

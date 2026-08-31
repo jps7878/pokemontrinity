@@ -280,6 +280,46 @@ const u16 gTrainerPalette_RubySapphireBrendan[] = INCBIN_U16("graphics/trainers/
 const u32 gTrainerFrontPic_RubySapphireMay[] = INCBIN_U32("graphics/trainers/front_pics/may_rs.4bpp.smol");
 const u16 gTrainerPalette_RubySapphireMay[] = INCBIN_U16("graphics/trainers/palettes/may_rs.gbapal");
 
+// Trinity M6 P3: real FRLG boss front pics (docs/superpowers/plans/m6/03-art-pass.md section 2.1)
+const u32 gTrainerFrontPic_Brock[] = INCBIN_U32("graphics/trainers/front_pics/brock.4bpp.smol");
+const u16 gTrainerPalette_Brock[] = INCBIN_U16("graphics/trainers/front_pics/brock.gbapal");
+
+const u32 gTrainerFrontPic_Misty[] = INCBIN_U32("graphics/trainers/front_pics/misty.4bpp.smol");
+const u16 gTrainerPalette_Misty[] = INCBIN_U16("graphics/trainers/front_pics/misty.gbapal");
+
+const u32 gTrainerFrontPic_Surge[] = INCBIN_U32("graphics/trainers/front_pics/surge.4bpp.smol");
+const u16 gTrainerPalette_Surge[] = INCBIN_U16("graphics/trainers/front_pics/surge.gbapal");
+
+const u32 gTrainerFrontPic_Erika[] = INCBIN_U32("graphics/trainers/front_pics/erika.4bpp.smol");
+const u16 gTrainerPalette_Erika[] = INCBIN_U16("graphics/trainers/front_pics/erika.gbapal");
+
+const u32 gTrainerFrontPic_Koga[] = INCBIN_U32("graphics/trainers/front_pics/koga.4bpp.smol");
+const u16 gTrainerPalette_Koga[] = INCBIN_U16("graphics/trainers/front_pics/koga.gbapal");
+
+const u32 gTrainerFrontPic_Sabrina[] = INCBIN_U32("graphics/trainers/front_pics/sabrina.4bpp.smol");
+const u16 gTrainerPalette_Sabrina[] = INCBIN_U16("graphics/trainers/front_pics/sabrina.gbapal");
+
+const u32 gTrainerFrontPic_Blaine[] = INCBIN_U32("graphics/trainers/front_pics/blaine.4bpp.smol");
+const u16 gTrainerPalette_Blaine[] = INCBIN_U16("graphics/trainers/front_pics/blaine.gbapal");
+
+const u32 gTrainerFrontPic_Giovanni[] = INCBIN_U32("graphics/trainers/front_pics/giovanni.4bpp.smol");
+const u16 gTrainerPalette_Giovanni[] = INCBIN_U16("graphics/trainers/front_pics/giovanni.gbapal");
+
+const u32 gTrainerFrontPic_Lorelei[] = INCBIN_U32("graphics/trainers/front_pics/lorelei.4bpp.smol");
+const u16 gTrainerPalette_Lorelei[] = INCBIN_U16("graphics/trainers/front_pics/lorelei.gbapal");
+
+const u32 gTrainerFrontPic_Agatha[] = INCBIN_U32("graphics/trainers/front_pics/agatha.4bpp.smol");
+const u16 gTrainerPalette_Agatha[] = INCBIN_U16("graphics/trainers/front_pics/agatha.gbapal");
+
+const u32 gTrainerFrontPic_Bruno[] = INCBIN_U32("graphics/trainers/front_pics/bruno.4bpp.smol");
+const u16 gTrainerPalette_Bruno[] = INCBIN_U16("graphics/trainers/front_pics/bruno.gbapal");
+
+const u32 gTrainerFrontPic_Lance[] = INCBIN_U32("graphics/trainers/front_pics/lance.4bpp.smol");
+const u16 gTrainerPalette_Lance[] = INCBIN_U16("graphics/trainers/front_pics/lance.gbapal");
+
+const u32 gTrainerFrontPic_Blue[] = INCBIN_U32("graphics/trainers/front_pics/blue.4bpp.smol");
+const u16 gTrainerPalette_Blue[] = INCBIN_U16("graphics/trainers/front_pics/blue.gbapal");
+
 const u8 gTrainerBackPic_Brendan[] = INCBIN_U8("graphics/trainers/back_pics/brendan.4bpp");
 const u8 gTrainerBackPic_May[] = INCBIN_U8("graphics/trainers/back_pics/may.4bpp");
 const u8 gTrainerBackPic_Red[] = INCBIN_U8("graphics/trainers/back_pics/red.4bpp");
@@ -401,6 +441,20 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(TRAINER_PIC_LEAF, gTrainerFrontPic_Leaf, gTrainerPalette_Leaf),
     TRAINER_SPRITE(TRAINER_PIC_RS_BRENDAN, gTrainerFrontPic_RubySapphireBrendan, gTrainerPalette_RubySapphireBrendan),
     TRAINER_SPRITE(TRAINER_PIC_RS_MAY, gTrainerFrontPic_RubySapphireMay, gTrainerPalette_RubySapphireMay),
+    // Trinity M6 P3: real FRLG boss front pics
+    TRAINER_SPRITE(TRAINER_PIC_BROCK, gTrainerFrontPic_Brock, gTrainerPalette_Brock),
+    TRAINER_SPRITE(TRAINER_PIC_MISTY, gTrainerFrontPic_Misty, gTrainerPalette_Misty),
+    TRAINER_SPRITE(TRAINER_PIC_SURGE, gTrainerFrontPic_Surge, gTrainerPalette_Surge),
+    TRAINER_SPRITE(TRAINER_PIC_ERIKA, gTrainerFrontPic_Erika, gTrainerPalette_Erika),
+    TRAINER_SPRITE(TRAINER_PIC_KOGA, gTrainerFrontPic_Koga, gTrainerPalette_Koga),
+    TRAINER_SPRITE(TRAINER_PIC_SABRINA, gTrainerFrontPic_Sabrina, gTrainerPalette_Sabrina),
+    TRAINER_SPRITE(TRAINER_PIC_BLAINE, gTrainerFrontPic_Blaine, gTrainerPalette_Blaine),
+    TRAINER_SPRITE(TRAINER_PIC_GIOVANNI, gTrainerFrontPic_Giovanni, gTrainerPalette_Giovanni),
+    TRAINER_SPRITE(TRAINER_PIC_LORELEI, gTrainerFrontPic_Lorelei, gTrainerPalette_Lorelei),
+    TRAINER_SPRITE(TRAINER_PIC_AGATHA, gTrainerFrontPic_Agatha, gTrainerPalette_Agatha),
+    TRAINER_SPRITE(TRAINER_PIC_BRUNO, gTrainerFrontPic_Bruno, gTrainerPalette_Bruno),
+    TRAINER_SPRITE(TRAINER_PIC_LANCE, gTrainerFrontPic_Lance, gTrainerPalette_Lance),
+    TRAINER_SPRITE(TRAINER_PIC_BLUE, gTrainerFrontPic_Blue, gTrainerPalette_Blue),
 };
 
 static const union AnimCmd sAnimCmd_Hoenn[] =
