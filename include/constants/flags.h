@@ -287,7 +287,7 @@
 #define FLAG_RECEIVED_TM_ROAR                0xE7
 #define FLAG_RECEIVED_TM_GIGA_DRAIN          0xE8
 
-#define FLAG_UNUSED_0x0E9                    0xE9 // Unused Flag
+#define FLAG_TRINITY_J_CELEBI_HIDE            0xE9 // Trinity M5b S13b: was FLAG_UNUSED_0x0E9 -- CELEBI's own visibility flag, IlexForest's shrine scene (visible iff VAR_TRINITY_KANTO_ARC>=6 AND FLAG_TRINITY_K_GS_BALL set AND FLAG_TRINITY_J_CELEBI_RESOLVED unset). J-prefixed: physically and narratively a Johto-side scene (Ilex Shrine, GSC lore), matching TinTower1F's own FLAG_TRINITY_J_SUICUNE_HALL_HIDE precedent -- NOT the _K_JOHTO_SITTER_HIDE exception (that flag's subject is the Kanto-arc roster switch; this one's subject is a self-contained Johto beat that unlocks late). Flagged for reviewer scrutiny, sub-plan §3.5.
 
 #define FLAG_RECEIVED_TM_REST                0xEA
 #define FLAG_RECEIVED_TM_ATTRACT             0xEB
@@ -492,8 +492,8 @@
 #define FLAG_REGISTERED_DRAKE                (TRAINER_REGISTERED_FLAGS_START + REMATCH_DRAKE)
 #define FLAG_REGISTERED_WALLACE              (TRAINER_REGISTERED_FLAGS_START + REMATCH_WALLACE)
 
-#define FLAG_UNUSED_0x1AA                    0x1AA // Unused Flag
-#define FLAG_UNUSED_0x1AB                    0x1AB // Unused Flag
+#define FLAG_TRINITY_J_CELEBI_RESOLVED        0x1AA // Trinity M5b S13b: was FLAG_UNUSED_0x1AA -- terminal (legendary contract clause 3), set on WON and on the CAUGHT fall-through, IlexForest/scripts.inc.
+#define FLAG_TRINITY_K_JIRACHI_HIDE           0x1AB // Trinity M5b S13b: was FLAG_UNUSED_0x1AB -- JIRACHI's own visibility flag, MossdeepCity's comet scene (visible iff VAR_TRINITY_KANTO_ARC>=6 AND FLAG_TRINITY_K_JIRACHI_RESOLVED unset). K-prefixed per this milestone's own "Act III postgame content" convention (subject, not physical map region -- Mossdeep is Hoenn) -- flagged for reviewer scrutiny, sub-plan §3.6.
 
 #define FLAG_DEFEATED_DEOXYS                 0x1AC
 #define FLAG_BATTLED_DEOXYS                  0x1AD
@@ -542,7 +542,7 @@
 #define FLAG_ENABLE_TATE_AND_LIZA_MATCH_CALL 0x1D8
 #define FLAG_ENABLE_JUAN_MATCH_CALL          0x1D9
 
-#define FLAG_UNUSED_0x1DA                    0x1DA // Unused Flag
+#define FLAG_TRINITY_K_JIRACHI_RESOLVED       0x1DA // Trinity M5b S13b: was FLAG_UNUSED_0x1DA -- terminal (legendary contract clause 3), set on WON and on the CAUGHT fall-through, MossdeepCity/scripts.inc.
 
 #define FLAG_SHOWN_MYSTIC_TICKET             0x1DB
 #define FLAG_DEFEATED_HO_OH                  0x1DC

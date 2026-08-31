@@ -6134,6 +6134,16 @@ u16 GetBattleBGM(void)
             return MUS_RG_VS_MEWTWO;
         case SPECIES_MEW:
             return MUS_VS_MEW;
+        // Trinity M5b S13b: CELEBI and JIRACHI, same belt-and-braces
+        // documentation parity as MEWTWO/MEW just above -- the default below
+        // already returns MUS_RG_VS_LEGEND, the same answer this pair's own
+        // case returns, so no case here is behaviourally load-bearing either
+        // (same three-caller trace, not re-run). Kept in step with
+        // BattleSetup_StartLegendaryBattle's switch for the same reason
+        // every other case in this switch exists.
+        case SPECIES_CELEBI:
+        case SPECIES_JIRACHI:
+            return MUS_RG_VS_LEGEND;
         default:
             return MUS_RG_VS_LEGEND;
         }

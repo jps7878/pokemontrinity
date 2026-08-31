@@ -539,6 +539,15 @@ void BattleSetup_StartLegendaryBattle(void)
     case SPECIES_MEW:
         CreateBattleStartTask(B_TRANSITION_GRID_SQUARES, MUS_VS_MEW);
         break;
+    // Trinity M5b S13b: CELEBI and JIRACHI. REQUIRED, not decorative, same
+    // reasoning as every case above -- an unlisted species falls to
+    // `default:` on the GROUDON body. MUS_RG_VS_LEGEND is the same generic
+    // legendary pairing HO-OH/LUGIA/the three birds already share; no
+    // dedicated track exists for either species in this tree.
+    case SPECIES_CELEBI:
+    case SPECIES_JIRACHI:
+        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RG_VS_LEGEND);
+        break;
     }
 
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);

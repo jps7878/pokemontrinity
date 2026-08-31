@@ -79,9 +79,27 @@ KurtsHouse_EventScript_KurtApricornCheck::
 	goto_if_eq VAR_RESULT, TRUE, KurtsHouse_EventScript_TradeWhite
 	checkitem ITEM_BLACK_APRICORN
 	goto_if_eq VAR_RESULT, TRUE, KurtsHouse_EventScript_TradeBlack
+	goto_if_unset FLAG_TRINITY_K_GS_BALL, KurtsHouse_EventScript_KurtNoApricorns
+	goto_if_set FLAG_TRINITY_J_CELEBI_RESOLVED, KurtsHouse_EventScript_KurtNoApricorns
+	msgbox KurtsHouse_Text_KurtGSBall, MSGBOX_DEFAULT
+	release
+	end
+
+KurtsHouse_EventScript_KurtNoApricorns::
 	msgbox KurtsHouse_Text_KurtBallsFromApricorns, MSGBOX_DEFAULT
 	release
 	end
+
+@ S13b: flavour-only, no new persistent state (FLAG_TRINITY_K_GS_BALL
+@ already exists, S6; FLAG_TRINITY_J_CELEBI_RESOLVED gates it back off once
+@ the shrine encounter resolves, IlexForest/scripts.inc). Idempotent,
+@ replayable -- points the player at the shrine without promising anything
+@ the text can't back up.
+KurtsHouse_Text_KurtGSBall:
+	.string "That GS BALL again.\p"
+	.string "I still can't open it. But if it's\n"
+	.string "meant for anyone, it's whatever\lstands at the ILEX FOREST shrine.\p"
+	.string "Try there.$"
 
 KurtsHouse_EventScript_TradeRed::
 	setvar VAR_0x8008, ITEM_RED_APRICORN

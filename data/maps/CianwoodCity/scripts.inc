@@ -93,9 +93,15 @@ CianwoodCity_MapScripts::
 @     path {(10,16),(10,17),(11,17),(12,17),(13,17),(14,17),(15,17)}. Disjoint
 @     by construction -- the route was taken through row 17 for that reason.
 @
-@ EUSINE IS OUT OF CAST for this slice (S10 owns him), so GSC's `appear
-@ CIANWOODCITY_EUSINE` and the MYSTICALMAN battle that follows the glimpse are
-@ skipped; the scene ends where the beast leaves.
+@ EUSINE IS OUT OF CAST for this slice (his coda is S13b's, not S10's --
+@ CORRECTED this fix round: S10 shipped as Viridian Climax, a Kanto slice
+@ that never touched EUSINE; this comment's own forward-reference was stale
+@ and pointed at the wrong slice), so GSC's `appear CIANWOODCITY_EUSINE`
+@ and the MYSTICALMAN battle that follows the glimpse are skipped here; the
+@ scene ends where the beast leaves. His own dialogue-only coda is a
+@ separate object at (11,21), gated on the Suicune arc's own resolution
+@ (VAR_TRINITY_JOHTO_SCENE_TINTOWER>=2, TinTower1F's own terminal write),
+@ below.
 @ ============================================================================
 CianwoodCity_OnTransition:
 	call CianwoodCity_EventScript_ArmSuicune
@@ -315,3 +321,45 @@ CianwoodCity_Text_GoneOverOpenWater:
 CianwoodCity_Text_ShoreSuicune:
 	.string "It has not noticed you.\p"
 	.string "It is watching the sea.$"
+
+@ ============================================================================
+@ Trinity M5b S13b -- EUSINE's coda. Dialogue only (no TRAINER_EUSINE exists
+@ anywhere in the tree, confirmed by grep -- matches the brief's own
+@ "dialogue only" instruction exactly, not a scope gap). Gated on
+@ VAR_TRINITY_JOHTO_SCENE_TINTOWER>=2 (TinTower1F_EventScript_
+@ SuicuneResolved's own terminal write, the Suicune arc's real resolution
+@ point) -- Johto-local gating only, matching the Wise Trio backfill (this
+@ same slice, TinTower1F/scripts.inc): no VAR_TRINITY_KANTO_ARC read,
+@ because EUSINE's whole role is a reaction to SUICUNE's own arc
+@ concluding, not to Kanto's postgame. Idempotent, replayable flavour --
+@ no persistent flag needed for pure text (Fuji's own ungated "KANTO's calm
+@ now" line, S7, is the established precedent for this class). Sprite:
+@ OBJ_EVENT_GFX_HEX_MANIAC (M6 art debt, same class as every other human
+@ character substitution this milestone -- Misty's manager/Bill's own
+@ OBJ_EVENT_GFX_SCIENTIST_1, the Deoxys puzzle's OBJ_EVENT_GFX_RIVAL_
+@ BRENDAN_NORMAL).
+@ ============================================================================
+CianwoodCity_EventScript_Eusine::
+	lock
+	faceplayer
+	goto_if_lt VAR_TRINITY_JOHTO_SCENE_TINTOWER, 2, CianwoodCity_EventScript_EusineNotYet
+	msgbox CianwoodCity_Text_Eusine, MSGBOX_DEFAULT
+	release
+	end
+
+CianwoodCity_EventScript_EusineNotYet::
+	msgbox CianwoodCity_Text_EusineNotYet, MSGBOX_DEFAULT
+	release
+	end
+
+CianwoodCity_Text_Eusine:
+	.string "I've chased that thing across two\n"
+	.string "regions and never gotten this close.\p"
+	.string "You didn't even come looking for\n"
+	.string "it, did you.\p"
+	.string "…\p"
+	.string "I'm not bitter. Much.$"
+
+CianwoodCity_Text_EusineNotYet:
+	.string "Something crossed the strait a\n"
+	.string "while back. Fast, low over the\lwater. I only saw the wake.$"

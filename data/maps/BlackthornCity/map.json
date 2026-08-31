@@ -26,6 +26,7 @@
   ],
   "object_events": [
     {
+      "local_id": "LOCALID_BLACKTHORNCITY_BLACKBELT",
       "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
       "x": 24,
       "y": 31,

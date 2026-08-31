@@ -1,14 +1,43 @@
 MossdeepCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, MossdeepCity_OnResume
 	.byte 0
 
+@ S13b: JIRACHI's visibility, folded into the map's existing (single-
+@ occupancy) ON_TRANSITION body as one more `call`, per this milestone's
+@ own R4/single-occupancy discipline -- not a second ON_TRANSITION entry.
 MossdeepCity_OnTransition:
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_1
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_2
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_3
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_4
 	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
+	call MossdeepCity_EventScript_JirachiVisibility
 	end
+
+MossdeepCity_EventScript_JirachiVisibility::
+	goto_if_lt VAR_TRINITY_KANTO_ARC, 6, MossdeepCity_EventScript_HideJirachi
+	goto_if_set FLAG_TRINITY_K_JIRACHI_RESOLVED, MossdeepCity_EventScript_HideJirachi
+	clearflag FLAG_TRINITY_K_JIRACHI_HIDE
+	return
+
+MossdeepCity_EventScript_HideJirachi::
+	setflag FLAG_TRINITY_K_JIRACHI_HIDE
+	return
+
+@ THE THIRD MANDATORY CLAUSE of the legendary contract. A CAUGHT legendary
+@ never re-enters its own talk script, so without this the object stands
+@ there as a ghost. FLAG_SYS_CTRL_OBJ_DELETE is set around the battle and
+@ only then does this fire.
+MossdeepCity_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, MossdeepCity_EventScript_TryRemoveJirachi
+	end
+
+MossdeepCity_EventScript_TryRemoveJirachi::
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn
+	removeobject LOCALID_KANTO_MOSSDEEP_JIRACHI
+	return
 
 MossdeepCity_EventScript_PokefanF::
 	lock
@@ -425,4 +454,84 @@ MossdeepCity_Text_SootopolisNewGymLeader:
 	.string "LEADER come in.\p"
 	.string "People tell me the new LEADER once\n"
 	.string "mentored WALLACE.$"
+
+@ ============================================================================
+@ Trinity M5b S13b -- JIRACHI, the Mossdeep comet quest. Same three-clause
+@ contract as CELEBI/the birds/Mewtwo, no scripted multi-day wait (no
+@ "keep it simple" grounds for inventing day-counter machinery this brief
+@ never asks for). The ASTRONOMER is pure flavour dressing, not a required
+@ step -- JIRACHI's own object is independently visibility-gated by the
+@ same arc>=6 read, so it can be approached directly once conditions are
+@ met, matching Mewtwo/Celebi's own pattern exactly.
+@
+@ Placement: ASTRONOMER (48,10), JIRACHI (48,12), both col=0/elev=7/
+@ MB_NORMAL, decoded directly from MossdeepCity's own map.bin this
+@ session, mutually adjacent and clear of every other object on this map.
+@
+@ Outcome switch (re-derived, not assumed): sJirachiLevelUpLearnset
+@ (src/data/pokemon/level_up_learnsets/gen_9.h, the ACTIVE table) at L70
+@ gives Confusion(1)/Wish(1)/Swift(7)/Life Dew(21)/Zen Headbutt(28)/
+@ Gravity(35)/Psychic(42)/Meteor Mash(49)/Healing Wish(56)/Rest(63)/Future
+@ Sight(70) -- NO Teleport, Metronome, or Transform. B_OUTCOME_MON_
+@ TELEPORTED is unreachable for this Jirachi; the three-branch bird shape
+@ is correct and sufficient.
+@ ============================================================================
+MossdeepCity_EventScript_Astronomer::
+	lock
+	faceplayer
+	goto_if_lt VAR_TRINITY_KANTO_ARC, 6, MossdeepCity_EventScript_AstronomerNotYet
+	msgbox MossdeepCity_Text_AstronomerComet, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_EventScript_AstronomerNotYet::
+	msgbox MossdeepCity_Text_AstronomerNotYet, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_Text_AstronomerNotYet:
+	.string "The SPACE CENTER gets all the\n"
+	.string "attention. Nobody funds a rooftop\ltelescope anymore.$"
+
+MossdeepCity_Text_AstronomerComet:
+	.string "There -- that point that isn't a\n"
+	.string "star. It's been getting brighter\levery night this month.\p"
+	.string "I've seen old records call it a\n"
+	.string "thousand-year comet. I didn't\lbelieve them either.$"
+
+MossdeepCity_EventScript_Jirachi::
+	lock
+	faceplayer
+	msgbox MossdeepCity_Text_Jirachi, MSGBOX_DEFAULT
+	closemessage
+	waitse
+	playmoncry SPECIES_JIRACHI, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	seteventmon SPECIES_JIRACHI, 70
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, MossdeepCity_EventScript_JirachiDefeated
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, MossdeepCity_EventScript_JirachiFled
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, MossdeepCity_EventScript_JirachiFled
+	@ fall-through == B_OUTCOME_CAUGHT. ON_RESUME has already removed the
+	@ object.
+	setflag FLAG_TRINITY_K_JIRACHI_RESOLVED
+	release
+	end
+
+MossdeepCity_EventScript_JirachiDefeated::
+	setflag FLAG_TRINITY_K_JIRACHI_RESOLVED
+	goto Common_EventScript_RemoveStaticPokemon
+
+MossdeepCity_EventScript_JirachiFled::
+	setvar VAR_0x8004, SPECIES_JIRACHI
+	goto Common_EventScript_LegendaryFlewAway
+
+MossdeepCity_Text_Jirachi:
+	.string "Something small drifts down from\n"
+	.string "the comet's own light, still half\lasleep.$"
 

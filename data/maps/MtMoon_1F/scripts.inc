@@ -84,3 +84,58 @@ MtMoon_1F_Text_MarcosBeaten:
 
 MtMoon_1F_Text_ZubatSign:
 	.string "Beware!\nZUBAT is a bloodsucker!$"
+
+@ ============================================================================
+@ Trinity M5b S13b -- SILVER, the Mt. Moon rematch. TRAINER_SILVER_MTMOON
+@ (real party data, opponents.h), confirmed unconsumed by every prior slice.
+@ ALWAYS-AVAILABLE per the founder decision: no arc gate, no story flag on
+@ the object's own visibility (flag "0" -- present from a fresh save, the
+@ same as this map's other ungated flavour trainers). "Always-available"
+@ names the RE-APPROACH, not a bypass of one-fight-per-id: the fight itself
+@ is still gated by the engine's own per-trainer flag
+@ (`checktrainerflag TRAINER_SILVER_MTMOON`, TRAINER_FLAGS_START + id,
+@ structurally reserved, zero registry cost) -- explicit top-of-script guard
+@ here rather than relying on trainerbattle's own internal post-battle-
+@ address fallthrough, because a msgbox precedes the trainerbattle call:
+@ without the explicit guard, a re-approach would replay the challenge line
+@ every visit (the trainerbattle macro's own idempotence only skips the
+@ FIGHT, not script lines before it) -- same shape as BOBBY's farewell and
+@ the Wise Trio, this same slice. `trainerbattle_no_intro` (not
+@ trainerbattle_single): a custom challenge line already plays via msgbox,
+@ matching TRAINER_SILVER_2's own established idiom (AzaleaTown/
+@ scripts.inc). Placement (20,25): col=0 elev=3 MB_CAVE, decoded directly
+@ from MtMoon_1F's own map.bin, clear of every existing object/item ball on
+@ this floor.
+@ ============================================================================
+MtMoon_1F_EventScript_Silver::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_SILVER_MTMOON
+	goto_if TRUE, MtMoon_1F_EventScript_SilverAfter
+	msgbox MtMoon_1F_Text_SilverIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_SILVER_MTMOON, MtMoon_1F_Text_SilverDefeat
+	msgbox MtMoon_1F_Text_SilverPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+MtMoon_1F_EventScript_SilverAfter::
+	msgbox MtMoon_1F_Text_SilverAfter, MSGBOX_DEFAULT
+	release
+	end
+
+MtMoon_1F_Text_SilverIntro:
+	.string "SILVER: Still crawling through\n"
+	.string "caves, I see.\p"
+	.string "Fine. Prove you're worth\n"
+	.string "following down one.$"
+
+MtMoon_1F_Text_SilverDefeat:
+	.string "SILVER: …$"
+
+MtMoon_1F_Text_SilverPostBattle:
+	.string "SILVER: Better than last time.\n"
+	.string "Don't get used to it.$"
+
+MtMoon_1F_Text_SilverAfter:
+	.string "SILVER: Go on. I've got nothing\n"
+	.string "left to prove down here.$"

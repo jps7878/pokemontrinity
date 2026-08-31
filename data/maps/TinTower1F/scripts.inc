@@ -288,8 +288,27 @@ TinTower1F_EventScript_SageA::
 	release
 	end
 
+@ S13b: the Wise Trio battles, Johto backfill. All three sages gain a
+@ TRAINER_SAGE_* fight (real party data, opponents.h, Wise Trio corps),
+@ reached only through their existing SCENE_TINTOWER>=2 "After" branch --
+@ Johto-local gating only (no VAR_TRINITY_KANTO_ARC read: this is backfill
+@ content independent of the Kanto arc, matching every other purely-Johto
+@ script in this file). One-fight-per-id via the engine trainer flag,
+@ explicit top-of-branch guard (same reasoning as BOBBY/SILVER this slice:
+@ a msgbox precedes the fight, so the guard must be explicit, not left to
+@ trainerbattle's own internal fallthrough). trainerbattle_no_intro: a
+@ custom challenge line plays first via msgbox.
 TinTower1F_EventScript_SageAAfter::
 	msgbox TinTower1F_Text_SageAAfter, MSGBOX_DEFAULT
+	checktrainerflag TRAINER_SAGE_GAKU
+	goto_if TRUE, TinTower1F_EventScript_SageABeaten
+	msgbox TinTower1F_Text_SageAChallenge, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_SAGE_GAKU, TinTower1F_Text_SageADefeat
+	release
+	end
+
+TinTower1F_EventScript_SageABeaten::
+	msgbox TinTower1F_Text_SageABeatenFlavor, MSGBOX_DEFAULT
 	release
 	end
 
@@ -303,6 +322,15 @@ TinTower1F_EventScript_SageB::
 
 TinTower1F_EventScript_SageBAfter::
 	msgbox TinTower1F_Text_SageBAfter, MSGBOX_DEFAULT
+	checktrainerflag TRAINER_SAGE_MASA
+	goto_if TRUE, TinTower1F_EventScript_SageBBeaten
+	msgbox TinTower1F_Text_SageBChallenge, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_SAGE_MASA, TinTower1F_Text_SageBDefeat
+	release
+	end
+
+TinTower1F_EventScript_SageBBeaten::
+	msgbox TinTower1F_Text_SageBBeatenFlavor, MSGBOX_DEFAULT
 	release
 	end
 
@@ -316,6 +344,15 @@ TinTower1F_EventScript_SageC::
 
 TinTower1F_EventScript_SageCAfter::
 	msgbox TinTower1F_Text_SageCAfter, MSGBOX_DEFAULT
+	checktrainerflag TRAINER_SAGE_KOJI
+	goto_if TRUE, TinTower1F_EventScript_SageCBeaten
+	msgbox TinTower1F_Text_SageCChallenge, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_SAGE_KOJI, TinTower1F_Text_SageCDefeat
+	release
+	end
+
+TinTower1F_EventScript_SageCBeaten::
+	msgbox TinTower1F_Text_SageCBeatenFlavor, MSGBOX_DEFAULT
 	release
 	end
 
@@ -420,3 +457,36 @@ TinTower1F_Text_SageCAfter:
 	.string "The one that gave the three their\n"
 	.string "lives back has been known to stand\l"
 	.string "on it.$"
+
+TinTower1F_Text_SageAChallenge:
+	.string "A test, I said. Tests should not\n"
+	.string "only run one direction.$"
+
+TinTower1F_Text_SageADefeat:
+	.string "…$"
+
+TinTower1F_Text_SageABeatenFlavor:
+	.string "The trees are still very quiet.\n"
+	.string "You did not change that either.$"
+
+TinTower1F_Text_SageBChallenge:
+	.string "Two have not settled their account.\n"
+	.string "Neither, I think, have we.$"
+
+TinTower1F_Text_SageBDefeat:
+	.string "…$"
+
+TinTower1F_Text_SageBBeatenFlavor:
+	.string "Settled. For whatever that is worth\n"
+	.string "between us.$"
+
+TinTower1F_Text_SageCChallenge:
+	.string "Nine tiers, and I have climbed\n"
+	.string "every one. Let us see about you.$"
+
+TinTower1F_Text_SageCDefeat:
+	.string "…$"
+
+TinTower1F_Text_SageCBeatenFlavor:
+	.string "Look up all you like now. You have\n"
+	.string "earned the view.$"

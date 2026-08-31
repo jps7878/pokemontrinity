@@ -216,17 +216,45 @@ IndigoPlateau_PokemonCenter_1F_EventScript_GauntletNotYet::
 
 @ ============================================================================
 @ BOBBY -- hosts, briefs, does NOT fight (brief item 4; his own farewell
-@ battle is S13's, TRAINER_BOBBY stays unfought and unconsumed this slice).
-@ His own script administers the ONE reward: 5x checktrainerflag, the exact
-@ idiom Trinity_EventScript_CountKantoBadges already uses one level up
-@ (call_if_set-per-flag -> here, goto_if FALSE-per-trainer), gated on
-@ FLAG_TRINITY_K_GAUNTLET_REWARD for the claimed-once guard. FIX ROUND 1
-@ (review M3): own inline 8-badge check restored at the top, same S1 house
-@ rule and same provably-unreachable status as the 5 fighters above.
+@ battle is S13b's -- TRAINER_BOBBY, real party data, confirmed unfought
+@ and unconsumed by every prior slice). His own script administers the ONE
+@ reward: 5x checktrainerflag, the exact idiom Trinity_EventScript_
+@ CountKantoBadges already uses one level up (call_if_set-per-flag -> here,
+@ goto_if FALSE-per-trainer), gated on FLAG_TRINITY_K_GAUNTLET_REWARD for
+@ the claimed-once guard. FIX ROUND 1 (review M3): own inline 8-badge check
+@ restored at the top, same S1 house rule and same provably-unreachable
+@ status as the 5 fighters above.
+@
+@ S13b addition: the FAREWELL, gated arc>=6 (world-tour postgame, the same
+@ VAR_TRINITY_KANTO_ARC read every other package in this milestone uses)
+@ AND `checktrainerflag TRAINER_BOBBY` unset -- a NEW branch prepended
+@ before the badge-count check, purely additive: for arc<6, or once the
+@ farewell has been fought, control falls straight through to
+@ BobbyRewardFlow (the ORIGINAL script body, renamed but byte-for-byte
+@ unchanged) and every existing behaviour -- hosting, the reward offer, the
+@ post-reward flavour -- is completely unaffected. One-fight-per-id via the
+@ engine's own trainer flag (checktrainerflag TRAINER_BOBBY), same semantics
+@ as SILVER_MTMOON/SAGE_* elsewhere in this slice -- no new custom flag.
+@ Loss/whiteout: `trainerbattle_no_intro` is the identical mechanism
+@ WALLY_K and the five gauntlet fighters already use in this same room
+@ (proven); a whiteout sends the player to their last Pokémon Center like
+@ any other trainer fight, and BOBBY's own object/hosting logic is
+@ untouched either way -- his farewell state is gated purely on the
+@ engine trainer flag, which a whiteout does not clear.
 @ ============================================================================
 IndigoPlateau_PokemonCenter_1F_EventScript_Bobby::
 	lock
 	faceplayer
+	goto_if_lt VAR_TRINITY_KANTO_ARC, 6, IndigoPlateau_PokemonCenter_1F_EventScript_BobbyRewardFlow
+	checktrainerflag TRAINER_BOBBY
+	goto_if TRUE, IndigoPlateau_PokemonCenter_1F_EventScript_BobbyRewardFlow
+	msgbox IndigoPlateau_PokemonCenter_1F_Text_BobbyFarewellIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_BOBBY, IndigoPlateau_PokemonCenter_1F_Text_BobbyFarewellDefeat
+	msgbox IndigoPlateau_PokemonCenter_1F_Text_BobbyFarewellAfter, MSGBOX_DEFAULT
+	release
+	end
+
+IndigoPlateau_PokemonCenter_1F_EventScript_BobbyRewardFlow::
 	call Trinity_EventScript_CountKantoBadges
 	goto_if_lt VAR_TEMP_A, 8, IndigoPlateau_PokemonCenter_1F_EventScript_BobbyNotYet
 	goto_if_set FLAG_TRINITY_K_GAUNTLET_REWARD, IndigoPlateau_PokemonCenter_1F_EventScript_BobbyClaimed
@@ -501,6 +529,22 @@ IndigoPlateau_PokemonCenter_1F_Text_BobbyPostReward:
 	.string "twice as ready as you.\p"
 	.string "I don't think that's going to\n"
 	.string "matter.$"
+
+@ S13b: the farewell. "Not my job today" callback -- IndigoPlateau_
+@ PokemonCenter_1F_Text_BobbyBriefing's own line, above -- deliberately
+@ inverted now that the world tour puts BOBBY off duty.
+IndigoPlateau_PokemonCenter_1F_Text_BobbyFarewellIntro:
+	.string "BOBBY: Not my job, I told you --\n"
+	.string "back at the gauntlet.\p"
+	.string "Today's different. Come on,\n"
+	.string "then.$"
+
+IndigoPlateau_PokemonCenter_1F_Text_BobbyFarewellDefeat:
+	.string "BOBBY: There it is.$"
+
+IndigoPlateau_PokemonCenter_1F_Text_BobbyFarewellAfter:
+	.string "BOBBY: I'll stick around here.\n"
+	.string "Somebody's got to run the door.$"
 
 @ ============================================================================
 @ WALLY -- last challenger before the E4-II corridor.

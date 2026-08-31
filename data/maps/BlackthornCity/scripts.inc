@@ -91,9 +91,105 @@ BlackthornCity_EventScript_SuperNerdBeaten::
 	release
 	end
 
+@ ============================================================================
+@ Trinity M5b S13b -- the BLACKTHORN move relearner, Johto backfill. The
+@ Fallarbor pattern, copied VERBATIM per S2's own established instruction
+@ ("framing changes, mechanism copied verbatim") -- re-read this session
+@ from FallarborTown_MoveRelearnersHouse/scripts.inc: intro text gated by
+@ transient FLAG_TEMP_1 (cleared every map load, no persistent claim,
+@ confirmed unused elsewhere on this map by grep) -> `checkitem
+@ ITEM_HEART_SCALE` gate -> `ChooseMonForMoveRelearner`/
+@ `TeachMoveRelearnerMove` specials -> `removeitem ITEM_HEART_SCALE` on
+@ success. Host: this BLACK BELT (24,31), the thinnest, most replaceable
+@ content in the city (a single throwaway MSGBOX_NPC line) -- reframed
+@ rather than the two flavour-house NPCs (Granny/Emy, single-purpose) or
+@ SuperNerd (already carries live CLAIR-gym-status state, overloading him
+@ risks contradicting it). "Move mastery" framing fits a Black Belt
+@ naturally; his own MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT range is left
+@ untouched, only his facing is corrected at interaction time.
+@ ============================================================================
 BlackthornCity_EventScript_BlackthornBlackBelt::
-	msgbox BlackthornCity_Text_BlackthornBlackBelt, MSGBOX_NPC
+	lock
+	applymovement LOCALID_BLACKTHORNCITY_BLACKBELT, Common_Movement_FacePlayer
+	waitmovement 0
+	goto_if_set FLAG_TEMP_1, BlackthornCity_EventScript_BlackBeltAskTeachMove
+	msgbox BlackthornCity_Text_BlackBeltImTheTutor, MSGBOX_DEFAULT
+	setflag FLAG_TEMP_1
+	goto BlackthornCity_EventScript_BlackBeltAskTeachMove
 	end
+
+BlackthornCity_EventScript_BlackBeltAskTeachMove::
+	checkitem ITEM_HEART_SCALE
+	goto_if_eq VAR_RESULT, FALSE, BlackthornCity_EventScript_BlackBeltComeBack
+	msgbox BlackthornCity_Text_BlackBeltThatsAHeartScale, MSGBOX_YESNO
+	switch VAR_RESULT
+	case NO, BlackthornCity_EventScript_BlackBeltComeBack
+	goto BlackthornCity_EventScript_BlackBeltChooseMon
+	end
+
+BlackthornCity_EventScript_BlackBeltChooseMon::
+	msgbox BlackthornCity_Text_BlackBeltWhichMon, MSGBOX_DEFAULT
+	setmoverelearnerstate MOVE_RELEARNER_LEVEL_UP_MOVES
+	special ChooseMonForMoveRelearner
+	waitstate
+	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, BlackthornCity_EventScript_BlackBeltComeBack
+	special IsSelectedMonEgg
+	goto_if_eq VAR_RESULT, TRUE, BlackthornCity_EventScript_BlackBeltCantTeachEgg
+	goto_if_eq VAR_0x8005, 0, BlackthornCity_EventScript_BlackBeltNoMoveToTeach
+	goto BlackthornCity_EventScript_BlackBeltChooseMove
+	end
+
+BlackthornCity_EventScript_BlackBeltChooseMove::
+	msgbox BlackthornCity_Text_BlackBeltWhichMove, MSGBOX_DEFAULT
+	special TeachMoveRelearnerMove
+	waitstate
+	goto_if_eq VAR_0x8004, 0, BlackthornCity_EventScript_BlackBeltChooseMon
+	msgbox BlackthornCity_Text_BlackBeltHandedOverHeartScale, MSGBOX_DEFAULT
+	removeitem ITEM_HEART_SCALE
+	goto BlackthornCity_EventScript_BlackBeltComeBack
+	end
+
+BlackthornCity_EventScript_BlackBeltNoMoveToTeach::
+	msgbox BlackthornCity_Text_BlackBeltNoMoveToTeach, MSGBOX_DEFAULT
+	goto BlackthornCity_EventScript_BlackBeltChooseMon
+	end
+
+BlackthornCity_EventScript_BlackBeltCantTeachEgg::
+	msgbox BlackthornCity_Text_BlackBeltCantTeachEgg, MSGBOX_DEFAULT
+	goto BlackthornCity_EventScript_BlackBeltChooseMon
+	end
+
+BlackthornCity_EventScript_BlackBeltComeBack::
+	msgbox BlackthornCity_Text_BlackBeltComeBack, MSGBOX_DEFAULT
+	release
+	end
+
+BlackthornCity_Text_BlackBeltImTheTutor:
+	.string "Every technique a POKéMON forgets\n"
+	.string "is still in there somewhere.\p"
+	.string "Bring me a HEART SCALE and I'll\n"
+	.string "help you dig one back out.$"
+
+BlackthornCity_Text_BlackBeltThatsAHeartScale:
+	.string "That's a HEART SCALE. Want me to\ntry?$"
+
+BlackthornCity_Text_BlackBeltWhichMon:
+	.string "Which POKéMON?$"
+
+BlackthornCity_Text_BlackBeltWhichMove:
+	.string "Which move?$"
+
+BlackthornCity_Text_BlackBeltNoMoveToTeach:
+	.string "That one's got nothing left to\nremember.$"
+
+BlackthornCity_Text_BlackBeltCantTeachEgg:
+	.string "That's not hatched yet. Ask me\nagain later.$"
+
+BlackthornCity_Text_BlackBeltHandedOverHeartScale:
+	.string "There. Some things you don't\nforget twice.$"
+
+BlackthornCity_Text_BlackBeltComeBack:
+	.string "Come back with a HEART SCALE if\nyou want another dug out.$"
 
 BlackthornCity_EventScript_BlackthornCooltrainerF1::
 	msgbox BlackthornCity_Text_BlackthornCooltrainerF1, MSGBOX_NPC
