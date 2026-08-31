@@ -86,11 +86,15 @@ enum {
     MB_WESTWARD_CURRENT,
     MB_NORTHWARD_CURRENT,
     MB_SOUTHWARD_CURRENT,
-    MB_UNUSED_54,
-    MB_UNUSED_55,
-    MB_UNUSED_56,
-    MB_UNUSED_57,
-    MB_UNUSED_58,
+    // M6 P2: real FRLG sticky-spin (pokefirered/include/constants/metatile_behaviors.h
+    // 0x54-0x58 -- these five ordinals were already unused at these exact byte
+    // values in this tree's own enum, so no REMAP translation is needed at all;
+    // a ported map's raw FR behaviour byte already means the right thing here.
+    MB_SPIN_RIGHT,
+    MB_SPIN_LEFT,
+    MB_SPIN_UP,
+    MB_SPIN_DOWN,
+    MB_STOP_SPINNING,
     MB_UNUSED_59,
     MB_UNUSED_5A,
     MB_UNUSED_5B,

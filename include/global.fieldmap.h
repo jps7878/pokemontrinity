@@ -373,6 +373,12 @@ struct PlayerAvatar
     // these two are timer history arrays which [0] is the active timer for acro bike. every element is backed up to the next element upon update.
     /*0x14*/ u8 dirTimerHistory[8];
     /*0x1C*/ u8 abStartSelectTimerHistory[8];
+    // M6 P2: real FRLG sticky-spin. Ported from pokefirered/include/global.fieldmap.h
+    // struct PlayerAvatar's own "lastSpinTile" field ("For the Rocket mazes") --
+    // runtime-only there too (gPlayerAvatar is a bare EWRAM global in both trees,
+    // never part of SaveBlock1/SaveBlock2), so adding it here carries no save-format
+    // change (see the P2 sub-plan's SaveBlock proof).
+    u16 lastSpinTile;
 };
 
 struct Camera

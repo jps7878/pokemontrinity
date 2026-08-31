@@ -70,6 +70,12 @@ static const u8 sTileBitAttributes[NUM_METATILE_BEHAVIORS] =
     [MB_WESTWARD_CURRENT]                   = TILE_FLAG_UNUSED | TILE_FLAG_SURFABLE,
     [MB_NORTHWARD_CURRENT]                  = TILE_FLAG_UNUSED | TILE_FLAG_SURFABLE,
     [MB_SOUTHWARD_CURRENT]                  = TILE_FLAG_UNUSED | TILE_FLAG_SURFABLE,
+    // M6 P2: real FRLG sticky-spin (0x54-0x58, formerly MB_UNUSED_54..58).
+    [MB_SPIN_RIGHT]                          = TILE_FLAG_UNUSED,
+    [MB_SPIN_LEFT]                           = TILE_FLAG_UNUSED,
+    [MB_SPIN_UP]                             = TILE_FLAG_UNUSED,
+    [MB_SPIN_DOWN]                           = TILE_FLAG_UNUSED,
+    [MB_STOP_SPINNING]                       = TILE_FLAG_UNUSED,
     [MB_NON_ANIMATED_DOOR]                  = TILE_FLAG_UNUSED,
     [MB_LADDER]                             = TILE_FLAG_UNUSED,
     [MB_EAST_ARROW_WARP]                    = TILE_FLAG_UNUSED,
@@ -348,6 +354,11 @@ bool8 MetatileBehavior_IsForcedMovementTile(u8 metatileBehavior)
 {
     if ((metatileBehavior >= MB_WALK_EAST && metatileBehavior <= MB_TRICK_HOUSE_PUZZLE_8_FLOOR)
      || (metatileBehavior >= MB_EASTWARD_CURRENT && metatileBehavior <= MB_SOUTHWARD_CURRENT)
+     // M6 P2, ported from pokefirered/src/metatile_behavior.c:266-273
+     // (MetatileBehavior_IsForcedMovementTile): the sticky-spin range, MB_STOP_SPINNING
+     // deliberately excluded (matches FR exactly -- a stop tile is ordinary floor for
+     // button-gating/step-counting purposes, control has genuinely returned there).
+     || (metatileBehavior >= MB_SPIN_RIGHT && metatileBehavior <= MB_SPIN_DOWN)
      || metatileBehavior == MB_MUDDY_SLOPE
      || metatileBehavior == MB_CRACKED_FLOOR
      || metatileBehavior == MB_WATERFALL
@@ -474,6 +485,64 @@ bool8 MetatileBehavior_IsSlideWest(u8 metatileBehavior)
 bool8 MetatileBehavior_IsSlideEast(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_SLIDE_EAST)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+// M6 P2: real FRLG sticky-spin. Ported verbatim (structure and byte range)
+// from pokefirered/src/metatile_behavior.c:754-804
+// (MetatileBehavior_IsSpinRight/Left/Up/Down/IsStopSpinning/IsSpinTile),
+// restyled to this file's own if/else return shape (matching every other
+// predicate in this file, e.g. MetatileBehavior_IsSlideEast just above).
+bool8 MetatileBehavior_IsSpinRight(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_SPIN_RIGHT)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsSpinLeft(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_SPIN_LEFT)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsSpinUp(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_SPIN_UP)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsSpinDown(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_SPIN_DOWN)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsStopSpinning(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_STOP_SPINNING)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+// pokefirered/src/metatile_behavior.c:794-804 -- used by
+// TryUpdatePlayerSpinDirection (field_player_avatar.c) to test whether the
+// PLAYER'S OWN CACHED lastSpinTile is still a live spin direction (the
+// sticky-persistence gate). Deliberately EXCLUDES MB_STOP_SPINNING, same as
+// FR: a stop tile is the terminal state, not a spin state.
+bool8 MetatileBehavior_IsSpinTile(u8 metatileBehavior)
+{
+    if (metatileBehavior >= MB_SPIN_RIGHT && metatileBehavior <= MB_SPIN_DOWN)
         return TRUE;
     else
         return FALSE;

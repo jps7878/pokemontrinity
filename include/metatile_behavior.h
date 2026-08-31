@@ -46,6 +46,14 @@ bool8 MetatileBehavior_IsSlideNorth(u8 metatileBehavior);
 bool8 MetatileBehavior_IsSlideSouth(u8 metatileBehavior);
 bool8 MetatileBehavior_IsSlideWest(u8 metatileBehavior);
 bool8 MetatileBehavior_IsSlideEast(u8 metatileBehavior);
+// M6 P2: real FRLG sticky-spin (ported from pokefirered/src/metatile_behavior.c
+// MetatileBehavior_IsSpinRight/Left/Up/Down/IsStopSpinning/IsSpinTile).
+bool8 MetatileBehavior_IsSpinRight(u8 metatileBehavior);
+bool8 MetatileBehavior_IsSpinLeft(u8 metatileBehavior);
+bool8 MetatileBehavior_IsSpinUp(u8 metatileBehavior);
+bool8 MetatileBehavior_IsSpinDown(u8 metatileBehavior);
+bool8 MetatileBehavior_IsStopSpinning(u8 metatileBehavior);
+bool8 MetatileBehavior_IsSpinTile(u8 metatileBehavior);
 bool8 MetatileBehavior_IsCounter(u8 metatileBehavior);
 bool8 MetatileBehavior_IsPlayerFacingTVScreen(u8 metatileBehavior, u8 playerDir);
 bool8 MetatileBehavior_IsPC(u8 metatileBehavior);

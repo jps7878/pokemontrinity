@@ -35,7 +35,7 @@
 #include "constants/songs.h"
 #include "constants/trainer_types.h"
 
-#define NUM_FORCED_MOVEMENTS 18
+#define NUM_FORCED_MOVEMENTS 22
 #define NUM_ACRO_BIKE_COLLISIONS 5
 
 enum SpinDirection
@@ -87,6 +87,19 @@ static bool8 ForcedMovement_SlideEast(void);
 static bool8 ForcedMovement_MatJump(void);
 static bool8 ForcedMovement_MatSpin(void);
 static bool8 ForcedMovement_MuddySlope(void);
+
+// M6 P2: real FRLG sticky-spin. Ported from pokefirered/src/field_player_avatar.c
+// (TryUpdatePlayerSpinDirection :201-222, PlayerApplyTileForcedMovement :932-941,
+// ForcedMovement_SpinRight/Left/Up/Down :355-378, PlaySpinSound :379-382),
+// adapted to this tree's own table-based dispatch (sForcedMovementTestFuncs/
+// sForcedMovementFuncs) instead of FR's inline loop.
+static bool8 TryUpdatePlayerSpinDirection(void);
+static void PlayerApplyTileForcedMovement(u8 metatileBehavior);
+static bool8 ForcedMovement_SpinRight(void);
+static bool8 ForcedMovement_SpinLeft(void);
+static bool8 ForcedMovement_SpinUp(void);
+static bool8 ForcedMovement_SpinDown(void);
+static void PlaySpinSound(void);
 
 static void MovePlayerNotOnBike(u8, u16);
 static u8 CheckMovementInputNotOnBike(u8);
@@ -169,6 +182,13 @@ static bool8 (*const sForcedMovementTestFuncs[NUM_FORCED_MOVEMENTS])(u8) =
     MetatileBehavior_IsSecretBaseJumpMat,
     MetatileBehavior_IsSecretBaseSpinMat,
     MetatileBehavior_IsMuddySlope,
+    // M6 P2: real FRLG sticky-spin. Appended (not interleaved) so every
+    // pre-existing index above is unchanged -- GetForcedMovementByMetatileBehavior
+    // and PlayerApplyTileForcedMovement both index this table positionally.
+    MetatileBehavior_IsSpinRight,
+    MetatileBehavior_IsSpinLeft,
+    MetatileBehavior_IsSpinUp,
+    MetatileBehavior_IsSpinDown,
 };
 
 // + 1 for ForcedMovement_None, which is excluded above
@@ -193,6 +213,12 @@ static bool8 (*const sForcedMovementFuncs[NUM_FORCED_MOVEMENTS + 1])(void) =
     ForcedMovement_MatJump,
     ForcedMovement_MatSpin,
     ForcedMovement_MuddySlope,
+    // M6 P2: real FRLG sticky-spin (paired 1:1 with the four appended entries
+    // in sForcedMovementTestFuncs above).
+    ForcedMovement_SpinRight,
+    ForcedMovement_SpinLeft,
+    ForcedMovement_SpinUp,
+    ForcedMovement_SpinDown,
 };
 
 static void (*const sPlayerNotOnBikeFuncs[])(u8, u16) =
@@ -344,7 +370,12 @@ void PlayerStep(u8 direction, u16 newKeys, u16 heldKeys)
     struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
 
     HideShowWarpArrow(playerObjEvent);
-    if (gPlayerAvatar.preventStep == FALSE)
+    // M6 P2: real FRLG sticky-spin gate, ported from pokefirered's own
+    // player_step (src/field_player_avatar.c:136-154) -- `!preventStep &&
+    // !TryUpdatePlayerSpinDirection()` there maps directly onto this tree's
+    // existing `preventStep == FALSE` guard, just with the new spin check
+    // added as a second condition on the SAME outer `if`.
+    if (gPlayerAvatar.preventStep == FALSE && !TryUpdatePlayerSpinDirection())
     {
         Bike_TryAcroBikeHistoryUpdate(newKeys, heldKeys);
         if (TryInterruptObjectEventSpecialAnim(playerObjEvent, direction) == 0)
@@ -453,10 +484,47 @@ static u8 GetForcedMovementByMetatileBehavior(void)
         for (i = 0; i < NUM_FORCED_MOVEMENTS; i++)
         {
             if (sForcedMovementTestFuncs[i](metatileBehavior))
+            {
+                // M6 P2, ported from pokefirered's own TryDoMetatileBehaviorForcedMovement
+                // (src/field_player_avatar.c:252-276): cache the matched tile's own
+                // behaviour so TryUpdatePlayerSpinDirection can tell, on the VERY NEXT
+                // step, whether it just launched a spin flight (harmless for every
+                // other forced-movement family -- MetatileBehavior_IsSpinTile rejects
+                // anything outside the spin range).
+                gPlayerAvatar.lastSpinTile = metatileBehavior;
                 return i + 1;
+            }
         }
     }
     return 0;
+}
+
+// M6 P2: real FRLG sticky-spin -- the persistence layer the generic per-tile
+// engine above cannot express on its own (it only re-fires while the CURRENT
+// tile itself matches a forced-movement predicate; ordinary floor between two
+// spin pads matches nothing, which is exactly the old MB_SLIDE_* emulation's
+// limit). Ported from pokefirered/src/field_player_avatar.c:201-222
+// (TryUpdatePlayerSpinDirection), renaming FR's file-static sPlayerObjectPtr
+// to a local (this tree introduces no new file-static pointer for it).
+static bool8 TryUpdatePlayerSpinDirection(void)
+{
+    struct ObjectEvent *playerObjEvent;
+
+    if ((gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_FORCED_MOVE) && MetatileBehavior_IsSpinTile(gPlayerAvatar.lastSpinTile))
+    {
+        playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+        if (playerObjEvent->heldMovementFinished)
+        {
+            if (MetatileBehavior_IsStopSpinning(playerObjEvent->currentMetatileBehavior))
+                return FALSE;
+            if (MetatileBehavior_IsSpinTile(playerObjEvent->currentMetatileBehavior))
+                gPlayerAvatar.lastSpinTile = playerObjEvent->currentMetatileBehavior;
+            ObjectEventClearHeldMovement(playerObjEvent);
+            PlayerApplyTileForcedMovement(gPlayerAvatar.lastSpinTile);
+        }
+        return TRUE;
+    }
+    return FALSE;
 }
 
 static bool8 ForcedMovement_None(void)
@@ -605,6 +673,68 @@ static bool8 ForcedMovement_SlideWest(void)
 static bool8 ForcedMovement_SlideEast(void)
 {
     return ForcedMovement_Slide(DIR_EAST, PlayerWalkFast);
+}
+
+// M6 P2: real FRLG sticky-spin. Ported from pokefirered/src/field_player_avatar.c:
+// 355-382 (ForcedMovement_SpinRight/Left/Up/Down, PlaySpinSound). FR's own
+// movement function is PlayerGoSpin (a dedicated "player sprite visibly spins"
+// animation, :927-930, GetSpinMovementAction) -- not ported here: this tree has
+// no GetSpinMovementAction/MOVEMENT_ACTION_SPIN_* support (grep, 0 hits) and
+// adding one is a sprite/animation-table project of its own, out of this
+// slice's scope. PlayerWalkFast is used instead, matching the visual weight
+// this tree already gives forced movement on MB_SLIDE_* (ForcedMovement_Slide*
+// above) -- the STICKY MECHANIC (this file's real subject) and the spin SOUND
+// EFFECT are both ported faithfully; only the full-body spin sprite animation
+// is a documented, logged simplification.
+static bool8 ForcedMovement_SpinRight(void)
+{
+    PlaySpinSound();
+    return DoForcedMovement(DIR_EAST, PlayerWalkFast);
+}
+
+static bool8 ForcedMovement_SpinLeft(void)
+{
+    PlaySpinSound();
+    return DoForcedMovement(DIR_WEST, PlayerWalkFast);
+}
+
+static bool8 ForcedMovement_SpinUp(void)
+{
+    PlaySpinSound();
+    return DoForcedMovement(DIR_NORTH, PlayerWalkFast);
+}
+
+static bool8 ForcedMovement_SpinDown(void)
+{
+    PlaySpinSound();
+    return DoForcedMovement(DIR_SOUTH, PlayerWalkFast);
+}
+
+static void PlaySpinSound(void)
+{
+    PlaySE(SE_M_RAZOR_WIND2);
+}
+
+// pokefirered/src/field_player_avatar.c:932-941 (PlayerApplyTileForcedMovement),
+// adapted to this tree's table-based dispatch: FR's own loop tests every
+// sForcedMovementFuncs entry and calls the first match's apply() directly
+// (ignoring PLAYER_AVATAR_FLAG_CONTROLLABLE entirely, unlike
+// GetForcedMovementByMetatileBehavior/TryDoMetatileBehaviorForcedMovement above
+// -- this is deliberate: TryUpdatePlayerSpinDirection calls this to RE-APPLY an
+// already-in-progress flight's forced movement every step, and must not be
+// gated by whatever CONTROLLABLE happens to read mid-flight).
+static void PlayerApplyTileForcedMovement(u8 metatileBehavior)
+{
+    u8 i;
+
+    for (i = 0; i < NUM_FORCED_MOVEMENTS; i++)
+    {
+        if (sForcedMovementTestFuncs[i](metatileBehavior))
+        {
+            sForcedMovementFuncs[i + 1]();
+            return;
+        }
+    }
 }
 
 static bool8 ForcedMovement_MatJump(void)
