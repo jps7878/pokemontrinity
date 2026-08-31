@@ -28,27 +28,46 @@
 @ DepartmentStore_4F's AttackTMs list.
 @
 @ DEDUP CRITERION (P1b controller ruling, corrects P1's over-strict first
-@ pass): the replacement TM must be UNIQUE only against the prestige-
-@ placement classes the founder actually objected to -- a curated NPC
-@ AWARD (`giveitem`) or another bg_event HIDDEN pickup elsewhere in the
-@ tree. Overlap with MART stock (any tier, Celadon's premium rung
-@ included) is ACCEPTABLE -- an infinitely purchasable TM (TMs here are
-@ reusable, I_REUSABLE_TMS) isn't cheapened by one free hidden copy. P1's
-@ first pass wrongly disqualified on mart overlap too, which left only
-@ TM48 Skill Swap clean and forced a utility pick over a powerful one; P1b
-@ recategorizes the same tree-wide census under this corrected rule (no
-@ re-grep needed, the data didn't change) and RETARGETS to
-@ ITEM_TM_ICE_BEAM (TM13) -- award=0, hidden_item=0 tree-wide, its only
-@ occurrence anywhere else being the Celadon mart listing, which no longer
-@ disqualifies. Ice Beam is a battle-defining special coverage move (95
-@ accuracy / 90 power / 10% freeze), the top offensive dedup-clean
+@ pass; PURCHASE-CLASS wording completed in a P1 fix round after review
+@ Finding 1): the replacement TM must be UNIQUE only against the
+@ prestige-placement classes the founder actually objected to -- a
+@ curated NPC AWARD (`giveitem`) or another bg_event HIDDEN pickup
+@ elsewhere in the tree. Overlap with the PURCHASE class -- grindable-
+@ currency sources, which cost the player something repeatable rather
+@ than being a one-time find -- is ACCEPTABLE and does NOT disqualify:
+@ this covers both MART stock (any tier, Celadon's premium rung
+@ included) and Game Corner COIN PRIZES alike. An infinitely purchasable
+@ TM (TMs here are reusable, I_REUSABLE_TMS) isn't cheapened by one free
+@ hidden copy sitting behind either kind of currency. P1's first pass
+@ wrongly disqualified on mart overlap too, which left only TM48 Skill
+@ Swap clean and forced a utility pick over a powerful one; P1b
+@ recategorizes the same tree-wide census under this corrected rule and
+@ RETARGETS to ITEM_TM_ICE_BEAM (TM13) -- award=0, hidden_item=0
+@ tree-wide. ITS FULL PURCHASE-CLASS FOOTPRINT (both sites, neither
+@ disqualifying): (1) the Celadon Department Store 2F premium TM mart
+@ (CeladonCity_DepartmentStore_2F_Pokemart_TMs); (2) the Mauville Game
+@ Corner coin-prize corner (MauvilleCity_GameCorner/scripts.inc's
+@ `_EventScript_TMIceBeam`/`_BuyTMIceBeam`, one of its 5 vanilla-Emerald
+@ TM prizes alongside Double Team/Psychic/Flamethrower/Thunderbolt) --
+@ the P1 census's first pass missed this second site because its grep
+@ only covered the `giveitem`/`pokemart` idioms, not the Game Corner's
+@ `checkcoins`/`additem` coin-purchase idiom; both are PURCHASE-class, so
+@ the pick is unaffected, but the exclusivity claim this comment
+@ originally made ("only occurrence anywhere else being the Celadon mart
+@ listing") was false and is corrected here. The Celadon Game Corner
+@ (CeladonCity_GameCorner + _PrizeRoom) was also checked and carries no
+@ TM13 prize -- its prize room is flavour-text only in this build, no
+@ live coin-purchase table. Ice Beam is a battle-defining special
+@ coverage move (100 accuracy / 90 power / 10% freeze,
+@ src/data/moves_info.h's MOVE_ICE_BEAM), the top offensive dedup-clean
 @ candidate found; the offered "leader-award or already-hidden" classes
-@ (e.g. TM35/TM15, both gym/hidden-elsewhere) stay excluded under the same
-@ rule. Thematic note (a plus, not required): Ice coverage is a classic
-@ complement to a Psychic-type's kit, hitting the Dragon/Ground/Flying
-@ threats pure Psychic can't -- a fitting extra edge to find beside
-@ MEWTWO. ONLY the item id changed here -- the pickup flag (+ 241),
-@ x/y/elevation, and script are byte-identical to what shipped in M5b.
+@ (e.g. TM35/TM15, both gym/hidden-elsewhere) stay excluded under the
+@ same rule. Thematic note (a plus, not required): Ice coverage is a
+@ classic complement to a Psychic-type's kit, hitting the Dragon/Ground/
+@ Flying threats pure Psychic can't -- a fitting extra edge to find
+@ beside MEWTWO. ONLY the item id changed here -- the pickup flag
+@ (+ 241), x/y/elevation, and script are byte-identical to what shipped
+@ in M5b.
 @
 @ Legendary contract, three clauses (bird-contract precedent, re-read this
 @ slice from SeafoamIslands_B4F/scripts.inc:280-326 and PowerPlant/scripts.inc):
