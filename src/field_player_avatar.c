@@ -100,6 +100,7 @@ static bool8 ForcedMovement_SpinLeft(void);
 static bool8 ForcedMovement_SpinUp(void);
 static bool8 ForcedMovement_SpinDown(void);
 static void PlaySpinSound(void);
+static void PlayerGoSpin(u8 direction); // M6 P2 fix round (review F3)
 
 static void MovePlayerNotOnBike(u8, u16);
 static u8 CheckMovementInputNotOnBike(u8);
@@ -675,44 +676,54 @@ static bool8 ForcedMovement_SlideEast(void)
     return ForcedMovement_Slide(DIR_EAST, PlayerWalkFast);
 }
 
-// M6 P2: real FRLG sticky-spin. Ported from pokefirered/src/field_player_avatar.c:
-// 355-382 (ForcedMovement_SpinRight/Left/Up/Down, PlaySpinSound). FR's own
-// movement function is PlayerGoSpin (a dedicated "player sprite visibly spins"
-// animation, :927-930, GetSpinMovementAction) -- not ported here: this tree has
-// no GetSpinMovementAction/MOVEMENT_ACTION_SPIN_* support (grep, 0 hits) and
-// adding one is a sprite/animation-table project of its own, out of this
-// slice's scope. PlayerWalkFast is used instead, matching the visual weight
-// this tree already gives forced movement on MB_SLIDE_* (ForcedMovement_Slide*
-// above) -- the STICKY MECHANIC (this file's real subject) and the spin SOUND
-// EFFECT are both ported faithfully; only the full-body spin sprite animation
-// is a documented, logged simplification.
+// M6 P2 fix round (review F3): real FRLG sticky-spin, the animation. Ported from
+// pokefirered/src/field_player_avatar.c:355-382 (ForcedMovement_SpinRight/Left/Up/
+// Down, PlaySpinSound) and :927-930 (PlayerGoSpin). The player's own dedicated
+// full-body-spin animation (GetSpinMovementAction/MOVEMENT_ACTION_SPIN_*) is now
+// ported too (event_object_movement.c/movement_action_func_tables.h/
+// object_event_anims.h -- zero new sprite art, the four existing facing frames
+// played in sequence, see those files' own citations) -- superseding the earlier
+// PlayerWalkFast stand-in this comment used to document.
 static bool8 ForcedMovement_SpinRight(void)
 {
     PlaySpinSound();
-    return DoForcedMovement(DIR_EAST, PlayerWalkFast);
+    return DoForcedMovement(DIR_EAST, PlayerGoSpin);
 }
 
 static bool8 ForcedMovement_SpinLeft(void)
 {
     PlaySpinSound();
-    return DoForcedMovement(DIR_WEST, PlayerWalkFast);
+    return DoForcedMovement(DIR_WEST, PlayerGoSpin);
 }
 
 static bool8 ForcedMovement_SpinUp(void)
 {
     PlaySpinSound();
-    return DoForcedMovement(DIR_NORTH, PlayerWalkFast);
+    return DoForcedMovement(DIR_NORTH, PlayerGoSpin);
 }
 
 static bool8 ForcedMovement_SpinDown(void)
 {
     PlaySpinSound();
-    return DoForcedMovement(DIR_SOUTH, PlayerWalkFast);
+    return DoForcedMovement(DIR_SOUTH, PlayerGoSpin);
 }
 
 static void PlaySpinSound(void)
 {
     PlaySE(SE_M_RAZOR_WIND2);
+}
+
+// pokefirered/src/field_player_avatar.c:927-930 (PlayerGoSpin), adapted to this
+// tree's own PlayerSetAnimId(movementActionId, copyableMovement) signature.
+// copyableMovement: FR passes the literal 3, but this tree's own COPY_MOVE_*
+// enum is NOT the same numbering as FR's (the same class of divergence already
+// seen for metatile behaviours) -- COPY_MOVE_WALK is used instead, matching
+// every OTHER sibling walk-style forced-movement function in this exact file
+// (PlayerWalkNormal/PlayerWalkFast/PlayerWalkFaster/PlayerRideWaterCurrent all
+// pass COPY_MOVE_WALK; only jump-class movement uses a different value).
+static void PlayerGoSpin(u8 direction)
+{
+    PlayerSetAnimId(GetSpinMovementAction(direction), COPY_MOVE_WALK);
 }
 
 // pokefirered/src/field_player_avatar.c:932-941 (PlayerApplyTileForcedMovement),

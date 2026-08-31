@@ -1027,6 +1027,10 @@ void BikeClearState(int newDirHistory, int newAbStartHistory)
 
     for (i = 0; i < ARRAY_COUNT(gPlayerAvatar.abStartSelectTimerHistory); i++)
         gPlayerAvatar.abStartSelectTimerHistory[i] = 0;
+
+    // M6 P2 fix round (review F4), ported from pokefirered/src/bike.c:344
+    // (BikeClearState): the one lastSpinTile write in FR outside field_player_avatar.c.
+    gPlayerAvatar.lastSpinTile = 0;
 }
 
 void Bike_UpdateBikeCounterSpeed(u8 counter)

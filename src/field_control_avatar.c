@@ -111,16 +111,27 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
     {
         if (GetPlayerSpeed() != PLAYER_SPEED_FASTEST)
         {
-            if (newKeys & START_BUTTON)
+            // M6 P2 fix round (review F2), ported from pokefirered/src/field_control_avatar.c:108,112
+            // (FieldGetPlayerInput): sticky spin means the per-tile `forcedMove` test above is not
+            // enough on its own -- a flight coasts over PLAIN FLOOR mid-corridor, where `forcedMove`
+            // reads FALSE at every tile centre, so without this flag test Start/Select/A/B/R would be
+            // accepted mid-flight (ShowStartMenu/TryStartInteractionScript etc. running while
+            // PLAYER_AVATAR_FLAG_FORCED_MOVE is set and a flight is pending resumption). FR gates the
+            // SAME two button groups on the player FLAG for exactly this reason; ported verbatim,
+            // `PLAYER_AVATAR_FLAG_FORCED` -> this tree's own `PLAYER_AVATAR_FLAG_FORCED_MOVE` (same bit).
+            if ((newKeys & START_BUTTON) && !(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_FORCED_MOVE))
                 input->pressedStartButton = TRUE;
-            if (newKeys & SELECT_BUTTON)
-                input->pressedSelectButton = TRUE;
-            if (newKeys & A_BUTTON)
-                input->pressedAButton = TRUE;
-            if (newKeys & B_BUTTON)
-                input->pressedBButton = TRUE;
-            if (newKeys & R_BUTTON)
-                input->pressedRButton = TRUE;
+            if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_FORCED_MOVE))
+            {
+                if (newKeys & SELECT_BUTTON)
+                    input->pressedSelectButton = TRUE;
+                if (newKeys & A_BUTTON)
+                    input->pressedAButton = TRUE;
+                if (newKeys & B_BUTTON)
+                    input->pressedBButton = TRUE;
+                if (newKeys & R_BUTTON)
+                    input->pressedRButton = TRUE;
+            }
         }
 
         if (heldKeys & (DPAD_UP | DPAD_DOWN | DPAD_LEFT | DPAD_RIGHT))

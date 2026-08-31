@@ -678,6 +678,53 @@ static const union AnimCmd sAnim_RunEast[] =
     ANIMCMD_JUMP(0),
 };
 
+// M6 P2 fix round (review F3): FRLG's own sticky-spin animation, ported verbatim
+// (frame indices, hFlip, duration, LOOP(1)+END shape) from pokefirered/src/data/
+// object_events/object_event_anims.h:556-591 (sAnim_SpinSouth/North/West/East).
+// Zero new sprite art: frames 0/1/2(+hFlip) are the SAME base facing frames this
+// tree's own sAnim_FaceSouth/FaceNorth/FaceWest/FaceEast already use (south=0,
+// north=1, west=2, east=2+hFlip -- confirmed identical convention by reading both
+// trees directly), cycled out of natural facing order to read as a quick spin.
+static const union AnimCmd sAnim_SpinSouth[] =
+{
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(2, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_FRAME(2, 2),
+    ANIMCMD_LOOP(1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_SpinNorth[] =
+{
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_FRAME(2, 2),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(2, 2, .hFlip = TRUE),
+    ANIMCMD_LOOP(1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_SpinWest[] =
+{
+    ANIMCMD_FRAME(2, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_FRAME(2, 2),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_LOOP(1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_SpinEast[] =
+{
+    ANIMCMD_FRAME(2, 2),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(2, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_LOOP(1),
+    ANIMCMD_END,
+};
+
 static const union AnimCmd sAnim_FieldMove[] =
 {
     ANIMCMD_FRAME(0, 4),
@@ -1356,6 +1403,15 @@ static const union AnimCmd *const sAnimTable_BrendanMayNormal[] = {
     [ANIM_RUN_NORTH] = sAnim_RunNorth,
     [ANIM_RUN_WEST] = sAnim_RunWest,
     [ANIM_RUN_EAST] = sAnim_RunEast,
+    // M6 P2 fix round (review F3): the player's own sticky-spin animation. This is
+    // the table gObjectEventGraphicsInfo_BrendanNormal/MayNormal actually use
+    // (object_event_graphics_info.h), confirmed by reading it directly -- NOT the
+    // generic sAnimTable_Standard, which the player's on-foot graphicsId never
+    // references at all.
+    [ANIM_SPIN_SOUTH] = sAnim_SpinSouth,
+    [ANIM_SPIN_NORTH] = sAnim_SpinNorth,
+    [ANIM_SPIN_WEST] = sAnim_SpinWest,
+    [ANIM_SPIN_EAST] = sAnim_SpinEast,
 };
 
 static const union AnimCmd *const sAnimTable_AcroBike[] = {

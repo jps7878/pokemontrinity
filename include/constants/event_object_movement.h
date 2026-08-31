@@ -265,6 +265,16 @@
 #define MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_LEFT    0xB0
 #define MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_RIGHT   0xB1
 
+// M6 P2 fix round (review F3): FRLG sticky-spin's own player animation, ported
+// from pokefirered/include/constants/event_object_movement.h (MOVEMENT_ACTION_SPIN_
+// DOWN/UP/LEFT/RIGHT = 0x94-0x97 there; this tree's own ids stop at 0xB1, so the
+// four free ids immediately after are claimed instead -- same class of free-slot
+// claim as the MB_SPIN_* behaviour ids, §2 of the sub-plan).
+#define MOVEMENT_ACTION_SPIN_DOWN                       0xB2
+#define MOVEMENT_ACTION_SPIN_UP                         0xB3
+#define MOVEMENT_ACTION_SPIN_LEFT                       0xB4
+#define MOVEMENT_ACTION_SPIN_RIGHT                      0xB5
+
 #define MOVEMENT_ACTION_STEP_END 0xFE
 #define MOVEMENT_ACTION_NONE     0xFF
 
@@ -289,6 +299,21 @@
 #define ANIM_STD_GO_FASTEST_WEST  18
 #define ANIM_STD_GO_FASTEST_EAST  19
 #define ANIM_STD_COUNT            20
+
+// M6 P2 fix round (review F3): FRLG's spin animation, pokefirered/include/constants/
+// event_object_movement.h: ANIM_SPIN_SOUTH/NORTH/WEST/EAST = ANIM_STD_COUNT+4..7
+// there, because FR's own player animation table already populates ANIM_STD_COUNT+0..3
+// with ANIM_RUN_*. THE SAME is true in this tree's own PLAYER-specific table,
+// sAnimTable_BrendanMayNormal (src/data/object_events/object_event_anims.h -- the
+// table gObjectEventGraphicsInfo_BrendanNormal/MayNormal actually use, NOT the
+// generic sAnimTable_Standard, confirmed by reading object_event_graphics_info.h
+// directly): it already carries [ANIM_RUN_SOUTH..EAST] at ANIM_STD_COUNT+0..3, so
+// +4..+7 is this table's own genuinely free range -- same slot FR itself uses, for
+// the same reason.
+#define ANIM_SPIN_SOUTH (ANIM_STD_COUNT + 4)
+#define ANIM_SPIN_NORTH (ANIM_STD_COUNT + 5)
+#define ANIM_SPIN_WEST  (ANIM_STD_COUNT + 6)
+#define ANIM_SPIN_EAST  (ANIM_STD_COUNT + 7)
 
 #define ANIM_RUN_SOUTH (ANIM_STD_COUNT + 0)
 #define ANIM_RUN_NORTH (ANIM_STD_COUNT + 1)
