@@ -84,12 +84,24 @@ Route28_Text_KantoGateNotYet:
 @ No single tile is a cut vertex (same class of finding as KantoGateCheck's own
 @ east-edge note above) -- all 8 need their own trigger.
 @
-@ Bounce is a fixed walk_right (east, back into ROUTE28): every (1,y) landing
-@ tile was checked individually and is walkable/non-ledge (MB_NORMAL or
-@ MB_TALL_GRASS), and every one of the 8 approaches is a lateral westward walk
-@ (none of the 8 is reachable by a vertical column-step that would make
-@ facing ambiguous the way ViridianCity's own thru-tile gate is) -- no
-@ GetPlayerFacingDirection() branching needed, unlike that case.
+@ Bounce is a fixed walk_right (east, back into ROUTE28). FIX ROUND 1 (review
+@ Major-2, Minor-4): this comment originally claimed "none of the 8 is
+@ reachable by a vertical column-step" and that every (1,y) landing tile is
+@ MB_NORMAL/MB_TALL_GRASS. Both false, re-checked directly against
+@ LAYOUT_ROUTE_28_JOHTO: five of the eight x=0 rows ARE vertically adjacent
+@ to a sibling trigger tile in both directions ((0,12)<->(0,13);
+@ (0,14)<->(0,15)<->(0,16)<->(0,17) -- only (0,13)<->(0,14) is severed, by
+@ MB_IMPASSABLE_NORTH at (0,14)), and (1,14) itself decodes
+@ MB_IMPASSABLE_NORTH, not MB_NORMAL/MB_TALL_GRASS (the other seven (1,y)
+@ tiles do). The bounce is still safe, for the reason that actually holds:
+@ (a) walk_right moves the player off x=0 before a second x=0 step is ever
+@ possible, so a vertical chain along the edge cannot re-trigger this gate
+@ mid-bounce; and (b) independently, every (1,y) landing tile for all eight
+@ rows is col=0, elev=3, non-ledge -- MB_IMPASSABLE_NORTH blocks only
+@ northward entry, not the eastward landing at (1,14) nor exiting it -- so a
+@ fixed east bounce is correct regardless of approach direction. No
+@ GetPlayerFacingDirection() branching needed, unlike ViridianCity's own
+@ thru-tile gate, but not because this edge can't be walked vertically.
 @
 @ Same VAR_TEMP_1==0 "always fires" idiom as KantoGateCheck/Route26's League
 @ gate/CeruleanCity's cave mouth. OPEN is a bare `end` (not a manual re-warp
@@ -120,8 +132,12 @@ Route28_Movement_SilverCaveGateStepBack:
 	walk_right
 	step_end
 
+@ FIX ROUND 1 (review Minor-8): "Something says" originally opened both the
+@ second and fourth lines of this box. Reworded the second line so the
+@ construction lands once; the closing echo of Route28_Text_KantoGateNotYet's
+@ own "Something says turn back." is deliberate and kept.
 Route28_Text_SilverCaveNotYet:
 	.string "MT. SILVER stays quiet for now.\n"
-	.string "Something says you haven't earned\l"
-	.string "this climb yet.\p"
+	.string "The climb doesn't feel like yours\l"
+	.string "yet.\p"
 	.string "Something says turn back.$"
