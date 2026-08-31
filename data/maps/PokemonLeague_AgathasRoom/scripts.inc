@@ -49,6 +49,7 @@
 
 PokemonLeague_AgathasRoom_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, PokemonLeague_AgathasRoom_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, PokemonLeague_AgathasRoom_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PokemonLeague_AgathasRoom_OnWarp
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PokemonLeague_AgathasRoom_OnFrame
 	.byte 0
@@ -57,16 +58,24 @@ PokemonLeague_AgathasRoom_OnLoad:
 	call_if_set FLAG_TRINITY_J_E4_BRUNO_BEATEN, PokemonLeague_AgathasRoom_EventScript_SetDoorOpen
 	call_if_set FLAG_TRINITY_K_E4_BRUNOII_BEATEN, PokemonLeague_AgathasRoom_EventScript_SetDoorOpen
 	call_if_eq VAR_TRINITY_JOHTO_SCENE_INDIGO, 3, PokemonLeague_AgathasRoom_EventScript_CloseEntry
-	@ Trinity M5b S11 -- roster switch (sub-plan §1.2).
-	call Trinity_EventScript_CountKantoBadges
-	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_AgathasRoom_EventScript_ShowBrunoII
-	showobjectat LOCALID_JOHTO_E4_BRUNO, MAP_POKEMON_LEAGUE_AGATHAS_ROOM
-	hideobjectat LOCALID_KANTO_E4_BRUNOII, MAP_POKEMON_LEAGUE_AGATHAS_ROOM
 	end
 
-PokemonLeague_AgathasRoom_EventScript_ShowBrunoII::
-	hideobjectat LOCALID_JOHTO_E4_BRUNO, MAP_POKEMON_LEAGUE_AGATHAS_ROOM
-	showobjectat LOCALID_KANTO_E4_BRUNOII, MAP_POKEMON_LEAGUE_AGATHAS_ROOM
+@ Trinity M5b S11 fix round 1 (review C1) -- roster-switch flag authoring,
+@ moved out of the broken ON_LOAD showobjectat/hideobjectat idiom into this
+@ fresh ON_TRANSITION (CeruleanCity_OnTransition/FLAG_TRINITY_K_CAVE_GUARD_
+@ HIDE idiom; full postmortem in PokemonLeague_LoreleisRoom/scripts.inc's
+@ header). BRUNO's template now carries FLAG_TRINITY_K_JOHTO_SITTER_HIDE;
+@ BRUNO-II's carries FLAG_TRINITY_K_KANTO_CAST_HIDE.
+PokemonLeague_AgathasRoom_OnTransition::
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_AgathasRoom_EventScript_ArmKantoCast
+	setflag FLAG_TRINITY_K_KANTO_CAST_HIDE
+	clearflag FLAG_TRINITY_K_JOHTO_SITTER_HIDE
+	end
+
+PokemonLeague_AgathasRoom_EventScript_ArmKantoCast::
+	clearflag FLAG_TRINITY_K_KANTO_CAST_HIDE
+	setflag FLAG_TRINITY_K_JOHTO_SITTER_HIDE
 	end
 
 PokemonLeague_AgathasRoom_EventScript_SetDoorOpen::
@@ -155,14 +164,24 @@ PokemonLeague_AgathasRoom_Text_PostBattle:
 @ Johto's TRAINER_BRUNO_E4), and its own flag name (FLAG_TRINITY_K_E4_
 @ BRUNOII_BEATEN) is likewise distinct from FLAG_TRINITY_J_E4_BRUNO_BEATEN.
 @ ============================================================================
+@ FIX ROUND 1 (review M3): own inline 8-badge check restored at the top (S1
+@ house rule), provably unreachable now that BRUNO-II's own object cannot
+@ spawn below 8 badges (FLAG_TRINITY_K_KANTO_CAST_HIDE).
 PokemonLeague_AgathasRoom_EventScript_BrunoII::
 	lock
 	faceplayer
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_lt VAR_TEMP_A, 8, PokemonLeague_AgathasRoom_EventScript_BrunoIINotYet
 	goto_if_set FLAG_TRINITY_K_E4_BRUNOII_BEATEN, PokemonLeague_AgathasRoom_EventScript_BrunoIIPostBattle
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
 	msgbox PokemonLeague_AgathasRoom_Text_BrunoIIIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_BRUNO_II, PokemonLeague_AgathasRoom_Text_BrunoIIDefeat
 	goto PokemonLeague_AgathasRoom_EventScript_BrunoIIDefeated
+	end
+
+@ Provably unreachable, kept per S1's rule.
+PokemonLeague_AgathasRoom_EventScript_BrunoIINotYet::
+	release
 	end
 
 PokemonLeague_AgathasRoom_EventScript_BrunoIIDefeated::
@@ -179,9 +198,10 @@ PokemonLeague_AgathasRoom_EventScript_BrunoIIPostBattle::
 
 PokemonLeague_AgathasRoom_Text_BrunoIIIntro:
 	.string "BRUNO. ELITE FOUR, KANTO.\p"
-	.string "Same name as the man one room\n"
-	.string "back. Different me, same creed:\l"
-	.string "the body doesn't lie to you.\p"
+	.string "Same name as the man who stood\n"
+	.string "on this exact floor for JOHTO.\l"
+	.string "Different me, same creed: the\l"
+	.string "body doesn't lie to you.\p"
 	.string "HITMONLEE doesn't feint. HARIYAMA\n"
 	.string "doesn't bluff. Every hit means\l"
 	.string "exactly what it looks like.\p"

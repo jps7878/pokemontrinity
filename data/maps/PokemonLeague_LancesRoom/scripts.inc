@@ -22,6 +22,7 @@
 
 PokemonLeague_LancesRoom_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, PokemonLeague_LancesRoom_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, PokemonLeague_LancesRoom_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PokemonLeague_LancesRoom_OnWarp
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PokemonLeague_LancesRoom_OnFrame
 	.byte 0
@@ -30,17 +31,25 @@ PokemonLeague_LancesRoom_OnLoad:
 	call_if_set FLAG_TRINITY_J_E4_KAREN_BEATEN, PokemonLeague_LancesRoom_EventScript_SetDoorOpen
 	call_if_set FLAG_TRINITY_K_E4_BLUE_BEATEN, PokemonLeague_LancesRoom_EventScript_SetDoorOpen
 	call_if_eq VAR_TRINITY_JOHTO_SCENE_INDIGO, 4, PokemonLeague_LancesRoom_EventScript_CloseEntry
-	@ Trinity M5b S11 -- roster switch (sub-plan §1.2). BLUE holds the 4th
-	@ E4-II seat here (standing ruling: Ash alone is Champion).
-	call Trinity_EventScript_CountKantoBadges
-	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_LancesRoom_EventScript_ShowBlue
-	showobjectat LOCALID_JOHTO_E4_KAREN, MAP_POKEMON_LEAGUE_LANCES_ROOM
-	hideobjectat LOCALID_KANTO_E4_BLUE, MAP_POKEMON_LEAGUE_LANCES_ROOM
 	end
 
-PokemonLeague_LancesRoom_EventScript_ShowBlue::
-	hideobjectat LOCALID_JOHTO_E4_KAREN, MAP_POKEMON_LEAGUE_LANCES_ROOM
-	showobjectat LOCALID_KANTO_E4_BLUE, MAP_POKEMON_LEAGUE_LANCES_ROOM
+@ Trinity M5b S11 fix round 1 (review C1) -- roster-switch flag authoring,
+@ moved out of the broken ON_LOAD showobjectat/hideobjectat idiom into this
+@ fresh ON_TRANSITION (CeruleanCity_OnTransition/FLAG_TRINITY_K_CAVE_GUARD_
+@ HIDE idiom; full postmortem in PokemonLeague_LoreleisRoom/scripts.inc's
+@ header). KAREN's template now carries FLAG_TRINITY_K_JOHTO_SITTER_HIDE;
+@ BLUE's carries FLAG_TRINITY_K_KANTO_CAST_HIDE. BLUE holds the 4th E4-II
+@ seat here (standing ruling: Ash alone is Champion).
+PokemonLeague_LancesRoom_OnTransition::
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_LancesRoom_EventScript_ArmKantoCast
+	setflag FLAG_TRINITY_K_KANTO_CAST_HIDE
+	clearflag FLAG_TRINITY_K_JOHTO_SITTER_HIDE
+	end
+
+PokemonLeague_LancesRoom_EventScript_ArmKantoCast::
+	clearflag FLAG_TRINITY_K_KANTO_CAST_HIDE
+	setflag FLAG_TRINITY_K_JOHTO_SITTER_HIDE
 	end
 
 PokemonLeague_LancesRoom_EventScript_SetDoorOpen::
@@ -192,14 +201,24 @@ PokemonLeague_LancesRoom_Text_PostBattle:
 @ This room is what he did with the loss. Self-contained mirror of KAREN's
 @ script above -- same 28x24 door helpers, local (not shared) copies.
 @ ============================================================================
+@ FIX ROUND 1 (review M3): own inline 8-badge check restored at the top (S1
+@ house rule), provably unreachable now that BLUE's own object cannot spawn
+@ below 8 badges (FLAG_TRINITY_K_KANTO_CAST_HIDE).
 PokemonLeague_LancesRoom_EventScript_Blue::
 	lock
 	faceplayer
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_lt VAR_TEMP_A, 8, PokemonLeague_LancesRoom_EventScript_BlueNotYet
 	goto_if_set FLAG_TRINITY_K_E4_BLUE_BEATEN, PokemonLeague_LancesRoom_EventScript_BluePostBattle
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
 	msgbox PokemonLeague_LancesRoom_Text_BlueIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_BLUE_E4, PokemonLeague_LancesRoom_Text_BlueDefeat
 	goto PokemonLeague_LancesRoom_EventScript_BlueDefeated
+	end
+
+@ Provably unreachable, kept per S1's rule.
+PokemonLeague_LancesRoom_EventScript_BlueNotYet::
+	release
 	end
 
 PokemonLeague_LancesRoom_EventScript_BlueDefeated::

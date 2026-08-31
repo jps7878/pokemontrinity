@@ -26,7 +26,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PokemonLeague_ChampionsRoom_EventScript_Lance",
-      "flag": "0"
+      "flag": "FLAG_TRINITY_K_JOHTO_SITTER_HIDE"
     },
     {
       "local_id": "LOCALID_KANTO_CHAMP_ASH",
@@ -40,7 +40,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PokemonLeague_ChampionsRoom_EventScript_Ash",
-      "flag": "0"
+      "flag": "FLAG_TRINITY_K_KANTO_CAST_HIDE"
     }
   ],
   "warp_events": [

@@ -33,27 +33,45 @@
 @ ============================================================================
 
 PokemonLeague_ChampionsRoom_MapScripts::
-	map_script MAP_SCRIPT_ON_LOAD, PokemonLeague_ChampionsRoom_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, PokemonLeague_ChampionsRoom_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PokemonLeague_ChampionsRoom_OnWarp
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PokemonLeague_ChampionsRoom_OnFrame
 	.byte 0
 
 @ ============================================================================
-@ Trinity M5b S11 -- the roster switch (sub-plan §1.2), object layer only.
-@ This room previously had no ON_LOAD; added fresh, same live-badge-check
-@ idiom as the four E4-II rooms. Runs pre-render, so there is no flash of the
-@ wrong champion before the walk-in below ever starts.
+@ Trinity M5b S11 fix round 1 (review C1) -- the roster switch, object layer.
+@ POSTMORTEM: the original design authored showobjectat/hideobjectat from
+@ MAP_SCRIPT_ON_LOAD. That is a guaranteed no-op: ON_LOAD runs at
+@ CB2_LoadMap state 0 (src/overworld.c:2160-2180), before InitObjectEventsLocal
+@ spawns any object at state 3 (src/overworld.c:2435-2450) --
+@ SetObjectInvisibility silently fails when TryGetObjectEventIdByLocalIdAndMap
+@ finds no live instance (src/event_object_movement.c:3089-3094). Both LANCE
+@ and ASH's templates carried flag:"0" (always-spawn), so both objects
+@ rendered stacked at (6,8) and GetObjectEventIdByPosition's lowest-index rule
+@ always resolved interaction to LANCE's template (index 0).
+@
+@ THE FIX is the tree's own hide-flag idiom (CeruleanCity_OnTransition /
+@ FLAG_TRINITY_K_CAVE_GUARD_HIDE, data/maps/CeruleanCity/scripts.inc:34-41):
+@ author a flag from ON_TRANSITION, which TrySpawnObjectEvents reads at spawn
+@ time (state 3) -- ON_TRANSITION runs before spawn same as ON_LOAD did, but a
+@ FLAG is SaveBlock state read later, not a live-instance call made too early.
+@ LANCE's map.json template now carries FLAG_TRINITY_K_JOHTO_SITTER_HIDE
+@ (shared across all 5 M4 Johto sitters); ASH's carries
+@ FLAG_TRINITY_K_KANTO_CAST_HIDE (shared across all 13 Kanto objects this
+@ slice added). Both flags hex-audited fresh (0x1DE/0x1DF,
+@ include/constants/flags.h) -- the S11 registry's original 0x4E9-0x4EF run
+@ is fully spent (0x4F0 is vanilla FLAG_DEFEATED_RUSTBORO_GYM).
 @ ============================================================================
-PokemonLeague_ChampionsRoom_OnLoad:
+PokemonLeague_ChampionsRoom_OnTransition::
 	call Trinity_EventScript_CountKantoBadges
-	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_ChampionsRoom_EventScript_ShowAsh
-	showobjectat LOCALID_JOHTO_E4_LANCE, MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM
-	hideobjectat LOCALID_KANTO_CHAMP_ASH, MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM
+	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_ChampionsRoom_EventScript_ArmKantoCast
+	setflag FLAG_TRINITY_K_KANTO_CAST_HIDE
+	clearflag FLAG_TRINITY_K_JOHTO_SITTER_HIDE
 	end
 
-PokemonLeague_ChampionsRoom_EventScript_ShowAsh::
-	hideobjectat LOCALID_JOHTO_E4_LANCE, MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM
-	showobjectat LOCALID_KANTO_CHAMP_ASH, MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM
+PokemonLeague_ChampionsRoom_EventScript_ArmKantoCast::
+	clearflag FLAG_TRINITY_K_KANTO_CAST_HIDE
+	setflag FLAG_TRINITY_K_JOHTO_SITTER_HIDE
 	end
 
 PokemonLeague_ChampionsRoom_OnWarp:
@@ -132,14 +150,22 @@ PokemonLeague_ChampionsRoom_EventScript_PostBattleIdle::
 	end
 
 @ ============================================================================
-@ Trinity M5b S11 -- CHAMPION ASH. Same shape as LANCE's block above, one
-@ economy: the idempotency guard reads checktrainerflag TRAINER_ASH instead
-@ of a new story flag (S11 sub-plan §0 point 3) -- this branch is exactly as
-@ unreachable in play as LANCE's own PostBattleIdle is (same reasoning: the
-@ walk-in always fires first and advances SCENE_INDIGO past its own trigger
-@ before a direct talk could ever land here), so S1's "a story talk script
-@ carries its own state guard regardless" is honored without spending a
-@ scarce flag on genuinely dead code.
+@ Trinity M5b S11 -- CHAMPION ASH. Same shape as LANCE's block above.
+@
+@ FIX ROUND 1 (review C2): the idempotency guard now reads
+@ FLAG_TRINITY_K_E4_ASH_BEATEN (0x1E0, include/constants/flags.h -- fresh
+@ hex-audit, same free run as C1's 0x1DE/0x1DF), cleared by
+@ IndigoPlateau_PokemonCenter_1F_OnTransition beside the nine existing E4
+@ clears -- the exact FLAG_TRINITY_J_E4_LANCE_BEATEN shape. The ORIGINAL
+@ economy (checktrainerflag TRAINER_ASH, claiming this branch was "provably
+@ unreachable" the same way LANCE's PostBattleIdle is) was FALSE: LANCE's own
+@ guard reads a story flag the Center clears on every visit, so LANCE always
+@ re-fights; the engine trainer flag checktrainerflag reads is cleared by
+@ NOTHING in the tree (`grep -rn cleartrainerflag data/` names no
+@ TRAINER_ASH site), so once set it stays TRUE forever -- a second Act III
+@ clear would reach this room, see the guard TRUE, and walk straight to the
+@ Hall of Fame with no fight and no fresh credits roll. The GSC Center-reset
+@ re-challenge loop the brief requires now genuinely carries over to ASH.
 @
 @ B1-B5 GRAMMAR: B1 the silent walk-in (shared with LANCE, above). B2 ASH's
 @ opening line (the reveal -- PIKACHU named before ASH is, letting
@@ -148,9 +174,11 @@ PokemonLeague_ChampionsRoom_EventScript_PostBattleIdle::
 @ Hall of Fame room LANCE's own defeat warps to (branched again there).
 @
 @ TEAM, fully derived (src/data/trainers.party, TRAINER_ASH): Charizard
-@ (Fire/Flying), Sceptile (Grass/Dragon), Infernape (Fire/Fighting), Greninja
-@ (Water/Dark), Lucario (Fighting/Steel), Pikachu (Electric) -- L91-92,
-@ Pikachu L100.
+@ (Fire/Flying), Sceptile (Grass -- FIX ROUND 1, review C4: pure Grass,
+@ src/data/pokemon/species_info/gen_3_families.h; Grass/Dragon is Mega
+@ Sceptile only, not what a trainer party entry instantiates), Infernape
+@ (Fire/Fighting), Greninja (Water/Dark), Lucario (Fighting/Steel), Pikachu
+@ (Electric) -- L91-92, Pikachu L100.
 @ ============================================================================
 PokemonLeague_ChampionsRoom_EventScript_Ash::
 	lock
@@ -158,8 +186,7 @@ PokemonLeague_ChampionsRoom_EventScript_Ash::
 	goto PokemonLeague_ChampionsRoom_EventScript_AshBattle
 
 PokemonLeague_ChampionsRoom_EventScript_AshBattle::
-	checktrainerflag TRAINER_ASH
-	goto_if TRUE, PokemonLeague_ChampionsRoom_EventScript_AshPostBattleIdle
+	goto_if_set FLAG_TRINITY_K_E4_ASH_BEATEN, PokemonLeague_ChampionsRoom_EventScript_AshPostBattleIdle
 	playbgm MUS_ENCOUNTER_CHAMPION, FALSE
 	msgbox PokemonLeague_ChampionsRoom_Text_AshIntro, MSGBOX_DEFAULT
 	setvar VAR_LAST_TALKED, LOCALID_KANTO_CHAMP_ASH
@@ -168,6 +195,7 @@ PokemonLeague_ChampionsRoom_EventScript_AshBattle::
 	end
 
 PokemonLeague_ChampionsRoom_EventScript_AshDefeated::
+	setflag FLAG_TRINITY_K_E4_ASH_BEATEN
 	msgbox PokemonLeague_ChampionsRoom_Text_AshPostBattle, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_KANTO_CHAMP_ASH, Common_Movement_WalkInPlaceFasterUp

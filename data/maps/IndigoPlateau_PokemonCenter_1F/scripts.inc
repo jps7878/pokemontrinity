@@ -60,7 +60,6 @@
 @ ============================================================================
 
 IndigoPlateau_PokemonCenter_1F_MapScripts::
-	map_script MAP_SCRIPT_ON_LOAD, IndigoPlateau_PokemonCenter_1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, IndigoPlateau_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
 	.byte 0
@@ -80,50 +79,38 @@ IndigoPlateau_PokemonCenter_1F_OnTransition:
 	clearflag FLAG_TRINITY_K_E4_AGATHA_BEATEN
 	clearflag FLAG_TRINITY_K_E4_BRUNOII_BEATEN
 	clearflag FLAG_TRINITY_K_E4_BLUE_BEATEN
-	end
-
-@ ============================================================================
-@ Trinity M5b S11 -- the INDIGO II LOBBY. THE ROSTER SWITCH, object layer.
-@
-@ This room's own (4,1) warp goes straight into PokemonLeague_LoreleisRoom --
-@ it is the league's real front door, not a metaphorical "lobby" (S11 sub-plan
-@ §3.1). Below 8 KANTO badges this ON_LOAD is a no-op past the live count
-@ (every one of the 7 objects below stays at its map.json-default visible
-@ state, which is FALSE/hidden -- wait, no: flag:"0" objects default VISIBLE,
-@ so the hide call below is what keeps this room byte-for-byte what M4
-@ shipped for any save that hasn't finished KANTO -- confirmed by CHECKING,
-@ not assuming: SetObjectInvisibility (src/scrcmd.c:1458-1477) is called
-@ fresh every load here, unconditionally, before the first frame renders
-@ (MAP_SCRIPT_ON_LOAD runs pre-render), so there is no visible flash and no
-@ save-file dependency on the objects' own static template state.
-@
-@ ZERO PERSISTENT FLAGS for this switch (S11 sub-plan §0 point 2):
-@ SetObjectInvisibility is SCREFF_HARDWARE only, no SCREFF_SAVE -- it mutates
-@ the live object-event instance, not SaveBlock. Re-deriving live off
-@ Trinity_EventScript_CountKantoBadges every load is strictly correct, not a
-@ shortcut, because the underlying truth (8 badges or not) is itself already
-@ persistent in FLAG_TRINITY_BADGE17..24.
-@ ============================================================================
-IndigoPlateau_PokemonCenter_1F_OnLoad:
+	@ Trinity M5b S11 fix round 1 (review C2) -- ASH's own re-fight guard,
+	@ cleared beside the four E4-II flags just above; the exact
+	@ FLAG_TRINITY_J_E4_LANCE_BEATEN shape, one line down.
+	clearflag FLAG_TRINITY_K_E4_ASH_BEATEN
+	@ Trinity M5b S11 fix round 1 (review C1) -- the roster switch, object
+	@ layer, moved here from a broken MAP_SCRIPT_ON_LOAD (removed entirely).
+	@ POSTMORTEM: ON_LOAD runs at CB2_LoadMap state 0, before
+	@ InitObjectEventsLocal spawns any object at state 3
+	@ (src/overworld.c:2160-2180, :2435-2450); SetObjectInvisibility silently
+	@ fails against a target that has no live instance yet
+	@ (src/event_object_movement.c:3089-3094), so the original showobjectat/
+	@ hideobjectat calls here were guaranteed no-ops -- every one of the 7
+	@ lobby objects spawned unconditionally (flag:"0"), fightable from any
+	@ Act II save. THE FIX is the tree's own hide-flag idiom
+	@ (CeruleanCity_OnTransition/FLAG_TRINITY_K_CAVE_GUARD_HIDE,
+	@ data/maps/CeruleanCity/scripts.inc:34-41): all 7 lobby objects now carry
+	@ FLAG_TRINITY_K_KANTO_CAST_HIDE in their map.json flag field (the same
+	@ flag the 4 E4-II sitters and Ash's two objects use -- one shared flag,
+	@ 13 objects, one live check), authored here because ON_TRANSITION runs
+	@ before spawn too, but a FLAG is SaveBlock state TrySpawnObjectEvents
+	@ reads AT spawn time, not a live-instance call attempted too early. Both
+	@ flags hex-audited fresh at 0x1DE/0x1DF (include/constants/flags.h) --
+	@ the original 0x4E9-0x4EF registry run is fully spent.
 	call Trinity_EventScript_CountKantoBadges
-	goto_if_ge VAR_TEMP_A, 8, IndigoPlateau_PokemonCenter_1F_EventScript_ShowGauntletCast
-	hideobjectat LOCALID_KANTO_INDIGO_BOBBY, MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F
-	hideobjectat LOCALID_KANTO_INDIGO_HARJOT, MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F
-	hideobjectat LOCALID_KANTO_INDIGO_IVRAJ, MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F
-	hideobjectat LOCALID_KANTO_INDIGO_SUMEET, MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F
-	hideobjectat LOCALID_KANTO_INDIGO_PRABHJIT, MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F
-	hideobjectat LOCALID_KANTO_INDIGO_GURNAV, MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F
-	hideobjectat LOCALID_KANTO_INDIGO_WALLY, MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F
+	goto_if_ge VAR_TEMP_A, 8, IndigoPlateau_PokemonCenter_1F_EventScript_ArmKantoCast
+	setflag FLAG_TRINITY_K_KANTO_CAST_HIDE
+	clearflag FLAG_TRINITY_K_JOHTO_SITTER_HIDE
 	end
 
-IndigoPlateau_PokemonCenter_1F_EventScript_ShowGauntletCast::
-	showobjectat LOCALID_KANTO_INDIGO_BOBBY, MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F
-	showobjectat LOCALID_KANTO_INDIGO_HARJOT, MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F
-	showobjectat LOCALID_KANTO_INDIGO_IVRAJ, MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F
-	showobjectat LOCALID_KANTO_INDIGO_SUMEET, MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F
-	showobjectat LOCALID_KANTO_INDIGO_PRABHJIT, MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F
-	showobjectat LOCALID_KANTO_INDIGO_GURNAV, MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F
-	showobjectat LOCALID_KANTO_INDIGO_WALLY, MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F
+IndigoPlateau_PokemonCenter_1F_EventScript_ArmKantoCast::
+	clearflag FLAG_TRINITY_K_KANTO_CAST_HIDE
+	setflag FLAG_TRINITY_K_JOHTO_SITTER_HIDE
 	end
 
 @ ============================================================================
@@ -139,62 +126,91 @@ IndigoPlateau_PokemonCenter_1F_EventScript_ShowGauntletCast::
 @ (Houndoom/Absol/Sableye/Mightyena/Umbreon, src/data/trainers.party) is
 @ Dark-leaning; his own line about it is the factual claim his roster backs.
 @
-@ "Full heal between": special HealPlayerParty runs in every fighter's own
-@ post-battle handler -- on the first win AND on every later re-approach
-@ (harmless no-op on an already-full party).
+@ FIX ROUND 1 (review M3) -- each fighter's own script now re-derives the
+@ live 8-badge C-COUNT at its own top, the S1 house rule ("a story talk
+@ script carries its own state guard regardless") applied here the same way
+@ it already is for ASH. This is now provably unreachable in play (the
+@ object cannot even spawn below 8 badges -- FLAG_TRINITY_K_KANTO_CAST_HIDE,
+@ see OnTransition above), which is exactly the class of defensive
+@ redundancy S1 asks for, not dead weight: the C1 fix means the object layer
+@ SHOULD make this unreachable, and the inline check proves the script does
+@ not silently rely on that alone.
+@
+@ FIX ROUND 1 (review Minor 9) -- special HealPlayerParty removed. Matching
+@ M1's own original behaviour exactly, no innovation: GraniteCave_1F_
+@ EventScript_HarjotReward/_HarjotPostReward (M1's HARJOT, the template this
+@ whole mechanic reuses) never calls HealPlayerParty in any branch, ever --
+@ M1 has no heal mechanic at all, first win or re-approach alike. "Full heal
+@ between" is satisfied by staging, not a scripted call: this gauntlet
+@ (unlike M1's four scattered posts) is fought entirely inside the INDIGO
+@ PLATEAU POKéMON CENTER, with the NURSE a few tiles away at all times.
 @ ============================================================================
 IndigoPlateau_PokemonCenter_1F_EventScript_HarjotK::
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_lt VAR_TEMP_A, 8, IndigoPlateau_PokemonCenter_1F_EventScript_GauntletNotYet
 	trainerbattle_single TRAINER_HARJOT_K, IndigoPlateau_PokemonCenter_1F_Text_HarjotKIntro, IndigoPlateau_PokemonCenter_1F_Text_HarjotKDefeat, IndigoPlateau_PokemonCenter_1F_EventScript_HarjotKAfter
 	goto IndigoPlateau_PokemonCenter_1F_EventScript_HarjotKAfter
 	end
 
 IndigoPlateau_PokemonCenter_1F_EventScript_HarjotKAfter::
-	special HealPlayerParty
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_HarjotKPost, MSGBOX_DEFAULT
 	release
 	end
 
 IndigoPlateau_PokemonCenter_1F_EventScript_IvrajK::
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_lt VAR_TEMP_A, 8, IndigoPlateau_PokemonCenter_1F_EventScript_GauntletNotYet
 	trainerbattle_single TRAINER_IVRAJ_K, IndigoPlateau_PokemonCenter_1F_Text_IvrajKIntro, IndigoPlateau_PokemonCenter_1F_Text_IvrajKDefeat, IndigoPlateau_PokemonCenter_1F_EventScript_IvrajKAfter
 	goto IndigoPlateau_PokemonCenter_1F_EventScript_IvrajKAfter
 	end
 
 IndigoPlateau_PokemonCenter_1F_EventScript_IvrajKAfter::
-	special HealPlayerParty
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_IvrajKPost, MSGBOX_DEFAULT
 	release
 	end
 
 IndigoPlateau_PokemonCenter_1F_EventScript_SumeetK::
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_lt VAR_TEMP_A, 8, IndigoPlateau_PokemonCenter_1F_EventScript_GauntletNotYet
 	trainerbattle_single TRAINER_SUMEET_K, IndigoPlateau_PokemonCenter_1F_Text_SumeetKIntro, IndigoPlateau_PokemonCenter_1F_Text_SumeetKDefeat, IndigoPlateau_PokemonCenter_1F_EventScript_SumeetKAfter
 	goto IndigoPlateau_PokemonCenter_1F_EventScript_SumeetKAfter
 	end
 
 IndigoPlateau_PokemonCenter_1F_EventScript_SumeetKAfter::
-	special HealPlayerParty
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_SumeetKPost, MSGBOX_DEFAULT
 	release
 	end
 
 IndigoPlateau_PokemonCenter_1F_EventScript_PrabhjitK::
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_lt VAR_TEMP_A, 8, IndigoPlateau_PokemonCenter_1F_EventScript_GauntletNotYet
 	trainerbattle_single TRAINER_PRABHJIT_K, IndigoPlateau_PokemonCenter_1F_Text_PrabhjitKIntro, IndigoPlateau_PokemonCenter_1F_Text_PrabhjitKDefeat, IndigoPlateau_PokemonCenter_1F_EventScript_PrabhjitKAfter
 	goto IndigoPlateau_PokemonCenter_1F_EventScript_PrabhjitKAfter
 	end
 
 IndigoPlateau_PokemonCenter_1F_EventScript_PrabhjitKAfter::
-	special HealPlayerParty
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_PrabhjitKPost, MSGBOX_DEFAULT
 	release
 	end
 
 IndigoPlateau_PokemonCenter_1F_EventScript_Gurnav::
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_lt VAR_TEMP_A, 8, IndigoPlateau_PokemonCenter_1F_EventScript_GauntletNotYet
 	trainerbattle_single TRAINER_GURNAV, IndigoPlateau_PokemonCenter_1F_Text_GurnavIntro, IndigoPlateau_PokemonCenter_1F_Text_GurnavDefeat, IndigoPlateau_PokemonCenter_1F_EventScript_GurnavAfter
 	goto IndigoPlateau_PokemonCenter_1F_EventScript_GurnavAfter
 	end
 
 IndigoPlateau_PokemonCenter_1F_EventScript_GurnavAfter::
-	special HealPlayerParty
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_GurnavPost, MSGBOX_DEFAULT
+	release
+	end
+
+@ Shared bail for all 7 lobby scripts (5 crew + BOBBY + WALLY_K) -- provably
+@ unreachable in play (see the header above), a silent release matches S1's
+@ own precedent for a defensive branch with nothing narratively to say
+@ (PokemonLeague_ChampionsRoom_EventScript_PostBattleIdle is the same class
+@ of "kept correct, never seen" branch).
+IndigoPlateau_PokemonCenter_1F_EventScript_GauntletNotYet::
 	release
 	end
 
@@ -204,11 +220,15 @@ IndigoPlateau_PokemonCenter_1F_EventScript_GurnavAfter::
 @ His own script administers the ONE reward: 5x checktrainerflag, the exact
 @ idiom Trinity_EventScript_CountKantoBadges already uses one level up
 @ (call_if_set-per-flag -> here, goto_if FALSE-per-trainer), gated on
-@ FLAG_TRINITY_K_GAUNTLET_REWARD for the claimed-once guard.
+@ FLAG_TRINITY_K_GAUNTLET_REWARD for the claimed-once guard. FIX ROUND 1
+@ (review M3): own inline 8-badge check restored at the top, same S1 house
+@ rule and same provably-unreachable status as the 5 fighters above.
 @ ============================================================================
 IndigoPlateau_PokemonCenter_1F_EventScript_Bobby::
 	lock
 	faceplayer
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_lt VAR_TEMP_A, 8, IndigoPlateau_PokemonCenter_1F_EventScript_BobbyNotYet
 	goto_if_set FLAG_TRINITY_K_GAUNTLET_REWARD, IndigoPlateau_PokemonCenter_1F_EventScript_BobbyClaimed
 	checktrainerflag TRAINER_HARJOT_K
 	goto_if FALSE, IndigoPlateau_PokemonCenter_1F_EventScript_BobbyBriefing
@@ -259,6 +279,14 @@ IndigoPlateau_PokemonCenter_1F_EventScript_BobbyClaimed::
 	release
 	end
 
+@ Provably unreachable (BOBBY's own object cannot spawn below 8 badges --
+@ FLAG_TRINITY_K_KANTO_CAST_HIDE), kept per S1's rule; own lock/faceplayer
+@ above needs its own release, unlike the bare-trainerbattle fighters' shared
+@ GauntletNotYet.
+IndigoPlateau_PokemonCenter_1F_EventScript_BobbyNotYet::
+	release
+	end
+
 @ ============================================================================
 @ WALLY -- "the last challenger" (brief). Bare 3-arg trainerbattle_single,
 @ the same minimal shape every plain VR_COOLTRAINER post in this tree already
@@ -267,8 +295,12 @@ IndigoPlateau_PokemonCenter_1F_EventScript_BobbyClaimed::
 @ provides lock/faceplayer/reveal/GetTrainerFlag-idempotency internally; the
 @ line after that macro call is what a re-approach (or a post-win talk)
 @ falls through to. WALLY_K music: CONFIRMED, no override -- S11 sub-plan §7.
+@ FIX ROUND 1 (review M3): own inline 8-badge check restored at the top,
+@ sharing the crew's GauntletNotYet bail (same provably-unreachable status).
 @ ============================================================================
 IndigoPlateau_PokemonCenter_1F_EventScript_WallyK::
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_lt VAR_TEMP_A, 8, IndigoPlateau_PokemonCenter_1F_EventScript_GauntletNotYet
 	trainerbattle_single TRAINER_WALLY_K, IndigoPlateau_PokemonCenter_1F_Text_WallyKIntro, IndigoPlateau_PokemonCenter_1F_Text_WallyKDefeat
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_WallyKPost, MSGBOX_AUTOCLOSE
 	end
@@ -405,8 +437,10 @@ IndigoPlateau_PokemonCenter_1F_Text_IvrajKPost:
 
 IndigoPlateau_PokemonCenter_1F_Text_SumeetKIntro:
 	.string "ECRUTEAK, remember? Fifteen\n"
-	.string "years I kept a secret up a tower.\p"
-	.string "This one I'm keeping is just:\n"
+	.string "years I kept a fire lit within\l"
+	.string "sight of the tower that fire\l"
+	.string "brought down.\p"
+	.string "This one's easier to keep:\n"
 	.string "you're not ready for me.$"
 
 IndigoPlateau_PokemonCenter_1F_Text_SumeetKDefeat:
@@ -433,9 +467,9 @@ IndigoPlateau_PokemonCenter_1F_Text_PrabhjitKPost:
 @ trainers.party) -- Dark-leaning, and his line says so honestly.
 IndigoPlateau_PokemonCenter_1F_Text_GurnavIntro:
 	.string "You haven't met me yet. GURNAV.\p"
-	.string "I joined this lot partway through\n"
-	.string "JOHTO -- somebody has to bring\l"
-	.string "the DARK types.\p"
+	.string "I'm the newest one -- joined up\n"
+	.string "for the KANTO stretch. Somebody\l"
+	.string "has to bring the DARK types.\p"
 	.string "Introductions are for after.$"
 
 IndigoPlateau_PokemonCenter_1F_Text_GurnavDefeat:

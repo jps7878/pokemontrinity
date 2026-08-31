@@ -49,6 +49,7 @@
 
 PokemonLeague_LoreleisRoom_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, PokemonLeague_LoreleisRoom_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, PokemonLeague_LoreleisRoom_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PokemonLeague_LoreleisRoom_OnWarp
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PokemonLeague_LoreleisRoom_OnFrame
 	.byte 0
@@ -57,18 +58,35 @@ PokemonLeague_LoreleisRoom_OnLoad:
 	call_if_set FLAG_TRINITY_J_E4_WILL_BEATEN, PokemonLeague_LoreleisRoom_EventScript_SetDoorOpen
 	call_if_set FLAG_TRINITY_K_E4_LORELEI_BEATEN, PokemonLeague_LoreleisRoom_EventScript_SetDoorOpen
 	call_if_eq VAR_TRINITY_JOHTO_SCENE_INDIGO, 1, PokemonLeague_LoreleisRoom_EventScript_CloseEntry
-	@ Trinity M5b S11 -- the roster switch (sub-plan §1.2). Live 8-Kanto-badge
-	@ check, zero flags (SetObjectInvisibility is SCREFF_HARDWARE only), same
-	@ idiom as the Indigo II lobby's own OnLoad.
-	call Trinity_EventScript_CountKantoBadges
-	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_LoreleisRoom_EventScript_ShowLorelei
-	showobjectat LOCALID_JOHTO_E4_WILL, MAP_POKEMON_LEAGUE_LORELEIS_ROOM
-	hideobjectat LOCALID_KANTO_E4_LORELEI, MAP_POKEMON_LEAGUE_LORELEIS_ROOM
 	end
 
-PokemonLeague_LoreleisRoom_EventScript_ShowLorelei::
-	hideobjectat LOCALID_JOHTO_E4_WILL, MAP_POKEMON_LEAGUE_LORELEIS_ROOM
-	showobjectat LOCALID_KANTO_E4_LORELEI, MAP_POKEMON_LEAGUE_LORELEIS_ROOM
+@ ============================================================================
+@ Trinity M5b S11 fix round 1 (review C1) -- roster-switch flag authoring,
+@ moved OUT of ON_LOAD (a guaranteed no-op there: ON_LOAD runs at CB2_LoadMap
+@ state 0, before InitObjectEventsLocal spawns any object at state 3 --
+@ src/overworld.c:2160-2180, :2435-2450 -- and SetObjectInvisibility silently
+@ fails against an unspawned target, src/event_object_movement.c:3089-3094)
+@ and INTO this fresh ON_TRANSITION, the tree's own hide-flag idiom
+@ (CeruleanCity_OnTransition/FLAG_TRINITY_K_CAVE_GUARD_HIDE,
+@ data/maps/CeruleanCity/scripts.inc:34-41): ON_TRANSITION also runs before
+@ spawn, but a FLAG is SaveBlock state TrySpawnObjectEvents reads AT spawn
+@ time (state 3), not a live-instance call attempted before any instance
+@ exists. WILL's map.json template now carries FLAG_TRINITY_K_JOHTO_SITTER_
+@ HIDE (shared, all 5 M4 Johto sitters); LORELEI's carries FLAG_TRINITY_K_
+@ KANTO_CAST_HIDE (shared, all 13 Kanto objects this slice added). Both
+@ hex-audited fresh at 0x1DE/0x1DF (include/constants/flags.h) -- the
+@ original 0x4E9-0x4EF registry run is fully spent.
+@ ============================================================================
+PokemonLeague_LoreleisRoom_OnTransition::
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_LoreleisRoom_EventScript_ArmKantoCast
+	setflag FLAG_TRINITY_K_KANTO_CAST_HIDE
+	clearflag FLAG_TRINITY_K_JOHTO_SITTER_HIDE
+	end
+
+PokemonLeague_LoreleisRoom_EventScript_ArmKantoCast::
+	clearflag FLAG_TRINITY_K_KANTO_CAST_HIDE
+	setflag FLAG_TRINITY_K_JOHTO_SITTER_HIDE
 	end
 
 PokemonLeague_LoreleisRoom_EventScript_SetDoorOpen::
@@ -157,20 +175,28 @@ PokemonLeague_LoreleisRoom_Text_PostBattle:
 
 @ ============================================================================
 @ Trinity M5b S11 -- LORELEI, Kanto's E4-II. Self-contained mirror of WILL's
-@ script above (object-level exclusivity via ON_LOAD's showobjectat/
-@ hideobjectat means only one of the two objects/scripts is ever reachable
-@ for a given room-load, so no live badge check is needed HERE, only in the
-@ room's ON_LOAD). trainerbattle_no_intro, own FLAG_TRINITY_K_E4_LORELEI_
-@ BEATEN, same door-open call -- sub-plan §4.
+@ script above (object-level exclusivity via the shared FLAG_TRINITY_K_*_HIDE
+@ pair means only one of the two objects/scripts is ever reachable for a
+@ given room-load). trainerbattle_no_intro, own FLAG_TRINITY_K_E4_LORELEI_
+@ BEATEN, same door-open call -- sub-plan §4. FIX ROUND 1 (review M3): own
+@ inline 8-badge check restored at the top (S1 house rule), provably
+@ unreachable now that the object itself cannot spawn below 8 badges.
 @ ============================================================================
 PokemonLeague_LoreleisRoom_EventScript_Lorelei::
 	lock
 	faceplayer
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_lt VAR_TEMP_A, 8, PokemonLeague_LoreleisRoom_EventScript_LoreleiNotYet
 	goto_if_set FLAG_TRINITY_K_E4_LORELEI_BEATEN, PokemonLeague_LoreleisRoom_EventScript_LoreleiPostBattle
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
 	msgbox PokemonLeague_LoreleisRoom_Text_LoreleiIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_LORELEI, PokemonLeague_LoreleisRoom_Text_LoreleiDefeat
 	goto PokemonLeague_LoreleisRoom_EventScript_LoreleiDefeated
+	end
+
+@ Provably unreachable, kept per S1's rule (same class as ASH's own guard).
+PokemonLeague_LoreleisRoom_EventScript_LoreleiNotYet::
+	release
 	end
 
 PokemonLeague_LoreleisRoom_EventScript_LoreleiDefeated::
@@ -192,7 +218,7 @@ PokemonLeague_LoreleisRoom_Text_LoreleiIntro:
 	.string "Welcome back, {PLAYER}.\p"
 	.string "The last trainer to stand in\n"
 	.string "this room was JOHTO's CHAMPION.\l"
-	.string "You watched that happen.\p"
+	.string "That was you.\p"
 	.string "I am LORELEI. I keep this floor\n"
 	.string "cold on purpose -- it clears the\l"
 	.string "head before anything else does.\p"

@@ -548,9 +548,9 @@
 #define FLAG_DEFEATED_HO_OH                  0x1DC
 #define FLAG_DEFEATED_LUGIA                  0x1DD
 
-#define FLAG_UNUSED_0x1DE                    0x1DE // Unused Flag
-#define FLAG_UNUSED_0x1DF                    0x1DF // Unused Flag
-#define FLAG_UNUSED_0x1E0                    0x1E0 // Unused Flag
+#define FLAG_TRINITY_K_JOHTO_SITTER_HIDE    0x1DE // Trinity M5b S11 fix round 1: was FLAG_UNUSED_0x1DE -- roster-switch C1 fix (0x4E9-0x4EF exhausted, fresh hex-audit of this isolated 6-slot vanilla run, bounded by FLAG_DEFEATED_LUGIA 0x1DD before and the Mystery Gift block 0x1E4+ after). Shared by all 5 M4 Johto E4/Champion sitter objects (Will/Koga/Bruno/Karen/Lance) -- hidden (SET) once 8 Kanto badges via C-COUNT; authored fresh from each affected map's ON_TRANSITION (CeruleanCity_OnTransition/FLAG_TRINITY_K_CAVE_GUARD_HIDE idiom), never from ON_LOAD (TrySpawnObjectEvents reads this at spawn time, which is AFTER ON_TRANSITION but object-instance calls like showobjectat cannot work that early -- see the C1 postmortem).
+#define FLAG_TRINITY_K_KANTO_CAST_HIDE    0x1DF // Trinity M5b S11 fix round 1: was FLAG_UNUSED_0x1DF -- the complement of 0x1DE. Shared by all 13 Kanto objects this slice added (7 Indigo II lobby, 4 E4-II sitters, Ash's ChampionsRoom + HallOfFame objects) -- hidden (SET) below 8 Kanto badges, cleared once the threshold is reached. Same ON_TRANSITION authoring site as 0x1DE (one live C-COUNT check drives both).
+#define FLAG_TRINITY_K_E4_ASH_BEATEN    0x1E0 // Trinity M5b S11 fix round 1: was FLAG_UNUSED_0x1E0 -- roster-switch C2 fix, same free run as 0x1DE/0x1DF. ASH's own re-fight guard in PokemonLeague_ChampionsRoom (replaces the false "provably unreachable" checktrainerflag TRAINER_ASH guard, which nothing in the tree ever clears) -- the exact FLAG_TRINITY_J_E4_LANCE_BEATEN shape, cleared by IndigoPlateau_PokemonCenter_1F_OnTransition beside the nine existing E4 clears.
 #define FLAG_UNUSED_0x1E1                    0x1E1 // Unused Flag
 #define FLAG_UNUSED_0x1E2                    0x1E2 // Unused Flag
 #define FLAG_UNUSED_0x1E3                    0x1E3 // Unused Flag
@@ -1348,7 +1348,7 @@
 #define FLAG_TRINITY_K_RIG_RESOLVED    0x4E6 // Trinity M5b S10: was FLAG_UNUSED_0x4E6 -- terminal, the rig scene has played. Corroboration: setflag site removeobject's both legendaries.
 #define FLAG_TRINITY_K_GIOVANNI_BASEMENT_HIDE    0x4E7 // Trinity M5b S10: was FLAG_UNUSED_0x4E7 -- Giovanni's BASEMENT object's own hide flag (R1 co-sign on removeobject); separate from his unconditional gym-state object, no template-position reuse across states.
 #define FLAG_TRINITY_K_SILVER_FINAL_HIDE    0x4E8 // Trinity M5b S10: was FLAG_UNUSED_0x4E8 -- Route1 SILVER's own visibility flag; visible iff FLAG_TRINITY_BADGE24 set AND VAR_TRINITY_KANTO_ARC < 5.
-#define FLAG_TRINITY_K_MOLTRES_HIDE    0x4E9 // Trinity M5b S11: was FLAG_UNUSED_0x4E9 -- MOLTRES's own visibility flag (Zapdos/Articuno contract clause 1), KantoVictoryRoad_3F. Ungated: clears unconditionally every ON_TRANSITION unless FLAG_TRINITY_K_MOLTRES_RESOLVED is set.
+#define FLAG_TRINITY_K_MOLTRES_HIDE    0x4E9 // Trinity M5b S11: was FLAG_UNUSED_0x4E9 -- MOLTRES's own visibility flag (Zapdos/Articuno contract clause 1), VictoryRoad_3F (fix round 1, review Minor 7: corrected from "KantoVictoryRoad_3F" -- no such map exists, KantoVictoryRoad_1F is a different, separate floor). Ungated: clears unconditionally every ON_TRANSITION unless FLAG_TRINITY_K_MOLTRES_RESOLVED is set.
 #define FLAG_TRINITY_K_MOLTRES_RESOLVED    0x4EA // Trinity M5b S11: was FLAG_UNUSED_0x4EA -- terminal (contract clause 3), written on WON and on the CAUGHT fall-through.
 #define FLAG_TRINITY_K_E4_LORELEI_BEATEN    0x4EB // Trinity M5b S11: was FLAG_UNUSED_0x4EB -- PokemonLeague_LoreleisRoom's Kanto-roster (E4-II) door/idempotency flag, FLAG_TRINITY_J_E4_WILL_BEATEN's pattern verbatim, cleared on every INDIGO Center visit alongside it.
 #define FLAG_TRINITY_K_E4_AGATHA_BEATEN    0x4EC // Trinity M5b S11: was FLAG_UNUSED_0x4EC -- PokemonLeague_BrunosRoom's Kanto-roster (AGATHA occupies this room) door/idempotency flag.

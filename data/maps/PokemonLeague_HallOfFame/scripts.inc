@@ -62,9 +62,34 @@
 @ ============================================================================
 
 PokemonLeague_HallOfFame_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PokemonLeague_HallOfFame_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PokemonLeague_HallOfFame_OnWarp
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PokemonLeague_HallOfFame_OnFrame
 	.byte 0
+
+@ ============================================================================
+@ Trinity M5b S11 fix round 1 (review C1) -- roster-switch flag authoring,
+@ added fresh (this map previously had no ON_TRANSITION). Belt-and-braces
+@ with the Ceremony script's own runtime showobjectat/hideobjectat below
+@ (R1's "redundant but harmless" pattern, same class as removeobject
+@ co-signing a hide flag): this ON_TRANSITION is what makes LANCE's/ASH's
+@ map.json flag fields (FLAG_TRINITY_K_JOHTO_SITTER_HIDE /
+@ FLAG_TRINITY_K_KANTO_CAST_HIDE) correct at spawn time (TrySpawnObjectEvents,
+@ state 3), before Ceremony's own runtime call ever runs; Ceremony's call
+@ remains the belt that was already independently correct (review: "the only
+@ correct one" of the seven original sites) and needs no change.
+@ ============================================================================
+PokemonLeague_HallOfFame_OnTransition::
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_HallOfFame_EventScript_ArmKantoCast
+	setflag FLAG_TRINITY_K_KANTO_CAST_HIDE
+	clearflag FLAG_TRINITY_K_JOHTO_SITTER_HIDE
+	end
+
+PokemonLeague_HallOfFame_EventScript_ArmKantoCast::
+	clearflag FLAG_TRINITY_K_KANTO_CAST_HIDE
+	setflag FLAG_TRINITY_K_JOHTO_SITTER_HIDE
+	end
 
 PokemonLeague_HallOfFame_OnWarp:
 	map_script_2 VAR_TEMP_1, 0, PokemonLeague_HallOfFame_EventScript_TurnPlayerNorth
@@ -138,13 +163,33 @@ PokemonLeague_HallOfFame_EventScript_CeremonyJohto::
 @ path to it (sub-plan §6.1) -- so src/credits.c/data/credits.h needed no
 @ branching logic of its own, just new content.
 @
-@ FLAG_TRINITY_K_LEAGUE_CLEARED is NOT allocated (a self-caught economy over
-@ the sub-plan's own placeholder for it): GameClearKanto already calls
-@ FlagSet(FLAG_IS_CHAMPION) natively, and that flag is a genuine, permanent,
-@ engine-recognized "this save has reached the true ending" signal -- a
-@ second Trinity-only flag asserting the identical fact would have been
-@ redundant, and the 0x4E9-0x4EF budget (S11 sub-plan §0) has no room for it
-@ regardless.
+@ FLAG_TRINITY_K_LEAGUE_CLEARED is NOT allocated -- the economy itself stands
+@ (fix round 1, review C3: zero readers anywhere need a Kanto-clear predicate
+@ this slice), but the ORIGINAL justification for it was FALSE and is
+@ corrected here rather than repeated. FLAG_IS_CHAMPION is NOT a "this save
+@ has reached Kanto's true ending" signal -- it has been TRUE since ACT I:
+@ EverGrandeCity_HallOfFame_EventScript_SetGameClearFlags (data/scripts/
+@ hall_of_fame.inc:1-3) sets it at the HOENN Hall of Fame, hundreds of hours
+@ before Act III even exists on a Trinity save. GameClearJohto
+@ (src/post_battle_event_funcs.c) does NOT set it; GameClearKanto (:272)
+@ merely re-sets it idempotently, the same way it always has been since Act I.
+@ Its only tree-wide readers (src/link.c:323, src/link_rfu_3.c:679, national
+@ link-cable compatibility; src/caps.c, EV/level caps) carry no Kanto
+@ semantics at all.
+@
+@ WARNING FOR S12/S13: FLAG_IS_CHAMPION is NOT a Kanto-clear predicate. Do
+@ NOT read it to gate anything post-game. The real, correct, and already-
+@ wired signal is VAR_TRINITY_KANTO_ARC >= 6 (this slice's own arc write,
+@ monotonic-guarded, one writer -- PokemonLeague_HallOfFame_EventScript_
+@ RecordTheKantoLeague below) -- CeruleanCity_OnTransition already uses
+@ exactly this idiom (`goto_if_ge VAR_TRINITY_KANTO_ARC, 6, ...`) for an
+@ unrelated Kanto-clear gate, proving the arc is the tree's own established
+@ answer to "has this save finished Kanto," not FLAG_IS_CHAMPION. If a future
+@ slice genuinely needs a dedicated flag instead of an arc comparison, one
+@ must be freshly hex-audited -- the 0x4E9-0x4EF run this slice's registry
+@ used is fully spent, and the roster-switch fix (see C1 above and
+@ FLAG_TRINITY_K_JOHTO_SITTER_HIDE/FLAG_TRINITY_K_KANTO_CAST_HIDE,
+@ include/constants/flags.h) has now also spent 0x1DE/0x1DF.
 @ ============================================================================
 PokemonLeague_HallOfFame_EventScript_CeremonyKanto::
 	applymovement LOCALID_PLAYER, PokemonLeague_HallOfFame_Movement_WalkIn
@@ -202,8 +247,8 @@ PokemonLeague_HallOfFame_Text_AshCeremony:
 	.string "Today we record a trainer who\n"
 	.string "crossed three regions that were\l"
 	.string "never home, and never once asked\l"
-	.string "what she'd be paid for finishing\l"
-	.string "the job.\p"
+	.string "what the job would pay before\l"
+	.string "finishing it.\p"
 	.string "{PLAYER}, allow me and PIKACHU to\n"
 	.string "register you and your team.$"
 
@@ -272,9 +317,9 @@ PokemonLeague_HallOfFame_Text_LanceCeremony:
 	.string "POKéMON are inducted with them.\p"
 	.string "Today we record a trainer who\n"
 	.string "came to a region that was not\l"
-	.string "hers, walked into every fight it\l"
+	.string "home, walked into every fight it\l"
 	.string "had, and did not once ask what\l"
-	.string "she would be paid for it.\p"
+	.string "the job would pay for it.\p"
 	.string "{PLAYER}, allow me to register\n"
 	.string "you and your partners.$"
 

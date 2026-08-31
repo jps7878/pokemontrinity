@@ -6194,11 +6194,22 @@ u16 GetBattleBGM(void)
             // house rule ("Act III's champion then still has a theme of its
             // own to take") a third track is needed. No new audio asset is in
             // scope this slice; MUS_VS_FRONTIER_BRAIN (RSE's Battle Frontier
-            // facility-head theme) is confirmed unused anywhere else in
-            // Trinity's story content (no Battle Frontier boss is ever
-            // fought), making it a genuinely free, high-stakes, never-heard
-            // track repurposed here -- same id-guard idiom as the LANCE case
-            // immediately above.
+            // facility-head theme) is repurposed here. FIX ROUND 1 (review
+            // Minor 1): the original comment overclaimed the TRACK was
+            // "confirmed unused anywhere else in Trinity's story content" --
+            // the Battle Frontier LOCATION is reachable in this ROM
+            // (LilycoveCity_Harbor/scripts.inc, SlateportCity_Harbor/
+            // scripts.inc both `warp MAP_BATTLE_FRONTIER_OUTSIDE_WEST`), and
+            // GetBattleBGM's own TRAINER_CLASS_SALON_MAIDEN/DOME_ACE/etc.
+            // case (below) still correctly routes any facility-head fought
+            // there to this same track. The true, narrower fact this pick
+            // rests on: no Battle Frontier facility-head BOSS is ever fought
+            // in Trinity's STORY content (no trainerbattle site anywhere in
+            // data/ uses one of those seven classes), so the TRACK itself has
+            // never been heard in-story before now -- a genuinely free,
+            // high-stakes pick, correctly and minimally wired (same id-guard
+            // idiom as the LANCE case immediately above), just not because
+            // the location is unreachable.
             if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_ASH)
                 return MUS_VS_FRONTIER_BRAIN;
             return MUS_VS_CHAMPION;

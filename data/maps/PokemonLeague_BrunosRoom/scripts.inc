@@ -49,6 +49,7 @@
 
 PokemonLeague_BrunosRoom_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, PokemonLeague_BrunosRoom_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, PokemonLeague_BrunosRoom_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PokemonLeague_BrunosRoom_OnWarp
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PokemonLeague_BrunosRoom_OnFrame
 	.byte 0
@@ -57,17 +58,25 @@ PokemonLeague_BrunosRoom_OnLoad:
 	call_if_set FLAG_TRINITY_J_E4_KOGA_BEATEN, PokemonLeague_BrunosRoom_EventScript_SetDoorOpen
 	call_if_set FLAG_TRINITY_K_E4_AGATHA_BEATEN, PokemonLeague_BrunosRoom_EventScript_SetDoorOpen
 	call_if_eq VAR_TRINITY_JOHTO_SCENE_INDIGO, 2, PokemonLeague_BrunosRoom_EventScript_CloseEntry
-	@ Trinity M5b S11 -- roster switch (sub-plan §1.2), same idiom as Lorelei's
-	@ Room.
-	call Trinity_EventScript_CountKantoBadges
-	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_BrunosRoom_EventScript_ShowAgatha
-	showobjectat LOCALID_JOHTO_E4_KOGA, MAP_POKEMON_LEAGUE_BRUNOS_ROOM
-	hideobjectat LOCALID_KANTO_E4_AGATHA, MAP_POKEMON_LEAGUE_BRUNOS_ROOM
 	end
 
-PokemonLeague_BrunosRoom_EventScript_ShowAgatha::
-	hideobjectat LOCALID_JOHTO_E4_KOGA, MAP_POKEMON_LEAGUE_BRUNOS_ROOM
-	showobjectat LOCALID_KANTO_E4_AGATHA, MAP_POKEMON_LEAGUE_BRUNOS_ROOM
+@ Trinity M5b S11 fix round 1 (review C1) -- roster-switch flag authoring,
+@ moved out of the broken ON_LOAD showobjectat/hideobjectat idiom (a
+@ guaranteed no-op -- see PokemonLeague_LoreleisRoom/scripts.inc's header for
+@ the full engine-chain postmortem) and into this fresh ON_TRANSITION, the
+@ CeruleanCity_OnTransition/FLAG_TRINITY_K_CAVE_GUARD_HIDE idiom. KOGA's
+@ template now carries FLAG_TRINITY_K_JOHTO_SITTER_HIDE; AGATHA's carries
+@ FLAG_TRINITY_K_KANTO_CAST_HIDE.
+PokemonLeague_BrunosRoom_OnTransition::
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 8, PokemonLeague_BrunosRoom_EventScript_ArmKantoCast
+	setflag FLAG_TRINITY_K_KANTO_CAST_HIDE
+	clearflag FLAG_TRINITY_K_JOHTO_SITTER_HIDE
+	end
+
+PokemonLeague_BrunosRoom_EventScript_ArmKantoCast::
+	clearflag FLAG_TRINITY_K_KANTO_CAST_HIDE
+	setflag FLAG_TRINITY_K_JOHTO_SITTER_HIDE
 	end
 
 PokemonLeague_BrunosRoom_EventScript_SetDoorOpen::
@@ -155,14 +164,24 @@ PokemonLeague_BrunosRoom_Text_PostBattle:
 @ furniture, not resident's name, same convention M4 already set). Self-
 @ contained mirror of KOGA's script above.
 @ ============================================================================
+@ FIX ROUND 1 (review M3): own inline 8-badge check restored at the top (S1
+@ house rule), provably unreachable now that AGATHA's own object cannot spawn
+@ below 8 badges (FLAG_TRINITY_K_KANTO_CAST_HIDE).
 PokemonLeague_BrunosRoom_EventScript_Agatha::
 	lock
 	faceplayer
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_lt VAR_TEMP_A, 8, PokemonLeague_BrunosRoom_EventScript_AgathaNotYet
 	goto_if_set FLAG_TRINITY_K_E4_AGATHA_BEATEN, PokemonLeague_BrunosRoom_EventScript_AgathaPostBattle
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
 	msgbox PokemonLeague_BrunosRoom_Text_AgathaIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_AGATHA, PokemonLeague_BrunosRoom_Text_AgathaDefeat
 	goto PokemonLeague_BrunosRoom_EventScript_AgathaDefeated
+	end
+
+@ Provably unreachable, kept per S1's rule.
+PokemonLeague_BrunosRoom_EventScript_AgathaNotYet::
+	release
 	end
 
 PokemonLeague_BrunosRoom_EventScript_AgathaDefeated::

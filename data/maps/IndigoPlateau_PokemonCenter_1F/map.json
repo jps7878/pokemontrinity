@@ -82,7 +82,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "IndigoPlateau_PokemonCenter_1F_EventScript_Bobby",
-      "flag": "0"
+      "flag": "FLAG_TRINITY_K_KANTO_CAST_HIDE"
     },
     {
       "local_id": "LOCALID_KANTO_INDIGO_HARJOT",
@@ -96,7 +96,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "IndigoPlateau_PokemonCenter_1F_EventScript_HarjotK",
-      "flag": "0"
+      "flag": "FLAG_TRINITY_K_KANTO_CAST_HIDE"
     },
     {
       "local_id": "LOCALID_KANTO_INDIGO_IVRAJ",
@@ -110,7 +110,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "IndigoPlateau_PokemonCenter_1F_EventScript_IvrajK",
-      "flag": "0"
+      "flag": "FLAG_TRINITY_K_KANTO_CAST_HIDE"
     },
     {
       "local_id": "LOCALID_KANTO_INDIGO_SUMEET",
@@ -124,7 +124,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "IndigoPlateau_PokemonCenter_1F_EventScript_SumeetK",
-      "flag": "0"
+      "flag": "FLAG_TRINITY_K_KANTO_CAST_HIDE"
     },
     {
       "local_id": "LOCALID_KANTO_INDIGO_PRABHJIT",
@@ -138,7 +138,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "IndigoPlateau_PokemonCenter_1F_EventScript_PrabhjitK",
-      "flag": "0"
+      "flag": "FLAG_TRINITY_K_KANTO_CAST_HIDE"
     },
     {
       "local_id": "LOCALID_KANTO_INDIGO_GURNAV",
@@ -152,7 +152,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "IndigoPlateau_PokemonCenter_1F_EventScript_Gurnav",
-      "flag": "0"
+      "flag": "FLAG_TRINITY_K_KANTO_CAST_HIDE"
     },
     {
       "local_id": "LOCALID_KANTO_INDIGO_WALLY",
@@ -166,7 +166,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "IndigoPlateau_PokemonCenter_1F_EventScript_WallyK",
-      "flag": "0"
+      "flag": "FLAG_TRINITY_K_KANTO_CAST_HIDE"
     }
   ],
   "warp_events": [
