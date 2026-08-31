@@ -130,8 +130,8 @@
 #define FLAG_RESCUED_BIRCH                       0x52
 #define FLAG_LEGENDARIES_IN_SOOTOPOLIS           0x53
 
-#define FLAG_UNUSED_0x054                    0x54  // Unused Flag
-#define FLAG_UNUSED_0x055                    0x55  // Unused Flag
+#define FLAG_TRINITY_K_MYSTERIOUS_INVITATION 0x54  // Trinity M5b S13a: was FLAG_UNUSED_0x054 -- the "Mysterious Invitation" beat. Co-signed the moment MEWTWO's CeruleanCave_B1F contract resolves (WON or the CAUGHT fall-through); VermilionCity's own Sailor object is its sole reader, offering the fade-warp to NEW ISLAND once set. Never set anywhere else; no arc write.
+#define FLAG_TRINITY_K_MEWTWO_HIDE            0x55  // Trinity M5b S13a: was FLAG_UNUSED_0x055 -- MEWTWO's own visibility flag, CeruleanCave_B1F's ON_TRANSITION (visible iff VAR_TRINITY_KANTO_ARC>=6 AND FLAG_TRINITY_K_MEWTWO_RESOLVED unset). Zapdos/Articuno/Moltres HIDE-flag shape verbatim.
 
 #define FLAG_HIDE_CONTEST_POKE_BALL          0x56  // Always set after new game, object it hides is added directly
 #define FLAG_MET_RIVAL_MOM                   0x57
@@ -152,7 +152,7 @@
 #define FLAG_MOSSDEEP_GYM_SWITCH_3           0x66 //
 #define FLAG_MOSSDEEP_GYM_SWITCH_4           0x67 //
 
-#define FLAG_UNUSED_0x068                    0x68  // Unused Flag
+#define FLAG_TRINITY_K_MEWTWO_RESOLVED         0x68  // Trinity M5b S13a: was FLAG_UNUSED_0x068 -- terminal (legendary contract clause 3), set on WON and on the CAUGHT fall-through, CeruleanCave_B1F/scripts.inc.
 
 #define FLAG_OCEANIC_MUSEUM_MET_REPORTER     0x69
 #define FLAG_RECEIVED_HM_STRENGTH            0x6A

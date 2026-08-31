@@ -9720,6 +9720,16 @@
       "secondary_tileset": "gTileset_TraditionalHouseJohto",
       "border_filepath": "data/layouts/WiseTriosRoom_Johto/border.bin",
       "blockdata_filepath": "data/layouts/WiseTriosRoom_Johto/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEW_ISLAND_KANTO",
+      "name": "NewIsland_Layout",
+      "width": 12,
+      "height": 10,
+      "primary_tileset": "gTileset_GeneralKanto",
+      "secondary_tileset": "gTileset_SeviiIslands123Kanto",
+      "border_filepath": "data/layouts/NewIsland/border.bin",
+      "blockdata_filepath": "data/layouts/NewIsland/map.bin"
     }
   ]
 }

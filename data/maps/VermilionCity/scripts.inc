@@ -137,7 +137,31 @@ VermilionCity_EventScript_Sailor::
 	release
 	end
 
+@ Trinity M5b S13 -- the MYSTERIOUS INVITATION's own destination, reached only
+@ after the player declines the OLIVINE crossing above. FLAG_TRINITY_K_
+@ MYSTERIOUS_INVITATION is co-signed the moment MEWTWO's CERULEAN CAVE
+@ contract resolves (NewIsland/scripts.inc's own resolved handler) -- it is
+@ never set here, only read. Fade-warp only (YESNO -> warp -> waitstate),
+@ the exact idiom the OLIVINE leg above already uses -- no ship-corridor map,
+@ per the founder's decision. No setrespawn: NEW ISLAND has no PC, so a
+@ faint there must respawn the player at their EXISTING Kanto respawn point,
+@ not strand them -- the OLIVINE leg's setrespawn is deliberately NOT mirrored.
 VermilionCity_EventScript_SailorDecline::
+	goto_if_set FLAG_TRINITY_K_MYSTERIOUS_INVITATION, VermilionCity_EventScript_OfferNewIsland
+	msgbox VermilionCity_Text_SailAnotherTime, MSGBOX_DEFAULT
+	release
+	end
+
+VermilionCity_EventScript_OfferNewIsland::
+	msgbox VermilionCity_Text_MysteriousInvitation, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, VermilionCity_EventScript_SailAnotherTimeAfterAll
+	closemessage
+	warp MAP_NEW_ISLAND, 5, 7
+	waitstate
+	release
+	end
+
+VermilionCity_EventScript_SailAnotherTimeAfterAll::
 	msgbox VermilionCity_Text_SailAnotherTime, MSGBOX_DEFAULT
 	release
 	end
@@ -150,6 +174,12 @@ VermilionCity_EventScript_SailorNotYet::
 VermilionCity_Text_BackToOlivine:
 	.string "Back to OLIVINE CITY, over in\n"
 	.string "JOHTO?$"
+
+VermilionCity_Text_MysteriousInvitation:
+	.string "Say -- that odd letter you got says\n"
+	.string "there's an island east of here that\l"
+	.string "isn't on any chart. Want me to take\l"
+	.string "you out to it?$"
 
 VermilionCity_Text_SailAnotherTime:
 	.string "Please sail with us another time!$"

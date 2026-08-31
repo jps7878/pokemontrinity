@@ -528,6 +528,14 @@ void BattleSetup_StartLegendaryBattle(void)
     case SPECIES_MOLTRES:
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RG_VS_LEGEND);
         break;
+    // Trinity M5b S13a: MEWTWO. REQUIRED, not decorative, same reasoning as
+    // every case above it -- an unlisted species falls to `default:` on the
+    // GROUDON body. MUS_RG_VS_MEWTWO is FRLG's own dedicated Mewtwo track
+    // (songs.h:486, pre-existing, previously unused anywhere in this tree) --
+    // a better pairing than the generic MUS_RG_VS_LEGEND the birds share.
+    case SPECIES_MEWTWO:
+        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RG_VS_MEWTWO);
+        break;
     case SPECIES_MEW:
         CreateBattleStartTask(B_TRANSITION_GRID_SQUARES, MUS_VS_MEW);
         break;
