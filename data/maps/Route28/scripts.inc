@@ -63,3 +63,65 @@ Route28_Text_KantoGateNotYet:
 	.string "like KANTO isn't ready for you\l"
 	.string "yet.\p"
 	.string "Something says turn back.$"
+
+@ ============================================================================
+@ Trinity M5b S12 -- the MT. SILVER climb gate, VAR_TRINITY_KANTO_ARC >= 6
+@ (Kanto-clear; never FLAG_IS_CHAMPION, PokemonLeague_HallOfFame/scripts.inc's
+@ own standing warning). Full decode: docs/superpowers/plans/m5b/
+@ 12-mt-silver-red.md section 2.
+@
+@ WHY 8 COORD_EVENTS, NOT ONE. Unlike this map's own KantoGateCheck above (a
+@ coord_event stacked on a discrete WARP tile), the ROUTE28<->SILVER_CAVE_
+@ OUTSIDE border is a plain `connections` edge (map.json, offset -18/left) --
+@ a seamless multi-row crossing, not a single door. reach_check.py's own Map
+@ class confirms the west edge (x=0) is walkable at y in {0,3,12,13,14,15,16,
+@ 17} (elev 3 throughout), each with a walkable partner on SilverCaveOutside's
+@ east edge at row y+18 (0->18, 3->21, 12->30, 13->31, 14->32, 15->33, 16->34,
+@ 17->35 -- all confirmed walkable). BFS from this map's real entry points
+@ shows all 8 are genuinely player-reachable: (0,0) and (0,14)-(0,17) from the
+@ MAP_ROUTE22 warp landing (39,8); (0,3)/(0,12)/(0,13) only from the STEEL_WING
+@ _HOUSE warp-back (7,3) and/or this map's own internal warp landing (33,5).
+@ No single tile is a cut vertex (same class of finding as KantoGateCheck's own
+@ east-edge note above) -- all 8 need their own trigger.
+@
+@ Bounce is a fixed walk_right (east, back into ROUTE28): every (1,y) landing
+@ tile was checked individually and is walkable/non-ledge (MB_NORMAL or
+@ MB_TALL_GRASS), and every one of the 8 approaches is a lateral westward walk
+@ (none of the 8 is reachable by a vertical column-step that would make
+@ facing ambiguous the way ViridianCity's own thru-tile gate is) -- no
+@ GetPlayerFacingDirection() branching needed, unlike that case.
+@
+@ Same VAR_TEMP_1==0 "always fires" idiom as KantoGateCheck/Route26's League
+@ gate/CeruleanCity's cave mouth. OPEN is a bare `end` (not a manual re-warp
+@ like KantoGateOpen above) because this tile is not itself a warp -- once the
+@ coord_event resolves without a bounce, the player's own next westward step
+@ crosses the connection normally, exactly as CeruleanCity_EventScript_
+@ CaveMouthOpen's own bare `end` does for its one-tile-before-the-door shape.
+@
+@ READ-ONLY: this gate never writes VAR_TRINITY_KANTO_ARC. S12's own RED
+@ defeat flow (SilverCaveRoom3/scripts.inc) is the ONE writer of value 7;
+@ this gate only ever reads >=6 (S11's own arc write, PokemonLeague_
+@ HallOfFame/scripts.inc).
+@ ============================================================================
+Route28_EventScript_SilverCaveGateCheck::
+	goto_if_ge VAR_TRINITY_KANTO_ARC, 6, Route28_EventScript_SilverCaveGateOpen
+	lockall
+	msgbox Route28_Text_SilverCaveNotYet, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_PLAYER, Route28_Movement_SilverCaveGateStepBack
+	waitmovement 0
+	releaseall
+	end
+
+Route28_EventScript_SilverCaveGateOpen::
+	end
+
+Route28_Movement_SilverCaveGateStepBack:
+	walk_right
+	step_end
+
+Route28_Text_SilverCaveNotYet:
+	.string "MT. SILVER stays quiet for now.\n"
+	.string "Something says you haven't earned\l"
+	.string "this climb yet.\p"
+	.string "Something says turn back.$"
