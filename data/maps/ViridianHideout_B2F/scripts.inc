@@ -191,16 +191,16 @@ ViridianHideout_B2F_EventScript_Giovanni::
 	msgbox ViridianHideout_B2F_Text_RigFails, MSGBOX_DEFAULT
 	closemessage
 	delay 20
-	applymovement LOCALID_KANTO_VBASEMENT_MEWTWO, ViridianHideout_B2F_Movement_MewtwoFlees
-	waitmovement 0
-	playse SE_WARP_OUT
-	waitse
-	removeobject LOCALID_KANTO_VBASEMENT_MEWTWO
 	applymovement LOCALID_KANTO_VBASEMENT_MEW, ViridianHideout_B2F_Movement_MewFlees
 	waitmovement 0
 	playse SE_WARP_OUT
 	waitse
 	removeobject LOCALID_KANTO_VBASEMENT_MEW
+	applymovement LOCALID_KANTO_VBASEMENT_MEWTWO, ViridianHideout_B2F_Movement_MewtwoFlees
+	waitmovement 0
+	playse SE_WARP_OUT
+	waitse
+	removeobject LOCALID_KANTO_VBASEMENT_MEWTWO
 	setflag FLAG_TRINITY_K_RIG_RESOLVED
 	msgbox ViridianHideout_B2F_Text_GiovanniAftermath, MSGBOX_DEFAULT
 	closemessage
@@ -247,18 +247,34 @@ ViridianHideout_B2F_EventScript_AscendDecline::
 @ applymovement flee / waitmovement / playse SE_WARP_OUT / waitse /
 @ removeobject), applied to BOTH legendaries. The original draft dropped the
 @ movement and the waitse; this restores the full documented shape, matching
-@ what the sub-plan claimed but the shipped script didn't do. Both paths
-@ decoded fresh, dry floor the whole way: MEWTWO flees west along row 5,
-@ (20,5)->(19,5)->(18,5), all col=0 elev=3 MB_NORMAL; MEW flees south,
-@ (21,5)->(21,6)->(21,7), same.
-ViridianHideout_B2F_Movement_MewtwoFlees:
-	walk_fast_left
-	walk_fast_left
-	step_end
-
+@ what the sub-plan claimed but the shipped script didn't do.
+@
+@ FIX ROUND 2 (re-review New-2): MEWTWO's own path originally ran
+@ (20,5)->(19,5)->(18,5) -- straight through (19,5), one of Giovanni's own
+@ TWO reachable approach tiles (the other is (18,4); re-verified fresh this
+@ round via reach_check.Map.reachable_from -- (20,4)/(19,3) are NOT
+@ reachable, so only those two exist). applymovement performs no collision
+@ test against the player, so a player who triggered the scene from (19,5)
+@ -- the natural approach, since it is the tile the corridor from (18,16)
+@ delivers the player to -- would watch Mewtwo walk straight through their
+@ own sprite. Fixed two ways: (1) MEW now flees FIRST (its own path was
+@ already clean and is unchanged), vacating (21,5); (2) MEWTWO's own path is
+@ rerouted entirely off row 5's western half -- (20,5)->(21,5)->(21,6)->
+@ (22,6), decoded fresh, dry floor the whole way (col=0 elev=3 MB_NORMAL at
+@ every tile), never touching x=19 or x=18 at any point, so it cannot cross
+@ EITHER of Giovanni's two approach tiles regardless of which one the player
+@ used. (Re-ordering also means MEWTWO's own path no longer needs to cross
+@ MEW's tile while MEW is still standing there -- MEW has already fled and
+@ been removed by the time MEWTWO's own applymovement starts.)
 ViridianHideout_B2F_Movement_MewFlees:
 	walk_fast_down
 	walk_fast_down
+	step_end
+
+ViridianHideout_B2F_Movement_MewtwoFlees:
+	walk_fast_right
+	walk_fast_down
+	walk_fast_right
 	step_end
 
 ViridianHideout_B2F_Text_Grunt1Seen:
