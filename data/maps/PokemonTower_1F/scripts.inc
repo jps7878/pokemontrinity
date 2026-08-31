@@ -22,10 +22,10 @@ PokemonTower_1F_EventScript_BaldingMan::
 	end
 
 PokemonTower_1F_Text_WorkerF:
-	.string "POKéMON TOWER was erected in the\nmemory of POKéMON that died.$"
+	.string "POKéMON TOWER was erected in the\nmemory of POKéMON that died.\pOther towns turned old towers to\nradio work. LAVENDER kept ours.$"
 
 PokemonTower_1F_Text_Channeler:
-	.string "I am a CHANNELER.\pThere are spirits up to mischief.\nI sense them high in the TOWER.$"
+	.string "I am a CHANNELER.\pThis TOWER once stirred with\nrestless spirits. It's calmer now.$"
 
 PokemonTower_1F_Text_Woman1:
 	.string "My GROWLITHE…\nWhy did you die?$"

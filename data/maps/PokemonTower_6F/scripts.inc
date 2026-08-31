@@ -17,19 +17,19 @@ PokemonTower_6F_EventScript_Emilia::
 	end
 
 PokemonTower_6F_Text_AngelicaSeen:
-	.string "…$"
+	.string "Three GENGAR, one CHANNELER.\nThis floor's the deep end.$"
 
 PokemonTower_6F_Text_AngelicaBeaten:
-	.string "…$"
+	.string "All three agree -- you earned\nthat.$"
 
 PokemonTower_6F_Text_JenniferSeen:
-	.string "…$"
+	.string "Near the top now. Most turn\nback around here.$"
 
 PokemonTower_6F_Text_JenniferBeaten:
-	.string "…$"
+	.string "Not many make it this far.\nGo on.$"
 
 PokemonTower_6F_Text_EmiliaSeen:
-	.string "…$"
+	.string "Last floor before the roof.\nNothing up there but quiet,\lthese days.$"
 
 PokemonTower_6F_Text_EmiliaBeaten:
-	.string "…$"
+	.string "Then go see the quiet for\nyourself.$"

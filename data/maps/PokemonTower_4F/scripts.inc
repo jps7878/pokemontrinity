@@ -17,19 +17,19 @@ PokemonTower_4F_EventScript_Paula::
 	end
 
 PokemonTower_4F_Text_LaurelSeen:
-	.string "…$"
+	.string "Two GENGAR keep me company up\nhere. Neither minds a battle.$"
 
 PokemonTower_4F_Text_LaurelBeaten:
-	.string "…$"
+	.string "They enjoyed that. So did I.$"
 
 PokemonTower_4F_Text_JodySeen:
-	.string "…$"
+	.string "CHANNELERs don't scare easy.\nLet's see about you.$"
 
 PokemonTower_4F_Text_JodyBeaten:
-	.string "…$"
+	.string "Not bad, for someone still\nbreathing.$"
 
 PokemonTower_4F_Text_PaulaSeen:
-	.string "…$"
+	.string "My GENGAR can tell when someone's\ngrieving. It felt you coming.$"
 
 PokemonTower_4F_Text_PaulaBeaten:
-	.string "…$"
+	.string "Strong, and kind enough to visit.\nRare combination.$"

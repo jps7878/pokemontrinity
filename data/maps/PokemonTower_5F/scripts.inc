@@ -26,28 +26,28 @@ PokemonTower_5F_EventScript_Channeler::
 	end
 
 PokemonTower_5F_Text_RuthSeen:
-	.string "…$"
+	.string "This floor's calmer than the\nothers. I keep it that way.$"
 
 PokemonTower_5F_Text_RuthBeaten:
-	.string "…$"
+	.string "You fight the way GENGAR\nfights -- like you mean it.$"
 
 PokemonTower_5F_Text_TammySeen:
-	.string "…$"
+	.string "I've looked after a lot of\nPOKéMON up here. Yours looks\lwell cared for.$"
 
 PokemonTower_5F_Text_TammyBeaten:
-	.string "…$"
+	.string "Good. Keep caring for them\nlike that.$"
 
 PokemonTower_5F_Text_KarinaSeen:
-	.string "…$"
+	.string "GENGAR, out. Let's not keep\nour visitor waiting.$"
 
 PokemonTower_5F_Text_KarinaBeaten:
-	.string "…$"
+	.string "GENGAR, back. Well fought.$"
 
 PokemonTower_5F_Text_JanaeSeen:
-	.string "…$"
+	.string "The TOWER's peaceful these days.\nMy GENGAR still likes a\lchallenge, though.$"
 
 PokemonTower_5F_Text_JanaeBeaten:
-	.string "…$"
+	.string "Told you it liked a challenge.$"
 
 PokemonTower_5F_Text_Channeler:
 	.string "Come, child!\nI have purified this space.\lYou can rest here.$"

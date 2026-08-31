@@ -36,7 +36,7 @@ LavenderTown_Text_WorkerM:
 	.string "This town is known as the grave\nsite of POKéMON.\pMemorial services are held in\nPOKéMON TOWER.$"
 
 LavenderTown_Text_Boy:
-	.string "Ghosts appeared in POKéMON TOWER.\pI think they're the spirits of\nPOKéMON that the ROCKETS killed.$"
+	.string "Ghosts used to appear in POKéMON\nTOWER, they say.\pSpirits of POKéMON the ROCKETS\nhurt, once. Not anymore.$"
 
 LavenderTown_Text_SilphScopeNotice:
 	.string "New SILPH SCOPE!\nMake the Invisible Plain to See!\pSILPH CO.$"

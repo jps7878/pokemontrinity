@@ -1,6 +1,17 @@
 LavenderTown_VolunteerPokemonHouse_MapScripts::
 	.byte 0
 
+@ M5b S7. GSC/FRLG Fuji reconciliation (docs/superpowers/plans/m5b/
+@ 07-lavender-rock-tunnel.md #1-2): in FRLG, Fuji only reaches this house via
+@ a ghost-Marowak/Rocket-captivity rescue scene -- that RBY-past plot was
+@ never ported and isn't being added here. Fuji is simply present, tending
+@ the house, matching both FRLG's own rescue destination and GSC's Soul
+@ House assignment. No gating flag -- there is no rescue scene for one to
+@ gate.
+LavenderTown_VolunteerPokemonHouse_EventScript_MrFuji::
+	msgbox LavenderTown_VolunteerPokemonHouse_Text_MrFuji, MSGBOX_NPC
+	end
+
 LavenderTown_VolunteerPokemonHouse_EventScript_LittleBoy::
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_LittleBoy, MSGBOX_NPC
 	end
@@ -24,6 +35,9 @@ LavenderTown_VolunteerPokemonHouse_EventScript_Bookshelf::
 LavenderTown_VolunteerPokemonHouse_EventScript_Bookshelf_2::
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_Bookshelf_2, MSGBOX_SIGN
 	end
+
+LavenderTown_VolunteerPokemonHouse_Text_MrFuji:
+	.string "Ah -- a trainer, and a friend to\nPOKéMON too, I'd wager.\pWe look after the ones who've\nlost their families here.\pQuiet work, but KANTO's calm\nnow. I think they rest easier.$"
 
 LavenderTown_VolunteerPokemonHouse_Text_LittleBoy:
 	.string "It's so warm!\nPOKéMON are so nice to hug.$"

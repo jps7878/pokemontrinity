@@ -148,7 +148,7 @@ PewterCity_Gym_Text_ExplainSandstorm:
 	.string "Teach it to whoever you like.\n"
 	.string "It won't wear out.$"
 
-PewterCity_Gym_Text_BrockPostBattle::
+PewterCity_Gym_Text_BrockPostBattle:
 	.string "There are all kinds of TRAINERS out\n"
 	.string "there. You've got the makings of a\l"
 	.string "good one.\p"

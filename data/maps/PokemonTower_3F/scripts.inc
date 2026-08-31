@@ -17,19 +17,19 @@ PokemonTower_3F_EventScript_Hope::
 	end
 
 PokemonTower_3F_Text_PatriciaSeen:
-	.string "…$"
+	.string "This high up, it's quiet. My\nGENGAR likes the quiet.$"
 
 PokemonTower_3F_Text_PatriciaBeaten:
-	.string "…$"
+	.string "Even GENGAR settles down\neventually.$"
 
 PokemonTower_3F_Text_CarlySeen:
-	.string "…$"
+	.string "I come here to listen. GENGAR\nlistens with me.$"
 
 PokemonTower_3F_Text_CarlyBeaten:
-	.string "…$"
+	.string "Not bad. GENGAR agrees you're\nstrong.$"
 
 PokemonTower_3F_Text_HopeSeen:
-	.string "…$"
+	.string "The higher floors carry old\nmemories. Mind how you tread.$"
 
 PokemonTower_3F_Text_HopeBeaten:
-	.string "…$"
+	.string "You tread carefully. I respect\nthat.$"

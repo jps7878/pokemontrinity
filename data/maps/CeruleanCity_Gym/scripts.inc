@@ -186,7 +186,7 @@ CeruleanCity_Gym_Text_GymGuyAdvice:
 
 CeruleanCity_Gym_Text_GymGuyPostVictory:
 	.string "Straight through MISTY! CASCADE-\n"
-	.string "BADGE. One of eight.$"
+	.string "BADGE. One of seven.$"
 
 CeruleanCity_Gym_Text_GymStatue:
 	.string "CERULEAN CITY POKéMON GYM\n"

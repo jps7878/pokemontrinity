@@ -6,4 +6,4 @@ PokemonTower_2F_EventScript_Channeler::
 	end
 
 PokemonTower_2F_Text_Channeler:
-	.string "Even we could not identify the\nwayward ghosts.\pA SILPH SCOPE might be able to\nunmask them.$"
+	.string "We couldn't always tell friend\nfrom spirit, up here.\pA SILPH SCOPE settled it, once.\nQuiet, now.$"
