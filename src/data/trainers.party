@@ -25555,19 +25555,19 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
 
 Ariados
-Level: 80
+Level: 82
 
 Venomoth
-Level: 80
+Level: 82
 
 Weezing
-Level: 81
+Level: 83
 
 Muk
-Level: 81
+Level: 83
 
 Crobat
-Level: 82
+Level: 84
 
 === TRAINER_SABRINA ===
 Name: SABRINA
@@ -25579,22 +25579,22 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
 
 Espeon
-Level: 82
+Level: 83
 
 SPECIES_MR_MIME
-Level: 82
+Level: 83
 
 Jynx
-Level: 82
+Level: 83
 
 Hypno
-Level: 83
+Level: 84
 
 Slowbro
-Level: 83
+Level: 84
 
 Alakazam
-Level: 84
+Level: 85
 
 === TRAINER_BLAINE ===
 Name: BLAINE
@@ -26269,13 +26269,13 @@ Double Battle: No
 AI: Basic Trainer
 
 Raticate
-Level: 78
+Level: 82
 
 Machoke
-Level: 79
+Level: 83
 
 Golbat
-Level: 80
+Level: 84
 
 === TRAINER_K_GRUNT_F_3 ===
 Name: GRUNT
@@ -26320,13 +26320,13 @@ Double Battle: No
 AI: Basic Trainer
 
 Magneton
-Level: 80
+Level: 84
 
 Porygon2
-Level: 82
+Level: 86
 
 Electrode
-Level: 83
+Level: 87
 
 === TRAINER_K_SCIENTIST_2 ===
 Name: SCIENTIST

@@ -269,7 +269,7 @@ FuchsiaCity_Gym_Text_NatePostBattle:
 FuchsiaCity_Gym_Text_GymGuyAdvice:
 	.string "Hiya! Here to challenge JANINE?\p"
 	.string "ARIADOS, VENOMOTH, WEEZING, MUK,\n"
-	.string "CROBAT -- LEVEL 80 to 82, all\l"
+	.string "CROBAT -- LEVEL 82 to 84, all\l"
 	.string "carrying POISON.\p"
 	.string "PSYCHIC's your cleanest answer.\n"
 	.string "Every one of them takes it hard.\p"
