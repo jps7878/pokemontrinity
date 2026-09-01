@@ -287,6 +287,11 @@ graphics/pokemon_jump/bg.4bpp: %.4bpp: %.png
 graphics/pokenav/region_map/map.8bpp: %.8bpp: %.png
 	$(GFX) $< $@ -num_tiles 233 -Wnum_tiles
 
+# Trinity M6 P4: Kanto region-map tile sheet (4 solid-color role tiles:
+# blank/route/city/dungeon -- see src/region_map.c sRegionMapBg_Kanto_*).
+graphics/pokenav/region_map/map_kanto.8bpp: %.8bpp: %.png
+	$(GFX) $< $@ -num_tiles 4 -Wnum_tiles
+
 $(MISCGFXDIR)/japanese_hof.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 29 -Wnum_tiles
 

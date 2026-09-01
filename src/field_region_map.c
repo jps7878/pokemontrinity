@@ -148,6 +148,9 @@ static void FieldUpdateRegionMap(void)
     switch (sFieldRegionMapHandler->state)
     {
         case 0:
+            // Trinity M6 P4: pick Kanto vs Hoenn art/grid before InitRegionMap
+            // starts pumping LoadRegionMapGfx (see SetRegionMapKantoMode).
+            SetRegionMapKantoMode(&sFieldRegionMapHandler->regionMap);
             InitRegionMap(&sFieldRegionMapHandler->regionMap, FALSE);
             CreateRegionMapPlayerIcon(TAG_PLAYER_ICON, TAG_PLAYER_ICON);
             CreateRegionMapCursor(TAG_CURSOR, TAG_CURSOR);

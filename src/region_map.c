@@ -122,12 +122,22 @@ static const u32 sRegionMapCursorLargeGfxLZ[] = INCBIN_U32("graphics/pokenav/reg
 static const u16 sRegionMapBg_Pal[] = INCBIN_U16("graphics/pokenav/region_map/map.gbapal");
 static const u32 sRegionMapBg_GfxLZ[] = INCBIN_U32("graphics/pokenav/region_map/map.8bpp.smol");
 static const u32 sRegionMapBg_TilemapLZ[] = INCBIN_U32("graphics/pokenav/region_map/map.bin.smolTM");
+// Trinity M6 P4: the Kanto region-map dataset. Only ever loaded for the
+// wall map / PokeNav surfaces (see isKantoMap); the dedicated Fly map
+// (CB2_OpenFlyMap/sFlyMap) never selects these, so Fly stays Hoenn-only
+// and byte-equivalent to shipped behavior (no Kanto Fly destinations
+// exist -- see sMapHealLocations/heal_locations.json -- so this is a
+// display-only fix, not a new Fly capability).
+static const u16 sRegionMapBg_Kanto_Pal[] = INCBIN_U16("graphics/pokenav/region_map/map_kanto.gbapal");
+static const u32 sRegionMapBg_Kanto_GfxLZ[] = INCBIN_U32("graphics/pokenav/region_map/map_kanto.8bpp.smol");
+static const u32 sRegionMapBg_Kanto_TilemapLZ[] = INCBIN_U32("graphics/pokenav/region_map/map_kanto.bin.smolTM");
 static const u16 sRegionMapPlayerIcon_BrendanPal[] = INCBIN_U16("graphics/pokenav/region_map/brendan_icon.gbapal");
 static const u8 sRegionMapPlayerIcon_BrendanGfx[] = INCBIN_U8("graphics/pokenav/region_map/brendan_icon.4bpp");
 static const u16 sRegionMapPlayerIcon_MayPal[] = INCBIN_U16("graphics/pokenav/region_map/may_icon.gbapal");
 static const u8 sRegionMapPlayerIcon_MayGfx[] = INCBIN_U8("graphics/pokenav/region_map/may_icon.4bpp");
 
 #include "data/region_map/region_map_layout.h"
+#include "data/region_map/region_map_layout_kanto.h"
 #include "data/region_map/region_map_entries.h"
 
 static const mapsec_u16_t sRegionMap_SpecialPlaceLocations[][2] =
@@ -546,25 +556,27 @@ bool8 LoadRegionMapGfx(void)
     switch (sRegionMap->initStep)
     {
     case 0:
+        // Trinity M6 P4: isKantoMap is set (by SetRegionMapKantoMode) before this
+        // loop starts pumping, so gfx/tilemap/palette below all agree for the session.
         if (sRegionMap->bgManaged)
-            DecompressAndCopyTileDataToVram(sRegionMap->bgNum, sRegionMapBg_GfxLZ, 0, 0, 0);
+            DecompressAndCopyTileDataToVram(sRegionMap->bgNum, sRegionMap->isKantoMap ? sRegionMapBg_Kanto_GfxLZ : sRegionMapBg_GfxLZ, 0, 0, 0);
         else
-            DecompressDataWithHeaderVram(sRegionMapBg_GfxLZ, (u16 *)BG_CHAR_ADDR(2));
+            DecompressDataWithHeaderVram(sRegionMap->isKantoMap ? sRegionMapBg_Kanto_GfxLZ : sRegionMapBg_GfxLZ, (u16 *)BG_CHAR_ADDR(2));
         break;
     case 1:
         if (sRegionMap->bgManaged)
         {
             if (!FreeTempTileDataBuffersIfPossible())
-                DecompressAndCopyTileDataToVram(sRegionMap->bgNum, sRegionMapBg_TilemapLZ, 0, 0, 1);
+                DecompressAndCopyTileDataToVram(sRegionMap->bgNum, sRegionMap->isKantoMap ? sRegionMapBg_Kanto_TilemapLZ : sRegionMapBg_TilemapLZ, 0, 0, 1);
         }
         else
         {
-            DecompressDataWithHeaderVram(sRegionMapBg_TilemapLZ, (u16 *)BG_SCREEN_ADDR(28));
+            DecompressDataWithHeaderVram(sRegionMap->isKantoMap ? sRegionMapBg_Kanto_TilemapLZ : sRegionMapBg_TilemapLZ, (u16 *)BG_SCREEN_ADDR(28));
         }
         break;
     case 2:
         if (!FreeTempTileDataBuffersIfPossible())
-            LoadPalette(sRegionMapBg_Pal, BG_PLTT_ID(7), 3 * PLTT_SIZE_4BPP);
+            LoadPalette(sRegionMap->isKantoMap ? sRegionMapBg_Kanto_Pal : sRegionMapBg_Pal, BG_PLTT_ID(7), 3 * PLTT_SIZE_4BPP);
         break;
     case 3:
         DecompressDataWithHeaderWram(sRegionMapCursorSmallGfxLZ, sRegionMap->cursorSmallImage);
@@ -962,6 +974,29 @@ void PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(s16 x, s16 y)
     }
 }
 
+// Trinity M6 P4: is this mapsec one of Trinity's Kanto locations?
+// KANTO_MAPSEC_END is MAPSEC_SPECIAL_AREA itself (constants/region_map_sections.h),
+// which is the shared Johto/New Island placeholder, not a real Kanto place --
+// excluded with a strict '<' so Johto/New Island players still see Hoenn's map
+// (their region_map_section is MAPSEC_SPECIAL_AREA; Johto has no page of its
+// own yet -- see docs/superpowers/plans/m6/04-region-map.md).
+static bool8 MapSecIdIsKanto(mapsec_u16_t mapSecId)
+{
+    return (mapSecId >= KANTO_MAPSEC_START && mapSecId < KANTO_MAPSEC_END);
+}
+
+// Trinity M6 P4: called once by a region-map viewer (wall map, PokeNav) right
+// before its first LoadRegionMapGfx() pump, so the gfx/tilemap/palette and
+// GetMapSecIdAt() grid loaded in that call agree with each other for the
+// whole session. Never called for the Fly map (CB2_OpenFlyMap) or the
+// Pokedex area screen (ShowRegionMapForPokedexAreaScreen, which has its own
+// separate graphics in pokedex_area_region_map.c) -- both stay pinned to
+// Hoenn, unchanged from shipped behavior.
+void SetRegionMapKantoMode(struct RegionMap *regionMap)
+{
+    regionMap->isKantoMap = MapSecIdIsKanto(GetCurrentRegionMapSectionId());
+}
+
 static mapsec_u16_t GetMapSecIdAt(u16 x, u16 y)
 {
     if (y < MAPCURSOR_Y_MIN || y > MAPCURSOR_Y_MAX || x < MAPCURSOR_X_MIN || x > MAPCURSOR_X_MAX)
@@ -970,6 +1005,8 @@ static mapsec_u16_t GetMapSecIdAt(u16 x, u16 y)
     }
     y -= MAPCURSOR_Y_MIN;
     x -= MAPCURSOR_X_MIN;
+    if (sRegionMap->isKantoMap)
+        return sRegionMap_MapSectionLayout_Kanto[y][x];
     return sRegionMap_MapSectionLayout[y][x];
 }
 
@@ -1678,6 +1715,12 @@ void CB2_OpenFlyMap(void)
             ResetSpriteData();
             FreeSpriteTileRanges();
             FreeAllSpritePalettes();
+            // Trinity M6 P4: the Fly map always shows Hoenn -- Alloc() above is
+            // not guaranteed zeroed, so this is set explicitly rather than
+            // relying on fresh memory being FALSE. There are no Kanto Fly
+            // destinations (see sMapHealLocations/heal_locations.json), so
+            // this keeps Fly's data path byte-equivalent to shipped behavior.
+            sFlyMap->regionMap.isKantoMap = FALSE;
             gMain.state++;
         }
         break;

@@ -185,6 +185,10 @@ u32 PokenavCallback_Init_RegionMap(void)
     if (!AllocSubstruct(POKENAV_SUBSTRUCT_REGION_MAP, sizeof(struct RegionMap)))
         return FALSE;
 
+    // Trinity M6 P4: pick Kanto vs Hoenn art/grid up front, before
+    // LoopedTask_OpenRegionMap's InitRegionMapData/LoadRegionMapGfx pump.
+    SetRegionMapKantoMode(GetSubstructPtr(POKENAV_SUBSTRUCT_REGION_MAP));
+
     state->zoomDisabled = IsEventIslandMapSecId(gMapHeader.regionMapSectionId);
     if (!state->zoomDisabled)
         state->callback = HandleRegionMapInput;
