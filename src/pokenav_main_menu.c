@@ -1,5 +1,6 @@
 #include "global.h"
 #include "pokenav.h"
+#include "region_map.h" // Trinity M6 P4 fix: struct RegionMap / isKantoMap
 #include "constants/songs.h"
 #include "sound.h"
 #include "constants/rgb.h"
@@ -677,15 +678,30 @@ static void LoadLeftHeaderGfxForMenu(u32 menuGfxId)
 {
     struct Pokenav_MainMenu *menu;
     u32 size, tag;
+    const void *gfxData;
 
     if (menuGfxId >= POKENAV_GFX_SUBMENUS_START)
         return;
 
     menu = GetSubstructPtr(POKENAV_SUBSTRUCT_MAIN_MENU);
     tag = sMenuLeftHeaderSpriteSheets[menuGfxId].tag;
-    size = GetDecompressedDataSize(sMenuLeftHeaderSpriteSheets[menuGfxId].data);
+    gfxData = sMenuLeftHeaderSpriteSheets[menuGfxId].data;
+
+    // Trinity M6 P4 fix (review M1): the map-menu banner sheet is
+    // hardcoded to the Hoenn graphic; swap in the Kanto one when the
+    // region-map screen this banner belongs to is showing Kanto
+    // (isKantoMap is set by PokenavCallback_Init_RegionMap well before
+    // LoopedTask_OpenRegionMap reaches the case that loads this banner).
+    if (menuGfxId == POKENAV_GFX_MAP_MENU_ZOOMED_OUT || menuGfxId == POKENAV_GFX_MAP_MENU_ZOOMED_IN)
+    {
+        struct RegionMap *regionMap = GetSubstructPtr(POKENAV_SUBSTRUCT_REGION_MAP);
+        if (regionMap->isKantoMap)
+            gfxData = gPokenavLeftHeaderKantoMap_Gfx;
+    }
+
+    size = GetDecompressedDataSize(gfxData);
     LoadPalette(&gPokenavLeftHeader_Pal[tag * 16], OBJ_PLTT_ID(IndexOfSpritePaletteTag(1)), PLTT_SIZE_4BPP);
-    DecompressDataWithHeaderWram(sMenuLeftHeaderSpriteSheets[menuGfxId].data, menu->leftHeaderMenuBuffer);
+    DecompressDataWithHeaderWram(gfxData, menu->leftHeaderMenuBuffer);
     RequestDma3Copy(menu->leftHeaderMenuBuffer, (void *)OBJ_VRAM0 + (GetSpriteTileStartByTag(2) * 32), size, 1);
     menu->leftHeaderSprites[1]->oam.tileNum = GetSpriteTileStartByTag(2) + sMenuLeftHeaderSpriteSheets[menuGfxId].size;
 

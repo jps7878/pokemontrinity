@@ -234,7 +234,10 @@ static void PrintRegionMapSecName(void)
 static void PrintTitleWindowText(void)
 {
     static const u8 FlyPromptText[] = _("{R_BUTTON} FLY");
-    u32 hoennOffset = GetStringCenterAlignXOffset(FONT_NORMAL, gText_Hoenn, 0x38);
+    // Trinity M6 P4 fix (review M1): the title banner was hardcoded to
+    // "HOENN" regardless of which region-map dataset is showing.
+    const u8 *regionText = sFieldRegionMapHandler->regionMap.isKantoMap ? gText_Kanto : gText_Hoenn;
+    u32 regionOffset = GetStringCenterAlignXOffset(FONT_NORMAL, regionText, 0x38);
     u32 flyOffset = GetStringCenterAlignXOffset(FONT_NORMAL, FlyPromptText, 0x38);
 
     FillWindowPixelBuffer(WIN_TITLE, PIXEL_FILL(1));
@@ -247,7 +250,7 @@ static void PrintTitleWindowText(void)
     }
     else
     {
-        AddTextPrinterParameterized(WIN_TITLE, FONT_NORMAL, gText_Hoenn, hoennOffset, 1, 0, NULL);
+        AddTextPrinterParameterized(WIN_TITLE, FONT_NORMAL, regionText, regionOffset, 1, 0, NULL);
         CopyWindowToVram(WIN_TITLE, COPYWIN_FULL);
     }
 }

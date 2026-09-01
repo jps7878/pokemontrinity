@@ -1887,6 +1887,10 @@ const u32 gPokenavLeftHeaderCute_Gfx[] = INCBIN_U32("graphics/pokenav/left_heade
 const u32 gPokenavLeftHeaderMatchCall_Gfx[] = INCBIN_U32("graphics/pokenav/left_headers/match_call.4bpp.smol");
 const u32 gPokenavLeftHeaderMainMenu_Gfx[] = INCBIN_U32("graphics/pokenav/left_headers/main_menu.4bpp.smol");
 const u32 gPokenavLeftHeaderHoennMap_Gfx[] = INCBIN_U32("graphics/pokenav/left_headers/hoenn_map.4bpp.smol");
+// Trinity M6 P4 fix (review M1): Kanto's PokeNav map banner. Same 64x96
+// sheet layout (top: region name, then FULL VIEW / ZOOM VIEW, unchanged) --
+// only the "HOENN"->"KANTO" glyphs differ; see LoadLeftHeaderGfxForMenu.
+const u32 gPokenavLeftHeaderKantoMap_Gfx[] = INCBIN_U32("graphics/pokenav/left_headers/kanto_map.4bpp.smol");
 const u32 gPokenavLeftHeaderRibbons_Gfx[] = INCBIN_U32("graphics/pokenav/left_headers/ribbons.4bpp.smol");
 const u32 gPokenavLeftHeaderSearch_Gfx[] = INCBIN_U32("graphics/pokenav/left_headers/search.4bpp.smol");
 const u32 gPokenavLeftHeaderTough_Gfx[] = INCBIN_U32("graphics/pokenav/left_headers/tough.4bpp.smol");

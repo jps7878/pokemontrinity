@@ -287,7 +287,8 @@ static const mapsec_u8_t sMapSecIdsOffMap[] =
 {
     MAPSEC_BIRTH_ISLAND,
     MAPSEC_FARAWAY_ISLAND,
-    MAPSEC_NAVEL_ROCK
+    MAPSEC_NAVEL_ROCK,
+    MAPSEC_MT_EMBER, // Trinity M6 P4 fix (review m1): off-grid like the above -- no gRegionMapEntries cell, dot/zoom suppressed to match
 };
 
 static const u16 sRegionMapFramePal[] = INCBIN_U16("graphics/pokenav/region_map/frame.gbapal");
