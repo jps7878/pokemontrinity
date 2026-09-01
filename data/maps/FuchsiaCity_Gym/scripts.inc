@@ -97,8 +97,10 @@ FuchsiaCity_Gym_EventScript_Nate::
 
 @ ============================================================================
 @ G4 -- the guide. (11,19), T10-placed OBJ_EVENT_GFX_EXPERT_M, unmoved (its
-@ own 1-tile self-cost only, not a cut vertex). Roster ARIADOS80/VENOMOTH80/
-@ WEEZING81/MUK81/CROBAT82 verified against trainers.party + species_info +
+@ own 1-tile self-cost only, not a cut vertex). Roster ARIADOS82/VENOMOTH82/
+@ WEEZING83/MUK83/CROBAT84 (M6 P5 raised the spread from 80-82; comment
+@ realigned in the P5-review controller fold) verified against
+@ trainers.party + species_info +
 @ types_info.h's own gTypeEffectivenessTable -- full derivation in the
 @ sub-plan section 2.3. GROUND: only MUK takes the clean 2x (pure Poison, no
 @ Levitate). ARIADOS/VENOMOTH (Bug/Poison) take it NEUTRAL -- their Bug half

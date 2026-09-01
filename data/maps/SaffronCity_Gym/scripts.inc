@@ -95,7 +95,8 @@ SaffronCity_Gym_EventScript_Tyron::
 @   HYPNO (12505)    PSYCHIC only, unconditional
 @   SLOWBRO (10192)  WATER/PSYCHIC, unconditional
 @   ALAKAZAM (8491)  PSYCHIC only, unconditional
-@ All L82-84.
+@ All L83-85 (M6 P5 raised from 82-84; comment realigned in the P5-review
+@ controller fold).
 @
 @ TYPE_BUG row col=PSYCHIC(15) = X(2.0); TYPE_DARK row col=PSYCHIC(15) =
 @ X(2.0) -- both flat/unconditional. TYPE_BUG row col=FAIRY(19) = X(0.5);
