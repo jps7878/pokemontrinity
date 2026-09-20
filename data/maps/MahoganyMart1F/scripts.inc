@@ -1,17 +1,32 @@
 @ Metatile ids for the north-east corner block of the shop, decoded from
-@ data/layouts/MahoganyMart1F_Johto/map.bin. include/constants/metatile_labels.h
-@ has 692 entries and not one of them is a Johto tileset, so these are named
-@ here rather than there; a Johto block in metatile_labels.h is an M6 tidy-up.
+@ data/layouts/MahoganyMart1F_Johto/map.bin and the tileset's
+@ metatile_attributes.bin. include/constants/metatile_labels.h has 692 entries
+@ and not one of them is a Johto tileset, so these are named here rather than
+@ there; a Johto block in metatile_labels.h is an M6 tidy-up.
 @
-@ 528-531 is the plain FLOOR block that M4a left covering tiles (6,2) (7,2)
-@ (6,3) (7,3) -- the block GSC replaces with `changeblock 6, 2, $1e ; stairs`.
+@ 632-635 is GSC's STAIRS block: pokecrystal's `changeblock 6, 2, $1e ; stairs`
+@ is block $1e = 30, and the M3 converter lays GSC block n out as Trinity
+@ metatiles 512 + 4n + {0 TL, 1 TR, 2 BL, 3 BR} in gTileset_TraditionalHouseJohto,
+@ so block 30 = 632/633/634/635. Three of the four are attribute 0x0000
+@ (MB_NORMAL); the BR quadrant 635 is 0x0061 MB_LADDER -- the walk-on warp
+@ behaviour every working Johto interior staircase in this tileset uses
+@ (WiseTriosRoom's (1,4) on 741 is 0x61 too) -- and BR is exactly (7,3), the
+@ warp tile. No layout on this tileset and no script uses 628-635, so the
+@ block is free, pre-drawn (floor with a down-staircase bottom-right) and
+@ needs no tileset edit. The SHIPPED map.bin holds the plain FLOOR block
+@ 528-531 (all MB_NORMAL) on (6,2) (7,2) (6,3) (7,3) instead -- M4a dropped
+@ the changeblock -- which is why the staircase never warped until M7 Task 2
+@ (bug-test finding #1). That floor block is now never shown: ON_LOAD
+@ overwrites it in both directions (D2).
 @ 588-591 is the shop's own 2x2 BOOKSHELF block, lifted verbatim from the tiles
 @ directly above it at (6,0) (7,0) (6,1) (7,1). Using an existing block means
-@ the covered state cannot look wrong: it is literally more shelving.
-	.set METATILE_JohtoMahoganyMart_FloorTL,      528
-	.set METATILE_JohtoMahoganyMart_FloorTR,      529
-	.set METATILE_JohtoMahoganyMart_FloorBL,      530
-	.set METATILE_JohtoMahoganyMart_FloorBR,      531
+@ the covered state cannot look wrong: it is literally more shelving. Its BR
+@ quadrant 591 is 0x00E1 MB_BOOKSHELF, not a warp behaviour, so while the
+@ block is down the warp_event cannot fire even if the collision were cleared.
+	.set METATILE_JohtoMahoganyMart_StairsTL,     632
+	.set METATILE_JohtoMahoganyMart_StairsTR,     633
+	.set METATILE_JohtoMahoganyMart_StairsBL,     634
+	.set METATILE_JohtoMahoganyMart_StairsBR,     635
 	.set METATILE_JohtoMahoganyMart_ShelfTL,      588
 	.set METATILE_JohtoMahoganyMart_ShelfTR,      589
 	.set METATILE_JohtoMahoganyMart_ShelfBL,      590
@@ -34,16 +49,27 @@ MahoganyMart1F_MapScripts::
 @ D1  The door is a bg_event or a warp, never a scripted warp added at runtime:
 @     warps cannot be created by script, so the warp must already exist in
 @     map.json. It does -- `warp_event 7, 3 -> TEAM_ROCKET_BASE_B1F` has been in
-@     this map since the M4a port. What gates it is the COLLISION of the block
-@     underneath, which is exactly why GSC's reveal is a changeblock.
+@     this map since the M4a port. What gates it is the BEHAVIOUR of the
+@     metatile underneath, NOT its collision: a walk-on warp_event fires only
+@     when the tile's behaviour passes IsWarpMetatileBehavior
+@     (src/field_control_avatar.c:891 in TryStartWarpEventScript; the list is
+@     at :936 -- warp door, MB_LADDER, escalator, non-animated door, ...).
+@     Collision only decides whether the player can step onto the tile at all.
+@     That is why GSC's reveal is a changeblock to the STAIRS block and not a
+@     changeblock to floor: the stairs block puts MB_LADDER on (7,3), the
+@     floor block puts MB_NORMAL there, and on MB_NORMAL the warp never fires
+@     however walkable the tile is.
 @ D2  MAP_SCRIPT_ON_LOAD is the SINGLE AUTHORING SITE for the door's tiles.
 @     (NOT ON_TRANSITION, which is right for visibility flags and fatal for
 @     metatiles -- see the slot note above the handler.) It runs inside InitMap,
 @     once the grid exists and before the map is drawn, so it needs NO
-@     DrawWholeMapView. It authors in whichever
-@     direction the SHIPPED map.bin is not: this map ships OPEN (M4a dropped
-@     GSC's changeblock), so the transition only ever CLOSES. B2F and B3F ship
-@     closed, so theirs only ever OPEN.
+@     DrawWholeMapView. It authors in whichever direction the SHIPPED map.bin
+@     is not -- and here that is BOTH, because the shipped block is NEITHER
+@     state: it is the plain FLOOR 528-531 (walkable but MB_NORMAL, so the
+@     warp is dead on it). Flag clear -> the SHELF block 588-591 (closed);
+@     flag set -> the STAIRS block 632-635 (open, MB_LADDER at the warp). The
+@     shipped floor block is never shown. B2F and B3F ship closed, so theirs
+@     only ever OPEN.
 @ D3  The opening script repeats the same setmetatile set and then calls
 @     `special DrawWholeMapView`. Mid-scene the map is already on screen, so
 @     that redraw is mandatory -- the ON_LOAD author's is not.
@@ -98,10 +124,12 @@ MahoganyMart1F_EventScript_ShowGranny::
 	return
 
 @ D2 (authored from ON_LOAD -- see the slot note above).
-@ The shipped map.bin has the staircase block as plain walkable floor, so
-@ the authoring direction is CLOSED: while the staircase has not been uncovered,
-@ cover it with the shop's own shelving. No DrawWholeMapView here -- this runs
-@ before the map is drawn.
+@ The shipped map.bin has the staircase block as plain walkable floor with no
+@ warp behaviour, which is neither state, so BOTH directions are authored:
+@ while the staircase has not been uncovered, cover it with the shop's own
+@ shelving (impassable); once it has, write GSC's stairs block, whose BR
+@ quadrant 635 is MB_LADDER at the warp tile (7,3), passable. No
+@ DrawWholeMapView here -- this runs before the map is drawn.
 MahoganyMart1F_EventScript_AuthorStaircase::
 	goto_if_set FLAG_TRINITY_J_MART_STAIRS, MahoganyMart1F_EventScript_StaircaseAlreadyOpen
 	setmetatile 6, 2, METATILE_JohtoMahoganyMart_ShelfTL, TRUE
@@ -111,6 +139,10 @@ MahoganyMart1F_EventScript_AuthorStaircase::
 	return
 
 MahoganyMart1F_EventScript_StaircaseAlreadyOpen::
+	setmetatile 6, 2, METATILE_JohtoMahoganyMart_StairsTL, FALSE
+	setmetatile 7, 2, METATILE_JohtoMahoganyMart_StairsTR, FALSE
+	setmetatile 6, 3, METATILE_JohtoMahoganyMart_StairsBL, FALSE
+	setmetatile 7, 3, METATILE_JohtoMahoganyMart_StairsBR, FALSE
 	return
 
 @ ============================================================================
@@ -190,12 +222,13 @@ MahoganyMart1F_EventScript_StaircaseScene::
 	msgbox MahoganyMart1F_Text_LanceStairs, MSGBOX_DEFAULT
 	closemessage
 	playse SE_BANG
-	@ D3: the same four setmetatiles ON_TRANSITION would author, plus the redraw
-	@ that ON_TRANSITION does not need.
-	setmetatile 6, 2, METATILE_JohtoMahoganyMart_FloorTL, FALSE
-	setmetatile 7, 2, METATILE_JohtoMahoganyMart_FloorTR, FALSE
-	setmetatile 6, 3, METATILE_JohtoMahoganyMart_FloorBL, FALSE
-	setmetatile 7, 3, METATILE_JohtoMahoganyMart_FloorBR, FALSE
+	@ D3: the same four setmetatiles the ON_LOAD open path authors, plus the
+	@ redraw that ON_LOAD does not need. StairsBR at (7,3) is MB_LADDER, the
+	@ behaviour that lets warp_event 2 fire when the player steps onto it.
+	setmetatile 6, 2, METATILE_JohtoMahoganyMart_StairsTL, FALSE
+	setmetatile 7, 2, METATILE_JohtoMahoganyMart_StairsTR, FALSE
+	setmetatile 6, 3, METATILE_JohtoMahoganyMart_StairsBL, FALSE
+	setmetatile 7, 3, METATILE_JohtoMahoganyMart_StairsBR, FALSE
 	special DrawWholeMapView
 	delay 30
 	setflag FLAG_TRINITY_J_MART_STAIRS
