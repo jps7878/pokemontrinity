@@ -176,9 +176,16 @@ PokemonLeague_ChampionsRoom_EventScript_PostBattleIdle::
 @ TEAM, fully derived (src/data/trainers.party, TRAINER_ASH): Charizard
 @ (Fire/Flying), Sceptile (Grass -- FIX ROUND 1, review C4: pure Grass,
 @ src/data/pokemon/species_info/gen_3_families.h; Grass/Dragon is Mega
-@ Sceptile only, not what a trainer party entry instantiates), Infernape
-@ (Fire/Fighting), Greninja (Water/Dark), Lucario (Fighting/Steel), Pikachu
-@ (Electric) -- L91-92, Pikachu L100.
+@ Sceptile only, not what a trainer party entry instantiates), Torkoal
+@ (Fire), Kingler (Water), Heracross (Bug/Fighting), Pikachu (Electric) --
+@ L91-92, Pikachu L100.
+@ M7 TASK 7 (bug-test finding #21): the three middle slots were authored as
+@ Infernape, Greninja and Lucario, but this build compiles Gens 1-3 only
+@ (include/config/species_enabled.h: P_GEN_4_POKEMON FALSE onward), so they
+@ instantiated as empty "??????????" species. Re-specced at the SAME levels
+@ to Torkoal L91 / Kingler L92 / Heracross L92 -- Ash's own anime captures,
+@ one per Trinity region (Hoenn / Kanto / Johto). Levels, slot order, party
+@ size and AI flags unchanged (difficulty freeze).
 @ ============================================================================
 PokemonLeague_ChampionsRoom_EventScript_Ash::
 	lock
