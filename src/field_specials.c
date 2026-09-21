@@ -1085,11 +1085,12 @@ static void PCTurnOnEffect(struct Task *task)
 // unrelated art (rendered: in gTileset_BuildingKanto 0x004/0x005 are a wood
 // panel and a stair step), and stamping them corrupted the PC tile until the
 // map reloaded. GetPCScreenMetatileId() resolves the on/off pair for the
-// layout actually loaded and reports "no art" otherwise; the two callers then
-// skip the stamp, so the PC still opens and only the screen glow is lost.
+// layout actually loaded and returns PC_SCREEN_METATILE_NONE otherwise; the
+// two callers then skip the stamp, so the PC still opens and only the screen
+// glow is lost.
 //
 // gTileset_BuildingKanto keeps FRLG's Building metatile ids, so the FRLG PC
-// screen pair sits at pokefirered's METATILE_Building_PC_Off/On values
+// screen pair sits at pokefirered's METATILE_Building_PCOff/PCOn values
 // 0x062/0x063 -- the only two MB_PC ids in that tileset (decoded from its
 // metatile_attributes.bin; both rendered to confirm the dark/lit screen art).
 // constants/metatile_labels.h carries no BuildingKanto labels, so they are
@@ -1117,7 +1118,9 @@ static u16 GetPCScreenMetatileId(bool32 screenOn)
         // Ported FRLG interiors (Centers, Cinnabar Lab, Route 5 Day Care, Silph Co.).
         if (layout->primaryTileset == &gTileset_BuildingKanto)
             return screenOn ? METATILE_BuildingKanto_PC_On : METATILE_BuildingKanto_PC_Off;
-        // Johto interiors (gTileset_General + a *Johto secondary) and anything else: no art.
+        // Johto interiors (gTileset_General + a *Johto secondary) and anything
+        // else: their PCs are MB_PC too (pokecenter_johto 0x223/0x287/0x2C8, all
+        // the same unlit GSC screen), but no on/off id pair is known here, so skip.
         break;
     case PC_LOCATION_BRENDANS_HOUSE:
         if (layout->secondaryTileset == &gTileset_BrendansMaysHouse)
