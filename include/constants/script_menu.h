@@ -134,6 +134,10 @@
 #define MULTI_DRAGON_TEST_4                120
 #define MULTI_DRAGON_TEST_5                121
 
+// Trinity M7 Task 9 (finding #17): the ROCKET HIDEOUT lift's floor menu --
+// pokefirered's sMultichoiceList_RocketHideoutElevator, verbatim strings.
+#define MULTI_ROCKET_HIDEOUT_ELEVATOR      122
+
 // Lilycove SS Tidal Multichoice Selections
 #define SSTIDAL_SELECTION_SLATEPORT        0
 #define SSTIDAL_SELECTION_BATTLE_FRONTIER  1

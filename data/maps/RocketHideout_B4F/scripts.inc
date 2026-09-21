@@ -88,65 +88,12 @@ RocketHideout_B4F_EventScript_OpenBarrier::
 	waitse
 	return
 
-@ ============================================================================
-@ SELF-CAUGHT (reach_check.py per-map decode, before shipping): B4F's static
-@ collision graph is TWO disconnected components -- byte-identical to
-@ pokefirered's own shipped map.bin (decoded and diff'd directly, not
-@ assumed), so this is a genuine FRLG geometry fact, not a T10 port defect.
-@ The B3F stairway (11,15) lands in the LEFT component (138 tiles); the
-@ barrier, both door grunts, and the evidence room all sit in the RIGHT
-@ component, reachable in real FRLG only via the elevator. Since the full
-@ elevator floor-select UI has no engine equivalent in this tree (section 7,
-@ skipped), a minimal two-sign lift shuttle bridges exactly this one
-@ required transition -- gated on FLAG_TRINITY_K_LIFT_KEY on the way in
-@ (matching FRLG's own FLAG_CAN_USE_ROCKET_HIDEOUT_LIFT gate), ungated on
-@ the way back (a player standing on the right side has necessarily already
-@ used the key). `warp <map>, x, y` mid-script is the same primitive every
-@ ordinary warp_event uses (BattleFrontier_BattleArenaCorridor/scripts.inc's
-@ own shape, warp + waitstate + end, no manual fadescreen needed -- the
-@ transition has its own built-in fade). Both landing tiles decoded fresh:
-@ (17,18) col=0 elev=3 MB_NORMAL (right side, reachable only via this
-@ shuttle); (11,17) col=0 elev=3 MB_NORMAL (left side, part of the 138-tile
-@ stairway-reachable region).
-@ ============================================================================
-RocketHideout_B4F_EventScript_LiftPlatformLeft::
-	lockall
-	goto_if_unset FLAG_TRINITY_K_LIFT_KEY, RocketHideout_B4F_EventScript_LiftNeedsKey
-	msgbox RocketHideout_B4F_Text_LiftPrompt, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, RocketHideout_B4F_EventScript_LiftCancel
-	warp MAP_ROCKET_HIDEOUT_B4F, 17, 18
-	waitstate
-	end
-
-RocketHideout_B4F_EventScript_LiftNeedsKey::
-	msgbox RocketHideout_B4F_Text_LiftNeedsKey, MSGBOX_DEFAULT
-	releaseall
-	end
-
-RocketHideout_B4F_EventScript_LiftCancel::
-	releaseall
-	end
-
-RocketHideout_B4F_EventScript_LiftPlatformRight::
-	lockall
-	msgbox RocketHideout_B4F_Text_LiftReturnPrompt, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, RocketHideout_B4F_EventScript_LiftCancel
-	warp MAP_ROCKET_HIDEOUT_B4F, 11, 17
-	waitstate
-	end
-
-@ FIX ROUND (review I5): the lift signs themselves carry no visual cue --
-@ nothing marks (11,16)/(17,17) as interactable before the player walks up
-@ and presses A blind. A small decorative crate prop (OBJ_EVENT_GFX_MOVING_
-@ BOX, a plain existing sprite, no new art) sits one tile north of each
-@ platform sign -- (10,16) and (17,16), both decoded col=0 elev=3 MB_NORMAL,
-@ free of every existing object -- giving each platform a visible landmark.
-@ TRAINER_TYPE_NONE, non-blocking of the sign's own remaining approach
-@ tiles (the sign itself, BG_EVENT_PLAYER_FACING_ANY, is still reachable
-@ from its other three sides).
-RocketHideout_B4F_EventScript_LiftCrateFlavor::
-	msgbox RocketHideout_B4F_Text_LiftCrateFlavor, MSGBOX_NPC
-	end
+@ M7 Task 9 (finding #17): S6's two invisible "lift platform" signs at
+@ (11,16)/(17,17), their crate landmarks, and the "elevator UI has no engine
+@ equivalent" premise are gone. The RIGHT component (barrier, door grunts,
+@ evidence room) is reached the FRLG way: Lift Key from F_2 (4,2) -> stairs
+@ up -> the car on B1F/B2F -> RocketHideout_Elevator's panel -> this floor's
+@ door (20,23), emerging on (20,24). See RocketHideout_Elevator/scripts.inc.
 
 @ THE EVIDENCE ROOM. Replaces FRLG's Giovanni-in-the-Hideout confrontation
 @ (adapted away, see section 7 -- Trinity's Giovanni stays hidden until
@@ -189,7 +136,7 @@ RocketHideout_B4F_Text_Grunt1PostBattle:
 	.string "Go on. Not like it matters\nnow.$"
 
 RocketHideout_B4F_Text_Grunt1FoundKey:
-	.string "She was carrying a KEY.\pSomething for the restricted\nlift -- there's an old platform\lsomewhere else on this floor. Go\lfind it.$"
+	.string "She was carrying a KEY.\pIt fits the lift -- the elevator\nup on B1F and B2F. Ride it\ldown to reach the rest of this\lfloor.$"
 
 RocketHideout_B4F_Text_Grunt2Seen:
 	.string "Nobody gets past this door\nwithout my say-so.$"
@@ -215,14 +162,4 @@ RocketHideout_B4F_Text_EvidenceSeized:
 RocketHideout_B4F_Text_EvidenceCoordinates:
 	.string "Papers scattered across the desk\nname a warehouse under VIRIDIAN\lCITY -- coordinates, shift\lschedules, a chain of command.\pWhoever runs this operation\nanswers to someone in VIRIDIAN.$"
 
-RocketHideout_B4F_Text_LiftPrompt:
-	.string "The old service lift hums to\nlife when you fit the key in.\pRide it down?$"
 
-RocketHideout_B4F_Text_LiftNeedsKey:
-	.string "An old service lift, powered\ndown. It needs a key you don't\lhave yet.$"
-
-RocketHideout_B4F_Text_LiftReturnPrompt:
-	.string "Ride the lift back up?$"
-
-RocketHideout_B4F_Text_LiftCrateFlavor:
-	.string "A stack of crates beside the old\nservice lift platform.$"

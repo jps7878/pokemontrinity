@@ -834,6 +834,16 @@ static const struct MenuAction MultichoiceList_DragonTest5[] =
     {COMPOUND_STRING("WEAK")},
 };
 
+// Trinity M7 Task 9: FR's {B1F, B2F, B4F, EXIT}; gText_B1F/B2F/B4F/Exit already exist
+// (src/strings.c:565-576).
+static const struct MenuAction MultichoiceList_RocketHideoutElevator[] =
+{
+    {gText_B1F},
+    {gText_B2F},
+    {gText_B4F},
+    {gText_Exit},
+};
+
 static const struct MenuAction MultichoiceList_Exit[] =
 {
     {gText_Exit},
@@ -969,6 +979,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_DRAGON_TEST_3]              = MULTICHOICE(MultichoiceList_DragonTest3),
     [MULTI_DRAGON_TEST_4]              = MULTICHOICE(MultichoiceList_DragonTest4),
     [MULTI_DRAGON_TEST_5]              = MULTICHOICE(MultichoiceList_DragonTest5),
+    [MULTI_ROCKET_HIDEOUT_ELEVATOR]    = MULTICHOICE(MultichoiceList_RocketHideoutElevator),
 };
 
 const u8 *const gStdStrings[] =
