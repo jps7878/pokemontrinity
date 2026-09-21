@@ -21952,7 +21952,7 @@ Gender: Male
 Music: Male
 AI: Basic Trainer
 
-SPECIES_RHYPERIOR
+SPECIES_RHYDON
 Level: 82
 
 SPECIES_LICKITUNG
@@ -25291,7 +25291,7 @@ Gender: Male
 Music: Male
 AI: Basic Trainer
 
-SPECIES_RHYPERIOR
+SPECIES_RHYDON
 Level: 86
 
 
@@ -25336,7 +25336,7 @@ Level: 84
 SPECIES_SANDSLASH
 Level: 85
 
-SPECIES_RHYPERIOR
+SPECIES_RHYDON
 Level: 84
 
 SPECIES_NIDORINO
@@ -25360,7 +25360,7 @@ Level: 84
 SPECIES_MAROWAK
 Level: 85
 
-SPECIES_RHYPERIOR
+SPECIES_RHYDON
 Level: 84
 
 SPECIES_NIDORINA
@@ -25998,13 +25998,13 @@ Level: 91
 Sceptile
 Level: 91
 
-Infernape
+Torkoal
 Level: 91
 
-Greninja
+Kingler
 Level: 92
 
-Lucario
+Heracross
 Level: 92
 
 Pikachu
