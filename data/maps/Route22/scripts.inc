@@ -3,13 +3,28 @@ Route22_MapScripts::
 
 @ ============================================================================
 @ Trinity M5a T5 -- flavour half of the ROUTE 28/KANTO land gate. The real
-@ enforcement is the coord_event trigger on Route28's own (39,8) tile (see
-@ that map's scripts.inc); by the time a player can stand here and talk to
-@ this guard, they already crossed, which only happens once
-@ FLAG_TRINITY_K_ARRIVED is set. He is deliberately redundant with that
-@ trigger (same double-coverage shape as ROUTE26's LeagueGateOfficer), and
-@ READ-ONLY: never sets the flag himself. Badge-agnostic dialogue -- he names
-@ no count, just that the road is a League matter.
+@ west->east enforcement is the coord_event trigger on Route28's own (39,8)
+@ tile (see that map's scripts.inc); the east->west half is this map's own
+@ (8,7) seam trigger further down (gated since M7 Task 3 round 1). The guard
+@ is deliberately redundant with both (same double-coverage shape as
+@ ROUTE26's LeagueGateOfficer), and READ-ONLY: never sets the flag himself.
+@ Badge-agnostic dialogue -- he names no count, just that the road is a
+@ League matter.
+@
+@ PREMISE CORRECTION (M7 Task 3 round 1, review Major-1). This comment used
+@ to claim that nobody can stand on this porch before FLAG_TRINITY_K_ARRIVED
+@ is set. FALSE. The Act II corridor leaks a pre-K_ARRIVED player in from the
+@ JOHTO side: Route26 -> KantoVictoryRoad_1F warp 1 (11,20) -> its (20,10)
+@ coord trigger (KantoVictoryRoad_1F_EventScript_Route23ReturnWarp, an
+@ UNCONDITIONAL `warp MAP_ROUTE23, 5, 28`) -> Route23's SOUTH component
+@ (reach_check: 1339 tiles from (5,28), holding all seven guard nets and
+@ warp 2 (8,153) -> Route22_NorthEntrance; the nets bounce a refused player
+@ SOUTH, i.e. toward this map) -> Route22 (8,6). That is bug-test finding
+@ #10's Kanto-side hole, and the (20,10) leak is NOT closed by Indigo
+@ Plateau guards: Route23's north/plateau component (222 tiles from (18,28))
+@ does not contain (5,28). Nothing on this map may therefore assume the
+@ flag: the guard's Closed line below exists precisely for that player, and
+@ the seam trigger refuses him too.
 @
 @ M7 Task 3 (bug-test findings #20 + #15, P0): he stands at (7,6), the open
 @ porch tile WEST of the door approach -- decoded MB_NORMAL, collision 0,
@@ -61,8 +76,10 @@ Route22_Text_KantoGateGuardOpen:
 @ check 9 exempts it as live precisely because this coord_event covers the
 @ same tile) -- the coord_event below is what actually fires, exactly
 @ mirroring Route28's own (39,8) mechanism: a trigger at the true decoded
-@ elevation (3, matching (8,7)'s own MB_NORMAL tile), always open (no gate
-@ needed this direction -- only west->east into KANTO is gated), issuing
+@ elevation (3, matching (8,7)'s own MB_NORMAL tile), gated on
+@ FLAG_TRINITY_K_ARRIVED exactly like Route28's (39,8) is (M7 Task 3 round
+@ 1 -- it used to read "always open, no gate needed this direction", which
+@ rested on the false premise corrected at the top of this file), issuing
 @ the warp by hand since a script's own `warp` command bypasses
 @ IsWarpMetatileBehavior entirely (it is not the automatic
 @ step-on-a-warp-tile path).
@@ -71,9 +88,25 @@ Route22_Text_KantoGateGuardOpen:
 @ `warp MAP_ROUTE_28, 39, 8` sitting one tile south of the guard, so every
 @ walk up column 8 toward the door silently teleported the player to JOHTO
 @ and dropped them on Route 28's bare east-edge strip. It is now a YES/NO
-@ confirm (the Lilycove/Battle Frontier ferry `msgbox ... MSGBOX_YESNO` ->
-@ `goto_if_eq VAR_RESULT, NO` -> `warp`/`waitstate` shape, under lockall
-@ because this is a coord trigger, not a talked-to NPC):
+@ confirm in the tree's own RocketHideout_B4F lift-platform shape (`lockall`
+@ -> `goto_if_unset FLAG` -> `msgbox ... MSGBOX_YESNO` -> `goto_if_eq
+@ VAR_RESULT, NO` -> `warp`/`waitstate`, no closemessage on the YES path
+@ because the map load rebuilds the text window; NOT the Lilycove ferry,
+@ whose YES path boards the player before warping), under lockall because
+@ this is a coord trigger, not a talked-to NPC:
+@   K_ARRIVED UNSET (round 1, review Major-1) -> Route22_EventScript_
+@          KantoGateNotYet: refusal box, closemessage, releaseall. The
+@          player STAYS on (8,7) -- no step-back, because (8,7) is entered
+@          from four sides and is not itself the crossing (the door north of
+@          it is not gated). Without this branch a pre-K_ARRIVED player who
+@          reached this porch through the leak above could say YES and be
+@          SEALED on Route 28: that map's (39,8) refuses eastbound below
+@          K_ARRIVED, its west edge refuses westbound below
+@          VAR_TRINITY_KANTO_ARC 6, (7,3)/(33,5) are a disjoint component,
+@          Fly is dead in JOHTO and a ROUTE map has no Dig/Escape Rope -- a
+@          file saved there is bricked. (The old immediate warp had the same
+@          pocket; the confirm merely made it a chosen YES.) READ-ONLY: the
+@          flag is only read here.
 @   YES -> warp MAP_ROUTE_28, 37, 12. Decoded MB_NORMAL, collision 0,
 @          elevation 3, no object/warp/coord/bg event on it; two tiles in
 @          from the x=39 edge strip and inside the same walkable component
@@ -84,19 +117,36 @@ Route22_Text_KantoGateGuardOpen:
 @   NO  -> closemessage, releaseall; the player STAYS on (8,7). Coord
 @          triggers only run on a completed step onto their tile
 @          (input->tookStep gates TryStartStepBasedScript,
-@          src/field_control_avatar.c:193), so the box does not reopen
-@          until the player steps off and back on. From (8,7) the door
-@          approach (8,6) is one step north; (7,6) (the guard) and (9,6)
-@          flank it.
+@          src/field_control_avatar.c:193), and `releaseall` is what
+@          disarms it after the script: ScrCmd_releaseall (src/scrcmd.c)
+@          calls ObjectEventClearHeldMovementIfFinished on the player,
+@          clearing the finished held step that would otherwise leave the
+@          avatar at T_TILE_CENTER/MOVING and re-assert tookStep as soon as
+@          field input resumes -- swapping either non-warp exit of this
+@          script for a bare `end` would re-fire this trigger without a new
+@          step. So the box does not reopen until the player steps off and
+@          back on. From (8,7) the door approach (8,6) is one step north;
+@          (7,6) (the guard) and (9,6) flank it.
 @ The reciprocal Route28 confirm lands on (8,8), one tile SOUTH of this
-@ trigger, so a return from JOHTO never arrives on the trigger tile.
+@ trigger, so a return from JOHTO never arrives on the trigger tile. The
+@ price, recorded on purpose (round 1, review Major-2): walking STRAIGHT
+@ north from (8,8) to the door crosses (8,7) and gets this confirm once
+@ (answer NO, or detour (9,8)->(9,7)->(9,6)->(8,6)) -- the same one-NO cost
+@ as any walk up column 8 from the row-7/8 path below the porch.
 @ ============================================================================
 Route22_EventScript_KantoGateReturnWarp::
 	lockall
+	goto_if_unset FLAG_TRINITY_K_ARRIVED, Route22_EventScript_KantoGateNotYet
 	msgbox Route22_Text_KantoGateHeadOut, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route22_EventScript_KantoGateStay
 	warp MAP_ROUTE_28, 37, 12
 	waitstate
+	releaseall
+	end
+
+Route22_EventScript_KantoGateNotYet::
+	msgbox Route22_Text_KantoGateNotYet, MSGBOX_DEFAULT
+	closemessage
 	releaseall
 	end
 
@@ -109,3 +159,8 @@ Route22_Text_KantoGateHeadOut:
 	.string "The trail west leads out of KANTO\n"
 	.string "into MT. SILVER country.\p"
 	.string "Head out?$"
+
+Route22_Text_KantoGateNotYet:
+	.string "The trail west isn't open for\n"
+	.string "crossing yet.\p"
+	.string "Something says turn back.$"

@@ -46,21 +46,42 @@ Route28_Text_Sign:
 @ be an IMMEDIATE `warp MAP_ROUTE22, 8, 7` -- straight onto Route22's own
 @ seam trigger tile, one south of the league gate's door approach. It is now
 @ the mirror of Route22_EventScript_KantoGateReturnWarp: a YES/NO confirm
-@ under lockall (the ferry-counter `MSGBOX_YESNO` -> `goto_if_eq VAR_RESULT,
-@ NO` -> `warp`/`waitstate` shape).
+@ under lockall in the tree's own RocketHideout_B4F lift-platform shape
+@ (`lockall` -> `msgbox ... MSGBOX_YESNO` -> `goto_if_eq VAR_RESULT, NO` ->
+@ `warp`/`waitstate`, no closemessage on the YES path because the map load
+@ rebuilds the text window; NOT the Lilycove ferry, whose YES path boards
+@ the player before warping).
 @   YES -> warp MAP_ROUTE22, 8, 8. Decoded MB_NORMAL, collision 0, elevation
 @          3, no object/warp/coord/bg event on it -- one tile SOUTH of
-@          Route22's (8,7) trigger, so the return never lands on the trigger
-@          (coord_events never fire on a warp landing anyway, but the player's
-@          FIRST step north would have re-fired it). From (8,8) the gate's
-@          door approach (8,6) is two steps north; the guard stands at (7,6).
+@          Route22's (8,7) seam trigger, so the return never lands on the
+@          trigger tile. A warp landing never fires a coord_event in any case
+@          (TryStartStepBasedScript runs only on a completed step,
+@          src/field_control_avatar.c:193), and a landing ON (8,7) would have
+@          been prompt-free as well: the first north step leaves the tile,
+@          and only stepping off and back on re-fires it. Trade-off, recorded
+@          on purpose (M7 Task 3 round 1, review Major-2): the off-trigger
+@          (8,8) landing means a returning player who walks STRAIGHT north to
+@          the door steps onto (8,7) and gets Route22's "Head out?" confirm
+@          once (answer NO, or detour (9,8)->(9,7)->(9,6)->(8,6)). From (8,8)
+@          the gate's door approach (8,6) is two steps north; the guard
+@          stands at (7,6).
 @   NO  -> closemessage, releaseall; the player STAYS on (39,8). Coord
 @          triggers only run on a completed step onto their tile
 @          (input->tookStep gates TryStartStepBasedScript,
-@          src/field_control_avatar.c:193), so the box does not reopen until
-@          the player steps off and back on.
+@          src/field_control_avatar.c:193), and `releaseall` is what disarms
+@          it after the script: ScrCmd_releaseall (src/scrcmd.c) calls
+@          ObjectEventClearHeldMovementIfFinished on the player, clearing the
+@          finished held step that would otherwise leave the avatar at
+@          T_TILE_CENTER/MOVING and re-assert tookStep as soon as field input
+@          resumes -- swapping this exit for a bare `end` would re-fire this
+@          trigger without a new step. So the box does not reopen until the
+@          player steps off and back on.
 @ The K_ARRIVED refusal + walk_left step-back below is untouched: it is the
-@ story gate.
+@ story gate. Since round 1 Route22's (8,7) trigger reads the same flag
+@ (refusal, no step-back -- see that file), so a pre-K_ARRIVED player who
+@ leaks onto Route 22 through KantoVictoryRoad_1F's (20,10) can no longer say
+@ YES into this map's sealed pocket (east refused here, west refused by
+@ SilverCaveGateCheck below).
 Route28_EventScript_KantoGateCheck::
 	goto_if_set FLAG_TRINITY_K_ARRIVED, Route28_EventScript_KantoGateOpen
 	lockall
