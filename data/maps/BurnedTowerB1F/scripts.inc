@@ -67,7 +67,7 @@ BurnedTowerB1F_EventScript_ShowBeasts::
 @     nothing here depends on how scripted movement treats collision.
 @     DECODE THE BEHAVIOUR, NOT JUST THE COLLISION BIT, for every tile a
 @     choreography touches: (7,4) (7,5) (12,4) (12,5) (10,5) (10,3) are all
-@     MB_NORMAL collision 0 elevation 3, but SUICUNE's last step (10,2) is
+@     MB_CAVE collision 0 elevation 3, but SUICUNE's last step (10,2) is
 @     MB_IMPASSABLE_NORTH. That is harmless twice over -- scripted applymovement
 @     ignores directional blockers entirely, and even a walking object may ENTER
 @     (10,2) from the south, which is the direction SUICUNE arrives from; the
@@ -241,7 +241,7 @@ BurnedTowerB1F_Text_TheyAreGone:
 @ ============================================================================
 @ Trinity M4b S10 -- GSC's Strength boulder at (17,8) (BurnedTowerB1F.asm), placed as
 @ OBJ_EVENT_GFX_PUSHABLE_BOULDER with vanilla's own EventScript_StrengthBoulder.
-@ Decoded collision 0 / elevation 3 / MB_NORMAL / reachable, costing exactly one
+@ Decoded collision 0 / elevation 3 / MB_CAVE / reachable, costing exactly one
 @ tile (its own); the complex re-reports NO SEALED WARPS with it placed.
 @
 @ IT CARRIES A FLAG_TEMP, LIKE VANILLA'S OWN 59 BOULDERS, and that is the right

@@ -20,7 +20,7 @@ DarkCaveBlackthornEntrance_Text_Pharmacist:
 @ BLACKTHORN side because it is the deeper of the two entrances -- reached from
 @ ROUTE 45 or through the VIOLET half, and the further from any town.
 @
-@ TILE, DECODED: (21,27) collision 0, elevation 3, MB_NORMAL, reachable, and it
+@ TILE, DECODED: (21,27) collision 0, elevation 3, MB_CAVE, reachable, and it
 @ costs EXACTLY ONE TILE (its own). It sits in the southern chamber (row 27 is
 @ walkable at x 18..24 and nowhere else), the deepest pocket on the map's
 @ reachable side. The map reads 380 of 831 walkable tiles reachable from its two

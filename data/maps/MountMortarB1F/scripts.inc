@@ -22,7 +22,7 @@ MountMortarB1F_Text_Kiyo:
 @ contract line names Mt Mortar; the nearest GSC precedent for a static beast is
 @ the TIN TOWER 1F tableau, which this copies.
 @
-@ TILE, DECODED: (3,18) collision 0, elevation 3, MB_NORMAL, reachable, and it
+@ TILE, DECODED: (3,18) collision 0, elevation 3, MB_CAVE, reachable, and it
 @ costs EXACTLY ONE TILE (its own) with every other object placed. It is the
 @ deepest LAND tile on the floor -- 75 steps from the nearer of the two ladders
 @ by BFS, in the narrow western gallery. The whole eastern half of B1F decodes
@@ -42,7 +42,7 @@ MountMortarB1F_Text_Kiyo:
 @ that switch's `default:` sits on the GROUDON body.
 @
 @ THE BOULDER at (9,10) is GSC's own (MountMortarB1F.asm:150), decoded
-@ collision 0 / elevation 3 / MB_NORMAL / reachable, costing one tile. It is a
+@ collision 0 / elevation 3 / MB_CAVE / reachable, costing one tile. It is a
 @ plain blocker with no hole under it, so it takes a FLAG_TEMP like vanilla's
 @ own 59 boulders: template positions never persist
 @ (LoadObjEventTemplatesFromHeader, src/overworld.c:521-530), so a permanent

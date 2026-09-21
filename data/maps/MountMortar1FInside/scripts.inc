@@ -26,7 +26,7 @@ MountMortar1FInside_Text_MARKUSBeaten:
 @ ============================================================================
 @ Trinity M4b S10 -- GSC's Strength boulder at (21,43) (MountMortar1FInside.asm:134), placed as
 @ OBJ_EVENT_GFX_PUSHABLE_BOULDER with vanilla's own EventScript_StrengthBoulder.
-@ Decoded collision 0 / elevation 3 / MB_NORMAL / reachable, costing exactly one
+@ Decoded collision 0 / elevation 3 / MB_CAVE / reachable, costing exactly one
 @ tile (its own); the complex re-reports NO SEALED WARPS with it placed.
 @
 @ IT CARRIES A FLAG_TEMP, LIKE VANILLA'S OWN 59 BOULDERS, and that is the right

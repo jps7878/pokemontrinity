@@ -27,7 +27,7 @@ TinTower1F_MapScripts::
 @     right trigger for an on-entry cutscene WHEN the scene advances the var it
 @     is gated on, and it is the direct equivalent of GSC's scene_script.
 @     The player is walked up 3 to (9,12): (9,14) (9,13) (9,12) all decode
-@     collision 0 / elevation 3 / MB_NORMAL and are reachable.
+@     collision 0 / elevation 3 / MB_CAVE and are reachable.
 @     CAMERA, checked once: the viewport is 15x10 with the player on the 5th
 @     row, so at (9,12) it shows rows 8..17 and columns 2..16. RAIKOU (7,9),
 @     SUICUNE (9,9) and ENTEI (12,9) are all inside it.
@@ -40,7 +40,7 @@ TinTower1F_MapScripts::
 @     Scripted movement ignores collision, water and elevation entirely
 @     (InitNpcForMovement, :6872-6890), so the wall is scenery to it.
 @     BEHAVIOUR-decoded, not just collision-decoded (S5 M2): (9,11) is
-@     MB_NORMAL, elevation 3, collision 0, reachable, and row 11 is 12 tiles
+@     MB_CAVE, elevation 3, collision 0, reachable, and row 11 is 12 tiles
 @     wide (x 4..15) so standing there is not a cut vertex.
 @ B4  The player is never moved once a beast starts moving -- only faced. The
 @     walk-in happens first and crosses no hazard: 1F has no
@@ -278,7 +278,7 @@ TinTower1F_EventScript_Tableau::
 @ cast with branching dialogue is the S4 lesson (a character who survives the
 @ beat gets a new line, not a duplicate object on a second flag) and it saves
 @ three flags and three objects. GSC tiles, all decoded collision 0 /
-@ elevation 3 / MB_NORMAL / reachable: (5,9) (11,11) (14,6).
+@ elevation 3 / MB_CAVE / reachable: (5,9) (11,11) (14,6).
 @ ---------------------------------------------------------------------------
 TinTower1F_EventScript_SageA::
 	lock

@@ -34,7 +34,7 @@ SproutTower3F_EventScript_TROY::
 @ FLASH arrived in Act I. Replaced with a PP UP -- the one consumable that
 @ permanently deepens a move the player already chose to keep, which is this
 @ tower's whole stated theme. Logged in the slice plan section 6.
-@ He stands at (10,2), unmoved from M4a: collision-0 elevation-3 MB_NORMAL,
+@ He stands at (10,2), unmoved from M4a: collision-0 elevation-3 MB_CAVE,
 @ row 2 open x=5..14, and the (9,1)/(10,1) alcove behind him stays reachable
 @ through (9,2), so he seals nothing.
 @ ============================================================================

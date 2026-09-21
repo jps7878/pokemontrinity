@@ -70,7 +70,7 @@ IcePathB1F_SetHoleWarp:
 @ (S7's rule -- an authoring clause would resurrect a fallen boulder).
 @
 @ TILE DECODES: boulders (11,7) (7,8) (8,9) (17,7), all GSC's own
-@ (IcePathB1F.asm:95-98), all collision 0 / elevation 3 / MB_NORMAL / reachable.
+@ (IcePathB1F.asm:95-98), all collision 0 / elevation 3 / MB_CAVE / reachable.
 @ Holes (11,2) (4,7) (5,12) (12,13), all MB_CRACKED_FLOOR_HOLE.
 @ ============================================================================
 
