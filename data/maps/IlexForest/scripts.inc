@@ -39,11 +39,18 @@
 @ WON and the CAUGHT fall-through) + ON_RESUME `removeobject` guarded on
 @ B_OUTCOME_CAUGHT.
 @
-@ Placement (9,22): col=0 elev=3 MB_NORMAL, decoded directly from
+@ Placement (9,22): col=0 elev=3 MB_CAVE, decoded directly from
 @ IlexForest's own map.bin this session -- the tile immediately east of the
 @ shrine sign (8,22), flanking it symmetrically with the sign's own
 @ south-facing read tile (8,23). MB_ICE checked tree-wide on this map: 0
-@ cells -- no manual slide/ice derivation needed.
+@ cells -- no manual slide/ice derivation needed. CORRECTED (fix round 1,
+@ review): this said MB_NORMAL, true when it was written and false since
+@ game 277671ee7a repainted the forest floor MB_NORMAL -> MB_CAVE. (9,22) is
+@ metatile 641 (forest_johto secondary 129) and (8,23) is 642 (secondary
+@ 130); both are in the 51 repainted, so both now decode MB_CAVE. Nothing
+@ about the placement moves -- MB_CAVE differs from MB_NORMAL only in
+@ TILE_FLAG_HAS_ENCOUNTERS (src/metatile_behavior.c:17), collision and
+@ elevation are untouched, and Celebi is an object_event, not a wild.
 @
 @ Outcome switch. CORRECTED (fix round 1, review C2): the original claim
 @ here -- "B_OUTCOME_MON_TELEPORTED is UNREACHABLE for this Celebi" -- was

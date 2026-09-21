@@ -27355,7 +27355,7 @@
           "map": "MAP_ILEX_FOREST",
           "base_label": "sIlexForest_Johto",
           "land_mons": {
-            "encounter_rate": 20,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 5,
