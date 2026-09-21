@@ -58,7 +58,7 @@ ViridianHideout_B1F_EventScript_ExitToCity::
 	goto_if_eq VAR_RESULT, NO, ViridianHideout_B1F_EventScript_ExitDecline
 	closemessage
 	setrespawn HEAL_LOCATION_VIRIDIAN_CITY
-	warp MAP_VIRIDIAN_CITY, 30, 11
+	warp MAP_VIRIDIAN_CITY, 30, 10  @ emerge north of the grate, facing it (ScrCmd_warp lands DIR_SOUTH)
 	waitstate
 	end
 

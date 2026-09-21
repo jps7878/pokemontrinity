@@ -178,6 +178,12 @@
 #define METATILE_PokemonLeagueKanto_Entry_BottomRight_Closed 0x2A7
 #define METATILE_PokemonLeagueKanto_Floor_ShadeFull_Lance   0x311
 
+// gTileset_ViridianCityKanto  (Trinity M7 Task 9, finding #18)
+// Appended metatile: one hand-painted 8x8 tile (sheet index 224 = tile 736, pal row 9)
+// mirrored 4x over GeneralKanto's grass 9. COVERED + MB_NORMAL (0x1000): never
+// MB_SIGNPOST -- this tree auto-fires bg scripts on walking north into one.
+#define METATILE_ViridianCityKanto_Grate    0x2DF
+
 // gTileset_EverGrande
 #define METATILE_EverGrande_Door_PokemonLeague  0x21D
 

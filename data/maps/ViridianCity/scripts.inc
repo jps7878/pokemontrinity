@@ -265,15 +265,15 @@ ViridianCity_Text_TutorialOldMan:
 ViridianCity_Text_Woman:
 	.string "Ever since that gym went quiet,\nnobody in town will say why.\lFolks just look away and change\lthe subject.$"
 
-@ FIX ROUND 1 (review M5): a precise in-world pointer to the grate. No
-@ suitable pre-existing grate/manhole/drain metatile was found anywhere in
-@ gTileset_GeneralKanto/gTileset_ViridianCityKanto (grepped
-@ metatile_labels.h tree-wide for grate/manhole/drain/sewer/vent -- zero
-@ hits anywhere in the ROM, not just this tileset), so per the ruling's own
-@ fallback clause this relies on the text pointer alone -- logged, not
-@ silently assumed. (30,11) is due west of the gym door (36,10), on the
-@ SAME forecourt row (11) -- "west side of the yard" locates it precisely
-@ without naming a coordinate the player can't see.
+@ FIX ROUND 1 (review M5): a precise in-world pointer to the grate. At the
+@ time no grate/manhole/drain metatile existed anywhere in the ROM (grepped
+@ metatile_labels.h tree-wide -- zero hits), so this relied on the text
+@ pointer alone. M7 Task 9 (finding #18) ended that: (30,11) is now
+@ METATILE_ViridianCityKanto_Grate (0x2DF, appended to
+@ gTileset_ViridianCityKanto), collision 1, and this text is a SUPPLEMENT
+@ to the drawn tile per the AFFORDANCE RULE. (30,11) is due west of the gym
+@ door (36,10), on the SAME forecourt row (11) -- "west side of the yard"
+@ locates it precisely without naming a coordinate the player can't see.
 ViridianCity_Text_Youngster:
 	.string "My dad says there's men in dark\nuniforms coming and going near\lthe gym at night.\pI snuck a look once -- there's a\nloose grate on the west side of\lthe yard. That's how they get in\land out without anyone seeing.$"
 
@@ -323,10 +323,11 @@ ViridianCity_Text_BlueIdle:
 @ Trinity M5b S10 -- the hidden basement entrance. No FRLG door exists here to
 @ "unseal" (unlike Celadon's own Game Corner staircase) -- this is a wholly
 @ Trinity-original location, authored as a scripted bg_event sign rather than
-@ a new door tile or warp_event (zero new art, zero new metatile placement,
-@ and check-8-transparent by construction -- see docs/superpowers/plans/m5b/
-@ 10-viridian-climax.md section 2). (30,11) decoded col=0 elev=3 MB_NORMAL,
-@ clear of every existing object/bg_event/warp. Gated on arc>=3 (Celadon
+@ a new door tile or warp_event (S10 as shipped -- superseded by M7 Task 9:
+@ zero new art, zero new metatile placement, and check-8-transparent by
+@ construction -- see docs/superpowers/plans/m5b/10-viridian-climax.md
+@ section 2). At S10 time (30,11) decoded col=0 elev=3 MB_NORMAL, clear of
+@ every existing object/bg_event/warp. Gated on arc>=3 (Celadon
 @ cleared) -- defensive: the door-seal's own arc>=4 gate (above) already makes
 @ the gym itself unreachable this early, but a player who somehow reaches
 @ Viridian before Celadon should not stumble into raid content early either.
@@ -337,6 +338,10 @@ ViridianCity_Text_BlueIdle:
 @ decline (harmless in practice -- ScriptContext_SetupScript already calls
 @ LockPlayerFieldControls -- but NPCs kept walking through the prompt and it
 @ diverged from the shipped idiom).
+@ M7 Task 9 (finding #18): (30,11) IS the grate now -- metatile 0x2DF,
+@ collision 1 (bump-and-press: no stand-on-it dead state), landings +
+@ escape warp at (30,10). AFFORDANCE RULE: every mandatory-path
+@ interactable sits on a visually distinct tile.
 ViridianCity_EventScript_HideoutGrate::
 	lockall
 	goto_if_lt VAR_TRINITY_KANTO_ARC, 3, ViridianCity_EventScript_HideoutGrateSealed
@@ -344,7 +349,7 @@ ViridianCity_EventScript_HideoutGrate::
 	goto_if_eq VAR_RESULT, NO, ViridianCity_EventScript_HideoutGrateDecline
 	closemessage
 	setrespawn HEAL_LOCATION_VIRIDIAN_CITY
-	setescapewarp MAP_VIRIDIAN_CITY, 30, 11
+	setescapewarp MAP_VIRIDIAN_CITY, 30, 10  @ (30,11) is the grate itself now (collision 1)
 	warp MAP_VIRIDIAN_HIDEOUT_B1F, 12, 3
 	waitstate
 	end
