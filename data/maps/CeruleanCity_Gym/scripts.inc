@@ -1,7 +1,22 @@
 CeruleanCity_Gym_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, CeruleanCity_Gym_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, CeruleanCity_Gym_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, CeruleanCity_Gym_OnFrame
 	.byte 0
+
+@ M7 Task 9 (HOW gap): the Machine Part's tile ripples while the part is in the
+@ pool. D2: ON_LOAD is the author (covers continue-from-save); no
+@ DrawWholeMapView here. D3: the two in-map state changers (SaboteurScene sets
+@ SABOTEUR_DONE, MachinePartPickup sets MACHINE_PART) repeat the write in
+@ their direction and redraw. PLANT_RESTORED is written in the Power Plant, so
+@ the guard below alone covers it. Same three-flag order as MachinePartPickup.
+CeruleanCity_Gym_OnLoad::
+	goto_if_set FLAG_TRINITY_K_PLANT_RESTORED, CeruleanCity_Gym_EventScript_OnLoadDone
+	goto_if_set FLAG_TRINITY_K_MACHINE_PART, CeruleanCity_Gym_EventScript_OnLoadDone
+	goto_if_unset FLAG_TRINITY_K_SABOTEUR_DONE, CeruleanCity_Gym_EventScript_OnLoadDone
+	setmetatile 3, 8, METATILE_CeruleanGymKanto_PoolWater_Ripple, FALSE
+CeruleanCity_Gym_EventScript_OnLoadDone::
+	end
 
 CeruleanCity_Gym_EventScript_Luis::
 	trainerbattle_single TRAINER_KANTO_SWIMMER_M_LUIS, CeruleanCity_Gym_Text_LuisSeen, CeruleanCity_Gym_Text_LuisBeaten
@@ -228,15 +243,17 @@ CeruleanCity_Gym_Text_GymStatueCertified:
 @ state machine (var states, disarm timing, R1 co-sign) unchanged by this fix.
 @
 @ DISCOVERABILITY (fix round I1): the Machine Part sits on 1 of 123 Surf-
-@ reachable pool tiles with no in-engine affordance pointing at it --
-@ BG_EVENT_HIDDEN_ITEM is the only kind the Itemfinder actually scans
-@ (src/item_use.c:452,481 both gate on `kind == BG_EVENT_HIDDEN_ITEM`; this is
-@ a plain sign-kind bg_event, invisible to it, by the mechanism decision in
-@ section 1 of the sub-plan). Since the mechanism itself is staying (a real
-@ hidden_item would drop the saboteur-done gate and the key-item-as-flag
-@ shape), the fix is dialogue: the saboteur's own apology names the pool
-@ (below), and the manager's waiting line (PowerPlant_Text_
-@ ManagerIWontForgiveHim) points at "the CERULEAN GYM's pool" explicitly.
+@ reachable pool tiles, and BG_EVENT_HIDDEN_ITEM is the only kind the
+@ Itemfinder actually scans (src/item_use.c:452,481 both gate on `kind ==
+@ BG_EVENT_HIDDEN_ITEM`; this is a plain sign-kind bg_event, invisible to it,
+@ by the mechanism decision in section 1 of the sub-plan). Since the mechanism
+@ itself is staying (a real hidden_item would drop the saboteur-done gate and
+@ the key-item-as-flag shape), the fixes are dialogue and, since M7 Task 9, a
+@ drawn one: the saboteur's own apology names the tile's corner of the pool
+@ (below), the manager's waiting line (PowerPlant_Text_
+@ ManagerIWontForgiveHim) points at "the CERULEAN GYM's pool" explicitly, and
+@ (3,8) itself ripples for exactly the window in which the part is there (the
+@ ON_LOAD author at the top of this file).
 @
 @ Skipped from GSC, logged: the Route 24/25 flag entanglement (Act III's Rocket
 @ arc is Celadon/Viridian, this stays self-contained); the four-part apology/
@@ -284,6 +301,8 @@ CeruleanCity_Gym_EventScript_SaboteurScene::
 	playse SE_EXIT
 	removeobject LOCALID_KANTO_CERULEAN_GYM_SABOTEUR
 	setflag FLAG_TRINITY_K_SABOTEUR_DONE
+	setmetatile 3, 8, METATILE_CeruleanGymKanto_PoolWater_Ripple, FALSE
+	special DrawWholeMapView
 	releaseall
 	end
 
@@ -304,8 +323,9 @@ CeruleanCity_Gym_Movement_SaboteurFlees:
 CeruleanCity_Gym_Text_SaboteurApology:
 	.string "Oof -- sorry! Didn't see you\n"
 	.string "there. You just about caught me\l"
-	.string "mid-splash, crouched at the far\l"
-	.string "end of the pool.$"
+	.string "mid-splash, crouched at the\l"
+	.string "pool's west edge -- right under\l"
+	.string "the PICNICKER's platform.$"
 
 CeruleanCity_Gym_Text_SaboteurSpotted:
 	.string "Wait -- you're the one MISTY's\n"
@@ -339,6 +359,8 @@ CeruleanCity_Gym_EventScript_MachinePartPickup::
 	waitfanfare
 	msgbox CeruleanCity_Gym_Text_ReceivedMachinePart, MSGBOX_DEFAULT
 	setflag FLAG_TRINITY_K_MACHINE_PART
+	setmetatile 3, 8, METATILE_CeruleanGymKanto_PoolWater, FALSE
+	special DrawWholeMapView
 	release
 	end
 

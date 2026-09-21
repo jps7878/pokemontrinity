@@ -184,6 +184,13 @@
 // MB_SIGNPOST -- this tree auto-fires bg scripts on walking north into one.
 #define METATILE_ViridianCityKanto_Grate    0x2DF
 
+// gTileset_CeruleanGymKanto  (Trinity M7 Task 9, HOW gap: the Machine Part tile)
+// 0x291 is the shipped flat pool water at (3,8); 0x2D4 is the appended ripple variant
+// (one hand-painted tile, sheet index 141, pal row 7, mirrored 4x) with the SAME
+// attribute 0x1015 (COVERED | MB_OCEAN_WATER) so Surf and draw order never change.
+#define METATILE_CeruleanGymKanto_PoolWater          0x291
+#define METATILE_CeruleanGymKanto_PoolWater_Ripple   0x2D4
+
 // gTileset_EverGrande
 #define METATILE_EverGrande_Door_PokemonLeague  0x21D
 
