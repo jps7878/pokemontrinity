@@ -9350,9 +9350,9 @@ const struct Item gItemsInfo[] =
             // an effect it no longer has.
             .price = (I_PRICE == GEN_1) ? 1 : 3000,
             .description = COMPOUND_STRING(
-                "An older device.\n"
+                "Does nothing now.\n"
                 "Your whole team\n"
-                "shares Exp. now."),
+                "shares Exp. anyway."),
             .pocket = POCKET_ITEMS,
         #else
             .price = (I_PRICE == GEN_1) ? 1 : 3000,

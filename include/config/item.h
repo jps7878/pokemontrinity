@@ -25,8 +25,8 @@
 #define I_REUSABLE_TMS          TRUE        // In Gen5-8, TMs are reusable. Setting this to TRUE will make all vanilla TMs reusable, though they can also be cherry-picked by setting their importance to 1.
 
 // Exp. Share config
-// To use this feature, replace the 0 with the flag ID you're assigning it to.
-// Eg: Replace with FLAG_UNUSED_0x264 so you can use that flag to toggle the feature.
+// Vanilla note: this setting is 0 upstream, and you set it to a flag ID to enable the
+// feature. Trinity has done that -- set it back to 0 to restore held-item-only behaviour.
 // Trinity M7b Task 20 (bug-test findings #7/#8): the team-wide Exp Share is ON from the
 // start of every save. FLAG_TRINITY_EXP_SHARE_ALL is set in NewGameInitData (src/new_game.c)
 // and again in CB2_ContinueSavedGame (src/overworld.c) so saves made before M7b get it on

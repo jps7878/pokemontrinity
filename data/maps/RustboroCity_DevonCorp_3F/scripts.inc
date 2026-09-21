@@ -161,8 +161,9 @@ RustboroCity_DevonCorp_3F_EventScript_MrStone::
 @ Trinity M7b Task 20 (bug-test #8): the EXP.SHARE is no longer an item in this build.
 @ Party-wide exp is on from New Game (I_EXP_SHARE_FLAG = FLAG_TRINITY_EXP_SHARE_ALL), so
 @ the old `giveitem ITEM_EXP_SHARE` here would hand the player a held item that does
-@ nothing. MR. STONE's favor is paid in the explanation instead -- this is the earliest
-@ place in the trilogy the player is told the whole party is levelling. With no giveitem
+@ nothing. MR. STONE's favor is paid in the explanation instead -- the earliest place an
+@ NPC explains the always-on sharing (the battle line STRINGID_TEAMGAINEDEXP announces it
+@ earlier, from the first win with a benched party member). With no giveitem
 @ there is no bag to fill, so the VAR_RESULT / Common_EventScript_ShowBagIsFull branch is
 @ gone too. FLAG_RECEIVED_EXP_SHARE still latches the scene (the AfterFavor line above)
 @ and still gates MatchCall_Text_MrStone4 (src/pokenav_match_call_data.c).

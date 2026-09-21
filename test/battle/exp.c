@@ -120,10 +120,13 @@ WILD_BATTLE_TEST("Large exp gains are supported", s32 exp) // #1455
     }
 }
 
-// Trinity M7b (#8): I_EXP_SHARE_FLAG makes every party member an exp getter, which is
-// exactly what this test asserts does NOT happen without the held item -- so it only
-// describes the build when the party-wide flag is off.
-#if I_EXP_SHARE_ITEM < GEN_6 && I_EXP_SHARE_FLAG == 0
+// Trinity M7b (#8): this test still holds under the party-wide Exp Share.
+// IsGen6ExpShareEnabled() (src/battle_util.c) is a runtime FlagGet, and the battle test
+// runner never sets I_EXP_SHARE_FLAG: it reaches neither NewGameInitData (only from
+// CB2_NewGame) nor CB2_ContinueSavedGame (only from the main menu / reload_save), which
+// are the flag's only two set sites. So the flag reads 0 here, the Gen-6 path stays off,
+// and the HOLD_EFFECT_EXP_SHARE assertions below are exactly as true as they were before.
+#if I_EXP_SHARE_ITEM < GEN_6
 
 WILD_BATTLE_TEST("Exp Share(held) gives Experience to mons which did not participate in battle")
 {
@@ -151,4 +154,4 @@ WILD_BATTLE_TEST("Exp Share(held) gives Experience to mons which did not partici
     }
 }
 
-#endif // I_EXP_SHARE_ITEM / I_EXP_SHARE_FLAG
+#endif // I_EXP_SHARE_ITEM
