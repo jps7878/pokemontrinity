@@ -309,7 +309,7 @@
 // Only the well-raid aftermath writes 1, and only the SILVER 2 aftermath writes 2.
 #define VAR_TRINITY_JOHTO_SCENE_AZALEA                   0x40F9
 // Trinity M4b S5 scene scratch (Ecruteak chapter). Was VAR_UNUSED_0x40FA.
-//   0 the BURNED TOWER is untouched -- SILVER 3 and MORTY are on 1F, B1F is empty
+//   0 the BURNED TOWER is untouched -- MORTY is on 1F, SILVER 3 joins him from ARC 2 (M7 Task 4), B1F is empty
 //   1 SILVER 3 beaten -- the three beasts are on stage in B1F and the awakening is armed
 //   2 the beasts have woken and scattered (chapter's tower phase complete)
 // Monotonic. Only the SILVER 3 aftermath writes 1 (from a coord_event gated on 0), and
