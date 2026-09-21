@@ -1078,29 +1078,66 @@ static void PCTurnOnEffect(struct Task *task)
     task->tTimer++;
 }
 
+// Trinity M7 Task 8, finding #19: the PC screen ids stamped by the flicker
+// are per-tileset art, but IsBuildingPCTile() is behavior-based (MB_PC,
+// upstream #8048), so DoPCTurnOnEffect/DoPCTurnOffEffect also fire in the
+// ported Kanto and Johto interiors. There METATILE_Building_PC_* name
+// unrelated art (rendered: in gTileset_BuildingKanto 0x004/0x005 are a wood
+// panel and a stair step), and stamping them corrupted the PC tile until the
+// map reloaded. GetPCScreenMetatileId() resolves the on/off pair for the
+// layout actually loaded and reports "no art" otherwise; the two callers then
+// skip the stamp, so the PC still opens and only the screen glow is lost.
+//
+// gTileset_BuildingKanto keeps FRLG's Building metatile ids, so the FRLG PC
+// screen pair sits at pokefirered's METATILE_Building_PC_Off/On values
+// 0x062/0x063 -- the only two MB_PC ids in that tileset (decoded from its
+// metatile_attributes.bin; both rendered to confirm the dark/lit screen art).
+// constants/metatile_labels.h carries no BuildingKanto labels, so they are
+// named here. The M2 Kanto tileset library is defined in
+// src/data/tilesets/headers.h with no extern in include/tilesets.h; this file
+// is its only C reference.
+#define METATILE_BuildingKanto_PC_Off 0x062
+#define METATILE_BuildingKanto_PC_On  0x063
+#define PC_SCREEN_METATILE_NONE       0xFFFF // this layout has no art for the ids above: skip the stamp
+extern const struct Tileset gTileset_BuildingKanto;
+
+// Returns the metatile id showing the PC screen on (screenOn) or off for the
+// PC_LOCATION_* in gSpecialVar_0x8004, or PC_SCREEN_METATILE_NONE when the
+// current layout does not carry the art those ids name.
+static u16 GetPCScreenMetatileId(bool32 screenOn)
+{
+    const struct MapLayout *layout = gMapHeader.mapLayout;
+
+    switch (gSpecialVar_0x8004)
+    {
+    case PC_LOCATION_OTHER:
+        // Vanilla Hoenn interiors, including every Battle Frontier lobby.
+        if (layout->primaryTileset == &gTileset_Building)
+            return screenOn ? METATILE_Building_PC_On : METATILE_Building_PC_Off;
+        // Ported FRLG interiors (Centers, Cinnabar Lab, Route 5 Day Care, Silph Co.).
+        if (layout->primaryTileset == &gTileset_BuildingKanto)
+            return screenOn ? METATILE_BuildingKanto_PC_On : METATILE_BuildingKanto_PC_Off;
+        // Johto interiors (gTileset_General + a *Johto secondary) and anything else: no art.
+        break;
+    case PC_LOCATION_BRENDANS_HOUSE:
+        if (layout->secondaryTileset == &gTileset_BrendansMaysHouse)
+            return screenOn ? METATILE_BrendansMaysHouse_BrendanPC_On : METATILE_BrendansMaysHouse_BrendanPC_Off;
+        break;
+    case PC_LOCATION_MAYS_HOUSE:
+        if (layout->secondaryTileset == &gTileset_BrendansMaysHouse)
+            return screenOn ? METATILE_BrendansMaysHouse_MayPC_On : METATILE_BrendansMaysHouse_MayPC_Off;
+        break;
+    }
+    return PC_SCREEN_METATILE_NONE;
+}
+
 static void PCTurnOnEffect_SetMetatile(s16 isScreenOn, s8 dx, s8 dy)
 {
-    u16 metatileId = 0;
-    if (isScreenOn)
-    {
-        // Screen is on, set it off
-        if (gSpecialVar_0x8004 == PC_LOCATION_OTHER)
-            metatileId = METATILE_Building_PC_Off;
-        else if (gSpecialVar_0x8004 == PC_LOCATION_BRENDANS_HOUSE)
-            metatileId = METATILE_BrendansMaysHouse_BrendanPC_Off;
-        else if (gSpecialVar_0x8004 == PC_LOCATION_MAYS_HOUSE)
-            metatileId = METATILE_BrendansMaysHouse_MayPC_Off;
-    }
-    else
-    {
-        // Screen is off, set it on
-        if (gSpecialVar_0x8004 == PC_LOCATION_OTHER)
-            metatileId = METATILE_Building_PC_On;
-        else if (gSpecialVar_0x8004 == PC_LOCATION_BRENDANS_HOUSE)
-            metatileId = METATILE_BrendansMaysHouse_BrendanPC_On;
-        else if (gSpecialVar_0x8004 == PC_LOCATION_MAYS_HOUSE)
-            metatileId = METATILE_BrendansMaysHouse_MayPC_On;
-    }
+    // isScreenOn is the screen's current state: on -> set it off, off -> set it on.
+    u16 metatileId = GetPCScreenMetatileId(!isScreenOn);
+
+    if (metatileId == PC_SCREEN_METATILE_NONE)
+        return;
     MapGridSetMetatileIdAt(gSaveBlock1Ptr->pos.x + dx + MAP_OFFSET, gSaveBlock1Ptr->pos.y + dy + MAP_OFFSET, metatileId | MAPGRID_IMPASSABLE);
 }
 
@@ -1114,7 +1151,7 @@ static void PCTurnOffEffect(void)
 {
     s8 dx = 0;
     s8 dy = 0;
-    u16 metatileId = 0;
+    u16 metatileId;
 
     // Get where the PC should be, depending on where the player is looking.
     u8 playerDirection = GetPlayerFacingDirection();
@@ -1137,12 +1174,9 @@ static void PCTurnOffEffect(void)
         break;
     }
 
-    if (gSpecialVar_0x8004 == PC_LOCATION_OTHER)
-        metatileId = METATILE_Building_PC_Off;
-    else if (gSpecialVar_0x8004 == PC_LOCATION_BRENDANS_HOUSE)
-        metatileId = METATILE_BrendansMaysHouse_BrendanPC_Off;
-    else if (gSpecialVar_0x8004 == PC_LOCATION_MAYS_HOUSE)
-        metatileId = METATILE_BrendansMaysHouse_MayPC_Off;
+    metatileId = GetPCScreenMetatileId(FALSE);
+    if (metatileId == PC_SCREEN_METATILE_NONE)
+        return; // finding #19: no screen art in this layout, leave the tile alone
 
     MapGridSetMetatileIdAt(gSaveBlock1Ptr->pos.x + dx + MAP_OFFSET, gSaveBlock1Ptr->pos.y + dy + MAP_OFFSET, metatileId | MAPGRID_IMPASSABLE);
     DrawWholeMapView();

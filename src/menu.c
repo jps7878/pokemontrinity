@@ -2237,7 +2237,6 @@ void BufferSaveMenuText(u8 textId, u8 *dest, u8 color)
 {
     s32 curFlag;
     s32 flagCount;
-    u8 *endOfString;
     u8 *string = dest;
 
     *(string++) = EXT_CTRL_CODE_BEGIN;
@@ -2268,13 +2267,30 @@ void BufferSaveMenuText(u8 textId, u8 *dest, u8 color)
             GetMapNameGeneric(string, gMapHeader.regionMapSectionId);
             break;
         case SAVE_MENU_BADGES:
-            for (curFlag = FLAG_BADGE01_GET, flagCount = 0, endOfString = string + 1; curFlag < FLAG_BADGE01_GET + NUM_BADGES; curFlag++)
+            // Trinity (finding #6, M7 Task 8): three regions, 24 badges, so the
+            // count is two digits. Hoenn's eight are FLAG_BADGE01_GET..08_GET;
+            // Johto's FLAG_TRINITY_BADGE09..16 and Kanto's FLAG_TRINITY_BADGE17..24
+            // are each a contiguous flag range (constants/flags.h). The caller
+            // right-aligns the string inside the 112px save-info window, so the
+            // extra digit needs no x adjustment.
+            flagCount = 0;
+            for (curFlag = FLAG_BADGE01_GET; curFlag < FLAG_BADGE01_GET + NUM_BADGES; curFlag++)
             {
                 if (FlagGet(curFlag))
                     flagCount++;
             }
-            *string = flagCount + CHAR_0;
-            *endOfString = EOS;
+            for (curFlag = FLAG_TRINITY_BADGE09; curFlag <= FLAG_TRINITY_BADGE16; curFlag++)
+            {
+                if (FlagGet(curFlag))
+                    flagCount++;
+            }
+            for (curFlag = FLAG_TRINITY_BADGE17; curFlag <= FLAG_TRINITY_BADGE24; curFlag++)
+            {
+                if (FlagGet(curFlag))
+                    flagCount++;
+            }
+            string = ConvertIntToDecimalStringN(string, flagCount, STR_CONV_MODE_LEFT_ALIGN, 2);
+            *string = EOS;
             break;
     }
 }
