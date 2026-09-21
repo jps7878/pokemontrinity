@@ -55,23 +55,25 @@
     }
   ],
   "warp_events": [],
-  "coord_events": [],
-  "bg_events": [
+  "coord_events": [
     {
-      "type": "sign",
+      "type": "trigger",
       "x": 12,
-      "y": 3,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "y": 2,
+      "elevation": 3,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
       "script": "ViridianHideout_B1F_EventScript_ExitToCity"
     },
     {
-      "type": "sign",
+      "type": "trigger",
       "x": 17,
-      "y": 3,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "y": 2,
+      "elevation": 3,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
       "script": "ViridianHideout_B1F_EventScript_DescendToB2F"
     }
-  ]
+  ],
+  "bg_events": []
 }

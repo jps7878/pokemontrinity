@@ -97,15 +97,16 @@
     }
   ],
   "warp_events": [],
-  "coord_events": [],
-  "bg_events": [
+  "coord_events": [
     {
-      "type": "sign",
-      "x": 18,
-      "y": 16,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "type": "trigger",
+      "x": 20,
+      "y": 14,
+      "elevation": 3,
+      "var": "VAR_TEMP_1",
+      "var_value": "0",
       "script": "ViridianHideout_B2F_EventScript_AscendToB1F"
     }
-  ]
+  ],
+  "bg_events": []
 }

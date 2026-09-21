@@ -5,11 +5,24 @@
 @ Reuses RocketHideout_B1F's own LAYOUT_ROCKET_HIDEOUT_B1F_KANTO wholesale
 @ (S2's registration precedent, forward-noted for this exact slice) -- zero
 @ new tile art, zero new blockdata risk. Three raid posts sit at Celadon's
-@ own proven-clear tile spots. Both basement exits are scripted bg_event
-@ signs (the Magnet Train/Machine Part idiom), not warp_events -- this keeps
-@ the whole basement connection graph check-8-transparent regardless of the
-@ underlying tile behaviour at either end (see the sub-plan section 3.2/4.1
-@ for why a genuine warp_events pair isn't available for the F1<->F2 leg).
+@ own proven-clear tile spots. M7 Task 9 (finding #18): both basement exits
+@ are COORD TRIGGERS on the layout's own drawn FRLG staircase tiles --
+@ (12,2) MB_UP_LEFT_STAIR_WARP up to the city, (17,2) MB_DOWN_RIGHT_STAIR_WARP
+@ down to B2F -- VAR_TEMP_1 == 0, elevation-true (the ViridianCity (36,11)
+@ shape). TryStartCoordEventScript runs BEFORE TryStartWarpEventScript
+@ (src/field_control_avatar.c:620-625) and the stair behaviours only ever
+@ intercept west/east presses into walls (field_screen_effect.c:1688), so a
+@ declined prompt leaves the player free to step back off. (Pressing INTO
+@ the stairs after declining is a silent face-only no-op -- no warp_event,
+@ so TryArrowWarp returns FALSE; step off and back on to re-prompt. Known,
+@ accepted, same as ViridianCity (36,11).) The landings
+@ (12,3)/(17,3) are the stair BASES, one tile south, MB_NORMAL: a warp
+@ landing never fires a trigger (tookStep needs runningState == MOVING).
+@ Still not warp_events: the city side has no warp-behaviour tile and the
+@ arc gate + YES/NO live in these scripts. AFFORDANCE RULE (M7): every
+@ mandatory-path interactable sits on a visually distinct tile -- here the
+@ staircases FRLG already drew. Do NOT add a warp_event on (12,2)/(17,2)
+@ without removing the trigger: the trigger would shadow it.
 @ ============================================================================
 ViridianHideout_B1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, ViridianHideout_B1F_OnTransition
@@ -40,15 +53,16 @@ ViridianHideout_B1F_EventScript_Scientist1::
 	end
 
 @ Sealed pre-arc3 (defensive -- a player who somehow reaches this floor before
-@ clearing Celadon sees a locked stairwell, not raid content, matching the
-@ same posture as ViridianCity's own grate sign). Open, this is the "way
-@ back up" -- a plain scripted ride, the OlivinePort/SaffronMagnetTrain shape.
+@ clearing Celadon is turned back by the sealed-way line, not raid content,
+@ matching the same posture as ViridianCity's own grate sign). Open, this is
+@ the "way back up" -- a plain scripted ride, the OlivinePort /
+@ SaffronMagnetTrain shape.
 @ FIX ROUND 1 (review Minor 8/9): lockall/releaseall wrapping added
 @ (matching CeladonCity_GameCorner_EventScript_Poster:48-58's own
 @ precedent), and DescendToB2F below now carries the SAME defensive arc>=3
 @ guard as this script -- both are unreachable below arc 3 in practice (the
 @ grate itself gates entry to this whole floor), so the asymmetry was inert,
-@ but the sealed-hatch flavour text implies a defensive posture that should
+@ but the sealed-way flavour text implies a defensive posture that should
 @ be applied consistently, not just on the way this script happens to be
 @ reached first.
 ViridianHideout_B1F_EventScript_ExitToCity::
@@ -62,6 +76,9 @@ ViridianHideout_B1F_EventScript_ExitToCity::
 	waitstate
 	end
 
+@ defensive: arc<3 cannot reach this floor (city grate gate); wording
+@ deliberately names no visible object -- the staircases render normally,
+@ so the line claims nothing the tile does not draw (AFFORDANCE RULE).
 ViridianHideout_B1F_EventScript_ExitSealed::
 	msgbox ViridianHideout_B1F_Text_ExitSealed, MSGBOX_DEFAULT
 	releaseall
@@ -110,10 +127,10 @@ ViridianHideout_B1F_Text_Scientist1PostBattle:
 	.string "Just -- go. Quietly.$"
 
 ViridianHideout_B1F_Text_ExitToCity:
-	.string "A service ladder, leading back\nup toward the street.\pClimb up?$"
+	.string "The stairs lead back up toward\nthe street.\pClimb up?$"
 
 ViridianHideout_B1F_Text_ExitSealed:
-	.string "A rusted service hatch. It's\nbolted shut from this side.$"
+	.string "The way through is shut from\nthe other side. It won't give.$"
 
 ViridianHideout_B1F_Text_DescendToB2F:
-	.string "The passage continues down,\ndeeper under the city.\pKeep going?$"
+	.string "The stairs lead down, deeper\nunder the city.\pKeep going?$"

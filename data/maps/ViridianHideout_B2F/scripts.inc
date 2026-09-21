@@ -54,8 +54,31 @@ ViridianHideout_B2F_MapScripts::
 @ (18,14) stay open floor throughout -- confirmed col=0 in the raw, unsealed
 @ blockdata, never part of the wall.
 ViridianHideout_B2F_OnLoad::
+	call ViridianHideout_B2F_EventScript_StampStairs
 	call_if_unset FLAG_TRINITY_K_VBASEMENT_B2F_DOOR, ViridianHideout_B2F_EventScript_SetBarrier
 	end
+
+@ M7 Task 9 (finding #18): the arrival room's way back up. This shared
+@ blockdata draws its only staircase (600 at (11,15)) inside the disconnected
+@ 138-tile component, so Celadon's own up-right block (11..13,14..16) is copied
+@ here over the decorative cabinet 784/785/792/793. Unconditional, ON_LOAD
+@ (D2); OpenBarrier's DrawWholeMapView redraws from the same RAM grid, so no
+@ D3 repeat is needed (the stamp never changes state). Elevation is preserved
+@ by setmetatile; the 4th argument is the collision bit and matches every
+@ cell's current value -- reach is byte-identical to S10 (127 sealed / 171
+@ open). (20,13) is deliberately left as wall 657 (592, the column top, is
+@ not copied) so no cell changes collision. Do NOT add a warp_event on
+@ (20,14) without removing the trigger below.
+ViridianHideout_B2F_EventScript_StampStairs::
+	setmetatile 21, 13, 593, 1
+	setmetatile 22, 13, 616, 1
+	setmetatile 20, 14, 600, 0
+	setmetatile 21, 14, 601, 1
+	setmetatile 22, 14, 624, 1
+	setmetatile 20, 15, 608, 0
+	setmetatile 21, 15, 609, 1
+	setmetatile 22, 15, 632, 1
+	return
 
 ViridianHideout_B2F_OnTransition::
 	call ViridianHideout_B2F_EventScript_SetRaidVisibility
@@ -228,6 +251,18 @@ ViridianHideout_B2F_EventScript_GiovanniRetreat::
 @ ----------------------------------------------------------------------------
 @ FIX ROUND 1 (review Minor 8): lockall/releaseall wrapping added, matching
 @ CeladonCity_GameCorner_EventScript_Poster:48-58's own precedent.
+@ M7 Task 9 (finding #18): reached by a COORD TRIGGER on (20,14), the
+@ stamped staircase's MB_UP_RIGHT_STAIR_WARP tile (VAR_TEMP_1 == 0,
+@ elevation-true 3 -- the ViridianCity (36,11) shape), not a bg_event sign.
+@ The landing from B1F, (18,16), is two tiles west and two tiles south of
+@ it, so the staircase is on screen on arrival and a warp landing never
+@ fires the trigger (tookStep needs runningState == MOVING). After
+@ DECLINING, pressing EAST into the drawn stairs is a silent face-only
+@ no-op -- (20,14)'s stair behaviour intercepts the EAST press
+@ (COLLISION_STAIR_WARP -> PlayerFaceDirection, no step; (21,14) is a
+@ collision-1 wall anyway) and TryArrowWarp returns FALSE because the tile
+@ carries no warp_event; step off (20,14) and back on to re-prompt. Known,
+@ accepted, same as ViridianCity (36,11).
 ViridianHideout_B2F_EventScript_AscendToB1F::
 	lockall
 	msgbox ViridianHideout_B2F_Text_AscendToB1F, MSGBOX_YESNO
@@ -326,4 +361,4 @@ ViridianHideout_B2F_Text_GiovanniAftermath:
 	.string "...Gone. Both of them, gone.\pYears of work, undone in a\nmoment, because of you.\pThis floor's finished. But don't\nmistake that for the gym being\lyours. I'll be waiting upstairs.$"
 
 ViridianHideout_B2F_Text_AscendToB1F:
-	.string "The passage climbs back up\ntoward the outer floor.\pGo up?$"
+	.string "The stairs climb back up toward\nthe outer floor.\pGo up?$"
