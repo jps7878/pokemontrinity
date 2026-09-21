@@ -11496,7 +11496,7 @@
           "map": "MAP_VIRIDIAN_FOREST",
           "base_label": "sViridianForest_FireRed_Kanto",
           "land_mons": {
-            "encounter_rate": 14,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 4,
@@ -11772,7 +11772,7 @@
           "map": "MAP_SSANNE_EXTERIOR",
           "base_label": "sSSAnneExterior_FireRed_Kanto",
           "water_mons": {
-            "encounter_rate": 1,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -12478,7 +12478,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 20,
@@ -12632,7 +12632,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 20,
@@ -12786,7 +12786,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 20,
@@ -12940,7 +12940,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 20,
@@ -13094,7 +13094,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 30,
@@ -13377,7 +13377,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 40,
@@ -13936,7 +13936,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 25,
@@ -14090,7 +14090,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 25,
@@ -15795,7 +15795,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -16018,7 +16018,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 20,
@@ -16379,7 +16379,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -16533,7 +16533,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -16687,7 +16687,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -16841,7 +16841,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -17275,7 +17275,7 @@
           "map": "MAP_ROUTE19",
           "base_label": "sRoute19_FireRed_Kanto",
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -17364,7 +17364,7 @@
           "map": "MAP_ROUTE20",
           "base_label": "sRoute20_FireRed_Kanto",
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -17518,7 +17518,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -17672,7 +17672,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -17826,7 +17826,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 20,
@@ -17980,7 +17980,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 20,
@@ -18134,7 +18134,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -18288,7 +18288,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 20,
@@ -18377,7 +18377,7 @@
           "map": "MAP_PALLET_TOWN",
           "base_label": "sPalletTown_FireRed_Kanto",
           "water_mons": {
-            "encounter_rate": 1,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -18466,7 +18466,7 @@
           "map": "MAP_VIRIDIAN_CITY",
           "base_label": "sViridianCity_FireRed_Kanto",
           "water_mons": {
-            "encounter_rate": 1,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 20,
@@ -18555,7 +18555,7 @@
           "map": "MAP_CERULEAN_CITY",
           "base_label": "sCeruleanCity_FireRed_Kanto",
           "water_mons": {
-            "encounter_rate": 1,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -18644,7 +18644,7 @@
           "map": "MAP_VERMILION_CITY",
           "base_label": "sVermilionCity_FireRed_Kanto",
           "water_mons": {
-            "encounter_rate": 1,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -18733,7 +18733,7 @@
           "map": "MAP_CELADON_CITY",
           "base_label": "sCeladonCity_FireRed_Kanto",
           "water_mons": {
-            "encounter_rate": 1,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -18822,7 +18822,7 @@
           "map": "MAP_FUCHSIA_CITY",
           "base_label": "sFuchsiaCity_FireRed_Kanto",
           "water_mons": {
-            "encounter_rate": 1,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 20,
@@ -18911,7 +18911,7 @@
           "map": "MAP_CINNABAR_ISLAND",
           "base_label": "sCinnabarIsland_FireRed_Kanto",
           "water_mons": {
-            "encounter_rate": 1,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -19062,7 +19062,7 @@
                 "species": "SPECIES_PIKACHU"
               }
             ],
-            "encounter_rate": 14
+            "encounter_rate": 20
           }
         },
         {
@@ -19303,7 +19303,7 @@
                 "species": "SPECIES_TENTACOOL"
               }
             ],
-            "encounter_rate": 1
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -20009,7 +20009,7 @@
                 "species": "SPECIES_SLOWPOKE"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -20163,7 +20163,7 @@
                 "species": "SPECIES_SLOWPOKE"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -20317,7 +20317,7 @@
                 "species": "SPECIES_SLOWPOKE"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -20471,7 +20471,7 @@
                 "species": "SPECIES_SLOWPOKE"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -20625,7 +20625,7 @@
                 "species": "SPECIES_SLOWPOKE"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "rock_smash_mons": {
             "mons": [
@@ -20908,7 +20908,7 @@
                 "species": "SPECIES_SLOWPOKE"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "rock_smash_mons": {
             "mons": [
@@ -21467,7 +21467,7 @@
                 "species": "SPECIES_SLOWBRO"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -21621,7 +21621,7 @@
                 "species": "SPECIES_SLOWBRO"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -23326,7 +23326,7 @@
                 "species": "SPECIES_TENTACOOL"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -23549,7 +23549,7 @@
                 "species": "SPECIES_SLOWPOKE"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -23910,7 +23910,7 @@
                 "species": "SPECIES_TENTACOOL"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -24064,7 +24064,7 @@
                 "species": "SPECIES_TENTACOOL"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -24218,7 +24218,7 @@
                 "species": "SPECIES_TENTACOOL"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -24372,7 +24372,7 @@
                 "species": "SPECIES_TENTACOOL"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -24806,7 +24806,7 @@
                 "species": "SPECIES_TENTACOOL"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -24895,7 +24895,7 @@
                 "species": "SPECIES_TENTACOOL"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -25049,7 +25049,7 @@
                 "species": "SPECIES_TENTACOOL"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -25203,7 +25203,7 @@
                 "species": "SPECIES_TENTACOOL"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -25357,7 +25357,7 @@
                 "species": "SPECIES_SLOWPOKE"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -25511,7 +25511,7 @@
                 "species": "SPECIES_SLOWPOKE"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -25665,7 +25665,7 @@
                 "species": "SPECIES_TENTACOOL"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -25819,7 +25819,7 @@
                 "species": "SPECIES_SLOWPOKE"
               }
             ],
-            "encounter_rate": 2
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -25908,7 +25908,7 @@
                 "species": "SPECIES_TENTACOOL"
               }
             ],
-            "encounter_rate": 1
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -25997,7 +25997,7 @@
                 "species": "SPECIES_SLOWPOKE"
               }
             ],
-            "encounter_rate": 1
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -26086,7 +26086,7 @@
                 "species": "SPECIES_TENTACOOL"
               }
             ],
-            "encounter_rate": 1
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -26175,7 +26175,7 @@
                 "species": "SPECIES_TENTACOOL"
               }
             ],
-            "encounter_rate": 1
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -26264,7 +26264,7 @@
                 "species": "SPECIES_KOFFING"
               }
             ],
-            "encounter_rate": 1
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -26353,7 +26353,7 @@
                 "species": "SPECIES_SLOWPOKE"
               }
             ],
-            "encounter_rate": 1
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -26442,7 +26442,7 @@
                 "species": "SPECIES_TENTACOOL"
               }
             ],
-            "encounter_rate": 1
+            "encounter_rate": 4
           },
           "fishing_mons": {
             "mons": [
@@ -26538,7 +26538,7 @@
           "map": "MAP_BURNED_TOWER_1F",
           "base_label": "sBurnedTower1F_Johto",
           "land_mons": {
-            "encounter_rate": 4,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 13,
@@ -26607,7 +26607,7 @@
           "map": "MAP_BURNED_TOWER_B1F",
           "base_label": "sBurnedTowerB1F_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 14,
@@ -26744,7 +26744,7 @@
           "map": "MAP_DARK_CAVE_BLACKTHORN_ENTRANCE",
           "base_label": "sDarkCaveBlackthornEntrance_Johto",
           "land_mons": {
-            "encounter_rate": 4,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 23,
@@ -26843,7 +26843,7 @@
           "map": "MAP_DARK_CAVE_VIOLET_ENTRANCE",
           "base_label": "sDarkCaveVioletEntrance_Johto",
           "land_mons": {
-            "encounter_rate": 4,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 3,
@@ -27010,7 +27010,7 @@
           "map": "MAP_ICE_PATH_1F",
           "base_label": "sIcePath1F_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 21,
@@ -27079,7 +27079,7 @@
           "map": "MAP_ICE_PATH_B1F",
           "base_label": "sIcePathB1F_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 22,
@@ -27148,7 +27148,7 @@
           "map": "MAP_ICE_PATH_B2F_BLACKTHORN_SIDE",
           "base_label": "sIcePathB2FBlackthornSide_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 23,
@@ -27217,7 +27217,7 @@
           "map": "MAP_ICE_PATH_B2F_MAHOGANY_SIDE",
           "base_label": "sIcePathB2FMahoganySide_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 23,
@@ -27286,7 +27286,7 @@
           "map": "MAP_ICE_PATH_B3F",
           "base_label": "sIcePathB3F_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 24,
@@ -27355,7 +27355,7 @@
           "map": "MAP_ILEX_FOREST",
           "base_label": "sIlexForest_Johto",
           "land_mons": {
-            "encounter_rate": 4,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 5,
@@ -27488,7 +27488,7 @@
           "map": "MAP_MOUNT_MORTAR_1F_INSIDE",
           "base_label": "sMountMortar1FInside_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 13,
@@ -27557,7 +27557,7 @@
           "map": "MAP_MOUNT_MORTAR_1F_OUTSIDE",
           "base_label": "sMountMortar1FOutside_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 14,
@@ -27656,7 +27656,7 @@
           "map": "MAP_MOUNT_MORTAR_2F_INSIDE",
           "base_label": "sMountMortar2FInside_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 31,
@@ -27755,7 +27755,7 @@
           "map": "MAP_MOUNT_MORTAR_B1F",
           "base_label": "sMountMortarB1F_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 15,
@@ -27854,7 +27854,7 @@
           "map": "MAP_NATIONAL_PARK",
           "base_label": "sNationalPark_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 12,
@@ -28025,7 +28025,7 @@
           "map": "MAP_ROUTE_29",
           "base_label": "sRoute29_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 2,
@@ -28094,7 +28094,7 @@
           "map": "MAP_ROUTE_30",
           "base_label": "sRoute30_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 3,
@@ -28193,7 +28193,7 @@
           "map": "MAP_ROUTE_31",
           "base_label": "sRoute31_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 4,
@@ -28292,7 +28292,7 @@
           "map": "MAP_ROUTE_32",
           "base_label": "sRoute32_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 4,
@@ -28391,7 +28391,7 @@
           "map": "MAP_ROUTE_33",
           "base_label": "sRoute33_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 6,
@@ -28460,7 +28460,7 @@
           "map": "MAP_ROUTE_34",
           "base_label": "sRoute34_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 10,
@@ -28559,7 +28559,7 @@
           "map": "MAP_ROUTE_35",
           "base_label": "sRoute35_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 12,
@@ -28658,7 +28658,7 @@
           "map": "MAP_ROUTE_36",
           "base_label": "sRoute36_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 4,
@@ -28727,7 +28727,7 @@
           "map": "MAP_ROUTE_37",
           "base_label": "sRoute37_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 13,
@@ -28796,7 +28796,7 @@
           "map": "MAP_ROUTE_38",
           "base_label": "sRoute38_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 16,
@@ -28865,7 +28865,7 @@
           "map": "MAP_ROUTE_39",
           "base_label": "sRoute39_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 16,
@@ -29002,7 +29002,7 @@
           "map": "MAP_ROUTE_42",
           "base_label": "sRoute42_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 13,
@@ -29101,7 +29101,7 @@
           "map": "MAP_ROUTE_43",
           "base_label": "sRoute43_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 15,
@@ -29200,7 +29200,7 @@
           "map": "MAP_ROUTE_44",
           "base_label": "sRoute44_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 23,
@@ -29299,7 +29299,7 @@
           "map": "MAP_ROUTE_45",
           "base_label": "sRoute45_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 23,
@@ -29398,7 +29398,7 @@
           "map": "MAP_ROUTE_46",
           "base_label": "sRoute46_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 2,
@@ -29467,7 +29467,7 @@
           "map": "MAP_RUINS_OF_ALPH_INNER_CHAMBER",
           "base_label": "sRuinsOfAlphInnerChamber_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 5,
@@ -29536,7 +29536,7 @@
           "map": "MAP_RUINS_OF_ALPH_OUTSIDE",
           "base_label": "sRuinsOfAlphOutside_Johto",
           "land_mons": {
-            "encounter_rate": 4,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 20,
@@ -29635,7 +29635,7 @@
           "map": "MAP_SILVER_CAVE_ITEM_ROOMS",
           "base_label": "sSilverCaveItemRooms_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 48,
@@ -29704,7 +29704,7 @@
           "map": "MAP_SILVER_CAVE_OUTSIDE",
           "base_label": "sSilverCaveOutside_Johto",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 41,
@@ -29803,7 +29803,7 @@
           "map": "MAP_SILVER_CAVE_ROOM_1",
           "base_label": "sSilverCaveRoom1_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 43,
@@ -29872,7 +29872,7 @@
           "map": "MAP_SILVER_CAVE_ROOM_2",
           "base_label": "sSilverCaveRoom2_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 48,
@@ -29971,7 +29971,7 @@
           "map": "MAP_SILVER_CAVE_ROOM_3",
           "base_label": "sSilverCaveRoom3_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 51,
@@ -30040,7 +30040,7 @@
           "map": "MAP_SLOWPOKE_WELL_B1F",
           "base_label": "sSlowpokeWellB1F_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 5,
@@ -30139,7 +30139,7 @@
           "map": "MAP_SLOWPOKE_WELL_B2F",
           "base_label": "sSlowpokeWellB2F_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 21,
@@ -30238,7 +30238,7 @@
           "map": "MAP_SPROUT_TOWER_2F",
           "base_label": "sSproutTower2F_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 3,
@@ -30307,7 +30307,7 @@
           "map": "MAP_SPROUT_TOWER_3F",
           "base_label": "sSproutTower3F_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 3,
@@ -30376,7 +30376,7 @@
           "map": "MAP_TIN_TOWER_2F",
           "base_label": "sTinTower2F_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 20,
@@ -30445,7 +30445,7 @@
           "map": "MAP_TIN_TOWER_3F",
           "base_label": "sTinTower3F_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 20,
@@ -30514,7 +30514,7 @@
           "map": "MAP_TIN_TOWER_4F",
           "base_label": "sTinTower4F_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 20,
@@ -30583,7 +30583,7 @@
           "map": "MAP_TIN_TOWER_5F",
           "base_label": "sTinTower5F_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 20,
@@ -30652,7 +30652,7 @@
           "map": "MAP_TIN_TOWER_6F",
           "base_label": "sTinTower6F_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 20,
@@ -30721,7 +30721,7 @@
           "map": "MAP_TIN_TOWER_7F",
           "base_label": "sTinTower7F_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 20,
@@ -30790,7 +30790,7 @@
           "map": "MAP_TIN_TOWER_8F",
           "base_label": "sTinTower8F_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 20,
@@ -30859,7 +30859,7 @@
           "map": "MAP_TIN_TOWER_9F",
           "base_label": "sTinTower9F_Johto",
           "land_mons": {
-            "encounter_rate": 2,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 20,
@@ -30928,7 +30928,7 @@
           "map": "MAP_UNION_CAVE_1F",
           "base_label": "sUnionCave1F_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 6,
@@ -31027,7 +31027,7 @@
           "map": "MAP_UNION_CAVE_B1F",
           "base_label": "sUnionCaveB1F_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 8,
@@ -31126,7 +31126,7 @@
           "map": "MAP_UNION_CAVE_B2F",
           "base_label": "sUnionCaveB2F_Johto",
           "land_mons": {
-            "encounter_rate": 4,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 22,
@@ -31259,7 +31259,7 @@
           "map": "MAP_WHIRL_ISLAND_B1F",
           "base_label": "sWhirlIslandB1F_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 23,
@@ -31328,7 +31328,7 @@
           "map": "MAP_WHIRL_ISLAND_B2F",
           "base_label": "sWhirlIslandB2F_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 24,
@@ -31427,7 +31427,7 @@
           "map": "MAP_WHIRL_ISLAND_CAVE",
           "base_label": "sWhirlIslandCave_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 22,
@@ -31496,7 +31496,7 @@
           "map": "MAP_WHIRL_ISLAND_LUGIA_CHAMBER",
           "base_label": "sWhirlIslandLugiaChamber_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 25,
@@ -31595,7 +31595,7 @@
           "map": "MAP_WHIRL_ISLAND_NE",
           "base_label": "sWhirlIslandNE_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 22,
@@ -31664,7 +31664,7 @@
           "map": "MAP_WHIRL_ISLAND_NW",
           "base_label": "sWhirlIslandNW_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 22,
@@ -31733,7 +31733,7 @@
           "map": "MAP_WHIRL_ISLAND_SE",
           "base_label": "sWhirlIslandSE_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 22,
@@ -31802,7 +31802,7 @@
           "map": "MAP_WHIRL_ISLAND_SW",
           "base_label": "sWhirlIslandSW_Johto",
           "land_mons": {
-            "encounter_rate": 6,
+            "encounter_rate": 10,
             "mons": [
               {
                 "min_level": 22,
