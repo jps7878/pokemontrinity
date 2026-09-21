@@ -149,7 +149,7 @@
     },
     {
       "local_id": "LOCALID_KANTO_VIRIDIAN_BLUE",
-      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+      "graphics_id": "OBJ_EVENT_GFX_BLUE",
       "x": 39,
       "y": 11,
       "elevation": 3,

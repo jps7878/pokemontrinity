@@ -251,6 +251,12 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedMauvi
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ApricornTree;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Giovanni;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LtSurge;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lance;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Blue;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Koga;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Bruno;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RocketM;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RocketF;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_BRENDAN_NORMAL] =           &gObjectEventGraphicsInfo_BrendanNormal,
@@ -498,6 +504,12 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_APRICORN_TREE] =            &gObjectEventGraphicsInfo_ApricornTree,
     [OBJ_EVENT_GFX_GIOVANNI] =                 &gObjectEventGraphicsInfo_Giovanni,
     [OBJ_EVENT_GFX_LT_SURGE] =                 &gObjectEventGraphicsInfo_LtSurge,
+    [OBJ_EVENT_GFX_LANCE] =                    &gObjectEventGraphicsInfo_Lance,
+    [OBJ_EVENT_GFX_BLUE] =                     &gObjectEventGraphicsInfo_Blue,
+    [OBJ_EVENT_GFX_KOGA] =                     &gObjectEventGraphicsInfo_Koga,
+    [OBJ_EVENT_GFX_BRUNO] =                    &gObjectEventGraphicsInfo_Bruno,
+    [OBJ_EVENT_GFX_ROCKET_M] =                 &gObjectEventGraphicsInfo_RocketM,
+    [OBJ_EVENT_GFX_ROCKET_F] =                 &gObjectEventGraphicsInfo_RocketF,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

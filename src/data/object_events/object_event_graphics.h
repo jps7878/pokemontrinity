@@ -167,6 +167,15 @@ const u32 gObjectEventPic_Mom[] = INCBIN_U32("graphics/object_events/pics/people
 // Trinity M6 P3: real FRLG OW ports (Giovanni + Lt. Surge)
 const u32 gObjectEventPic_Giovanni[] = INCBIN_U32("graphics/object_events/pics/people/kanto_bosses/giovanni.4bpp");
 const u32 gObjectEventPic_LtSurge[] = INCBIN_U32("graphics/object_events/pics/people/kanto_bosses/lt_surge.4bpp");
+// Trinity M7b Task 11: the rest of the byte-identical FRLG cast (finding #5).
+// Lance/Koga/Bruno are 48x32 (3 unique frames, FR's own sheet); Blue and both
+// Rocket grunts are 144x32 (the full 9-frame walk cycle).
+const u32 gObjectEventPic_Lance[] = INCBIN_U32("graphics/object_events/pics/people/kanto_bosses/lance.4bpp");
+const u32 gObjectEventPic_Blue[] = INCBIN_U32("graphics/object_events/pics/people/kanto_bosses/blue.4bpp");
+const u32 gObjectEventPic_Koga[] = INCBIN_U32("graphics/object_events/pics/people/kanto_bosses/koga.4bpp");
+const u32 gObjectEventPic_Bruno[] = INCBIN_U32("graphics/object_events/pics/people/kanto_bosses/bruno.4bpp");
+const u32 gObjectEventPic_RocketM[] = INCBIN_U32("graphics/object_events/pics/people/team_rocket/rocket_m.4bpp");
+const u32 gObjectEventPic_RocketF[] = INCBIN_U32("graphics/object_events/pics/people/team_rocket/rocket_f.4bpp");
 const u16 gObjectEventPal_Kyogre[] = INCBIN_U16("graphics/object_events/palettes/kyogre.gbapal");
 const u16 gObjectEventPal_KyogreReflection[] = INCBIN_U16("graphics/object_events/palettes/kyogre_reflection.gbapal");
 const u16 gObjectEventPal_Groudon[] = INCBIN_U16("graphics/object_events/palettes/groudon.gbapal");
@@ -232,8 +241,11 @@ const u16 gObjectEventPal_SubmarineShadow[] = INCBIN_U16("graphics/object_events
 const u32 gObjectEventPic_Truck[] = INCBIN_U32("graphics/object_events/pics/misc/truck.4bpp");
 const u16 gObjectEventPal_Truck[] = INCBIN_U16("graphics/object_events/palettes/truck.gbapal");
 const u16 gObjectEventPal_Vigoroth[] = INCBIN_U16("graphics/object_events/palettes/vigoroth.gbapal");
-const u16 gObjectEventPal_Giovanni[] = INCBIN_U16("graphics/object_events/palettes/giovanni.gbapal");
-const u16 gObjectEventPal_LtSurge[] = INCBIN_U16("graphics/object_events/palettes/lt_surge.gbapal");
+// FireRed's two shared NPC palettes -- every ported FRLG human sprite in this
+// tree (Giovanni, Lt. Surge, Lance, Blue, Koga, Bruno, both Rocket grunts) is
+// drawn against one of these two and against nothing else.
+const u16 gObjectEventPal_FRLGNpcWhite[] = INCBIN_U16("graphics/object_events/palettes/frlg_npc_white.gbapal");
+const u16 gObjectEventPal_FRLGNpcGreen[] = INCBIN_U16("graphics/object_events/palettes/frlg_npc_green.gbapal");
 const u32 gObjectEventPic_BirchsBag[] = INCBIN_U32("graphics/object_events/pics/misc/birchs_bag.4bpp");
 const u32 gObjectEventPic_EnemyZigzagoon[] = INCBIN_U32("graphics/object_events/pics/pokemon_old/enemy_zigzagoon.4bpp");
 const u16 gObjectEventPal_EnemyZigzagoon[] = INCBIN_U16("graphics/object_events/palettes/enemy_zigzagoon.gbapal");

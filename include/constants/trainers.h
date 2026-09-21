@@ -123,7 +123,11 @@
 #define TRAINER_PIC_BRUNO                 103
 #define TRAINER_PIC_LANCE                 104
 #define TRAINER_PIC_BLUE                  105
-#define TRAINER_PIC_COUNT                 106
+// Trinity M7b Task 11 (finding #5b): the Rocket grunts stop borrowing Team
+// AQUA's battle portraits. FRLG's own rocket_grunt_m/f front pics.
+#define TRAINER_PIC_ROCKET_GRUNT_M        106
+#define TRAINER_PIC_ROCKET_GRUNT_F        107
+#define TRAINER_PIC_COUNT                 108
 
 // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_BRENDAN                0

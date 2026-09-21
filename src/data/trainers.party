@@ -20041,7 +20041,7 @@ Level: 69
 === TRAINER_ROCKET_GRUNT_M_1 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20058,7 +20058,7 @@ Level: 59
 === TRAINER_ROCKET_GRUNT_M_2 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20075,7 +20075,7 @@ Level: 59
 === TRAINER_ROCKET_GRUNT_M_3 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20092,7 +20092,7 @@ Level: 62
 === TRAINER_ROCKET_GRUNT_M_4 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20109,7 +20109,7 @@ Level: 62
 === TRAINER_ROCKET_GRUNT_M_5 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20126,7 +20126,7 @@ Level: 65
 === TRAINER_ROCKET_GRUNT_M_6 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20143,7 +20143,7 @@ Level: 65
 === TRAINER_ROCKET_GRUNT_M_7 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20160,7 +20160,7 @@ Level: 68
 === TRAINER_ROCKET_GRUNT_M_8 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20177,7 +20177,7 @@ Level: 68
 === TRAINER_ROCKET_GRUNT_F_1 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt F
+Pic: Rocket Grunt F
 Gender: Female
 Music: Aqua
 AI: Basic Trainer
@@ -20191,7 +20191,7 @@ Level: 59
 === TRAINER_ROCKET_GRUNT_F_2 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt F
+Pic: Rocket Grunt F
 Gender: Female
 Music: Aqua
 AI: Basic Trainer
@@ -20208,7 +20208,7 @@ Level: 62
 === TRAINER_ROCKET_GRUNT_F_3 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt F
+Pic: Rocket Grunt F
 Gender: Female
 Music: Aqua
 AI: Basic Trainer
@@ -20222,7 +20222,7 @@ Level: 65
 === TRAINER_ROCKET_GRUNT_F_4 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt F
+Pic: Rocket Grunt F
 Gender: Female
 Music: Aqua
 AI: Basic Trainer
@@ -20526,7 +20526,7 @@ Level: 67
 === TRAINER_JOHTO_ROCKET_RT2F_A ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20543,7 +20543,7 @@ Level: 65
 === TRAINER_JOHTO_ROCKET_RT2F_B ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20557,7 +20557,7 @@ Level: 64
 === TRAINER_JOHTO_ROCKET_RT2F_C ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20571,7 +20571,7 @@ Level: 66
 === TRAINER_JOHTO_ROCKET_RT3F_A ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20588,7 +20588,7 @@ Level: 66
 === TRAINER_JOHTO_ROCKET_RT3F_B ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20619,7 +20619,7 @@ Level: 67
 === TRAINER_JOHTO_ROCKET_RT3F_C ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20636,7 +20636,7 @@ Level: 67
 === TRAINER_JOHTO_ROCKET_RT4F_A ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20667,7 +20667,7 @@ Level: 68
 === TRAINER_JOHTO_ROCKET_RT4F_B ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt F
+Pic: Rocket Grunt F
 Gender: Female
 Music: Aqua
 AI: Basic Trainer
@@ -20681,7 +20681,7 @@ Level: 68
 === TRAINER_JOHTO_ROCKET_RT4F_C ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20698,7 +20698,7 @@ Level: 67
 === TRAINER_JOHTO_ROCKET_UG_A ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20712,7 +20712,7 @@ Level: 67
 === TRAINER_JOHTO_ROCKET_UG_B ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20729,7 +20729,7 @@ Level: 67
 === TRAINER_JOHTO_ROCKET_UG_C ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20743,7 +20743,7 @@ Level: 67
 === TRAINER_JOHTO_ROCKET_WH_A ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20760,7 +20760,7 @@ Level: 67
 === TRAINER_JOHTO_ROCKET_WH_B ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -20774,7 +20774,7 @@ Level: 68
 === TRAINER_JOHTO_ROCKET_WH_C ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 AI: Basic Trainer
@@ -26067,7 +26067,7 @@ Level: 92
 === TRAINER_K_GRUNT_M_1 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 Double Battle: No
@@ -26085,7 +26085,7 @@ Level: 80
 === TRAINER_K_GRUNT_M_2 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 Double Battle: No
@@ -26103,7 +26103,7 @@ Level: 80
 === TRAINER_K_GRUNT_M_3 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 Double Battle: No
@@ -26121,7 +26121,7 @@ Level: 80
 === TRAINER_K_GRUNT_M_4 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 Double Battle: No
@@ -26139,7 +26139,7 @@ Level: 84
 === TRAINER_K_GRUNT_M_5 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 Double Battle: No
@@ -26157,7 +26157,7 @@ Level: 84
 === TRAINER_K_GRUNT_M_6 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 Double Battle: No
@@ -26175,7 +26175,7 @@ Level: 84
 === TRAINER_K_GRUNT_M_7 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 Double Battle: No
@@ -26193,7 +26193,7 @@ Level: 84
 === TRAINER_K_GRUNT_M_8 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 Double Battle: No
@@ -26211,7 +26211,7 @@ Level: 87
 === TRAINER_K_GRUNT_M_9 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 Double Battle: No
@@ -26229,7 +26229,7 @@ Level: 87
 === TRAINER_K_GRUNT_M_10 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt M
+Pic: Rocket Grunt M
 Gender: Male
 Music: Aqua
 Double Battle: No
@@ -26247,7 +26247,7 @@ Level: 87
 === TRAINER_K_GRUNT_F_1 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt F
+Pic: Rocket Grunt F
 Gender: Female
 Music: Aqua
 Double Battle: No
@@ -26262,7 +26262,7 @@ Level: 80
 === TRAINER_K_GRUNT_F_2 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt F
+Pic: Rocket Grunt F
 Gender: Female
 Music: Aqua
 Double Battle: No
@@ -26280,7 +26280,7 @@ Level: 84
 === TRAINER_K_GRUNT_F_3 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt F
+Pic: Rocket Grunt F
 Gender: Female
 Music: Aqua
 Double Battle: No
@@ -26298,7 +26298,7 @@ Level: 84
 === TRAINER_K_GRUNT_F_4 ===
 Name: GRUNT
 Class: Team Rocket
-Pic: Aqua Grunt F
+Pic: Rocket Grunt F
 Gender: Female
 Music: Aqua
 Double Battle: No

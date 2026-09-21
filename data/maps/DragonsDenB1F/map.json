@@ -107,7 +107,7 @@
       "flag": "FLAG_TRINITY_JOHTO_PICKUPS_START + 216"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+      "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
       "x": 20,
       "y": 23,
       "elevation": 3,

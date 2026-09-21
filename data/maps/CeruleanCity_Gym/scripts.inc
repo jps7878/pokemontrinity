@@ -231,8 +231,10 @@ CeruleanCity_Gym_Text_GymStatueCertified:
 @ else runs, matching the pin's letter exactly.
 @
 @ Player is never moved (GSC's own grunt never moves the player either, only
-@ itself). Object: OBJ_EVENT_GFX_AQUA_MEMBER_M, this hack's established
-@ Team-Rocket-grunt stand-in (SlowpokeWellB1F, RadioTower4F, etc). Starts (9,10)
+@ itself). Object: OBJ_EVENT_GFX_ROCKET_M, FRLG's own Team Rocket grunt sprite
+@ (M7b Task 11 ported it in; this was OBJ_EVENT_GFX_AQUA_MEMBER_M, the Team AQUA
+@ stand-in, up to that point -- every Rocket grunt object moved together).
+@ Starts (9,10)
 @ (fix round M1: originally (9,8), whose approach path crossed the single water
 @ cell (9,9) -- scripted movement ignores collision/water entirely, S6's pin,
 @ so nothing would have blocked it, but the actor would have visibly strode on

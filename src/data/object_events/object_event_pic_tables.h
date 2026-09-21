@@ -1038,6 +1038,83 @@ static const struct SpriteFrameImage sPicTable_LtSurge[] = {
     overworld_frame(gObjectEventPic_LtSurge, 2, 4, 2),
 };
 
+// Trinity M7b Task 11: frame tables ported verbatim from pokefirered's own
+// sPicTable_Lance / _Blue / _Koga / _Bruno / _RocketM / _RocketF. Lance, Koga
+// and Bruno reuse 3 source frames across the standard 9-slot table because FR
+// itself only drew 3 for them (same shape as Lt. Surge above, not a port loss);
+// Blue and both Rocket grunts have all 9.
+static const struct SpriteFrameImage sPicTable_Lance[] = {
+    overworld_frame(gObjectEventPic_Lance, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Lance, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Lance, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Lance, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Lance, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Lance, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Lance, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Lance, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Lance, 2, 4, 2),
+};
+
+static const struct SpriteFrameImage sPicTable_Blue[] = {
+    overworld_frame(gObjectEventPic_Blue, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Blue, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Blue, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Blue, 2, 4, 3),
+    overworld_frame(gObjectEventPic_Blue, 2, 4, 4),
+    overworld_frame(gObjectEventPic_Blue, 2, 4, 5),
+    overworld_frame(gObjectEventPic_Blue, 2, 4, 6),
+    overworld_frame(gObjectEventPic_Blue, 2, 4, 7),
+    overworld_frame(gObjectEventPic_Blue, 2, 4, 8),
+};
+
+static const struct SpriteFrameImage sPicTable_Koga[] = {
+    overworld_frame(gObjectEventPic_Koga, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Koga, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Koga, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Koga, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Koga, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Koga, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Koga, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Koga, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Koga, 2, 4, 2),
+};
+
+static const struct SpriteFrameImage sPicTable_Bruno[] = {
+    overworld_frame(gObjectEventPic_Bruno, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Bruno, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Bruno, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Bruno, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Bruno, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Bruno, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Bruno, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Bruno, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Bruno, 2, 4, 2),
+};
+
+static const struct SpriteFrameImage sPicTable_RocketM[] = {
+    overworld_frame(gObjectEventPic_RocketM, 2, 4, 0),
+    overworld_frame(gObjectEventPic_RocketM, 2, 4, 1),
+    overworld_frame(gObjectEventPic_RocketM, 2, 4, 2),
+    overworld_frame(gObjectEventPic_RocketM, 2, 4, 3),
+    overworld_frame(gObjectEventPic_RocketM, 2, 4, 4),
+    overworld_frame(gObjectEventPic_RocketM, 2, 4, 5),
+    overworld_frame(gObjectEventPic_RocketM, 2, 4, 6),
+    overworld_frame(gObjectEventPic_RocketM, 2, 4, 7),
+    overworld_frame(gObjectEventPic_RocketM, 2, 4, 8),
+};
+
+static const struct SpriteFrameImage sPicTable_RocketF[] = {
+    overworld_frame(gObjectEventPic_RocketF, 2, 4, 0),
+    overworld_frame(gObjectEventPic_RocketF, 2, 4, 1),
+    overworld_frame(gObjectEventPic_RocketF, 2, 4, 2),
+    overworld_frame(gObjectEventPic_RocketF, 2, 4, 3),
+    overworld_frame(gObjectEventPic_RocketF, 2, 4, 4),
+    overworld_frame(gObjectEventPic_RocketF, 2, 4, 5),
+    overworld_frame(gObjectEventPic_RocketF, 2, 4, 6),
+    overworld_frame(gObjectEventPic_RocketF, 2, 4, 7),
+    overworld_frame(gObjectEventPic_RocketF, 2, 4, 8),
+};
+
 static const struct SpriteFrameImage sPicTable_Scott[] = {
     overworld_ascending_frames(gObjectEventPic_Scott, 2, 4),
 };

@@ -42,7 +42,7 @@
       "flag": "FLAG_TRINITY_J_WELL_RAID_HIDE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
       "local_id": "LOCALID_JOHTO_WELL_GRUNT_A",
       "x": 15,
       "y": 7,
@@ -56,7 +56,7 @@
       "flag": "FLAG_TRINITY_J_WELL_RAID_HIDE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_F",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_F",
       "local_id": "LOCALID_JOHTO_WELL_GRUNT_B",
       "x": 10,
       "y": 4,
@@ -70,7 +70,7 @@
       "flag": "FLAG_TRINITY_J_WELL_RAID_HIDE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
       "local_id": "LOCALID_JOHTO_WELL_GRUNT_C",
       "x": 5,
       "y": 6,

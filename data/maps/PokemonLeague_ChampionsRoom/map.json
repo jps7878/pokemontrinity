@@ -16,7 +16,7 @@
   "object_events": [
     {
       "local_id": "LOCALID_JOHTO_E4_LANCE",
-      "graphics_id": "OBJ_EVENT_GFX_STEVEN",
+      "graphics_id": "OBJ_EVENT_GFX_LANCE",
       "x": 6,
       "y": 8,
       "elevation": 3,

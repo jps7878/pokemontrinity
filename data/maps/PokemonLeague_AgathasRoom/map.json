@@ -16,7 +16,7 @@
   "object_events": [
     {
       "local_id": "LOCALID_JOHTO_E4_BRUNO",
-      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+      "graphics_id": "OBJ_EVENT_GFX_BRUNO",
       "x": 6,
       "y": 5,
       "elevation": 3,
@@ -30,7 +30,7 @@
     },
     {
       "local_id": "LOCALID_KANTO_E4_BRUNOII",
-      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+      "graphics_id": "OBJ_EVENT_GFX_BRUNO",
       "x": 6,
       "y": 5,
       "elevation": 3,

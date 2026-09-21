@@ -162,6 +162,27 @@ $(OBJEVENTGFXDIR)/people/kanto_bosses/giovanni.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/people/kanto_bosses/lt_surge.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
+# Trinity M7b Task 11. Every 16x32 person sheet needs the 2x4 frame-block tiling
+# flags here; without a rule the sheet falls through to the generic row-major
+# %.4bpp rule in the Makefile and ships as scrambled pixels (the M6 P3 Critical).
+$(OBJEVENTGFXDIR)/people/kanto_bosses/lance.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(OBJEVENTGFXDIR)/people/kanto_bosses/blue.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(OBJEVENTGFXDIR)/people/kanto_bosses/koga.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(OBJEVENTGFXDIR)/people/kanto_bosses/bruno.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(OBJEVENTGFXDIR)/people/team_rocket/rocket_m.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(OBJEVENTGFXDIR)/people/team_rocket/rocket_f.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
 
 $(OBJEVENTGFXDIR)/people/artist.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4

@@ -80,7 +80,7 @@
       "flag": "FLAG_TRINITY_JOHTO_PICKUPS_START + 176"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_STEVEN",
+      "graphics_id": "OBJ_EVENT_GFX_LANCE",
       "x": 25,
       "y": 14,
       "elevation": 3,
@@ -94,7 +94,7 @@
       "flag": "FLAG_TRINITY_J_BASE_LANCE_B3F_HIDE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
       "x": 24,
       "y": 14,
       "elevation": 3,
@@ -108,7 +108,7 @@
       "flag": "FLAG_TRINITY_J_BASE_CAST_HIDE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_F",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_F",
       "x": 21,
       "y": 7,
       "elevation": 3,
@@ -122,7 +122,7 @@
       "flag": "FLAG_TRINITY_J_BASE_CAST_HIDE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
       "x": 5,
       "y": 14,
       "elevation": 3,
@@ -192,7 +192,7 @@
       "flag": "FLAG_TRINITY_J_BASE_PETREL_HIDE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+      "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
       "x": 4,
       "y": 6,
       "elevation": 3,

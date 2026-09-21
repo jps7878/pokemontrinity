@@ -251,11 +251,23 @@
 // Maxie/Wattson substitutes at their own map objects only.
 #define OBJ_EVENT_GFX_GIOVANNI                   243
 #define OBJ_EVENT_GFX_LT_SURGE                   244
+// Trinity M7b Task 11 (finding #5): the rest of the byte-identical FRLG cast --
+// the Rocket grunts (off the Team AQUA placeholders), Lance (off STEVEN, which
+// read as an Act I Hoenn character and cost the bug-tester the Mahogany lead),
+// Blue (off MAN_3, which he shared with Silver), and the Johto Elite Four's two
+// Kanto-native seats, Koga and Bruno. All six are FireRed-canon Kanto cast, so
+// their art lives under pics/people/kanto_bosses and pics/people/team_rocket.
+#define OBJ_EVENT_GFX_ROCKET_M                   245
+#define OBJ_EVENT_GFX_ROCKET_F                   246
+#define OBJ_EVENT_GFX_LANCE                      247
+#define OBJ_EVENT_GFX_BLUE                       248
+#define OBJ_EVENT_GFX_KOGA                       249
+#define OBJ_EVENT_GFX_BRUNO                      250
 
 // NOTE: The maximum amount of object events has been expanded from 255 to 65535.
 // Since dynamic graphics ids still require at least 16 free values, the actual limit
 // is 65519, but even considering follower Pokémon, this should be more than enough :)
-#define NUM_OBJ_EVENT_GFX                        245
+#define NUM_OBJ_EVENT_GFX                        251
 
 
 // These are dynamic object gfx ids.
@@ -385,10 +397,18 @@
 #define OBJ_EVENT_PAL_TAG_RS_BRENDAN              0x1122
 #define OBJ_EVENT_PAL_TAG_RS_MAY                  0x1123
 #define OBJ_EVENT_PAL_TAG_DYNAMIC                 0x1124
-// Trinity M6 P3: bespoke palettes for the real Giovanni/Lt. Surge OW ports
-// (PALSLOT_NPC_SPECIAL -- checked conflict-free on all 3 maps they appear on).
-#define OBJ_EVENT_PAL_TAG_GIOVANNI                0x1125
-#define OBJ_EVENT_PAL_TAG_LT_SURGE                0x1126
+// FRLG's own two shared NPC palettes, ported with the FRLG OW sprites that are
+// drawn against them. Added by M6 P3 as bespoke per-character palettes
+// (giovanni.pal / lt_surge.pal); renamed by M7b Task 11 after the ports were
+// byte-compared: pokefirered's giovanni.png, lt_surge.png, rocket_m.png,
+// rocket_f.png, lance.png, koga.png, bruno.png and blue.png embed only TWO
+// distinct 16-colour palettes between them (FR's NPC_WHITE and NPC_GREEN), so
+// all eight sprites share these two entries instead of carrying eight copies.
+// This also caps their runtime cost: object-event palettes are allocated by tag
+// into the 4 free sprite-palette slots (12-15, see IndexOfSpritePaletteTag),
+// so the whole ported cast can never occupy more than 2 of them at once.
+#define OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE          0x1125
+#define OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN          0x1126
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla

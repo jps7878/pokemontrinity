@@ -320,6 +320,13 @@ const u16 gTrainerPalette_Lance[] = INCBIN_U16("graphics/trainers/front_pics/lan
 const u32 gTrainerFrontPic_Blue[] = INCBIN_U32("graphics/trainers/front_pics/blue.4bpp.smol");
 const u16 gTrainerPalette_Blue[] = INCBIN_U16("graphics/trainers/front_pics/blue.gbapal");
 
+// Trinity M7b Task 11: real FRLG Team Rocket grunt front pics
+const u32 gTrainerFrontPic_RocketGruntM[] = INCBIN_U32("graphics/trainers/front_pics/rocket_grunt_m.4bpp.smol");
+const u16 gTrainerPalette_RocketGruntM[] = INCBIN_U16("graphics/trainers/front_pics/rocket_grunt_m.gbapal");
+
+const u32 gTrainerFrontPic_RocketGruntF[] = INCBIN_U32("graphics/trainers/front_pics/rocket_grunt_f.4bpp.smol");
+const u16 gTrainerPalette_RocketGruntF[] = INCBIN_U16("graphics/trainers/front_pics/rocket_grunt_f.gbapal");
+
 const u8 gTrainerBackPic_Brendan[] = INCBIN_U8("graphics/trainers/back_pics/brendan.4bpp");
 const u8 gTrainerBackPic_May[] = INCBIN_U8("graphics/trainers/back_pics/may.4bpp");
 const u8 gTrainerBackPic_Red[] = INCBIN_U8("graphics/trainers/back_pics/red.4bpp");
@@ -455,6 +462,9 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(TRAINER_PIC_BRUNO, gTrainerFrontPic_Bruno, gTrainerPalette_Bruno),
     TRAINER_SPRITE(TRAINER_PIC_LANCE, gTrainerFrontPic_Lance, gTrainerPalette_Lance),
     TRAINER_SPRITE(TRAINER_PIC_BLUE, gTrainerFrontPic_Blue, gTrainerPalette_Blue),
+    // Trinity M7b Task 11: real FRLG Team Rocket grunt front pics
+    TRAINER_SPRITE(TRAINER_PIC_ROCKET_GRUNT_M, gTrainerFrontPic_RocketGruntM, gTrainerPalette_RocketGruntM),
+    TRAINER_SPRITE(TRAINER_PIC_ROCKET_GRUNT_F, gTrainerFrontPic_RocketGruntF, gTrainerPalette_RocketGruntF),
 };
 
 static const union AnimCmd sAnimCmd_Hoenn[] =

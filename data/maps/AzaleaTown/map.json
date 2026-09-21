@@ -65,7 +65,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
       "local_id": "LOCALID_JOHTO_AZALEA_ROCKET_A",
       "x": 30,
       "y": 9,
@@ -79,7 +79,7 @@
       "flag": "FLAG_TRINITY_J_AZALEA_ROCKETS_HIDE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
       "local_id": "LOCALID_JOHTO_AZALEA_ROCKET_B",
       "x": 11,
       "y": 16,
@@ -163,7 +163,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+      "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
       "local_id": "LOCALID_JOHTO_AZALEA_SILVER",
       "x": 11,
       "y": 11,
