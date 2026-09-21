@@ -176,6 +176,8 @@ const u32 gObjectEventPic_Koga[] = INCBIN_U32("graphics/object_events/pics/peopl
 const u32 gObjectEventPic_Bruno[] = INCBIN_U32("graphics/object_events/pics/people/kanto_bosses/bruno.4bpp");
 const u32 gObjectEventPic_RocketM[] = INCBIN_U32("graphics/object_events/pics/people/team_rocket/rocket_m.4bpp");
 const u32 gObjectEventPic_RocketF[] = INCBIN_U32("graphics/object_events/pics/people/team_rocket/rocket_f.4bpp");
+// M7b Task 11 fix round: Prof. Oak (144x32, the full 9-frame walk cycle).
+const u32 gObjectEventPic_ProfOak[] = INCBIN_U32("graphics/object_events/pics/people/kanto_bosses/prof_oak.4bpp");
 const u16 gObjectEventPal_Kyogre[] = INCBIN_U16("graphics/object_events/palettes/kyogre.gbapal");
 const u16 gObjectEventPal_KyogreReflection[] = INCBIN_U16("graphics/object_events/palettes/kyogre_reflection.gbapal");
 const u16 gObjectEventPal_Groudon[] = INCBIN_U16("graphics/object_events/palettes/groudon.gbapal");
@@ -242,8 +244,8 @@ const u32 gObjectEventPic_Truck[] = INCBIN_U32("graphics/object_events/pics/misc
 const u16 gObjectEventPal_Truck[] = INCBIN_U16("graphics/object_events/palettes/truck.gbapal");
 const u16 gObjectEventPal_Vigoroth[] = INCBIN_U16("graphics/object_events/palettes/vigoroth.gbapal");
 // FireRed's two shared NPC palettes -- every ported FRLG human sprite in this
-// tree (Giovanni, Lt. Surge, Lance, Blue, Koga, Bruno, both Rocket grunts) is
-// drawn against one of these two and against nothing else.
+// tree (Giovanni, Lt. Surge, Lance, Blue, Koga, Bruno, both Rocket grunts and
+// Prof. Oak) is drawn against one of these two and against nothing else.
 const u16 gObjectEventPal_FRLGNpcWhite[] = INCBIN_U16("graphics/object_events/palettes/frlg_npc_white.gbapal");
 const u16 gObjectEventPal_FRLGNpcGreen[] = INCBIN_U16("graphics/object_events/palettes/frlg_npc_green.gbapal");
 const u32 gObjectEventPic_BirchsBag[] = INCBIN_U32("graphics/object_events/pics/misc/birchs_bag.4bpp");

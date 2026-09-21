@@ -20376,7 +20376,7 @@ Level: 62
 === TRAINER_JOHTO_ROCKET_SCI_JED ===
 Name: JED
 Class: Team Rocket
-Pic: Magma Grunt M
+Pic: Scientist
 Gender: Male
 Music: Aqua
 AI: Check Bad Move / Try To Faint
@@ -20393,7 +20393,7 @@ Level: 61
 === TRAINER_JOHTO_ROCKET_SCI_ROSS ===
 Name: ROSS
 Class: Team Rocket
-Pic: Magma Grunt M
+Pic: Scientist
 Gender: Male
 Music: Aqua
 AI: Check Bad Move / Try To Faint / Check Viability
@@ -20410,7 +20410,7 @@ Level: 65
 === TRAINER_JOHTO_ROCKET_SCI_MITCH ===
 Name: MITCH
 Class: Team Rocket
-Pic: Magma Grunt M
+Pic: Scientist
 Gender: Male
 Music: Aqua
 AI: Check Bad Move / Try To Faint / Check Viability
@@ -20602,7 +20602,7 @@ Level: 66
 === TRAINER_JOHTO_ROCKET_SCI_MARC ===
 Name: MARC
 Class: Team Rocket
-Pic: Magma Grunt M
+Pic: Scientist
 Gender: Male
 Music: Aqua
 AI: Check Bad Move / Try To Faint / Check Viability
@@ -20650,7 +20650,7 @@ Level: 67
 === TRAINER_JOHTO_ROCKET_SCI_RICH ===
 Name: RICH
 Class: Team Rocket
-Pic: Magma Grunt M
+Pic: Scientist
 Gender: Male
 Music: Aqua
 AI: Check Bad Move / Try To Faint / Check Viability
@@ -26313,7 +26313,7 @@ Level: 87
 === TRAINER_K_SCIENTIST_1 ===
 Name: SCIENTIST
 Class: Team Rocket
-Pic: Magma Grunt M
+Pic: Scientist
 Gender: Male
 Music: Magma
 Double Battle: No
@@ -26331,7 +26331,7 @@ Level: 87
 === TRAINER_K_SCIENTIST_2 ===
 Name: SCIENTIST
 Class: Team Rocket
-Pic: Magma Grunt M
+Pic: Scientist
 Gender: Male
 Music: Magma
 Double Battle: No
@@ -26349,7 +26349,7 @@ Level: 85
 === TRAINER_K_SCIENTIST_3 ===
 Name: SCIENTIST
 Class: Team Rocket
-Pic: Magma Grunt M
+Pic: Scientist
 Gender: Male
 Music: Magma
 Double Battle: No

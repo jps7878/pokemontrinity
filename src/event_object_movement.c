@@ -561,7 +561,10 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPaletteLight2,             OBJ_EVENT_PAL_TAG_LIGHT_2},
     {gObjectEventPaletteEmotes,             OBJ_EVENT_PAL_TAG_EMOTES},
     {gObjectEventPaletteNeonLight,          OBJ_EVENT_PAL_TAG_NEON_LIGHT},
-    // Trinity M6 P3: real FRLG OW ports (Giovanni + Lt. Surge)
+    // FireRed's two shared NPC palettes. NOT per-character: every ported FRLG
+    // human sprite in this tree (Giovanni, Lt. Surge, Lance, Blue, Koga, Bruno,
+    // both Rocket grunts, Prof. Oak) is drawn against one of these two.
+    // Added under per-character names by M6 P3, renamed by M7b Task 11.
     {gObjectEventPal_FRLGNpcWhite,          OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE},
     {gObjectEventPal_FRLGNpcGreen,          OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN},
 #ifdef BUGFIX

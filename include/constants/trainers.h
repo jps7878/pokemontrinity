@@ -127,7 +127,13 @@
 // AQUA's battle portraits. FRLG's own rocket_grunt_m/f front pics.
 #define TRAINER_PIC_ROCKET_GRUNT_M        106
 #define TRAINER_PIC_ROCKET_GRUNT_F        107
-#define TRAINER_PIC_COUNT                 108
+// M7b Task 11 fix round: the 8 Rocket-arc SCIENTISTS were still battling in a
+// red Team MAGMA uniform (Pic: Magma Grunt M) inside Rocket bases whose grunts
+// now read correctly. This is FireRed's own Scientist portrait. Their trainer
+// CLASS stays TRAINER_CLASS_TEAM_ROCKET and their overworld stays
+// OBJ_EVENT_GFX_SCIENTIST_1 -- only the battle pic moved.
+#define TRAINER_PIC_SCIENTIST             108
+#define TRAINER_PIC_COUNT                 109
 
 // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_BRENDAN                0

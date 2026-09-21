@@ -4140,17 +4140,21 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Mom = {
     .affineAnims = gDummySpriteAffineAnimTable,
 };
 
-// Trinity M6 P3 + M7b Task 11: the real FRLG OW ports. All eight are FR's own
+// Trinity M6 P3 + M7b Task 11: the real FRLG OW ports. All nine are FR's own
 // standard 16x32 person format (.size 256, TRACKS_FOOT, sAnimTable_Standard),
-// copied pixel-for-pixel, and all eight are drawn against one of FireRed's two
+// copied pixel-for-pixel, and all nine are drawn against one of FireRed's two
 // shared NPC palettes -- so they carry OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE or
-// _GREEN rather than eight per-character palettes (M6 P3 shipped these same two
+// _GREEN rather than nine per-character palettes (M6 P3 shipped these same two
 // palettes under per-character names; M7b renamed them after byte-comparing the
-// source PNGs). Palettes here are allocated by TAG into free sprite-palette
-// slots 12-15 (LoadObjectEventPalette -> IndexOfSpritePaletteTag), so at most
-// two slots are ever needed for the whole ported cast; the .paletteSlot field
-// below is vestigial in this tree (nothing reads ObjectEventGraphicsInfo
-// .paletteSlot) and is kept at the M6 P3 value for consistency only.
+// source PNGs). Palettes here are allocated BY TAG (LoadObjectEventPalette ->
+// IndexOfSpritePaletteTag), so the whole ported cast claims at most two
+// sprite-palette slots however many of them share a map -- and on the field the
+// full 0-15 range is allocatable, because ResumeMap calls FreeAllSpritePalettes,
+// which zeroes gReservedSpritePaletteCount (the OBJ_PALSLOT_COUNT reservation in
+// FreeAndReserveObjectSpritePalettes belongs to the PC item-storage menu). The
+// .paletteSlot field below is vestigial in this tree (nothing reads
+// ObjectEventGraphicsInfo.paletteSlot) and is kept at the M6 P3 value only for
+// consistency.
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Giovanni = {
     .tileTag = TAG_NONE,
     .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
@@ -4300,6 +4304,26 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RocketF = {
     .subspriteTables = sOamTables_16x32,
     .anims = sAnimTable_Standard,
     .images = sPicTable_RocketF,
+    .affineAnims = gDummySpriteAffineAnimTable,
+};
+
+// M7b Task 11 fix round: Professor Oak, off the shared PROF_BIRCH sprite.
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ProfOak = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE,
+    .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
+    .size = 256,
+    .width = 16,
+    .height = 32,
+    .paletteSlot = PALSLOT_NPC_SPECIAL,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .compressed = FALSE,
+    .tracks = TRACKS_FOOT,
+    .oam = &gObjectEventBaseOam_16x32,
+    .subspriteTables = sOamTables_16x32,
+    .anims = sAnimTable_Standard,
+    .images = sPicTable_ProfOak,
     .affineAnims = gDummySpriteAffineAnimTable,
 };
 
