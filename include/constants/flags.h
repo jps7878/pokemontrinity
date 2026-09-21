@@ -201,7 +201,7 @@
 #define FLAG_MR_BRINEY_SAILING_INTRO         0x93
 #define FLAG_DOCK_REJECTED_DEVON_GOODS       0x94
 #define FLAG_DELIVERED_DEVON_GOODS           0x95
-#define FLAG_RECEIVED_CONTEST_PASS           0x96 // Unused, leftover from R/S
+#define FLAG_TRINITY_EXP_SHARE_ALL           0x96 // Trinity: was FLAG_RECEIVED_CONTEST_PASS ("Unused, leftover from R/S") -- M7b Task 20 (#8): this is I_EXP_SHARE_FLAG (include/config/item.h). Set at New Game and on every Continue, never cleared: the whole party gains exp from every battle.
 #define FLAG_RECEIVED_CASTFORM               0x97
 #define FLAG_RECEIVED_SUPER_ROD              0x98
 #define FLAG_RUSTBORO_NPC_TRADE_COMPLETED    0x99
@@ -327,7 +327,7 @@
 #define FLAG_RECEIVED_TM_THIEF               0x10D
 #define FLAG_CONTEST_SKETCH_CREATED          0x10E  // Set but never read
 #define FLAG_EVIL_TEAM_ESCAPED_STERN_SPOKE   0x10F
-#define FLAG_RECEIVED_EXP_SHARE              0x110
+#define FLAG_RECEIVED_EXP_SHARE              0x110 // Trinity M7b (#8): no EXP. SHARE item is handed out any more -- this now latches MR. STONE's letter-favor scene (RustboroCity_DevonCorp_3F) and still gates MatchCall_Text_MrStone4.
 #define FLAG_POKERUS_EXPLAINED               0x111
 #define FLAG_RECEIVED_RUNNING_SHOES          0x112
 #define FLAG_RECEIVED_QUICK_CLAW             0x113
@@ -706,7 +706,7 @@
 #define FLAG_TRINITY_J_FORCE_SHINY       0x26B // Trinity: was FLAG_UNUSED_0x26B -- engine hook. include/config/pokemon.h's P_FLAG_FORCE_SHINY points at THIS flag, so while it is set every wild/gift POKeMON is forced shiny (src/pokemon.c:1071-1077, src/script_pokemon_util.c:364). Set and cleared inside one three-command window around the RED GYARADOS setwildbattle -- nothing can interleave, and an unsaved setflag cannot survive a reset.
 #define FLAG_TRINITY_J_RED_GYARADOS_HIDE 0x26C // Trinity: was FLAG_UNUSED_0x26C -- visibility - the LAKE OF RAGE RED GYARADOS. THIS FLAG HAS NO AUTHORING CLAUSE, deliberately: it has exactly ONE writer (the battle script's removeobject co-sign, R1), it is monotonic, and its new-game default of clear = visible is already correct. There is no arc or scene value that means "the fish is gone" -- it can be faced any time from ARC 3 and the arc does not move until LANCE is agreed to -- so an ON_TRANSITION predicate would have nothing to author from and would resurrect a beaten GYARADOS. LakeOfRage_OnTransition says so at the definition.
 #define FLAG_TRINITY_J_RED_SCALE         0x26D // Trinity: was FLAG_UNUSED_0x26D -- story, CONSUMABLE. ITEM_RED_SCALE does not exist in this build (S1's open item, ruled here), so the scale is a flag: SET by the RED GYARADOS beat, CLEARED by MR.POKeMON on the trade. Because it is cleared, every reader must test the TERMINAL flag first -- S6's rule.
-#define FLAG_TRINITY_J_EXP_SHARE         0x26E // Trinity: was FLAG_UNUSED_0x26E -- story TERMINAL + G2 award guard - MR.POKeMON has handed over the EXP.SHARE. Tested BEFORE FLAG_TRINITY_J_RED_SCALE, because the scale returns to its starting value on the trade.
+#define FLAG_TRINITY_J_EXP_SHARE         0x26E // Trinity: was FLAG_UNUSED_0x26E -- story TERMINAL + trade guard - MR.POKeMON's RED SCALE trade is done (M7b #8: the trade now pays off in PROF.OAK's letter, not an EXP.SHARE item; the name is kept because flag ids live in existing saves). Tested BEFORE FLAG_TRINITY_J_RED_SCALE, because the scale returns to its starting value on the trade.
 #define FLAG_TRINITY_J_LANCE_LAKE_HIDE   0x26F // Trinity: was FLAG_UNUSED_0x26F -- visibility - LANCE on the LAKE OF RAGE shore. Visible iff FLAG_TRINITY_J_RED_GYARADOS_HIDE (the fish is gone) and ARC < 4.
 #define FLAG_TRINITY_J_LAKE_CIVILIANS_HIDE 0x270 // Trinity: was FLAG_UNUSED_0x270 -- visibility (4 trainers) - GSC's EVENT_LAKE_OF_RAGE_CIVILIANS. Visible iff ARC >= 5: they are the raid's victory lap, not an obstacle.
 #define FLAG_TRINITY_J_MART_ROCKETS_HIDE 0x271 // Trinity: was FLAG_UNUSED_0x271 -- visibility (2) - the MAHOGANY MART PHARMACIST and BLACK BELT, GSC's EVENT_TEAM_ROCKET_BASE_POPULATION. Visible iff ARC < 5.

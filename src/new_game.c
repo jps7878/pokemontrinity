@@ -199,6 +199,11 @@ void NewGameInitData(void)
     ResetLotteryCorner();
     WarpToTruck();
     RunScriptImmediately(EventScript_ResetAllMapFlags);
+    // Trinity M7b (#8): team-wide Exp Share, on from the first battle. I_EXP_SHARE_FLAG
+    // (include/config/item.h) is this flag, read at exp-distribution time. It is set here,
+    // after InitEventData() and EventScript_ResetAllMapFlags have done their clearing, and
+    // nothing in the game ever clears it again.
+    FlagSet(FLAG_TRINITY_EXP_SHARE_ALL);
     ResetMiniGamesRecords();
     InitUnionRoomChatRegisteredTexts();
     InitLilycoveLady();

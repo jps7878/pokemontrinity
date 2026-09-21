@@ -27,7 +27,14 @@
 // Exp. Share config
 // To use this feature, replace the 0 with the flag ID you're assigning it to.
 // Eg: Replace with FLAG_UNUSED_0x264 so you can use that flag to toggle the feature.
-#define I_EXP_SHARE_FLAG        0           // If this flag is set, every Pokémon in the party will gain experience, regardless if they participated in the battle or not.
+// Trinity M7b Task 20 (bug-test findings #7/#8): the team-wide Exp Share is ON from the
+// start of every save. FLAG_TRINITY_EXP_SHARE_ALL is set in NewGameInitData (src/new_game.c)
+// and again in CB2_ContinueSavedGame (src/overworld.c) so saves made before M7b get it on
+// their next load, and nothing ever clears it. The Exp. Share stays a GEN_3 held item below
+// (not the Gen6 key-item toggle) precisely because there is nothing left to toggle: with the
+// flag on, holding one adds nothing. B_SPLIT_EXP is GEN_LATEST (include/config/battle.h), so
+// participants still earn full exp and the rest of the party earns half -- the modern rule.
+#define I_EXP_SHARE_FLAG        FLAG_TRINITY_EXP_SHARE_ALL  // If this flag is set, every Pokémon in the party will gain experience, regardless if they participated in the battle or not.
 #define I_EXP_SHARE_ITEM        GEN_3       // In Gen6+, the Exp. Share was changed from a held item to a Key item that toggles the effect described above.
 
 // Repel/Lure config

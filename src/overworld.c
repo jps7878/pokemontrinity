@@ -1979,6 +1979,12 @@ void CB2_ContinueSavedGame(void)
     if (gSaveFileStatus == SAVE_STATUS_ERROR)
         ResetWinStreaks();
 
+    // Trinity M7b (#8): team-wide Exp Share is FLAG_TRINITY_EXP_SHARE_ALL (I_EXP_SHARE_FLAG).
+    // New saves get it in NewGameInitData; a save started before M7b never ran that, and this
+    // is the only Continue path, so setting it here switches those saves on at their next
+    // load. Setting an already-set flag is a no-op.
+    FlagSet(FLAG_TRINITY_EXP_SHARE_ALL);
+
     LoadSaveblockMapHeader();
     ClearDiveAndHoleWarps();
     trainerHillMapId = GetCurrentTrainerHillMapId();

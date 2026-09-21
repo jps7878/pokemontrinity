@@ -17,11 +17,16 @@ MrPokemonsHouse_MapScripts::
 @ FIRST -- hence FLAG_TRINITY_J_EXP_SHARE before FLAG_TRINITY_J_RED_SCALE.
 @ (This is the defect that bit S6's CIANWOOD PHARMACIST.)
 @
-@ The gift itself is GYM PATTERN G2-shaped: giveitem, then the VAR_RESULT
-@ check, and only then the two flag writes -- so a full bag costs the player
-@ nothing and the trade is re-offered on the next visit. GSC's own
-@ `giveitem RED_SCALE` at the lake has no such check and silently eats the
-@ scale; the flag form cannot have that bug.
+@ M7b Task 20 (bug-test #8) REPLACED THE GIFT. Team-wide EXP.SHARE is now on from
+@ New Game (I_EXP_SHARE_FLAG = FLAG_TRINITY_EXP_SHARE_ALL), so handing over an
+@ EXP.SHARE item would hand over a dead held item -- and this was the second copy
+@ in the trilogy besides. The trade pays off in PROF.OAK's letter instead. The old
+@ GYM PATTERN G2 shape (giveitem, VAR_RESULT check, then the flag writes, so a full
+@ bag cost the player nothing) went with the item: there is no bag to fill any more,
+@ hence no VAR_RESULT check and no Common_EventScript_ShowBagIsFull branch. The two
+@ flag writes keep their order, and the guard order above is unchanged.
+@ FLAG_TRINITY_J_EXP_SHARE keeps its name -- flag ids live in existing saves -- and
+@ now means simply "MR.POKéMON's RED SCALE trade is done".
 MrPokemonsHouse_EventScript__MrPokemon::
 	lock
 	faceplayer
@@ -39,11 +44,9 @@ MrPokemonsHouse_EventScript__RedScaleRequest::
 
 MrPokemonsHouse_EventScript__RedScaleTrade::
 	msgbox MrPokemonsHouse_Text__RedScaleTrade, MSGBOX_DEFAULT
-	giveitem ITEM_EXP_SHARE
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_TRINITY_J_EXP_SHARE
 	clearflag FLAG_TRINITY_J_RED_SCALE
-	msgbox MrPokemonsHouse_Text__ExpShareExplained, MSGBOX_DEFAULT
+	msgbox MrPokemonsHouse_Text__OakLetter, MSGBOX_DEFAULT
 	release
 	end
 
@@ -87,24 +90,28 @@ MrPokemonsHouse_Text__RedScaleRequest:
 	.string "red.\p"
 	.string "If you ever stand on that shore,\n"
 	.string "bring me a scale. Just one.\p"
-	.string "I've something from PROF.OAK I'd\n"
-	.string "trade for it. An EXP.SHARE.\p"
-	.string "It's no use to an old man with no\n"
-	.string "team.$"
+	.string "PROF.OAK writes to me. Lately he\n"
+	.string "writes about you.\p"
+	.string "Bring me the scale and I'll read\n"
+	.string "you what he says.$"
 
 MrPokemonsHouse_Text__RedScaleTrade:
 	.string "That -- that is the SCALE!\p"
 	.string "Red as a coal. Warm, even.\n"
 	.string "Delightful. Simply delightful.\p"
-	.string "A trade is a trade. The EXP.SHARE\n"
-	.string "is yours.$"
+	.string "A trade is a trade. Here, then --\n"
+	.string "OAK's own hand.$"
 
-MrPokemonsHouse_Text__ExpShareExplained:
-	.string "Hold it on one of your team and\n"
-	.string "it takes a share of every battle,\l"
-	.string "whether it fought or not.\p"
-	.string "PROF.OAK swears by them. Good\n"
-	.string "for the ones still growing.$"
+MrPokemonsHouse_Text__OakLetter:
+	.string "He writes of the trainer who\n"
+	.string "crossed from HOENN. Travels with\l"
+	.string "a full six, he says.\p"
+	.string "Every battle you fight, the whole\n"
+	.string "team draws on -- the ones resting\l"
+	.string "in their BALLS as well.\p"
+	.string "Rotate them freely. Nothing on\n"
+	.string "your bench stops growing.\p"
+	.string "Delightful. He is rarely wrong.$"
 
 MrPokemonsHouse_Text__AlreadyTraded:
 	.string "The RED SCALE sits on my desk\n"

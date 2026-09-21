@@ -9343,6 +9343,17 @@ const struct Item gItemsInfo[] =
                 "exp. to other\n"
                 "party members."),
             .pocket = POCKET_KEY_ITEMS,
+        #elif I_EXP_SHARE_FLAG != 0
+            // Trinity M7b (#8): the party already shares exp (I_EXP_SHARE_FLAG), so holding
+            // this adds nothing. It is still winnable at the LOTTERY CORNER
+            // (sLotteryPrizes, src/lottery_corner.c), so its description must not promise
+            // an effect it no longer has.
+            .price = (I_PRICE == GEN_1) ? 1 : 3000,
+            .description = COMPOUND_STRING(
+                "An older device.\n"
+                "Your whole team\n"
+                "shares Exp. now."),
+            .pocket = POCKET_ITEMS,
         #else
             .price = (I_PRICE == GEN_1) ? 1 : 3000,
             .description = COMPOUND_STRING(
