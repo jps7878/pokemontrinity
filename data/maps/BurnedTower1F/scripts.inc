@@ -39,6 +39,35 @@ BurnedTower1F_OnTransition:
 @ bound is ARC >= 2: below it he is not in the tower at all. The same read
 @ guards both script entries below (the coord scene and the talk script), so a
 @ save that holds scene 0 with ARC < 2 sees no SILVER and runs no scene.
+@
+@ WHAT THIS READ ALSO GATES (ruled at M7 Task 4 review, round 1). The FOG
+@ BADGE now sits downstream of it: MORTY stands in his GYM only once
+@ FLAG_TRINITY_J_BEASTS_AWAKENED is set (EcruteakGym's ON_TRANSITION); that
+@ flag's sole setflag is B1F's awakening; the awakening spawns and fires only
+@ at scene == 1; and scene 1's sole writer is the SILVER 3 aftermath below. On
+@ the signposted arrival route (OLIVINE PORT: "east through ECRUTEAK" to NEW
+@ BARK) a player who tries ECRUTEAK GYM first is sent to this tower by the
+@ greeter, and below ARC 2 nothing here fires. Accepted as GSC's own ordering:
+@ in GSC the theft precedes every Johto chapter and MORTY comes home only
+@ after the tower scene. FOG is therefore the one Johto badge with an ARC
+@ lower bound (ARC 2); the gym itself stays open and its trainers fightable,
+@ per EcruteakGym's header, and of the other seven leaders only OLIVINE's is
+@ story-gated at all (the AMPHY errand flag, not the arc). Not a soft-lock --
+@ NEW BARK is always reachable -- so the legibility hook is text only: below
+@ ARC 2, MORTY's tower line (BurnedTower1F_EventScript_MortyPreStory) points
+@ the player at ELM. A corollary: ARC 10 now has a transitive floor of ARC 2,
+@ because ROUTE 26's INDIGO gate counts eight Johto badges and FOG is one of
+@ them; vars.h's note that the INDIGO gate is "never an arc test" stays
+@ literally true (it reads badges), and no fresh save can now hold any arc
+@ value before ELM's write of 1.
+@
+@ CONTINUE-FROM-SAVE. ON_TRANSITION does not run when a save is resumed:
+@ InitMapFromSavedGame (src/fieldmap.c) runs only ON_LOAD, and
+@ RunOnTransitionMapScript runs from LoadMapFromCameraTransition / LoadMapFromWarp
+@ (src/overworld.c). A pre-M7 save written INSIDE this tower at ARC < 2 keeps
+@ SILVER visible for that session, so the trigger and talk reads below are the
+@ whole guard until the next map load -- they are live guards there, not just
+@ belt-and-braces.
 BurnedTower1F_EventScript_SetSilverVisibility::
 	goto_if_lt VAR_TRINITY_JOHTO_ARC, 2, BurnedTower1F_EventScript_HideSilver
 	goto_if_eq VAR_TRINITY_JOHTO_SCENE_ECRUTEAK, 0, BurnedTower1F_EventScript_ShowSilver
@@ -116,8 +145,10 @@ BurnedTower1F_EventScript_SilverNotYet::
 @ the player to a POKEMON CENTER outside the tower entirely. Implemented anyway
 @ per S1: a talk script that starts a battle and advances story state carries an
 @ explicit state guard even when a visibility invariant already covers it.
-@ The ARC < 2 read is finding #2's guard at its second site: ON_TRANSITION
-@ already hides him below ARC 2, so this too is defensive, and it routes to the
+@ The ARC < 2 read is finding #2's guard at its second site. On a forward save
+@ ON_TRANSITION already hides him below ARC 2, so there it is defensive; on a
+@ pre-M7 save resumed inside the tower (ON_TRANSITION does not run on continue,
+@ see the guard note above) it is the live guard. Either way it routes to the
 @ neutral idle line rather than a new one.
 @ No movement script here: on this path the player's tile is unknown, and
 @ walking SILVER into an occupied tile is the documented failure mode (S4).
@@ -132,9 +163,12 @@ BurnedTower1F_EventScript_Silver::
 	goto BurnedTower1F_EventScript_SilverAftermath
 	end
 
-@ INTENTIONALLY UNREACHABLE / DEFENSIVE: once the aftermath advances the scene
-@ var, ON_TRANSITION hides SILVER on every later entry, and below ARC 2 it never
-@ showed him (finding #2), so on neither route is there an object to talk to.
+@ INTENTIONALLY UNREACHABLE / DEFENSIVE on a forward save: once the aftermath
+@ advances the scene var, ON_TRANSITION hides SILVER on every later entry, and
+@ below ARC 2 it never showed him (finding #2), so on neither route is there an
+@ object to talk to. The one save that does reach this line is a pre-M7 save
+@ resumed inside the tower at ARC < 2 with SILVER still on stage (see the guard
+@ note above); the brush-off is the right line for it.
 BurnedTower1F_EventScript_SilverIdle::
 	msgbox BurnedTower1F_Text_SilverIdle, MSGBOX_DEFAULT
 	release
@@ -210,7 +244,20 @@ BurnedTower1F_EventScript_Morty::
 	lock
 	faceplayer
 	goto_if_set FLAG_TRINITY_J_SILVER3_BEATEN, BurnedTower1F_EventScript_MortyAfterSilver
+	goto_if_lt VAR_TRINITY_JOHTO_ARC, 2, BurnedTower1F_EventScript_MortyPreStory
 	msgbox BurnedTower1F_Text_Morty, MSGBOX_DEFAULT
+	release
+	end
+
+@ M7 Task 4 review round 1: the legibility hook for finding #2's ARC gate (see
+@ the guard note by SetSilverVisibility). Below ARC 2 this tower is inert --
+@ SILVER hidden, the (11,9) trigger a no-op -- and the GYM greeter has just sent
+@ the player here, so MORTY follows his usual line with a pointer at ELM.
+@ Read-only: no flag, no var. The SILVER3_BEATEN test above wins on a pre-M7
+@ save that beat him below ARC 2, which is the right line for that save.
+BurnedTower1F_EventScript_MortyPreStory::
+	msgbox BurnedTower1F_Text_Morty, MSGBOX_DEFAULT
+	msgbox BurnedTower1F_Text_MortyPointsToElm, MSGBOX_DEFAULT
 	release
 	end
 
@@ -277,6 +324,16 @@ BurnedTower1F_Text_Morty:
 	.string "I have never once been able to see\n"
 	.string "them. Perhaps I am not the one who\l"
 	.string "is meant to.$"
+
+@ Finding #2's signpost (M7 Task 4 review round 1), below ARC 2 only. He does
+@ not know the player's business; he knows the tower has not answered them.
+BurnedTower1F_Text_MortyPointsToElm:
+	.string "…Nothing in this tower will stir\n"
+	.string "for you. Not yet.\p"
+	.string "Whatever you came to JOHTO for,\n"
+	.string "it begins with Professor ELM in\l"
+	.string "NEW BARK TOWN, far to the east.\p"
+	.string "Go and see him first.$"
 
 BurnedTower1F_Text_MortyAfterSilver:
 	.string "MORTY: That boy came through here in\n"

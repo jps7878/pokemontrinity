@@ -125,9 +125,10 @@ LakeOfRage_EventScript_RedGyarados::
 	@ M7 Task 4 (bug-test finding #3). The object is visible from new game, so
 	@ before this read the fish could be fought at ARC 0; winning spawned LANCE,
 	@ and agreeing with him wrote ARC 4 from 0 -- which ELM's unguarded write of
-	@ 1 then REGRESSED on the next NEW BARK visit. ARC 3 is the SLOWPOKE WELL
-	@ cleared, the last write before LANCE's 4, so that is the lower bound: below
-	@ it the fish refuses the encounter and nothing is written.
+	@ 1 then REGRESSED on the player's first entry to ELM's LAB (its (4,8)/(5,8)
+	@ triggers fire on SCENE_NEWBARK == 0). ARC 3 is the SLOWPOKE WELL cleared,
+	@ the last write before LANCE's 4, so that is the lower bound: below it the
+	@ fish refuses the encounter and nothing is written.
 	goto_if_lt VAR_TRINITY_JOHTO_ARC, 3, LakeOfRage_EventScript_GyaradosNotYet
 	msgbox LakeOfRage_Text_GyaradosCry, MSGBOX_DEFAULT
 	closemessage
@@ -196,12 +197,19 @@ LakeOfRage_EventScript_GyaradosNotYet::
 @
 @ THE FLOOR (finding #3). With the GYARADOS encounter gated on ARC >= 3, a
 @ forward-running save cannot show LANCE below 3 (his predicate needs the fish
-@ gone). The one route that does reach the ARC < 3 branch is an arc that has
-@ REGRESSED after the fish was fought: the INDIGO gate is a badge count, not an
-@ arc test (vars.h), so a League-first save holds ARC 10, can fight the fish
-@ there, and then meets ELM, whose write of 1 has no floor. On that route he
-@ says "not yet" -- back still turned, no faceplayer, no YES/NO -- and nothing
-@ is written or removed. Otherwise the branch is defensive.
+@ gone). Nor can a fresh save reach this branch by REGRESSION: ELM's write of 1
+@ fires once per save (its (4,8)/(5,8) triggers key on SCENE_NEWBARK == 0, a
+@ value nothing writes back) and necessarily at ARC 0, because no fresh save
+@ holds any arc value before it -- writers 2..9 each floor on their
+@ predecessor, and 10 sits behind ROUTE 26's eight-badge count, whose FOG
+@ BADGE is downstream of the SILVER 3 scene that BurnedTower1F floors at ARC 2
+@ (its guard note carries the chain). So on this build the ARC < 3 branch is
+@ reachable ONLY on a save made before M7 Task 4 that fought the fish early:
+@ one that never agreed with LANCE (fish gone, arc still 0..2, LANCE on the
+@ shore), or one that agreed at 0 -> 4 and then had ELM's write of 1 regress
+@ it. On both he says "not yet" -- back still turned, no faceplayer, no YES/NO
+@ -- and nothing is written or removed; once that save reaches ARC 3 the agree
+@ path opens as normal. Otherwise the branch is defensive.
 @ ============================================================================
 LakeOfRage_EventScript_Lance::
 	lock
@@ -394,7 +402,7 @@ LakeOfRage_Text_LanceIdle:
 @ himself, and his back is turned.
 LakeOfRage_Text_LanceNotYet:
 	.string "…No. Not yet.\p"
-	.string "This isn't your fight yet.\n"
+	.string "This isn't your fight.\n"
 	.string "Come back when it is.$"
 
 LakeOfRage_Text_Gramps:
