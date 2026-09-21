@@ -8,8 +8,13 @@ LakeOfRage_MapScripts::
 @ ON_TRANSITION is the SINGLE AUTHORITY for all three visibility flags (S1
 @ rule); the scene bodies only ever addobject / removeobject.
 @     RED GYARADOS (1)  visible iff NOT FLAG_TRINITY_J_RED_GYARADOS_HIDE
-@                       (the battle's own removeobject co-signs that flag -- R1)
-@     LANCE        (1)  visible iff the GYARADOS is gone AND ARC < 4
+@                       (the battle's own removeobject co-signs that flag -- R1).
+@                       Visible from new game on purpose (foreshadowing); the
+@                       ENCOUNTER is what is gated, on ARC >= 3, inside its talk
+@                       script (M7 Task 4, bug-test finding #3)
+@     LANCE        (1)  visible iff the GYARADOS is gone AND ARC < 4 -- and the
+@                       fish cannot be gone before ARC 3 on a forward-running
+@                       save, so he cannot appear early either (finding #3)
 @     4 TRAINERS   (1 flag)  visible iff ARC >= 5
 @
 @ The four trainers are GSC's EVENT_LAKE_OF_RAGE_CIVILIANS, which is SET at new
@@ -28,9 +33,11 @@ LakeOfRage_MapScripts::
 @ NO authoring clause, and deliberately so: it is written exactly once, by the
 @ battle's own removeobject co-sign (R1), and it is monotonic. There is no arc
 @ value that means "the GYARADOS is gone" -- the fish can be faced at any point
-@ from ARC 3 onward and the arc does not move until LANCE is agreed to -- so an
-@ authoring clause would have nothing to author from. Its new-game default
-@ (clear = visible) is already correct.
+@ from ARC 3 onward (the talk script's lower bound, finding #3, is what makes
+@ "from ARC 3" literally true; before M7 it could be faced at 0) and the arc
+@ does not move until LANCE is agreed to -- so an authoring clause would have
+@ nothing to author from. Its new-game default (clear = visible) is already
+@ correct, and is kept: the red fish in the lake is the chapter's foreshadowing.
 LakeOfRage_OnTransition:
 	call LakeOfRage_EventScript_SetLanceVisibility
 	call LakeOfRage_EventScript_SetCiviliansVisibility
@@ -115,6 +122,13 @@ LakeOfRage_EventScript_ShowCivilians::
 @ ============================================================================
 LakeOfRage_EventScript_RedGyarados::
 	lock
+	@ M7 Task 4 (bug-test finding #3). The object is visible from new game, so
+	@ before this read the fish could be fought at ARC 0; winning spawned LANCE,
+	@ and agreeing with him wrote ARC 4 from 0 -- which ELM's unguarded write of
+	@ 1 then REGRESSED on the next NEW BARK visit. ARC 3 is the SLOWPOKE WELL
+	@ cleared, the last write before LANCE's 4, so that is the lower bound: below
+	@ it the fish refuses the encounter and nothing is written.
+	goto_if_lt VAR_TRINITY_JOHTO_ARC, 3, LakeOfRage_EventScript_GyaradosNotYet
 	msgbox LakeOfRage_Text_GyaradosCry, MSGBOX_DEFAULT
 	closemessage
 	playmoncry SPECIES_GYARADOS, CRY_MODE_NORMAL
@@ -154,6 +168,13 @@ LakeOfRage_EventScript_GyaradosDone::
 	release
 	end
 
+@ Finding #3's pre-story refusal. The fish stays in the water and on the map;
+@ no cry, no battle, no flag -- the encounter simply is not offered yet.
+LakeOfRage_EventScript_GyaradosNotYet::
+	msgbox LakeOfRage_Text_GyaradosNotYet, MSGBOX_DEFAULT
+	release
+	end
+
 @ ============================================================================
 @ LANCE, on the south shore at GSC's own (21,28) -- collision 0, elevation 3.
 @ The LAKE OF RAGE sign one tile north at (21,27) is BG_EVENT_PLAYER_FACING_ANY
@@ -167,14 +188,25 @@ LakeOfRage_EventScript_GyaradosDone::
 @ characterisation, a man talking to the water.
 @
 @ THE ARC WRITE. Agreeing is the single gate on the entire hideout arc, so this
-@ is where ARC 3 -> 4 happens, under S1's monotonic guard. Refusing leaves
-@ every flag and the arc untouched and simply re-arms: GSC does the same with
+@ is where ARC 3 -> 4 happens, under S1's monotonic guard and, since M7 Task 4
+@ (finding #3), above an ARC >= 3 floor. Refusing leaves every flag and the arc
+@ untouched and simply re-arms: GSC does the same with
 @ EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE, and that refusal path is exactly
 @ why LANCE's object cannot retire on a talk count.
+@
+@ THE FLOOR (finding #3). With the GYARADOS encounter gated on ARC >= 3, a
+@ forward-running save cannot show LANCE below 3 (his predicate needs the fish
+@ gone). The one route that does reach the ARC < 3 branch is an arc that has
+@ REGRESSED after the fish was fought: the INDIGO gate is a badge count, not an
+@ arc test (vars.h), so a League-first save holds ARC 10, can fight the fish
+@ there, and then meets ELM, whose write of 1 has no floor. On that route he
+@ says "not yet" -- back still turned, no faceplayer, no YES/NO -- and nothing
+@ is written or removed. Otherwise the branch is defensive.
 @ ============================================================================
 LakeOfRage_EventScript_Lance::
 	lock
 	goto_if_ge VAR_TRINITY_JOHTO_ARC, 4, LakeOfRage_EventScript_LanceIdle
+	goto_if_lt VAR_TRINITY_JOHTO_ARC, 3, LakeOfRage_EventScript_LanceNotYet
 	msgbox LakeOfRage_Text_LanceForcedToEvolve, MSGBOX_DEFAULT
 	@ GSC speaks that first line BEFORE its faceplayer -- a man talking to the
 	@ water with his back turned -- and only then turns round. `faceplayer`
@@ -195,9 +227,14 @@ LakeOfRage_EventScript_Lance::
 	release
 	end
 
-@ Arc-var monotonic guard (S1 rule).
+@ Arc-var monotonic guard (S1 rule), plus finding #3's floor: this write is
+@ 3 -> 4 and must not fire from anything below 3. The talk script above turns a
+@ sub-3 player away before the YES/NO ever shows, so the floor read here is
+@ INTENTIONALLY UNREACHABLE / DEFENSIVE (S1: a state write carries its own guard
+@ even when the caller's already covers it).
 LakeOfRage_EventScript_LanceAgreed::
 	goto_if_ge VAR_TRINITY_JOHTO_ARC, 4, LakeOfRage_EventScript_LanceAgreedDone
+	goto_if_lt VAR_TRINITY_JOHTO_ARC, 3, LakeOfRage_EventScript_LanceAgreedDone
 	setvar VAR_TRINITY_JOHTO_ARC, 4
 	@ Arms the MAHOGANY MART staircase cutscene. This is GSC's own
 	@ `setmapscene MAHOGANY_MART_1F, SCENE_MAHOGANYMART1F_LANCE_UNCOVERS_STAIRS`
@@ -212,6 +249,13 @@ LakeOfRage_EventScript_LanceAgreedDone::
 
 LakeOfRage_EventScript_LanceRefused::
 	msgbox LakeOfRage_Text_LanceRefused, MSGBOX_DEFAULT
+	release
+	end
+
+@ Finding #3's floor branch (see THE FLOOR above). No faceplayer: he is still
+@ talking to the water.
+LakeOfRage_EventScript_LanceNotYet::
+	msgbox LakeOfRage_Text_LanceNotYet, MSGBOX_DEFAULT
 	release
 	end
 
@@ -300,6 +344,13 @@ LakeOfRage_Text_GotRedScale:
 	.string "the surface of the water.\p"
 	.string "It is still warm.$"
 
+@ Finding #3's refusal, the plan's wording. Longest line 34 chars.
+LakeOfRage_Text_GyaradosNotYet:
+	.string "The water is churning violently.\n"
+	.string "Something is agitating the lake --\l"
+	.string "but it wants nothing to do with\l"
+	.string "you yet.$"
+
 LakeOfRage_Text_LanceForcedToEvolve:
 	.string "This lake is full of GYARADOS and\n"
 	.string "nothing else.\p"
@@ -338,6 +389,13 @@ LakeOfRage_Text_LanceRefused:
 LakeOfRage_Text_LanceIdle:
 	.string "LANCE: MAHOGANY TOWN. The shop.\n"
 	.string "I'll go on ahead.$"
+
+@ Finding #3's floor line. Unnamed: on this branch he has not introduced
+@ himself, and his back is turned.
+LakeOfRage_Text_LanceNotYet:
+	.string "…No. Not yet.\p"
+	.string "This isn't your fight yet.\n"
+	.string "Come back when it is.$"
 
 LakeOfRage_Text_Gramps:
 	.string "The GYARADOS are angry!\p"

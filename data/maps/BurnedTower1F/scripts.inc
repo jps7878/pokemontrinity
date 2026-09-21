@@ -16,6 +16,7 @@ BurnedTower1F_SetHoleWarp:
 @ the scene body never writes them, and it never removeobject's either actor,
 @ so R1's removeobject flag co-sign cannot fire on this map at all.
 @   SILVER : visible while VAR_TRINITY_JOHTO_SCENE_ECRUTEAK == 0
+@            AND VAR_TRINITY_JOHTO_ARC >= 2 (M7 Task 4, bug-test finding #2)
 @   MORTY  : visible while VAR_TRINITY_JOHTO_SCENE_ECRUTEAK <  2
 @
 @ THE SLOT WAS ALREADY OCCUPIED. This map's ON_TRANSITION used to point straight
@@ -31,8 +32,17 @@ BurnedTower1F_OnTransition:
 	call BurnedTower1F_EventScript_SetMortyVisibility
 	goto CaveHole_FixCrackedGround
 
+@ M7 Task 4 (bug-test finding #2). The scene var alone is 0 from the moment of
+@ arrival in JOHTO, so SILVER 3 -- who is fielding the FERALIGATR he stole from
+@ ELM's lab -- used to fire for a player who walked to ECRUTEAK before ever
+@ meeting ELM. ARC 2 is the theft (ElmsLab's second arc write), so the lower
+@ bound is ARC >= 2: below it he is not in the tower at all. The same read
+@ guards both script entries below (the coord scene and the talk script), so a
+@ save that holds scene 0 with ARC < 2 sees no SILVER and runs no scene.
 BurnedTower1F_EventScript_SetSilverVisibility::
+	goto_if_lt VAR_TRINITY_JOHTO_ARC, 2, BurnedTower1F_EventScript_HideSilver
 	goto_if_eq VAR_TRINITY_JOHTO_SCENE_ECRUTEAK, 0, BurnedTower1F_EventScript_ShowSilver
+BurnedTower1F_EventScript_HideSilver::
 	setflag FLAG_TRINITY_J_SILVER_BURNED_HIDE
 	return
 
@@ -73,8 +83,17 @@ BurnedTower1F_EventScript_HideMorty::
 @
 @ CAMERA: player locked at (11,9) => rows 5..14, columns 4..18. SILVER's home
 @ tile (8,9) and his single step to (9,9) are both inside it.
+@
+@ M7 Task 4 (finding #2), THE THIRD SITE. The coord_event at (11,9) keys on
+@ VAR_TRINITY_JOHTO_SCENE_ECRUTEAK == 0 alone (a map.json trigger tests one
+@ var), so without the read below a pre-theft player stepping onto the
+@ chokepoint would run the confrontation against a SILVER that ON_TRANSITION
+@ has just hidden -- a trainer battle with nobody on screen. Below ARC 2 the
+@ trigger is a silent no-op: no lock, no text, nothing written. It re-tests on
+@ every step onto the tile, which costs nothing.
 @ ============================================================================
 BurnedTower1F_EventScript_SilverScene::
+	goto_if_lt VAR_TRINITY_JOHTO_ARC, 2, BurnedTower1F_EventScript_SilverNotYet
 	lockall
 	playbgm MUS_RG_ENCOUNTER_RIVAL, FALSE
 	applymovement LOCALID_JOHTO_BT1F_SILVER, BurnedTower1F_Movement_SilverTurnsOnYou
@@ -84,6 +103,12 @@ BurnedTower1F_EventScript_SilverScene::
 	goto BurnedTower1F_EventScript_SilverAftermath
 	end
 
+@ Finding #2's pre-theft landing for the coord trigger: SILVER is hidden, so
+@ there is nothing to stage. Deliberately no message -- a coord script re-fires
+@ on every step onto its tile, and a line here would nag.
+BurnedTower1F_EventScript_SilverNotYet::
+	end
+
 @ INTENTIONALLY UNREACHABLE / DEFENSIVE. SILVER rests at (8,9), inside the hole
 @ chamber whose sole entrance is (12,9) -> (11,9), and (11,9) carries the coord
 @ trigger above. There is no approach that reaches him with the scene var still
@@ -91,12 +116,16 @@ BurnedTower1F_EventScript_SilverScene::
 @ the player to a POKEMON CENTER outside the tower entirely. Implemented anyway
 @ per S1: a talk script that starts a battle and advances story state carries an
 @ explicit state guard even when a visibility invariant already covers it.
+@ The ARC < 2 read is finding #2's guard at its second site: ON_TRANSITION
+@ already hides him below ARC 2, so this too is defensive, and it routes to the
+@ neutral idle line rather than a new one.
 @ No movement script here: on this path the player's tile is unknown, and
 @ walking SILVER into an occupied tile is the documented failure mode (S4).
 BurnedTower1F_EventScript_Silver::
 	lock
 	faceplayer
 	goto_if_ne VAR_TRINITY_JOHTO_SCENE_ECRUTEAK, 0, BurnedTower1F_EventScript_SilverIdle
+	goto_if_lt VAR_TRINITY_JOHTO_ARC, 2, BurnedTower1F_EventScript_SilverIdle
 	playbgm MUS_RG_ENCOUNTER_RIVAL, FALSE
 	call BurnedTower1F_EventScript_SilverConfront
 	@ `goto`, not `call`: the aftermath ends in a warp, so it never returns.
@@ -104,8 +133,8 @@ BurnedTower1F_EventScript_Silver::
 	end
 
 @ INTENTIONALLY UNREACHABLE / DEFENSIVE: once the aftermath advances the scene
-@ var, ON_TRANSITION hides SILVER on every later entry, so there is no object
-@ left to talk to.
+@ var, ON_TRANSITION hides SILVER on every later entry, and below ARC 2 it never
+@ showed him (finding #2), so on neither route is there an object to talk to.
 BurnedTower1F_EventScript_SilverIdle::
 	msgbox BurnedTower1F_Text_SilverIdle, MSGBOX_DEFAULT
 	release
