@@ -146,7 +146,9 @@ PowerPlant_OnTransition::
 @ M7b Task 18 (#13, WHERE): the Act I rival, cameo 3 of 4. Folded into the
 @ EXISTING ON_TRANSITION rather than added as a second one (single-occupancy).
 @ Mechanism, hide flag and sprite seeding as MtMoon_1F_OnTransition, whose
-@ header carries the full rationale.
+@ header carries the full rationale -- REWRITTEN IN FIX ROUND 1, because its
+@ Continue-from-save argument named the wrong engine fact. The conclusion was
+@ and is correct; read the corrected version there, not any earlier quotation.
 @
 @ WINDOW: KANTO arrival done AND 6 or more KANTO badges AND the KANTO arc still
 @ below 6 -- she moves to the CERULEAN CAVE mouth the moment ASH falls, so
@@ -158,11 +160,21 @@ PowerPlant_OnTransition::
 @
 @ THE MAP'S OTHER ROUTE 10 DOOR IS NOT A SECOND ENTRANCE, so one cameo covers
 @ every arrival. PowerPlant warp 3 at (1,11) leads to Route10 warp 4 at (2,37),
-@ and that tile sits in a SIX-TILE POCKET -- (1,36)-(1,39),(2,37),(2,38) -- with
-@ no walkable link to the rest of ROUTE 10: (1,40) and (3,37)/(3,38) are all
-@ collision 1, verified by flood fill from (7,41), which reaches 686 tiles and
-@ does not include (2,37). Every player entering from ROUTE 10 therefore comes
-@ through warp 2 at (7,40) and lands on (5,38), two tiles from her.
+@ and that tile sits in a SIX-TILE POCKET -- (1,36)-(1,39), (2,37), (2,38) --
+@ with NO INBOUND walkable link from the rest of ROUTE 10. (FIX ROUND 1: the
+@ earlier wording here said "no walkable link", and that was false.
+@ (3,37)/(3,38) are plain collision 1, but (1,40) and (2,40) are collision 1
+@ with behaviour 0x3B, MB_JUMP_SOUTH -- LEDGES, which reach_check.step() tests
+@ BEFORE collision. They are a ONE-WAY link OUT: stepping down from (1,39)
+@ lands the player on (1,41), on the route proper. Only the DIRECTION matters
+@ for this argument, and it is outbound only.) Verified with reach_check on
+@ this tree: a fill seeded at (7,41) reaches 686 tiles and includes none of the
+@ six, so nothing walks IN; a fill seeded at (2,37) reaches 692 -- those same
+@ 686 plus the pocket -- and includes (7,40)/(7,41), which is the ledge
+@ draining OUT. Every player entering PowerPlant from ROUTE 10 therefore comes
+@ through warp 2 at (7,40) and lands on (5,38), two tiles from her; and a
+@ player who leaves by the north door hops the ledge back onto ROUTE 10 rather
+@ than being stranded behind a dead door.
 @ ============================================================================
 PowerPlant_EventScript_SetRivalVisibility::
 	goto_if_unset FLAG_TRINITY_K_ARRIVED, PowerPlant_EventScript_HideRival

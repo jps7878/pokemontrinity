@@ -3,21 +3,54 @@
 @
 @ VISIBILITY, ZERO NEW FLAGS. FLAG_TEMP_5 is the object's hide flag and this
 @ handler is its only writer in the tree. On every map ENTRY the engine runs
-@ ClearTempFieldEventData() and then RunOnTransitionMapScript() before InitMap
-@ spawns the object templates -- LoadMapFromWarp (src/overworld.c:924 then
-@ :945, :954) and LoadMapFromCameraTransition (:860, :876, :877) -- so the flag
-@ is CLEAR (object VISIBLE) by default on entry and this handler's setflag is
-@ what hides her. Vanilla's Route130_OnTransition hides Mirage Island the same
-@ way. CONTINUE-FROM-SAVE IS NOT ONE OF THOSE PATHS and the sub-plan was wrong
-@ to say it was: CB2_ContinueSavedGame (src/overworld.c:1972) calls
+@ ClearTempFieldEventData() and then RunOnTransitionMapScript() --
+@ LoadMapFromWarp (src/overworld.c:924 then :945) and
+@ LoadMapFromCameraTransition (:860, :876) -- and both run BEFORE any object
+@ template is spawned. (FIX ROUND 1: the earlier wording said "before InitMap
+@ spawns the object templates". InitMap, src/fieldmap.c:67, spawns NOTHING --
+@ it is InitMapLayoutData + SetOccupiedSecretBaseEntranceMetatiles +
+@ RunOnLoadMapScript. Templates are spawned later in the CB2_LoadMap state
+@ machine, by InitObjectEventsLocal (src/overworld.c:2183 -> :2441,
+@ TrySpawnObjectEvents at :2454). The ORDERING still holds, so the conclusion
+@ is unchanged.) The flag is therefore CLEAR (object VISIBLE) by default on
+@ entry and this handler's setflag is what hides her. Vanilla's
+@ Route130_OnTransition hides Mirage Island the same way.
+@
+@ CONTINUE-FROM-SAVE IS NOT ONE OF THOSE PATHS and the sub-plan was wrong to
+@ say it was: CB2_ContinueSavedGame (src/overworld.c:1972) calls
 @ InitMapFromSavedGame (src/fieldmap.c:74), which runs RunOnLoadMapScript, not
-@ the transition script, and clears no temp flag. It is still safe, for a
-@ different reason: that path never calls TrySpawnObjectEvents -- it restores
-@ the saved gObjectEvents array (src/load_save.c:218) and re-sprites only the
-@ entries already `active` (InitObjectEventsReturnToField, :2460 ->
-@ SpawnObjectEventsOnReturnToField, src/event_object_movement.c:2856) -- so a
-@ template added by this commit cannot appear on a Continue at all. She first
-@ spawns on the next real map entry, where this handler has run.
+@ the transition script, and clears no temp flag. It is still safe -- but NOT
+@ for the reason this header gave before fix round 1, which claimed "that path
+@ never calls TrySpawnObjectEvents". THAT CLAIM WAS FALSE: TrySpawnObjectEvents
+@ runs on EVERY camera step of ordinary walking (src/field_camera.c:416 ->
+@ UpdateObjectEventsForCameraUpdate, src/event_object_movement.c:3412 ->
+@ :3415), so a Continue reaches it within one player step.
+@
+@ THE REAL PROTECTION IS WHICH ARRAY IT READS. TrySpawnObjectEvents iterates
+@ gSaveBlock1Ptr->objectEventTemplates (src/event_object_movement.c:2800) and
+@ spawns each in-window template whose flagId is clear. That array is refilled
+@ ONLY by LoadObjEventTemplatesFromHeader (src/overworld.c:521), called at :858
+@ and :916 -- the two map-load paths above. The Continue path calls only
+@ LoadSaveblockObjEventScripts (:1996), which refreshes .script and nothing
+@ else. So (a) a save made BEFORE this commit, parked on this map, carries a
+@ template array with no rival entry at all, and she cannot spawn; and (b) a
+@ save made after it carries the FLAG_TEMP_5 value this handler last computed,
+@ because TEMP_FLAGS_START is 0x0 and GetFlagPointer (src/event_data.c:227)
+@ routes id 5 into the SAVED gSaveBlock1Ptr->flags array -- so the
+@ camera-driven spawn reads the correct bit. In case (b) that bit still matches
+@ the window: no script on this map, or on the other three cameo maps, writes a
+@ KANTO badge flag or VAR_TRINITY_KANTO_ARC, so the predicate cannot change
+@ while the player is parked here. She first appears in any NEW window on the
+@ next real map entry, where this handler has run.
+@
+@ KNOWN, PRE-EXISTING, DEVELOPMENT-ONLY (case (a) only, noted for Task 19,
+@ which may verify from a save parked before M7b): objectCount comes from the
+@ NEW header while the array is the OLD one, so the last slot reads as a zeroed
+@ template whose flagId is 0, and FlagGet(0) is FALSE because GetFlagPointer
+@ returns NULL for id 0 (src/event_data.c:229) -- the engine will try to spawn
+@ that zeroed template at map (0,0) if the camera window covers it. It
+@ self-heals on the next real map entry and is generic to every object this
+@ project has ever added; it is not specific to this task.
 @
 @ SPRITE: OBJ_EVENT_GFX_VAR_0 + Common_EventScript_SetupRivalGfxId, the vanilla
 @ rival idiom (Route110_OnTransition). The rival is the player's OPPOSITE --

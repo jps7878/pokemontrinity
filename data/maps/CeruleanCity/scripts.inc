@@ -60,7 +60,8 @@ CeruleanCity_EventScript_HideCaveGuard::
 @
 @ Mechanism and sprite seeding as MtMoon_1F_OnTransition, whose header carries
 @ the full rationale (FLAG_TEMP_5, the two map-load paths, and why the
-@ Continue-from-save path cannot show her out of window).
+@ Continue-from-save path cannot show her out of window) -- REWRITTEN IN FIX
+@ ROUND 1: same conclusion, correct engine reason.
 @ FLAG_TRINITY_K_ARRIVED is deliberately NOT re-tested here: arc >= 6 is only
 @ reached at the HALL OF FAME and already implies arrival.
 @

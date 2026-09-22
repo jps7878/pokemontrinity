@@ -55,7 +55,8 @@ FuchsiaCity_SafariZone_Entrance_MapScripts::
 @ M7b Task 18 (#13, WHERE): the Act I rival, cameo 2 of 4. Same mechanism, same
 @ FLAG_TEMP_5 hide flag and the same gender-correct sprite seeding as
 @ MtMoon_1F_OnTransition -- the full rationale, including why the
-@ Continue-from-save path is safe, is in that handler's header.
+@ Continue-from-save path is safe, is in that handler's header, which was
+@ REWRITTEN IN FIX ROUND 1 (same conclusion, correct engine reason).
 @ ON_TRANSITION single-occupancy is respected: this map held only an
 @ ON_FRAME_TABLE entry, and a map may carry one script of each type.
 @
