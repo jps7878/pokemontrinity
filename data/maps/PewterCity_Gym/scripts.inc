@@ -11,12 +11,12 @@ PewterCity_Gym_MapScripts::
 @ G1-G7 -- BROCK. G1: TRAINER_TYPE_NONE, sight 0, flag 0,
 @ MOVEMENT_TYPE_FACE_DOWN, at the FRLG tile (6,5) (decoded col=0 elev=3
 @ MB_NORMAL, free), appended to map.json after Liam/GymGuy so neither of
-@ T10's existing indices shift. No OBJ_EVENT_GFX_BROCK exists in this tree;
-@ OBJ_EVENT_GFX_ROXANNE is used instead of an arbitrary reach -- TRAINER_
-@ BROCK's own BATTLE pic is already TRAINER_PIC_LEADER_ROXANNE (an M5a T11
-@ boss-corps choice), so this keeps his overworld and battle identity the
-@ SAME substitute rather than introducing a second, unrelated one. M6 art
-@ item, same shape as every other leader substitution this milestone.
+@ T10's existing indices shift. OVERWORLD: OBJ_EVENT_GFX_BROCK, FR's own
+@ byte-identical overworld, ported by M7b Task 11b -- he previously wore
+@ OBJ_EVENT_GFX_ROXANNE, which he shared with Hoenn's Roxanne and Johto's
+@ Jasmine. NOTE his BATTLE pic is still TRAINER_PIC_LEADER_ROXANNE (an M5a
+@ T11 boss-corps choice); overworld and battle identity no longer agree, and
+@ the front-pic half is Task 12's call, not this task's.
 @ ============================================================================
 PewterCity_Gym_EventScript_Brock::
 	trainerbattle_single TRAINER_BROCK, PewterCity_Gym_Text_BrockSeen, PewterCity_Gym_Text_BrockBeaten, PewterCity_Gym_EventScript_BrockDefeated, NO_MUSIC

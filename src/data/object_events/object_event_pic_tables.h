@@ -1129,9 +1129,17 @@ static const struct SpriteFrameImage sPicTable_ProfOak[] = {
 
 
 // Trinity M7b Task 11b: the seven remaining FRLG-native leaders. LORELEI has
-// all 9 walk frames (144x32); the other six reuse FR's 3 drawn frames across
-// the standard 9-slot table, exactly as LANCE/KOGA/BRUNO above do -- FR itself
-// never drew more for them, so this is not a port loss.
+// all 9 walk frames (144x32) and is identity-mapped. The other six have only
+// FR's 3 drawn frames (48x32 = stand south/north/west) and spread them over the
+// standard 9-slot table as 0,1,2,0,0,1,1,2,2 -- FR's own sPicTable_Brock etc.
+// byte for byte, and the same mapping LANCE/KOGA/BRUNO/LT_SURGE above use.
+// That order is load-bearing, not cosmetic: sAnimTable_Standard indexes slots
+// 5/6 as the north-walk pair and 7/8 as the west-walk pair (sAnim_GoNorth =
+// FRAME 5,1,6,1; sAnim_GoWest = FRAME 7,2,8,2, object_event_anims.h:244/262),
+// so slots 6/7/8 must be 1,2,2 -- north,west,west. The fix round for this task
+// corrected them from 0,0,1, which would have flashed the south- and
+// north-facing stills the first time any of the six was applymovement'd.
+// FR itself never drew more than 3 frames for them, so this is not a port loss.
 static const struct SpriteFrameImage sPicTable_Brock[] = {
     overworld_frame(gObjectEventPic_Brock, 2, 4, 0),
     overworld_frame(gObjectEventPic_Brock, 2, 4, 1),
@@ -1139,9 +1147,9 @@ static const struct SpriteFrameImage sPicTable_Brock[] = {
     overworld_frame(gObjectEventPic_Brock, 2, 4, 0),
     overworld_frame(gObjectEventPic_Brock, 2, 4, 0),
     overworld_frame(gObjectEventPic_Brock, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Brock, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Brock, 2, 4, 0),
     overworld_frame(gObjectEventPic_Brock, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Brock, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Brock, 2, 4, 2),
 };
 
 static const struct SpriteFrameImage sPicTable_Misty[] = {
@@ -1151,9 +1159,9 @@ static const struct SpriteFrameImage sPicTable_Misty[] = {
     overworld_frame(gObjectEventPic_Misty, 2, 4, 0),
     overworld_frame(gObjectEventPic_Misty, 2, 4, 0),
     overworld_frame(gObjectEventPic_Misty, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Misty, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Misty, 2, 4, 0),
     overworld_frame(gObjectEventPic_Misty, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Misty, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Misty, 2, 4, 2),
 };
 
 static const struct SpriteFrameImage sPicTable_Erika[] = {
@@ -1163,9 +1171,9 @@ static const struct SpriteFrameImage sPicTable_Erika[] = {
     overworld_frame(gObjectEventPic_Erika, 2, 4, 0),
     overworld_frame(gObjectEventPic_Erika, 2, 4, 0),
     overworld_frame(gObjectEventPic_Erika, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Erika, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Erika, 2, 4, 0),
     overworld_frame(gObjectEventPic_Erika, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Erika, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Erika, 2, 4, 2),
 };
 
 static const struct SpriteFrameImage sPicTable_Blaine[] = {
@@ -1175,9 +1183,9 @@ static const struct SpriteFrameImage sPicTable_Blaine[] = {
     overworld_frame(gObjectEventPic_Blaine, 2, 4, 0),
     overworld_frame(gObjectEventPic_Blaine, 2, 4, 0),
     overworld_frame(gObjectEventPic_Blaine, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Blaine, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Blaine, 2, 4, 0),
     overworld_frame(gObjectEventPic_Blaine, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Blaine, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Blaine, 2, 4, 2),
 };
 
 static const struct SpriteFrameImage sPicTable_Sabrina[] = {
@@ -1187,9 +1195,9 @@ static const struct SpriteFrameImage sPicTable_Sabrina[] = {
     overworld_frame(gObjectEventPic_Sabrina, 2, 4, 0),
     overworld_frame(gObjectEventPic_Sabrina, 2, 4, 0),
     overworld_frame(gObjectEventPic_Sabrina, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Sabrina, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Sabrina, 2, 4, 0),
     overworld_frame(gObjectEventPic_Sabrina, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Sabrina, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Sabrina, 2, 4, 2),
 };
 
 static const struct SpriteFrameImage sPicTable_Agatha[] = {
@@ -1199,9 +1207,9 @@ static const struct SpriteFrameImage sPicTable_Agatha[] = {
     overworld_frame(gObjectEventPic_Agatha, 2, 4, 0),
     overworld_frame(gObjectEventPic_Agatha, 2, 4, 0),
     overworld_frame(gObjectEventPic_Agatha, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Agatha, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Agatha, 2, 4, 0),
     overworld_frame(gObjectEventPic_Agatha, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Agatha, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Agatha, 2, 4, 2),
 };
 
 static const struct SpriteFrameImage sPicTable_Lorelei[] = {

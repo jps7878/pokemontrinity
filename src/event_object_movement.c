@@ -561,8 +561,8 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPaletteLight2,             OBJ_EVENT_PAL_TAG_LIGHT_2},
     {gObjectEventPaletteEmotes,             OBJ_EVENT_PAL_TAG_EMOTES},
     {gObjectEventPaletteNeonLight,          OBJ_EVENT_PAL_TAG_NEON_LIGHT},
-    // FireRed's two shared NPC palettes. NOT per-character: every ported FRLG
-    // human sprite in this tree is drawn against one of these FOUR and against
+    // FireRed's four shared NPC palettes. NOT per-character: every ported FRLG
+    // human sprite in this tree is drawn against one of these four and against
     // nothing else. The first two were added under per-character names by M6 P3
     // and renamed by M7b Task 11; the other two arrived with Task 11b.
     {gObjectEventPal_FRLGNpcWhite,          OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE},

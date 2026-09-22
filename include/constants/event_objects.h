@@ -267,14 +267,17 @@
 // OBJ_EVENT_GFX_PROF_BIRCH with Professor Elm -- the two authority figures who
 // hand out a starter, one per region, drawn identically. FR's own prof_oak.png.
 #define OBJ_EVENT_GFX_PROF_OAK                   251
-// Trinity M7b Task 11b (finding #5b): the seven remaining FRLG-native leaders.
-// Finding #5b filed the Johto/Kanto gym leaders as having "no GBA-native
-// source"; that is true only of Morty, Will and the Rocket executives. All
-// seven below ship as byte-identical FireRed overworlds, so they port with no
-// redraw and no restyle -- off the cross-cast placeholders that made them
-// misread (Erika wore Hoenn E4 Phoebe's sprite, Brock wore Roxanne's, Sabrina
-// wore Liza's, Blaine wore the generic HIKER, Misty SWIMMER_F, Agatha
-// OLD_WOMAN, Lorelei BEAUTY).
+// Trinity M7b Task 11b (finding #5b): the seven remaining FRLG-native KANTO
+// cast members. Finding #5b's "no GBA-native source" bucket is Gen-2-only
+// characters -- the 8 Johto gym leaders, Silver, Elm, Kurt, Will, Karen, Archer
+// and the Rocket executives -- and that bucket is UNCHANGED by this task: a
+// find over pokefirered/graphics returns 0 hits for every one of those names.
+// What #5b got wrong was only its KANTO reach: it listed just Koga, Bruno,
+// Agatha, Lorelei and Blue as FR-present, when the seven below are equally
+// byte-identical FireRed overworlds. They port with no redraw and no restyle --
+// off the cross-cast placeholders that made them misread (Erika wore Hoenn E4
+// Phoebe's sprite, Brock wore Roxanne's, Sabrina wore Liza's, Blaine wore the
+// generic HIKER, Misty SWIMMER_F, Agatha OLD_WOMAN, Lorelei BEAUTY).
 #define OBJ_EVENT_GFX_BROCK                      252
 #define OBJ_EVENT_GFX_MISTY                      253
 #define OBJ_EVENT_GFX_ERIKA                      254

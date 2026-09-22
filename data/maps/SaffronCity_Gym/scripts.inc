@@ -10,9 +10,11 @@
 @ relocate-traps on it, not partitions).
 @ G1: SABRINA appended (T10 never placed her -- leaders are TRAINER_TYPE_NONE,
 @ not the normal gym-trainer population pass). (14,11), col=0 elev=3
-@ MB_NORMAL, free. OBJ_EVENT_GFX_LIZA (Hoenn's female PSYCHIC-type leader --
-@ type+gender match, TRAINER_SABRINA.Pic is "Psychic M" pre-existing/
-@ untouched, M6 art item, same defect class as Falkner/Winona inverted).
+@ MB_NORMAL, free. OVERWORLD: OBJ_EVENT_GFX_SABRINA, FR's own byte-identical
+@ overworld, ported by M7b Task 11b. She previously wore OBJ_EVENT_GFX_LIZA,
+@ which Hoenn's own Tate&Liza object also uses (MossdeepCity_Gym). Her BATTLE
+@ pic is still TRAINER_SABRINA.Pic "Psychic M" -- pre-existing, untouched, and
+@ Task 12's call, not this task's.
 @ ============================================================================
 SaffronCity_Gym_MapScripts::
 	.byte 0

@@ -13,13 +13,12 @@ CeladonCity_Gym_MapScripts::
 @ G1 -- ERIKA. (6,4), pokefirered's own coordinate (decoded col=0 elev=3
 @ MB_NORMAL, free -- FR seats her directly between two of her own students,
 @ Lori(5,4)/Lisa(7,4), a real FRLG "wall of trainers" shape, not accidental).
-@ TRAINER_TYPE_NONE, MOVEMENT_TYPE_FACE_DOWN, NO_MUSIC (G3). No dedicated
-@ OBJ_EVENT_GFX_ERIKA exists in this tree (grep, 0 hits) --
-@ OBJ_EVENT_GFX_PHOEBE substitutes (a named female Hoenn Elite Four sprite;
-@ this tree's own established practice already reuses ROXANNE/FLANNERY/
-@ WINONA/LIZA/GLACIA across MULTIPLE leader substitutions each, so a shared
-@ pool of named female sprites is the accepted convention here, not a
-@ one-sprite-one-identity rule -- PHOEBE is simply the least-reused option).
+@ TRAINER_TYPE_NONE, MOVEMENT_TYPE_FACE_DOWN, NO_MUSIC (G3). OVERWORLD:
+@ OBJ_EVENT_GFX_ERIKA, FR's own byte-identical overworld, ported by M7b
+@ Task 11b. She previously wore OBJ_EVENT_GFX_PHOEBE, which she shared with
+@ Hoenn E4 Phoebe herself plus Janine and Karen -- four named women on one
+@ sheet, the exact misread finding #5 is about. PHOEBE still carries Janine
+@ and Karen and remains open for Task 12's art decision.
 @ ============================================================================
 CeladonCity_Gym_EventScript_Erika::
 	trainerbattle_single TRAINER_ERIKA, CeladonCity_Gym_Text_ErikaSeen, CeladonCity_Gym_Text_ErikaBeaten, CeladonCity_Gym_EventScript_ErikaDefeated, NO_MUSIC

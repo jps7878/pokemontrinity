@@ -46,11 +46,12 @@ CeruleanCity_Gym_Text_DianaBeaten:
 @ third mirror. Full design/decode: docs/superpowers/plans/m5b/03-cerulean-power-plant.md
 @ section 1.
 @
-@ G1 MISTY: no OBJ_EVENT_GFX_MISTY define exists (same class of gap as Sabrina's
-@ own S2 substitution, OBJ_EVENT_GFX_LIZA). OBJ_EVENT_GFX_SWIMMER_F is a genuine
-@ thematic fit (canonically depicted as a swimmer) and is not shared with either
-@ of this map's other two swimmer-family NPCs (Luis is SWIMMER_M, Diana is
-@ PICNICKER). Placed at FRLG's own tile (8,6) -- decoded col 0 elev 3 MB_NORMAL,
+@ G1 MISTY: OBJ_EVENT_GFX_MISTY, FR's own byte-identical overworld, ported by
+@ M7b Task 11b. She previously wore OBJ_EVENT_GFX_SWIMMER_F -- thematically apt
+@ but shared with 16 unnamed NPCs, so she read as gym population rather than as
+@ the leader. Her own sprite is not shared with this map's other swimmer-family
+@ NPCs either (Luis is SWIMMER_M, Diana is PICNICKER). Placed at FRLG's own
+@ tile (8,6) -- decoded col 0 elev 3 MB_NORMAL,
 @ a dry-land island reachable by the winding land path traced in the sub-plan
 @ (no Surf gimmick on Misty herself; only Luis and the pool pickup below are
 @ water-gated). Appended idx4, TRAINER_TYPE_NONE (talk-triggered, never a sight
