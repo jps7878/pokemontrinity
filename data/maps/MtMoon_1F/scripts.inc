@@ -1,8 +1,11 @@
 @ ============================================================================
 @ M7b Task 18 (finding #13, WHERE): the Act I rival, cameo 1 of 4.
 @
-@ VISIBILITY, ZERO NEW FLAGS. FLAG_TEMP_5 is the object's hide flag and this
-@ handler is its only writer in the tree. On every map ENTRY the engine runs
+@ VISIBILITY, ZERO NEW FLAGS. FLAG_TEMP_5 is the object's hide flag, shared
+@ with the other three cameo maps; the four ON_TRANSITION handlers (this one,
+@ FuchsiaCity_SafariZone_Entrance, PowerPlant and CeruleanCity) are its only
+@ script-side writers, and each recomputes the bit on entry to its own map --
+@ see include/constants/flags.h:16. On every map ENTRY the engine runs
 @ ClearTempFieldEventData() and then RunOnTransitionMapScript() --
 @ LoadMapFromWarp (src/overworld.c:924 then :945) and
 @ LoadMapFromCameraTransition (:860, :876) -- and both run BEFORE any object
