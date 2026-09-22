@@ -328,18 +328,25 @@ Trinity_Text_PlaceDarkCave:
 @ BOBBY'S STANDING REFERENCE -- finding #9c's "and/or his pier dialogue", the
 @ half that names EVERYTHING still outstanding instead of one thing.
 @
-@ IT HANGS IN TWO PLACES, BOTH REACHABLE WITHOUT WINNING ANYTHING NEW:
+@ IT HANGS IN THREE PLACES (fix round 1 -- the round-1 comment said two, and
+@ said of them something that was not true at arc-K 6+; see the block above
+@ IndigoPlateau_PokemonCenter_1F_EventScript_BobbyBriefing for the exact
+@ reachability derivation):
 @   * OLIVINE PORT, his pier dialogue -- OlivinePort_EventScript_BobbyDecline
 @     and _BobbyWaiting, i.e. "not yet" to the boat. Zero gates beyond being
 @     at the pier at all, which is the crossing itself, and it is exactly the
 @     audience: the player has just cleared the JOHTO league and everything on
 @     this list is JOHTO content he is about to sail away from.
 @   * INDIGO PLATEAU POKéMON CENTER -- _BobbyBriefing and _BobbyClaimed, the
-@     two terminal repeat lines of his reward flow. Both are reached from 8
-@     KANTO badges onward (his object's own spawn condition,
-@     FLAG_TRINITY_K_KANTO_CAST_HIDE), and _BobbyBriefing is the branch a
-@     player who has NOT done the family gauntlet lands on -- so the reference
-@     is not behind the gauntlet, the farewell battle, or the reward.
+@     two terminal repeat lines of his reward flow, reached from 8 KANTO
+@     badges onward (his object's own spawn condition,
+@     FLAG_TRINITY_K_KANTO_CAST_HIDE). _BobbyBriefing is the branch a player
+@     who has NOT done the family gauntlet lands on, so neither the gauntlet
+@     nor the reward gates the board.
+@   * INDIGO PLATEAU POKéMON CENTER, the farewell path. At arc-K 6+ the FIRST
+@     talk is the farewell battle and cannot fall through to the two lines
+@     above, so the board is spoken there too, after Text_BobbyFarewellAfter.
+@     No new gate: that battle is this room's own, already shipped.
 @
 @ Same conditions as the picker above, evaluated independently so the list can
 @ be read top to bottom as an order of operations.
@@ -380,8 +387,29 @@ Trinity_EventScript_BobbyReportWing::
 	msgbox Trinity_Text_BobbyReportWing, MSGBOX_DEFAULT
 	return
 
+@ FIX ROUND 1 (review Major) -- the ONE entry in this list that is not
+@ independent. The report chain is otherwise a flat list of independent
+@ conditions, but LUGIA's location is only true TALK once the SILVER WING is
+@ in hand: WhirlIslandLugiaChamber_EventScript_HideLugia
+@ (data/maps/WhirlIslandLugiaChamber/scripts.inc:50) hides LUGIA outright
+@ while FLAG_TRINITY_J_WING_SILVER is unset. Unbranched, the wing-unset state
+@ -- the report's PRIMARY audience, since the crate is finding #9's
+@ "communicated nowhere" return trip -- read the crate paragraph and then a
+@ paragraph saying the sea "hasn't settled since you took that WING", i.e. it
+@ contradicted itself and sent the player to an empty chamber. The wing-unset
+@ variant names the same place without asserting possession and without
+@ pretending the door is open, which is the file's own stated rule at the
+@ picker above ("a legendary sitting behind a token the player has not
+@ collected is reported as the TOKEN's location, never as the sealed door" --
+@ the crate paragraph two entries up is that token's location).
 Trinity_EventScript_BobbyReportLugia::
+	goto_if_unset FLAG_TRINITY_J_WING_SILVER, Trinity_EventScript_BobbyReportLugiaSealed
 	msgbox Trinity_Text_BobbyReportLugia, MSGBOX_DEFAULT
+	return
+
+@ call -> goto -> return: the caller owns the lock, this leaf owns the return.
+Trinity_EventScript_BobbyReportLugiaSealed::
+	msgbox Trinity_Text_BobbyReportLugiaSealed, MSGBOX_DEFAULT
 	return
 
 Trinity_EventScript_BobbyReportRaikou::
@@ -658,6 +686,13 @@ Trinity_Text_BobbyReportLugia:
 	.string "CIANWOOD. The sea down there\l"
 	.string "hasn't settled since you took\l"
 	.string "that WING.$"
+
+@ Wing-unset variant. Same place, no claim of possession, no promise the door
+@ is open. Lines: 22 / 28 / 24 characters, inside the 31 this file keeps.
+Trinity_Text_BobbyReportLugiaSealed:
+	.string "The WHIRL ISLANDS, off\n"
+	.string "CIANWOOD. Nothing down there\l"
+	.string "opens without that WING.$"
 
 Trinity_Text_BobbyReportRaikou:
 	.string "MT.MORTAR. Storms inside a\n"

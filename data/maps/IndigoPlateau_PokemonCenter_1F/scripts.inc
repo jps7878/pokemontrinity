@@ -272,6 +272,9 @@ IndigoPlateau_PokemonCenter_1F_EventScript_Bobby::
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_BobbyFarewellIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_BOBBY, IndigoPlateau_PokemonCenter_1F_Text_BobbyFarewellDefeat
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_BobbyFarewellAfter, MSGBOX_DEFAULT
+	@ M7b Task 13 fix round 1: the standing objective board, on the one talk
+	@ that cannot reach _BobbyBriefing/_BobbyClaimed. See the block above them.
+	call Trinity_EventScript_BobbyLegendaryReport
 	release
 	end
 
@@ -318,16 +321,35 @@ IndigoPlateau_PokemonCenter_1F_EventScript_BobbyCancel::
 	release
 	end
 
-@ M7b Task 13 (finding #9c, the state-aware half): BOBBY's two TERMINAL repeat
+@ M7b Task 13 (finding #9c, the state-aware half): BOBBY's TERMINAL repeat
 @ lines become his standing objective board -- he names every JOHTO thread the
-@ player has not closed, or says the desk is clear. Both branches are reached
-@ from 8 KANTO badges onward (his object's own spawn condition,
-@ FLAG_TRINITY_K_KANTO_CAST_HIDE) and BobbyBriefing in particular is the branch
-@ a player who has NOT taken the family gauntlet lands on, so the reference is
-@ not behind the gauntlet, the reward, or the farewell battle. The report
-@ script lives in data/scripts/trinity_navigator.inc and ends in `return`; the
-@ lock is this file's, taken at EventScript_Bobby. Nothing else in his script
-@ changes -- not the reward flow, not the farewell battle, not BobbyNotYet.
+@ player has not closed, or says the desk is clear.
+@
+@ FIX ROUND 1 (review Major) -- WHICH TALKS ACTUALLY REACH IT, stated exactly.
+@ Three sites in this file, and between them there is no state in which the
+@ board is unreachable:
+@   * _BobbyBriefing / _BobbyClaimed below arc-K 6. EventScript_Bobby's first
+@     line sends every talk under VAR_TRINITY_KANTO_ARC 6 straight to
+@     BobbyRewardFlow, whose only gate is the live 8-badge C-COUNT -- which
+@     BOBBY's own object already requires to spawn at all
+@     (FLAG_TRINITY_K_KANTO_CAST_HIDE). BobbyBriefing in particular is the
+@     branch a player who has NOT taken the family gauntlet lands on, so in
+@     this window the board is behind neither the gauntlet nor the reward.
+@   * The farewell path, arc-K 6+. There the first talk is the farewell battle
+@     (`checktrainerflag TRAINER_BOBBY` above), so Briefing/Claimed are NOT
+@     reachable on it -- the round-1 comment claimed otherwise and was false.
+@     The call added after Text_BobbyFarewellAfter is the fix: that one talk
+@     now ends on the board too. It is not a new gate -- the battle it follows
+@     is the one this room already had -- and it costs nothing in a state
+@     where the board is the point: a post-league player who never fought
+@     BOBBY hears the JOHTO list the first time he asks.
+@   * _BobbyBriefing / _BobbyClaimed at arc-K 6+ on every LATER talk, once
+@     that trainer flag is set and the arc branch falls through to
+@     BobbyRewardFlow again.
+@ The report script lives in data/scripts/trinity_navigator.inc and ends in
+@ `return`; the lock is this file's, taken at EventScript_Bobby. Nothing else
+@ in his script changes -- not the reward flow, not the battle, not
+@ BobbyNotYet.
 IndigoPlateau_PokemonCenter_1F_EventScript_BobbyBriefing::
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_BobbyBriefing, MSGBOX_DEFAULT
 	call Trinity_EventScript_BobbyLegendaryReport
