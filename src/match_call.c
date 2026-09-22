@@ -1157,6 +1157,41 @@ static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
 */
 bool32 TryStartMatchCall(void)
 {
+    // Trinity M7b Task 13 -- bug-test finding #9b: "stop the random PokeNav
+    // trainer calls -- pure noise once the game spans three regions."
+    //
+    // This early return is the WHOLE gate. It is deliberately NOT a rewrite of
+    // the chain below, for two reasons:
+    //   1. That chain is the only thing referencing seven static helpers in
+    //      this file (UpdateMatchCallStepCounter, UpdateMatchCallMinutesCounter,
+    //      CheckMatchCallChance, MapAllowsMatchCall, SelectMatchCallTrainer,
+    //      and through them GetNumRegisteredTrainers / GetActiveMatchCallTrainerId).
+    //      Deleting it would orphan them and the build is -Werror -Wall, so
+    //      -Wunused-function would fail the build.
+    //   2. Flipping TRINITY_RANDOM_MATCH_CALLS (include/config/overworld.h)
+    //      back to TRUE must restore vanilla behaviour exactly, with no other edit.
+    //
+    // SCRIPTED STORY CALLS ARE UNAFFECTED, and that is structural rather than
+    // lucky: the `pokenavcall` command reaches the match-call system by a path
+    // that does not include this function at all --
+    //   ScrCmd_pokenavcall (src/scrcmd.c)
+    //     -> ShowPokenavFieldMessage (src/field_message_box.c)
+    //       -> StartMatchCallFromScript (this file, below)
+    //         -> StartMatchCall
+    // so NORMAN's first-sail call (Route104_EventScript_SailToDewfordDadCalls),
+    // both SCOTT calls, ROXANNE's, WALLY's and the Rayquaza rival call all still
+    // fire, as do BOBBY's Trinity navigator calls (data/scripts/trinity_navigator.inc).
+    // The player's own outgoing calls from the PokeNav Match Call menu
+    // (src/pokenav_match_call_data.c / _list.c / _gfx.c) are likewise untouched --
+    // TryStartMatchCall is not referenced in any of those files.
+    //
+    // FREE_MATCH_CALL (include/config/save.h) was considered and REJECTED: it
+    // removes match-call/rematch data from the SaveBlock, which is save-breaking
+    // (the founder's existing save must still load, M7 Global Constraints), and
+    // it would kill the scripted story calls as well.
+    if (!TRINITY_RANDOM_MATCH_CALLS)
+        return FALSE;
+
     if (FlagGet(FLAG_HAS_MATCH_CALL)
         && UpdateMatchCallStepCounter()
         && UpdateMatchCallMinutesCounter()

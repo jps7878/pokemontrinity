@@ -146,4 +146,12 @@
 // Trainer Rematches
 #define OW_REMATCH_BADGE_COUNT      5 // Number of badges necessary before the match call or vs seeker features allow rematches
 
+// Trinity M7b Task 13 (bug-test finding #9b). When FALSE, the RANDOM incoming
+// Match Call channel is off: registered route trainers never ring the player
+// for small talk or rematch requests. Scripted story calls (the `pokenavcall`
+// script command) and the player's own OUTGOING calls from the PokeNav Match
+// Call menu are NOT affected -- neither path passes through TryStartMatchCall().
+// Set back to TRUE to restore vanilla behaviour; nothing else needs changing.
+#define TRINITY_RANDOM_MATCH_CALLS  FALSE
+
 #endif // GUARD_CONFIG_OVERWORLD_H
