@@ -44,7 +44,7 @@ SilphCo_2F_Text_ConnorPostBattle:
 	.string "I work for both SILPH and TEAM\nROCKET.$"
 
 SilphCo_2F_Text_ThunderWaveTutor:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "Don't. I taught moves here until\nROCKET came up the stairs.$"
 
 SilphCo_2F_Text_FloorSign:
 	.string "SILPH CO. HEAD OFFICE\n2F$"

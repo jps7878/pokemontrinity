@@ -6,4 +6,4 @@ CeruleanCity_House4_EventScript_WonderNewsBerryMan::
 	end
 
 CeruleanCity_House4_Text_WonderNewsBerryMan:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "I pass on news from far off.\nLately it's all the same news.\lIt's stopped being news.$"

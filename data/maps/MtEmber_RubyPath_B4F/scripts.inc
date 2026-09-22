@@ -106,79 +106,79 @@ MtEmber_RubyPath_B4F_EventScript_BrailleWXYZ_3::
 	end
 
 MtEmber_RubyPath_B4F_Text_BrailleABC:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleABC_2:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleABC_3:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleGHI:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleGHI_2:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleGHI_3:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleMNO:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleMNO_2:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleMNO_3:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleTUV:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleTUV_2:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleTUV_3:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleDEF:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleDEF_2:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleDEF_3:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleJKL:
-	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleJKL_2:
-	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleJKL_3:
-	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BraillePQRS:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BraillePeriod:
-	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleComma:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BraillePQRS_2:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BraillePQRS_3:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleWXYZ:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleWXYZ_2:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"
 
 MtEmber_RubyPath_B4F_Text_BrailleWXYZ_3:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"

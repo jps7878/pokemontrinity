@@ -14,7 +14,7 @@ FuchsiaCity_Mart_EventScript_CooltrainerF::
 	end
 
 FuchsiaCity_Mart_Text_Clerk:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+	.string "The counter is bare.\pKANTO's marts have had nothing\nto sell for months.$"
 
 FuchsiaCity_Mart_Text_Gentleman:
 	.string "Don't they have any pennants\npromoting the SAFARI ZONE?\pHow about some paper lanterns?\nAren't there even any calendars?$"

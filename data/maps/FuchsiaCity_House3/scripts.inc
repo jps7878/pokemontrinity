@@ -6,4 +6,4 @@ FuchsiaCity_House3_EventScript_MoveDeleter::
 	end
 
 FuchsiaCity_House3_Text_MoveDeleter:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "I used to make POKéMON forget\nmoves. These days I just forget.$"

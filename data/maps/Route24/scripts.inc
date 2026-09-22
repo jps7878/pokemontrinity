@@ -36,7 +36,7 @@ Route24_EventScript_Shane::
 	end
 
 Route24_Text_Rocket:
-	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
+	.string "You cleared the bridge.\nThere's no prize. There was\lnever going to be one.$"
 
 Route24_Text_EthanSeen:
 	.string "This bridge has seen more\nbattles than the GYM has.$"

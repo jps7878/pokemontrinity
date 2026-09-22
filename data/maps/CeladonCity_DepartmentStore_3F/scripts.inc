@@ -66,7 +66,7 @@ CeladonCity_DepartmentStore_3F_EventScript_Poster_2::
 	end
 
 CeladonCity_DepartmentStore_3F_Text_CounterTutor:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "I taught moves on this floor,\nonce. Nobody stops on three.$"
 
 CeladonCity_DepartmentStore_3F_Text_GBAKid1:
 	.string "Captured POKéMON are registered\nwith an ID No. and the OT.\pOT stands for “Original TRAINER” -\nthe TRAINER that caught it first.$"

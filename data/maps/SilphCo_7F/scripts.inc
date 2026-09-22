@@ -33,16 +33,16 @@ SilphCo_7F_EventScript_FloorSign::
 	end
 
 SilphCo_7F_Text_LaprasGuy:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+	.string "You're not a ROCKET. Good.\pI've nothing to give you.\nThey took all of it.$"
 
 SilphCo_7F_Text_WorkerF:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "You!\nIt's really dangerous here!\pYou came to save me?\nYou can't!$"
 
 SilphCo_7F_Text_WorkerM1:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "TEAM ROCKET was after the MASTER\nBALL, which catches any POKéMON.$"
 
 SilphCo_7F_Text_WorkerM2:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "It would be bad if TEAM ROCKET\ntook over SILPH or our POKéMON.$"
 
 SilphCo_7F_Text_JoshuaSeen:
 	.string "Heheh!\pYou mistook me for a SILPH worker?$"

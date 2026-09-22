@@ -14,7 +14,7 @@ SilphCo_11F_EventScript_FloorSign::
 	end
 
 SilphCo_11F_Text_President:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+	.string "SILPH is mine again.\nI don't owe you for that.\lGood day.$"
 
 SilphCo_11F_Text_Secretary:
 	.string "SECRETARY: Thank you for rescuing\nall of us.\pWe, from the PRESIDENT down,\nare indebted to you.$"

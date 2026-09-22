@@ -33,16 +33,16 @@ VermilionCity_PokemonFanClub_Text_Chairman:
 	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
 
 VermilionCity_PokemonFanClub_Text_WorkerF:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "Our CHAIRMAN is very vocal about\nPOKéMON.$"
 
 VermilionCity_PokemonFanClub_Text_Pikachu:
-	.string "KANTO's got its own trainers worth\nwatching, but even we're curious\labout this HOENN-JOHTO champion.$"
+	.string "PIKACHU: Chu! Pikachu!$"
 
 VermilionCity_PokemonFanClub_Text_Woman:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+	.string "I just adore my SEEL!\nIt's so lovable!\pIt squeals, “Kyuuuh,” when I\nhug it!$"
 
 VermilionCity_PokemonFanClub_Text_FatMan:
-	.string "Never met the champion myself.\nHeard they came up through HOENN\land JOHTO before setting foot here.$"
+	.string "Won't you admire my PIKACHU's\nadorable tail?$"
 
 VermilionCity_PokemonFanClub_Text_RulesSign1:
 	.string "Let's all listen politely to other\nTRAINERS!$"

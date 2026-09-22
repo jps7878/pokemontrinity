@@ -14,7 +14,7 @@ CeruleanCity_Mart_EventScript_Youngster::
 	end
 
 CeruleanCity_Mart_Text_Clerk:
-	.string "KANTO's got its own trainers worth\nwatching, but even we're curious\labout this HOENN-JOHTO champion.$"
+	.string "The counter is bare.\pKANTO's marts have had nothing\nto sell for months.$"
 
 CeruleanCity_Mart_Text_Woman:
 	.string "Do you know about RARE CANDY?\nThey don't sell it in shops.\pI think it makes POKéMON grow\nvery quickly all of a sudden.$"

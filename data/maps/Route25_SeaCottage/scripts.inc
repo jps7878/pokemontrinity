@@ -31,4 +31,4 @@ Route25_SeaCottage_Text_Bill:
 	.string "back and see me anytime.$"
 
 Route25_SeaCottage_Text_Computer:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "TELEPORTER is displayed on the PC\nmonitor.$"

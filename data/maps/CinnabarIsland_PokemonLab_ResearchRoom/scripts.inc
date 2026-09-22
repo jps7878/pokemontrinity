@@ -18,7 +18,7 @@ CinnabarIsland_PokemonLab_ResearchRoom_EventScript_Computer::
 	end
 
 CinnabarIsland_PokemonLab_ResearchRoom_Text_MetronomeTutor:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "I had a move worth teaching.\nThe LAB filed my notes and\lnever gave them back.$"
 
 CinnabarIsland_PokemonLab_ResearchRoom_Text_Scientist:
 	.string "EEVEE can evolve into one of three\nkinds of POKéMON.$"

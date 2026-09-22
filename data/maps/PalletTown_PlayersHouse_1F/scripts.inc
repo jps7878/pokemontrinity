@@ -10,7 +10,7 @@ PalletTown_PlayersHouse_1F_EventScript_TV::
 	end
 
 PalletTown_PlayersHouse_1F_Text_Mom:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "A trainer grew up in this house.\pHe left, and he never once\nwrote home.$"
 
 PalletTown_PlayersHouse_1F_Text_TV:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+	.string "Oops, wrong side…$"

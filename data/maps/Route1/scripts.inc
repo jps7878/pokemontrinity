@@ -132,7 +132,7 @@ Route1_EventScript_RouteSign::
 	end
 
 Route1_Text_MartClerk:
-	.string "KANTO's got its own trainers worth\nwatching, but even we're curious\labout this HOENN-JOHTO champion.$"
+	.string "I work a POKéMON MART in\nVIRIDIAN. Worked. Nothing's\lcome in for months.$"
 
 Route1_Text_Boy:
 	.string "See those ledges along the road?\pIt's a bit scary, but you can jump\nfrom them.\pYou can get back to PALLET TOWN\nquicker that way.$"

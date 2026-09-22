@@ -17,7 +17,7 @@ CinnabarIsland_PokemonLab_Lounge_Text_Scientist:
 	.string "I found this most remarkable fossil\ninside MT. MOON.\pI think it's of a rare, prehistoric\nPOKéMON.$"
 
 CinnabarIsland_PokemonLab_Lounge_Text_Clifton:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "I traded away the one I wanted,\nyears back. Still think on it.$"
 
 CinnabarIsland_PokemonLab_Lounge_Text_Norma:
-	.string "Never met the champion myself.\nHeard they came up through HOENN\land JOHTO before setting foot here.$"
+	.string "I had a trade lined up. The other\nhalf never came back to KANTO.$"

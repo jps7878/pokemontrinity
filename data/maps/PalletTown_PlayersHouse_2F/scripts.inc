@@ -17,7 +17,7 @@ PalletTown_PlayersHouse_2F_Text_NES:
 	.string "{PLAYER} played with the NES.\p…Okay!\nIt's time to go!$"
 
 PalletTown_PlayersHouse_2F_Text_PC:
-	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
+	.string "The PC is powered down.\nThe one in the CENTER isn't.$"
 
 PalletTown_PlayersHouse_2F_Text_Sign:
 	.string "It's a posted notice…\pIf you're confused, ask for HELP!\nPress the L or R Button!$"

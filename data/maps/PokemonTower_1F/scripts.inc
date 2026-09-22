@@ -31,7 +31,7 @@ PokemonTower_1F_Text_Woman1:
 	.string "My GROWLITHE…\nWhy did you die?$"
 
 PokemonTower_1F_Text_Woman2:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+	.string "Did you come to pay respects?\pOr did you come to be seen\ndoing it?$"
 
 PokemonTower_1F_Text_BaldingMan:
 	.string "I came to pray for my dearly\ndeparted CLEFAIRY.\pSniff!\nI'm awash in tears…$"

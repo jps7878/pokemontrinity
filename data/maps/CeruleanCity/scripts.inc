@@ -150,7 +150,7 @@ CeruleanCity_EventScript_TrainerTips::
 	end
 
 CeruleanCity_Text_Policeman:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "The people here were robbed.\pIt's obvious that TEAM ROCKET is\nbehind this most heinous crime!\pEven our POLICE FORCE has\ntrouble with the ROCKETS!$"
 
 CeruleanCity_Text_LittleBoy:
 	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
@@ -159,13 +159,13 @@ CeruleanCity_Text_BaldingMan:
 	.string "You're making an encyclopedia on\nPOKéMON? That sounds amusing.$"
 
 CeruleanCity_Text_Lass:
-	.string "Never met the champion myself.\nHeard they came up through HOENN\land JOHTO before setting foot here.$"
+	.string "Never met the champion myself.\nHeard they came up through HOENN\land JOHTO before landing here.$"
 
 CeruleanCity_Text_Youngster:
 	.string "You're a TRAINER, too?\pCollecting, battling…\nIt's a tough life, isn't it?$"
 
 CeruleanCity_Text_Woman:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "I want a bright red bicycle.\pI'll keep it at home, so it won't\nget dirty.$"
 
 CeruleanCity_Text_CeruleanCaveGuard:
 	.string "This is CERULEAN CAVE.\pHorribly strong POKéMON live inside\nthere.\pIt takes a very special TRAINER to\nbe allowed inside there.\pYou'd have to be strong enough to\nbecome the POKéMON LEAGUE\lCHAMPION for starters.\pAnd, you would have to have\nmade a great achievement.$"
@@ -174,7 +174,7 @@ CeruleanCity_Text_CitySign:
 	.string "CERULEAN CITY\nA Mysterious, Blue Aura Surrounds\lIt$"
 
 CeruleanCity_Text_GymSign:
-	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
+	.string "CERULEAN CITY POKéMON GYM\nLEADER: MISTY\lThe Tomboyish Mermaid!$"
 
 CeruleanCity_Text_BikeShopSign:
 	.string "Grass and caves handled easily!\nBIKE SHOP$"

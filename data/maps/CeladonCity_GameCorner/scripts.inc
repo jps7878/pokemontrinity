@@ -201,97 +201,97 @@ CeladonCity_GameCorner_Text_InfoClerk:
 	.string "Welcome!\pYou can exchange your COINS for\nfabulous prizes next door.$"
 
 CeladonCity_GameCorner_Text_CoinsClerk:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+	.string "No COINS today.\nNo COINS any day, now.$"
 
 CeladonCity_GameCorner_Text_BaldingMan:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "Keep this quiet.\pIt's rumored that this place is run\nby TEAM ROCKET.$"
 
 CeladonCity_GameCorner_Text_Woman1:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+	.string "These machines all pay the same\nnow. Nothing.$"
 
 CeladonCity_GameCorner_Text_Fisher:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+	.string "I came inland to play the reels.\nNow I just stand here.$"
 
 CeladonCity_GameCorner_Text_GymGuy:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "Hey!\pYou have better things to do,\nchamp in the making!\pCELADON GYM's LEADER is ERIKA.\pShe is a user of GRASS-type\nPOKéMON, and at one with nature.\pShe might appear docile because of\nher flower arranging…\pBut she's not one to be taken\nlightly!$"
 
 CeladonCity_GameCorner_Text_Woman2:
-	.string "KANTO's got its own trainers worth\nwatching, but even we're curious\labout this HOENN-JOHTO champion.$"
+	.string "These slot games…\nWin or lose, it's only by luck.$"
 
 CeladonCity_GameCorner_Text_OldMan:
-	.string "KANTO's got its own trainers worth\nwatching, but even we're curious\labout this HOENN-JOHTO champion.$"
+	.string "Games are scary!\nIt's so easy to get hooked!$"
 
 CeladonCity_GameCorner_Text_Scientist:
-	.string "KANTO's got its own trainers worth\nwatching, but even we're curious\labout this HOENN-JOHTO champion.$"
+	.string "Want some COINS? Nobody has\nCOINS. Nobody has anything.$"
 
 CeladonCity_GameCorner_Text_Gentleman:
-	.string "Never met the champion myself.\nHeard they came up through HOENN\land JOHTO before setting foot here.$"
+	.string "You're throwing me off.\pThere's nothing left to win\nin here. Shoo.$"
 
 CeladonCity_GameCorner_Text_SlotMachine0:
-	.string "Never met the champion myself.\nHeard they came up through HOENN\land JOHTO before setting foot here.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_SlotMachine1:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_SlotMachine2:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_SlotMachine3:
-	.string "Never met the champion myself.\nHeard they came up through HOENN\land JOHTO before setting foot here.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_UnusableSlotMachine1:
 	.string "OUT OF ORDER\nThis is broken.$"
 
 CeladonCity_GameCorner_Text_SlotMachine5:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_SlotMachine6:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_SlotMachine7:
-	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_SlotMachine8:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_SlotMachine9:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_SlotMachine10:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_SlotMachine11:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_SlotMachine12:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_SlotMachine13:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_SlotMachine14:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_UnusableSlotMachine2:
 	.string "OUT TO LUNCH\nThis is reserved.$"
 
 CeladonCity_GameCorner_Text_SlotMachine16:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_SlotMachine17:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_UnusableSlotMachine3:
 	.string "Someone's keys!\nThey'll be back.$"
 
 CeladonCity_GameCorner_Text_SlotMachine19:
-	.string "Never met the champion myself.\nHeard they came up through HOENN\land JOHTO before setting foot here.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_SlotMachine20:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_SlotMachine21:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "A slot machine. The reels are\nlocked and the lights are dead.$"
 
 CeladonCity_GameCorner_Text_Poster:
 	.string "There's a switch hidden behind\nthis poster.\pYou push it.$"

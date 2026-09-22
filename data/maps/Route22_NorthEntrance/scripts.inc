@@ -6,4 +6,4 @@ Route22_NorthEntrance_EventScript_BoulderBadgeGuard::
 	end
 
 Route22_NorthEntrance_Text_BoulderBadgeGuard:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+	.string "This is the gate to the LEAGUE\nroad. BADGES only.\pYou've got more than most.\nThat doesn't shorten the road.$"

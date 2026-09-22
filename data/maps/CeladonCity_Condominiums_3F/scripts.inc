@@ -53,7 +53,7 @@ CeladonCity_Condominiums_3F_Text_Programmer:
 	.string "Me?\nI'm the programmer!$"
 
 CeladonCity_Condominiums_3F_Text_Designer:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "Is that right?\pI'm the game designer!\pFilling up your POKéDEX is tough,\nbut don't quit!\pWhen you finish, come tell me!$"
 
 CeladonCity_Condominiums_3F_Text_GraphicArtist:
 	.string "I'm the graphic artist!\nI drew you!$"

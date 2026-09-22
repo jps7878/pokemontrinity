@@ -18,7 +18,7 @@ SSAnne_CaptainsOffice_EventScript_Book_2::
 	end
 
 SSAnne_CaptainsOffice_Text_Captain:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
 
 SSAnne_CaptainsOffice_Text_Book:
 	.string "How to Conquer Seasickness…\nThe CAPTAIN's reading this!$"

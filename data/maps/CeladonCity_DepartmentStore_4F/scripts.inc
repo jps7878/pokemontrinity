@@ -24,7 +24,7 @@ CeladonCity_DepartmentStore_4F_Text_Youngster:
 	.string "I heard something useful.\pIf a wild POKéMON appears, you can\ndistract it with a POKé DOLL.\pYou can run away while the wild\nPOKéMON is distracted.$"
 
 CeladonCity_DepartmentStore_4F_Text_Clerk:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "The counter is bare.\pKANTO's marts have had nothing\nto sell for months.$"
 
 CeladonCity_DepartmentStore_4F_Text_FloorSign:
 	.string "Express yourself with gifts!\n4F: WISE MAN GIFTS\pEvolution Special!\nElement STONES on sale now!$"

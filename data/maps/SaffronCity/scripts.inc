@@ -98,7 +98,7 @@ SaffronCity_Text_TrainerTips1:
 	.string "TRAINER TIPS\pFULL HEAL cures all ailments like\nburns, paralysis, poisoning,\lfreezing, and sleep.\pIt costs a bit more, but it's more\nconvenient than buying other items.$"
 
 SaffronCity_Text_GymSign:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+	.string "SAFFRON CITY POKéMON GYM\nLEADER: SABRINA\lThe Master of PSYCHIC POKéMON!$"
 
 SaffronCity_Text_MrPsychicsHouseSign:
 	.string "MR. PSYCHIC'S HOUSE$"

@@ -14,7 +14,7 @@ SaffronCity_Mart_EventScript_Lass::
 	end
 
 SaffronCity_Mart_Text_Clerk:
-	.string "KANTO's got its own trainers worth\nwatching, but even we're curious\labout this HOENN-JOHTO champion.$"
+	.string "The counter is bare.\pKANTO's marts have had nothing\nto sell for months.$"
 
 SaffronCity_Mart_Text_Youngster:
 	.string "MAX REPEL keeps weaker POKéMON\nfrom appearing.\pMAX REPEL stays effective longer\nthan SUPER REPEL.$"

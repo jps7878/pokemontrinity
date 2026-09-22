@@ -13,4 +13,4 @@ Route2_House_Text_Scientist:
 	.string "A fainted POKéMON just has no\nenergy left to battle.\pIt can still use moves like CUT\noutside of battle.$"
 
 Route2_House_Text_Reyley:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+	.string "I only trade with people I know.\nI don't know you.$"

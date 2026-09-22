@@ -6,4 +6,4 @@ LavenderTown_House1_EventScript_CooltrainerF::
 	end
 
 LavenderTown_House1_Text_CooltrainerF:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+	.string "Those horrible ROCKETS!\nThey deserve no mercy!\pThat poor CUBONE's mother…\pIt was killed trying to escape from\nTEAM ROCKET.$"

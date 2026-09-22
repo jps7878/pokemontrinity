@@ -14,7 +14,7 @@ FuchsiaCity_House1_EventScript_LittleBoy::
 	end
 
 FuchsiaCity_House1_Text_OldMan:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "Hmm?\nYou've met BILL?\pHe's my grandson!\pHe always liked collecting things,\neven as a child!$"
 
 FuchsiaCity_House1_Text_Woman:
 	.string "The SAFARI ZONE's WARDEN is old, \nbut he's still very much active.\pAll his teeth are false, though.$"

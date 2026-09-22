@@ -10,7 +10,7 @@ Route12_FishingHouse_EventScript_MagikarpRecordSign::
 	end
 
 Route12_FishingHouse_Text_FishingGuruBrother:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "I've fished this stretch of KANTO\nfor years. Lately the talk is all\labout some far-off champion.$"
 
 Route12_FishingHouse_Text_MagikarpRecordSign:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "It's a blank chart of some sort.\pIt has spaces for writing in\nrecords of some kind.$"

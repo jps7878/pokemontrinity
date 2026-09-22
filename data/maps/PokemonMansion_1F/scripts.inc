@@ -28,4 +28,4 @@ PokemonMansion_1F_Text_JohnsonBeaten:
 	.string "Tch! I can't get any wins.$"
 
 PokemonMansion_1F_Text_Statue:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "A statue. Something clicks\nbehind it when you lean in.\lNothing opens.$"

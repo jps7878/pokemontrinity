@@ -6,4 +6,4 @@ SSAnne_1F_Room6_EventScript_Woman::
 	end
 
 SSAnne_1F_Room6_Text_Woman:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "This is my cabin.\nRest in your own.$"

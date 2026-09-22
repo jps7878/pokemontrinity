@@ -22,16 +22,16 @@ ViridianCity_School_EventScript_Blackboard_2::
 	end
 
 ViridianCity_School_Text_Woman:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+	.string "Okay!\pBe sure to read what's on the\nblackboard carefully!$"
 
 ViridianCity_School_Text_Lass:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "Whew! I'm trying to memorize all my\nnotes.$"
 
 ViridianCity_School_Text_Notebook:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "A notebook left open on the\ndesk. The page will not turn.$"
 
 ViridianCity_School_Text_Blackboard:
-	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
+	.string "The blackboard lists POKéMON\nSTATUS problems during battles.$"
 
 ViridianCity_School_Text_Blackboard_2:
-	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
+	.string "The blackboard lists POKéMON\nSTATUS problems during battles.$"

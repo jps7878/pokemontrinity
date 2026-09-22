@@ -18,10 +18,10 @@ SaffronCity_CopycatsHouse_2F_EventScript_Game::
 	end
 
 SaffronCity_CopycatsHouse_2F_Text_Doll:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "This is a rare POKéMON!\nHuh? It's only a doll!$"
 
 SaffronCity_CopycatsHouse_2F_Text_Copycat:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+	.string "I copy people. You're easy --\nyou walk like you own the road.$"
 
 SaffronCity_CopycatsHouse_2F_Text_Computer:
 	.string "…\pMy Secrets!\pSkill: Mimicry!\nHobby: Collecting dolls!\lFavorite POKéMON: CLEFAIRY!$"

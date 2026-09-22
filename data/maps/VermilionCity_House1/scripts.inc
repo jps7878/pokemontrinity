@@ -6,4 +6,4 @@ VermilionCity_House1_EventScript_FishingGuru::
 	end
 
 VermilionCity_House1_Text_FishingGuru:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "I fish the VERMILION docks.\nNothing bites any faster for\la champion.$"

@@ -10,7 +10,7 @@ Route2_EastBuilding_EventScript_Rocker::
 	end
 
 Route2_EastBuilding_Text_Aide:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "PROF. OAK's aides stopped handing\nthings out. Too many trainers\lnow -- and one of them is you.$"
 
 Route2_EastBuilding_Text_Rocker:
 	.string "Once a POKéMON learns FLASH, you\ncan get through ROCK TUNNEL.$"

@@ -30,7 +30,7 @@ SilphCo_8F_Text_ParkerPostBattle:
 	.string "So, what do you think of SILPH\nBUILDING's maze?$"
 
 SilphCo_8F_Text_WorkerM:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "I wonder if SILPH is finished…$"
 
 SilphCo_8F_Text_FloorSign:
 	.string "SILPH CO. HEAD OFFICE\n8F$"

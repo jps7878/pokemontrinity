@@ -6,4 +6,4 @@ Route16_House_EventScript_Woman::
 	end
 
 Route16_House_Text_Woman:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "I keep to my house. KANTO is\nquieter that way, champion\lor no champion.$"

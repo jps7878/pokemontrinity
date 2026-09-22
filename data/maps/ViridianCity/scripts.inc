@@ -252,13 +252,13 @@ ViridianCity_EventScript_GymDoor::
 	end
 
 ViridianCity_Text_DreamEaterTutor:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "I dozed off and dreamt I taught\nsomebody a move. Just a dream.$"
 
 ViridianCity_Text_OldMan:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "This POKéMON GYM is always closed.\pI wonder who the LEADER is?$"
 
 ViridianCity_Text_TutorialOldMan:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "I've stood on this road longer\nthan the FOREST has.\pTwo Leagues, they say.\nThe FOREST won't care.$"
 
 @ Trinity M5b S5: occupation-tension flavour pass. Rocket kept verbal, per the
 @ brief -- no grunt objects in ViridianCity itself, S10 owns the basement.

@@ -36,7 +36,7 @@ PalletTown_Text_FatMan:
 	.string "Technology is incredible!\pYou can now store and recall items\nand POKéMON as data via PC.$"
 
 PalletTown_Text_OaksLabSign:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "OAK POKéMON RESEARCH LAB$"
 
 PalletTown_Text_PlayersHouseSign:
 	.string "{PLAYER}'s house$"
@@ -48,4 +48,4 @@ PalletTown_Text_TownSign:
 	.string "PALLET TOWN\nShades of your journey await!$"
 
 PalletTown_Text_TrainerTips:
-	.string "KANTO's got its own trainers worth\nwatching, but even we're curious\labout this HOENN-JOHTO champion.$"
+	.string "TRAINER TIPS\pPress START to open the MENU!$"

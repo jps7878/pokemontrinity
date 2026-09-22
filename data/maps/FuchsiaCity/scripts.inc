@@ -78,7 +78,7 @@ FuchsiaCity_Text_OldMan:
 	.string "The SAFARI ZONE has a zoo in front\nof the entrance.\pOut back is the SAFARI GAME for\ncatching POKéMON.$"
 
 FuchsiaCity_Text_Lass:
-	.string "Never met the champion myself.\nHeard they came up through HOENN\land JOHTO before setting foot here.$"
+	.string "The LEADER here is JANINE.\nShe won't see you sooner for\lbeing famous.$"
 
 FuchsiaCity_Text_CitySign:
 	.string "FUCHSIA CITY\nBehold! It's Passion Pink!$"
@@ -87,28 +87,28 @@ FuchsiaCity_Text_SafariZoneSign:
 	.string "POKéMON PARADISE\nSAFARI ZONE$"
 
 FuchsiaCity_Text_GymSign:
-	.string "Never met the champion myself.\nHeard they came up through HOENN\land JOHTO before setting foot here.$"
+	.string "FUCHSIA CITY POKéMON GYM\nLEADER: JANINE\lThe Poisonous Ninja Master$"
 
 FuchsiaCity_Text_WardensHomeSign:
 	.string "SAFARI ZONE\nWARDEN'S HOME$"
 
 FuchsiaCity_Text_VoltorbSign:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+	.string "Name: VOLTORB\nThe very image of a POKé BALL.$"
 
 FuchsiaCity_Text_SlowpokeSign:
-	.string "KANTO's got its own trainers worth\nwatching, but even we're curious\labout this HOENN-JOHTO champion.$"
+	.string "Name: SLOWPOKE\nFriendly and very slow moving.$"
 
 FuchsiaCity_Text_ChanseySign:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "Name: CHANSEY\nCatching one is all up to chance.$"
 
 FuchsiaCity_Text_KangaskhanSign:
-	.string "KANTO's got its own trainers worth\nwatching, but even we're curious\labout this HOENN-JOHTO champion.$"
+	.string "Name: KANGASKHAN\pA maternal POKéMON that raises its\nyoung in a pouch on its belly.$"
 
 FuchsiaCity_Text_FossilMonSign:
-	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
+	.string "Name: KABUTO\nAn extremely rare POKéMON that was\lregenerated from a fossil.$"
 
 FuchsiaCity_Text_LaprasSign:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "Name: LAPRAS\nAKA the king of the seas.$"
 
 FuchsiaCity_Text_SafariGameSign:
 	.string "SAFARI GAME\nPOKéMON-U-CATCH!$"

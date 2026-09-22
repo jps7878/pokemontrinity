@@ -14,7 +14,7 @@ CeruleanCity_House2_EventScript_WallHole::
 	end
 
 CeruleanCity_House2_Text_Hiker:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "Those miserable ROCKETS!\pLook what they've done to my\nhouse!\pThey stole a TM for teaching\nPOKéMON how to DIG holes!\pI was going to use it on a\nMANKEY or a SANDSHREW…\pThat cost me a bundle, it did!$"
 
 CeruleanCity_House2_Text_Lass:
 	.string "TEAM ROCKET must be trying to DIG\ntheir way into no good!$"

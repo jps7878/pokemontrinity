@@ -6,4 +6,4 @@ VermilionCity_House2_EventScript_Elyssa::
 	end
 
 VermilionCity_House2_Text_Elyssa:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+	.string "I'd trade you, but Mom says not\nto talk to famous people.$"

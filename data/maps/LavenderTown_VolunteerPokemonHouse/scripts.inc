@@ -43,13 +43,13 @@ LavenderTown_VolunteerPokemonHouse_Text_LittleBoy:
 	.string "It's so warm!\nPOKéMON are so nice to hug.$"
 
 LavenderTown_VolunteerPokemonHouse_Text_Youngster:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "That's odd, MR. FUJI isn't here.\nWhere'd he go?$"
 
 LavenderTown_VolunteerPokemonHouse_Text_LittleGirl:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "This is really MR. FUJI's house.\pHe's really kind.\pHe looks after abandoned and\norphaned POKéMON.$"
 
 LavenderTown_VolunteerPokemonHouse_Text_PokemonFanMagazine:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "POKéMON FAN MAGAZINE\nMonthly Grand Prize Drawing!\pThe application form is…\pGone! It's been clipped out.\nSomeone must have applied already.$"
 
 LavenderTown_VolunteerPokemonHouse_Text_Bookshelf:
 	.string "POKéMON magazines line the shelf.\pPOKéMON INSIDER…\pPOKéMON FAN…$"

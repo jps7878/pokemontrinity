@@ -14,7 +14,7 @@ CinnabarIsland_Mart_EventScript_Scientist::
 	end
 
 CinnabarIsland_Mart_Text_Clerk:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "The counter is bare.\pKANTO's marts have had nothing\nto sell for months.$"
 
 CinnabarIsland_Mart_Text_Woman:
 	.string "Don't they have X ATTACK?\pI like it because it raises the\nATTACK stat in battle.$"

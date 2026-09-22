@@ -37,19 +37,19 @@ SilphCo_6F_EventScript_FloorSign::
 	end
 
 SilphCo_6F_Text_WorkerM1:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+	.string "Oh dear, oh dear.\nHelp me, please!$"
 
 SilphCo_6F_Text_WorkerF1:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "That man next to me…\nHe's such a coward!$"
 
 SilphCo_6F_Text_WorkerM2:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "They must have targeted SILPH for\nour POKéMON products.$"
 
 SilphCo_6F_Text_WorkerM3:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "The ROCKETS came and took over\nthe building!$"
 
 SilphCo_6F_Text_WorkerF2:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "TEAM ROCKET is trying to conquer\nthe world with POKéMON.$"
 
 SilphCo_6F_Text_TaylorSeen:
 	.string "That rotten PRESIDENT!\pServes him right for shipping me\noff to the TIKSI BRANCH!\pThat's why TEAM ROCKET came after\nus, I'm sure of it!$"

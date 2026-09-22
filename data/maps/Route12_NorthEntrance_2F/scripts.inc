@@ -14,7 +14,7 @@ Route12_NorthEntrance_2F_EventScript_RightBinoculars::
 	end
 
 Route12_NorthEntrance_2F_Text_Lass:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+	.string "This route's seen more traffic\nlately. Something about a\lchampion passing in from JOHTO.$"
 
 Route12_NorthEntrance_2F_Text_LeftBinoculars:
 	.string "Let's see what the binoculars have\nto show…\pThere's a man fishing!$"

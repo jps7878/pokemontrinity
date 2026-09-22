@@ -14,7 +14,7 @@ Route18_EastEntrance_2F_EventScript_RightBinoculars::
 	end
 
 Route18_EastEntrance_2F_Text_Haden:
-	.string "KANTO's got its own trainers worth\nwatching, but even we're curious\labout this HOENN-JOHTO champion.$"
+	.string "No trades. Everybody wants what\nthe champion has. I'd lose.$"
 
 Route18_EastEntrance_2F_Text_LeftBinoculars:
 	.string "Let's see what the binoculars have\nto show…\pPALLET TOWN is in the west.$"

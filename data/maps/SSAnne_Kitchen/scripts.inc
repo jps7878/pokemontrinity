@@ -39,7 +39,7 @@ SSAnne_Kitchen_Text_Chef3:
 	.string "I'm so busy I'm getting dizzy!\nYou have to give me room here!$"
 
 SSAnne_Kitchen_Text_Chef4:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "Le kitchen is closed.\nLe champion may wait like\leveryone else.$"
 
 SSAnne_Kitchen_Text_Chef5:
 	.string "Hum-de-hum-de-ho…\pI peel spuds every day!\nHum-hum…$"

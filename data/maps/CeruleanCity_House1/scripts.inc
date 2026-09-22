@@ -6,4 +6,4 @@ CeruleanCity_House1_EventScript_BadgeGuy::
 	end
 
 CeruleanCity_House1_Text_BadgeGuy:
-	.string "Never met the champion myself.\nHeard they came up through HOENN\land JOHTO before setting foot here.$"
+	.string "Only skilled TRAINERS can collect\nPOKéMON BADGES.\pI see you have at least one.\pThose BADGES have amazing secrets,\ndid you know?$"

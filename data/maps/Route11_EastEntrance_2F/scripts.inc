@@ -18,13 +18,13 @@ Route11_EastEntrance_2F_EventScript_RightBinoculars::
 	end
 
 Route11_EastEntrance_2F_Text_Turner:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "Want to trade? Bring something\nKANTO hasn't already seen.$"
 
 Route11_EastEntrance_2F_Text_Aide:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "PROF. OAK's aides stopped handing\nthings out. Too many trainers\lnow -- and one of them is you.$"
 
 Route11_EastEntrance_2F_Text_LeftBinoculars:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "The binoculars look south over\nROUTE 12. Nothing is moving.$"
 
 Route11_EastEntrance_2F_Text_RightBinoculars:
 	.string "Let's see what the binoculars have\nto show…\pTo get to LAVENDER TOWN from\nCERULEAN CITY…\pROCK TUNNEL appears to be a good\nroute to take.$"

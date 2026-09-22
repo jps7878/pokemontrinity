@@ -60,4 +60,4 @@ PokemonMansion_3F_Text_DiaryFeb6th:
 	.string "Diary: Feb. 6\nMEW gave birth.\pWe named the newborn MEWTWO.$"
 
 PokemonMansion_3F_Text_Statue:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+	.string "A statue. Something clicks\nbehind it when you lean in.\lNothing opens.$"

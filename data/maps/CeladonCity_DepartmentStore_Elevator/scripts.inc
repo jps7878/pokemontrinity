@@ -10,7 +10,7 @@ CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelect_2::
 	end
 
 CeladonCity_DepartmentStore_Elevator_Text_FloorSelect:
-	.string "KANTO's got its own trainers worth\nwatching, but even we're curious\labout this HOENN-JOHTO champion.$"
+	.string "The floor panel is dark.\nThe stairs still work.$"
 
 CeladonCity_DepartmentStore_Elevator_Text_FloorSelect_2:
-	.string "KANTO's got its own trainers worth\nwatching, but even we're curious\labout this HOENN-JOHTO champion.$"
+	.string "The floor panel is dark.\nThe stairs still work.$"

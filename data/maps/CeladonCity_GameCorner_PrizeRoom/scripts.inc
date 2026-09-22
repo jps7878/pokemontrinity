@@ -28,10 +28,10 @@ CeladonCity_GameCorner_PrizeRoom_Text_OldMan:
 	.string "Gahaha! I raked it in today!\nIf only every day were like this…$"
 
 CeladonCity_GameCorner_PrizeRoom_Text_PrizeClerkMons:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "The prize shelves are empty.\nWhoever ran this floor is gone.$"
 
 CeladonCity_GameCorner_PrizeRoom_Text_PrizeClerkTMs:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "The prize shelves are empty.\nWhoever ran this floor is gone.$"
 
 CeladonCity_GameCorner_PrizeRoom_Text_PrizeClerkItems:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+	.string "The prize shelves are empty.\nWhoever ran this floor is gone.$"

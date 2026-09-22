@@ -28,7 +28,7 @@ Route16_NorthEntrance_2F_Text_LittleGirl:
 	.string "We're going riding together on our\nnew bikes.$"
 
 Route16_NorthEntrance_2F_Text_Aide:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "PROF. OAK's aides stopped handing\nthings out. Too many trainers\lnow -- and one of them is you.$"
 
 Route16_NorthEntrance_2F_Text_LeftBinoculars:
 	.string "Let's see what the binoculars have\nto show…\pIt's the CELADON DEPT. STORE!$"

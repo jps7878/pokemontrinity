@@ -31,7 +31,7 @@ CeladonCity_Restaurant_Text_FatMan:
 	.string "Munch…\pThe man at that table lost it all\nat the slots.$"
 
 CeladonCity_Restaurant_Text_CoinCaseMan:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "I kept a COIN CASE for the GAME\nCORNER. The CORNER is dead.\lSo is the case.$"
 
 CeladonCity_Restaurant_Text_WorkerM:
 	.string "Psst! There's a basement under the\nGAME CORNER, I hear.$"

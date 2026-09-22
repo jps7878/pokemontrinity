@@ -46,10 +46,10 @@ CeruleanCity_BikeShop_EventScript_Bicycle_8::
 	end
 
 CeruleanCity_BikeShop_Text_Clerk:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "Nothing on the racks.\nKANTO's bikes went east months\lago and never came back.$"
 
 CeruleanCity_BikeShop_Text_Youngster:
-	.string "Never met the champion myself.\nHeard they came up through HOENN\land JOHTO before setting foot here.$"
+	.string "I come in to look. There's\nnothing on the racks to look at.$"
 
 CeruleanCity_BikeShop_Text_Woman:
 	.string "A plain city bike is good enough\nfor me.\pAfter all, you can't put a shopping\nbasket on a mountain bike.$"

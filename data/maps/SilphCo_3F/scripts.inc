@@ -21,7 +21,7 @@ SilphCo_3F_EventScript_FloorSign::
 	end
 
 SilphCo_3F_Text_WorkerM:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "I work for SILPH CO.\nWhat am I to do?$"
 
 SilphCo_3F_Text_JoseSeen:
 	.string "I support TEAM ROCKET more than\nI support SILPH CO.!$"

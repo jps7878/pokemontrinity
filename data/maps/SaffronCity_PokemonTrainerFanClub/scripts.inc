@@ -34,25 +34,25 @@ SaffronCity_PokemonTrainerFanClub_EventScript_BlackBelt::
 	end
 
 SaffronCity_PokemonTrainerFanClub_Text_CrushGirl:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "SABRINA is my pick. She knew\nyou were coming. She didn't\lget up.$"
 
 SaffronCity_PokemonTrainerFanClub_Text_LittleGirl:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+	.string "Do you know what?\nI want to be like SABRINA!\pI want to be a psychic girl just\nlike her!$"
 
 SaffronCity_PokemonTrainerFanClub_Text_Youngster:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "BROCK's my hero!\nHe's a man among men!\pHeheh, I got my mom to do\nsomething for me.\pI got her to embroider “BROCK”\non my shorts!$"
 
 SaffronCity_PokemonTrainerFanClub_Text_Gentleman:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "We're not taking new members.\nLeast of all famous ones.$"
 
 SaffronCity_PokemonTrainerFanClub_Text_Woman:
-	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
+	.string "KANTO's got its own trainers\nworth watching. Even we're\lcurious about the HOENN one.$"
 
 SaffronCity_PokemonTrainerFanClub_Text_Rocker:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "BLAINE is my man. Two Leagues?\nHe'd still make you answer\la riddle first.$"
 
 SaffronCity_PokemonTrainerFanClub_Text_Beauty:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+	.string "I follow ERIKA. She never once\nleft CELADON to be noticed.$"
 
 SaffronCity_PokemonTrainerFanClub_Text_BlackBelt:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "Hiyah! There is but one TRAINER\nwho has my respect.\pAnd that is none other than my\nMASTER at the FIGHTING DOJO.\pYou should become a fan of my\nMASTER like me! Hiyah!$"

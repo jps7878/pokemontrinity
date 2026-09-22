@@ -6,4 +6,4 @@ MtEmber_RubyPath_B5F_EventScript_BrailleMessage::
 	end
 
 MtEmber_RubyPath_B5F_Text_BrailleMessage:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "Rows of raised dots are cut\ninto the wall. Nobody here\lreads them.$"

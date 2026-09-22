@@ -6,4 +6,4 @@ SilphCo_Elevator_EventScript_FloorSelect::
 	end
 
 SilphCo_Elevator_Text_FloorSelect:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "The floor panel is dark.\nThe stairs still work.$"

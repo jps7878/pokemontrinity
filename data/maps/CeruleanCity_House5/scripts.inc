@@ -10,7 +10,7 @@ CeruleanCity_House5_EventScript_BerryCrushRankings::
 	end
 
 CeruleanCity_House5_Text_BerryPowderMan:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "I grind BERRIES into powder.\nQuiet work. I'd like it to\lstay quiet.$"
 
 CeruleanCity_House5_Text_BerryCrushRankings:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "A rankings board for BERRY\nCRUSH. Every line is blank.$"

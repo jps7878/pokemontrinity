@@ -39,7 +39,7 @@ PokemonMansion_B1F_Text_DiarySep1st:
 	.string "Diary: Sept. 1\nMEWTWO is far too powerful.\pWe have failed to curb its vicious\ntendencies…$"
 
 PokemonMansion_B1F_Text_Statue:
-	.string "Never met the champion myself.\nHeard they came up through HOENN\land JOHTO before setting foot here.$"
+	.string "A statue. Something clicks\nbehind it when you lean in.\lNothing opens.$"
 
 PokemonMansion_B1F_Text_Statue_2:
-	.string "Never met the champion myself.\nHeard they came up through HOENN\land JOHTO before setting foot here.$"
+	.string "A statue. Something clicks\nbehind it when you lean in.\lNothing opens.$"

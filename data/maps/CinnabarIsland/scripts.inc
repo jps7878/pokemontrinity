@@ -77,7 +77,7 @@ CinnabarIsland_EventScript_PokemonLabSign_2::
 	end
 
 CinnabarIsland_Text_Woman:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "CINNABAR GYM's BLAINE is quite the\nodd fellow.\pHe's lived on the island since way\nbefore the LAB was built.$"
 
 CinnabarIsland_Text_OldMan:
 	.string "Scientists conduct experiments \nin the burned-out building.\pYou know, the one they call the\nPOKéMON MANSION.$"
@@ -112,7 +112,7 @@ CinnabarIsland_Text_PokemonLabSign:
 	.string "POKéMON LAB$"
 
 CinnabarIsland_Text_GymSign:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "CINNABAR ISLAND POKéMON GYM\nLEADER: BLAINE\lThe Hotheaded Quiz Master!$"
 
 CinnabarIsland_Text_PokemonLabSign_2:
 	.string "POKéMON LAB$"

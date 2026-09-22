@@ -30,7 +30,7 @@ LavenderTown_EventScript_VolunteerHouseSign::
 	end
 
 LavenderTown_Text_LittleGirl:
-	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"
+	.string "Do you believe in ghosts?\pDon't answer. Everyone in\nLAVENDER already knows.$"
 
 LavenderTown_Text_WorkerM:
 	.string "This town is known as the grave\nsite of POKéMON.\pMemorial services are held in\nPOKéMON TOWER.$"

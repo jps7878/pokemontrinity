@@ -66,7 +66,7 @@ CeladonCity_EventScript_GymSign::
 	end
 
 CeladonCity_Text_FatMan:
-	.string "KANTO's got its own trainers worth\nwatching, but even we're curious\labout this HOENN-JOHTO champion.$"
+	.string "This is my trusted pal, POLIWRATH.\pIt evolved from a POLIWHIRL when\nI used a WATER STONE.$"
 
 CeladonCity_Text_LittleGirl:
 	.string "I got my KOFFING in CINNABAR.\pIt's usually nice, but it breathes\npoison when it's angry.$"
@@ -99,10 +99,10 @@ CeladonCity_Text_OldMan2:
 	.string "Moan…\nI blew it all at the slots!\pI knew I should have cashed in my\nCOINS for prizes!$"
 
 CeladonCity_Text_SoftboiledTutor:
-	.string "They say a trainer beat both the\nHOENN and JOHTO Leagues. Wonder\lif they'll try KANTO next.$"
+	.string "I taught a move on this corner\nonce. My POKéMON's gone.\lSo is the move.$"
 
 CeladonCity_Text_OldMan1:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "Heheh! This GYM is great!\nIt's full of women!$"
 
 CeladonCity_Text_Boy:
 	.string "Aaaagh, ow…\nI scalded my tongue!\pThis nice old lady in the MANSION\ngave me some TEA.\pBut it was boiling hot!\nGotta cool it to drink it.$"
@@ -132,4 +132,4 @@ CeladonCity_Text_DeptStoreSign:
 	.string "Find what you need at the\nCELADON DEPT. STORE!$"
 
 CeladonCity_Text_GymSign:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "CELADON CITY POKéMON GYM\nLEADER: ERIKA\lThe Nature-Loving Princess!$"

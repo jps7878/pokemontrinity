@@ -6,4 +6,4 @@ SSAnne_2F_Room1_EventScript_Gentleman::
 	end
 
 SSAnne_2F_Room1_Text_Gentleman:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "KANTO's a long way from HOENN,\nbut word of that champion still\lmade it all the way here.$"

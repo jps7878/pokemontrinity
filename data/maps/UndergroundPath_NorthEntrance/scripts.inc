@@ -6,4 +6,4 @@ UndergroundPath_NorthEntrance_EventScript_Saige::
 	end
 
 UndergroundPath_NorthEntrance_Text_Saige:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "I'd trade you, but Mom says not\nto talk to famous people.$"

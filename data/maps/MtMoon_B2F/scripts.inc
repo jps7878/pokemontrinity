@@ -109,4 +109,4 @@ MtMoon_B2F_Text_FossilAlreadyGone:
 	.string "Just an empty patch of rock where\na fossil used to be.$"
 
 MtMoon_B2F_Text_Miguel:
-	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
+	.string "Both fossils are mine. I don't\ncare what you've won elsewhere.$"

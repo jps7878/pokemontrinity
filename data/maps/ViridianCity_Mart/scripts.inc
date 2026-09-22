@@ -14,7 +14,7 @@ ViridianCity_Mart_EventScript_Woman::
 	end
 
 ViridianCity_Mart_Text_Clerk:
-	.string "This route's seen more foot traffic\nlately. Something about a champion\lpassing through from JOHTO.$"
+	.string "The counter is bare.\pKANTO's marts have had nothing\nto sell for months.$"
 
 ViridianCity_Mart_Text_Youngster:
 	.string "I've got to buy some POTIONS.\pYou never know when your POKéMON\nwill need quick healing.$"

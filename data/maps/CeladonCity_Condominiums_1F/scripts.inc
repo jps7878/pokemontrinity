@@ -14,7 +14,7 @@ CeladonCity_Condominiums_1F_EventScript_SuiteSign_2::
 	end
 
 CeladonCity_Condominiums_1F_Text_TeaWoman:
-	.string "KANTO's peaceful most days, but\neven here we've heard the stories\labout that HOENN trainer.$"
+	.string "My grandkids keep going on about\nsome trainer from HOENN. Sounds\llike quite the journey so far.$"
 
 CeladonCity_Condominiums_1F_Text_SuiteSign:
 	.string "CELADON MANSION\nManager's Suite$"

@@ -243,7 +243,7 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FinishReceivingFossilMon::
 	end
 
 CinnabarIsland_PokemonLab_ExperimentRoom_Text_Garett:
-	.string "I never put much stock in rumors,\nbut two Leagues cleared is two\lLeagues cleared. Impressive.$"
+	.string "No trades. Everybody wants what\nthe champion has. I'd lose.$"
 
 CinnabarIsland_PokemonLab_ExperimentRoom_Text_DevelopedFossilDevice:
 	.string "We can bring a fossilized POKéMON\nback to life -- if you've got one\lon you.$"

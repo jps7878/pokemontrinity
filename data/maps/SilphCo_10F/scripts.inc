@@ -30,7 +30,7 @@ SilphCo_10F_Text_TravisPostBattle:
 	.string "Are you satisfied with beating me?\nThen go on home!$"
 
 SilphCo_10F_Text_WorkerF:
-	.string "I've fished this stretch of KANTO\nfor years. Lately it's all anyone\ltalks about -- some far-off champion.$"
+	.string "Waaaaa!\nI'm scared!$"
 
 SilphCo_10F_Text_FloorSign:
 	.string "SILPH CO. HEAD OFFICE\n10F$"

@@ -6,4 +6,4 @@ FuchsiaCity_House2_EventScript_FishingGurusBrother::
 	end
 
 FuchsiaCity_House2_Text_FishingGurusBrother:
-	.string "Folks in KANTO don't get many\nvisitors from HOENN. Word is one\lof them cleaned up in JOHTO too.$"
+	.string "My brother fishes ROUTE 12.\nI fish here. Neither of us is\lhanding you a ROD.$"
