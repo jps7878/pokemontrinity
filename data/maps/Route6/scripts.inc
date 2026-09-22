@@ -42,7 +42,7 @@ Route6_EventScript_UndergroundPathSign::
 	end
 
 Route6_Text_KeigoSeen:
-	.string "There aren't many bugs out here.$"
+	.string "Don't know you.\nDon't need to.\lKANTO judges its own.$"
 
 Route6_Text_KeigoBeaten:
 	.string "No!\nYou're kidding!$"
@@ -51,7 +51,7 @@ Route6_Text_KeigoPostBattle:
 	.string "I like bugs, so I'm going back to\nVIRIDIAN FOREST.$"
 
 Route6_Text_RickySeen:
-	.string "Who's there?\nQuit listening in on us!$"
+	.string "You came up from VERMILION.\nEverybody does.\lNobody gets past me.$"
 
 Route6_Text_RickyBeaten:
 	.string "I just can't win!$"
@@ -60,7 +60,7 @@ Route6_Text_RickyPostBattle:
 	.string "Whisper…\nWhisper…$"
 
 Route6_Text_NancySeen:
-	.string "Excuse me!\nThis is a private conversation!$"
+	.string "Sixteen badges, and you still\nwalk the long way round\llike the rest of us.$"
 
 Route6_Text_NancyBeaten:
 	.string "Ugh!\nI hate losing.$"
@@ -69,7 +69,7 @@ Route6_Text_NancyPostBattle:
 	.string "Whisper…\nWhisper…$"
 
 Route6_Text_ElijahSeen:
-	.string "I've never seen you around.\nAre you good?$"
+	.string "This is ROUTE 6.\nThe bugs here haven't\lheard of you.$"
 
 Route6_Text_ElijahBeaten:
 	.string "You're too good!$"
@@ -78,7 +78,7 @@ Route6_Text_ElijahPostBattle:
 	.string "Are my POKéMON weak?\nOr, am I just bad?\lWhich do you think?$"
 
 Route6_Text_IsabelleSeen:
-	.string "Me?\nWell, okay. I'll play!$"
+	.string "I eat lunch on this road\nevery day. Sit down,\lor battle.$"
 
 Route6_Text_IsabelleBeaten:
 	.string "Things just didn't work…$"
@@ -87,7 +87,7 @@ Route6_Text_IsabellePostBattle:
 	.string "I want to get stronger.\nWhat's your secret?$"
 
 Route6_Text_JeffSeen:
-	.string "Huh?\nYou want to talk to me?$"
+	.string "SAFFRON is that way.\nSo is everybody else.\lBattle first.$"
 
 Route6_Text_JeffBeaten:
 	.string "This stinks…\nI couldn't beat your challenge…$"
