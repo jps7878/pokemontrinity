@@ -26364,3 +26364,57 @@ Level: 84
 Magneton
 Level: 86
 
+=== TRAINER_MAY_KANTO ===
+Name: MAY
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Tropius
+Level: 86
+
+Pelipper
+Level: 86
+
+Clefable
+Level: 87
+
+Kangaskhan
+Level: 87
+
+Electabuzz
+Level: 88
+
+Snorlax
+Level: 89
+
+=== TRAINER_BRENDAN_KANTO ===
+Name: BRENDAN
+Class: Rival
+Pic: Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Smart Switching
+
+Tropius
+Level: 86
+
+Pelipper
+Level: 86
+
+Clefable
+Level: 87
+
+Kangaskhan
+Level: 87
+
+Electabuzz
+Level: 88
+
+Snorlax
+Level: 89
+

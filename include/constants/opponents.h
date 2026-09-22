@@ -886,8 +886,9 @@
 // Task 10's Kanto trainer population run (287 ids) and beyond. Task 10's
 // route-trainer population run raised it 1103 -> 1390. Task 11 raises it
 // 1390 -> 1431 for the fixed Kanto boss corps (see the banner comment above
-// TRAINER_BROCK below).
-#define TRAINERS_COUNT                      1431
+// TRAINER_BROCK below). M7b Task 18 raises it 1431 -> 1433 for the Act I
+// rival's one optional KANTO rematch (two ids, one per player gender).
+#define TRAINERS_COUNT                      1433
 #define MAX_TRAINERS_COUNT                  1800
 #define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)
 
@@ -1496,5 +1497,17 @@
 #define TRAINER_K_SCIENTIST_1                     1428
 #define TRAINER_K_SCIENTIST_2                     1429
 #define TRAINER_K_SCIENTIST_3                     1430
+
+// --- Trinity M7b Task 18 (finding #13): the Act I rival returns to KANTO ---
+// TWO ids because the rival is the player's OPPOSITE -- MAY when the player is
+// BRENDAN, BRENDAN when the player is MAY (ExpandPlaceholder_RivalName,
+// src/string_util.c; Common_EventScript_SetupRivalGfxId,
+// data/scripts/rival_graphics.inc). Exactly ONE of the two is reachable in any
+// save: CeruleanCity_EventScript_RivalCaveMouth branches on checkplayergender.
+// ONE optional post-league rematch at the CERULEAN CAVE mouth, a Surf-only
+// shelf that leads nowhere but CERULEAN CAVE -- nothing on the mandatory path
+// touches it, and no existing roster, level, moveset or held item is changed.
+#define TRAINER_MAY_KANTO                         1431
+#define TRAINER_BRENDAN_KANTO                     1432
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H
