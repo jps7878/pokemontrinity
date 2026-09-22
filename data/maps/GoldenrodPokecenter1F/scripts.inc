@@ -27,8 +27,16 @@ GoldenrodPokecenter1F_EventScript_Lass::
 	msgbox GoldenrodPokecenter1F_Text_Lass, MSGBOX_NPC
 	end
 
+@ M7b Task 14 (finding #9): this Center's standing guide. The shipped GSC
+@ flavour line is unchanged; the arc-keyed next objective follows it.
+@ MSGBOX_NPC becomes explicit lock/faceplayer + MSGBOX_DEFAULT because
+@ MSGBOX_NPC releases (Std_MsgboxNPC, data/scripts/std_msgbox.inc) and so
+@ cannot be chained. The ladder is data/scripts/trinity_johto.inc.
 GoldenrodPokecenter1F_EventScript_PokefanF::
-	msgbox GoldenrodPokecenter1F_Text_PokefanF, MSGBOX_NPC
+	lock
+	faceplayer
+	msgbox GoldenrodPokecenter1F_Text_PokefanF, MSGBOX_DEFAULT
+	goto Trinity_EventScript_JohtoGuide
 	end
 
 GoldenrodPokecenter1F_Text_ObjectEvent:

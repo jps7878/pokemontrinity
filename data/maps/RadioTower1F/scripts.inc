@@ -143,7 +143,11 @@ RadioTower1F_EventScript_RadioCardWoman::
 
 RadioTower1F_EventScript_RadioCardWomanGotCard::
 	msgbox RadioTower1F_Text_RadioCardWomanGotCard, MSGBOX_DEFAULT
-	release
+	@ M7b Task 14 (finding #9): the RADIO CARD is the channel, so the person
+	@ who fits it reads the player today's bulletin -- the same arc-keyed
+	@ ladder every JOHTO hub guide reads. Reached only through the existing
+	@ goto_if_set FLAG_TRINITY_J_RADIO_CARD branch above.
+	goto Trinity_EventScript_JohtoGuide
 	end
 
 RadioTower1F_EventScript_Directory::

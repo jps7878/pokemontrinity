@@ -125,7 +125,10 @@ FuchsiaCity_Gym_EventScript_GymGuy::
 FuchsiaCity_Gym_EventScript_GymGuyPostVictory::
 	msgbox FuchsiaCity_Gym_Text_GymGuyPostVictory, MSGBOX_DEFAULT
 	call Trinity_EventScript_KantoBadgeTally
-	release
+	@ M7b Task 14 (finding #9): once the badge is won this guide doubles as
+	@ a pointer. The branch above is already the badge flag, so nothing new
+	@ is read or written here; the ladder releases for us.
+	goto Trinity_EventScript_KantoGuide
 	end
 
 @ ============================================================================

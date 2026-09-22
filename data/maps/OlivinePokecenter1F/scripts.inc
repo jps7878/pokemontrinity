@@ -27,8 +27,16 @@ OlivinePokecenter1F_EventScript_Fisher::
 	msgbox OlivinePokecenter1F_Text_Fisher, MSGBOX_NPC
 	end
 
+@ M7b Task 14 (finding #9): this Center's standing guide. The shipped GSC
+@ flavour line is unchanged; the arc-keyed next objective follows it.
+@ MSGBOX_NPC becomes explicit lock/faceplayer + MSGBOX_DEFAULT because
+@ MSGBOX_NPC releases (Std_MsgboxNPC, data/scripts/std_msgbox.inc) and so
+@ cannot be chained. The ladder is data/scripts/trinity_johto.inc.
 OlivinePokecenter1F_EventScript_Teacher::
-	msgbox OlivinePokecenter1F_Text_Teacher, MSGBOX_NPC
+	lock
+	faceplayer
+	msgbox OlivinePokecenter1F_Text_Teacher, MSGBOX_DEFAULT
+	goto Trinity_EventScript_JohtoGuide
 	end
 
 OlivinePokecenter1F_Text_FishingGuru:

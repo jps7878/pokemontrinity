@@ -126,7 +126,10 @@ VioletGym_EventScript_Guide::
 VioletGym_EventScript_GuidePostVictory::
 	msgbox VioletGym_Text_GuidePostVictory, MSGBOX_DEFAULT
 	call Trinity_EventScript_JohtoBadgeTally
-	release
+	@ M7b Task 14 (finding #9): once the badge is won this guide doubles as
+	@ a pointer. The branch above is already the badge flag, so nothing new
+	@ is read or written here; the ladder releases for us.
+	goto Trinity_EventScript_JohtoGuide
 	end
 
 @ (3,13) and (6,13) decode collision-1 -- they are the statue wall tiles, read

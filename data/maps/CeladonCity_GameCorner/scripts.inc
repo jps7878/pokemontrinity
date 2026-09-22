@@ -296,5 +296,18 @@ CeladonCity_GameCorner_Text_SlotMachine21:
 CeladonCity_GameCorner_Text_Poster:
 	.string "There's a switch hidden behind\nthis poster.\pYou push it.$"
 
+@ M7b Task 14 (finding #9). The shipped refusal was a dead end -- "you
+@ have no reason yet to go looking" sent the founder hunting in CERULEAN.
+@ The branch is already VAR_TRINITY_KANTO_ARC < 2, and the thing that
+@ lifts it is BLUE's intel in VIRIDIAN (ViridianCity_Text_BlueIntel, the
+@ sole writer of arc 2), so the refusal now names him. BLUE is provably
+@ on stage in every state that reaches this line: ViridianCity_OnTransition
+@ clears his hide flag iff VAR_TRINITY_KANTO_ARC < 2.
 CeladonCity_GameCorner_Text_PosterTooEarly:
-	.string "Just an old poster.\pWhatever's behind it, you have no\nreason yet to go looking.$"
+	.string "Just an old poster.\p"
+	.string "You have no reason to go\n"
+	.string "pulling at it -- not on a\l"
+	.string "hunch.\p"
+	.string "There is a trainer in VIRIDIAN\n"
+	.string "CITY who has been asking after\l"
+	.string "you. Start with him.$"

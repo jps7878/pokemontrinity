@@ -71,8 +71,29 @@ CeladonCity_Text_FatMan:
 CeladonCity_Text_LittleGirl:
 	.string "I got my KOFFING in CINNABAR.\pIt's usually nice, but it breathes\npoison when it's angry.$"
 
+@ M7b Task 14 (finding #9, the "Erika stalls" half of the WHERE gap). Both
+@ original beats are kept; the pointer is appended. Measured with
+@ tools/johto_port/reach_check.py CeladonCity: the CUTTABLE_TREE object at
+@ (40,35) seals 158 tiles of southern CELADON, and the GYM warp (11,30) is
+@ inside that seal -- ERIKA is unreachable until it is cut. Faithful to
+@ FRLG, so not a bug; but the one object that should say so, the GYM sign
+@ at (16,31), is itself inside the seal. This WOMAN_2 at (18,22) stands in
+@ the pre-cut reachable region (her own cut-vertex loss is 1 tile, her own)
+@ and her shipped line is already the city-beautification voice, so the
+@ overgrown tree is her business. No object, coordinate or script changes.
 CeladonCity_Text_Woman:
-	.string "CELADON takes pride in its efforts\nto keep the city beautiful.\pThat's why the new GAME CORNER is\nbad for our city's image.$"
+	.string "CELADON takes pride in its\n"
+	.string "efforts to keep the city\l"
+	.string "beautiful.\p"
+	.string "That's why the new GAME CORNER\n"
+	.string "is bad for our city's image.\p"
+	.string "And that overgrown tree on the\n"
+	.string "south-east edge of town is a\l"
+	.string "disgrace.\p"
+	.string "It has closed the only lane\n"
+	.string "round to ERIKA's GYM.\p"
+	.string "Bring a POKéMON that knows CUT\n"
+	.string "and the lane opens again.$"
 
 CeladonCity_Text_OldMan2:
 	.string "Moan…\nI blew it all at the slots!\pI knew I should have cashed in my\nCOINS for prizes!$"

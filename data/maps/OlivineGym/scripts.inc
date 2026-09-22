@@ -105,7 +105,10 @@ OlivineGym_EventScript_GuideJasmineAway::
 OlivineGym_EventScript_GuidePostVictory::
 	msgbox OlivineGym_Text_GuidePostVictory, MSGBOX_DEFAULT
 	call Trinity_EventScript_JohtoBadgeTally
-	release
+	@ M7b Task 14 (finding #9): once the badge is won this guide doubles as
+	@ a pointer. The branch above is already the badge flag, so nothing new
+	@ is read or written here; the ladder releases for us.
+	goto Trinity_EventScript_JohtoGuide
 	end
 
 @ ============================================================================

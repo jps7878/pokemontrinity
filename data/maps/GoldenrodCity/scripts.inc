@@ -182,7 +182,11 @@ GoldenrodCity_EventScript_CooltrainerF2::
 
 GoldenrodCity_EventScript_CooltrainerF2GotCard::
 	msgbox GoldenrodCity_Text_CooltrainerF2GotCard, MSGBOX_DEFAULT
-	release
+	@ M7b Task 14 (finding #9): the RADIO CARD is the channel, so the person
+	@ who fits it reads the player today's bulletin -- the same arc-keyed
+	@ ladder every JOHTO hub guide reads. Reached only through the existing
+	@ goto_if_set FLAG_TRINITY_J_RADIO_CARD branch above.
+	goto Trinity_EventScript_JohtoGuide
 	end
 
 GoldenrodCity_EventScript_Youngster2::

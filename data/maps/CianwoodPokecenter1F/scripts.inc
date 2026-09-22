@@ -27,8 +27,16 @@ CianwoodPokecenter1F_EventScript_CianwoodGymGuide::
 	msgbox CianwoodPokecenter1F_Text_CianwoodGymGuide, MSGBOX_NPC
 	end
 
+@ M7b Task 14 (finding #9): this Center's standing guide. The shipped GSC
+@ flavour line is unchanged; the arc-keyed next objective follows it.
+@ MSGBOX_NPC becomes explicit lock/faceplayer + MSGBOX_DEFAULT because
+@ MSGBOX_NPC releases (Std_MsgboxNPC, data/scripts/std_msgbox.inc) and so
+@ cannot be chained. The ladder is data/scripts/trinity_johto.inc.
 CianwoodPokecenter1F_EventScript_SuperNerd::
-	msgbox CianwoodPokecenter1F_Text_SuperNerd, MSGBOX_NPC
+	lock
+	faceplayer
+	msgbox CianwoodPokecenter1F_Text_SuperNerd, MSGBOX_DEFAULT
+	goto Trinity_EventScript_JohtoGuide
 	end
 
 CianwoodPokecenter1F_Text_Lass:

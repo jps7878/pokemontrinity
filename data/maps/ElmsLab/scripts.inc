@@ -183,7 +183,13 @@ ElmsLab_EventScript_Elm::
 	goto_if_eq VAR_TRINITY_JOHTO_SCENE_NEWBARK, 1, ElmsLab_EventScript_ElmPostIntro
 	goto_if_eq VAR_TRINITY_JOHTO_SCENE_NEWBARK, 2, ElmsLab_EventScript_ElmUrgent
 	msgbox ElmsLab_Text_ElmIdle, MSGBOX_DEFAULT
-	release
+	@ M7b Task 14 (finding #9): ELM is the story's anchor, so the idle line
+	@ keeps his character and then the arc ladder says where to go next. That
+	@ ladder lives in data/scripts/trinity_johto.inc and NOT here on purpose:
+	@ this file WRITES arc 1 (:57) and arc 2 (:125), and story_audit.py check
+	@ (c) reports every arc comparison inside an arc writer's own file as a
+	@ deadlock suspect. Trinity_EventScript_ElmNextStep releases for us.
+	goto Trinity_EventScript_ElmNextStep
 	end
 
 ElmsLab_EventScript_ElmPostIntro::
