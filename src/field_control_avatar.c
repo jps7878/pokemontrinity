@@ -739,6 +739,19 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
             ScriptContext_SetupScript(MossdeepCity_SpaceCenter_2F_EventScript_RivalRayquazaCall);
             return TRUE;
         }
+        // Trinity M7b Task 13: BOBBY's navigator call, if one is owed. Placed
+        // with the other scripted story calls and ahead of the VS Seeker, which
+        // is a player-initiated convenience rather than story information. The
+        // whole ladder lives in TrinityGetPendingBobbyCall (src/field_specials.c).
+        {
+            const u8 *bobbyCall = TrinityGetPendingBobbyCall();
+
+            if (bobbyCall != NULL)
+            {
+                ScriptContext_SetupScript(bobbyCall);
+                return TRUE;
+            }
+        }
         if (UpdateVsSeekerStepCounter())
         {
             ScriptContext_SetupScript(EventScript_VsSeekerChargingDone);

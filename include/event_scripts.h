@@ -584,6 +584,19 @@ extern const u8 Route119_EventScript_ScottWonAtFortreeGymCall[];
 extern const u8 LittlerootTown_ProfessorBirchsLab_EventScript_ScottAboardSSTidalCall[];
 extern const u8 RustboroCity_Gym_EventScript_RegisterRoxanne[];
 extern const u8 MossdeepCity_SpaceCenter_2F_EventScript_RivalRayquazaCall[];
+
+// Trinity M7b Task 13 -- BOBBY's navigator calls, indexed by rung in
+// sTrinityBobbyCallScripts (src/field_specials.c).
+extern const u8 Trinity_EventScript_BobbyCall_TowerCleared[];
+extern const u8 Trinity_EventScript_BobbyCall_BellAndWing[];
+extern const u8 Trinity_EventScript_BobbyCall_OlivineSummons[];
+extern const u8 Trinity_EventScript_BobbyCall_KantoArrival[];
+extern const u8 Trinity_EventScript_BobbyCall_Poster[];
+extern const u8 Trinity_EventScript_BobbyCall_Grate[];
+extern const u8 Trinity_EventScript_BobbyCall_GymOpen[];
+extern const u8 Trinity_EventScript_BobbyCall_LeagueRoad[];
+extern const u8 Trinity_EventScript_BobbyCall_PostLeague[];
+extern const u8 Trinity_EventScript_BobbyCall_Farewell[];
 extern const u8 SSTidalCorridor_EventScript_ReachedStepCount[];
 extern const u8 EventScript_FallDownHoleMtPyre[];
 

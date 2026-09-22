@@ -9,6 +9,7 @@
 #include "diploma.h"
 #include "event_data.h"
 #include "event_object_movement.h"
+#include "event_scripts.h"
 #include "fieldmap.h"
 #include "field_camera.h"
 #include "field_effect.h"
@@ -497,6 +498,126 @@ bool32 ShouldDoRivalRayquazaCall(void)
     }
 
     return TRUE;
+}
+
+// ---------------------------------------------------------------------------
+// Trinity M7b Task 13 -- BOBBY, the standing navigator (bug-test findings #9,
+// #9b, #9c).
+//
+// THE PROBLEM. Trinity is not linear: the player can be anywhere in three
+// regions, so the memorised structure a veteran leans on is gone and nothing
+// replaced it. Every stall in the founder's bug-test was an INFORMATION
+// failure, never a difficulty one. BOBBY -- already the story's one
+// cross-region voice (RADIO TOWER 5F reveal -> GOLDENROD coda -> OLIVINE PORT
+// summons) -- becomes the channel that carries the current objective.
+//
+// THE LADDER. One monotonic ladder of ten RUNGS. TrinityPendingBobbyCallRung()
+// returns the HIGHEST rung whose world-state condition holds -- not the lowest
+// unfired one. That is deliberate: a player who skips a beat, or who loads a
+// save made before this feature existed, hears the ONE call that matches where
+// they actually are instead of a backlog of stale ones. A call fires iff
+// pending > VAR_TRINITY_BOBBY_CALL_RUNG; the rung script writes the latch.
+//
+// THIS LADDER IS THE ONLY COPY. The rung scripts are leaves: none of them
+// re-tests the ladder, so C and script can never disagree about WHEN a rung is
+// due. The pairing between a rung number here and the
+// `setvar VAR_TRINITY_BOBBY_CALL_RUNG, N` in the script at that index is pinned
+// by tools/johto_port/story_audit.py's check_bobby_navigator().
+//
+// SAVE COMPATIBILITY. VAR_TRINITY_BOBBY_CALL_RUNG is a RENAME of an existing
+// slot (was VAR_UNUSED_0x40A1) inside the already-allocated
+// VARS_START..VARS_END range -- VARS_END and VARS_COUNT are byte-identical
+// before and after, so no SaveBlock layout changes and every pre-M7b save still
+// loads. Such a save carries 0 in that slot, so the "highest satisfied rung"
+// rule hands it exactly ONE call: the one matching where it already is, with no
+// backlog. Which rung that is depends on how far that particular save has got;
+// no assumption is made here about any specific save. Both post-league rungs
+// (9 and 10) therefore carry the outstanding-JOHTO report, so whichever one a
+// finished save lands on, the report is heard.
+//
+// COST: one saved var, zero flags, zero trainer ids, zero map data.
+// ---------------------------------------------------------------------------
+static const u8 *const sTrinityBobbyCallScripts[] =
+{
+    [1]  = Trinity_EventScript_BobbyCall_TowerCleared,
+    [2]  = Trinity_EventScript_BobbyCall_BellAndWing,
+    [3]  = Trinity_EventScript_BobbyCall_OlivineSummons,
+    [4]  = Trinity_EventScript_BobbyCall_KantoArrival,
+    [5]  = Trinity_EventScript_BobbyCall_Poster,
+    [6]  = Trinity_EventScript_BobbyCall_Grate,
+    [7]  = Trinity_EventScript_BobbyCall_GymOpen,
+    [8]  = Trinity_EventScript_BobbyCall_LeagueRoad,
+    [9]  = Trinity_EventScript_BobbyCall_PostLeague,
+    [10] = Trinity_EventScript_BobbyCall_Farewell,
+};
+
+static u32 TrinityPendingBobbyCallRung(void)
+{
+    // Descending: the first condition that holds is the highest satisfied rung.
+    //
+    // FLAG_TRINITY_BADGE24 sits above arc-K 4 because it is strictly later --
+    // the VIRIDIAN gym door needs seven other KANTO badges AND arc >= 4
+    // (ViridianCity_EventScript_GymDoorCheck), so badge 24 implies arc >= 4.
+    //
+    // arc-K 5 (SILVER's final fight on ROUTE 1) has NO rung of its own: it is
+    // skippable content off the mandatory post-badge path
+    // (data/maps/Route1/scripts.inc:9-16 records that a tree-wide grep found no
+    // NPC, sign or scene pointing at him), which is exactly why rung 8 keys on
+    // the badge and points the player AT him.
+    if (VarGet(VAR_TRINITY_KANTO_ARC) >= 7)  return 10;
+    if (VarGet(VAR_TRINITY_KANTO_ARC) >= 6)  return 9;
+    if (FlagGet(FLAG_TRINITY_BADGE24))       return 8;
+    if (VarGet(VAR_TRINITY_KANTO_ARC) >= 4)  return 7;
+    if (VarGet(VAR_TRINITY_KANTO_ARC) >= 3)  return 6;
+    if (VarGet(VAR_TRINITY_KANTO_ARC) >= 2)  return 5;
+    if (VarGet(VAR_TRINITY_KANTO_ARC) >= 1)  return 4;
+    if (VarGet(VAR_TRINITY_JOHTO_ARC) >= 10) return 3;
+    // arc-J 7 -> 8 is a SKIPPABLE TALK (RadioTower5F_EventScript_RescuedDirector
+    // is an ordinary talk script three tiles from where the reveal ends), and
+    // the JOHTO league gate is the eight-badge C-COUNT, never an arc test -- so
+    // "the tower is clear" and "the player holds the CLEAR BELL" are different
+    // states and get different calls.
+    //
+    // RADIO TOWER 5F is MAP_TYPE_INDOOR, so no rung can fire there: a player who
+    // talks to the DIRECTOR before walking outside steps out at arc-J 8 and gets
+    // rung 2, never rung 1. That is why rung 2's script ALSO carries the
+    // MAHOGANY-base crate paragraph whenever FLAG_TRINITY_J_WING_SILVER is still
+    // unset -- the SILVER WING return trip is finding #9's own "communicated
+    // nowhere" evidence and may not live on rung 1 alone.
+    if (VarGet(VAR_TRINITY_JOHTO_ARC) >= 8)  return 2;
+    if (VarGet(VAR_TRINITY_JOHTO_ARC) >= 7)  return 1;
+    return 0;
+}
+
+// Returns the pokenavcall script BOBBY owes the player right now, or NULL.
+// Called once per overworld step from TryStartStepCountScript.
+const u8 *TrinityGetPendingBobbyCall(void)
+{
+    u32 rung;
+
+    // The same map-type window every vanilla scripted call uses
+    // (ShouldDoWallyCall and friends above): outdoors only, so a call never
+    // interrupts a cutscene room, a gym, or a POKeMON CENTER. In practice the
+    // player walks OUT of a building and the phone rings on the street, which is
+    // finding #9c's own wording ("first steps on the INDIGO exterior").
+    switch (gMapHeader.mapType)
+    {
+    case MAP_TYPE_TOWN:
+    case MAP_TYPE_CITY:
+    case MAP_TYPE_ROUTE:
+    case MAP_TYPE_OCEAN_ROUTE:
+        break;
+    default:
+        return NULL;
+    }
+
+    rung = TrinityPendingBobbyCallRung();
+    if (rung <= VarGet(VAR_TRINITY_BOBBY_CALL_RUNG))
+        return NULL;
+
+    // sTrinityBobbyCallScripts[0] is implicitly NULL and is never indexed: rung
+    // 0 can never exceed a latch whose minimum value is 0.
+    return sTrinityBobbyCallScripts[rung];
 }
 
 u8 GetLinkPartnerNames(void)

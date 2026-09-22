@@ -157,14 +157,26 @@ OlivinePort_EventScript_Bobby::
 	end
 
 @ Reached only via the goto_if_set above -- already lock'd/faceplayer'd.
+@
+@ M7b Task 13 (finding #9c, "his pier dialogue"): saying NO to the boat is
+@ where BOBBY reads back every JOHTO thread still open -- the CLEAR BELL and
+@ RAINBOW WING the DIRECTOR may never have been asked for, the SILVER WING
+@ still in the MAHOGANY crate, and each beast not yet resolved. This is the
+@ right audience and the right moment: the player has just cleared the JOHTO
+@ league and every item on that list is JOHTO content he is about to sail away
+@ from. Zero gates beyond standing on the pier. The report script lives in
+@ data/scripts/trinity_navigator.inc and ends in `return`; the lock is this
+@ file's, taken at OlivinePort_EventScript_Bobby.
 OlivinePort_EventScript_BobbyWaiting::
 	msgbox OlivinePort_Text_BobbyStillReady, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, OlivinePort_EventScript_BobbyDeparture
+	call Trinity_EventScript_BobbyLegendaryReport
 	release
 	end
 
 OlivinePort_EventScript_BobbyDecline::
 	msgbox OlivinePort_Text_BobbyDecline, MSGBOX_DEFAULT
+	call Trinity_EventScript_BobbyLegendaryReport
 	release
 	end
 

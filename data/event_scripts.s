@@ -1658,3 +1658,4 @@ EventScript_VsSeekerChargingDone::
 	.include "data/scripts/trinity_johto.inc"
 	.include "data/scripts/trinity_indigo.inc"
 	.include "data/scripts/trinity_kanto.inc"
+	.include "data/scripts/trinity_navigator.inc"

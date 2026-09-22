@@ -200,7 +200,34 @@
 #define VAR_MOSSDEEP_SPACE_CENTER_STAIR_GUARD_STATE      0x409E
 #define VAR_MOSSDEEP_SPACE_CENTER_STATE                  0x409F
 #define VAR_SLATEPORT_HARBOR_STATE                       0x40A0
-#define VAR_UNUSED_0x40A1                                0x40A1 // Unused var
+// Trinity M7b Task 13 (findings #9, #9b, #9c): BOBBY's navigator latch --
+// "the highest CALL RUNG BOBBY has already delivered". Was VAR_UNUSED_0x40A1
+// (re-audited this pass: zero references anywhere in src/ data/ include/ asm/
+// by name or by raw hex). The WHOLE navigator costs this one saved var and
+// ZERO flags.
+//
+// It is NOT an arc value and must never be compared against one. The rung
+// ladder spans VAR_TRINITY_JOHTO_ARC, VAR_TRINITY_KANTO_ARC *and*
+// FLAG_TRINITY_BADGE24; its single authority is TrinityPendingBobbyCallRung()
+// in src/field_specials.c.
+//   0  nothing delivered yet (new-save default, and the value every save made
+//      before M7b carries -- see the SAVE COMPATIBILITY block in field_specials.c)
+//   1  arc-J >= 7   RADIO TOWER clear: the DIRECTOR owes you, and so does the
+//                   crate in GIOVANNI's office under MAHOGANY
+//   2  arc-J >= 8   the CLEAR BELL and the RAINBOW WING are keys (+ the crate
+//                   again while FLAG_TRINITY_J_WING_SILVER is still unset)
+//   3  arc-J >= 10  BOBBY is waiting at OLIVINE PORT      <- finding #9c
+//   4  arc-K >= 1   KANTO: badges 17-24, VIRIDIAN last, BLUE is in VIRIDIAN
+//   5  arc-K >= 2   the CELADON GAME CORNER poster
+//   6  arc-K >= 3   the VIRIDIAN gym-yard grate
+//   7  arc-K >= 4   GIOVANNI is upstairs in the VIRIDIAN GYM
+//   8  FLAG_TRINITY_BADGE24  the road to INDIGO (+ SILVER on ROUTE 1 if unfought)
+//   9  arc-K >= 6   post-league: MT. SILVER is open, and what JOHTO still owes
+//  10  arc-K >= 7   the farewell
+// Monotonic by construction: the engine only ever asks for a rung STRICTLY
+// GREATER than this value, and each rung script's own setvar is its first
+// instruction after lockall.
+#define VAR_TRINITY_BOBBY_CALL_RUNG                      0x40A1
 #define VAR_SEAFLOOR_CAVERN_STATE                        0x40A2
 #define VAR_CABLE_CAR_STATION_STATE                      0x40A3
 #define VAR_SAFARI_ZONE_STATE                            0x40A4  // 0: In or out of SZ, 1: Player exiting SZ, 2: Player entering SZ (Hoenn), 3: Trinity M5b S8 -- active SZ session is Kanto's (set by FuchsiaCity_SafariZone_Entrance's entry script, read once by data/scripts/safari_zone.inc's Exit/OutOfBallsMidBattle to pick the exit destination)

@@ -318,13 +318,25 @@ IndigoPlateau_PokemonCenter_1F_EventScript_BobbyCancel::
 	release
 	end
 
+@ M7b Task 13 (finding #9c, the state-aware half): BOBBY's two TERMINAL repeat
+@ lines become his standing objective board -- he names every JOHTO thread the
+@ player has not closed, or says the desk is clear. Both branches are reached
+@ from 8 KANTO badges onward (his object's own spawn condition,
+@ FLAG_TRINITY_K_KANTO_CAST_HIDE) and BobbyBriefing in particular is the branch
+@ a player who has NOT taken the family gauntlet lands on, so the reference is
+@ not behind the gauntlet, the reward, or the farewell battle. The report
+@ script lives in data/scripts/trinity_navigator.inc and ends in `return`; the
+@ lock is this file's, taken at EventScript_Bobby. Nothing else in his script
+@ changes -- not the reward flow, not the farewell battle, not BobbyNotYet.
 IndigoPlateau_PokemonCenter_1F_EventScript_BobbyBriefing::
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_BobbyBriefing, MSGBOX_DEFAULT
+	call Trinity_EventScript_BobbyLegendaryReport
 	release
 	end
 
 IndigoPlateau_PokemonCenter_1F_EventScript_BobbyClaimed::
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_BobbyPostReward, MSGBOX_DEFAULT
+	call Trinity_EventScript_BobbyLegendaryReport
 	release
 	end
 
