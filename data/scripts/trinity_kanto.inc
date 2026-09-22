@@ -79,8 +79,9 @@ Trinity_EventScript_IncKantoBadgeCount::
 @ FRLG's. Information only: it reads the badge flags and writes none (G7).
 @
 @ NO "OF EIGHT" DENOMINATOR, on purpose. Six shipped guide lines end on "One of
-@ seven." -- PewterCity_Gym:182, CeruleanCity_Gym:205, VermilionCity_Gym:527,
-@ FuchsiaCity_Gym:286, SaffronCity_Gym:292, CinnabarIsland_Gym:570 -- because
+@ seven." -- the <City>_Gym_Text_GymGuyPostVictory of PewterCity_Gym:186,
+@ CeruleanCity_Gym:209, VermilionCity_Gym:531, FuchsiaCity_Gym:290,
+@ SaffronCity_Gym:296 and CinnabarIsland_Gym:574 -- because
 @ seven badges are what open VIRIDIAN (ViridianCity_EventScript_GymDoorCheck,
 @ data/maps/ViridianCity/scripts.inc:95-96, needs VAR_TEMP_A >= 7) and
 @ VIRIDIAN's own badge is the eighth. This tally lands in the very next box
