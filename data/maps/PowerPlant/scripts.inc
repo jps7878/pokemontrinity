@@ -136,9 +136,45 @@ PowerPlant_Text_ManagerCheerful:
 @ documentation parity -- its own default already agreed).
 @ ============================================================================
 PowerPlant_OnTransition::
+	call Common_EventScript_SetupRivalGfxId
 	call_if_set FLAG_TRINITY_K_ZAPDOS_RESOLVED, PowerPlant_EventScript_HideZapdos
 	call_if_unset FLAG_TRINITY_K_ZAPDOS_RESOLVED, PowerPlant_EventScript_TryShowZapdos
+	call PowerPlant_EventScript_SetRivalVisibility
 	end
+
+@ ============================================================================
+@ M7b Task 18 (#13, WHERE): the Act I rival, cameo 3 of 4. Folded into the
+@ EXISTING ON_TRANSITION rather than added as a second one (single-occupancy).
+@ Mechanism, hide flag and sprite seeding as MtMoon_1F_OnTransition, whose
+@ header carries the full rationale.
+@
+@ WINDOW: KANTO arrival done AND 6 or more KANTO badges AND the KANTO arc still
+@ below 6 -- she moves to the CERULEAN CAVE mouth the moment ASH falls, so
+@ exactly one sighting is ever live.
+@
+@ PLACEMENT (7,37): col 0, elev 3, MB_CAVE, two tiles east and one north of the
+@ ROUTE 10 door landing at (5,38), clear of the northward lane (row 37 is open
+@ across columns 1-9). reach_check 954 -> 953: delta 1, her own tile.
+@
+@ THE MAP'S OTHER ROUTE 10 DOOR IS NOT A SECOND ENTRANCE, so one cameo covers
+@ every arrival. PowerPlant warp 3 at (1,11) leads to Route10 warp 4 at (2,37),
+@ and that tile sits in a SIX-TILE POCKET -- (1,36)-(1,39),(2,37),(2,38) -- with
+@ no walkable link to the rest of ROUTE 10: (1,40) and (3,37)/(3,38) are all
+@ collision 1, verified by flood fill from (7,41), which reaches 686 tiles and
+@ does not include (2,37). Every player entering from ROUTE 10 therefore comes
+@ through warp 2 at (7,40) and lands on (5,38), two tiles from her.
+@ ============================================================================
+PowerPlant_EventScript_SetRivalVisibility::
+	goto_if_unset FLAG_TRINITY_K_ARRIVED, PowerPlant_EventScript_HideRival
+	goto_if_ge VAR_TRINITY_KANTO_ARC, 6, PowerPlant_EventScript_HideRival
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_lt VAR_TEMP_A, 6, PowerPlant_EventScript_HideRival
+	clearflag FLAG_TEMP_5
+	return
+
+PowerPlant_EventScript_HideRival::
+	setflag FLAG_TEMP_5
+	return
 
 PowerPlant_EventScript_HideZapdos::
 	setflag FLAG_TRINITY_K_ZAPDOS_HIDE
@@ -213,3 +249,31 @@ PowerPlant_Text_Zapdos:
 	.string "on the coils, feathers crackling\l"
 	.string "with every spare volt in the\l"
 	.string "building.$"
+
+@ ============================================================================
+@ M7b Task 18 (#13): cameo 3's line, and the one that carries the real WHERE
+@ payload. The postgame CERULEAN CAVE rule is stated today by exactly ONE NPC
+@ -- the guard at CeruleanCity (2,13), who stands on a Surf-only shelf the
+@ player has no reason to visit -- so a player can reach the LEAGUE without
+@ ever being told the cave exists or what opens it. This line tells them both.
+@
+@ The words deliberately say nothing about the generator, ZAPDOS or the floor:
+@ this map's state varies (FLAG_TRINITY_K_PLANT_RESTORED,
+@ FLAG_TRINITY_K_ZAPDOS_RESOLVED) and in-world information must be reliable in
+@ every state. "You can hear this place before you can see it" always is. The
+@ meeting pointer is a CONDITION ("beat the LEAGUE") because cameo 4 does not
+@ exist until VAR_TRINITY_KANTO_ARC reaches 6 at the HALL OF FAME.
+@ ============================================================================
+PowerPlant_EventScript_Rival::
+	msgbox PowerPlant_Text_Rival, MSGBOX_NPC
+	end
+
+PowerPlant_Text_Rival:
+	.string "{RIVAL}: You can hear this place\n"
+	.string "before you can see it.\p"
+	.string "Twenty pages left, and the last\n"
+	.string "of them are in the cave on\l"
+	.string "CERULEAN's west shore.\p"
+	.string "They only open it for a\n"
+	.string "CHAMPION. Beat the LEAGUE and\l"
+	.string "I'll be waiting at its mouth.$"

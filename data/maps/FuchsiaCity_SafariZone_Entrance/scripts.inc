@@ -47,8 +47,47 @@
 @             touching state, so the session stays live exactly as it was.
 @ ============================================================================
 FuchsiaCity_SafariZone_Entrance_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, FuchsiaCity_SafariZone_Entrance_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, FuchsiaCity_SafariZone_Entrance_OnFrame
 	.byte 0
+
+@ ============================================================================
+@ M7b Task 18 (#13, WHERE): the Act I rival, cameo 2 of 4. Same mechanism, same
+@ FLAG_TEMP_5 hide flag and the same gender-correct sprite seeding as
+@ MtMoon_1F_OnTransition -- the full rationale, including why the
+@ Continue-from-save path is safe, is in that handler's header.
+@ ON_TRANSITION single-occupancy is respected: this map held only an
+@ ON_FRAME_TABLE entry, and a map may carry one script of each type.
+@
+@ WINDOW: KANTO arrival done AND 3 to 5 KANTO badges -- the band between cameo
+@ 1 (< 3) and cameo 3 (>= 6), so exactly one sighting is ever live.
+@
+@ PLACEMENT (5,5): col 0, elev 3, MB_NORMAL. The east column of the 3-wide
+@ public corridor (cols 3-5), beside the walking lane at (4,5) but never in it
+@ -- the player enters from FUCHSIA at (4,7) and walks north up column 4. Two
+@ rows SOUTH of the fee triggers at (3,3)/(4,3)/(5,3), so she is talkable
+@ without paying Y500 and cannot interfere with the entry or refusal
+@ movements, which only touch rows 1-4. (3,6), the only tile the info
+@ attendant at (1,6) can be talked to through the counter from, is left free.
+@ reach_check 19 -> 18: delta 1, her own tile.
+@
+@ AT THE GATE, NOT INSIDE THE ZONE (deviation from the founder's literal
+@ "Safari Zone", disclosed): inside SafariZone_* the player is in a paid,
+@ step-limited session -- a cameo there would cost Y500 and live steps to see
+@ and could be cut off mid-sentence by the step timer.
+@ ============================================================================
+FuchsiaCity_SafariZone_Entrance_OnTransition::
+	call Common_EventScript_SetupRivalGfxId
+	goto_if_unset FLAG_TRINITY_K_ARRIVED, FuchsiaCity_SafariZone_Entrance_EventScript_HideRival
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_lt VAR_TEMP_A, 3, FuchsiaCity_SafariZone_Entrance_EventScript_HideRival
+	goto_if_ge VAR_TEMP_A, 6, FuchsiaCity_SafariZone_Entrance_EventScript_HideRival
+	clearflag FLAG_TEMP_5
+	end
+
+FuchsiaCity_SafariZone_Entrance_EventScript_HideRival::
+	setflag FLAG_TEMP_5
+	end
 
 FuchsiaCity_SafariZone_Entrance_OnFrame:
 	map_script_2 VAR_SAFARI_ZONE_STATE, 1, FuchsiaCity_SafariZone_Entrance_EventScript_ExitSafariZone
@@ -330,3 +369,25 @@ FuchsiaCity_SafariZone_Entrance_Text_ExitEarlyThanks:
 
 FuchsiaCity_SafariZone_Entrance_Text_GoodLuckReturn:
 	.string "Good luck out there!$"
+
+@ ============================================================================
+@ M7b Task 18 (#13): cameo 2's line. Talk-only, idempotent, zero state.
+@ "Thirty balls and five hundred steps" is the booth's OWN rule, quoted from
+@ FuchsiaCity_SafariZone_Entrance_Text_FirstTimeInfo in this same file ("30
+@ SAFARI BALLS", "walked 500 steps"). The POWER PLANT pointer is stated as a
+@ CONDITION, not a present fact, because cameo 3 does not exist until the sixth
+@ KANTO badge -- see MtMoon_1F_EventScript_Rival's header.
+@ ============================================================================
+FuchsiaCity_SafariZone_Entrance_EventScript_Rival::
+	msgbox FuchsiaCity_SafariZone_Entrance_Text_Rival, MSGBOX_NPC
+	end
+
+FuchsiaCity_SafariZone_Entrance_Text_Rival:
+	.string "{RIVAL}: Thirty balls and five\n"
+	.string "hundred steps. That's not a\l"
+	.string "survey, that's a dare.\p"
+	.string "Still, the KANTO pages won't\n"
+	.string "fill themselves.\p"
+	.string "When you've six KANTO badges,\n"
+	.string "look for me at the POWER PLANT,\l"
+	.string "off ROUTE 10.$"
