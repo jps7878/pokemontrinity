@@ -23,6 +23,13 @@ CianwoodPokecenter1F_EventScript_Lass::
 	msgbox CianwoodPokecenter1F_Text_Lass, MSGBOX_NPC
 	end
 
+@ CHUCK's gym guide, whom GSC stands in this Center rather than in CIANWOOD
+@ GYM (that map.json casts four BLACK BELTs and CHUCK, no guide). M7b Task 14
+@ leaves him ALONE on purpose: this Center's arc-keyed hub guide is the SUPER
+@ NERD below at (8,6), across the room from his (5,3), who speaks the
+@ objective in EVERY arc state -- so a badge-gated copy of it here would
+@ print the same page twice in one room and would say strictly less than the
+@ SUPER NERD is already saying unprompted.
 CianwoodPokecenter1F_EventScript_CianwoodGymGuide::
 	msgbox CianwoodPokecenter1F_Text_CianwoodGymGuide, MSGBOX_NPC
 	end

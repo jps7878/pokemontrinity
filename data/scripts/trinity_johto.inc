@@ -58,9 +58,12 @@ Trinity_EventScript_IncBadgeCount::
 	return
 
 @ ============================================================================
-@ THE POST-VICTORY TALLY (M7b Task 15, finding #6). Called by the seven JOHTO
-@ gym guides that exist -- CIANWOOD GYM has no guide object (its map.json casts
-@ four BLACK BELTs and CHUCK), and neither does GSC's. Information only: it
+@ THE POST-VICTORY TALLY (M7b Task 15, finding #6). Called by the seven guides
+@ who stand inside a JOHTO gym -- CIANWOOD GYM has no guide object (its
+@ map.json casts four BLACK BELTs and CHUCK), and neither does GSC's gym:
+@ GSC stands that guide in the Pokemon Center, where he still is and is
+@ deliberately left alone (see THE JOHTO SIGNPOST LADDER header below).
+@ Information only: it
 @ reads the badge flags and writes none of them (G7).
 @ The number is spoken at the moment it changes, and both lines name the gate
 @ the number is FOR: the LEAGUE gate on ROUTE 26, whose check is
@@ -96,22 +99,42 @@ Trinity_Text_JohtoBadgeTallyAll:
 @ (founder, 2026-09-07).
 @
 @ ONE ladder. It is read by the nine JOHTO hub Pokemon Center guides, by the
-@ SEVEN JOHTO gym guides that exist (CIANWOOD GYM has no guide object -- its
-@ guide stands in the Pokemon Center, and he is that hub's guide instead), and
-@ by the two RADIO CARD flavour NPCs. Keyed on VAR_TRINITY_JOHTO_ARC (0x40F7)
-@ and nothing else, except two free reads of existing flags:
+@ SEVEN gym guides who stand INSIDE a JOHTO gym, and by the two RADIO CARD
+@ flavour NPCs.
+@
+@ CIANWOOD IS THE ONE GYM WHOSE GUIDE IS NOT WIRED, and deliberately.
+@ CIANWOOD GYM's map.json casts no guide at all (four BLACK BELTs and CHUCK);
+@ GSC stands CHUCK's guide in the Pokemon Center instead, and he is still
+@ there -- CianwoodPokecenter1F_EventScript_CianwoodGymGuide,
+@ OBJ_EVENT_GFX_EXPERT_M at (5,3), untouched. He is NOT that hub's guide:
+@ Cianwood's hub guide is a DIFFERENT object in the same room, the SUPER NERD
+@ (OBJ_EVENT_GFX_SCIENTIST_1 at (8,6)), and the SUPER NERD reads this ladder
+@ in EVERY arc state. A post-badge branch on the gym guide would therefore
+@ print the same page a second time in one room, and would say strictly less
+@ than the SUPER NERD across the room already says unprompted -- so
+@ requirement (d) is covered for CIANWOOD by the hub object, not by the gym
+@ guide, and his shipped GSC flavour line is left as it is.
+@
+@ KEYED ON VAR_TRINITY_JOHTO_ARC (0x40F7) and nothing else, except three free
+@ reads of existing flags and one free read of the badge count:
 @   FLAG_TRINITY_K_ARRIVED      (0x4B5) -- splits the arc-10 rung, so it stops
 @                                          sending you to a crossing you made.
 @   FLAG_TRINITY_J_WING_SILVER  (0x29B) -- splits the arc-7 rung, so the crate
 @                                          pointer stops once the crate is
 @                                          empty (TeamRocketBaseB3F:532 uses
 @                                          the same read as its own guard).
+@   FLAG_TRINITY_BADGE09        (0x25)  -- splits the arc-2 rung (see there).
+@   C-COUNT (badge flags 09-16) -- splits the arc-5 rung (see there).
 @
 @ CALL CONTRACT. Enter with `goto`, never `call`. Every caller has already
 @ done `lock` + `faceplayer` and has left its own MSGBOX_DEFAULT page on
-@ screen; this ladder prints ONE more page and then `release`s. It writes
-@ nothing -- no flag, no var, not even a temp -- so it is safe to run at any
-@ time, from any map, in any order.
+@ screen; this ladder prints ONE more page and then `release`s. It writes no
+@ flag and no saved var, so it is safe to run at any time, from any map, in
+@ any order. The ONE thing it writes is scratch: the arc-5 rung calls C-COUNT,
+@ which sets VAR_TEMP_A and buffers STR_VAR_1 (the same read the GOLDENROD
+@ gate itself performs). Every one of this ladder's callers is an NPC talk
+@ script that has already printed its own page, so none of them is holding a
+@ string in STR_VAR_1 across the `goto` -- C-COUNT's stated obligation is met.
 @
 @ WHY A DESCENDING goto_if_ge LADDER AND NOT `switch`: `switch` expands to
 @ `copyvar VAR_0x8000, <var>` (asm/macros/event.inc) and would clobber a
@@ -147,8 +170,26 @@ Trinity_EventScript_JohtoGuide::
 	release
 	end
 
+@ ARC 2 IS THE ONE MULTI-OBJECTIVE WINDOW IN THIS LADDER, so it splits on a
+@ free flag read the way the arc-7 and arc-10 rungs do. Arc 2 is written at
+@ ElmsLab/scripts.inc:125 and is not left until SlowpokeWellB1F/scripts.inc:
+@ 198, so VIOLET and AZALEA both sit inside it and FALKNER is normally beaten
+@ while the arc is still 2. Nothing GATES AZALEA behind the badge -- the only
+@ BADGE09 readers tree-wide are VioletGym and the two gate officers at
+@ Route31VioletGate:16 and Route32RuinsOfAlphGate:14, and all three are
+@ dialogue splits that block nothing. So the pointer follows the badge and
+@ not the arc: before it, the nearest GYM; after it, the live story beat.
+@ That beat is keyed on the same arc value -- AzaleaTown/scripts.inc:24 shows
+@ the ROCKET posts at arc == 2 and SlowpokeWellB1F/scripts.inc:23 shows the
+@ raid at arc == 2 -- so it is guaranteed on stage whenever this page prints.
 Trinity_EventScript_JohtoGuideTheft::
+	goto_if_set FLAG_TRINITY_BADGE09, Trinity_EventScript_JohtoGuideWell
 	msgbox Trinity_Text_JohtoGuideArc2, MSGBOX_DEFAULT
+	release
+	end
+
+Trinity_EventScript_JohtoGuideWell::
+	msgbox Trinity_Text_JohtoGuideArc2Well, MSGBOX_DEFAULT
 	release
 	end
 
@@ -162,8 +203,21 @@ Trinity_EventScript_JohtoGuideMart::
 	release
 	end
 
+@ ARC 5's EXIT IS A BADGE COUNT, NOT AN ARC WRITE. GoldenrodCity_EventScript_
+@ TryRocketTakeover (data/maps/GoldenrodCity/scripts.inc:90-94) fires on
+@ arc == 5 AND VAR_TEMP_A >= 7, and it runs from GOLDENROD's ON_TRANSITION --
+@ so a player who earns his seventh badge anywhere else stays at arc 5 while
+@ already holding the thing this page tells him to go and get. C-COUNT is the
+@ identical read that gate performs; it writes VAR_TEMP_A and STR_VAR_1 only.
 Trinity_EventScript_JohtoGuideBadges::
+	call Trinity_EventScript_CountJohtoBadges
+	goto_if_ge VAR_TEMP_A, 7, Trinity_EventScript_JohtoGuideBadgesReady
 	msgbox Trinity_Text_JohtoGuideArc5, MSGBOX_DEFAULT
+	release
+	end
+
+Trinity_EventScript_JohtoGuideBadgesReady::
+	msgbox Trinity_Text_JohtoGuideArc5Ready, MSGBOX_DEFAULT
 	release
 	end
 
@@ -238,6 +292,16 @@ Trinity_Text_JohtoGuideArc2:
 	.string "today. VIOLET CITY has the\l"
 	.string "nearest GYM -- start there.$"
 
+@ Same arc, badge already won. The bulletin moves to the other beat that is
+@ live at arc 2 and names the town it is under.
+Trinity_Text_JohtoGuideArc2Well:
+	.string "The ZEPHYRBADGE out of VIOLET,\n"
+	.string "and one other item today.\p"
+	.string "Men in black are standing over\n"
+	.string "the SLOWPOKE WELL in AZALEA\l"
+	.string "TOWN, and nobody there will\l"
+	.string "say why.$"
+
 Trinity_Text_JohtoGuideArc3:
 	.string "Bulletin out of MAHOGANY TOWN:\n"
 	.string "the LAKE OF RAGE north of it is\l"
@@ -267,6 +331,16 @@ Trinity_Text_JohtoGuideArc5:
 	.string "Earn your seventh JOHTO badge\n"
 	.string "before you walk into that city.\l"
 	.string "You'll want it.$"
+
+@ Same rung, seventh badge already in hand. C-COUNT has just buffered the
+@ live number into STR_VAR_1, so this states it rather than asking for it.
+Trinity_Text_JohtoGuideArc5Ready:
+	.string "The base under MAHOGANY is shut\n"
+	.string "down. Nothing on the radio but\l"
+	.string "static out of GOLDENROD now.\p"
+	.string "And {STR_VAR_1} JOHTO badges behind you.\n"
+	.string "Walk into that city and find\l"
+	.string "out what the static is.$"
 
 Trinity_Text_JohtoGuideArc6:
 	.string "TEAM ROCKET is broadcasting out\n"
@@ -333,18 +407,25 @@ Trinity_Text_JohtoGuideArc10Kanto:
 @ Reached ONLY from ElmsLab_EventScript_Elm's fall-through. That fall-through
 @ is scene NEWBARK 3 or 4: scene 1 and scene 2 have their own branches, and
 @ the only writers tree-wide are ElmsLab:58 (1), :126 (2), Route29:103 (3) and
-@ ElmsLab:166 (4). Route29:103 sits three lines below `setflag
-@ FLAG_TRINITY_J_SILVER1_BEATEN` inside Route29_EventScript_SilverConfront, so
-@ SCENE >= 3 IMPLIES SILVER 1 HAS BEEN FOUGHT -- which is why the arc-2 rung
-@ below speaks to a player who has already met the thief, and never sends him
-@ chasing one down ROUTE 29.
+@ ElmsLab:166 (4). Route29:103 is the FIRST line of Route29_EventScript_
+@ SilverAftermath (:102-106) -- NOT of SilverConfront, and not adjacent to the
+@ setflag; the proof is the call order, not the line order. `setflag
+@ FLAG_TRINITY_J_SILVER1_BEATEN` is Route29:96, inside Route29_EventScript_
+@ SilverConfront (:92-100), and BOTH paths into the aftermath call the
+@ confrontation first: the coord path calls :51 then :55, the talk path :75
+@ then :83, and there is no third caller of either. So no path reaches the
+@ scene-3 write without passing the setflag, and SCENE >= 3 IMPLIES SILVER 1
+@ HAS BEEN FOUGHT -- which is why the arc-2 rung below speaks to a player who
+@ has already met the thief, and never sends him chasing one down ROUTE 29.
 @
 @ Rungs below arc 2 are defensive: they fall straight through to ELM's
 @ existing idle page with no second box.
 @
 @ Same call contract as the hub ladder: the caller has locked and faceplayer'd
 @ and has ELM's idle page on screen; this prints one more and releases. It
-@ writes nothing. It lives here and not in ElmsLab/scripts.inc for the
+@ writes no flag and no saved var; its arc-5 rung calls C-COUNT, which writes
+@ scratch only (VAR_TEMP_A + STR_VAR_1), and ELM's idle page holds no buffer
+@ across the `goto`. It lives here and not in ElmsLab/scripts.inc for the
 @ story_audit.py check (c) reason given at the head of the hub ladder --
 @ ElmsLab writes arc 1 and arc 2, so an arc comparison there is reported as a
 @ deadlock suspect.
@@ -365,8 +446,17 @@ Trinity_EventScript_ElmNextStep::
 	release
 	end
 
+@ Same split, same free flag read, same reason as the hub ladder's arc-2 rung
+@ (see there): FALKNER is normally beaten while the arc is still 2, and after
+@ that "VIOLET CITY is your road" is a road already walked.
 Trinity_EventScript_ElmNextChase::
+	goto_if_set FLAG_TRINITY_BADGE09, Trinity_EventScript_ElmNextWell
 	msgbox Trinity_Text_ElmNext2, MSGBOX_DEFAULT
+	release
+	end
+
+Trinity_EventScript_ElmNextWell::
+	msgbox Trinity_Text_ElmNext2Well, MSGBOX_DEFAULT
 	release
 	end
 
@@ -380,8 +470,18 @@ Trinity_EventScript_ElmNextMart::
 	release
 	end
 
+@ Same split as the hub ladder's arc-5 rung: arc 5 is left by a badge-count
+@ read on GOLDENROD's ON_TRANSITION, not by an arc write, so seven badges in
+@ hand can sit inside arc 5 for as long as the player stays out of the city.
 Trinity_EventScript_ElmNextBadges::
+	call Trinity_EventScript_CountJohtoBadges
+	goto_if_ge VAR_TEMP_A, 7, Trinity_EventScript_ElmNextBadgesReady
 	msgbox Trinity_Text_ElmNext5, MSGBOX_DEFAULT
+	release
+	end
+
+Trinity_EventScript_ElmNextBadgesReady::
+	msgbox Trinity_Text_ElmNext5Ready, MSGBOX_DEFAULT
 	release
 	end
 
@@ -433,6 +533,17 @@ Trinity_Text_ElmNext2:
 	.string "VIOLET CITY is your road.\n"
 	.string "FALKNER's GYM, past CHERRYGROVE.$"
 
+@ Same page, ZEPHYRBADGE already won: the road is walked, so ELM names the
+@ beat that is still live at arc 2 instead.
+Trinity_Text_ElmNext2Well:
+	.string "ELM: You met him on ROUTE 29,\n"
+	.string "then. The one who took it.\p"
+	.string "Leave him be -- his sort always\n"
+	.string "turns up again.\p"
+	.string "FALKNER is behind you. AZALEA\n"
+	.string "TOWN next -- there are men\l"
+	.string "standing over the SLOWPOKE WELL.$"
+
 Trinity_Text_ElmNext3:
 	.string "ELM: I've had MAHOGANY TOWN on\n"
 	.string "the radio all morning.\p"
@@ -455,6 +566,15 @@ Trinity_Text_ElmNext5:
 	.string "and I would rather you walked\l"
 	.string "in there with seven JOHTO\l"
 	.string "badges behind you.$"
+
+@ Same rung, seventh badge already in hand; C-COUNT buffered the number.
+Trinity_Text_ElmNext5Ready:
+	.string "ELM: The signal under MAHOGANY\n"
+	.string "has stopped. Good.\p"
+	.string "And {STR_VAR_1} JOHTO badges behind\n"
+	.string "you already. Then GOLDENROD --\l"
+	.string "whatever that static is, it is\l"
+	.string "not the weather.$"
 
 Trinity_Text_ElmNext6:
 	.string "ELM: They have taken the RADIO\n"
