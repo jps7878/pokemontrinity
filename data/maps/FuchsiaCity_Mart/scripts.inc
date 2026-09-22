@@ -14,7 +14,7 @@ FuchsiaCity_Mart_EventScript_CooltrainerF::
 	end
 
 FuchsiaCity_Mart_Text_Clerk:
-	.string "The counter is bare.\pKANTO's marts have had nothing\nto sell for months.$"
+	.string "The counter is bare.\pNothing's come in for months.\nCELADON'S store still trades.$"
 
 FuchsiaCity_Mart_Text_Gentleman:
 	.string "Don't they have any pennants\npromoting the SAFARI ZONE?\pHow about some paper lanterns?\nAren't there even any calendars?$"

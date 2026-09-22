@@ -14,10 +14,10 @@ SilphCo_11F_EventScript_FloorSign::
 	end
 
 SilphCo_11F_Text_President:
-	.string "SILPH is mine again.\nI don't owe you for that.\lGood day.$"
+	.string "SILPH is rebuilt and busy.\pI don't need a CHAMPION in my\nboardroom. Good day.$"
 
 SilphCo_11F_Text_Secretary:
-	.string "SECRETARY: Thank you for rescuing\nall of us.\pWe, from the PRESIDENT down,\nare indebted to you.$"
+	.string "SECRETARY: The PRESIDENT is in.\pHe is in for SILPH business.\nYou have none.$"
 
 SilphCo_11F_Text_FloorSign:
 	.string "SILPH CO. HEAD OFFICE\n11F$"

@@ -14,7 +14,7 @@ SaffronCity_Mart_EventScript_Lass::
 	end
 
 SaffronCity_Mart_Text_Clerk:
-	.string "The counter is bare.\pKANTO's marts have had nothing\nto sell for months.$"
+	.string "The counter is bare.\pNothing's come in for months.\nCELADON'S store still trades.$"
 
 SaffronCity_Mart_Text_Youngster:
 	.string "MAX REPEL keeps weaker POKéMON\nfrom appearing.\pMAX REPEL stays effective longer\nthan SUPER REPEL.$"

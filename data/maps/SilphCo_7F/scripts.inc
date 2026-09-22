@@ -33,16 +33,16 @@ SilphCo_7F_EventScript_FloorSign::
 	end
 
 SilphCo_7F_Text_LaprasGuy:
-	.string "You're not a ROCKET. Good.\pI've nothing to give you.\nThey took all of it.$"
+	.string "We used to hand a POKéMON to\nvisitors.\pThat programme ended. Nothing\nfor you.$"
 
 SilphCo_7F_Text_WorkerF:
-	.string "Thank you so much!$"
+	.string "This is the research floor.\pWhatever you're after, we filed\nit years ago.$"
 
 SilphCo_7F_Text_WorkerM1:
-	.string "We canceled the MASTER BALL\nproject because of TEAM ROCKET.$"
+	.string "The MASTER BALL line runs again.\pIf you want one, the store in\nCELADON sells them.$"
 
 SilphCo_7F_Text_WorkerM2:
-	.string "Wow!\pYou chased off TEAM ROCKET all by\nyourself?$"
+	.string "You came up seven floors to look\nat offices.\pI hope it was worth the climb.$"
 
 SilphCo_7F_Text_JoshuaSeen:
 	.string "Heheh!\pYou mistook me for a SILPH worker?$"

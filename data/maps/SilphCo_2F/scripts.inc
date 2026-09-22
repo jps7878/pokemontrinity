@@ -1,6 +1,10 @@
 @ M7b T17.1: trainer intro/defeat/post-battle text ported verbatim from
 @ pokefirered by tools/kanto_port/port_frlg_text.py (mapping key: this
 @ map's <Map>_EventScript_<Name> == FRLG's <Map>_EventScript_<Name>).
+@ EXCEPT 3 string(s) on this map, which are hand-authored overlays
+@ declared in tools/kanto_port/frlg_text_overrides.json -- the cold
+@ KANTO voice of finding #14.  `--verify` checks those against the
+@ manifest instead of against pokefirered.
 @ Levels, parties, trainer ids and battle kinds are untouched.
 @ Re-verify with `port_frlg_text.py trainers --verify`.
 
@@ -35,16 +39,16 @@ SilphCo_2F_Text_JerryPostBattle:
 	.string "Can you solve the maze in here?\nIt's not easy, I tell you!$"
 
 SilphCo_2F_Text_ConnorSeen:
-	.string "Help!\nI'm a SILPH employee.$"
+	.string "This floor is SILPH staff only.\nI'll see you out.$"
 
 SilphCo_2F_Text_ConnorBeaten:
-	.string "How did you know\nI was a ROCKET?$"
+	.string "So you fight as well as they say.\nI still want you out.$"
 
 SilphCo_2F_Text_ConnorPostBattle:
-	.string "I work for both SILPH and TEAM\nROCKET.$"
+	.string "We test POKé BALL prototypes on\nthis floor.\pNothing you're cleared to see.$"
 
 SilphCo_2F_Text_ThunderWaveTutor:
-	.string "Don't. I taught moves here until\nROCKET came up the stairs.$"
+	.string "Don't ask. I taught moves on this\nfloor once.\pSILPH moved the programme out\nyears ago.$"
 
 SilphCo_2F_Text_FloorSign:
 	.string "SILPH CO. HEAD OFFICE\n2F$"

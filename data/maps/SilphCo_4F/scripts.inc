@@ -30,7 +30,7 @@ SilphCo_4F_Text_RodneyPostBattle:
 	.string "The doors are electronically\nlocked.\pIt takes a CARD KEY to open the\ndoors here.$"
 
 SilphCo_4F_Text_WorkerM:
-	.string "Huh?\nTEAM ROCKET is gone?$"
+	.string "Don't touch anything on this\nfloor.\pHalf of it isn't patented yet.$"
 
 SilphCo_4F_Text_FloorSign:
 	.string "SILPH CO. HEAD OFFICE\n4F$"

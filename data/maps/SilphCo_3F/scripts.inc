@@ -21,7 +21,7 @@ SilphCo_3F_EventScript_FloorSign::
 	end
 
 SilphCo_3F_Text_WorkerM:
-	.string "{PLAYER}!\nYou and your POKéMON saved us!$"
+	.string "We know who you are.\pNobody here is stopping work\nto look at you.$"
 
 SilphCo_3F_Text_JoseSeen:
 	.string "I support TEAM ROCKET more than\nI support SILPH CO.!$"

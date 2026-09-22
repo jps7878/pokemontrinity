@@ -30,7 +30,7 @@ SilphCo_9F_Text_EdPostBattle:
 	.string "Exploiting weak spots does work.\nThink about type advantages.$"
 
 SilphCo_9F_Text_HealWoman:
-	.string "Thank you so much.$"
+	.string "I keep a POTION in my desk for\nstaff.\pYou can afford your own.$"
 
 SilphCo_9F_Text_FloorSign:
 	.string "SILPH CO. HEAD OFFICE\n9F$"

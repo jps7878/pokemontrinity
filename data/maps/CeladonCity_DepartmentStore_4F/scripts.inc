@@ -18,13 +18,13 @@ CeladonCity_DepartmentStore_4F_EventScript_FloorSign::
 	end
 
 CeladonCity_DepartmentStore_4F_Text_Man:
-	.string "I'm getting a present for my\ngirlfriend.\pI guess a POKé DOLL will be it.\nIt's the popular thing.$"
+	.string "I'm getting a present for my\ngirlfriend.\pA POKé DOLL, if this floor ever\ntakes a delivery.$"
 
 CeladonCity_DepartmentStore_4F_Text_Youngster:
 	.string "I heard something useful.\pIf a wild POKéMON appears, you can\ndistract it with a POKé DOLL.\pYou can run away while the wild\nPOKéMON is distracted.$"
 
 CeladonCity_DepartmentStore_4F_Text_Clerk:
-	.string "The counter is bare.\pKANTO's marts have had nothing\nto sell for months.$"
+	.string "The counter is bare.\pThe sign still promises STONES.\nI'd take it down if I could.$"
 
 CeladonCity_DepartmentStore_4F_Text_FloorSign:
 	.string "Express yourself with gifts!\n4F: WISE MAN GIFTS\pEvolution Special!\nElement STONES on sale now!$"

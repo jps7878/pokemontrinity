@@ -20,4 +20,4 @@ PewterCity_Mart_Text_Boy:
 	.string "Good things can happen if you raise\nPOKéMON diligently.\pEven the weak ones can surprise\nyou if you don't give up on them.$"
 
 PewterCity_Mart_Text_Clerk:
-	.string "The counter is bare.\pKANTO's marts have had nothing\nto sell for months.$"
+	.string "The counter is bare.\pNothing's come in for months.\nCELADON'S store still trades.$"

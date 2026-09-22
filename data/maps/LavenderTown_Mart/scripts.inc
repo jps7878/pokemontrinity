@@ -18,7 +18,7 @@ LavenderTown_Mart_EventScript_Youngster::
 	end
 
 LavenderTown_Mart_Text_Clerk:
-	.string "The counter is bare.\pKANTO's marts have had nothing\nto sell for months.$"
+	.string "The counter is bare.\pNothing's come in for months.\nCELADON'S store still trades.$"
 
 LavenderTown_Mart_Text_BaldingMan:
 	.string "I'm searching for items that raise\nthe stats of POKéMON.\pThey're effective over the course\nof a single battle.\pX ATTACK, X DEFEND, X SPEED, \nand X SPECIAL are what I'm after.\pDo you know where I can get them?$"

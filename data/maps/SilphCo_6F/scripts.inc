@@ -49,7 +49,7 @@ SilphCo_6F_Text_WorkerM3:
 	.string "Well, better get back to work.$"
 
 SilphCo_6F_Text_WorkerF2:
-	.string "TEAM ROCKET ran away, and it's all\nbecause of you!$"
+	.string "I've seen your face on a magazine\ncover.\pIt didn't get any work done\neither.$"
 
 SilphCo_6F_Text_TaylorSeen:
 	.string "That rotten PRESIDENT!\pServes him right for shipping me\noff to the TIKSI BRANCH!\pThat's why TEAM ROCKET came after\nus, I'm sure of it!$"

@@ -64,7 +64,7 @@ Route6_Text_RickyPostBattle:
 	.string "Whisper…\nWhisper…$"
 
 Route6_Text_NancySeen:
-	.string "Sixteen badges, and you still\nwalk the long way round\llike the rest of us.$"
+	.string "All those badges, and you still\nwalk the long way round\llike the rest of us.$"
 
 Route6_Text_NancyBeaten:
 	.string "Ugh!\nI hate losing.$"

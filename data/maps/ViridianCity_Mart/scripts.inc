@@ -14,7 +14,7 @@ ViridianCity_Mart_EventScript_Woman::
 	end
 
 ViridianCity_Mart_Text_Clerk:
-	.string "The counter is bare.\pKANTO's marts have had nothing\nto sell for months.$"
+	.string "The counter is bare.\pNothing's come in for months.\nCELADON'S store still trades.$"
 
 ViridianCity_Mart_Text_Youngster:
 	.string "I came in for POTIONS.\pThe shelves have been empty\nevery day I've tried.$"

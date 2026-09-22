@@ -14,7 +14,7 @@ CeruleanCity_Mart_EventScript_Youngster::
 	end
 
 CeruleanCity_Mart_Text_Clerk:
-	.string "The counter is bare.\pKANTO's marts have had nothing\nto sell for months.$"
+	.string "The counter is bare.\pNothing's come in for months.\nCELADON'S store still trades.$"
 
 CeruleanCity_Mart_Text_Woman:
 	.string "Do you know about RARE CANDY?\nThey don't sell it in shops.\pI think it makes POKéMON grow\nvery quickly all of a sudden.$"

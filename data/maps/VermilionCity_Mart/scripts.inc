@@ -14,7 +14,7 @@ VermilionCity_Mart_EventScript_BaldingMan::
 	end
 
 VermilionCity_Mart_Text_Clerk:
-	.string "The counter is bare.\pKANTO's marts have had nothing\nto sell for months.$"
+	.string "The counter is bare.\pNothing's come in for months.\nCELADON'S store still trades.$"
 
 VermilionCity_Mart_Text_CooltrainerF:
 	.string "I think POKéMON can be good or\nbad. It depends on the TRAINER.$"
