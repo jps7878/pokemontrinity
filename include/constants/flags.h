@@ -13,7 +13,7 @@
 #define FLAG_TEMP_2      (TEMP_FLAGS_START + 0x2)
 #define FLAG_TEMP_3      (TEMP_FLAGS_START + 0x3)
 #define FLAG_TEMP_4      (TEMP_FLAGS_START + 0x4)
-#define FLAG_TEMP_5      (TEMP_FLAGS_START + 0x5)  // Unused Flag
+#define FLAG_TEMP_5      (TEMP_FLAGS_START + 0x5)  // Trinity M7b Task 18: the KANTO rival cameo hide flag, shared by MtMoon_1F, FuchsiaCity_SafariZone_Entrance, PowerPlant and CeruleanCity -- each map's ON_TRANSITION recomputes it from badge/arc state, so exactly one sighting is ever visible. Do not reuse on those four maps.
 #define FLAG_TEMP_6      (TEMP_FLAGS_START + 0x6)  // Unused Flag
 #define FLAG_TEMP_7      (TEMP_FLAGS_START + 0x7)  // Unused Flag
 #define FLAG_TEMP_8      (TEMP_FLAGS_START + 0x8)  // Unused Flag
@@ -749,7 +749,7 @@
 #define FLAG_TRINITY_J_BASEMENT_DOOR        0x296 // Trinity: was FLAG_UNUSED_0x296 -- door state (D4) - the GOLDENROD UNDERGROUND door at (18,6) is unlocked. The single input to that map's setmetatile authoring. Monotonic: once open, always open.
 #define FLAG_TRINITY_J_CARD_KEY             0x297 // Trinity: was FLAG_UNUSED_0x297 -- key-as-flag (GSC's CARD_KEY; ITEM_CARD_KEY exists but is KANTO's SILPH CO key, reserved for M5). Handed over by the rescued DIRECTOR. Also the predicate for the DEPT. STORE B1F crate that opens the WAREHOUSE shortcut, exactly as GSC keys it on EVENT_RECEIVED_CARD_KEY.
 #define FLAG_TRINITY_J_CARD_KEY_USED        0x298 // Trinity: was FLAG_UNUSED_0x298 -- door state (D4) - the RADIO TOWER 3F shutter is open. The single input to RadioTower3F's setmetatile authoring, and the FIRST test in the slot script (a bg_event on a now-walkable tile is still triggerable).
-#define FLAG_TRINITY_J_SILVER4_BEATEN       0x299 // Trinity: was FLAG_UNUSED_0x299 -- story - SILVER 4 beaten in the GOLDENROD UNDERGROUND. [S12 correction] Comment previously claimed this flag is read by S9's DRAGON'S DEN coda; it is not -- that coda (DragonsDenB1F_EventScript_HideSilver) gates on FLAG_TRINITY_BADGE16, not on this flag. This flag has no script reader today; it stands as a pure story marker for Act III.
+#define FLAG_TRINITY_J_SILVER4_BEATEN       0x299 // Trinity: was FLAG_UNUSED_0x299 -- story - SILVER 4 beaten in the GOLDENROD UNDERGROUND. [S12 correction] Comment previously claimed this flag is read by S9's DRAGON'S DEN coda; it is not -- that coda (DragonsDenB1F_EventScript_HideSilver) gates on FLAG_TRINITY_BADGE16, not on this flag. M7b Task 18 adds its first script reader: Route1_EventScript_SilverAftermath gates SILVER's basement-callback line on it (the GOLDENROD UNDERGROUND fight is the "basement final" of finding #13).
 #define FLAG_TRINITY_J_WING_RAINBOW         0x29A // Trinity: was FLAG_UNUSED_0x29A -- story CLAIM - the RAINBOW WING, from the rescued DIRECTOR. Shipped as a flag, not an item (no ITEM_RAINBOW_WING in this build; S1's ITEM_RED_SCALE and S6's ITEM_SECRET_POTION precedent). S10 consumes it at the TIN TOWER summit.
 #define FLAG_TRINITY_J_WING_SILVER          0x29B // Trinity: was FLAG_UNUSED_0x29B -- story CLAIM - the SILVER WING, seized from GIOVANNI's office in the TEAM ROCKET BASE (B3F, ARC >= 7). Flag, not item. S10 consumes it at the WHIRL ISLANDS.
 #define FLAG_TRINITY_J_CLEAR_BELL           0x29C // Trinity: was FLAG_UNUSED_0x29C -- story CLAIM - the CLEAR BELL, from the rescued DIRECTOR. Flag, not item. S10 consumes it at the ECRUTEAK TIN TOWER ENTRANCE gate. Its award is what writes VAR_TRINITY_JOHTO_ARC = 8.

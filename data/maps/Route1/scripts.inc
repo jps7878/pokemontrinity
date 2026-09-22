@@ -65,8 +65,34 @@ Route1_EventScript_SilverIdle::
 @ The durable half first (S4's I3(b) ordering rule), the arc write behind the
 @ once-only redo-guard (HallOfFame's own shape), THEN the R4 fade-wrapped
 @ departure.
+@ M7b Task 18 (#13): the ONE connective line the founder asked for -- a single
+@ branch around the existing message, inside the existing spine. No new object,
+@ no new trainer id, no new scene, no new flag, no restructuring of his arc.
+@
+@ IT REFERENCES THE BASEMENT FINAL, and the guard is the flag that scene sets.
+@ The founder's words were "the basement final vs his father's shadow", and
+@ there are two candidate basements in this tree. The Rocket Base B3F scene
+@ under MAHOGANY (FLAG_TRINITY_J_SILVER4_SEEN) is a monologue about LANCE with
+@ no battle in it. The GOLDENROD UNDERGROUND scene
+@ (GoldenrodUndergroundSwitchRoomEntrances_EventScript_SilverBattle) is the
+@ actual final: a basement, TEAM ROCKET's own, a fight -- TRAINER_SILVER_4 --
+@ and Silver's own "Why do I lose? … Is what that LANCE said true?" It sets
+@ FLAG_TRINITY_J_SILVER4_BEATEN, so that is what this line is guarded on, and
+@ a player who somehow never fought it still gets the shipped text unchanged.
+@ (The sub-plan named the MAHOGANY flag; this is a disclosed correction.)
+@
+@ THE ARC WRITE BELOW IS UNTOUCHED: still exactly one
+@ `setvar VAR_TRINITY_KANTO_ARC, 5` in the tree, still after the message and
+@ still behind the same redo guard (story_audit.py check (a)).
 Route1_EventScript_SilverAftermath::
+	goto_if_set FLAG_TRINITY_J_SILVER4_BEATEN, Route1_EventScript_SilverAftermathBasement
 	msgbox Route1_Text_SilverAftermath, MSGBOX_DEFAULT
+	goto Route1_EventScript_SilverAftermathEnd
+
+Route1_EventScript_SilverAftermathBasement::
+	msgbox Route1_Text_SilverAftermathBasement, MSGBOX_DEFAULT
+
+Route1_EventScript_SilverAftermathEnd::
 	closemessage
 	goto_if_ge VAR_TRINITY_KANTO_ARC, 5, Route1_EventScript_SilverDepart
 	setvar VAR_TRINITY_KANTO_ARC, 5
@@ -86,6 +112,9 @@ Route1_Text_SilverBeaten:
 
 Route1_Text_SilverAftermath:
 	.string "Whatever. I didn't need to win.\nI needed to know where I stood.\pNow I know. Get stronger. I'll\nbe watching, wherever you go\lnext.$"
+
+Route1_Text_SilverAftermathBasement:
+	.string "Whatever. I didn't need to win.\nI needed to know where I stood.\pIn that basement under GOLDENROD\nI asked why I keep losing.\lLANCE's answer made me angry.\pI've stopped arguing with it.\pNow I know. Get stronger. I'll\nbe watching, wherever you go\lnext.$"
 
 Route1_Text_SilverIdle:
 	.string "…$"
