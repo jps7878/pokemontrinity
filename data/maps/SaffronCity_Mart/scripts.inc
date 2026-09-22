@@ -20,4 +20,4 @@ SaffronCity_Mart_Text_Youngster:
 	.string "MAX REPEL keeps weaker POKéMON\nfrom appearing.\pMAX REPEL stays effective longer\nthan SUPER REPEL.$"
 
 SaffronCity_Mart_Text_Lass:
-	.string "REVIVE is costly, but it revives\nfainted POKéMON!$"
+	.string "REVIVE is costly, they say.\pWouldn't know. There's none here\nto put a price on.$"

@@ -6,4 +6,4 @@ CeruleanCity_House1_EventScript_BadgeGuy::
 	end
 
 CeruleanCity_House1_Text_BadgeGuy:
-	.string "Only skilled TRAINERS can collect\nPOKéMON BADGES.\pI see you have at least one.\pThose BADGES have amazing secrets,\ndid you know?$"
+	.string "Only skilled TRAINERS collect\nBADGES.\pYou're wearing sixteen of them.\nI've nothing to tell you.$"

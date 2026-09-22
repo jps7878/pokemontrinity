@@ -17,7 +17,7 @@ ViridianCity_Mart_Text_Clerk:
 	.string "The counter is bare.\pKANTO's marts have had nothing\nto sell for months.$"
 
 ViridianCity_Mart_Text_Youngster:
-	.string "I've got to buy some POTIONS.\pYou never know when your POKéMON\nwill need quick healing.$"
+	.string "I came in for POTIONS.\pThe shelves have been empty\nevery day I've tried.$"
 
 ViridianCity_Mart_Text_Woman:
-	.string "This shop does good business in\nANTIDOTES, I've heard.$"
+	.string "This shop did good business in\nANTIDOTES, I'm told.\pI've never seen it stocked.$"

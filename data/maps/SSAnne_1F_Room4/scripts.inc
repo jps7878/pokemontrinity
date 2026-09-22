@@ -6,4 +6,4 @@ SSAnne_1F_Room4_EventScript_Woman::
 	end
 
 SSAnne_1F_Room4_Text_Woman:
-	.string "Waitress, I would like a cherry\npie, please!$"
+	.string "I keep ordering cherry pie.\pNobody has come to this cabin\nin hours.$"

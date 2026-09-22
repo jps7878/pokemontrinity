@@ -24,7 +24,7 @@ LavenderTown_Mart_Text_BaldingMan:
 	.string "I'm searching for items that raise\nthe stats of POKéMON.\pThey're effective over the course\nof a single battle.\pX ATTACK, X DEFEND, X SPEED, \nand X SPECIAL are what I'm after.\pDo you know where I can get them?$"
 
 LavenderTown_Mart_Text_Rocker:
-	.string "Did you buy some REVIVES?\nThey revive any fainted POKéMON!$"
+	.string "You won't buy REVIVES here.\nNobody has in months.$"
 
 LavenderTown_Mart_Text_Youngster:
 	.string "Sometimes, a TRAINER duo will\nchallenge you with two POKéMON\lat the same time.\pIf that happens, you have to send\nout two POKéMON to battle, too.$"

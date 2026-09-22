@@ -31,7 +31,7 @@ ViridianCity_School_Text_Notebook:
 	.string "A notebook left open on the\ndesk. The page will not turn.$"
 
 ViridianCity_School_Text_Blackboard:
-	.string "The blackboard lists POKéMON\nSTATUS problems during battles.$"
+	.string "The blackboard lists the status\nproblems: SLEEP, POISON, BURN,\lPARALYSIS and FREEZE.\pNobody has wiped it in a while.$"
 
 ViridianCity_School_Text_Blackboard_2:
-	.string "The blackboard lists POKéMON\nSTATUS problems during battles.$"
+	.string "The blackboard lists the status\nproblems: SLEEP, POISON, BURN,\lPARALYSIS and FREEZE.\pNobody has wiped it in a while.$"

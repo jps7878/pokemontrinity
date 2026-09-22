@@ -43,7 +43,7 @@ LavenderTown_VolunteerPokemonHouse_Text_LittleBoy:
 	.string "It's so warm!\nPOKéMON are so nice to hug.$"
 
 LavenderTown_VolunteerPokemonHouse_Text_Youngster:
-	.string "That's odd, MR. FUJI isn't here.\nWhere'd he go?$"
+	.string "MR. FUJI had been praying alone\nfor CUBONE's mother.$"
 
 LavenderTown_VolunteerPokemonHouse_Text_LittleGirl:
 	.string "This is really MR. FUJI's house.\pHe's really kind.\pHe looks after abandoned and\norphaned POKéMON.$"

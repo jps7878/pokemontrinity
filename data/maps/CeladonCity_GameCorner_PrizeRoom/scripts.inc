@@ -22,10 +22,10 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkItems::
 	end
 
 CeladonCity_GameCorner_PrizeRoom_Text_BaldingMan:
-	.string "I sure do fancy that PORYGON!\nBut, it's hard to win at slots!$"
+	.string "I fancied that PORYGON.\nThe shelf it sat on is bare.$"
 
 CeladonCity_GameCorner_PrizeRoom_Text_OldMan:
-	.string "Gahaha! I raked it in today!\nIf only every day were like this…$"
+	.string "Gahaha! I raked it in, once.\pNot today. Not any day since.$"
 
 CeladonCity_GameCorner_PrizeRoom_Text_PrizeClerkMons:
 	.string "The prize shelves are empty.\nWhoever ran this floor is gone.$"

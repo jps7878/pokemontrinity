@@ -198,7 +198,7 @@ CeladonCity_GameCorner_EventScript_SlotMachine21::
 	end
 
 CeladonCity_GameCorner_Text_InfoClerk:
-	.string "Welcome!\pYou can exchange your COINS for\nfabulous prizes next door.$"
+	.string "Welcome.\pThe prize counter next door is\nbare. I still stand here.$"
 
 CeladonCity_GameCorner_Text_CoinsClerk:
 	.string "No COINS today.\nNo COINS any day, now.$"
@@ -216,10 +216,10 @@ CeladonCity_GameCorner_Text_GymGuy:
 	.string "Hey!\pYou have better things to do,\nchamp in the making!\pCELADON GYM's LEADER is ERIKA.\pShe is a user of GRASS-type\nPOKéMON, and at one with nature.\pShe might appear docile because of\nher flower arranging…\pBut she's not one to be taken\nlightly!$"
 
 CeladonCity_GameCorner_Text_Woman2:
-	.string "These slot games…\nWin or lose, it's only by luck.$"
+	.string "These slot games…\pWin or lose, it was only ever\nby luck. Now it's neither.$"
 
 CeladonCity_GameCorner_Text_OldMan:
-	.string "Games are scary!\nIt's so easy to get hooked!$"
+	.string "Games are scary!\pIt was so easy to get hooked.\nThat's over with now.$"
 
 CeladonCity_GameCorner_Text_Scientist:
 	.string "Want some COINS? Nobody has\nCOINS. Nobody has anything.$"

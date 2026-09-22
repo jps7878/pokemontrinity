@@ -36,13 +36,13 @@ SilphCo_7F_Text_LaprasGuy:
 	.string "You're not a ROCKET. Good.\pI've nothing to give you.\nThey took all of it.$"
 
 SilphCo_7F_Text_WorkerF:
-	.string "You!\nIt's really dangerous here!\pYou came to save me?\nYou can't!$"
+	.string "Thank you so much!$"
 
 SilphCo_7F_Text_WorkerM1:
-	.string "TEAM ROCKET was after the MASTER\nBALL, which catches any POKéMON.$"
+	.string "We canceled the MASTER BALL\nproject because of TEAM ROCKET.$"
 
 SilphCo_7F_Text_WorkerM2:
-	.string "It would be bad if TEAM ROCKET\ntook over SILPH or our POKéMON.$"
+	.string "Wow!\pYou chased off TEAM ROCKET all by\nyourself?$"
 
 SilphCo_7F_Text_JoshuaSeen:
 	.string "Heheh!\pYou mistook me for a SILPH worker?$"

@@ -13,4 +13,4 @@ PalletTown_PlayersHouse_1F_Text_Mom:
 	.string "A trainer grew up in this house.\pHe left, and he never once\nwrote home.$"
 
 PalletTown_PlayersHouse_1F_Text_TV:
-	.string "Oops, wrong side…$"
+	.string "The TV is on with the sound off.\nKANTO news, mostly weather.$"

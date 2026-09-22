@@ -47,7 +47,7 @@ SilphCo_5F_Text_DaltonPostBattle:
 	.string "You're only on 5F.\nIt's a long way to my BOSS!$"
 
 SilphCo_5F_Text_WorkerM:
-	.string "TEAM ROCKET is in an uproar over\nsome intruder.\pThat's you, right?$"
+	.string "TEAM ROCKET took off!\nYou're our hero! Thank you!$"
 
 SilphCo_5F_Text_BeauSeen:
 	.string "We study POKé BALL technology on\nthis floor.$"

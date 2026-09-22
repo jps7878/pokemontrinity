@@ -37,19 +37,19 @@ SilphCo_6F_EventScript_FloorSign::
 	end
 
 SilphCo_6F_Text_WorkerM1:
-	.string "Oh dear, oh dear.\nHelp me, please!$"
+	.string "We got engaged.\nHeheh!$"
 
 SilphCo_6F_Text_WorkerF1:
-	.string "That man next to me…\nHe's such a coward!$"
+	.string "He's so helpless, he needed\nsomeone like me to look after him.$"
 
 SilphCo_6F_Text_WorkerM2:
-	.string "They must have targeted SILPH for\nour POKéMON products.$"
+	.string "Come work for SILPH when you\nget older.$"
 
 SilphCo_6F_Text_WorkerM3:
-	.string "The ROCKETS came and took over\nthe building!$"
+	.string "Well, better get back to work.$"
 
 SilphCo_6F_Text_WorkerF2:
-	.string "TEAM ROCKET is trying to conquer\nthe world with POKéMON.$"
+	.string "TEAM ROCKET ran away, and it's all\nbecause of you!$"
 
 SilphCo_6F_Text_TaylorSeen:
 	.string "That rotten PRESIDENT!\pServes him right for shipping me\noff to the TIKSI BRANCH!\pThat's why TEAM ROCKET came after\nus, I'm sure of it!$"

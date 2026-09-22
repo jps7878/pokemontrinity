@@ -1,6 +1,10 @@
 @ M7b T17.1: trainer intro/defeat/post-battle text ported verbatim from
 @ pokefirered by tools/kanto_port/port_frlg_text.py (mapping key: this
 @ map's <Map>_EventScript_<Name> == FRLG's <Map>_EventScript_<Name>).
+@ EXCEPT 10 string(s) on this map, which are hand-authored overlays
+@ declared in tools/kanto_port/frlg_text_overrides.json -- the cold
+@ KANTO voice of finding #14.  `--verify` checks those against the
+@ manifest instead of against pokefirered.
 @ Levels, parties, trainer ids and battle kinds are untouched.
 @ Re-verify with `port_frlg_text.py trainers --verify`.
 
