@@ -15495,6 +15495,68 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_PokeshiDoll,
         .iconPalette = gItemIconPalette_PokeshiDoll,
     },
+
+    // ----------------------------------------------------------------------
+    // Trinity story key items (M7b Task 15, finding #6c). Tokens for the story
+    // flags listed in include/constants/items.h; every gate reads the flag,
+    // never the bag. All are importance = 1 / POCKET_KEY_ITEMS / price 0 /
+    // ItemUseOutOfBattle_CannotUse and carry no holdEffect, so none of them can
+    // be held, used, sold, tossed or flung -- the difficulty freeze is untouched
+    // by construction. ICONS ARE REUSED existing art: no new graphics file and
+    // no new palette (FRLG never had these items and GSC draws one generic item
+    // sprite, so there is nothing to port byte-identically). Sharing an iconPic
+    // is normal here -- gItemIcon_EVFeather already serves several items.
+    // Each description names WHERE the token is wanted, matching this table's
+    // own key-item idiom (ITEM_LIFT_KEY, ITEM_CARD_KEY, ITEM_BASEMENT_KEY) and
+    // closing the "or what to do next" half of finding #6c.
+    // ----------------------------------------------------------------------
+    [ITEM_RAINBOW_WING] =
+    {
+        .name = ITEM_NAME("Rainbow Wing"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A seven-colored\n"
+            "feather. Carry it\n"
+            "up the Tin Tower."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_EVFeather,
+        .iconPalette = gItemIconPalette_HealthFeather,
+    },
+
+    [ITEM_SILVER_WING] =
+    {
+        .name = ITEM_NAME("Silver Wing"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A dull silver\n"
+            "feather. The Whirl\n"
+            "Islands answer it."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_PrettyFeather,
+        .iconPalette = gItemIconPalette_PrettyFeather,
+    },
+
+    [ITEM_CLEAR_BELL] =
+    {
+        .name = ITEM_NAME("Clear Bell"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A bell of pure\n"
+            "tone. Tin Tower's\n"
+            "sages know it."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_SootheBell,
+        .iconPalette = gItemIconPalette_SootheBell,
+    },
 };
 
 #undef ITEM_NAME

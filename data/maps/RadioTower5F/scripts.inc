@@ -151,29 +151,41 @@ RadioTower5F_EventScript_ImposterBeaten::
 @ ============================================================================
 @ THE RESCUED DIRECTOR. The chapter's payload, and S10's brief.
 @
-@ The RAINBOW WING and the CLEAR BELL are FLAGS, not items -- neither
-@ ITEM_RAINBOW_WING nor ITEM_CLEAR_BELL exists in this build (S1's
-@ ITEM_RED_SCALE and S6's ITEM_SECRET_POTION precedent). Consequences, handled
-@ per S6's three-part rule: each reads as a pickup (fanfare + a "received"
-@ line), each is named at every site that refers to it, and the giver's already-
-@ given path still does something useful. There is NO giveitem here, so there is
-@ no VAR_RESULT == FALSE branch and therefore NO G2 award guard -- G2 exists for
-@ a failable gift and this is not one.
+@ M7b Task 15 (#6c): the RAINBOW WING and the CLEAR BELL are now REAL key items
+@ (ITEM_RAINBOW_WING, ITEM_CLEAR_BELL) as well as flags. The FLAG stays the
+@ authored truth -- TinTowerRoof and EcruteakTinTowerEntrance still gate on the
+@ flag, never on the bag -- and the item is the player-visible token, which is
+@ what finding #6c asked for. The hand-rolled playfanfare/waitfanfare/"received"
+@ pair is gone because Std_ObtainItem (data/scripts/obtain_item.inc:4) plays the
+@ same MUS_OBTAIN_ITEM and prints the obtained + put-in-KEY-ITEMS-POCKET pair
+@ itself; keeping both would double the fanfare and the line.
+@
+@ AWARD SHAPE -- setflag FIRST, then giveitem, and VAR_RESULT aborts NOTHING.
+@ This is deliberately NOT the G2 award guard. G2 (giveitem -> goto_if_eq
+@ VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull -> setflag) exists for a
+@ failable GIFT -- this file's own TM11 at :204 is one. These two are story
+@ state that happens to be visible: Common_EventScript_ShowBagIsFull is msgbox +
+@ release + end (data/event_scripts.s:1236-1239), so on a full pocket it would
+@ terminate the scene BEFORE the setflag and silently stop Act II. Inverting the
+@ order makes a full pocket cost a bag row and nothing else. The call_if_eq
+@ below uses Common_EventScript_BagIsFull (:1241-1243), the msgbox + RETURN
+@ variant, because Std_ObtainItem's own failure path is silent
+@ (EventScript_NoRoomForItem, obtain_item.inc:70-72, is setvar + return). A
+@ token that could not fit is handed over at the next Continue instead, by
+@ TrinitySyncStoryKeyItems() (src/overworld.c).
 @ ============================================================================
 RadioTower5F_EventScript_RescuedDirector::
 	lock
 	faceplayer
 	goto_if_ge VAR_TRINITY_JOHTO_SCENE_GOLDENROD, 5, RadioTower5F_EventScript_DirectorIdle
 	msgbox RadioTower5F_Text_DirectorThankYou, MSGBOX_DEFAULT
-	playfanfare MUS_OBTAIN_ITEM
-	waitfanfare
-	msgbox RadioTower5F_Text_ReceivedRainbowWing, MSGBOX_DEFAULT
 	setflag FLAG_TRINITY_J_WING_RAINBOW
+	giveitem ITEM_RAINBOW_WING
+	call_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
 	msgbox RadioTower5F_Text_DescribeRainbowWing, MSGBOX_DEFAULT
-	playfanfare MUS_OBTAIN_ITEM
-	waitfanfare
-	msgbox RadioTower5F_Text_ReceivedClearBell, MSGBOX_DEFAULT
 	setflag FLAG_TRINITY_J_CLEAR_BELL
+	giveitem ITEM_CLEAR_BELL
+	call_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
 	msgbox RadioTower5F_Text_DescribeClearBell, MSGBOX_DEFAULT
 	setvar VAR_TRINITY_JOHTO_SCENE_GOLDENROD, 5
 	setvar VAR_TRINITY_JOHTO_ARC, 8
@@ -676,10 +688,6 @@ RadioTower5F_Text_DirectorThankYou:
 	.string "never known what to do with\l"
 	.string "them.$"
 
-RadioTower5F_Text_ReceivedRainbowWing:
-	.string "{PLAYER} received the\n"
-	.string "RAINBOW WING.$"
-
 RadioTower5F_Text_DescribeRainbowWing:
 	.string "DIRECTOR: A feather. It has\n"
 	.string "held its color for however\l"
@@ -691,10 +699,6 @@ RadioTower5F_Text_DescribeRainbowWing:
 	.string "back for the right person.\p"
 	.string "I am a radio man. I only repeat\n"
 	.string "what I'm told.$"
-
-RadioTower5F_Text_ReceivedClearBell:
-	.string "{PLAYER} received the\n"
-	.string "CLEAR BELL.$"
 
 RadioTower5F_Text_DescribeClearBell:
 	.string "DIRECTOR: There used to be a\n"

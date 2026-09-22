@@ -1021,7 +1021,41 @@
 #define ITEM_DRAMPANITE 853
 #define ITEM_FALINKSITE 854
 
-#define ITEMS_COUNT 855
+// ---------------------------------------------------------------------------
+// Trinity story key items (M7b Task 15, finding #6c). Each is the player-visible
+// TOKEN for a story FLAG that remains the authored truth: every consuming gate
+// still reads the FLAG and never the bag, so a full KEY ITEMS pocket can never
+// block progression and the two can never desync. Pairings:
+//   ITEM_RAINBOW_WING <-> FLAG_TRINITY_J_WING_RAINBOW 0x29A (RadioTower5F)
+//   ITEM_SILVER_WING  <-> FLAG_TRINITY_J_WING_SILVER  0x29B (TeamRocketBaseB3F)
+//   ITEM_CLEAR_BELL   <-> FLAG_TRINITY_J_CLEAR_BELL   0x29C (RadioTower5F)
+// SCOPE (controller, 2026-09-22): only the three tokens finding #6c actually
+// names ship as items. ITEM_GS_BALL and ITEM_MACHINE_PART were drafted and CUT:
+// the KEY ITEMS pocket is BAG_KEYITEMS_COUNT = 30 and lives in SaveBlock1, so it
+// cannot grow without breaking saves, and a census of this tree found 25 key
+// items that are never removed once obtained (23 before this change) plus
+// transient ones -- the bikes, the four ABANDONED SHIP room keys and the
+// fossils -- so the pocket is already near its ceiling. The MACHINE PART also
+// no longer needs a bag row: M7 Task 9 gave its tile a visible ripple marker.
+// A fourth pairing needs no new id: ITEM_LIFT_KEY 751 <-> FLAG_TRINITY_K_LIFT_KEY
+// 0x4CC. ITEM_CARD_KEY 750 is deliberately NOT paired with FLAG_TRINITY_J_CARD_KEY
+// -- it is already awarded by SilphCo_5F's own item ball (data/maps/SilphCo_5F/
+// map.json), and a second award site would stack a duplicate in the pocket.
+//
+// Appending ids is NOT save-breaking IN THIS TREE: ItemSlot.itemId is u16 and the
+// bag is sized by BAG_*_COUNT, never by ITEMS_COUNT (include/global.h:662,1058).
+// ITEMS_COUNT does size one SaveBlock member -- SaveBlock3.itemFlags[
+// ITEM_FLAGS_COUNT], include/global.h:241,252 -- but that member is compiled out
+// here, because include/config/overworld.h:20 sets OW_SHOW_ITEM_DESCRIPTIONS to
+// OW_ITEM_DESCRIPTIONS_OFF and the member is #if'd on OW_ITEM_DESCRIPTIONS_FIRST_TIME
+// (the config line the expansion itself annotates "** SAVE-BREAKING **").
+// If that config is ever turned on, adding items becomes save-breaking again.
+// ---------------------------------------------------------------------------
+#define ITEM_RAINBOW_WING 855
+#define ITEM_SILVER_WING 856
+#define ITEM_CLEAR_BELL 857
+
+#define ITEMS_COUNT 858
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations

@@ -535,8 +535,22 @@ TeamRocketBaseB3F_EventScript_EvidenceCrate::
 	waitfanfare
 	msgbox TeamRocketBaseB3F_Text_ReceivedSilverWing, MSGBOX_DEFAULT
 	setflag FLAG_TRINITY_J_WING_SILVER
+	@ M7b Task 15 (finding #6c): the bag row is the player-visible TOKEN; the
+	@ FLAG above stays the authored truth and every gate still reads it (see
+	@ WhirlIslandLugiaChamber). setflag FIRST, and a full bag must NOT abort
+	@ the scene -- Common_EventScript_BagIsFull is msgbox + return, unlike
+	@ ShowBagIsFull which terminates. So the story advances either way and the
+	@ two can never desync.
+	giveitem ITEM_SILVER_WING
+	goto_if_eq VAR_RESULT, FALSE, TeamRocketBaseB3F_EventScript_SilverWingBagFull
+TeamRocketBaseB3F_EventScript_SilverWingAwarded::
 	msgbox TeamRocketBaseB3F_Text_SilverWingFile, MSGBOX_DEFAULT
 	releaseall
+	end
+
+TeamRocketBaseB3F_EventScript_SilverWingBagFull::
+	msgbox TeamRocketBaseB3F_Text_SilverWingNoRoom, MSGBOX_DEFAULT
+	goto TeamRocketBaseB3F_EventScript_SilverWingAwarded
 	end
 
 TeamRocketBaseB3F_EventScript_CrateSealed::
@@ -586,3 +600,9 @@ TeamRocketBaseB3F_Text_CrateEmptied:
 	.string "Just the tag, and the shape in\n"
 	.string "the packing where something\l"
 	.string "used to lie.$"
+
+TeamRocketBaseB3F_Text_SilverWingNoRoom:
+	.string "Your KEY ITEMS pocket is full,\n"
+	.string "so the feather stays in the file.\p"
+	.string "You have seen it. That is what\n"
+	.string "matters -- you know where it is.$"
