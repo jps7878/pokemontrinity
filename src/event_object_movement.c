@@ -562,11 +562,16 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPaletteEmotes,             OBJ_EVENT_PAL_TAG_EMOTES},
     {gObjectEventPaletteNeonLight,          OBJ_EVENT_PAL_TAG_NEON_LIGHT},
     // FireRed's two shared NPC palettes. NOT per-character: every ported FRLG
-    // human sprite in this tree (Giovanni, Lt. Surge, Lance, Blue, Koga, Bruno,
-    // both Rocket grunts, Prof. Oak) is drawn against one of these two.
-    // Added under per-character names by M6 P3, renamed by M7b Task 11.
+    // human sprite in this tree is drawn against one of these FOUR and against
+    // nothing else. The first two were added under per-character names by M6 P3
+    // and renamed by M7b Task 11; the other two arrived with Task 11b.
     {gObjectEventPal_FRLGNpcWhite,          OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE},
     {gObjectEventPal_FRLGNpcGreen,          OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN},
+    // Trinity M7b Task 11b: FR's other two shared NPC palettes, carried by the
+    // seven leaders ported in that task (BROCK green; MISTY/ERIKA/SABRINA blue;
+    // BLAINE/AGATHA pink; LORELEI white).
+    {gObjectEventPal_FRLGNpcBlue,           OBJ_EVENT_PAL_TAG_FRLG_NPC_BLUE},
+    {gObjectEventPal_FRLGNpcPink,           OBJ_EVENT_PAL_TAG_FRLG_NPC_PINK},
 #ifdef BUGFIX
     {NULL,                                  OBJ_EVENT_PAL_TAG_NONE},
 #else

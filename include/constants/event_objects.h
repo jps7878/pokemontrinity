@@ -267,11 +267,26 @@
 // OBJ_EVENT_GFX_PROF_BIRCH with Professor Elm -- the two authority figures who
 // hand out a starter, one per region, drawn identically. FR's own prof_oak.png.
 #define OBJ_EVENT_GFX_PROF_OAK                   251
+// Trinity M7b Task 11b (finding #5b): the seven remaining FRLG-native leaders.
+// Finding #5b filed the Johto/Kanto gym leaders as having "no GBA-native
+// source"; that is true only of Morty, Will and the Rocket executives. All
+// seven below ship as byte-identical FireRed overworlds, so they port with no
+// redraw and no restyle -- off the cross-cast placeholders that made them
+// misread (Erika wore Hoenn E4 Phoebe's sprite, Brock wore Roxanne's, Sabrina
+// wore Liza's, Blaine wore the generic HIKER, Misty SWIMMER_F, Agatha
+// OLD_WOMAN, Lorelei BEAUTY).
+#define OBJ_EVENT_GFX_BROCK                      252
+#define OBJ_EVENT_GFX_MISTY                      253
+#define OBJ_EVENT_GFX_ERIKA                      254
+#define OBJ_EVENT_GFX_BLAINE                     255
+#define OBJ_EVENT_GFX_SABRINA                    256
+#define OBJ_EVENT_GFX_AGATHA                     257
+#define OBJ_EVENT_GFX_LORELEI                    258
 
 // NOTE: The maximum amount of object events has been expanded from 255 to 65535.
 // Since dynamic graphics ids still require at least 16 free values, the actual limit
 // is 65519, but even considering follower Pokémon, this should be more than enough :)
-#define NUM_OBJ_EVENT_GFX                        252
+#define NUM_OBJ_EVENT_GFX                        259
 
 
 // These are dynamic object gfx ids.
@@ -417,6 +432,16 @@
 // the PC item-storage menu's, not the overworld's.)
 #define OBJ_EVENT_PAL_TAG_FRLG_NPC_WHITE          0x1125
 #define OBJ_EVENT_PAL_TAG_FRLG_NPC_GREEN          0x1126
+// M7b Task 11b: FRLG's other two shared NPC palettes, added for the same
+// reason and named the same way -- for the palette, not for a character.
+// pokefirered ships exactly four shared NPC palettes (npc_white, npc_green,
+// npc_blue, npc_pink) and every ported FRLG human here embeds one of them
+// verbatim: BLUE is Misty/Erika/Sabrina's, PINK is Blaine/Agatha's. Verified by
+// RGB comparison of each source PNG's embedded PLTE against FR's own .pal
+// files, not by filename. Brock (npc_green) and Lorelei (npc_white) needed no
+// new tag at all. Sixteen ported sprites now share four palette entries.
+#define OBJ_EVENT_PAL_TAG_FRLG_NPC_BLUE           0x1127
+#define OBJ_EVENT_PAL_TAG_FRLG_NPC_PINK           0x1128
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla
