@@ -79,9 +79,16 @@ Route28_Text_Sign:
 @ The K_ARRIVED refusal + walk_left step-back below is untouched: it is the
 @ story gate. Since round 1 Route22's (8,7) trigger reads the same flag
 @ (refusal, no step-back -- see that file), so a pre-K_ARRIVED player who
-@ leaks onto Route 22 through KantoVictoryRoad_1F's (20,10) can no longer say
-@ YES into this map's sealed pocket (east refused here, west refused by
-@ SilverCaveGateCheck below).
+@ COULD THEN leak onto Route 22 through KantoVictoryRoad_1F's (20,10) can no
+@ longer say YES into this map's sealed pocket (east refused here, west
+@ refused by SilverCaveGateCheck below).
+@ UPDATED, M7b Task 16 fix round 1: that (20,10) leak is now closed at its
+@ own source -- KantoVictoryRoad_1F_EventScript_Route23ReturnWarp opens with
+@ `goto_if_unset FLAG_TRINITY_K_ARRIVED, ..._Route23Sealed`, and an edge-cut
+@ dungeon BFS from the Act II corridor no longer reaches Route23 (5,28),
+@ (8,153), Route22_NorthEntrance or Route22 (8,6). Both refusals above stay:
+@ they cost nothing, they are read-only, and they keep this pocket sealed
+@ independently of any one upstream gate.
 Route28_EventScript_KantoGateCheck::
 	goto_if_set FLAG_TRINITY_K_ARRIVED, Route28_EventScript_KantoGateOpen
 	lockall

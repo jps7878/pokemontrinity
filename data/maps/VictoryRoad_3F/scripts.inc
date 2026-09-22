@@ -49,13 +49,21 @@ VictoryRoad_3F_OnTransition:
 @ M7b Task 16 (finding #10, "Related known item") -- ACCEPTED AS IS, ruled
 @ and recorded rather than left as folklore. The Act II league corridor does
 @ cross this floor, so a JOHTO-league runner reaches MOLTRES (L80) and the
-@ hidden TM15 at (12,17) before Act III. Measured at Task 16, and the
-@ measurement does NOT say they are out of the way: BFS from this floor's
-@ own landing (5,2), with the three objects placed, puts MOLTRES's approach
-@ tile (11,16) at 22 steps and the TM15 tile (12,17) at 24, against 38 to
-@ the nearest onward exit (34,9) -- they sit off the corridor by a detour of
-@ about 24 steps (landing -> (11,16) -> (34,9) is 62), not in another wing.
-@ They are accepted anyway, on three grounds that do not depend on distance:
+@ hidden TM15 at (12,17) before Act III. They are nonetheless well off that
+@ corridor. BFS over this floor (reach_check's own Map/step model), from the
+@ landing (5,2) the JOHTO runner arrives on, puts the nearest onward exit
+@ (34,9) at 38 steps, the TM15 tile (12,17) at 66 and MOLTRES's approach
+@ tile (11,16) at 68 -- i.e. in the opposite direction. (11,16) -> (34,9) is
+@ another 40, so landing -> MOLTRES -> onward exit is 108 against 38 direct:
+@ a ~70-step detour off a 38-step crossing. Identical under every model
+@ tried (SURF on/off, objects placed or absent) and under every other entry
+@ door on the floor ((34,9) 40/38, (37,10) 38/36, (39,17) 41/39, (34,18)
+@ 27/25), so it is not a modelling artefact.
+@ (Round 1 of this task shipped "22/24 ... a ~24-step detour" here. That was
+@ WRONG -- 22 from (11,16) and 24 from (12,17) is a fix taken from (12,13)
+@ or (13,12), mid-floor, not from the landing. Corrected in the review fix
+@ round; the sub-plan's original 68/66 figures were right.)
+@ They are accepted, on four grounds:
 @ (1) gating them REMOVES a reward from Act II, which is a power-curve
 @ change in the restrictive direction, and M7's Global Constraints freeze
 @ the curve; (2) M7b is legibility work -- hiding a legendary the player can
@@ -63,7 +71,11 @@ VictoryRoad_3F_OnTransition:
 @ "locked door with no key in sight" failure, which this milestone exists to
 @ remove; (3) it would reverse S11's own deliberate "Gate: NONE" ruling
 @ above on balance grounds with no play evidence against it -- the founder's
-@ bug-test raised this as an accepted balance note, not a complaint.
+@ bug-test raised this as an accepted balance note, not a complaint;
+@ (4) measured (above), nobody trips over them: 68 steps out -- into the far
+@ third of a floor whose greatest distance from that landing is 80 -- off a
+@ 38-step crossing is a deliberate side trip, not something the league
+@ corridor walks you past.
 @ Catching an L80 MOLTRES with Act II resources is itself the skill check
 @ the M7b charter says to preserve. The KANTO leak finding #10 actually
 @ names is closed at its source instead: KantoVictoryRoad_1F (20,10), gated

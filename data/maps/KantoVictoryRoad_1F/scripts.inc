@@ -57,9 +57,11 @@ KantoVictoryRoad_1F_MapScripts::
 @ NOT reached without it -- while the league door
 @ IndigoPlateau_Exterior (11,7) stays reached either way. So gating HERE,
 @ and only here, closes KANTO to a pre-Act-III player without touching the
-@ Act II league corridor. ROUTE 28's own K_ARRIVED comment already names
-@ this leak as the reason its (39,8) confirm had to be gated; this is that
-@ leak's source.
+@ Act II league corridor. ROUTE 28's and ROUTE 22's own K_ARRIVED comments
+@ name this leak as the reason their confirms had to be gated; this is that
+@ leak's source, and since the fix round of this task both of those comments
+@ record it in the past tense with this gate as the closure. Their refusals
+@ stay in place as defence-in-depth.
 @
 @ READ-ONLY: this gate never writes FLAG_TRINITY_K_ARRIVED. M5b S1's S.S.
 @ AQUA arrival scene (VermilionCity/scripts.inc) is the one writer.

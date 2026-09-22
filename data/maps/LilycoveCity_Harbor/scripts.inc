@@ -426,8 +426,41 @@ LilycoveCity_Harbor_EventScript_PlayerBoardFerryNorth::
 	waitmovement 0
 	return
 
+@ ============================================================================
+@ Trinity M7b Task 16 fix round 1 (finding #6b, information half). The KANTO
+@ crossing itself lives on the SAILOR below (see the writeup there for the
+@ idiom argument), and the board genuinely CANNOT carry the lane as a row.
+@ CreateLilycoveSSTidalMultichoice builds sLilycoveSSTidalSelections
+@ dynamically, but routes any list over 6 entries to ShowScrollableMultichoice
+@ (src/script_menu.c), whose rows come from the STATIC
+@ sScrollableMultichoiceOptions[SCROLL_MULTI_SS_TIDAL_DESTINATION] against a
+@ hardcoded tNumItems = 8 (src/field_specials.c) while the selection maps
+@ back through the BUILT array -- a ninth, conditional destination desyncs
+@ the two. So the row is correctly absent.
+@
+@ But the board is where a stranded player LOOKS. It already carries the
+@ analogous cross-region lane (SSTIDAL_SELECTION_JOHTO), the attendant stands
+@ at (8,10) one tile from (8,11) where the SLATEPORT crossing lands the
+@ player, and the SAILOR is a MOVEMENT_TYPE_WANDER_AROUND flavour NPC at
+@ (3,13) in the far corner. Leaving the board silent reproduces the founder's
+@ own #6b failure verbatim for anyone who consults it, so this exit path --
+@ the single way out of the board for a player who scanned it and did not
+@ find KANTO (case 6 and MULTI_B_PRESSED both land here, and
+@ FerryDestinationChangeMind loops back into the board rather than past it)
+@ -- points at the SAILOR instead.
+@
+@ ZERO new flags: it reads FLAG_TRINITY_K_ARRIVED, the same flag the SAILOR's
+@ own branch reads, so the hint cannot appear before there is a KANTO to sail
+@ to. READ-ONLY. Below the flag the vanilla line is untouched.
+@ ============================================================================
 LilycoveCity_Harbor_EventScript_ExitSailSelect::
+	goto_if_set FLAG_TRINITY_K_ARRIVED, LilycoveCity_Harbor_EventScript_ExitSailSelectKanto
 	msgbox LilycoveCity_Harbor_Text_SailAnotherTime, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_Harbor_EventScript_ExitSailSelectKanto::
+	msgbox LilycoveCity_Harbor_Text_NoKantoLaneSeeSailor, MSGBOX_DEFAULT
 	release
 	end
 
@@ -647,6 +680,14 @@ LilycoveCity_Harbor_Text_SailorFerryUnavailable:
 	.string "we sailors have nothing to do…\p"
 	.string "I wish they'd get a move on, the folks\n"
 	.string "at the SHIPYARD in SLATEPORT.$"
+
+LilycoveCity_Harbor_Text_NoKantoLaneSeeSailor:
+	.string "Ah -- if it's KANTO you're after,\n"
+	.string "I'm afraid the S.S. TIDAL doesn't\l"
+	.string "chart that lane.\p"
+	.string "The SAILOR down at the west end of\n"
+	.string "the dock runs a boat straight through\l"
+	.string "to VERMILION. Do ask him.$"
 
 LilycoveCity_Harbor_Text_SailorKantoOffer:
 	.string "The S.S. TIDAL only runs the HOENN\n"

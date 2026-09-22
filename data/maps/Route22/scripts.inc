@@ -11,20 +11,35 @@ Route22_MapScripts::
 @ Badge-agnostic dialogue -- he names no count, just that the road is a
 @ League matter.
 @
-@ PREMISE CORRECTION (M7 Task 3 round 1, review Major-1). This comment used
-@ to claim that nobody can stand on this porch before FLAG_TRINITY_K_ARRIVED
-@ is set. FALSE. The Act II corridor leaks a pre-K_ARRIVED player in from the
-@ JOHTO side: Route26 -> KantoVictoryRoad_1F warp 1 (11,20) -> its (20,10)
-@ coord trigger (KantoVictoryRoad_1F_EventScript_Route23ReturnWarp, an
-@ UNCONDITIONAL `warp MAP_ROUTE23, 5, 28`) -> Route23's SOUTH component
-@ (reach_check: 1339 tiles from (5,28), holding all seven guard nets and
-@ warp 2 (8,153) -> Route22_NorthEntrance; the nets bounce a refused player
-@ SOUTH, i.e. toward this map) -> Route22 (8,6). That is bug-test finding
-@ #10's Kanto-side hole, and the (20,10) leak is NOT closed by Indigo
-@ Plateau guards: Route23's north/plateau component (222 tiles from (18,28))
-@ does not contain (5,28). Nothing on this map may therefore assume the
-@ flag: the guard's Closed line below exists precisely for that player, and
-@ the seam trigger refuses him too.
+@ PREMISE CORRECTION (M7 Task 3 round 1, review Major-1; premise UPDATED in
+@ M7b Task 16 fix round 1). This comment originally claimed that nobody can
+@ stand on this porch before FLAG_TRINITY_K_ARRIVED is set. That was FALSE
+@ when written: the Act II corridor leaked a pre-K_ARRIVED player in from
+@ the JOHTO side -- Route26 -> KantoVictoryRoad_1F warp 1 (11,20) -> its
+@ (20,10) coord trigger (KantoVictoryRoad_1F_EventScript_Route23ReturnWarp,
+@ then an UNCONDITIONAL `warp MAP_ROUTE23, 5, 28`) -> Route23's SOUTH
+@ component (reach_check: 1332 tiles from (5,28) with SURF, holding all
+@ seven guard nets and warp 2 (8,153) -> Route22_NorthEntrance; the nets
+@ bounce a refused player SOUTH, i.e. toward this map) -> Route22 (8,6).
+@ That was bug-test finding #10's Kanto-side hole, and Indigo Plateau guards
+@ could never have closed it: Route23's north/plateau component (222 tiles
+@ from (18,28)) does not contain (5,28).
+@
+@ THAT LEAK IS NOW CLOSED AT ITS SOURCE. M7b Task 16 put
+@ `goto_if_unset FLAG_TRINITY_K_ARRIVED, ..._Route23Sealed` on that (20,10)
+@ trigger (KantoVictoryRoad_1F/scripts.inc). Re-verified in the fix round by
+@ an edge-cut dungeon BFS over KantoVictoryRoad_1F + VictoryRoad_2F/3F +
+@ Route23 + IndigoPlateau_Exterior + Route22_NorthEntrance + Route22 +
+@ Route26, seeded at KantoVictoryRoad_1F (11,20) with SURF: 4581 nodes with
+@ that edge, 2655 with it cut, and under the cut Route23 (5,28), Route23
+@ (8,153), Route22_NorthEntrance and THIS MAP's (8,6) all go unreachable
+@ while the league door IndigoPlateau_Exterior (11,7) stays reached. So the
+@ chain above is HISTORY, not a live route.
+@ Everything below stays exactly as it is anyway, as
+@ defence-in-depth: this map still must not ASSUME the flag (one more
+@ Kanto-side door added later would revive the class), the guard's Closed
+@ line is a read-only refusal that costs nothing, and the seam trigger
+@ refuses the same player a second time.
 @
 @ M7 Task 3 (bug-test findings #20 + #15, P0): he stands at (7,6), the open
 @ porch tile WEST of the door approach -- decoded MB_NORMAL, collision 0,
@@ -99,7 +114,9 @@ Route22_Text_KantoGateGuardOpen:
 @          player STAYS on (8,7) -- no step-back, because (8,7) is entered
 @          from four sides and is not itself the crossing (the door north of
 @          it is not gated). Without this branch a pre-K_ARRIVED player who
-@          reached this porch through the leak above could say YES and be
+@          reached this porch through the leak above -- closed at source in
+@          M7b Task 16, so this branch is now belt-and-braces rather than
+@          the only net -- could say YES and be
 @          SEALED on Route 28: that map's (39,8) refuses eastbound below
 @          K_ARRIVED, its west edge refuses westbound below
 @          VAR_TRINITY_KANTO_ARC 6, (7,3)/(33,5) are a disjoint component,
