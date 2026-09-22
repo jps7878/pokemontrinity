@@ -128,14 +128,9 @@ VermilionCity_EventScript_Sailor::
 	lock
 	faceplayer
 	goto_if_unset FLAG_TRINITY_K_ARRIVED, VermilionCity_EventScript_SailorNotYet
-	goto_if_set FLAG_TRINITY_K_MYSTERIOUS_INVITATION, VermilionCity_EventScript_SailorTwoDestinations
-	msgbox VermilionCity_Text_BackToOlivine, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, VermilionCity_EventScript_SailorDecline
-	closemessage
-	setrespawn HEAL_LOCATION_OLIVINE_CITY
-	warp MAP_OLIVINE_PORT, 7, 22
-	waitstate
-	release
+	goto_if_set FLAG_TRINITY_K_MYSTERIOUS_INVITATION, VermilionCity_EventScript_SailorInvitationOffer
+	msgbox VermilionCity_Text_TwoPorts, MSGBOX_DEFAULT
+	goto VermilionCity_EventScript_SailorPortChoice
 	end
 
 VermilionCity_EventScript_SailorDecline::
@@ -172,16 +167,50 @@ VermilionCity_EventScript_SailorDecline::
 @ own setrespawn two screens up. (The pre-fix comment on this point lived in
 @ NewIsland/scripts.inc pointing back at "this file's header comment", which
 @ says nothing about setrespawn -- the real discussion is HERE; review M5.)
+@
+@ M7b Task 16 (finding #6b) -- the LILYCOVE leg. The same S13a ruling above
+@ governs it: LILYCOVE is named in the opener, never hidden behind a NO to
+@ OLIVINE, so both entry paths now run through one shared tail
+@ (_SailorPortChoice) and both openers name every port this sailor can
+@ reach. Landing LilycoveCity_Harbor (8,11) is the already-decoded,
+@ already-shipped tile OlivinePort_EventScript_SailorToLilycove warps to
+@ (re-decoded at Task 16: col 0, elev 3, MB_NORMAL, unoccupied, reachable);
+@ setrespawn HEAL_LOCATION_LILYCOVE_CITY mirrors that same script. Gate:
+@ none of its own -- the whole conversation is already behind
+@ FLAG_TRINITY_K_ARRIVED at the top, and standing in KANTO implies it. The
+@ reciprocal HOENN-side offer is LilycoveCity_Harbor_EventScript_
+@ SailorKantoRun. This block was named _SailorTwoDestinations until Task 16;
+@ it offers three now, so the label moved with the meaning (NewIsland/
+@ scripts.inc's cross-reference comment was updated in the same commit).
 @ ============================================================================
-VermilionCity_EventScript_SailorTwoDestinations::
+VermilionCity_EventScript_SailorInvitationOffer::
 	msgbox VermilionCity_Text_TwoDestinations, MSGBOX_DEFAULT
 	msgbox VermilionCity_Text_NewIslandOffer, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, VermilionCity_EventScript_GoToNewIsland
+	goto VermilionCity_EventScript_SailorPortChoice
+	end
+
+@ Shared tail. OLIVINE first (the shipped default order), then LILYCOVE.
+VermilionCity_EventScript_SailorPortChoice::
 	msgbox VermilionCity_Text_BackToOlivine, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, VermilionCity_EventScript_SailAnotherTimeAfterAll
+	goto_if_eq VAR_RESULT, YES, VermilionCity_EventScript_GoToOlivine
+	msgbox VermilionCity_Text_OverToLilycove, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, VermilionCity_EventScript_GoToLilycove
+	goto VermilionCity_EventScript_SailorDecline
+	end
+
+VermilionCity_EventScript_GoToOlivine::
 	closemessage
 	setrespawn HEAL_LOCATION_OLIVINE_CITY
 	warp MAP_OLIVINE_PORT, 7, 22
+	waitstate
+	release
+	end
+
+VermilionCity_EventScript_GoToLilycove::
+	closemessage
+	setrespawn HEAL_LOCATION_LILYCOVE_CITY
+	warp MAP_LILYCOVE_CITY_HARBOR, 8, 11
 	waitstate
 	release
 	end
@@ -190,11 +219,6 @@ VermilionCity_EventScript_GoToNewIsland::
 	closemessage
 	warp MAP_NEW_ISLAND, 5, 7
 	waitstate
-	release
-	end
-
-VermilionCity_EventScript_SailAnotherTimeAfterAll::
-	msgbox VermilionCity_Text_SailAnotherTime, MSGBOX_DEFAULT
 	release
 	end
 
@@ -214,9 +238,19 @@ VermilionCity_Text_BackToOlivine:
 VermilionCity_Text_TwoDestinations:
 	.string "That envelope you picked up at\n"
 	.string "CERULEAN CAVE has sailing marks on\l"
-	.string "it -- looks like an invitation. I\l"
-	.string "could take you out to the island it\l"
-	.string "points to, or back to OLIVINE CITY.$"
+	.string "it -- looks like an invitation.\p"
+	.string "I can run you out to the island it\n"
+	.string "points to, or back to OLIVINE in\l"
+	.string "JOHTO, or the long haul round to\l"
+	.string "LILYCOVE in HOENN.$"
+
+VermilionCity_Text_TwoPorts:
+	.string "Two runs out of this dock now --\n"
+	.string "OLIVINE in JOHTO, and the long\l"
+	.string "haul round to LILYCOVE in HOENN.$"
+
+VermilionCity_Text_OverToLilycove:
+	.string "LILYCOVE CITY in HOENN, then?$"
 
 VermilionCity_Text_NewIslandOffer:
 	.string "Out to the island, then?$"

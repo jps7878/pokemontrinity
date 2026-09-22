@@ -45,6 +45,29 @@ VictoryRoad_3F_OnTransition:
 @ BattleSetup_StartLegendaryBattle is used instead. SPECIES_MOLTRES added to
 @ its switch (src/battle_setup.c) and to GetBattleBGM's switch (src/pokemon.c),
 @ same REQUIRED/belt-and-braces split Zapdos/Articuno already established.
+@
+@ M7b Task 16 (finding #10, "Related known item") -- ACCEPTED AS IS, ruled
+@ and recorded rather than left as folklore. The Act II league corridor does
+@ cross this floor, so a JOHTO-league runner reaches MOLTRES (L80) and the
+@ hidden TM15 at (12,17) before Act III. Measured at Task 16, and the
+@ measurement does NOT say they are out of the way: BFS from this floor's
+@ own landing (5,2), with the three objects placed, puts MOLTRES's approach
+@ tile (11,16) at 22 steps and the TM15 tile (12,17) at 24, against 38 to
+@ the nearest onward exit (34,9) -- they sit off the corridor by a detour of
+@ about 24 steps (landing -> (11,16) -> (34,9) is 62), not in another wing.
+@ They are accepted anyway, on three grounds that do not depend on distance:
+@ (1) gating them REMOVES a reward from Act II, which is a power-curve
+@ change in the restrictive direction, and M7's Global Constraints freeze
+@ the curve; (2) M7b is legibility work -- hiding a legendary the player can
+@ see behind a flag whose key is in another act is finding #6c's exact
+@ "locked door with no key in sight" failure, which this milestone exists to
+@ remove; (3) it would reverse S11's own deliberate "Gate: NONE" ruling
+@ above on balance grounds with no play evidence against it -- the founder's
+@ bug-test raised this as an accepted balance note, not a complaint.
+@ Catching an L80 MOLTRES with Act II resources is itself the skill check
+@ the M7b charter says to preserve. The KANTO leak finding #10 actually
+@ names is closed at its source instead: KantoVictoryRoad_1F (20,10), gated
+@ on FLAG_TRINITY_K_ARRIVED (M7b Task 16).
 @ ============================================================================
 VictoryRoad_3F_EventScript_HideMoltres::
 	setflag FLAG_TRINITY_K_MOLTRES_HIDE

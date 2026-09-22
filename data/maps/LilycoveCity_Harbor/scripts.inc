@@ -452,8 +452,55 @@ LilycoveCity_Harbor_EventScript_Sailor::
 	release
 	end
 
+@ ============================================================================
+@ Trinity M7b Task 16 (finding #6b) -- the direct HOENN <-> KANTO crossing.
+@
+@ THE HOLE THIS CLOSES, as the founder hit it: he flew to SLATEPORT during
+@ Act III and was stranded. HOENN <-> JOHTO has the S.S. TIDAL, JOHTO <->
+@ KANTO has the S.S. AQUA + the MAGNET TRAIN + the ROUTE 22/28 land seam,
+@ and HOENN <-> KANTO had nothing -- so every Hoenn-to-Kanto trip was two
+@ legs with a regional FLY that reaches neither end.
+@
+@ WHY THE SAILOR AND NOT THE S.S. TIDAL ATTENDANT. This tree's own idiom for
+@ a cross-REGION crossing is a SAILOR and a sequential YESNO, at both ends of
+@ the existing one: OlivinePort_EventScript_Sailor (LILYCOVE, then VERMILION
+@ behind FLAG_TRINITY_K_ARRIVED) and VermilionCity_EventScript_Sailor. The
+@ attendant's board is the HOENN-internal ferry multichoice, built in C
+@ (src/script_menu.c, CreateLilycoveSSTidalMultichoice); this leg is
+@ script-only and cannot disturb that board's selection indices.
+@
+@ GATE: FLAG_TRINITY_K_ARRIVED, read only. M5b S1's S.S. AQUA arrival scene
+@ (VermilionCity/scripts.inc) is the one writer. Before it there is no KANTO
+@ to sail to and this branch is unreachable -- the same read, for the same
+@ reason, as OLIVINE PORT's own VERMILION leg. The outer FLAG_SYS_GAME_CLEAR
+@ check above is left exactly as it was: K_ARRIVED already implies it.
+@
+@ Landing (24,33) is NOT invented: it is the already-decoded VERMILION dock
+@ tile (col 0, elev 3, MB_NORMAL, one tile east of
+@ LOCALID_KANTO_VERMILION_SAILOR's (23,33)) that OLIVINE PORT's own two
+@ crossings and NEW ISLAND's return leg all use. setrespawn
+@ HEAL_LOCATION_VERMILION_CITY mirrors OlivinePort_EventScript_
+@ SailorToVermilion line for line. Fade-warp idiom only (YESNO -> warp ->
+@ waitstate); no ship-corridor map, per the founder's own framing.
+@ ============================================================================
 LilycoveCity_Harbor_EventScript_SailorFerryAvailable::
+	goto_if_set FLAG_TRINITY_K_ARRIVED, LilycoveCity_Harbor_EventScript_SailorKantoRun
 	msgbox LilycoveCity_Harbor_Text_SailorFerryAvailable, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_Harbor_EventScript_SailorKantoRun::
+	msgbox LilycoveCity_Harbor_Text_SailorKantoOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, LilycoveCity_Harbor_EventScript_SailorKantoDecline
+	closemessage
+	setrespawn HEAL_LOCATION_VERMILION_CITY
+	warp MAP_VERMILION_CITY, 24, 33
+	waitstate
+	release
+	end
+
+LilycoveCity_Harbor_EventScript_SailorKantoDecline::
+	msgbox LilycoveCity_Harbor_Text_SailAnotherTime, MSGBOX_DEFAULT
 	release
 	end
 
@@ -600,6 +647,14 @@ LilycoveCity_Harbor_Text_SailorFerryUnavailable:
 	.string "we sailors have nothing to do…\p"
 	.string "I wish they'd get a move on, the folks\n"
 	.string "at the SHIPYARD in SLATEPORT.$"
+
+LilycoveCity_Harbor_Text_SailorKantoOffer:
+	.string "The S.S. TIDAL only runs the HOENN\n"
+	.string "and JOHTO lanes.\p"
+	.string "My boat's smaller, but she goes\n"
+	.string "straight through to VERMILION in\l"
+	.string "KANTO.\p"
+	.string "Want the crossing?$"
 
 LilycoveCity_Harbor_Text_SailorFerryAvailable:
 	.string "The ferry S.S. TIDAL is finally in\n"

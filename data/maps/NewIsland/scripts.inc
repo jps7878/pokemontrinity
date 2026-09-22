@@ -198,7 +198,7 @@ NewIsland_Text_Mew:
 @ never lands on top of the NPC. No setrespawn -- a faint on NEW ISLAND must
 @ not strand the player here; the discussion of WHY (contrasted against the
 @ OLIVINE leg's own setrespawn) lives in VermilionCity/scripts.inc, at
-@ VermilionCity_EventScript_SailorTwoDestinations's own header comment, NOT
+@ VermilionCity_EventScript_SailorInvitationOffer's own header comment, NOT
 @ in this file (fix round 1, review M5 -- the pre-fix comment here pointed
 @ at "this file's header comment", which says nothing about setrespawn).
 @ ---------------------------------------------------------------------------

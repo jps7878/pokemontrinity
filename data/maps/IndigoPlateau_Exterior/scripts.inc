@@ -56,6 +56,106 @@ IndigoPlateau_Exterior_EventScript_SpectatorAfter::
 	release
 	end
 
+@ ============================================================================
+@ Trinity M7b Task 16 (finding #10) -- THE PLATEAU CORDON.
+@
+@ The founder's dictate was "station guards blocking the Kanto-side exit so
+@ the only open direction is left, into the league". Two measurements taken
+@ at Task 16 decided how much of that this map can carry.
+@
+@ (1) THE STAIRWAY IS NOT THE KANTO EXIT. It drops into ROUTE 23's NORTH
+@ component -- 222 tiles, y 0..32, with SURF and without -- whose only other
+@ door is (18,28) -> VICTORY ROAD 2F, the corridor the league runner came up
+@ through. ROUTE 23's south half, and KANTO past it, are reachable only
+@ through KantoVictoryRoad_1F (20,10), which Task 16 gates on
+@ FLAG_TRINITY_K_ARRIVED (see that map's scripts.inc for the full
+@ measurement). So the seal the founder asked for exists; it just does not
+@ live on this map.
+@
+@ (2) SEALING THIS STAIRWAY WOULD TRAP THE PLAYER, because it is also the
+@ only way back to JOHTO. reach_check with (10,13)/(11,13)/(12,13) all
+@ blocked: from the CENTER door's approach tile (11,7) reach falls 66 -> 45
+@ and (11,19) is NOT reached; from the ROUTE 23 border tile (11,19) reach is
+@ 18 -- the stairway alone -- and (11,7) is NOT reached. This map is
+@ "allow_escaping": false, so ESCAPE ROPE and DIG are out; FLY's picker is
+@ the HOENN region map (finding #6b); TELEPORT returns to lastHealLocation,
+@ which the CENTER's own ON_TRANSITION has just set to
+@ HEAL_LOCATION_INDIGO_PLATEAU. An under-levelled Act II player would be
+@ stuck on the PLATEAU with a MART and a nurse and no way to train.
+@
+@ So the cordon is INFORMATION, not a seal: two officers on the staircase
+@ head's two landing tiles, (10,13) and (12,13) -- decoded col 0 / elev 3 /
+@ MB_NORMAL, metatiles 733 and 735, the white stone landing the art draws --
+@ costing exactly their own two tiles (reach 66 -> 64, nothing sealed), with
+@ (11,13) left open between them for the player to walk down the middle.
+@ Because (9,13) and (13,13) are balustrade walls (col 1) and y=13 is
+@ walkable only at x 10/11/12 plus three plaza pockets with no y=14
+@ neighbour, (11,13) is FORCED -- the same property ROUTE 26's league gate
+@ relies on -- so one coord_event there cannot be walked around.
+@
+@ THE NOTICE IS SOUTHBOUND-ONLY. A coord_event fires on entry from either
+@ side, and the ARRIVING league runner walks NORTH onto (11,13) off the
+@ stairs; firing a "KANTO is closed" line at someone walking INTO the
+@ plateau would be nonsense. GetPlayerFacingDirection() is reliable inside a
+@ coord_event -- movement sets facing to the direction of travel and
+@ TryStartCoordEventScript runs on the same frame the step completes; the
+@ full argument is in ViridianCity/scripts.inc's GymDoorRefuseBounce
+@ comment. Facing SOUTH == walked down from (11,12) == leaving.
+@
+@ NO STEP-BACK and NO LATCH. No step-back because nothing is refused: the
+@ player may leave, and is only being told what is down there. No latch
+@ because M7 has one flag and one saved var left and both are spoken for --
+@ so the notice re-fires on every southbound crossing, exactly the "fires on
+@ every crossing" idiom ROUTE 26's league gate and ROUTE 28's KantoGateCheck
+@ both use (VAR_TEMP_1 is never written on this map, and
+@ ClearTempFieldEventData resets it on every map load).
+@
+@ READ-ONLY: nothing here writes FLAG_TRINITY_K_ARRIVED, any badge flag or
+@ any story var. G7 discipline holds.
+@ ============================================================================
+IndigoPlateau_Exterior_EventScript_KantoRoadNotice::
+	goto_if_set FLAG_TRINITY_K_ARRIVED, IndigoPlateau_Exterior_EventScript_KantoRoadOpen
+	specialvar VAR_RESULT, GetPlayerFacingDirection
+	goto_if_ne VAR_RESULT, DIR_SOUTH, IndigoPlateau_Exterior_EventScript_KantoRoadOpen
+	lockall
+	msgbox IndigoPlateau_Exterior_Text_KantoRoadClosed, MSGBOX_DEFAULT
+	closemessage
+	releaseall
+	end
+
+@ INTENTIONALLY EMPTY / DEFENSIVE, the exact shape of
+@ Route26_EventScript_LeagueGateOpen: the trigger still fires on every
+@ crossing (that is what makes the notice reliable), and this branch is what
+@ makes an Act III crossing -- and every northbound arrival -- free.
+IndigoPlateau_Exterior_EventScript_KantoRoadOpen::
+	end
+
+IndigoPlateau_Exterior_EventScript_GuardWest::
+	lock
+	faceplayer
+	goto_if_set FLAG_TRINITY_K_ARRIVED, IndigoPlateau_Exterior_EventScript_GuardWestOpen
+	msgbox IndigoPlateau_Exterior_Text_GuardWest, MSGBOX_DEFAULT
+	release
+	end
+
+IndigoPlateau_Exterior_EventScript_GuardWestOpen::
+	msgbox IndigoPlateau_Exterior_Text_GuardWestOpen, MSGBOX_DEFAULT
+	release
+	end
+
+IndigoPlateau_Exterior_EventScript_GuardEast::
+	lock
+	faceplayer
+	goto_if_set FLAG_TRINITY_K_ARRIVED, IndigoPlateau_Exterior_EventScript_GuardEastOpen
+	msgbox IndigoPlateau_Exterior_Text_GuardEast, MSGBOX_DEFAULT
+	release
+	end
+
+IndigoPlateau_Exterior_EventScript_GuardEastOpen::
+	msgbox IndigoPlateau_Exterior_Text_GuardEastOpen, MSGBOX_DEFAULT
+	release
+	end
+
 IndigoPlateau_Exterior_Text_Sign:
 	.string "INDIGO PLATEAU\p"
 	.string "The Ultimate Goal for TRAINERS!\p"
@@ -76,3 +176,38 @@ IndigoPlateau_Exterior_Text_SpectatorAfter:
 	.string "you went in.\p"
 	.string "Two days up that road, and I got\n"
 	.string "the best seat in JOHTO.$"
+
+IndigoPlateau_Exterior_Text_KantoRoadClosed:
+	.string "OFFICER: Heading back down?\p"
+	.string "Mind that ROUTE 23 ends at VICTORY\n"
+	.string "ROAD while this tournament runs.\l"
+	.string "The KANTO half of the road is\l"
+	.string "closed.\p"
+	.string "The LEAGUE is the other way.$"
+
+IndigoPlateau_Exterior_Text_GuardWest:
+	.string "LEAGUE reception is through those\n"
+	.string "doors. The desk counts your\l"
+	.string "BADGES, not your reputation.\p"
+	.string "Nothing else up here is open\n"
+	.string "until the tournament is settled.$"
+
+IndigoPlateau_Exterior_Text_GuardWestOpen:
+	.string "Reception's through those doors.\p"
+	.string "And the road down is clear now --\n"
+	.string "ROUTE 23 all the way to KANTO.$"
+
+IndigoPlateau_Exterior_Text_GuardEast:
+	.string "That stairway drops to ROUTE 23.\p"
+	.string "It runs back to VICTORY ROAD and\n"
+	.string "no further. The KANTO half of the\l"
+	.string "road is closed while this LEAGUE\l"
+	.string "is running.\p"
+	.string "Go home the way you came, or go\n"
+	.string "in and win.$"
+
+IndigoPlateau_Exterior_Text_GuardEastOpen:
+	.string "Stairway drops to ROUTE 23.\p"
+	.string "The KANTO road's open to you now.\n"
+	.string "Mind the checkpoints on the way\l"
+	.string "down -- they still count BADGES.$"
