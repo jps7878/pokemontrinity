@@ -23,9 +23,30 @@
 @ G7 DISCIPLINE: this reads the badge flags and NEVER writes one. Only a
 @ <Leader>Defeated continuation (M5b) writes FLAG_TRINITY_BADGE<NN>.
 @
+@ C-COUNT ALSO SPEAKS (M7b Task 15, finding #6). The count is buffered into
+@ STR_VAR_1 as well as written to VAR_TEMP_A, so any text on a caller's path can
+@ print the player's ACTUAL number with no buffer line of its own -- which is the
+@ whole of finding #6's complaint: "the gate counts internally but never states
+@ the number".
+@ AUDITED WHEN ADDED: every file that calls either counter was grepped, and none
+@ of them writes or prints STR_VAR_1/2/3 anywhere, so nothing of theirs is
+@ clobbered. SEVERAL Kanto callers are MAP-LOAD scripts: LORELEI's, BRUNO's,
+@ AGATHA's, LANCE's and the CHAMPION's rooms, the HALL OF FAME and
+@ IndigoPlateau_PokemonCenter_1F all count badges from their own ON_TRANSITION
+@ to arm the Kanto cast, so entering any of those maps rewrites STR_VAR_1 before
+@ the map draws. None of them prints a buffer anywhere (grepped: zero STR_VAR
+@ hits in all seven), and the HALL OF FAME's own C code writes gStringVar1
+@ immediately before it expands it (src/hall_of_fame.c:985-986), so the write is
+@ observed by nothing.
+@ THE NEW OBLIGATION this creates: a caller must not hold a string in STR_VAR_1
+@ across the call.
+@ G7 DISCIPLINE IS UNCHANGED -- buffering is a read of the badge flags, never a
+@ write of one.
+@
 @ Usage:
 @       call Trinity_EventScript_CountKantoBadges
 @       goto_if_lt VAR_TEMP_A, 3, <not enough>
+@       ... and {STR_VAR_1} in any text on that path prints the same number.
 @
 @ TRAVEL-GATE FLAGS (read-only here, no shared helper needed -- each is a
 @ single goto_if_set at its point of use, not a count):
@@ -45,8 +66,54 @@ Trinity_EventScript_CountKantoBadges::
 	call_if_set FLAG_TRINITY_BADGE22, Trinity_EventScript_IncKantoBadgeCount
 	call_if_set FLAG_TRINITY_BADGE23, Trinity_EventScript_IncKantoBadgeCount
 	call_if_set FLAG_TRINITY_BADGE24, Trinity_EventScript_IncKantoBadgeCount
+	buffernumberstring STR_VAR_1, VAR_TEMP_A
 	return
 
 Trinity_EventScript_IncKantoBadgeCount::
 	addvar VAR_TEMP_A, 1
 	return
+
+@ ============================================================================
+@ THE POST-VICTORY TALLY (M7b Task 15, finding #6). Called by the seven KANTO
+@ gym guides that exist -- CELADON GYM has no GymGuy object, and neither does
+@ FRLG's. Information only: it reads the badge flags and writes none (G7).
+@
+@ NO "OF EIGHT" DENOMINATOR, on purpose. Six shipped guide lines end on "One of
+@ seven." -- PewterCity_Gym:182, CeruleanCity_Gym:205, VermilionCity_Gym:527,
+@ FuchsiaCity_Gym:286, SaffronCity_Gym:292, CinnabarIsland_Gym:570 -- because
+@ seven badges are what open VIRIDIAN (ViridianCity_EventScript_GymDoorCheck,
+@ data/maps/ViridianCity/scripts.inc:95-96, needs VAR_TEMP_A >= 7) and
+@ VIRIDIAN's own badge is the eighth. This tally lands in the very next box
+@ after one of those lines, so it names the two GATES the number is for instead
+@ of re-counting the gyms.
+@
+@ THE ALL-EIGHT BRANCH EXISTS BECAUSE OF VIRIDIAN.
+@ ViridianCity_Gym_EventScript_GymGuyPostVictory is reached only through
+@ goto_if_set FLAG_TRINITY_BADGE24 (data/maps/ViridianCity_Gym/scripts.inc:107),
+@ so a player hearing it there always holds all eight -- telling them VIRIDIAN
+@ opens at seven would narrate a milestone they have just walked past. At eight
+@ the actionable fact is ROUTE 23, whose last guard wants all eight
+@ (Route23_EventScript_Guard7, VAR_TEMP_A >= 8) and whose first wants two, so
+@ every checkpoint on that road is satisfied at once.
+@ ============================================================================
+Trinity_EventScript_KantoBadgeTally::
+	call Trinity_EventScript_CountKantoBadges
+	goto_if_ge VAR_TEMP_A, 8, Trinity_EventScript_KantoBadgeTallyAll
+	msgbox Trinity_Text_KantoBadgeTally, MSGBOX_DEFAULT
+	return
+
+Trinity_EventScript_KantoBadgeTallyAll::
+	msgbox Trinity_Text_KantoBadgeTallyAll, MSGBOX_DEFAULT
+	return
+
+Trinity_Text_KantoBadgeTally:
+	.string "Your KANTO BADGE count: {STR_VAR_1}.\p"
+	.string "VIRIDIAN GYM won't open under\n"
+	.string "seven. ROUTE 23's last guard\l"
+	.string "wants all eight.$"
+
+Trinity_Text_KantoBadgeTallyAll:
+	.string "Your KANTO BADGE count: {STR_VAR_1}.\p"
+	.string "Every gym in KANTO. ROUTE 23's\n"
+	.string "guards will wave you through to\l"
+	.string "VICTORY ROAD now.$"

@@ -120,8 +120,12 @@ VioletGym_EventScript_Guide::
 	release
 	end
 
+@ M7b Task 15 (finding #6): the guide states the player's LIVE badge count.
+@ The tally reads the flags and buffers the number itself -- see
+@ data/scripts/trinity_johto.inc.
 VioletGym_EventScript_GuidePostVictory::
 	msgbox VioletGym_Text_GuidePostVictory, MSGBOX_DEFAULT
+	call Trinity_EventScript_JohtoBadgeTally
 	release
 	end
 

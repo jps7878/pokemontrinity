@@ -119,8 +119,12 @@ FuchsiaCity_Gym_EventScript_GymGuy::
 	release
 	end
 
+@ M7b Task 15 (finding #6): the guide states the player's LIVE badge count.
+@ The tally reads the flags and buffers the number itself -- see
+@ data/scripts/trinity_kanto.inc.
 FuchsiaCity_Gym_EventScript_GymGuyPostVictory::
 	msgbox FuchsiaCity_Gym_Text_GymGuyPostVictory, MSGBOX_DEFAULT
+	call Trinity_EventScript_KantoBadgeTally
 	release
 	end
 

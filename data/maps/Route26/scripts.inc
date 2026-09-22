@@ -157,6 +157,13 @@ Route26_Movement_GateStepBack:
 @ GSC VictoryRoadGateOfficerText / VictoryRoadGateNotEnoughBadgesText /
 @ VictoryRoadGateEightBadgesText, adapted: the challenger is already a CHAMPION
 @ somewhere else, and the officer's whole job is that it does not count here.
+@
+@ M7b Task 15 (finding #6): both refusals now STATE the player's badge count.
+@ {STR_VAR_1} is live, never hardcoded -- Trinity_EventScript_CountJohtoBadges
+@ buffers its own result (data/scripts/trinity_johto.inc), and both readers of
+@ these two strings run that counter first: the coord trigger
+@ Route26_EventScript_LeagueGateCheck (:108, its counter call at :111) and the
+@ talk script Route26_EventScript_LeagueGateOfficer (:133, its call at :137).
 Route26_Text_OfficerBlocking:
 	.string "Only trainers who have proven\n"
 	.string "themselves in JOHTO may pass.\p"
@@ -164,6 +171,7 @@ Route26_Text_OfficerBlocking:
 	.string "this gate does.\p"
 	.string "It doesn't work like that. Eight\n"
 	.string "BADGES, from the eight JOHTO GYMS.\p"
+	.string "You're carrying {STR_VAR_1}.\p"
 	.string "Then the road is yours.$"
 
 Route26_Text_OfficerReady:
@@ -182,6 +190,8 @@ Route26_Text_GateNotEnoughBadges:
 	.string "OFFICER: Hold on.\p"
 	.string "You don't have all the GYM BADGES\n"
 	.string "of JOHTO.\p"
+	.string "You're carrying {STR_VAR_1}. The gate\n"
+	.string "opens at eight.\p"
 	.string "I'm sorry, but I can't let you go\n"
 	.string "through.$"
 

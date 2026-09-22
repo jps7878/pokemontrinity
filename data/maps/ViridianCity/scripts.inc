@@ -304,8 +304,17 @@ ViridianCity_Text_GymDoorRefuse:
 @ door itself is quiet, but Giovanni's own line
 @ (ViridianHideout_B2F_Text_GiovanniAftermath: "I'll be waiting upstairs")
 @ still needs seven badges honoured before he opens up.
+@
+@ M7b Task 15 (finding #6): the closing line is the player's LIVE count instead
+@ of "You're not there yet." -- ViridianCity_EventScript_GymDoorCheck (:94)
+@ calls Trinity_EventScript_CountKantoBadges (:95), which buffers STR_VAR_1,
+@ before either refusal branch; and this branch is only reachable with fewer
+@ than seven badges, so the number printed is always 0-6 and the note is always
+@ true.
+@ The PRE-rig text above is deliberately left alone: that door is held shut by
+@ TEAM ROCKET, not by a badge count, and a tally there would be a non-sequitur.
 ViridianCity_Text_GymDoorRefusePostRig:
-	.string "VIRIDIAN GYM's doors sit quiet now\n-- no more shouting, no more\lslamming.\pA note is pinned beside the handle:\nseven badges, then he'll talk.\lYou're not there yet.$"
+	.string "VIRIDIAN GYM's doors sit quiet now\n-- no more shouting, no more\lslamming.\pA note is pinned beside the handle:\nseven badges, then he'll talk.\lYou're carrying {STR_VAR_1}.$"
 
 ViridianCity_Text_BlueSeen:
 	.string "So it's really you.\pTwo Leagues down and you show up\nHERE, of all places. Right in\lfront of my town's gym.\pI've got some things to settle\nbefore you go anywhere near that\ldoor.$"

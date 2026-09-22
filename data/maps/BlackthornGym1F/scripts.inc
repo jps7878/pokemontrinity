@@ -253,8 +253,12 @@ BlackthornGym1F_EventScript_BlackthornGymGuide::
 	release
 	end
 
+@ M7b Task 15 (finding #6): the guide states the player's LIVE badge count.
+@ The tally reads the flags and buffers the number itself -- see
+@ data/scripts/trinity_johto.inc.
 BlackthornGym1F_EventScript_GuideWin::
 	msgbox BlackthornGym1F_Text_GuideWin, MSGBOX_DEFAULT
+	call Trinity_EventScript_JohtoBadgeTally
 	release
 	end
 

@@ -35,6 +35,13 @@ Route23_MapScripts::
 @ decision 8; these two guards are reachable on foot from either bank.
 @
 @ G7 DISCIPLINE: reads FLAG_TRINITY_BADGE17..24 only, never writes one.
+@
+@ M7b Task 15 (finding #6): every refusal now ENDS on the player's own count.
+@ Each guard already named the number he wants; what was missing was the number
+@ the player has. {STR_VAR_1} is live -- Trinity_EventScript_CountKantoBadges
+@ buffers its own result (data/scripts/trinity_kanto.inc), and BOTH readers of
+@ each Refuse string call it first: the talk script Route23_EventScript_Guard<N>
+@ and the coord net Route23_EventScript_Guard<N>Net below.
 @ ============================================================================
 Route23_EventScript_Guard1::
 	lock
@@ -140,7 +147,8 @@ Route23_Text_Guard1Refuse:
 	.string "on.\p"
 	.string "Come back when you've got 2 KANTO\n"
 	.string "BADGES. That's the going rate\l"
-	.string "out here.$"
+	.string "out here.\p"
+	.string "You're carrying {STR_VAR_1}.$"
 
 Route23_Text_Guard1Pass:
 	.string "2 BADGES on you? Go on, then.$"
@@ -150,7 +158,8 @@ Route23_Text_Guard2Refuse:
 	.string "this road without proving\l"
 	.string "themselves first.\p"
 	.string "Come back when you've got 3 KANTO\n"
-	.string "BADGES.$"
+	.string "BADGES.\p"
+	.string "You're carrying {STR_VAR_1}.$"
 
 Route23_Text_Guard2Pass:
 	.string "3 BADGES. Not bad. Through you\n"
@@ -161,7 +170,8 @@ Route23_Text_Guard3Refuse:
 	.string "I'm not waving you past on\l"
 	.string "nothing.\p"
 	.string "Come back when you've got 4 KANTO\n"
-	.string "BADGES.$"
+	.string "BADGES.\p"
+	.string "You're carrying {STR_VAR_1}.$"
 
 Route23_Text_Guard3Pass:
 	.string "4 BADGES, confirmed. Carry on.$"
@@ -171,7 +181,8 @@ Route23_Text_Guard4Refuse:
 	.string "careful of me, too -- I don't let\l"
 	.string "just anybody through.\p"
 	.string "Come back when you've got 5 KANTO\n"
-	.string "BADGES.$"
+	.string "BADGES.\p"
+	.string "You're carrying {STR_VAR_1}.$"
 
 Route23_Text_Guard4Pass:
 	.string "5 BADGES. You're making good\n"
@@ -181,7 +192,8 @@ Route23_Text_Guard5Refuse:
 	.string "This close to VICTORY ROAD, we\n"
 	.string "check everybody twice.\p"
 	.string "Come back when you've got 6 KANTO\n"
-	.string "BADGES.$"
+	.string "BADGES.\p"
+	.string "You're carrying {STR_VAR_1}.$"
 
 Route23_Text_Guard5Pass:
 	.string "6 BADGES. Three-quarters of the\n"
@@ -191,7 +203,8 @@ Route23_Text_Guard6Refuse:
 	.string "Not much further to VICTORY ROAD\n"
 	.string "now, but you're not ready yet.\p"
 	.string "Come back when you've got 7 KANTO\n"
-	.string "BADGES.$"
+	.string "BADGES.\p"
+	.string "You're carrying {STR_VAR_1}.$"
 
 Route23_Text_Guard6Pass:
 	.string "7 BADGES. Almost there. Go on.$"
@@ -201,7 +214,8 @@ Route23_Text_Guard7Refuse:
 	.string "ROAD itself, and the strictest\l"
 	.string "one.\p"
 	.string "Come back when you've got 8 KANTO\n"
-	.string "BADGES. Every last one of them.$"
+	.string "BADGES. Every last one of them.\p"
+	.string "You're carrying {STR_VAR_1}.$"
 
 Route23_Text_Guard7Pass:
 	.string "All 8. Every gym in KANTO,\n"
