@@ -1,3 +1,9 @@
+@ M7b T17.1: trainer intro/defeat/post-battle text ported verbatim from
+@ pokefirered by tools/kanto_port/port_frlg_text.py (mapping key: this
+@ map's <Map>_EventScript_<Name> == FRLG's <Map>_EventScript_<Name>).
+@ Levels, parties, trainer ids and battle kinds are untouched.
+@ Re-verify with `port_frlg_text.py trainers --verify`.
+
 @ ============================================================================
 @ M7b Task 18 (finding #13, WHERE): the Act I rival, cameo 1 of 4.
 @
@@ -91,37 +97,37 @@ MtMoon_1F_EventScript_HideRival::
 
 MtMoon_1F_EventScript_Iris::
 	trainerbattle_single TRAINER_KANTO_LASS_IRIS, MtMoon_1F_Text_IrisSeen, MtMoon_1F_Text_IrisBeaten
-	msgbox MtMoon_1F_Text_IrisBeaten, MSGBOX_AUTOCLOSE
+	msgbox MtMoon_1F_Text_IrisPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 MtMoon_1F_EventScript_Robby::
 	trainerbattle_single TRAINER_KANTO_BUG_CATCHER_ROBBY, MtMoon_1F_Text_RobbySeen, MtMoon_1F_Text_RobbyBeaten
-	msgbox MtMoon_1F_Text_RobbyBeaten, MSGBOX_AUTOCLOSE
+	msgbox MtMoon_1F_Text_RobbyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 MtMoon_1F_EventScript_Jovan::
 	trainerbattle_single TRAINER_KANTO_SUPER_NERD_JOVAN, MtMoon_1F_Text_JovanSeen, MtMoon_1F_Text_JovanBeaten
-	msgbox MtMoon_1F_Text_JovanBeaten, MSGBOX_AUTOCLOSE
+	msgbox MtMoon_1F_Text_JovanPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 MtMoon_1F_EventScript_Miriam::
 	trainerbattle_single TRAINER_KANTO_LASS_MIRIAM, MtMoon_1F_Text_MiriamSeen, MtMoon_1F_Text_MiriamBeaten
-	msgbox MtMoon_1F_Text_MiriamBeaten, MSGBOX_AUTOCLOSE
+	msgbox MtMoon_1F_Text_MiriamPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 MtMoon_1F_EventScript_Kent::
 	trainerbattle_single TRAINER_KANTO_BUG_CATCHER_KENT, MtMoon_1F_Text_KentSeen, MtMoon_1F_Text_KentBeaten
-	msgbox MtMoon_1F_Text_KentBeaten, MSGBOX_AUTOCLOSE
+	msgbox MtMoon_1F_Text_KentPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 MtMoon_1F_EventScript_Josh::
 	trainerbattle_single TRAINER_KANTO_YOUNGSTER_JOSH, MtMoon_1F_Text_JoshSeen, MtMoon_1F_Text_JoshBeaten
-	msgbox MtMoon_1F_Text_JoshBeaten, MSGBOX_AUTOCLOSE
+	msgbox MtMoon_1F_Text_JoshPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 MtMoon_1F_EventScript_Marcos::
 	trainerbattle_single TRAINER_KANTO_HIKER_MARCOS, MtMoon_1F_Text_MarcosSeen, MtMoon_1F_Text_MarcosBeaten
-	msgbox MtMoon_1F_Text_MarcosBeaten, MSGBOX_AUTOCLOSE
+	msgbox MtMoon_1F_Text_MarcosPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 MtMoon_1F_EventScript_ZubatSign::
@@ -129,46 +135,67 @@ MtMoon_1F_EventScript_ZubatSign::
 	end
 
 MtMoon_1F_Text_IrisSeen:
-	.string "…$"
+	.string "What?\nI'm waiting for my friends to find\lme here.$"
 
 MtMoon_1F_Text_IrisBeaten:
-	.string "…$"
+	.string "I lost?$"
+
+MtMoon_1F_Text_IrisPostBattle:
+	.string "I came because I heard there are\nsome very rare fossils here.$"
 
 MtMoon_1F_Text_RobbySeen:
-	.string "…$"
+	.string "You need to go through this cave\nto get to CERULEAN CITY.$"
 
 MtMoon_1F_Text_RobbyBeaten:
-	.string "…$"
+	.string "I lost.$"
+
+MtMoon_1F_Text_RobbyPostBattle:
+	.string "ZUBAT is tough!\nBut if you can catch one, you'll\lbe able to count on it.$"
 
 MtMoon_1F_Text_JovanSeen:
-	.string "…$"
+	.string "What!\nDon't sneak up on me!$"
 
 MtMoon_1F_Text_JovanBeaten:
-	.string "…$"
+	.string "My POKéMON won't do!$"
+
+MtMoon_1F_Text_JovanPostBattle:
+	.string "I have to find stronger POKéMON.\nWhere might they be?$"
 
 MtMoon_1F_Text_MiriamSeen:
-	.string "…$"
+	.string "Wow! It's way bigger in here than\nI thought!$"
 
 MtMoon_1F_Text_MiriamBeaten:
-	.string "…$"
+	.string "Oh!\nI lost it!$"
+
+MtMoon_1F_Text_MiriamPostBattle:
+	.string "How do you get out of here?\nIt's so big, I may get lost.$"
 
 MtMoon_1F_Text_KentSeen:
-	.string "…$"
+	.string "Suspicious men are in the cave.\nWhat about you?$"
 
 MtMoon_1F_Text_KentBeaten:
-	.string "…$"
+	.string "You got me!$"
+
+MtMoon_1F_Text_KentPostBattle:
+	.string "I saw them!\nI'm sure they're from TEAM ROCKET!$"
 
 MtMoon_1F_Text_JoshSeen:
-	.string "…$"
+	.string "Did you come to explore the cave,\ntoo?$"
 
 MtMoon_1F_Text_JoshBeaten:
-	.string "…$"
+	.string "Losing stinks!\nIt's so uncool.$"
+
+MtMoon_1F_Text_JoshPostBattle:
+	.string "I came all the way down here to\nshow off to girls.$"
 
 MtMoon_1F_Text_MarcosSeen:
-	.string "…$"
+	.string "WHOA!\nYou shocked me!\l…Oh, you're just a kid!$"
 
 MtMoon_1F_Text_MarcosBeaten:
-	.string "…$"
+	.string "Wow!\nShocked again!$"
+
+MtMoon_1F_Text_MarcosPostBattle:
+	.string "Kids like you shouldn't be\nwandering around here in the dark.$"
 
 MtMoon_1F_Text_ZubatSign:
 	.string "Beware!\nZUBAT is a bloodsucker!$"
